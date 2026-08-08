@@ -30,7 +30,7 @@ Project-local libraries: `hardware/lib.*` (FC), `hardware/whoop.*` (Bluejay ESC 
 ## Build and export
 
 ```
-git clone --recursive https://github.com/incutec-hw/OpenAIO-Whoop.git
+git clone --recursive https://github.com/OpenDrone-hw/OpenAIO-Whoop.git
 ```
 
 Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10. Production exports (gerbers, BOM, CPL) are generated with the [KiCad Fabrication Toolkit](https://github.com/bennymeg/Fabrication-Toolkit) plugin into `hardware/production/` (gitignored). Headless checks use `kicad-cli`:

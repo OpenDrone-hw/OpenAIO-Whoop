@@ -33,7 +33,7 @@ Three stages on one board with a 25.5 x 25.5 mm mounting pattern: flight control
 
 ## Key parts, FC and RX (inherited from sibling designs)
 
-RP2354A, LSM6DSV16XTR, 2x LMR51430, TPS2116, LP5912, NCV8187 (superseded by TPS7A2018, see above), TF-021B microSD (superseded by W25Q128JVPIQ, see above), ESP32-C3FH4 + SX1281 + TLV75533. Full part tables are in the [OpenAIO](https://github.com/incutec-hw/OpenAIO) repo.
+RP2354A, LSM6DSV16XTR, 2x LMR51430, TPS2116, LP5912, NCV8187 (superseded by TPS7A2018, see above), TF-021B microSD (superseded by W25Q128JVPIQ, see above), ESP32-C3FH4 + SX1281 + TLV75533. Full part tables are in the [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO) repo.
 
 ## Firmware targets
 
