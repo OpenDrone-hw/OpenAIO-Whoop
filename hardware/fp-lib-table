@@ -1,8 +1,0 @@
-(fp_lib_table
-	(version 7)
-	(lib (name "lib")(type "KiCad")(uri "${KIPRJMOD}/lib.pretty")(options "")(descr "FC footprints (from OpenFC-Lite-Mini rev2)"))
-	(lib (name "4in1ESC")(type "KiCad")(uri "${KIPRJMOD}/4in1ESC.pretty")(options "")(descr "ESC donor footprints (from 4in1-mini Rev2)"))
-	(lib (name "OpenRX-Shared")(type "KiCad")(uri "${KIPRJMOD}/OpenRX-Shared.pretty")(options "")(descr "ELRS RX footprints (from OpenRX shared)"))
-	(lib (name "whoop")(type "KiCad")(uri "${KIPRJMOD}/whoop.pretty")(options "")(descr "Bluejay ESC and whoop-specific footprints (current picks, second sources, superseded candidates)"))
-	(lib (name "Incutec")(type "KiCad")(uri "${KIPRJMOD}/../libs/KiCad-Library/footprint/Incutec.pretty")(options "")(descr "incutec shared library (submodule libs/KiCad-Library)"))
-)
