@@ -49,10 +49,9 @@ Targets. The board does not exist yet.
 
 ## Prior art
 
-- [research/DESIGN.md](research/DESIGN.md): architecture notes and the part candidates picked so far (power stage, blackbox flash, gyro LDO). Reference, not decisions.
-- [research/ESC_DESIGN.md](research/ESC_DESIGN.md): whoop power-stage comparison, teardowns of commercial 1S ESCs, LCSC sweep. Read before proposing a power stage.
-- [research/MARKET-RESEARCH-2026-06.md](research/MARKET-RESEARCH-2026-06.md): whoop and toothpick AIO landscape; the class reference is the BetaFPV Matrix 1S 5IN1 II.
 - [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX](https://github.com/OpenDrone-hw/OpenRX): the FC and RX stages this board reuses.
+- The class reference is the BetaFPV Matrix 1S 5IN1 II.
+- An earlier stitched design was reset in August 2026 (see the git history before #9); reference for the thinking, not a design to continue from.
 
 ## Open questions
 
