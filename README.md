@@ -1,10 +1,10 @@
 # OpenAIO-Whoop
 
-An all-in-one board for 1S and 2S whoops, 65 to 85 mm class: flight
-controller, four brushless ESC channels and an ExpressLRS receiver on a
-25.5 x 25.5 mm board. Digital video only, no onboard analog VTX or OSD. The
-whoop-class sibling of [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO),
-which is the 6S toothpick board on the same mounting pattern.
+An all-in-one board for 1S whoops, 65 to 85 mm class: flight controller, four
+brushless ESC channels, an ExpressLRS receiver and an onboard analog VTX on a
+25.5 x 25.5 mm board. The 1S sibling of
+[OpenAIO](https://github.com/OpenDrone-hw/OpenAIO), which covers 2S to 6S on
+the same mounting pattern.
 
 [![Status](https://img.shields.io/endpoint?url=https://opendrone.be/api/status/OpenAIO-Whoop.json)](https://github.com/OpenDrone-hw/.github/blob/main/CONTRIBUTING.md#the-life-of-a-project)
 [![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.gg/v3sWmTcx3R)
@@ -14,14 +14,22 @@ Nobody holds this board yet: claim it on Discord.
 ## Why
 
 Whoops are where an AIO is not a convenience but the only option: there is no
-room for a stack and no weight budget for connectors. The class has also moved
-to digital video, which removes the analog VTX and OSD that used to dominate
-the board area, so it is worth designing for digital from the start rather than
-carrying analog circuitry nobody uses. Almost nothing from OpenAIO survives the
-voltage difference: a 1S/2S whoop runs a direct-drive P+N power stage rather
-than a driven half-bridge per channel, and the power tree starts from a cell
-rather than from a pack. Treat them as two boards that happen to be the same
-size.
+room for a stack and no weight budget for connectors. 2S and up is OpenAIO's
+range, so what is left for a second board is 1S, where the power tree starts
+from a single cell and everything below +5V has to be boosted rather than
+bucked. That is the whole design problem, and it is worth solving once.
+
+Analog is the reason this board is separate rather than a variant. A 1S whoop
+is the last class still flying analog in volume, and an onboard VTX is what
+makes the board worth building instead of pointing people at a digital AIO
+with an HD port.
+
+## Blocked on the VTX
+
+RTC6705 has no LCSC listing, so an onboard analog VTX cannot be assembled at
+JLCPCB today. This board waits on that part becoming orderable, or on a
+sourceable equivalent. Nothing else about it is hard, and nothing has been
+drawn.
 
 ## Specifications
 
@@ -29,37 +37,49 @@ Targets. The board does not exist yet.
 
 | | |
 |---|---|
-| Target class | 1S and 2S whoops, 65 to 85 mm |
+| Target class | 1S whoops, 65 to 85 mm |
 | Mounting | 25.5 x 25.5 mm |
+| Input | 1S LiPo |
 | Flight controller | RP2354A class, Betaflight target |
-| ESC | 4 channels, direct-drive P+N power stage, Bluejay |
+| ESC | 4 channels |
 | Receiver | ExpressLRS 2.4 GHz, serial |
-| Video | Digital only, SH1.0 6-pin HD-VTX port |
+| Video | Onboard analog VTX and OSD |
 | Blackbox | SPI NOR flash |
 | Assembly | JLCPCB, LCSC basic parts preferred |
 
 ## Constraints
 
 - 25.5 x 25.5 mm mounting pattern, shared with OpenAIO.
+- 1S only. 2S and above is OpenAIO, and covering both here would mean a wider
+  front end for a range another board already serves.
 - FC section reuses the [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; Betaflight target derived from its target.
-- ESC runs Bluejay on EFM8BB51 with GPIO direct drive: no gate-driver IC, so the power stage is a complementary P+N pair per phase.
 - Receiver is serial ELRS 2.4 GHz, reusing the [OpenRX](https://github.com/OpenDrone-hw/OpenRX) Lite design.
-- Digital video only: SH1.0 6-pin HD-VTX port, no analog VTX or OSD hardware.
 - JLCPCB assembly from LCSC parts, basic parts preferred.
 
 ## Prior art
 
 - [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX](https://github.com/OpenDrone-hw/OpenRX): the FC and RX stages this board reuses.
+- [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO): the 2-6S board, and the source of the ESC and power sheets that do not survive the drop to one cell.
 - The class reference is the BetaFPV Matrix 1S 5IN1 II.
 - An earlier stitched design was reset in August 2026 (see the git history before #9); reference for the thinking, not a design to continue from.
 
 ## Open questions
 
-- **Power stage.** Direct drive at 1S means very low voltage and high current. Which FETs, and what does that do to the copper?
-- **1S and 2S in one design**, or two variants? A boost for the electronics on 1S is a real cost, and 2S needs a level shift per phase to turn the P-FET off.
-- **Motor connection.** Solder pads or connectors, given the class usually means replaceable motors.
-- **Antenna.** Where it goes on a board this size with a duct around it.
-- **Does it need an onboard receiver at all**, or is a serial ELRS module pad set better for a class where people swap protocols?
+Answering these is a real contribution that needs no KiCad.
+
+- **VTX part.** Is there a sourceable RTC6705 equivalent on LCSC, or a
+  different route to 25 mW to 200 mW on the 5.8 GHz band that JLCPCB can place?
+- **Power stage.** At 1S the pack is 3.0 to 4.35 V. Driven half-bridge needs a
+  boosted gate rail; direct-drive P+N needs no driver but costs dead time,
+  which AM32's `USE_INVERTED_HIGH` F421 targets run at 120-140 against 22-75
+  for driver-based targets. Which one, and what does it do to the copper?
+- **Electronics rail.** Everything from +5V down has to come from a boost or
+  buck-boost off one cell, and it has to hold up with the cell sagging under
+  full throttle. That is the part existing 1S-2S AIOs get wrong.
+- **Motor connection.** Solder pads or connectors, given the class usually
+  means replaceable motors.
+- **Antenna.** Where the RX antenna and the VTX antenna go on a board this
+  size with a duct around it, without desensitising the receiver.
 
 ## In the line
 
