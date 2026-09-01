@@ -9,8 +9,6 @@ the same mounting pattern.
 [![Status](https://img.shields.io/endpoint?url=https://opendrone.be/api/status/OpenAIO-Whoop.json)](https://github.com/OpenDrone-hw/.github/blob/main/CONTRIBUTING.md#the-life-of-a-project)
 [![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.gg/v3sWmTcx3R)
 
-Nobody holds this board yet: claim it on Discord.
-
 ## Why
 
 Whoops are where an AIO is not a convenience but the only option: there is no
@@ -24,7 +22,7 @@ is the last class still flying analog in volume, and an onboard VTX is what
 makes the board worth building instead of pointing people at a digital AIO
 with an HD port.
 
-## Blocked on the VTX
+## VTX dependency
 
 RTC6705 has no LCSC listing, so an onboard analog VTX cannot be assembled at
 JLCPCB today. This board waits on that part becoming orderable, or on a
@@ -63,9 +61,9 @@ Targets. The board does not exist yet.
 - The class reference is the BetaFPV Matrix 1S 5IN1 II.
 - An earlier stitched design was reset in August 2026 (see the git history before #9); reference for the thinking, not a design to continue from.
 
-## Open questions
+## Design questions
 
-Answering these is a real contribution that needs no KiCad.
+Resolve these only as part of user-requested design work:
 
 - **VTX part.** Is there a sourceable RTC6705 equivalent on LCSC, or a
   different route to 25 mW to 200 mW on the 5.8 GHz band that JLCPCB can place?
