@@ -51,12 +51,12 @@ Targets. The board does not exist yet.
 - 1S only. 2S and above is OpenAIO, and covering both here would mean a wider
   front end for a range another board already serves.
 - FC section reuses the [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; Betaflight target derived from its target.
-- Receiver is serial ELRS 2.4 GHz, reusing the [OpenRX](https://github.com/OpenDrone-hw/OpenRX) Lite design.
+- Receiver is serial ELRS 2.4 GHz, reusing the [OpenRX Lite](https://github.com/OpenDrone-hw/OpenRX-Lite) design.
 - JLCPCB assembly from LCSC parts, basic parts preferred.
 
 ## Prior art
 
-- [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX](https://github.com/OpenDrone-hw/OpenRX): the FC and RX stages this board reuses.
+- [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX Lite](https://github.com/OpenDrone-hw/OpenRX-Lite): the FC and RX stages this board reuses.
 - [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO): the 2-6S board, and the source of the ESC and power sheets that do not survive the drop to one cell.
 - The class reference is the BetaFPV Matrix 1S 5IN1 II.
 - An earlier stitched design was reset in August 2026 (see the git history before #9); reference for the thinking, not a design to continue from.
