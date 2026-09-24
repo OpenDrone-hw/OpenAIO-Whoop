@@ -24,10 +24,10 @@ with an HD port.
 
 ## VTX dependency
 
-RTC6705 has no LCSC listing, so an onboard analog VTX cannot be assembled at
-JLCPCB today. This board waits on that part becoming orderable, or on a
-sourceable equivalent. Nothing else about it is hard, and nothing has been
-drawn.
+RTC6705 has no LCSC listing, so an onboard analog VTX cannot be assembled
+from LCSC-sourced parts today. This board waits on that part becoming
+orderable, or on a sourceable equivalent. Nothing else about it is hard, and
+nothing has been drawn.
 
 ## Specifications
 
@@ -43,7 +43,7 @@ Targets. The board does not exist yet.
 | Receiver | ExpressLRS 2.4 GHz, serial |
 | Video | Onboard analog VTX and OSD |
 | Blackbox | SPI NOR flash |
-| Assembly | JLCPCB, LCSC basic parts preferred |
+| Assembly | Chosen per release; see production/. LCSC basic parts preferred |
 
 ## Constraints
 
@@ -52,7 +52,8 @@ Targets. The board does not exist yet.
   front end for a range another board already serves.
 - FC section reuses the [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; Betaflight target derived from its target.
 - Receiver is serial ELRS 2.4 GHz, reusing the [OpenRX Lite](https://github.com/OpenDrone-hw/OpenRX-Lite) design.
-- JLCPCB assembly from LCSC parts, basic parts preferred.
+- Assembly from LCSC parts, basic parts preferred; assembly house chosen per
+  release, see production/.
 
 ## Prior art
 
