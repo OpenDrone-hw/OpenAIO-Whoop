@@ -24,8 +24,9 @@ with an HD port.
 
 ## VTX dependency
 
-RTC6705 has no LCSC listing, so an onboard analog VTX cannot be assembled
-from LCSC-sourced parts today. This board waits on that part becoming
+RTC6705 is listed on LCSC (C913074) with no stock (checked 2026-10-02), so an
+onboard analog VTX cannot be assembled from LCSC-sourced parts today; see
+[OpenVTX](https://github.com/OpenDrone-hw/OpenVTX) for the same constraint. This board waits on that part becoming
 orderable, or on a sourceable equivalent. Nothing else about it is hard, and
 nothing has been drawn.
 
@@ -43,7 +44,7 @@ Targets. The board does not exist yet.
 | Receiver | ExpressLRS 2.4 GHz, serial |
 | Video | Onboard analog VTX and OSD |
 | Blackbox | SPI NOR flash |
-| Assembly | Chosen per release; see production/. LCSC basic parts preferred |
+| Assembly | Chosen per release. LCSC basic parts preferred |
 
 ## Constraints
 
@@ -53,7 +54,7 @@ Targets. The board does not exist yet.
 - FC section reuses the [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; Betaflight target derived from its target.
 - Receiver is serial ELRS 2.4 GHz, reusing the [OpenRX Lite](https://github.com/OpenDrone-hw/OpenRX-Lite) design.
 - Assembly from LCSC parts, basic parts preferred; assembly house chosen per
-  release, see production/.
+  release. Fab-ready manufacturing files are kept in a private Incutec production repository and are not published.
 
 ## Prior art
 
@@ -64,9 +65,9 @@ Targets. The board does not exist yet.
 
 ## Design questions
 
-Resolve these only as part of user-requested design work:
+Open questions for the design:
 
-- **VTX part.** Is there a sourceable RTC6705 equivalent on LCSC, or a
+- **VTX part.** Is there an RTC6705 equivalent in stock on LCSC, or a
   different route to 25 mW to 200 mW on the 5.8 GHz band that JLCPCB can place?
 - **Power stage.** At 1S the pack is 3.0 to 4.35 V. Driven half-bridge needs a
   boosted gate rail; direct-drive P+N needs no driver but costs dead time,
