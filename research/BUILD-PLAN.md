@@ -12,10 +12,18 @@ turnkey assembly: NextPCB, at the limit of its published capabilities.
 
 ## Ground rules for the build
 
-- KiCad files are changed only through KiCad, kicad-skip or the pcbnew API,
-  never by text edit. `.kicad_dru` custom rules have no API; they are written
-  as a plain rule file only with the owner's explicit approval, then checked by
-  `kicad-cli pcb drc`.
+- The owner has given the build full authority (2026-10-06), including nets,
+  placement and routing, which AGENTS.md otherwise reserves for people. Goal: a
+  finished, clean, optimized board.
+- KiCad files are changed through KiCad, kicad-skip or the pcbnew / IPC API
+  wherever one exists. Where none does (`.kicad_dru` custom rules, the
+  stackup, generating schematic content), the file may be written directly,
+  and every such write is then loaded and re-saved by KiCad and passes
+  `kicad-cli` ERC/DRC before it is committed.
+- The board follows the lineup conventions in
+  [LINEUP-CONVENTIONS.md](LINEUP-CONVENTIONS.md): schematic style, net names,
+  title blocks, silkscreen and board art. `hardware/tools/check_conventions.py`
+  passing is part of the P3, P4, P5 and P6 criteria.
 - Every number in a pass criterion is checked by a script in `hardware/tools/`
   or by an independent review, not by the author of the change.
 - ERC and DRC run before every push. New violation types or counts are listed
