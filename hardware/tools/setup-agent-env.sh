@@ -10,6 +10,7 @@
 #   kicad-cli version                     -> 10.0.x
 #   KPY=/usr/bin/python3.12               (KiCad's Python on Linux; pcbnew imports here)
 #   /opt/kicad-agent-venv/bin/python      (KPY plus kicad-skip, kipy, easyeda2kicad)
+#   /opt/freerouting/freerouting-2.5.0.jar (for hardware/tools/freeroute.py)
 #
 # macOS: install KiCad 10 from kicad.org, then
 #   KPY=/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3
@@ -30,12 +31,20 @@ if ! command -v kicad-cli >/dev/null 2>&1; then
   echo "deb [signed-by=/usr/share/keyrings/kicad-10.gpg] https://ppa.launchpadcontent.net/${PPA}/ubuntu ${VERSION_CODENAME} main" \
     > /etc/apt/sources.list.d/kicad-10.list
   apt-get update -qq
-  # No recommends: skips the stock symbol, footprint and 3D libraries
-  # (several GB). Projects embed their symbols and use the OpenDrone library.
-  # Set KICAD_FULL_LIBS=1 for renders that need stock 3D models.
-  pkgs=(kicad python3.12-venv)
-  [ "${KICAD_FULL_LIBS:-0}" = 1 ] && pkgs+=(kicad-footprints kicad-symbols kicad-packages3d)
+  # No recommends: skips the stock footprint and 3D libraries (several GB).
+  # Stock symbols stay: the line's schematics use Device: and power:.
+  # Java 25 runs Freerouting. Set KICAD_FULL_LIBS=1 for renders that need
+  # stock 3D models.
+  pkgs=(kicad kicad-symbols python3.12-venv openjdk-25-jre-headless)
+  [ "${KICAD_FULL_LIBS:-0}" = 1 ] && pkgs+=(kicad-footprints kicad-packages3d)
   DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends "${pkgs[@]}"
+fi
+
+FREEROUTING=/opt/freerouting/freerouting-2.5.0.jar
+if [ ! -f "$FREEROUTING" ]; then
+  mkdir -p "${FREEROUTING%/*}"
+  curl -fsSL -o "$FREEROUTING" \
+    https://github.com/freerouting/freerouting/releases/download/v2.5.0/freerouting-2.5.0.jar
 fi
 
 if [ ! -x "$VENV/bin/python" ]; then
