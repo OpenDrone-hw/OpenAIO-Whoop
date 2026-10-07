@@ -9,7 +9,8 @@ Date 2026-10-07, revised the same day with DESIGN-SPEC review rounds 1-3 and dec
 (round 3: DJI O4 Lite on UART1 with MSP DisplayPort, user UART pads on PIOUART0, GPIO27 = PINIO1 HD
 line, USB/boost power mux instead of the Schottky and sense FET, one 3.3 V rail for FC and RX, no
 Wi-Fi radiator, VTX defaults that survive ELRS's vtxtable push; P0 consolidation: GPIO27 drives the O4
-switch EN through a BAS16LD PN diode with a 4.7 kΩ pull-down, PR1 divider 27.4k/10k). Inputs:
+switch EN through a BAS16LD PN diode with a 4.7 kΩ pull-down, PR1 divider 27.4k/10k; round 4: no
+`VTX_MSP_UART` on 2026.6.2, firmware defaults per build type, P-FET gates leave pin 3 on L6). Inputs:
 [DESIGN-SPEC.md](DESIGN-SPEC.md) §4.4-4.10 and §12, research
 tracks 01 (Matrix 1S 5IN1 II) and 05 (FC/RX/firmware), the house OpenFC-Lite-Mini
 schematic (netlist exported with kicad-cli 10), and source code fetched fresh on
@@ -31,7 +32,7 @@ netlist), **S** screened (secondary), **I** inferred (my reasoning, given).
 | UARTs | UART0 (GPIO0/1) = CRSF to the onboard ESP32 ELRS RX. UART1 (GPIO4/5) = DJI O4 Lite pads TX1/RX1, MSP DisplayPort (D16). PIOUART0 (PIO1, GPIO2/3) = user pads TP0/RP0. No SBUS pad |
 | SPI | SPI1 = gyro (CS GPIO13, INT GPIO9, CLKIN GPIO6). SPI0 = 16 MB NOR blackbox (CS GPIO21). The OSD is a PIO framebuffer (PIO2, GPIO14/15/16), not SPI. The VTX SPI sits on the **ESP32**, not on the FC |
 | DMA | 8 of 16 channels: SPI0 2, SPI1 2, OSD 2, LED strip 1, ADC 1. RP2350 claims channels at run time, and any channel serves any request, so streams cannot collide |
-| Conflicts found | None blocks the layout. Flags in §9: the O4 integration needs `USE_OSD_HD` (no `USE_OSD_SD` define) and MSP never on UART0 (F20); the HD line holds the analog VTX off (F21); the VTX defaults must be applied after ELRS has pushed its vtxtable (F22); LED strip and PIOUART0 share PIO1 (F5); the OpenFC LED-strip stage inverts the signal, so a translator replaces it (F1); MSP-VTX over CRSF cannot be made the default in a config.h on 2026.6.2 (F2); a 2 MB flash layout is mandatory (F3); EFM8 logic-high margin is 0.04-0.11 V at a 4.35 V cell with the 96 kHz ripple, negative at 48 kHz (F4); the LED strip needs the PIO1 index override (F5); the ESP32 Wi-Fi pin gets a minimal radiator and auto-Wi-Fi is a flash option, not a target key (F9); the VTX drive stage inverts and is specified against the ELRS PWM window (F15); USB-only back-feed and battery-first sequencing are bench items, with the USB/boost mux keeping +5V on USB (F16); production first flash (F18); ESP32 ADC erratum and radio BUSY (F19) |
+| Conflicts found | None blocks the layout. Flags in §9: the O4 integration needs `USE_OSD_HD` (no `USE_OSD_SD` define) and MSP never on UART0 (F20); the HD line holds the analog VTX off (F21); the VTX defaults must be applied after ELRS has pushed its vtxtable (F22); LED strip and PIOUART0 share PIO1 (F5); the OpenFC LED-strip stage inverts the signal, so a translator replaces it (F1); MSP-VTX over CRSF cannot be made the default in a config.h on 2026.6.2, and `VTX_MSP_UART` would delete the receiver default there (F2); a 2 MB flash layout is mandatory (F3); EFM8 logic-high margin is 0.04-0.11 V at a 4.35 V cell with the 96 kHz ripple, negative at 48 kHz (F4); the LED strip needs the PIO1 index override (F5); the ESP32 Wi-Fi pin gets a minimal radiator and auto-Wi-Fi is a flash option, not a target key (F9); the VTX drive stage inverts and is specified against the ELRS PWM window (F15); USB-only back-feed and battery-first sequencing are bench items, with the USB/boost mux keeping +5V on USB (F16); production first flash (F18); ESP32 ADC erratum and radio BUSY (F19) |
 | ESC MCU | EFM8BB51F16I (I grade, 125 °C) QFN-20, **stock Bluejay layout BB51 "A"**, pin plan in §7 |
 
 ---
@@ -87,7 +88,7 @@ Net names follow LINEUP-CONVENTIONS rule 12.
 | 36 | GPIO24 | `MOTOR2` | DShot M2, front-right | `MOTOR2_PIN PA24` | PIO0 SM | same | R |
 | 37 | GPIO25 | `MOTOR1` | DShot M1, rear-right | `MOTOR1_PIN PA25` | PIO0 SM | same | R |
 | 40 | GPIO26 | `LED1` | status LED, blue | `LED1_PIN PA26` | SIO (ADC0 unused) | LED + R from +3V3 (sink) | R |
-| 41 | GPIO27 | `HD_EN` | HD line: high = O4 supply on and analog VTX held off (D15, D17) | `PINIO1_PIN PA27` | SIO (PINIO1; ADC1 unused) | TPS22810 EN/UVLO through a Nexperia BAS16LD PN diode (pull-down only; not a Schottky: its hot leakage would defeat the cell threshold, spec §4.2); BC847QASZ HD gate bases through 10 kΩ; a **4.7 kΩ pull-down** keeps it low (analog) at reset, on USB and in SD builds (the RP2350's own reset pull-down is too weak against the EN divider current); about 1.2 mA when driven high (F21) | R |
+| 41 | GPIO27 | `HD_EN` | HD line: high = O4 supply on and analog VTX held off (D15, D17) | `PINIO1_PIN PA27` | SIO (PINIO1; ADC1 unused) | TPS22810 EN/UVLO through a Nexperia BAS16LD PN diode (pull-down only; not a Schottky: its hot leakage would defeat the cell threshold, spec §4.2; the EN node also carries the 100 nF filter and the 1.5 MΩ hysteresis resistor from +5V_HD, which the diode discharges); BC847QASZ HD gate bases through 10 kΩ; a **4.7 kΩ pull-down** keeps it low (analog) at reset, on USB and in SD builds (the RP2350's own reset pull-down is too weak against the EN divider current); about 1.2 mA when driven high (F21) | R |
 | 42 | GPIO28 | `CURR_SENSE` | INA186A3 output, 50 mV/A | `ADC_CURR_PIN PA28` | ADC ch 2 | 1 kΩ + 100 nF RC (OpenFC) | R |
 | 43 | GPIO29 | `ADC_VBAT` | cell voltage, 10k/10k divider, 4.35 V gives 2.18 V | `ADC_VBAT_PIN PA29` | ADC ch 3 | 2x 10 kΩ + 100 nF | R |
 | 21 | XIN | `XIN` | 12 MHz crystal (USB needs it) | - | XOSC | YXC **X252012MMB4SI-24** (C2896601, 2520, CL 10 pF, −40..85 °C) with 2x 15 pF C0G 0201 (about 2.5 pF stray; RPi guide value); fallback KYX K2C120001210 (CL 12 pF, 18 pF caps). Not the house TOGNJING part (−20..70 °C) | B |
@@ -284,16 +285,21 @@ upstream RP2350 configs in §1; every define name was checked against master `49
 
 // ---- HD line (D15, D17): high = O4 supply on (TPS22810) and analog VTX held off (BC847QASZ gate) ----
 #define PINIO1_PIN           PA27          // 4.7k pull-down = low = analog mode
+// This file is read BEFORE target/common_pre.h (platform.h), so USE_OSD_HD is seen here only when the build
+// passes it on the command line (cloud option "OSD (HD)"). Defaults per build type: see the table below.
 #ifdef USE_OSD_HD
 #define MSP_DISPLAYPORT_UART SERIAL_PORT_UART1   // O4 canvas
 #define PINIO1_CONFIG        129           // HD build boots in HD mode (inverted = high at init)
-#endif                                     // SD build: PINIO1 default (low) = analog
+#endif                                     // OSD (SD)-only build: PINIO1 default (low) = analog
 
 #define DEFAULT_RX_FEATURE   FEATURE_RX_SERIAL
 #define SERIALRX_PROVIDER    SERIALRX_CRSF
 #define SERIALRX_UART        SERIAL_PORT_UART0
-#define VTX_MSP_UART         SERIAL_PORT_UART0   // MSP-VTX over CRSF; effective on master (post-2026.6.2),
-                                                 // 2026.6.2 needs the serial CLI line in 5.4
+// No VTX_MSP_UART while 2026.6.x is the minimum release: its reset function ASSIGNS FUNCTION_VTX_MSP to the
+// port after SERIALRX_UART assigned FUNCTION_RX_SERIAL (serial.c L316-321, L353-358), so UART0 would lose the
+// receiver, and isSerialConfigValid() rejects a lone VTX_MSP and PG_RESETs to the same default (L541-544,
+// config.c L230). MSP-VTX over CRSF comes from the serial CLI line in 5.4. Re-add only for a release with the
+// master vtx_uart model, where the synthesized masks OR the functions.
 
 // ---- PIO allocation (defaults: DShot PIO0, LED strip PIO2, OSD PIO2) ----
 #define PIO_LEDSTRIP_INDEX   1             // PIO2 is full with the FB OSD (31/32 instructions)
@@ -333,8 +339,23 @@ upstream RP2350 configs in §1; every define name was checked against master `49
 #define OSD_DRAWSCREEN_TIME_LIMIT_US   20
 ```
 
+**Defaults per build type** (V, 2026.6.2 / master 498430a: `platform.h` includes `config.h`
+before `target/common_pre.h`, master L26 / L29; `pg/vcd.c` defaults the video system to HD and
+`osd/osd.c` L418-427 the OSD device to MSP whenever `USE_OSD_HD` is compiled; `fc/init.c` L947
+forces the MSP displayport when the video system is HD, and selects MSP even with no MSP port):
+
+| Build | `USE_OSD_HD` at `config.h` | Boots in | Works out of the box |
+|---|---|---|---|
+| Cloud, **OSD (SD)** only (`-DUSE_OSD_SD`) | no, and never defined | video AUTO, OSD device AUTO → FB OSD, PINIO1 low | **analog** (the production build, spec §12.1); the O4 canvas is not compiled (`displayport_msp.c` resets HD to AUTO) |
+| Cloud, **OSD (HD)** (with or without SD) | yes | video HD, OSD MSP on UART1, PINIO1 high (O4 on, analog VTX held off) | **HD**; analog only after the analog preset (5.4) |
+| Cloud plain `OSD`, or a local / CI `make` | no, but `common_pre.h` defines SD + HD afterwards (L249-253 non-cloud, L452-455 for plain `USE_OSD`) | video HD, OSD MSP, but no MSP DisplayPort port and PINIO1 low | **neither**: no analog OSD (FB OSD never started) and no O4 canvas until a preset (5.4) is applied. Not a user build; the README says so |
+
+The board defaults stay keyed on `USE_OSD_HD` (upstream precedent: `RASP/RASPBERRY_PI_UAVFC`), because
+no define in `config.h` can move the OSD device default; the README states that an HD-capable firmware
+boots in HD mode, with the analog VTX off, until the analog preset is applied.
+
 Not in the config, by design: no `USE_MAX7456` (no OSD chip), no I2C, baro or mag, no
-`USE_VTX_RTC6705` (undefined on RP2350, and not wanted). The only PINIO is the HD line:
+`USE_VTX_RTC6705` (undefined on RP2350, and not wanted), no `VTX_MSP_UART` (above). The only PINIO is the HD line:
 the analog VTX's own power and pit stay with the ESP32 (§6); PINIO1 only forces it off in
 HD mode. VTX, CRSF telemetry, OSD (SD + HD) and LED strip come from the cloud-build options
 (`USE_VTX` brings `USE_VTX_MSP`; `common_pre.h`, V).
@@ -370,12 +391,12 @@ target's setting is unknown (F3).
 
 | Setting | Value | Why |
 |---|---|---|
-| UART0 function mask on 2026.6.2 | `serial UART0 131136 115200 57600 0 115200` (RX_SERIAL 64 + VTX_MSP 131072) | 2026.6.2 `vtx_msp.c` sends VTX replies over CRSF only when the RX port carries both functions (`isCrsfPortConfig`, V). On master, `VTX_MSP_UART` does this. Never add MSP (1) here: DisplayPort would land on CRSF |
+| UART0 function mask on 2026.6.2 | `serial UART0 131136 115200 57600 0 115200` (RX_SERIAL 64 + VTX_MSP 131072) | 2026.6.2 `vtx_msp.c` sends VTX replies over CRSF only when the RX port carries both functions (`isCrsfPortConfig`, V). `VTX_MSP_UART` cannot do it on 2026.6.2: it overwrites the RX_SERIAL mask (5.1, F2), so the board config leaves it out. Production applies this line and saves **before** the first ELRS boot (spec §12.1 step 4): without it ELRS has no MSP-VTX reply, gives up after 5 s (`MSP_VTX_TIMEOUT_NO_CONNECTION`) and its vtxtable never lands. Never add MSP (1) here: DisplayPort would land on CRSF |
 | VTX table | written by ELRS, then kept | Betaflight ships none. On the first ELRS session `devMSPVTX` finds a mismatch and runs `clearVtxTable()`: `MSP_SET_VTX_CONFIG` with power 3 (25 mW), pitmode 0, lowPowerDisarm 0, then an EEPROM write, all applied by Betaflight (`msp.c` l. 3829-3842; V). So production boots ELRS once with the FC **before** applying the defaults below (spec §12.1), or the shipped diff carries the exact ELRS table (6 bands x 8 channels; 5 levels, values 1, 2, 14, 20, 26, labels `0`, `RCE`, `25`, `100`, `400`) so nothing is cleared |
 | `vtx` power | 2 (RCE) | ELRS forces pit at boot only on index 2 (`devMSPVTX.cpp` l. 211, `SET_RCE_PIT_MODE`); the README tells the user to re-enable pit after landing |
 | `vtx_low_power_disarm` | `OFF` until ELRS patch (3) merges, then `ON` | Betaflight sends index 1 whenever disarmed with it ON (`vtx_msp.c` l. 110 at 2026.6.2), and ELRS turns index 1 into "setpoint `VPD_SETPOINT_0_MW`, maximum count" with VREF **on** (`devVTXSPI.cpp` l. 251-258, 289) and forces index 1 at boot when the flag is set (`devMSPVTX.cpp` l. 217): the PA stays biased at about 1 W and RCE is defeated. With patch (3) (index 1 = pit, spec §12) ON means pit when disarmed |
-| HD preset (O4) | `serial UART1 131073 115200 57600 0 115200` (MSP 1 + VTX_MSP 131072), `set osd_displayport_device = MSP`, `set vcd_video_system = HD`, `set pinio_config = 129,1,1,1`, `save`, battery power cycle | the O4 canvas on UART1; the HD line on (O4 supply, analog VTX off). An HD build defaults to it (`#ifdef USE_OSD_HD` above) |
-| Analog preset | `serial UART1 0 115200 57600 0 115200`, `set osd_displayport_device = FBOSD`, `set vcd_video_system = AUTO`, `set pinio_config = 1,1,1,1`, `save` | FB OSD on PIO2; HD line off |
+| HD preset (O4) | `serial UART1 131073 115200 57600 0 115200` (MSP 1 + VTX_MSP 131072), `set osd_displayport_device = MSP`, `set vcd_video_system = HD`, `set pinio_config = 129,1,1,1`, `save`, battery power cycle | the O4 canvas on UART1; the HD line on (O4 supply, analog VTX off). Needs a build with the OSD (HD) option, which defaults to it (5.1 table) |
+| Analog preset | `serial UART1 0 115200 57600 0 115200`, `set osd_displayport_device = FBOSD`, `set vcd_video_system = AUTO`, `set pinio_config = 1,1,1,1`, `save` | FB OSD on PIO2; HD line off. Part of the shipped diff (spec §12.1 step 4) although the OSD (SD) production build defaults to the same values, so a defaults reset on any build type returns to analog with one paste |
 | `motor_poles` | measured on the target motor (whoop 1102/0802 class: 12) | RPM filter |
 
 ---
@@ -475,7 +496,10 @@ datasheet's ≤ 60 Ω is the VOH limit at 10 mA, not a gate resistance; edge cur
 about 0.13-0.17 A for nanoseconds are a transient exceedance of the 50 mA per-pin absolute
 maximum (Table 4.1), accepted on field record (tinyPEPPER, Matrix parity; spec §4.4).
 Gate nets are class Gate and stay off In2/In3: the N gates cross to the bottom with one via
-and run on L6 over L5. Phase nets: in-sheet `PHASE_A/B/C` = motor pads `Mn` A/B/C. Bluejay
+and run on L6 over L5. The P gate (CSD25310Q2 pin 3) sits on the drain row (pin 3, strip pad 7,
+pin 4: SLPS459C page 1), which faces outward to the phase pour, so it leaves through a Type VII via
+in pin 3, runs on L6 over L5 under the P land to the EFM8 side and comes up through one via to the
+COM pin (spec §4.3). Phase nets: in-sheet `PHASE_A/B/C` = motor pads `Mn` A/B/C. Bluejay
 sets the direction, so pad order is free.
 
 ### 7.2 FC ↔ ESC map
@@ -544,7 +568,7 @@ DESIGN-SPEC in its review revision; the table stays as the record:
 | # | Item | Status | Resolution / owner |
 |---|---|---|---|
 | F1 | **LED strip driver.** The OpenFC LED stage (AP1606 N-FET, gate on GPIO8, drain to pad with 2.4 kΩ to +5V) **inverts** the data. Betaflight's PICO WS2812 driver has no inversion option (side-set, no `outover`; V) | **resolved: (b), budgeted** | Do not copy it. (b) Nexperia **74LVC1T45GS** (XSON6 1.0 x 1.0, VCCA +3V3 / VCCB +5V, DIR tied to VCCA, ±24 mA at 4.5 V class drive; S, Nexperia datasheet and Element14 listing) + 2x 0201 is in the area budget; (a) direct 3.3 V drive through a 0201 series resistor (below the WS2812B VIH of 3.5 V at 5 V but widely flown, I) is the P2 area fallback. The OpenFC-Lite-Mini LED output should be checked for the same defect |
-| F2 | **MSP-VTX over CRSF default.** On 2026.6.2 the RX port needs `FUNCTION_VTX_MSP` set by CLI; `VTX_MSP_UART` works only on master | **open (firmware)** | Ship the §5.4 CLI line in the README and the first-flash dump. It is no longer needed once a release contains the `vtx_uart` model |
+| F2 | **MSP-VTX over CRSF default.** On 2026.6.2 the RX port needs `FUNCTION_VTX_MSP` set by CLI. `VTX_MSP_UART` is **harmful on 2026.6.2**: `pgResetFn_serialConfig` assigns (not ORs) RX_SERIAL to `SERIALRX_UART` and then VTX_MSP to `VTX_MSP_UART` (`serial.c` L316-321, L353-358), so with both on UART0 the default has no receiver, and `isSerialConfigValid()` rejects a lone VTX_MSP and resets to the same default (L541-544, `config.c` L230): no CRSF link on a fresh flash, and ELRS's `devMSPVTX` times out after 5 s, so its vtxtable is never written | **resolved (config), firmware open** | `VTX_MSP_UART` removed from `config.h` (§5.1); production applies the §5.4 UART0 line and saves before the first ELRS boot (spec §12.1 step 4); the line ships in the README and the first-flash dump. Re-add the define only for a release with the master `vtx_uart` model |
 | F3 | **Flash size.** RP2350A builds default to 8 MB / 4 MB layout; the RP2354A has 2 MB | resolved | `config.mk` + `pico_flash_mem.ld` (§5.2-5.3). Check what the house target does |
 | F4 | **EFM8 VIH margin and VDD + 0.3 V.** VIH = 0.7 x VDD and VDD follows the cluster +BATT with its PWM ripple: 0.2 V at DC on a 4.35 V cell, 0.04-0.11 V at the ripple peaks of the 96 kHz builds, negative at 48 kHz; at a 2.5-2.8 V sag the 3.3 V high is 0.2-0.5 V over P0.5's VDD + 0.3 V absolute maximum, current-limited by the 2.4 kΩ to < 0.1 mA (§4.5) | accepted (Matrix parity, which also runs 96 kHz); 48 kHz builds not used | Stock Bluejay cannot report a rejected frame (checksum failures only bump an internal counter, no telemetry reply; EDT status carries no error count; no command echo; V, `Isrs.asm` l. 155-194, `Scheduler.asm` l. 212-248), so V9 scopes the DShot high level against 0.7·VDD at the EFM8 pin and counts failures with a non-release Bluejay debug build that pulses the layout-A DebugPin (P2.0 = the C2D pad) on each, on a fresh 4.35 V pack under load; V3c checks the VDD peak. No cheap fix: a translator per channel costs 4 parts and adds delay |
 | F5 | **LED strip and PIOUART0 on PIO1** (`PIO_LEDSTRIP_INDEX 1`, `PIO_UART_INDEX 1`): 23 of 32 instructions, 3 of 4 SMs. No upstream config combines FB OSD + LED strip, or LED strip + PIOUART on one block | code-verified (2026.6.2 `target_RP2350.h`, `uart_pio.c`, `light_ws2811strip_pico.c`), hardware-untested | Bench gate V9: LED strip + FB OSD + PIOUART0 + the O4 on UART1 at the same time on the OpenFC-Lite-Mini; fallback: O4 on PIOUART0 and the user UART on UART1 |
@@ -562,8 +586,8 @@ DESIGN-SPEC in its review revision; the table stays as the record:
 | F17 | **MSP-VTX boot window.** `devMSPVTX` stops for good if it has not reached MONITORING within 5 s of ESP32 boot (`MSP_VTX_TIMEOUT_NO_CONNECTION`, V); the VTX then stays in pit until the RX reboots. RP2350 Betaflight boot time (gyro config upload, FB OSD PAL/NTSC detection, USB) is unmeasured | open, bench V9 | Cold boot x 20 with and without the TX on, timing the VTX state restore |
 | F18 | **Production first flash.** Blank EFM8s have no BLHeli bootloader (4-way passthrough cannot reach them); a blank ESP32 must be strapped into download mode (RXB low at power-up) for its first flash; the VDD_SDIO eFuse is burned in the same session | resolved (spec §12.1) | Pogo fixture on the C2, FCB, RXB, GND and battery pads; +BATT fed at 3.3 V during C2 (VIH 2.31 V for a 3.3 V adapter); order RP2354A UF2 → ESP32 (passthrough, RXB held) → eFuse → ELRS → EFM8 bootloader + Bluejay over C2 → 4-way verify |
 | F19 | **ESP32 erratum 3.11**: powering SAR ADC1/ADC2 pulls GPIO36/39 low for about 80 ns; GPIO36 is radio BUSY | resolved in firmware rules | Stock ELRS reads the detector (ADC2) only in the `hwTimer::isTick` window; the planned NTC read (ADC1, GPIO34) must follow the same rule (spec §12 patch 6); V7 checks packet loss with the derate active |
-| F20 | **DJI O4 Lite on UART1** (D13, D16): MSP DisplayPort needs the HD OSD in the build and a port with VTX_MSP + MSP | resolved in the config (§5.1, §5.4) | No `USE_OSD_SD` define (alone it leaves `USE_OSD_HD` undefined and `displayport_msp.c` forces the canvas to SD 30 x 16); `MSP_DISPLAYPORT_UART SERIAL_PORT_UART1` and `PINIO1_CONFIG 129` inside `#ifdef USE_OSD_HD`; MSP never on UART0 (Betaflight takes the first port with both bits, `config.c` L568-581). UART1 therefore carries VTX_MSP + MSP (DisplayPort needs both), while the MSP-VTX device still binds UART0 first (`findSerialPortConfig` order VCP, UART0, UART1, ...), so ELRS keeps the analog-VTX control path. The O4 has dedicated pads (VHD GND TX1 RX1), so RX1 never has two drivers. On USB the O4 is off (AP1606 term on the switch EN). V9 bench |
-| F21 | **HD line (GPIO27, PINIO1)** enables the O4 supply (TPS22810 EN, wired-AND with the ~2.9-3.0 V cell threshold and NOT USB) and holds the analog VTX off (D17: BC847QASZ pulls the +3V3_VTX LDO EN and the PA-reference EN low) | resolved (spec §4.2, §4.8) | 4.7 kΩ pull-down = analog mode at reset (EN ≤ 0.75 V through the BAS16LD); SD build default low; HD preset 129. VTX SPI lines carry 1 kΩ series so the still-writing ESP32 cannot back-power the unpowered RTC6705; no ESP32 input senses the HD line (none free), so the hardware hold-off is the authority. V5: no carrier above −80 dBm EIRP in HD mode; V9: +3V3_VTX < 0.5 V |
+| F20 | **DJI O4 Lite on UART1** (D13, D16): MSP DisplayPort needs the HD OSD in the build and a port with VTX_MSP + MSP | resolved in the config (§5.1, §5.4) | No `USE_OSD_SD` define (alone it leaves `USE_OSD_HD` undefined and `displayport_msp.c` forces the canvas to SD 30 x 16); `MSP_DISPLAYPORT_UART SERIAL_PORT_UART1` and `PINIO1_CONFIG 129` inside `#ifdef USE_OSD_HD`, which `config.h` sees only for a cloud OSD (HD) build (it is read before `common_pre.h`; behaviour per build type in the §5.1 table: OSD (SD)-only = analog, OSD (HD) = HD mode with the analog VTX off, plain OSD or local `make` = neither until a preset); MSP never on UART0 (Betaflight takes the first port with both bits, `config.c` L568-581). UART1 therefore carries VTX_MSP + MSP (DisplayPort needs both), while the MSP-VTX device binds UART0 first once the §5.4 UART0 line has set VTX_MSP there (`findSerialPortConfig` order VCP, UART0, UART1, ...), so ELRS keeps the analog-VTX control path; on a fresh HD flash before that line it binds the O4 port, which is harmless in HD mode. The O4 has dedicated pads (VHD GND TX1 RX1), so RX1 never has two drivers. On USB the O4 is off (AP1606 term on the switch EN). V9 bench |
+| F21 | **HD line (GPIO27, PINIO1)** enables the O4 supply (TPS22810 EN, wired-AND with the cell threshold (shed 2.80-3.09 V, re-enable 3.26-3.75 V with the 1.5 MΩ hysteresis, 100 nF EN filter) and NOT USB) and holds the analog VTX off (D17: BC847QASZ pulls the +3V3_VTX LDO EN and the PA-reference EN low) | resolved (spec §4.2, §4.8) | 4.7 kΩ pull-down = analog mode at reset (EN ≤ 0.75 V through the BAS16LD); OSD (SD)-only build default low, OSD (HD) build default 129 (§5.1 table); HD preset 129. VTX SPI lines carry 1 kΩ series so the still-writing ESP32 cannot back-power the unpowered RTC6705; no ESP32 input senses the HD line (none free), so the hardware hold-off is the authority. V5: no carrier above −80 dBm EIRP in HD mode; V9: +3V3_VTX < 0.5 V |
 | F22 | **VTX defaults vs ELRS's first session**: ELRS `clearVtxTable()` resets power, pit and low-power-disarm on the first connection (§5.4) | resolved in production (spec §12.1) | Boot ELRS once with the FC before applying the defaults (or ship the exact ELRS vtxtable in the diff); defaults vtx power 2 (RCE) and `vtx_low_power_disarm` OFF until ELRS patch (3); V8 checks the power-up PA current |
 
 Nothing in the pin plan blocks the layout (the open gate is the board area, spec §9). F1, F15, F20, F21 and the PA reference add parts, all in the spec's area budget v4; F9 and F12 removed parts.
@@ -692,7 +716,7 @@ no two features on one channel.
 | 4 | PIO budgets | `dshot_pio_programs.h` (13/29), `uart_*_program.c` (10/9), ws2812 (4), `osd_tx.pio.h` (31/31/25) | 23/32 on PIO1 (WS2812 + PIOUART0), 31/32 on PIO2 |
 | 5 | DMA users | grep of `dma_claim_unused_channel`/`dmaGetFreeIdentifier` across `src/platform/PICO` | SPI, OSD, LED, ADC, QSPI (unused) only |
 | 6 | 2026.6.2 = master for the PICO files used | raw.githubusercontent fetch at tag 2026.6.2 + diff | identical except `AFATFS_NUM_CACHE_SECTORS` |
-| 7 | `VTX_MSP_UART` only on master; 2026.6.2 needs both port functions | `io/vtx.c`, `io/vtx_msp.c` at both refs | confirmed |
+| 7 | `VTX_MSP_UART` on 2026.6.2 | `io/vtx.c`, `io/vtx_msp.c` at both refs; **`io/serial.c` `pgResetFn_serialConfig` L316-321 / L353-358, `isSerialConfigValid()` L541-544, `config/config.c` L230 at 2026.6.2** (round 4; the first check missed `serial.c`) | **harmful on 2026.6.2**: it overwrites the RX_SERIAL mask of UART0 (plain assignment), leaving no receiver; removed from `config.h`; 2026.6.2 needs both port functions by CLI |
 | 8 | Flash layout defaults 8 MB / 4 MB; override files honoured at 2026.6.2 | `target_RP2350.mk`, `pico_flash_mem_defaults.ld`, `mk/config.mk` l. 50-51, `RP2350.mk` l. 499-506 | confirmed |
 | 9 | Beeper/LED polarity | `sound_beeper.c` l. 43, `beeper_dev.c`, `light_led.c` l. 88 | inverted beeper = high on; LED default = low on |
 | 10 | Voltage scale formula and macros | `sensors/voltage.c` l. 104-165 at master and 2026.6.2 | scale/divider = 2 for 10k/10k |
@@ -708,7 +732,7 @@ no two features on one channel.
 | 19 | Low-power disarm and pit behaviour | Betaflight `vtx_msp.c` l. 103-128; ELRS `devVTXSPI.cpp` l. 253-300, `devMSPVTX.cpp` l. 217-219, 385-388 | index 1 when disarmed; index 1 keeps VREF on; `POWER_AMP_OFF` unused; 5 s MSP-VTX timeout |
 | 20 | Bidirectional DShot decode errors | `dshot_bidir_pico.c` l. 55-60 (2026.6.2 = master) | upstream expects about 5-8 % errors with spinning motors, < 1 % at 0 rpm |
 | 21 | PIOUART0/1 and the PIO index defaults on RP2350 | `target_RP2350.h` 2026.6.2 l. 32-33 (`USE_PIOUART0/1`), l. 90-105 (`PIO_UART_INDEX 1`, `PIO_LEDSTRIP_INDEX 2`, `PIO_OSD_INDEX 2`); `serial.h` (`SERIAL_PORT_PIOUART0` = 70) | confirmed (round 3) |
-| 22 | O4 DisplayPort selection, HD OSD build, PINIO | `config.c` L568-581, `common_pre.h`, `displayport_msp.c` l. 248-257, `pinio.c` l. 45-72 (study-1-2s digital-vtx §2) | confirmed: first port with VTX_MSP + MSP; SD-only build resets HD to AUTO; PINIO config 129 = high at init |
+| 22 | O4 DisplayPort selection, HD OSD build, PINIO | `config.c` L568-581, `common_pre.h`, `displayport_msp.c` l. 248-257, `pinio.c` l. 45-72 (study-1-2s digital-vtx §2) | confirmed: first port with VTX_MSP + MSP; SD-only build resets HD to AUTO; PINIO config 129 = high at init. Round 4: `platform.h` includes `config.h` before `target/common_pre.h` (master L26 / L29), `pg/vcd.c` and `osd/osd.c` L418-427 default to HD / MSP whenever `USE_OSD_HD` is compiled, `fc/init.c` L947 forces MSP in HD: defaults per build type in §5.1 |
 | 23 | ELRS first-session vtxtable push, RCE and low-power-disarm handling | `devMSPVTX.cpp` l. 71-96 (`clearVtxTable`: power 3, pit 0, LPD 0, EEPROM write), l. 211-219; Betaflight `msp.c` l. 3829-3842 | confirmed (round 3) |
 
 Not verified: the house OpenFC-Lite-Mini custom target settings (not public); whether
@@ -725,7 +749,7 @@ does not change the conclusion).
 - Silicon Labs EFM8BB51 Data Sheet Rev 1.0 (local copy `scratchpad/dl/ds/efm8bb51.pdf`)
 - Bluejay `0368d11` (2026-04-22): https://github.com/bird-sanctuary/bluejay — `src/Layouts/BB51/A.inc`, `src/BLHeliBootLoad.inc`
 - ExpressLRS targets (master, 2026-10-07): https://github.com/ExpressLRS/targets — `RX/Generic 2400 Whoop Rx and VTx.json`, `targets.json`; ExpressLRS master: `src/lib/VTXSPI/devVTXSPI.cpp`, `src/lib/MSPVTX/devMSPVTX.cpp`, `src/lib/MSPVTX/freqTable.h` — https://github.com/ExpressLRS/ExpressLRS
-- Betaflight 2026.6.2 for the O4 integration: `src/platform/PICO/target/common/target_RP2350.h`, `src/main/io/serial.h`, `src/main/config/config.c`, `src/main/target/common_pre.h`, `src/main/io/displayport_msp.c`, `src/main/drivers/pinio.c`, `src/platform/PICO/uart/uart_pio.c` (study-1-2s `digital-vtx.md` §2-3)
+- Betaflight 2026.6.2 for the O4 integration: `src/platform/PICO/target/common/target_RP2350.h`, `src/main/io/serial.h`, `src/main/config/config.c`, `src/main/target/common_pre.h`, `src/main/io/displayport_msp.c`, `src/main/drivers/pinio.c`, `src/platform/PICO/uart/uart_pio.c` (study-1-2s `digital-vtx.md` §2-3); round 4: `src/main/io/serial.c` (reset masks, validity check), `src/main/platform.h` (include order), `src/main/pg/vcd.c`, `src/main/osd/osd.c`, `src/main/fc/init.c` (OSD device defaults)
 - TI TPS2116 (USB/boost power mux): https://www.ti.com/lit/ds/symlink/tps2116.pdf
 - Espressif ESP32 Series Datasheet: https://documentation.espressif.com/esp32_datasheet_en.pdf
 - [DESIGN-SPEC.md](DESIGN-SPEC.md), research tracks 01 and 05 (scratchpad)
