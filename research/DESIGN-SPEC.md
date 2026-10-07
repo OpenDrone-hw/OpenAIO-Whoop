@@ -99,7 +99,7 @@ Parts already manufactured on an OpenDrone board are marked **[PU]**
 |---|---|
 | Reverse-polarity FET | No: BT2.0 is keyed; costs a 3x3 FET and loss in a 25 A path. Matrix has none |
 | TVS at the pads | **Yes**: the 12 V N-FETs and 6.3 V MLCCs need a clamp for hot-unplug with spinning props. It cannot protect the EFM8 (5.5 V abs max); the per-MCU RC does that (§4.4) |
-| Bulk at the pads | 2x 22 µF 0603 16 V (about 30 µF effective at 4 V). With 8x 22 µF 0402 at the ESCs the board has about 100 µF effective, which shares the 48-96 kHz ripple with the 30-60 mΩ battery path (03 §11) |
+| Bulk at the pads | 2x 22 µF 0603 16 V (about 30 µF effective at 4 V). With 8x 22 µF 0402 at the ESCs the proposed board would carry about 100 µF effective, which shares the 48-96 kHz ripple with the 30-60 mΩ battery path (03 §11) |
 
 | Function | Primary | Fallback |
 |---|---|---|
@@ -204,9 +204,11 @@ hard switching is on the N only):
 
 Per FET (each conducts one third of the electrical cycle; P carries the
 dead-time share): at 6 A, P 0.21 W and N 0.16 W; at 12 A, P 0.72 W and N 0.56 W;
-at 18 A, P about 1.4 W and N 1.3 W. Junction-to-case rise stays under 2 K
-(RθJC 1.3-1.9 K/W, datasheets), so **board temperature, not the FET, sets the
-rating**.
+at 18 A, P about 1.4 W and N 1.3 W. Junction-to-case rise is small next to the
+board rise: about 2 K for the 3.3x3.3 P (RθJC 1.3 K/W for the CSD25404Q3, V) and
+at most about 13 K for the 2x2 N in an 18 A burst if its RθJC is in the 10 K/W
+class (I, value to read from the datasheet in P3). So **board temperature, not
+the FET, sets the rating**.
 
 Thermal estimate (I, 03 §7 with its verification corrections): one motor
 quarter has about 0.65 J/K; lateral spreading about 0.055 W/K over all layers;
@@ -853,6 +855,13 @@ embedded, back text mirrored, bold upper-case pad labels 1.2 mm on the top and
 | Electronics rail | **proposed-resolved** | TPS61022 forced-PWM boost, 2.2 A guaranteed at 2.8 V against a 0.69 A load; PA on the cell; split LDOs |
 | Motor connection | **proposed-resolved for rev1; plugs open** | solder pads with wire-anchor holes; a 1.25 mm THT plug violates the fab-rule intersection and SMD plugs do not fit |
 | Antenna | **proposed-resolved** | RX wire monopole at the rear-left corner (bottom), VTX U.FL in the front half (top), 5.8 GHz BPF, no Wi-Fi antenna |
+
+README constraints this spec proposes to change once accepted (README is not
+edited by this freeze): mounting 25.5 x 25.5 mm → 25.75 mm pattern with Ø 3.5 mm
+grommet holes (fits 25.5 and 26.0 frames); "LCSC basic parts preferred" →
+NextPCB partial turnkey by MPN, JLCPCB-compatible DFM; receiver "reusing OpenRX
+Lite" → OpenRX-Lite RF section with an ESP32 MCU (ELRS 4.x VTX control);
+"VTX dependency" → consigned traceable RTC6705.
 
 ### 15.2 Other open questions
 
