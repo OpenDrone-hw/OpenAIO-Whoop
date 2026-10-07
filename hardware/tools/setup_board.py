@@ -1103,6 +1103,11 @@ def selftest(P, rf):
         f = P.FootprintLoad(lib, name)
         f.SetFPID(P.LIB_ID("OpenDrone", name))
         f.SetReference(ref)
+        f.Reference().SetVisible(False)
+        f.Value().SetVisible(False)
+        for g in list(f.GraphicalItems()):
+            if g.GetLayer() in (P.F_SilkS, P.B_SilkS):
+                f.Delete(g)
         f.SetPosition(V(x, y))
         f.SetOrientationDegrees(rot)
         b.Add(f)
@@ -1125,11 +1130,13 @@ def selftest(P, rf):
         t.SetTextSize(P.VECTOR2I(mm(1.0), mm(1.0)))
         t.SetTextThickness(mm(0.15))
         b.Add(t)
+        return t
 
     def case(tag, expect, xy, r=0.6):
         cases.append((tag, expect, (cx + xy[0], cy + xy[1]), r))
 
     W = rf["w"]
+    KEEPOUT_HIT = "items_not_allowed: Items not allowed |"      # rule-area keepouts carry no rule name
     # standard numbers
     via(-6, -9, 0.35, 0.20, "/T/V1"); case("via 0.35 / 0.20 (D6 standard)", None, (-6, -9))
     via(-6, -7, 0.30, 0.20, "/T/V2"); case("via 0.30 / 0.20", "min diameter 0.3500", (-6, -7))
@@ -1139,13 +1146,13 @@ def selftest(P, rf):
     case("vias of one net, holes 0.25 apart", None, (-3.8, -7))
     via(-2, -9, 0.35, 0.15, "/T/V6", P.VIATYPE_MICROVIA); case("microvia", "through vias only", (-2, -9))
     # RF
-    trk(-1, -9, 1, -9, W, "/VTX/RF_OUT"); case("RF track at the 50 ohm width", None, (0, -9))
-    trk(-1, -7, 1, -7, 0.14, "/VTX/RF_IN"); case("RF track 0.14 wide", "RF: 50 ohm width", (0, -7))
+    trk(-1, -9, 1, -9, W, "/VTX/RF_OUT"); case("RF track at the 50 ohm width", None, (0, -9), r=1.1)
+    trk(-1, -7, 1, -7, 0.14, "/VTX/RF_IN"); case("RF track 0.14 wide", "RF: 50 ohm width", (0, -7), r=1.1)
     via(2, -9, 0.35, 0.20, "/VTX/RF_X"); case("via on an RF net", "RF: no vias", (2, -9))
     ux, uy = UFL_VTX
     trk(ux - 0.5, uy, ux + 0.5, uy, 0.1, "/T/SIG1"); case("signal track in RF_VTX_UFL", "RF_VTX_UFL", (ux, uy))
     trk(ux - 0.5, uy + 1, ux + 0.5, uy + 1, 0.2, "GND"); case("GND track in RF_VTX_UFL", None, (ux, uy + 1), r=0.3)
-    trk(4.0, -4.5, 5.0, -4.5, 0.1, "/T/SIG2", "In1.Cu"); case("In1 track under the VTX chain", "RF_VTX_CHAIN", (4.5, -4.5))
+    trk(4.0, -4.5, 5.0, -4.5, 0.1, "/T/SIG2", "In1.Cu"); case("In1 track under the VTX chain (keepout RF_VTX_CHAIN)", KEEPOUT_HIT, (4.5, -4.5), r=0.8)
     trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 track (plane warning)", "In1 and In4 are solid GND planes", (-2.5, 3))
     ax, ay = RX_ANT_HOLE
     trk(ax + 0.2, ay - 0.6, ax + 1.0, ay - 0.6, 0.1, "/T/SIG4", "B.Cu"); case("signal track in RF_RX_ANT", "RF_RX_ANT", (ax + 0.6, ay - 0.6))
@@ -1156,29 +1163,60 @@ def selftest(P, rf):
     px, py = P.ToMM(p1.GetPosition().x) - cx, P.ToMM(p1.GetPosition().y) - cy
     edge_y = py - P.ToMM(p1.GetSize(P.F_Cu).y) / 2
     trk(px - 0.6, edge_y - 0.11 - 0.05, px + 0.6, edge_y - 0.11 - 0.05, 0.1, "/T/SIG5")
-    case("track 0.11 from an SMD pad", "SMD pad to track and pour 0.13", (px, edge_y - 0.16), r=0.4)
+    case("track 0.11 from an SMD pad", "SMD pad to track and pour 0.13", (px, edge_y - 0.16), r=0.8)
     fp("C_0402_1005Metric", "C2", 0, -BODY_HALF + 0.8, edge_gap=0.25)
     case("0402 near the top edge (pad 0.25 from it)", "parts: pads 0.30 from the edge", (0, -BODY_HALF + 0.6), r=0.9)
     case("0402 courtyard in the edge band", "parts: courtyards off the edge band", (0, -BODY_HALF + 0.6), r=0.9)
     fp("small_pad", "J1", 4, BODY_HALF - 1.0, edge_gap=0.25)
     case("small_pad solder pad 0.25 from the edge", None, (4, BODY_HALF - 0.8), r=0.6)
-    hx, hy = HOLES["REAR"][0] * HOLE_HALF, HOLES["REAR"][1] * HOLE_HALF
-    fp("C_0201_0603Metric", "C3", hx + 2.25, hy - 0.3)
-    case("0201 on the rear grommet flange", "MOUNT_REAR", (hx + 2.25, hy - 0.3), r=0.7)
+    hx, hy = HOLES["RIGHT"][0] * HOLE_HALF, HOLES["RIGHT"][1] * HOLE_HALF
+    d = 2.6 / math.sqrt(2)
+    fp("C_0201_0603Metric", "C3", hx - d, hy - d)
+    case("0201 on the right grommet flange (keepout MOUNT_RIGHT)", KEEPOUT_HIT, (hx - d, hy - d), r=0.7)
     fA = fp("C_0402_1005Metric", "C4", 2, 4)
     w402 = P.ToMM(fA.GetCourtyard(P.F_CrtYd).BBox().GetWidth())
     fp("C_0402_1005Metric", "C5", 2 + w402 + 0.02, 4)
-    case("two 0402, courtyards 0.02 apart", "0402 to 0402: +0.05", (2 + (w402 + 0.02) / 2, 4), r=0.8)
+    case("two 0402, courtyards 0.02 apart", "0402 to 0402: +0.05", (2 + (w402 + 0.02) / 2, 4), r=w402 / 2 + 0.3)
     fB = fp("C_0201_0603Metric", "C6", 2, 7)
     w201 = P.ToMM(fB.GetCourtyard(P.F_CrtYd).BBox().GetWidth())
     fp("C_0201_0603Metric", "C7", 2 + w201 + 0.02, 7)
-    case("two 0201, courtyards 0.02 apart", None, (2 + (w201 + 0.02) / 2, 7), r=0.3)
+    case("two 0201, courtyards 0.02 apart", None, (2 + (w201 + 0.02) / 2, 7), r=w201 / 2 + 0.3)
     fT = fp("CONN-SMD_SM03B-SRSS-TB-LF-SN-P", "J2", -4, -3)
     tb = fT.GetCourtyard(P.F_CrtYd).BBox()
     fp("C_0201_0603Metric", "C8", P.ToMM(tb.GetRight()) - cx + w201 / 2 + 0.2, -3)
     case("0201 0.2 mm from an SH1.0 courtyard", "tall parts: 0.5 to 0201 and 0402",
          (P.ToMM(tb.GetRight()) - cx + 0.1, -3), r=1.0)
-    text(-6, -BODY_HALF + 0.3, "X"); case("silk text over the edge", "silk 0.20 from the edge", (-6, -BODY_HALF + 0.3), r=0.8)
+    text(-6, -BODY_HALF + 0.3, "X"); case("silk text over the edge", "Silkscreen clipped by board edge", (-6, -BODY_HALF + 0.3), r=0.8)
+    t2 = text(-3, 0, "X")
+    t2.Move(P.VECTOR2I(0, mm(cy - BODY_HALF + 0.10) - t2.GetBoundingBox().GetTop()))
+    case("silk text 0.10 inside the edge", "silk 0.20 from the edge", (-3, -BODY_HALF + 0.6), r=0.8)
+    # plated and non-plated holes in a synthetic footprint
+    def tht(ref, x, y, pads):
+        f = P.FOOTPRINT(b)
+        f.SetReference(ref)
+        f.Reference().SetVisible(False)
+        f.Value().SetVisible(False)
+        f.SetPosition(V(x, y))
+        b.Add(f)
+        for i, (dx_, dia, drill, plated) in enumerate(pads):
+            pd = P.PAD(f)
+            pd.SetNumber(str(i + 1))
+            pd.SetAttribute(P.PAD_ATTRIB_PTH if plated else P.PAD_ATTRIB_NPTH)
+            pd.SetShape(P.PAD_SHAPE_CIRCLE)
+            pd.SetSize(P.F_Cu, P.VECTOR2I(mm(dia), mm(dia)))
+            pd.SetDrillSize(P.VECTOR2I(mm(drill), mm(drill)))
+            pd.SetLayerSet(P.PAD.PTHMask() if plated else P.PAD.UnplatedHoleMask())
+            pd.SetPosition(V(x + dx_, y))
+            f.Add(pd)
+            if plated:
+                pd.SetNet(net("/T/%s_%d" % (ref, i + 1)))
+        return f
+    tht("J3", -9, -3, [(0, 1.0, 0.6, True), (1.3, 1.0, 0.6, True)])
+    case("PTH pads 1.0 / 0.6 at 1.3 pitch (copper 0.30)", "PTH pads, copper 0.40 apart", (-8.35, -3), r=0.9)
+    tht("J4", -9, 0, [(0, 0.9, 0.6, True)])
+    case("PTH pad 0.9 / 0.6 (annular 0.15)", "PTH annular ring 0.20", (-9, 0), r=0.5)
+    tht("H1", -9, 3, [(0, 0.4, 0.4, False)])
+    case("NPTH 0.40", "NPTH at least 0.50", (-9, 3), r=0.5)
     # netclass patterns
     sample = {"+BATT": "VBAT", "/ESC1/MOTORA": "Phase", "/ESC3/GHB": "Gate", "+3V3_RX": "Power", "+5V": "Power",
               "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog", "/VTX/RF_OUT": "RF",
@@ -1200,6 +1238,8 @@ def selftest(P, rf):
         for v in viol:
             if any(abs(it["pos"]["x"] - x) < r and abs(it["pos"]["y"] - y) < r for it in v["items"]):
                 near.append(v["type"] + ": " + v["description"] + " | " + " / ".join(i["description"] for i in v["items"]))
+        if expect == KEEPOUT_HIT:
+            near = [n for n in near if n.startswith(KEEPOUT_HIT)] or near
         ok = (not [n for n in near if not n.startswith(("track_dangling", "via_dangling", "unconnected", "isolated",
                                                        "solder_mask_bridge", "lib_footprint", "missing_courtyard"))]) \
             if expect is None else any(expect in n for n in near)
