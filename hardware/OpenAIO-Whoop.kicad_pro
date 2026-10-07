@@ -43,11 +43,11 @@
           "height": 1.27,
           "width": 2.54
         },
-        "silk_line_width": 0.15,
+        "silk_line_width": 0.13,
         "silk_text_italic": false,
-        "silk_text_size_h": 1.0,
-        "silk_text_size_v": 1.0,
-        "silk_text_thickness": 0.15,
+        "silk_text_size_h": 0.8,
+        "silk_text_size_v": 0.8,
+        "silk_text_thickness": 0.13,
         "silk_text_upright": false,
         "zones": {
           "border_display_style": 2,
@@ -161,9 +161,9 @@
         "min_microvia_drill": 0.1,
         "min_resolved_spokes": 2,
         "min_silk_clearance": 0.0,
-        "min_text_height": 1.0,
-        "min_text_thickness": 0.15,
-        "min_through_hole_diameter": 0.15,
+        "min_text_height": 0.8,
+        "min_text_thickness": 0.13,
+        "min_through_hole_diameter": 0.2,
         "min_track_width": 0.09,
         "min_via_annular_width": 0.075,
         "min_via_diameter": 0.35,
@@ -320,6 +320,24 @@
           },
           "FOOTPRINT-5": {
             "primary": "*_2520*"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "POWER_FET",
+        "conditions": {
+          "FOOTPRINT": {
+            "primary": "*CSD25310Q2*"
+          },
+          "FOOTPRINT-1": {
+            "primary": "*CSD13202Q2*"
+          },
+          "FOOTPRINT-2": {
+            "primary": "*DQK*"
+          },
+          "FOOTPRINT-3": {
+            "primary": "*AGM210*"
           }
         },
         "conditions_operator": "ANY"
@@ -778,32 +796,16 @@
         "pattern": "+BATT_*"
       },
       {
-        "netclass": "VBAT",
-        "pattern": "*SHUNT*"
-      },
-      {
-        "netclass": "Phase",
-        "pattern": "/ESC?/MOTOR?"
-      },
-      {
-        "netclass": "Phase",
-        "pattern": "/ESC?/MOTOR_?"
-      },
-      {
         "netclass": "Phase",
         "pattern": "/ESC?/PHASE_?"
       },
       {
         "netclass": "Gate",
-        "pattern": "/ESC?/GH?"
+        "pattern": "/ESC?/?_COM"
       },
       {
         "netclass": "Gate",
-        "pattern": "/ESC?/GL?"
-      },
-      {
-        "netclass": "Gate",
-        "pattern": "/ESC?/GATE_*"
+        "pattern": "/ESC?/?_PWM"
       },
       {
         "netclass": "Power",
@@ -811,7 +813,15 @@
       },
       {
         "netclass": "Power",
-        "pattern": "+5V_*"
+        "pattern": "+5V_BST"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+5V_USB"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+5V_HD"
       },
       {
         "netclass": "Power",
@@ -819,7 +829,7 @@
       },
       {
         "netclass": "Power",
-        "pattern": "+3V3_*"
+        "pattern": "+3V3_VTX"
       },
       {
         "netclass": "Power",
@@ -827,27 +837,23 @@
       },
       {
         "netclass": "Power",
-        "pattern": "+1V8_*"
-      },
-      {
-        "netclass": "Power",
         "pattern": "+1V1"
       },
       {
         "netclass": "Power",
+        "pattern": "+5V_*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+3V3_*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+1V8_*"
+      },
+      {
+        "netclass": "Power",
         "pattern": "+1V1_*"
-      },
-      {
-        "netclass": "Power",
-        "pattern": "VBUS"
-      },
-      {
-        "netclass": "Power",
-        "pattern": "*/VBUS"
-      },
-      {
-        "netclass": "Power",
-        "pattern": "/ESC?/VDD"
       },
       {
         "netclass": "GND",
@@ -890,6 +896,10 @@
         "pattern": "*/VPD*"
       },
       {
+        "netclass": "Analog",
+        "pattern": "*SHUNT_SENSE_*"
+      },
+      {
         "netclass": "RF",
         "pattern": "*/RF_*"
       },
@@ -911,23 +921,11 @@
       },
       {
         "netclass": "USB",
-        "pattern": "*/USB_DP"
+        "pattern": "*/USB_D_P"
       },
       {
         "netclass": "USB",
-        "pattern": "*/USB_DN"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "*/USB_DM"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "*/USB_D+"
-      },
-      {
-        "netclass": "USB",
-        "pattern": "*/USB_D-"
+        "pattern": "*/USB_D_N"
       }
     ]
   },

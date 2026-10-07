@@ -69,23 +69,32 @@ FLANGE_D = 5.2                                   # spec 7: grommet flange part k
 PART_EDGE_BAND = 0.30                            # spec 7: part keepout band inside the outline (courtyards)
 FRAME_PATTERNS = (25.5, 26.0)                    # spec 7: frame guides on User.Eco1
 
-# spec 10: RF keepouts (positions are the floorplan sketch's "about" values; P2 moves them with the parts)
-RX_ANT_HOLE = (-12.3, 9.5)                       # RX antenna wire hole, rear-left edge
-RX_ANT_KEEPOUT_R = 1.6                           # all-layer copper keepout: 1.0 mm around an assumed 1.2 mm pad
-RX_ANT_EXIT_R = 3.0                              # no parts within 3 mm of the wire's exit path
-UFL_VTX = (7.5, -7.5)                            # VTX U.FL toward the front corner
-UFL_HALF = 2.0                                   # U.FL zone: 4 x 4 mm square
-VTX_CHAIN = ((2.5, -2.5), (10.0, -10.0), 2.0)    # RTC6705 -> PA -> BPF -> U.FL diagonal, half-width 2.0 (L2 solid)
+# spec 10 / sketch v4: RF, corridor and tab areas. Positions follow spec/sketch_v4.py (spec 10); P2 moves them
+# with the real parts, so board_spec.json pins a bbox only for the RX antenna areas.
+RX_ANT_HOLE = (-12.3, 6.5)                       # spec 4.10 / 10: RX antenna wire hole, left edge, rear half
+RX_ANT_KEEPOUT_R = 1.6                           # copper keepout L1-L5 (L6 admits the feed): 1.0 mm around a 1.2 mm pad
+RX_ANT_EXIT_R = 3.0                              # spec 10: no parts within 3 mm of the wire's exit (bottom)
+RX_ROOT_R = 3.0                                  # spec 4.9 / 11: NOR and SPI0 >= 3 mm from the antenna hole
+RX_FEED = ((-9.6, 4.05), RX_ANT_HOLE, 0.8)       # spec 10: 2.4 GHz feed LPF -> hole on L6; L5 solid under it
+UFL_VTX = (3.545, -10.5)                         # sketch v4: U.FL 1.97..5.12 / -12.5..-8.5, top edge left of the arc
+UFL_ZONE = ((1.82, -13.2), (5.42, -8.2))         # RF_VTX_UFL: U.FL land + 0.15 / 0.3 mm (only RF and GND on L1)
+RF_PAD_CUT = ((2.945, -11.1), (4.145, -9.9))     # RF_PAD_CUTOUT: under the U.FL signal pad (P5 adds the BPF/match pads)
+# 5.8 GHz chain (sketch v4): RTC6705 PAOUT1 (pin 35, right side) -> 45 deg CPWG -> PA RF IN (down) -> PA RF OUT (up)
+# -> match zone -> BPF -> U.FL; half-width 1.2 = line + CPWG gap + 1 mm (spec 10: L2 solid under the chain + 1 mm).
+VTX_CHAIN = ([(5.0, -4.65), (8.52, -6.4), (8.52, -11.55), (6.67, -12.05), (3.545, -10.5)], 1.2)
+SHUNT_CORRIDOR = ((-8.0, 8.1), (-4.2, 12.6))     # D10 / spec 10: B+ pad -> shunt on L6 (P2 sets the final box)
+TAB_HALF, TAB_IN, TAB_OUT = 1.5, 1.3, 0.5        # spec 7: tab 1.2-1.5 wide + 1.0 mm part keepout beyond the 0.3 band
+TABS = {"T1": "front_arc_45", "T3": ((-13.2, -8.9), (-1, 0)), "T4": ((-9.3, 13.2), (0, 1))}   # point on edge, outward normal
 
 # spec 8.1 / 8.4 + D6: board minimums (the .kicad_pro "rules" block).  Via 0.35 / 0.20 is the OpenDrone
-# standard via (D6, owner-confirmed buildable at NextPCB), so the annular minimum is 0.075, not the 0.10 of the
-# spec text's 0.35 / 0.15 via; the 0.15 mm drill stays the fab minimum.
+# standard via (D6, owner-confirmed buildable at NextPCB), so the annular minimum is 0.075 and the minimum through
+# hole is 0.20 (spec 8.4): DRC then enforces the standard via, although both fabs drill 0.15.
 PRO_RULES = {
     "min_clearance": 0.09, "min_track_width": 0.09, "min_connection": 0.09,
-    "min_via_diameter": 0.35, "min_via_annular_width": 0.075, "min_through_hole_diameter": 0.15,
+    "min_via_diameter": 0.35, "min_via_annular_width": 0.075, "min_through_hole_diameter": 0.20,
     "min_microvia_diameter": 0.2, "min_microvia_drill": 0.1,            # template values; microvias disallowed (DRU)
     "min_hole_to_hole": 0.2, "min_hole_clearance": 0.2, "min_copper_edge_clearance": 0.2,
-    "min_text_height": 1.0, "min_text_thickness": 0.15,                 # spec 8.1 silk 1.0 / 0.15 (JLC floor)
+    "min_text_height": 0.8, "min_text_thickness": 0.13,                 # spec 8.1 / 13, D12: 0.8 / 0.13 labels
     "min_silk_clearance": 0.0, "solder_mask_to_copper_clearance": 0.005,
 }
 MASK_EXPANSION = 0.04                            # spec 8.1
@@ -105,8 +114,8 @@ SEVERITIES = {
 TRACK_PRESETS = [0.10, 0.14, 0.20, 0.30, 0.50, 1.00]       # spec 8.4 (+ the RF 50 ohm width, computed)
 VIA_PRESETS = [(0.35, 0.20), (0.40, 0.20)]                 # D6 standard via; spec 8.3 power via
 DIFF_PAIR_PRESETS = [(0.12, 0.12, 0.25)]                   # spec 8.2 USB FS pair: width, gap, via gap
-TEXT_DEFAULTS = {"silk_line_width": 0.15, "silk_text_size_h": 1.0, "silk_text_size_v": 1.0,
-                 "silk_text_thickness": 0.15}             # new silk items start at the 1.0 / 0.15 floor
+TEXT_DEFAULTS = {"silk_line_width": 0.13, "silk_text_size_h": 0.8, "silk_text_size_v": 0.8,
+                 "silk_text_thickness": 0.13}             # spec 8.4 / 13, D12: new silk items start at 0.8 / 0.13
 
 # spec 8.4 net classes (names after OpenAIO, LINEUP C8) + GND (orchestrator, spec 8.3 power-via arrays).
 # (name, track, clearance, via dia, via drill, colour, priority, extra)  track None = computed RF width
@@ -125,21 +134,23 @@ DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "
 # Planned net names (D4 power names; PINMAP.md; OpenAIO esc_channel upper-cased per LINEUP). Root-sheet local
 # labels appear as "/NAME", sub-sheet ones as "/SHEET/NAME", power nets bare.
 NETCLASS_PATTERNS = [
-    ("VBAT", ["+BATT", "+BATT_*", "*SHUNT*"]),
-    ("Phase", ["/ESC?/MOTOR?", "/ESC?/MOTOR_?", "/ESC?/PHASE_?"]),
-    ("Gate", ["/ESC?/GH?", "/ESC?/GL?", "/ESC?/GATE_*"]),
-    ("Power", ["+5V", "+5V_*", "+3V3", "+3V3_*", "+1V8", "+1V8_*", "+1V1", "+1V1_*", "VBUS", "*/VBUS", "/ESC?/VDD"]),
+    ("VBAT", ["+BATT", "+BATT_*"]),                                       # +BATT, +BATT_IN (spec 4.1)
+    ("Phase", ["/ESC?/PHASE_?"]),                                         # in-sheet PHASE_A/B/C (spec 8.4)
+    ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
+    ("Power", ["+5V", "+5V_BST", "+5V_USB", "+5V_HD", "+3V3", "+3V3_VTX", "+1V8", "+1V1",
+               "+5V_*", "+3V3_*", "+1V8_*", "+1V1_*"]),                    # LINEUP A11 names; EFM8 VDD is on +BATT
     ("GND", ["GND"]),
     ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", "*/CSA*",
-                "*/PA_DET*", "*/VPD*"]),
+                "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*"]),                  # Kelvin pair SHUNT_SENSE_P/N (spec 4.1)
     ("RF", ["*/RF_*", "*/ANT*", "*/RFIO*", "*/RFOUT*", "*/RFIN*"]),
-    ("USB", ["*/USB_DP", "*/USB_DN", "*/USB_DM", "*/USB_D+", "*/USB_D-"]),
+    ("USB", ["*/USB_D_P", "*/USB_D_N"]),                                  # _P/_N: KiCad pairs them (spec 8.2)
 ]
 # Component classes for the spec 8.4 spacing rules, by footprint name (P3 checks these against the real names).
 COMPONENT_CLASSES = [
     ("PASSIVE_0201", ["*0201*"]),
     ("PASSIVE_0402", ["*0402*"]),
-    ("TALL", ["*U.FL*", "*U_FL*", "*UFL*", "*SRSS*", "*L2.5-W2.0*", "*_2520*"]),      # U.FL, SH1.0, 2520 L
+    ("TALL", ["*U.FL*", "*U_FL*", "*UFL*", "*SRSS*", "*L2.5-W2.0*", "*_2520*"]),      # U.FL, 2520 L (SH1.0 if any)
+    ("POWER_FET", ["*CSD25310Q2*", "*CSD13202Q2*", "*DQK*", "*AGM210*"]),            # D12 stage (P3 names), D21
     ("SOLDER_PAD", ["*small_pad*", "*SolderPad*", "*motor_pad*", "*battery_pad*", "*BT2*"]),
 ]
 SOLDER_PAD_FPIDS = ["*:small_pad*", "*:SolderPad*", "*:motor_pad*", "*:battery_pad*", "*:BT2*"]  # memberOfFootprint
@@ -157,13 +168,18 @@ SILK_COLOR = "White"
 # rules come first and exceptions after.  @W_RF@ etc. are filled from the impedance step.
 # (name, comment lines, body)  body None = comment block only.
 # ==============================================================================================================
+AE_EXEMPT = ("  (severity ignore)\n  (constraint disallow footprint pad)\n"
+             "  (condition \"((A.Type == 'Footprint' && A.Reference == 'AE*') || (A.Type == 'Pad' && "
+             "A.memberOfFootprint('AE*'))) && (A.intersectsArea('RF_RX_ANT') || A.intersectsArea('RF_RX_ANT_L6') || "
+             "A.intersectsArea('RF_RX_EXIT'))\")")
 RULES = [
     ("header",
-     ["OpenAIO-Whoop board rules (research/DESIGN-SPEC.md 7, 8.1, 8.4, 10; D6, D7). Generated by",
+     ["OpenAIO-Whoop board rules (research/DESIGN-SPEC.md 7, 8.1, 8.4, 10, 11; D6, D7, D21). Generated by",
       "hardware/tools/setup_board.py: change the script, not this file. Numbers that gate every fab live in the",
-      ".kicad_pro (clearance 0.09, track 0.09, via 0.35 / 0.20 (D6), annular 0.075, drill 0.15, hole to hole 0.20,",
-      "hole clearance 0.20, copper to edge 0.20); the rules below are what this board needs on top of them,",
-      "taken from the NextPCB and JLCPCB intersection in spec 8.1."], None),
+      ".kicad_pro (clearance 0.09, track 0.09, via 0.35 / 0.20 (D6), annular 0.075, through hole 0.20, hole to",
+      "hole 0.20, hole clearance 0.20, copper to edge 0.20, silk text 0.8 / 0.13); the rules below are what this",
+      "board needs on top of them, from the NextPCB and JLCPCB intersection in spec 8.1. D21: every deliberate",
+      "break of a conservative rule is a rule named 'D21 <name>' with its reason; nothing is ignored globally."], None),
 
     ("through vias only",
      ["Owner rule and spec 8: no microvias, blind or buried vias. Filled and capped via-in-pad is a through via."],
@@ -172,6 +188,12 @@ RULES = [
     ("hole to hole, different nets 0.30",
      ["NextPCB 0.30 between holes of different nets (CAF); JLCPCB 0.20. Same net stays at the 0.20 minimum."],
      "  (constraint hole_to_hole (min 0.30mm))\n  (condition \"A.Net != B.Net\")"),
+
+    ("D21 same_net_via_array",
+     ["D21: the 0.30 CAF spacing above is for holes of different nets; via arrays of one net (phase fields, EP",
+      "arrays, battery and power arrays) stay at the 0.20 board minimum, which both fabs build."],
+     "  (constraint hole_to_hole (min 0.20mm))\n"
+     "  (condition \"A.Net == B.Net && A.Type == 'Via' && B.Type == 'Via'\")"),
 
     ("PTH pad holes 0.45 apart",
      ["JLCPCB 0.45 hole to hole between plated pad holes (battery holes, motor wire anchors)."],
@@ -238,7 +260,8 @@ RULES = [
      "  (condition \"A.hasComponentClass('PASSIVE_0402') && B.hasComponentClass('PASSIVE_0402')\")"),
 
     ("tall parts: 0.5 to 0201 and 0402",
-     ["Spec 8.4: U.FL, SH1.0 and the 2520 inductor shadow small passives for paste, AOI and rework."],
+     ["Spec 8.4: the U.FL and the 2520 inductor (and any SH1.0 part) shadow small passives for paste, AOI and",
+      "rework."],
      "  (constraint courtyard_clearance (min 0.5mm))\n"
      "  (condition \"A.hasComponentClass('TALL') && (B.hasComponentClass('PASSIVE_0201') || "
      "B.hasComponentClass('PASSIVE_0402'))\")"),
@@ -249,18 +272,49 @@ RULES = [
      "  (condition \"A.hasComponentClass('SOLDER_PAD') && (B.hasComponentClass('PASSIVE_0201') || "
      "B.hasComponentClass('PASSIVE_0402'))\")"),
 
-    ("via in pad: type VII everywhere",
+    ("D21 fet_solid_pads",
+     ["D21 / spec 11: FET, battery, motor and user solder pads join their pours solid (no thermal relief): the",
+      "power path and the iron need the copper; reflow is profiled for it (NextPCB EQ)."],
+     "  (constraint zone_connection solid)\n"
+     "  (condition \"A.Type == 'Pad' && (A.hasComponentClass('POWER_FET') || A.hasComponentClass('SOLDER_PAD'))\")"),
+
+    ("D21 via_in_pad_typeVII",
      ["Spec 8 / 11 and D6: every via that sits in a pad is filled with non-conductive epoxy and capped",
       "(IPC-4761 type VII). The board setting fills and caps all vias (filling yes, capping yes), so no via",
       "is ever left open in a pad. KiCad 10.0.6 cannot test a via inside a same-net pad, so there is no rule",
       "for it; order the NextPCB via-in-pad option (spec 8.1) and keep the 0.35 / 0.20 via (0.40 / 0.20 in",
       "power arrays outside pads)."], None),
 
+    ("D21 trimmed_footprint",
+     ["Spec 4.8 / 4.9: footprints with NC pads removed (RTC6705) or the NOR exposed pad removed are saved as",
+      "their own footprints in the project library (P3), so lib_footprint_mismatch stays an error and never",
+      "fires for them; no rule is needed and none is relaxed."], None),
+
+    ("D21 esp32_ganged_mask",
+     ["Spec 4.7 / 8.1, only if the NextPCB EQ (O15) accepts 0.35 mm pitch: one ganged mask opening per side of",
+      "the ESP32-D0WD-V3 land, set as the footprint attribute 'allow soldermask bridges' on that footprint only",
+      "(P3). Not active until then."], None),
+
     ("In1 and In4 are solid GND planes",
      ["Spec 8.2 / 11: L2 and L5 unbroken under every signal. A track on them cuts the plane; warn so each one",
       "is reviewed (L2 under the 5.8 GHz chain is a hard keepout, rule area RF_VTX_CHAIN)."],
      "  (severity warning)\n  (constraint disallow track)\n"
      "  (condition \"A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu'\")"),
+
+    ("In2 and In3: no analog, RF or gate nets",
+     ["Spec 8.2 / 11: In2 (L3) references the +BATT plane (L4) more than GND, so video and sense (Analog), RF and",
+      "the FET gates (Gate) route on L1 over L2 or L6 over L5. In3 (L4) is the +BATT plane itself."],
+     "  (constraint disallow track)\n"
+     "  (condition \"(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && "
+     "(A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate')\")"),
+
+    ("In2 and In3: no gyro, VTX control or Kelvin nets",
+     ["Spec 8.2 / 8.4: the name-based sensitive set (gyro SPI1, GYRO_*, VTX_SPI, PA_*, SHUNT_SENSE_*) stays off",
+      "In2/In3 as well (net names compared with wildcards; '.' is literal)."],
+     "  (constraint disallow track)\n"
+     "  (condition \"(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SPI1.*' || "
+     "A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*/PA_*' || "
+     "A.NetName == '*SHUNT_SENSE_*')\")"),
 
     ("RF: no vias",
      ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L6 to the antenna hole without one."],
@@ -278,16 +332,38 @@ RULES = [
      "  (layer \"F.Cu\")\n  (constraint disallow track via zone)\n"
      "  (condition \"A.intersectsArea('RF_VTX_UFL') && A.NetClass != 'RF' && A.NetName != 'GND'\")"),
 
-    ("RF_RX_ANT: only the RF feed",
-     ["Spec 10: all-layer copper keepout around the RX antenna hole except the feed. Pours and vias are kept",
-      "out by the rule area itself; this rule keeps other tracks out."],
-     "  (constraint disallow track)\n  (condition \"A.intersectsArea('RF_RX_ANT') && A.NetClass != 'RF'\")"),
+    ("RF_VTX_CHAIN: GND vias only",
+     ["Spec 8.4 / 10: no non-GND via inside the 5.8 GHz chain area, so L2 stays solid under the line."],
+     "  (constraint disallow via)\n  (condition \"A.intersectsArea('RF_VTX_CHAIN') && A.NetName != 'GND'\")"),
 
-    ("RF_RX_EXIT: no parts on the antenna wire exit",
-     ["Spec 10: no parts within 3 mm of the wire's exit path (rule area RF_RX_EXIT); the antenna footprint",
-      "(AE*) is exempt. Warning: P2 fixes the wire path and the pad placement around it."],
-     "  (severity warning)\n  (constraint disallow footprint)\n"
-     "  (condition \"A.Type == 'Footprint' && A.intersectsArea('RF_RX_EXIT') && A.Reference != 'AE*'\")"),
+    ("RF_RX_FEED: GND vias only",
+     ["Spec 8.4 / 10: no non-GND via under the 2.4 GHz feed, so L5 stays solid under it."],
+     "  (constraint disallow via)\n  (condition \"A.intersectsArea('RF_RX_FEED') && A.NetName != 'GND'\")"),
+
+    ("RF_RX_ANT_L6: only the RF feed",
+     ["Spec 10: on L6 the antenna-hole keepout admits only the 2.4 GHz feed track (vias, parts and pours are",
+      "kept out by the rule area; L1-L5 are kept clear by RF_RX_ANT itself)."],
+     "  (layer \"B.Cu\")\n  (constraint disallow track)\n"
+     "  (condition \"A.intersectsArea('RF_RX_ANT_L6') && A.NetClass != 'RF'\")"),
+
+    ("SPI0 3 mm from the RX antenna hole",
+     ["Spec 4.9 / 11: the blackbox bus (75 MHz writes, 50 MHz reads) has harmonics in the ELRS band; SPI0 and",
+      "the NOR chip select stay outside RF_RX_ROOT (r 3.0 around the hole) on every layer."],
+     "  (constraint disallow track via)\n"
+     "  (condition \"A.intersectsArea('RF_RX_ROOT') && (A.NetName == '*SPI0.*' || A.NetName == '*FLASH_CS*')\")"),
+
+    ("SHUNT_CORRIDOR: battery current only",
+     ["D10 / spec 11: the battery-to-shunt corridor on L6 carries +BATT_IN, +BATT and GND; the Kelvin pair",
+      "SHUNT_SENSE_P/N leaves at the shunt's inner pad edges. Everything else stays out before routing."],
+     "  (layer \"B.Cu\")\n  (constraint disallow track via)\n"
+     "  (condition \"A.intersectsArea('SHUNT_CORRIDOR') && A.NetClass != 'VBAT' && A.NetName != 'GND' && "
+     "A.NetName != '*SHUNT_SENSE_*'\")"),
+
+    ("D21 rx_antenna_hole",
+     ["D21 / spec 10: the antenna wire hole's own footprint (reference AE*) sits at the centre of RF_RX_ANT,",
+      "RF_RX_ANT_L6 and RF_RX_EXIT, whose part keepouts are for every other footprint. Scoped to AE* inside",
+      "those areas only."],
+     AE_EXEMPT),
 
     ("USB: pair gap",
      ["Spec 8.2: USB FS pair 0.12 / 0.12. Inert until the nets end in _P/_N, P/N or +/- (KiCad 10.0.6 does",
@@ -661,7 +737,28 @@ def stadium(a, b, r, n=36):
 
 
 CU = ["F.Cu", "In1.Cu", "In2.Cu", "In3.Cu", "In4.Cu", "B.Cu"]
+
+
+def rect(p0, p1):
+    return [(p0[0], p0[1]), (p1[0], p0[1]), (p1[0], p1[1]), (p0[0], p1[1])]
+
+
+def tab_rect(name):
+    """Part keepout at a panel tab: TAB_HALF along the edge each way, TAB_IN inward, TAB_OUT outward (clipped)."""
+    t = TABS[name]
+    if t == "front_arc_45":
+        fc = BODY_HALF - FRONT_R
+        n = (FRONT[0] / math.sqrt(2), FRONT[1] / math.sqrt(2))
+        p = (fc + FRONT_R * n[0], -fc + FRONT_R * n[1])
+    else:
+        p, n = t
+    tv = (-n[1], n[0])
+    c = lambda a, d: (p[0] + a * tv[0] + d * n[0], p[1] + a * tv[1] + d * n[1])
+    return [c(-TAB_HALF, TAB_OUT), c(TAB_HALF, TAB_OUT), c(TAB_HALF, -TAB_IN), c(-TAB_HALF, -TAB_IN)]
+
+
 # (name, layers, keepout flags (footprints, tracks, vias, pads, zone fills), shape, clip to board, spec note)
+# shape: ("poly", points) | ("path", points, half width) | ("band", width)
 def keepouts():
     K = []
     for name, (sx, sy) in HOLES.items():
@@ -670,16 +767,31 @@ def keepouts():
                   "spec 7: grommet flange D %.1f, no parts, both sides" % FLANGE_D))
     K.append(("PART_EDGE_BAND", ["F.Cu", "B.Cu"], {}, ("band", PART_EDGE_BAND), False,
               "spec 7: %.2f mm part keepout band (DRU 'parts: courtyards off the edge band')" % PART_EDGE_BAND))
-    K.append(("RF_VTX_CHAIN", ["In1.Cu"], dict(tracks=True), ("poly", rect_along(*VTX_CHAIN)), True,
-              "spec 10: L2 solid under the 5.8 GHz chain plus 1 mm"))
-    K.append(("RF_VTX_UFL", ["F.Cu"], {}, ("poly", rect_along((UFL_VTX[0] - UFL_HALF, UFL_VTX[1]),
-                                                               (UFL_VTX[0] + UFL_HALF, UFL_VTX[1]), UFL_HALF)), True,
+    K.append(("RF_VTX_CHAIN", ["In1.Cu"], dict(tracks=True), ("path",) + VTX_CHAIN, True,
+              "spec 10: L2 solid under the 5.8 GHz chain plus 1 mm; GND vias only (DRU)"))
+    K.append(("RF_VTX_UFL", ["F.Cu"], {}, ("poly", rect(*UFL_ZONE)), True,
               "spec 10: U.FL zone, only RF and GND copper on L1 (DRU)"))
-    K.append(("RF_RX_ANT", CU, dict(vias=True, zone_fills=True), ("poly", circle_pts(RX_ANT_HOLE, RX_ANT_KEEPOUT_R)), True,
-              "spec 10: all-layer copper keepout at the RX antenna hole except the feed (DRU)"))
+    K.append(("RF_PAD_CUTOUT", ["In1.Cu"], dict(zone_fills=True), ("poly", rect(*RF_PAD_CUT)), True,
+              "spec 4.8: L2 cut under the wide RF pads (U.FL signal pad; P5 adds the others)"))
+    K.append(("RF_PAD_CUTOUT_L3", ["In2.Cu"], dict(tracks=True), ("poly", rect(*RF_PAD_CUT)), True,
+              "spec 4.8: no L3 track where L3 GND is the local RF reference"))
+    ring = circle_pts(RX_ANT_HOLE, RX_ANT_KEEPOUT_R)
+    K.append(("RF_RX_ANT", CU[:5], dict(footprints=True, tracks=True, vias=True, pads=True, zone_fills=True),
+              ("poly", ring), True, "spec 10: L1-L5 copper and part keepout at the RX antenna hole"))
+    K.append(("RF_RX_ANT_L6", ["B.Cu"], dict(footprints=True, vias=True, zone_fills=True), ("poly", ring), True,
+              "spec 10: L6 at the hole: only the 2.4 GHz feed track (DRU)"))
     edge_pt = (-BODY_HALF, RX_ANT_HOLE[1])
-    K.append(("RF_RX_EXIT", ["F.Cu", "B.Cu"], {}, ("poly", stadium(RX_ANT_HOLE, edge_pt, RX_ANT_EXIT_R)), True,
-              "spec 10: no parts within 3 mm of the antenna wire exit (DRU, warning)"))
+    K.append(("RF_RX_EXIT", ["B.Cu"], dict(footprints=True), ("poly", stadium(RX_ANT_HOLE, edge_pt, RX_ANT_EXIT_R)), True,
+              "spec 10: no parts within 3 mm of the antenna wire exit (bottom)"))
+    K.append(("RF_RX_FEED", ["In4.Cu"], dict(tracks=True), ("path", [RX_FEED[0], RX_FEED[1]], RX_FEED[2]), True,
+              "spec 10: L5 solid under the 2.4 GHz feed; GND vias only (DRU)"))
+    K.append(("RF_RX_ROOT", CU, {}, ("poly", circle_pts(RX_ANT_HOLE, RX_ROOT_R)), True,
+              "spec 4.9 / 11: SPI0 (blackbox) kept 3 mm from the antenna hole (DRU)"))
+    K.append(("SHUNT_CORRIDOR", ["B.Cu"], {}, ("poly", rect(*SHUNT_CORRIDOR)), True,
+              "D10 / spec 11: battery-to-shunt corridor, battery current only on L6 (DRU)"))
+    for t in sorted(TABS):
+        K.append(("TAB_" + t, ["F.Cu", "B.Cu"], dict(footprints=True), ("poly", tab_rect(t)), True,
+                  "spec 7: panel tab %s, %.1f mm part keepout beyond the edge band" % (t, TAB_IN - PART_EDGE_BAND)))
     return K
 
 
@@ -991,6 +1103,14 @@ def build_board(path, P):
             inner.Deflate(mm(shape[1]), P.CORNER_STRATEGY_ROUND_ALL_CORNERS, mm(0.002))
             area = P.SHAPE_POLY_SET()
             area.BooleanSubtract(outer, inner)
+        elif shape[0] == "path":
+            pts, hw = shape[1], shape[2]
+            area = P.SHAPE_POLY_SET()
+            for seg in [rect_along(p, q, hw) for p, q in zip(pts, pts[1:])] + [circle_pts(p, hw, 48) for p in pts]:
+                area.BooleanAdd(to_poly(seg))
+            area.Simplify()
+            if clip:
+                area.BooleanIntersection(poly)
         else:
             area = to_poly(shape[1])
             if clip:
@@ -1162,19 +1282,40 @@ def selftest(P, rf):
             f.Move(P.VECTOR2I(0, want))
         return f
 
-    def text(x, y, s, layer="F.SilkS"):
+    def text(x, y, s, layer="F.SilkS", size=1.0, thick=0.15):
         t = P.PCB_TEXT(b)
         t.SetText(s)
         t.SetLayer(b.GetLayerID(layer))
         t.SetPosition(V(x, y))
-        t.SetTextSize(P.VECTOR2I(mm(1.0), mm(1.0)))
-        t.SetTextThickness(mm(0.15))
+        t.SetTextSize(P.VECTOR2I(mm(size), mm(size)))
+        t.SetTextThickness(mm(thick))
         b.Add(t)
         return t
 
     def case(tag, expect, xy, r=0.6):
         cases.append((tag, expect, (cx + xy[0], cy + xy[1]), r))
 
+    # plated and non-plated holes in a synthetic footprint
+    def tht(ref, x, y, pads, netname=None):
+        f = P.FOOTPRINT(b)
+        f.SetReference(ref)
+        f.Reference().SetVisible(False)
+        f.Value().SetVisible(False)
+        f.SetPosition(V(x, y))
+        b.Add(f)
+        for i, (dx_, dia, drill, plated) in enumerate(pads):
+            pd = P.PAD(f)
+            pd.SetNumber(str(i + 1))
+            pd.SetAttribute(P.PAD_ATTRIB_PTH if plated else P.PAD_ATTRIB_NPTH)
+            pd.SetShape(P.PAD_SHAPE_CIRCLE)
+            pd.SetSize(P.F_Cu, P.VECTOR2I(mm(dia), mm(dia)))
+            pd.SetDrillSize(P.VECTOR2I(mm(drill), mm(drill)))
+            pd.SetLayerSet(P.PAD.PTHMask() if plated else P.PAD.UnplatedHoleMask())
+            pd.SetPosition(V(x + dx_, y))
+            f.Add(pd)
+            if plated:
+                pd.SetNet(net(netname or "/T/%s_%d" % (ref, i + 1)))
+        return f
     W = rf["w"]
     KEEPOUT_HIT = "items_not_allowed: Items not allowed |"      # rule-area keepouts carry no rule name
     # standard numbers
@@ -1185,6 +1326,7 @@ def selftest(P, rf):
     via(-4, -7, 0.35, 0.20, "/T/V5"); via(-3.55, -7, 0.35, 0.20, "/T/V5")
     case("vias of one net, holes 0.25 apart", None, (-3.8, -7))
     via(-2, -9, 0.35, 0.15, "/T/V6", P.VIATYPE_MICROVIA); case("microvia", "through vias only", (-2, -9))
+    via(-8, -7, 0.35, 0.15, "/T/V7"); case("via 0.35 / 0.15 (below the 0.20 minimum through hole)", "drill", (-8, -7))
     # RF
     trk(-1, -9, 1, -9, W, "/VTX/RF_OUT"); case("RF track at the 50 ohm width", None, (0, -9), r=1.1)
     trk(-1, -7, 1, -7, 0.14, "/VTX/RF_IN"); case("RF track 0.14 wide", "RF: 50 ohm width", (0, -7), r=1.1)
@@ -1192,11 +1334,33 @@ def selftest(P, rf):
     ux, uy = UFL_VTX
     trk(ux - 0.5, uy, ux + 0.5, uy, 0.1, "/T/SIG1"); case("signal track in RF_VTX_UFL", "RF_VTX_UFL", (ux, uy))
     trk(ux - 0.5, uy + 1, ux + 0.5, uy + 1, 0.2, "GND"); case("GND track in RF_VTX_UFL", None, (ux, uy + 1), r=0.3)
-    trk(4.0, -4.5, 5.0, -4.5, 0.1, "/T/SIG2", "In1.Cu"); case("In1 track under the VTX chain (keepout RF_VTX_CHAIN)", KEEPOUT_HIT, (4.5, -4.5), r=0.8)
+    c0, c1 = VTX_CHAIN[0][1], VTX_CHAIN[0][2]
+    trk(c0[0] - 0.4, c0[1] - 1.5, c0[0] + 0.4, c0[1] - 1.5, 0.1, "/T/SIG2", "In1.Cu")
+    case("In1 track under the VTX chain (keepout RF_VTX_CHAIN)", KEEPOUT_HIT, (c0[0], c0[1] - 1.5), r=0.8)
+    via(c0[0], c0[1] - 3.0, 0.35, 0.20, "/T/V8"); case("signal via in RF_VTX_CHAIN", "RF_VTX_CHAIN: GND vias only", (c0[0], c0[1] - 3.0), r=0.4)
+    via(c1[0] + 0.6, c1[1], 0.35, 0.20, "GND"); case("GND via in RF_VTX_CHAIN", None, (c1[0] + 0.6, c1[1]), r=0.3)
     trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 track (plane warning)", "In1 and In4 are solid GND planes", (-2.5, 3))
     ax, ay = RX_ANT_HOLE
-    trk(ax + 0.2, ay - 0.6, ax + 1.0, ay - 0.6, 0.1, "/T/SIG4", "B.Cu"); case("signal track in RF_RX_ANT", "RF_RX_ANT", (ax + 0.6, ay - 0.6))
-    trk(ax + 0.2, ay + 0.6, ax + 1.0, ay + 0.6, W, "/RX/ANT_FEED", "B.Cu"); case("RF feed in RF_RX_ANT", None, (ax + 0.6, ay + 0.6), r=0.3)
+    trk(ax + 0.2, ay - 1.1, ax + 1.0, ay - 1.1, 0.1, "/T/SIG4", "B.Cu"); case("signal track in RF_RX_ANT_L6", "RF_RX_ANT_L6: only the RF feed", (ax + 0.6, ay - 1.1))
+    trk(ax + 0.2, ay + 0.9, ax + 1.0, ay + 0.9, W, "/RX/ANT_FEED", "B.Cu"); case("RF feed in RF_RX_ANT_L6", None, (ax + 0.6, ay + 0.9), r=0.3)
+    trk(ax + 0.2, ay + 1.2, ax + 0.8, ay + 1.2, W, "/RX/RF_X2", "F.Cu"); case("RF track on L1 in RF_RX_ANT", KEEPOUT_HIT, (ax + 0.5, ay + 1.2), r=0.6)
+    tht("AE1", ax, ay, [(0, 1.0, 0.5, True)], netname="/RX/ANT_FEED"); case("antenna hole footprint AE1 at the hole", None, (ax, ay), r=0.45)
+    trk(ax + 1.9, ay + 1.0, ax + 2.3, ay + 1.0, 0.1, "/FC/SPI0.SCK"); case("SPI0 track 2.3 mm from the antenna hole", "SPI0 3 mm from the RX antenna hole", (ax + 2.1, ay + 1.0), r=0.6)
+    trk(6.0, 9.5, 7.0, 9.5, 0.1, "/FC/SPI0.MOSI"); case("SPI0 track far from the hole", None, (6.5, 9.5), r=0.6)
+    fx, fy = RX_FEED[0]
+    via(fx - 0.5, fy + 0.45, 0.35, 0.20, "/T/V9"); case("signal via in RF_RX_FEED", "RF_RX_FEED: GND vias only", (fx - 0.5, fy + 0.45), r=0.4)
+    # inner-layer bans (In2 / In3)
+    trk(6.0, 1.0, 7.0, 1.0, 0.1, "/OSD/VIDEO_IN", "In2.Cu"); case("Analog track on In2", "In2 and In3: no analog, RF or gate nets", (6.5, 1.0), r=0.6)
+    trk(6.0, 2.0, 7.0, 2.0, 0.15, "/ESC1/A_COM", "In3.Cu"); case("Gate track on In3", "In2 and In3: no analog, RF or gate nets", (6.5, 2.0), r=0.6)
+    trk(6.0, 3.0, 7.0, 3.0, 0.1, "/FC/SPI1.SCK", "In2.Cu"); case("gyro SPI1 track on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (6.5, 3.0), r=0.6)
+    trk(8.0, 1.0, 9.0, 1.0, 0.1, "/RX/VTX_SPI.CLK", "In2.Cu"); case("VTX SPI track on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (8.5, 1.0), r=0.6)
+    trk(8.0, 2.0, 9.0, 2.0, 0.1, "/FC/SPI0.MISO", "In2.Cu"); case("blackbox SPI0 track on In2 (allowed)", None, (8.5, 2.0), r=0.6)
+    # battery-to-shunt corridor
+    (sx0, sy0), (sx1, sy1) = SHUNT_CORRIDOR
+    smx = (sx0 + sx1) / 2
+    trk(smx - 0.5, sy0 + 0.8, smx + 0.5, sy0 + 0.8, 0.1, "/T/SIG9", "B.Cu"); case("signal track in SHUNT_CORRIDOR", "SHUNT_CORRIDOR: battery current only", (smx, sy0 + 0.8), r=0.6)
+    trk(smx - 0.5, sy0 + 1.8, smx + 0.5, sy0 + 1.8, 0.1, "/SHUNT_SENSE_P", "B.Cu"); case("Kelvin track in SHUNT_CORRIDOR", None, (smx, sy0 + 1.8), r=0.6)
+    trk(smx - 0.5, sy0 + 2.8, smx + 0.5, sy0 + 2.8, 0.5, "+BATT_IN", "B.Cu"); case("+BATT_IN track in SHUNT_CORRIDOR", None, (smx, sy0 + 2.8), r=0.6)
     # SMD pad to track 0.13, pads 0.30 from the edge, edge band, flange, courtyard classes
     f1 = fp("C_0402_1005Metric", "C1", -6, 4)
     p1 = [p for p in f1.Pads() if p.GetNumber() == "1"][0]
@@ -1239,27 +1403,8 @@ def selftest(P, rf):
     sl.SetEnd(V(-2.5, -BODY_HALF + 0.10 + 0.075))
     b.Add(sl)
     case("silk line 0.10 inside the edge", "silk 0.20 from the edge", (-3, -BODY_HALF + 0.2), r=0.8)
-    # plated and non-plated holes in a synthetic footprint
-    def tht(ref, x, y, pads):
-        f = P.FOOTPRINT(b)
-        f.SetReference(ref)
-        f.Reference().SetVisible(False)
-        f.Value().SetVisible(False)
-        f.SetPosition(V(x, y))
-        b.Add(f)
-        for i, (dx_, dia, drill, plated) in enumerate(pads):
-            pd = P.PAD(f)
-            pd.SetNumber(str(i + 1))
-            pd.SetAttribute(P.PAD_ATTRIB_PTH if plated else P.PAD_ATTRIB_NPTH)
-            pd.SetShape(P.PAD_SHAPE_CIRCLE)
-            pd.SetSize(P.F_Cu, P.VECTOR2I(mm(dia), mm(dia)))
-            pd.SetDrillSize(P.VECTOR2I(mm(drill), mm(drill)))
-            pd.SetLayerSet(P.PAD.PTHMask() if plated else P.PAD.UnplatedHoleMask())
-            pd.SetPosition(V(x + dx_, y))
-            f.Add(pd)
-            if plated:
-                pd.SetNet(net("/T/%s_%d" % (ref, i + 1)))
-        return f
+    text(9.0, 5.0, "GND", size=0.8, thick=0.13); case("pad label 0.8 / 0.13 (D12)", None, (9.0, 5.0), r=0.8)
+    text(9.0, 7.5, "GND", size=0.7, thick=0.13); case("silk text 0.7 high", "text_height", (9.0, 7.5), r=0.8)
     tht("J3", -9, -3, [(0, 1.0, 0.6, True), (1.3, 1.0, 0.6, True)])
     case("PTH pads 1.0 / 0.6 at 1.3 pitch (copper 0.30)", "PTH pads, copper 0.40 apart", (-8.35, -3), r=0.9)
     tht("J4", -9, 0, [(0, 0.9, 0.6, True)])
@@ -1267,9 +1412,12 @@ def selftest(P, rf):
     tht("H1", -9, 3, [(0, 0.4, 0.4, False)])
     case("NPTH 0.40", "NPTH at least 0.50", (-9, 3), r=0.5)
     # netclass patterns
-    sample = {"+BATT": "VBAT", "/ESC1/MOTORA": "Phase", "/ESC3/GHB": "Gate", "+3V3_RX": "Power", "+5V": "Power",
-              "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog", "/VTX/RF_OUT": "RF",
-              "/RX/ANT_FEED": "RF", "/USB_DP": "USB", "/USB_DN": "USB", "/MOTOR1": "Default", "/SPI0.SCK": "Default"}
+    sample = {"+BATT": "VBAT", "+BATT_IN": "VBAT", "/ESC1/PHASE_A": "Phase", "/ESC3/B_COM": "Gate",
+              "/ESC2/C_PWM": "Gate", "+3V3_VTX": "Power", "+5V": "Power", "+5V_USB": "Power", "+5V_BST": "Power",
+              "+5V_HD": "Power", "+1V8": "Power", "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog",
+              "/SHUNT_SENSE_P": "Analog", "/POWER/SHUNT_SENSE_N": "Analog", "/VTX/RF_OUT": "RF",
+              "/RX/ANT_FEED": "RF", "/USB_D_P": "USB", "/USB_D_N": "USB", "/MOTOR1": "Default",
+              "/SPI0.SCK": "Default", "/ESC1/VDD": "Default"}
     for n in sample:
         net(n)
     P.SaveBoard(pcb, b)

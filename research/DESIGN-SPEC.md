@@ -7,19 +7,23 @@ choices for phase P0 of [BUILD-PLAN.md](BUILD-PLAN.md). Decisions D1-D22 of
 (D13-D17), the area cuts (D18), the recalibrated gate (D20) and the P0 rule of
 D22. **P0-close items still open:**
 
-1. **Area (§9).** Like-for-like with the Matrix calibration the budget is
-   96.9 % top / 97.0 % bottom against the D20 gate of 96 % per side (the Matrix
-   II scores 97.9 % on the same basis); with the round-3 corrections (far-side
-   via landings, outer-layer channels) 104.0 % / 103.9 % (Matrix 104.9 %). The
-   remaining levers are owner calls (§9.3); D20 makes the P2 placement the
-   binding proof. Orchestrator decision needed.
+1. **Area (§9, `budget_v5.py`).** Like-for-like with the Matrix calibration
+   the budget is **97.2 % top / 97.0 % bottom** against the D20 gate of 96 % per
+   side (7.7 / 6.4 mm² over; the Matrix II scores 97.9 % on the same basis);
+   with the round-3 corrections (far-side via landings, outer-layer channels)
+   **104.2 % / 103.9 %** (Matrix 104.9 %). Every D14 and D18 lever is applied;
+   what remains are owner levers and one sourcing item (§9.3). D20 makes the P2
+   placement the binding proof. Orchestrator decision needed.
 2. **O15**: NextPCB EQ for the 0.35 mm-pitch ESP32-D0WD-V3.
 3. **O17**: NextPCB BOM quote by exact MPN on the full BOM (stock gate per line).
 4. Decisions proposed in this revision and still to be logged (§15.2 O19).
 
-Circuit-detail items for the schematic loop are listed in §15.5 (D22). Every
-number here is a target, a datasheet value or a calculation, and each one says
-which.
+The P1 board setup is re-applied to this revision (`setup_board.py`, §8.4:
+board-spec check 31/31, DRC 0, rules parsed, self-test 0 failures). Round-3
+BLOCKER and MAJOR findings: 23 of 23 fixed, none rejected (§15.7).
+Circuit-detail values for the schematic loop are listed in §15.5 (D22, owner
+P4). Every number here is a target, a datasheet value or a calculation, and each
+one says which.
 
 Date 2026-10-07, revised the same day after review rounds 1-3 (electrical,
 RF and firmware, manufacturing and lineup) and decisions D12-D22. Inputs: the
@@ -36,7 +40,7 @@ are in [PINMAP.md](PINMAP.md).
 Status tags used below: **V** read from a primary source, **S** screened
 (secondary source, distributor index, research track not re-derived), **I**
 inferred (calculation or engineering judgement). Loss and thermal numbers come
-from `calc/thermal_v3.py`, area numbers from `spec/budget_v4.py`, the
+from `calc/thermal_v3.py`, area numbers from `spec/budget_v5.py`, the
 key-package floorplan from `spec/sketch_v4.py` (all scratchpad; earlier
 versions kept).
 
@@ -50,7 +54,7 @@ ratings, blackbox, repairability and open documentation, not by adding scope.
 
 | Item | Target (proposal) | Basis |
 |---|---|---|
-| Input | 1S LiPo / LiHV, 3.0-4.35 V operating; electronics regulate down to 2.5 V cell under sag (the VTX PA is rated from 3.0 V only); 2S not supported ("1S" silk at the battery pads; D14, D19) | owner decision; TPS61022 runs to 0.5 V once started, starts at 1.8 V (V, TI SLVSDX7D); SE5004L VCC 3.0-5.5 V (V) |
+| Input | 1S LiPo / LiHV, 3.0-4.35 V operating; electronics regulate down to 2.5 V cell under sag (the VTX PA is rated from 3.0 V only); 2S not supported ("1S" silk at the battery pads; D14); 2S belongs on a separate future HD-only board with 20-30 V FETs, not this PCB (D19) | owner decision; TPS61022 runs to 0.5 V once started, starts at 1.8 V (V, TI SLVSDX7D); SE5004L VCC 3.0-5.5 V (V) |
 | Board body | 26.4 x 26.4 mm square (Matrix II: 26.35 mm, photo-measured) | V (01) |
 | Orientation | Diamond mount like the Matrix: flight-forward points at a body corner. Front corner rounded with R 5.8 mm and carries no ear | V (01, photo); I (radius) |
 | Ears and holes | 3 ears (left, right, rear corners), ring OD 4.8 mm. Holes **Ø 3.5 mm** on a **25.75 x 25.75 mm square**, non-plated cut-outs in P1; plated holes with a GND annulus are decided at P2 with the ball fit (O2, O16) | Matrix II holes Ø 3.48-3.57 on 26.0 mm, plated (V, 01). 25.75 mm halves the worst offset in 25.5 and 26.0 mm frames to 0.18 mm radial (I, from 06 §3.3) |
@@ -195,13 +199,14 @@ BT2.0 -> +BATT_IN pads -- SMF5.0A, 2x22u -- shunt (Kelvin SHUNT_SENSE_P/N -> INA
   +BATT -> SE5004L PA VCC (10u X6S + per-pin 1n/100p)   [3-pad 0 ohm selector: +BATT (default) or +5V]
   +BATT -> TPS61022 boost, 1 MHz, 0.68 uH -> +5V_BST (5.15 V, 4x 22u X6S 0603)
              EN: 100k from VIN (enabled whenever the cell is above UVLO).  MODE = VOUT: forced PWM
-  +5V_USB (pogo pads) -> TPS2116 VIN1 (priority while VBUS > about 3.3 V; PR1 = 232k/100k from VIN1)
+  +5V_USB (pogo pads) -> TPS2116 VIN1 = MODE (priority while VBUS > 3.44-4.04 V; PR1 = 27.4k/10k from VIN1)
   +5V_BST             -> TPS2116 VIN2      -> +5V (10u X6S 0402)
              +5V -> ferrite 0201 + 10u -> CAM 5V pad
              +5V -> LED-strip translator VCCB, buzzer +, user 5V pad
              +5V -> TPS22810 load switch, CT 10n -> +5V_HD -> pad VHD (O4 Lite)
-                      EN/UVLO = +BATT divider (about 2.9-3.0 V falling) AND PINIO1 (GPIO27, via SDM02U30LP3)
-                                AND NOT USB (AP1606, gate on +5V_USB)
+                      EN/UVLO = +BATT divider 80.6k/49.9k (2.82-3.09 V falling)
+                                AND PINIO1 (GPIO27 through a BAS16LD PN diode, pull-down only; 4.7k on GPIO27)
+                                AND NOT USB (AP1606 drain on EN, gate on +5V_USB)
              +5V -> LP5912-3.3 (EN = +5V) -> +3V3 (RP2354A, NOR, OSD front end, INA186, LEDs, ESP32, SX1280, RGB LED)
                       +3V3 -> TPS7A2018 (EN = +3V3) -> +1V8 (gyro)
                       +3V3 -> LP5907-2.85 (EN = ESP32 GPIO2 via 1k, 10k pull-down; HD gate pulls it low) -> PA VREF
@@ -216,55 +221,91 @@ VOUT when VIN > VOUT (V): a bus surge reaches +5V_BST and, through the mux, +5V
 (§4.1).
 
 **USB, battery or both: a power mux, not a diode.** +5V comes from a TI
-**TPS2116** 2:1 power mux in priority mode (V, SLVSFG1A): VIN1 = `+5V_USB` is
-selected while VBUS is above 3.05-3.58 V (PR1 divider 232 kΩ / 100 kΩ against
-VREF 0.92-1.08 V), VIN2 = the boost output `+5V_BST` otherwise. The mux blocks
-reverse current on both channels (out of an unselected input at most 0.15 µA at
-105 °C, V), so USB and the boost output never meet, and the boost stays enabled
-in every case:
+**TPS2116** 2:1 power mux in priority mode (V, SLVSFG1A §7.3.1, §7.6.1.1):
+MODE is tied to VIN1 = `+5V_USB`, which is selected while VBUS is above
+3.44-4.04 V (PR1 divider 27.4 kΩ / 10 kΩ against VREF 0.92-1.08 V); VIN2 = the
+boost output `+5V_BST` otherwise. With no USB, MODE = VIN1 ≈ 0 V puts the part
+in its "MODE ≤ 0.35 V, PR1 low" row, which passes the higher input, i.e. VIN2.
+The mux blocks reverse current on both channels (RCB: an input is never back-fed
+from VOUT; the unselected input stays off even when it is the higher one, the
+priority row "VIN2 = X"), so USB and the boost output never meet, and the boost
+stays enabled in every case:
 
 - **Cell and USB:** +5V runs from USB; the boost idles on its own output. It
   cannot charge the cell from USB, because the forced-PWM reverse flow of
   §7.4.1 needs its output driven above the setpoint, which the mux prevents.
-- **Plugging or unplugging USB with a cell fitted:** a break-before-make
-  switchover of about 8 µs (V, 10 Ω / 10 µF test) onto a boost that is already
-  running; +5V dips by about I·t/C = 0.7 A x 8 µs / 10-20 µF = 0.3-0.6 V, which
-  the LDOs ride through (I): no FC or RX reset (V1 case b).
+- **Plugging USB in with a cell fitted:** PR1 crosses VREF at VBUS 3.44-4.04 V;
+  the break-before-make switchover (8 µs at 5 V, V) then waits until VBUS is
+  within 42 mV of +5V before the USB channel closes (RCB, V §7.6.1), so +5V
+  sags from 5.15 V until it meets the rising VBUS: a few tenths of a volt on a
+  fast plug-in, down to about 3.5 V if VBUS takes 1 ms to rise (I). The O4 is
+  already off (AP1606 below), so the load is the analog 0.42-0.70 A.
+- **Unplugging USB with a cell fitted:** +5V follows the collapsing VBUS through
+  the closed USB channel until PR1 falls below VREF (VBUS 3.44-4.04 V), then
+  the 8 µs gap adds I·t/C = 0.7 A x 8 µs / 20 µF ≈ 0.3 V: **+5V minimum about
+  3.1-3.7 V for tens of µs** before the running boost takes over (I). The
+  LP5912-3.3 drops at most 180 mV at 500 mA (V), so +3V3 stays ≥ about 3.0 V.
+  Round 3's 232 kΩ / 100 kΩ divider switched at 3.05-3.58 V and let +5V fall to
+  about 2.75 V; the lower-impedance divider also serves the AP1606 below. V1
+  case (b) scopes +5V and +3V3 on 20 unplugs: no FC or RX reset.
 - **USB only:** DShot idle-high back-feeds +BATT to about 2.5-2.8 V (PINMAP
   F16). The boost may start and hiccup on that weak source, but its output is
   not selected while USB is present, so +5V is unaffected; the EFM8 brown-out
   cycling stays a V9 item.
-- **Battery only:** VIN1 sees only the mux leakage (≤ 0.15 µA at 105 °C) into
-  the 332 kΩ PR1 divider: 0.05 V (0.2 V at four times that leakage for TJ
-  125 °C), far below anything that could switch.
+- **Battery only:** VIN1 floats except for the mux's reverse leakage out of an
+  unselected input (0.001 / 0.05 / 0.15 µA at 25 / 85 / 105 °C, **typical
+  values; the datasheet gives no maximum**) and the MODE and PR1 pin leakage
+  (≤ 0.1 µA each, V), all into the 37.4 kΩ PR1 divider: about 10 mV typical, and
+  0.3 V even at 50 times the typical IREV (I). That is below a quarter of the
+  AP1606's 1.2 V threshold (S, LCSC; its minimum is a P4 check, §15.5).
 
-The USB-present signal for the O4 switch is an AP1606 whose gate sits on
-`+5V_USB` with the PR1 divider as its pull-down (Vgs(th) 1.2 V, so the 0.05 V
-above never turns it on). It holds the TPS22810 EN low from about 1.2 V of VBUS,
-so the O4 is off on USB (a PC port cannot carry it) before the mux switches.
-The O4 switch's other two EN terms (D15): a +BATT divider on the TPS22810's own
-EN/UVLO comparator (VENF 1.08-1.18 V, so 162 kΩ / 100 kΩ sheds the O4 at about
-2.83-3.09 V falling, re-enables at 2.96-3.41 V; set at V1), and PINIO1 (GPIO27)
-through an SDM02U30LP3 that can only pull EN down. D14 also asked for a
-regulator power-good term; the TPS61022 has no PG pin, so D15 replaces it with
-the PINIO instead of adding a supervisor IC: the FC drives GPIO27 high only
-after it has booted on a good +5V, the RP2350 holds the pin low through reset,
-and the cell threshold sheds the O4 while the boost still has margin (1.67 A at
-2.8 V against the 1.43-1.48 A HD load).
+The USB-present signal for the O4 switch is that AP1606, gate on `+5V_USB`, the
+PR1 divider as its pull-down, drain on the TPS22810 EN. It holds EN low from
+about 1.2 V of VBUS, so the O4 is off on USB (a PC port cannot carry it) before
+the mux switches. The O4 switch's other two EN terms (D15):
+
+- **Cell threshold:** a +BATT divider on the TPS22810's own EN/UVLO comparator
+  (VENF 1.08-1.18 V, VENR 1.13-1.30 V, EN leakage ≤ 0.1 µA, V SLVSDH0C):
+  80.6 kΩ / 49.9 kΩ (Yageo RC0201FR-07) sheds the O4 at **2.82-3.09 V falling**
+  and re-enables it at 2.96-3.40 V; the exact point is set at V1. On USB only the
+  back-fed 2.5-2.8 V puts EN at 0.96-1.07 V, below VENR, as a second guard.
+- **PINIO1 (GPIO27):** a Nexperia **BAS16LD** PN switching diode (anode on EN,
+  cathode on GPIO27) can only pull EN down, and GPIO27 carries a 4.7 kΩ pull-down.
+  GPIO27 low or not yet driven (FC in reset, SD build, USB): EN ≤ VF (about
+  0.6 V at the 35 µA the 30.8 kΩ divider source delivers; VF ≤ 715 mV at 1 mA, V)
+  + 0.15 V across the pull-down = **≤ 0.75 V against VENF ≥ 1.08 V**. GPIO27 high:
+  the diode is reverse-biased by ≥ 1.6 V and its leakage (≤ 30 nA at 25 V and
+  25 °C, ≤ 30 µA at 150 °C, V Nexperia BAS16LD Table 7; about 1 µA or less at
+  85-105 °C, I) moves EN by ≤ 0.03 V, the shed point by ≤ 0.1 V. The round-3
+  Schottky (SDM02U30LP3: IR ≤ 7 µA at 10 V and 25 °C, typical curve 10-100x
+  higher at 85-125 °C, V Diodes Fig. 3) into a 61.8 kΩ source would have lifted
+  EN by 0.6 V or more on a warm board, so the O4 would never have been shed: the
+  same failure class as the round-2 USB OR diode. The RP2350's own reset
+  pull-down (tens of kΩ) is not enough on its own: with the diode current it
+  would let GPIO27 rise to the HD-gate base-emitter clamp (about 0.6 V) and EN
+  to about 1.2 V, past VENF; hence the 4.7 kΩ (1.2 mA with the two HD-gate
+  base resistors when GPIO27 drives high, inside the default 4 mA drive).
+
+D14 also asked for a regulator power-good term; the TPS61022 has no PG pin, so
+D15 replaces it with the PINIO instead of adding a supervisor IC: the FC drives
+GPIO27 high only after it has booted on a good +5V, GPIO27 sits low through
+reset, and the cell threshold sheds the O4 while the boost still has margin
+(1.67 A at 2.8 V against the 1.43-1.48 A HD load).
 Round 2's Schottky OR with an AP1606 on the boost EN is dropped: the Schottky's
 reverse leakage (IR 15 µA typ / 50 µA max at 5 V and 25 °C, about 1 mA at
 85 °C; V, Nexperia PMEG2010AEH Table 7 and Fig. 2) into the 100 kΩ gate
 pull-down turned the sense FET on in battery-only operation and shut the boost
-down whenever the board was warm.
+down whenever the board was warm. The TPS61022 EN is now a plain 100 kΩ pull-up
+from VIN (VEN_H ≤ 1.2 V, VEN_L 0.35-0.45 V, V Table 6.5): nothing else touches it.
 
 **Setpoint.** TPS61022 VFB is 585/600/615 mV in PWM (±2.5 %, V Table 6.5); with
 1 % divider resistors a 5.00 V nominal can sit at 4.80 V, below the rank-1 gate.
 The nominal is set to **5.15 V**: worst case 4.93-5.37 V at the boost (I). The
 mux adds 37-60 mΩ (V): 0.04 V at the analog load, 0.06-0.10 V at the HD load, so
 +5V stays ≥ 4.89 V (analog, the 4.85 V gate holds with the ripple trough) and
-≥ 4.83 V (HD, gate 4.75 V); the maximum stays inside TLV75533 / LP5912 (5.5 /
-6.5 V), TPS2116 (5.5 V operating) and the SE5004L on the +5V selector position
-(5.5 V).
+≥ 4.83 V (HD, gate 4.75 V); the maximum stays inside the LP5912 (6.5 V; the
+TLV75533 fallback 5.5 V), TPS2116 (5.5 V operating), TPS22810 (18 V) and the
+SE5004L on the +5V selector position (5.5 V).
 
 **Inductor saturation and overload.** The TPS61022 limits the inductor
 **valley** current (6.5 min / 8 typ / 10 max A, V Table 6.5), not its peak. Up
@@ -313,9 +354,9 @@ Parts:
 | Boost | TI **TPS61022RWUR**, VQFN-HR-7 2x2, C915088, 857 | TI TPS61023DRLR, SOT-563, C919459, 53,320 (new land, 1.6 A at 2.8 V) | new |
 | Boost inductor | cjiang **FTC252012SR68MBCA**, 0.68 µH, 2.5x2.0x1.2, Isat 6.5 A, 17 mΩ, C5832369, 6,040 (V, LCSC parameters) | Coilcraft XGL4040-681, Isat 8 A at 20 % drop, 4x4x4 (S), if the V1 overload step fails; cjiang FTC252012S1R0MBCA (1.0 µH, Isat 5.6 A, C5832370) is not a fallback any more (1.71 A at 3.0 V) | new |
 | Boost caps | Cin 1x, Cout 4x (D15) Murata **GRM188C80J226ME15D** 22 µF 6.3 V X6S 0603, C393031, 104,510 | a 10 V X6S/X7R 22 µF 0603 found in P3 (better DC bias) | new |
-| USB / boost mux | TI **TPS2116DRLR**, SOT-583 (DRL) 2.1x1.6, 1.6-5.5 V, 2.5 A, 40 mΩ typ (≤ 60 mΩ), reverse-current blocking, TA −40..105 °C, C3235557, 77,966 (V) + PR1 divider 232k/100k Yageo RC0201FR-07 | TI TPS2121RUXR, VQFN-HR 2x2.5, 2.8-22 V, C485916 (S; new land) | new |
+| USB / boost mux | TI **TPS2116DRLR**, SOT-583 (DRL) 2.1x1.6, 1.6-5.5 V, 2.5 A, 40 mΩ typ (≤ 60 mΩ), reverse-current blocking, TA −40..105 °C, C3235557, 77,966 (V) + PR1 divider 27.4k/10k Yageo RC0201FR-07 (threshold 3.44-4.04 V; 37.4 kΩ is also the AP1606 gate pull-down) | TI TPS2121RUXR, VQFN-HR 2x2.5, 2.8-22 V, C485916 (S; new land) | new |
 | O4 load switch (D15) | TI **TPS22810DBVR**, SOT-23-6, 2.7-18 V, 79 mΩ typ (≤ 115 mΩ), 2 A at TA 65 °C, EN/UVLO VENR 1.13-1.30 / VENF 1.08-1.18 V, CT slew, QOD, TA −40..105 °C, C205990, 14,998 (V); loss 0.11-0.17 W at 1.2 A | TI TPS22810DRVR (WSON-6 2x2, 3 A, −2.9 mm²): preferred by the smallest-package rule once a NextPCB channel shows stock (no LCSC listing on 2026-10-07; O17) | study |
-| O4 EN parts | +BATT divider 162k/100k (Yageo RC0201FR-07, 2.83-3.09 V falling, set at V1); Diodes **SDM02U30LP3-7B** (PINIO1, pull-down only) [PU]; ALLPOWER **AP1606** (USB term) [PU]; CT 10 nF 0201 X7R; CIN 1 µF 0201 | - | study |
+| O4 EN parts | +BATT divider 80.6k/49.9k (Yageo RC0201FR-07, 2.82-3.09 V falling, set at V1); Nexperia **BAS16LD,315** PN switching diode, SOD882D 1.0 x 0.6 (PINIO1, pull-down only; IR ≤ 30 nA at 25 V / 25 °C; V datasheet Rev. 1; LCSC C841775, about 900, and Farnell / RS listings, S: O17 confirms) + 4.7 kΩ 0201 pull-down on GPIO27; ALLPOWER **AP1606** (USB term) [PU]; CT 10 nF 0201 X7R; CIN 1 µF 0201 | Nexperia BAS116 class low-leakage diode (S, larger package); not a Schottky (§4.2) | study; diode changed in consolidation |
 | +3V3 LDO (FC + RX, D14) | TI **LP5912-3.3DRVR**, WSON-6 2x2, C524780, 23,490 [PU] | TI TLV75533PDQNR (X2SON-4 1x1, C2861882, 2,025 [PU]) as a separate FC rail (round-2 split, +2.8 mm²) | OpenFC `power` back end |
 | +3V3_VTX LDO | TI **LP5912-3.3DRVR** (D12: the part already on the BOM) | TI TPS7A2033PDQNR, X2SON-4 1x1 (commons-verified; LCSC 0 on 2026-10-07), −3.8 mm² once a NextPCB channel shows stock | BOM reuse |
 | PA VREF reference | TI **LP5907SNX-2.85/NOPB**, X2SON-4 1x1, 2.85 V ±2 % (2.79-2.91 V, just outside the SE5004L's 2.80-2.90 V at both corners; S, maker listing via Arrow): V5 qualifies Icq and gain at 2.79 and 2.91 V (§4.8) | a 2.8 V variant if V5 qualifies a lower VREF (lever (a), §5.4) | new |
@@ -594,7 +635,7 @@ FCB pad (QSPI_SS) next to a GND pad.
 | 18 / 19 / 20 / 21 | NOR SCK / MOSI / MISO / CS | SPI0 |
 | 22 / 23 / 24 / 25 | M4 / M3 / M2 / M1 | PIO0 (bidirectional DShot) |
 | 26 | LED1 blue | GPIO (ADC0 unused) |
-| 27 | HD line: O4 switch enable and analog-VTX hold-off (D15, D17); RP2350 reset pull-down = analog mode | PINIO1 |
+| 27 | HD line: O4 switch enable and analog-VTX hold-off (D15, D17); 4.7 kΩ pull-down = analog mode at reset | PINIO1 |
 | 28 | current sense | ADC2 |
 | 29 | VBAT sense | ADC3 |
 
@@ -825,7 +866,7 @@ A 0201 NTC (Murata NCP03XH103F05RL, 10 kΩ 1 %, B 3380, −40..125 °C, C98098,
 feeds ESP32 GPIO34 for the thermal derate (O6 gate 6).
 
 **HD gate: one video system at a time (D17).** GPIO27 (PINIO1, the HD line;
-reset pull-down = analog) drives a second Nexperia BC847QASZ on the bottom: Qa
+4.7 kΩ pull-down = analog at reset) drives a second Nexperia BC847QASZ on the bottom: Qa
 pulls the `+3V3_VTX` LP5912 EN low (that EN has a 100 kΩ pull-up to +3V3 and the
 patched-ELRS GPIO21 reaches it through 10 kΩ), Qb pulls the LP5907 PA-reference
 EN low (GPIO2 reaches it through 1 kΩ, so the transistor wins against a
@@ -1245,62 +1286,79 @@ GND, with suffixed rails +BATT_IN, +5V_BST, +5V_USB (the template name; `VBUS`
 would fail A11), +5V_HD, +3V3_VTX, +1V1 (+3V3_RX is gone: FC and RX share +3V3,
 D14).
 
-Custom rules below the template marker: different-net hole to hole 0.30; PTH
-pad hole to hole 0.45; PTH annular 0.20; PTH hole clearance 0.28; inner-layer PTH
-hole to copper 0.30; NPTH to copper 0.20; SMD pad to track 0.13; disallow
-micro/blind/buried vias; courtyards at max(body, land) + 0.10 with
-`courtyards_overlap` raised to **error** and courtyard clearance 0; 0402-to-0402
-+0.05; tall parts (U.FL, 2520 inductor) +0.5 mm to 0201/0402; user pads
-and battery/motor pads ≥ 0.5 mm to any 0201/0402 (iron rework); classes Analog,
-RF and Gate and the name-based sensitive set (`SPI1.*`, `GYRO_*`, `VTX_SPI.*`,
-`PA_*`, `SHUNT_SENSE_*`) disallowed on In2.Cu/In3.Cu; no non-GND via inside
-`RF_VTX_CHAIN` and `RF_RX_FEED` (`A.NetName != 'GND' && A.intersectsArea(...)`);
-SPI0 (`SPI0.*`, `FLASH_CS`) ≥ 3 mm from `RF_RX_ANT`. Rule areas: the grommet
-flanges (`MOUNT_*`); `RF_RX_ANT` split into an L1-L5 area (tracks, vias, pads,
-footprints, zones kept out) and an L6 area that admits only the feed;
-`RF_RX_EXIT` (B.Cu, footprints kept out: no parts within 3 mm of the wire
-exit); `RF_PAD_CUTOUT` (In1.Cu zone-fill keepout under wide RF pads) with a
-matching In2.Cu track keepout and a GND zone there as the local reference;
-`RF_RX_FEED` (In4.Cu solid under the 2.4 GHz feed); `SHUNT_CORRIDOR` (the
-battery-to-shunt current path, D10, kept clear of signals); `TAB_T1/T3/T4`
-(part keepout ≥ 1.0 mm at the panel tabs). The round-2 `WIFI_STUB` is removed
-with the stub (§4.7).
+Custom rules below the template marker (generated by `setup_board.py`, the
+last matching rule wins in KiCad 10.0.6): different-net hole to hole 0.30; PTH
+pad hole to hole 0.45; PTH pad copper 0.40; PTH annular 0.20; PTH hole clearance
+0.28; inner-layer PTH hole to copper 0.30; NPTH ≥ 0.50; SMD pad to track and
+pour 0.13; silk 0.20 from the edge and holes; disallow micro/blind/buried vias;
+pads 0.30 and courtyards outside the 0.30 edge band (solder-pad footprints
+exempt, scoped by footprint); courtyards at max(body, land) + 0.10 with
+`courtyards_overlap` an **error** and courtyard clearance 0; 0402-to-0402
++0.05; tall parts (U.FL, 2520 inductor) +0.5 mm to 0201/0402; user pads and
+battery/motor pads ≥ 0.5 mm to any 0201/0402 (iron rework); In1/In4 tracks
+warned (solid GND planes); classes Analog, RF and Gate and the name-based
+sensitive set (`*SPI1.*`, `*GYRO_*`, `*VTX_SPI.*`, `*/PA_*`, `*SHUNT_SENSE_*`)
+disallowed on In2.Cu/In3.Cu; RF: no vias, 50 Ω width 0.100-0.110 on the outer
+layers; only RF and GND copper on L1 in `RF_VTX_UFL`; no non-GND via inside
+`RF_VTX_CHAIN` and `RF_RX_FEED`; only the RF feed on L6 in `RF_RX_ANT_L6`; SPI0
+(`*SPI0.*`, `*FLASH_CS*`) kept out of `RF_RX_ROOT` (r 3.0 around the antenna
+hole) on every layer; `SHUNT_CORRIDOR` carries only VBAT-class nets, GND and the
+Kelvin pair on L6; USB pair gap and skew. Rule areas (positions from sketch v4,
+moved with the parts at P2): the grommet flanges (`MOUNT_*`) and
+`PART_EDGE_BAND`; `RF_VTX_CHAIN` (In1.Cu track keepout along the 5.8 GHz path,
+half-width 1.2 mm), `RF_VTX_UFL`, `RF_PAD_CUTOUT` (In1.Cu zone-fill keepout under
+the U.FL signal pad; P5 adds the BPF and match pads) with `RF_PAD_CUTOUT_L3`
+(In2.Cu track keepout; a GND zone there is the local reference); `RF_RX_ANT`
+(L1-L5: tracks, vias, pads, footprints, zones kept out) and `RF_RX_ANT_L6` (L6:
+vias, footprints, zones kept out, the feed track allowed) at (−12.3, +6.5)
+r 1.6; `RF_RX_EXIT` (B.Cu, footprints: no parts within 3 mm of the wire exit);
+`RF_RX_FEED` (In4.Cu track keepout under the 2.4 GHz feed); `RF_RX_ROOT`;
+`SHUNT_CORRIDOR` (the battery-to-shunt path, D10); `TAB_T1/T3/T4` (part keepout
+1.0 mm beyond the edge band at the panel tabs). The round-2 `WIFI_STUB` is
+removed with the stub (§4.7).
 
 **Deliberate rule breaks (D21).** The baseline is the true fab limit above;
-every exception is a named, scoped custom rule with a one-line justification,
-logged in DECISIONS.md and checked by critique, never a global ignore or a
-severity downgrade: `same_net_via_array` (hole to hole 0.20 within one net's
-arrays; the 0.30 CAF rule stays between nets); `via_in_pad_typeVII` (vias in
-0201, QFN and FET pads, filled and capped); `fet_solid_pads` (solid zone
-connections on FET, battery and power pads); `trimmed_footprint` (library
-mismatch on footprints with NC pads or the NOR exposed pad removed);
-`esp32_ganged_mask` (ganged mask opening on the 0.35 mm-pitch sides, only if O15
-passes). No pad sits inside the 0.20 mm copper-to-edge band, so no edge
-exemption is planned.
+every exception is a custom rule named `D21 <name>` with its justification in the
+rule comment, never a global ignore or a severity downgrade of a whole check;
+each is to be logged in DECISIONS.md (O19) and checked by critique against the
+fab capability:
 
-KiCad features (owner rule). Delivered in P1 by `setup_board.py`: the 16
-template-ignored DRC checks re-enabled (D7), component classes `PASSIVE_0201`,
-`PASSIVE_0402`, `TALL`, `SOLDER_PAD`, net-class priorities and colours, the DRU
-self-test. Still to deliver: a design block (or multichannel placement) for
-ESC1-4 (P2), the own checks that every copper item lies inside Edge.Cuts shrunk
-by 0.20 mm and the X-ray, heat and noise rules of §11 on the real footprints (P2;
-`sketch_v4.py` is their key-package version), zone priorities written down with
-the pours (P5), a jobset for the fab outputs (P7).
+| Rule | What it allows, and the scope | Why it is safe |
+|---|---|---|
+| `D21 same_net_via_array` | hole to hole 0.20 between vias of one net (phase fields, EP arrays, battery and power arrays); different nets keep 0.30 | the 0.30 is NextPCB's CAF figure for different nets; both fabs build 0.20 hole to hole |
+| `D21 fet_solid_pads` | solid zone connection on pads of the `POWER_FET` and `SOLDER_PAD` component classes | power path and iron need the copper; reflow profile through the NextPCB EQ |
+| `D21 via_in_pad_typeVII` | (comment block) vias in 0201, QFN, EP and FET pads | every via is filled and capped (board setting, IPC-4761 Type VII ordered); KiCad 10.0.6 cannot test a via in a same-net pad, so nothing is relaxed |
+| `D21 trimmed_footprint` | (comment block) RTC6705 NC pads and the NOR exposed pad removed | the trimmed lands are their own project-library footprints (P3), so `lib_footprint_mismatch` stays an error and never fires |
+| `D21 esp32_ganged_mask` | (comment block) one ganged mask opening per side of the 0.35 mm-pitch ESP32 land, as the footprint's "allow soldermask bridges" attribute | only if the NextPCB EQ (O15) accepts the pitch; inactive until then |
+| `D21 rx_antenna_hole` | the antenna-hole footprint (`AE*`) inside its own keepouts `RF_RX_ANT`, `RF_RX_ANT_L6`, `RF_RX_EXIT` (scoped `severity ignore` on the disallow constraint for that footprint and its pad only) | the keepouts exist to keep every other part away from the hole; the selftest shows the pad is flagged without the rule and clean with it |
 
-**Follow-ups for `setup_board.py` from this revision** (`board_spec.json`
-already expects the board-level ones, so `check_board_setup.py --spec` fails
-until they are in): minimum through hole 0.20 (it writes 0.15); `RX_ANT_HOLE`
-(−12.3, +6.5) with the split `RF_RX_ANT` and `RF_RX_EXIT` (footprints flag) on
-B.Cu; rule areas `RF_PAD_CUTOUT` (+ In2.Cu track keepout), `RF_RX_FEED`,
-`SHUNT_CORRIDOR`, `TAB_*`, and no `WIFI_STUB`; USB patterns `*/USB_D_P`,
-`*/USB_D_N`; Gate patterns `/ESC?/?_COM`, `/ESC?/?_PWM`; Phase pattern
-`/ESC?/PHASE_?`; Power patterns `+5V_USB` instead of `VBUS`, `+5V_BST`,
-`+5V_HD`, and the stale `/ESC?/VDD` removed (EFM8 VDD is on +BATT); Analog
-pattern `SHUNT_SENSE_*` in place of `*SHUNT*` → VBAT; the In2/In3 class and name
-rules and the `RF_VTX_CHAIN` / `RF_RX_FEED` via rules above; silk minimum
-0.8 / 0.13 and `TEXT_DEFAULTS` for new silk items 0.8 / 0.13 (it still writes
-1.0 / 0.15); the D21 named rules. Then re-run `check_board_setup.py`,
-`check_rules.py` and ERC/DRC.
+No pad sits inside the 0.20 mm copper-to-edge band, so no copper-to-edge
+exemption is needed; the edge solder pads are exempt only from the 0.30 parts
+rule.
+
+KiCad features (owner rule). Delivered in P1 by `setup_board.py`: stackup with
+impedance (RF50 tuning profile at 0.105 mm on F.Cu over In1 and B.Cu over In4),
+the 16 template-ignored DRC checks re-enabled (D7), component classes
+`PASSIVE_0201`, `PASSIVE_0402`, `TALL`, `SOLDER_PAD`, `POWER_FET`, net-class
+patterns, priorities and colours, the named rule areas above, and the DRU
+self-test (`setup_board.py --selftest`: synthetic tracks, vias, pads and parts
+for every rule and area above, plus the net-class pattern check). Still to
+deliver: a design block (or multichannel placement) for ESC1-4 (P2), the own
+checks that every copper item lies inside Edge.Cuts shrunk by 0.20 mm and the
+X-ray, heat and noise rules of §11 on the real footprints (P2; `sketch_v4.py` is
+their key-package version), zone priorities written down with the pours (P5), a
+jobset for the fab outputs (P7).
+
+**P1 re-applied in this revision** (2026-10-07): `setup_board.py` now writes
+everything this section and `board_spec.json` ask for (minimum through hole
+0.20, silk minimum and new-item defaults 0.8 / 0.13, the RF width 0.105 from
+`impedance.json`, the net-class patterns above with `+5V_USB` instead of `VBUS`
+and no `/ESC?/VDD`, the rule areas and rules above). Results:
+`check_board_setup.py --min-hole 2.0 --spec board_spec.json` 31 of 31 keys,
+`kicad-cli pcb drc --refill-zones` 0 violations and 0 unconnected,
+`check_rules.py` parses the rules, `setup_board.py --selftest` 68 of 68 cases
+pass, ERC on the empty schematic 0, and
+`setup_board.py --check` reports the project files up to date (idempotent).
 
 ---
 
@@ -1315,7 +1373,8 @@ edge band and outside Ø 5.2 mm grommet-flange keepouts around the 3 holes
 
 ### 9.2 Placed area per block (0.2 mm body/land spacing, perfect tiling)
 
-Method (I, `budget_v4.py`; v3 kept): each part counts (land L + 0.2) x (land W
+Method (I, `budget_v5.py` = v4 with the corrected O4 EN parts of §4.2; v4 and v3
+kept): each part counts (land L + 0.2) x (land W
 + 0.2). Lands: 0201 0.80 x 0.35, 0402 1.30 x 0.55, 0603 2.10 x 0.90; leadless ICs
 with toe pads at IPC density L (body + 0.4) or the datasheet land (EFM8BB51
 Table 7.2: 4.0 mm); bottom-terminated parts (LGA, X2SON, FET SONs, crystals) at
@@ -1349,32 +1408,33 @@ on the top, O4 switch on the top, HD gate on the bottom).
 | Blackbox NOR | 3 | 38.1 | - | WSON-8 6x5 (no smaller 16 MB part stocked) |
 | RX (ESP32 + flash + SX1280) | 36 | - | 89.5 | no Wi-Fi radiator: 0402 51 Ω on LNA_IN; the RX LDO merged into the +3V3 LDO (Power) |
 | VTX (RTC6705, PA, BPF, U.FL, LDO, PA reference, drive stage, NTC, selector) | 68 | 147.4 | - | 3225 8 MHz crystal; PA ring, match and DC-block zones +10 mm² beyond the tiled PA passives (sketch v4 zones 22.1 mm²) |
-| HD / O4 (D13-D17) | 16 | 14.1 | 5.7 | top: TPS22810DBVR, CT, EN divider, CIN, SDM02U30LP3, AP1606; bottom: HD gate BC847QASZ + 7x 0201 |
+| HD / O4 (D13-D17) | 17 | 15.4 | 5.7 | top: TPS22810DBVR, CT, EN divider, CIN, BAS16LD (SOD882D), GPIO27 4.7 kΩ, AP1606; bottom: HD gate BC847QASZ + 7x 0201 |
 | Power (boost, mux, +3V3 LDO, camera filter) | 21 | - | 45.4 | TPS61022 + 2520 L + 5x 0603 X6S, TPS2116 + divider, +5V 10 µF, LP5912 + caps, ferrite + 10 µF |
 | Connectors | - | 4.8 | 10.6 | pogo USB: 4 pads + 2 NPTH (holes on both sides); no SH1.0 parts |
-| **Components** | **307** | **400.5** | **429.9** | |
+| **Components** | **308** | **401.8** | **429.9** | |
 | Pads, labels, silk art | | 138.0 | 119.5 | T: motor pads 32.8; battery 17.5; 10 user pads 16.8 + labels 25.5; HD pads with labels and halo 19.5; M1-M4, + -, 1S, ANT 22.9; VTX name 3.0. B: motor PTH rings 17.3; battery 17.5; logo + OPEN/AIO/WHOOP at 2.0 mm + REV1 68.2; test-pad and USB labels 16.5 |
 | Keepouts and spacing rules | | 43.5 | 33.1 | T: RX antenna copper keepout 6.0; 5.8 GHz 1 mm part-free band 13.0; 3 panel tabs 9.0; U.FL halo 4.5; iron-rework halos 11.0. B: RX wire-exit area 18.8; tabs 9.0; 2520 L halo 3.5; rework halo 1.8 |
 | Via allowance | | 42.0 | 42.0 | 150 counted vias x 0.28 mm² |
 | Far-side via landings | | 33.0 | 27.4 | 118 bottom-pad vias land on the top, 98 top-pad vias on the bottom |
 | Outer-layer channels | | 12.4 | 16.9 | L3-barred nets |
-| **Total** | | **669.4 mm²** | **669.0 mm²** | |
-| **Share of 643.6 mm²** | | **104.0 %** | **103.9 %** | gate D20 ≤ 96 %: **fail**; like-for-like (without the two round-3 allowances) **96.9 % / 97.0 %** |
+| **Total** | | **670.8 mm²** | **669.0 mm²** | |
+| **Share of 643.6 mm²** | | **104.2 %** | **103.9 %** | gate D20 ≤ 96 % (617.9 mm²): **fail** by 52.9 / 51.1 mm²; like-for-like (without the two round-3 allowances) **97.2 % / 97.0 %**, over by 7.7 / 6.4 mm² |
 
 Steps from the round-2 configuration (same method, cumulative; left: corrected
-v4 method, right: v3 method = like-for-like with the Matrix calibration):
+v4/v5 method, right: v3 method = like-for-like with the Matrix calibration;
+`budget_v5.py` output):
 
 | Step | Top / bottom, v4 | Top / bottom, v3 basis |
 |---|---|---|
 | 0 Round 2 case (a), D12 | 95.7 / 97.8 % | 95.7 / 97.8 % |
 | 1 + round-3 corrections (far-side landings, channels, side vias, 3225 crystal, PA zones, B4 product name, Wi-Fi keepout on both sides, EFM8 2.2 µF 0402) | 106.9 / 109.4 % | 99.8 / 102.5 % |
-| 2 + D13-D17 (HD pads, O4 switch, HD gate, 4th Cout, USB mux) | 112.4 / 110.9 % | 105.4 / 104.0 % |
-| 3 + camera pads only (D18 cut 1) | 106.5 / 110.9 % | 99.4 / 104.0 % |
+| 2 + D13-D17 (HD pads, O4 switch, HD gate, 4th Cout, USB mux) | 112.7 / 110.9 % | 105.6 / 104.0 % |
+| 3 + camera pads only (D18 cut 1) | 106.7 / 110.9 % | 99.6 / 104.0 % |
 | 4 + smaller 128 Mbit NOR (D18 cut 2): none stocked | no change | no change |
-| 5 + USB on pogo pads, 3 tabs (D18 lever 1) | 106.8 / 105.8 % | 99.7 / 98.9 % |
-| 6 + no Wi-Fi radiator (D18 lever 2) | 105.4 / 104.4 % | 98.3 / 97.5 % |
-| 7 + one 3.3 V LDO for FC and RX (D14 regulator consolidation) | 105.4 / 103.9 % | 98.3 / 97.0 % |
-| 8 + LED group shares the user 5V/GND (D14 pad trimming) | **104.0 / 103.9 %** | **96.9 / 97.0 %** |
+| 5 + USB on pogo pads, 3 tabs (D18 lever 1) | 107.0 / 105.8 % | 99.9 / 98.9 % |
+| 6 + no Wi-Fi radiator (D18 lever 2) | 105.6 / 104.4 % | 98.5 / 97.5 % |
+| 7 + one 3.3 V LDO for FC and RX (D14 regulator consolidation) | 105.6 / 103.9 % | 98.5 / 97.0 % |
+| 8 + LED group shares the user 5V/GND (D14 pad trimming) | **104.2 / 103.9 %** | **97.2 / 97.0 %** |
 
 D18 side balancing is in the floorplan itself (O4 switch on the top, HD gate on
 the bottom, NOR and gyro on the top): both sides end within 0.1 point of each
@@ -1384,24 +1444,30 @@ other.
 estimated as 180x 0201 + 20x 0402): the Matrix II's components score 842 mm² by
 this method (this board 830 mm²). With this board's pads, labels, keepouts and
 vias the Matrix sits at **97.9 %** of both sides on the v3 basis and **104.9 %**
-with the round-3 allowances; this board sits at 97.0 % and 104.0 %. On either
-basis the board is about one point below the Matrix, i.e. at Matrix-equivalent
+with the round-3 allowances; this board sits at 97.1 % and 104.1 %. On either
+basis the board is about 0.8 point below the Matrix, i.e. at Matrix-equivalent
 density. The Matrix's own pad vias sit beside the pads (photos) and are as
 uncounted in its calibration as our far-side landings, so the v3-basis column is
 the like-for-like comparison D20 calibrated; the v4 column is the P2 risk.
-**Against D20's 96 % per side** the board fails on both bases (by about one point
-like-for-like, by eight with the corrections). D20 makes the P2 placement the
+**Against D20's 96 % per side** the board fails on both bases (by 1.2 / 1.0
+points like-for-like, by 8.2 / 7.9 with the corrections). Every lever D14 and
+D18 name is applied (steps 3-8; the smaller NOR does not exist in stock). The
+Matrix itself scores 97.9 % on the D20 basis once this board's pads, labels and
+keepouts are booked for it, so the 96 % figure is now stricter than the
+"Matrix-equivalent density" D20 calibrated. D20 makes the P2 placement the
 binding proof; whether P0 closes on this budget, or on one of the owner levers
 of §9.3, is an orchestrator decision (status header, item 1).
 
 ### 9.3 What gives next
 
 The D14 and D18 cuts are applied (steps 3-8 above). What remains are owner
-levers; numbers from `budget_v4.py` on the final configuration:
+levers and one sourcing item; numbers from `budget_v5.py` on the final
+configuration:
 
 | Lever | Top | Bottom | Status |
 |---|---|---|---|
-| (a) final configuration | 104.0 % (96.9 %) | 103.9 % (97.0 %) | v4 (v3 basis) |
+| (a) final configuration | 104.2 % (97.2 %) | 103.9 % (97.0 %) | v5 (v3 basis) |
+| TPS22810 in WSON-6 2x2 (DRV) instead of SOT-23-6 | −0.45 point (−2.9 mm²) | - | sourcing: once a NextPCB channel stocks it (O17); smallest-package rule |
 | C2 programming by a fixture on the EFM8 pins (no C2 pads) | - | −1.2 points (95.8 % v3 basis) | owner: production fixture cost |
 | Product name in 1.4 mm rows instead of LINEUP B4's 2.0 mm | - | −4.1 points | owner / lineup exception (B4) |
 | Relax the L3 ban for slow digital buses (gyro SPI, VTX SPI, PA control) with the existing layer-change rule | −1.0 point | −1.5 points | v4 basis only (channels); a §8.2 rule change |
@@ -1410,9 +1476,10 @@ levers; numbers from `budget_v4.py` on the final configuration:
 | Body 27.4 mm instead of 26.4 (about +52 mm² usable per side) | −7 to −8 points | −7 to −8 points | owner waiver (frame fit, Matrix envelope) |
 | HDI 1+N+1 | - | - | **not proposed** (D12 (5): the owner rejected HDI for OpenAIO) |
 
-On the v3 basis the C2 fixture plus the shared GND pad reach 96.1 % / 95.8 %;
-the corrected basis needs the body size or several levers together. The P2
-probe decides which are needed (O14).
+On the v3 basis the bottom closes with the C2 fixture alone (95.8 %); the top
+(7.7 mm² over) closes with the WSON TPS22810 plus the shared GND pad (about
+95.9 %), or with the 8 MB NOR. The corrected basis needs the body size or several
+levers together. The P2 probe decides which are needed (O14).
 
 ---
 
@@ -1643,7 +1710,7 @@ pending (O11; §8.1).
 
 | # | Test | Pass / fail |
 |---|---|---|
-| V1 | 5 V rail: VIN 4.35 → 2.6 V at the analog load (0.70 A, 1.25 A) and at the HD load (1.43-1.48 A with an O4 or an electronic load on +5V_HD; O4 inrush with CT 10 nF); the continuous load the boost holds for 10 min at board temperatures 50/65/80 °C and VIN 2.8/3.0/3.2/3.7 V, with one ESC channel at 4 A, TPS61022 case temperature logged (TJ ≈ Tcase + ΨJT·P); overload step to 2.5 A at 2.8 V for 10 s and a short on the user 5V pad (inductor and IC temperature); **battery only at board 85 °C and 105 °C for 10 min** (+5V regulated, mux on VIN2, AP1606 gate voltage logged); **USB hot-plug and unplug with a 4.2 V cell fitted**, scope on +5V, 20 repeats; USB + battery: +5V_USB at 5.25 V with the cell at 4.35 and 3.7 V (cell and USB current); O4 shed threshold set and measured | +5V ≥ 4.85 V at VIN ≥ 2.8 V (analog) and ≥ 4.75 V down to the shed threshold (HD), the O4 shed before +5V drops further; ripple ≤ 50 mV p-p; no FC/RX reset to 2.5 V, on hot-plug or on unplug; cold start from 3.0 V; TJ ≤ 125 °C; no current into the cell with USB present; the board survives the overload step; the published BEC table (current per VIN and board temperature, both modes) |
+| V1 | 5 V rail: VIN 4.35 → 2.6 V at the analog load (0.70 A, 1.25 A) and at the HD load (1.43-1.48 A with an O4 or an electronic load on +5V_HD; O4 inrush with CT 10 nF); the continuous load the boost holds for 10 min at board temperatures 50/65/80 °C and VIN 2.8/3.0/3.2/3.7 V, with one ESC channel at 4 A, TPS61022 case temperature logged (TJ ≈ Tcase + ΨJT·P); overload step to 2.5 A at 2.8 V for 10 s and a short on the user 5V pad (inductor and IC temperature); **battery only at board 85 °C and 105 °C for 10 min** (+5V regulated, mux on VIN2, AP1606 gate voltage logged); **USB hot-plug and unplug with a 4.2 V cell fitted**, scope on +5V and +3V3, 20 repeats, fast and slow (1 ms) VBUS rise; USB + battery: +5V_USB at 5.25 V with the cell at 4.35 and 3.7 V (cell and USB current); O4 shed threshold set and measured; **TPS22810 EN** with GPIO27 low, undriven (FC held in reset) and high, at board 25 and 85 °C | +5V ≥ 4.85 V at VIN ≥ 2.8 V (analog) and ≥ 4.75 V down to the shed threshold (HD), the O4 shed before +5V drops further; ripple ≤ 50 mV p-p; no FC/RX reset to 2.5 V, on hot-plug or on unplug; cold start from 3.0 V; TJ ≤ 125 °C; no current into the cell with USB present; +5V ≥ 3.1 V and +3V3 ≥ 2.9 V through every USB switchover; EN ≤ 0.8 V with GPIO27 low or undriven, shed point within 2.8-3.1 V at both temperatures; the board survives the overload step; the published BEC table (current per VIN and board temperature, both modes) |
 | V2 | ESC dead time: scope P gate, N gate, phase node, per-ESC supply current; builds DT 15/10/5 at 96 kHz; VIN 2.5, 3.0 and 4.35 V plus regen (throttle chops to 5.25 V); FET case heated to 100 °C; both directions of phase current (motoring and damped braking); all six gate pins of each EFM8; 3 boards x 4 ESCs; the port drive mode recorded (PRTDRV read over C2, or the gate edge against the high- and low-drive VOH) | no shoot-through spike > 2x the steady current; P fully off (Vgs > −0.3 V) before N on, and **N Vgs < 0.3 V before P on**, at every corner; **N gate kick < 0.3 V during P turn-on** (and P gate kick > −0.3 V during N turn-on). The release build is the shortest DT that passes; `A_X_15_96` is an acceptable outcome |
 | V3 | N-FET overshoot at 18 A turn-off; EFM8 VDD peak at the same event | VDS ≤ 9 V; VDD ≤ 5.3 V |
 | V3b | Unplug surge: battery pulled at hover throttle with props on the bench, scope on +BATT and on one EFM8 VDD, current probe on the TVS (current, duration, clamp energy), 10 repeats | peak recorded; TVS energy against the SMF5.0A curve (else SMAJ5.0A); N VDS against 12 V and the avalanche rating; if VDD exceeds 5.5 V the README warns against unplugging spinning |
@@ -1698,12 +1765,12 @@ pads with a clip-on adapter (D18); digital VTX → O4 Lite pads (D13).
 | O11 | Pad-label size 0.8 / 0.6 / 0.13 (D12): breaks JLC's published 1.0 / 0.15 and LINEUP B7's 1.2 mm | **owner sign-off for this board** (the owner rule "DFM-compatible with both" is an owner rule; D12 recorded the OpenFC-H7 preference) |
 | O12 | Forward arrow on silk (LINEUP B9 SHOULD, outside the owner silk list) | owner |
 | O13 | ESC C2 pads unlabelled | **decided (D12)**, LINEUP B7 permits flashing test points without labels |
-| O14 | Area gate: §9 is about one point over D20's 96 % like-for-like and eight with the round-3 allowances; owner levers of §9.3 (C2 fixture, product-name size, L3 rule, shared GND pad, 8 MB NOR, body size; no HDI) | orchestrator now (status item 1); the P2 placement is the binding proof (D20) |
+| O14 | Area gate: §9 is 1.2 / 1.0 points over D20's 96 % like-for-like and 8.2 / 7.9 with the round-3 allowances; owner levers of §9.3 (C2 fixture, product-name size, L3 rule, shared GND pad, 8 MB NOR, body size; no HDI) and the WSON TPS22810 once stocked | orchestrator now (status item 1); the P2 placement is the binding proof (D20) |
 | O15 | ESP32-D0WD-V3 at 0.35 mm pitch (NextPCB 0.38 published); the PICO-V3 fallback is an 85 °C part with no place in sketch v4 | **NextPCB EQ before P2** (P0-close) |
 | O16 | Plated Ø 3.5 holes with a GND annulus (Matrix practice) | P2 with O2 and the ear-survival result of V12 |
 | O17 | NextPCB BOM quote by exact MPN on the full BOM (HQ Online / Digi-Key stock per line, incl. 74LVC1T45GS and TPS22810DRVR), EFM8 C2 and ESP32 programming service | **P0 close** |
 | O18 | DJI O4 Wide (BetaFPV's 2026 whoops): input range and current not checked | before the README claims it |
-| O19 | Decisions proposed in this revision, to be logged in DECISIONS.md: TPS2116 mux with the boost always on (replacing the Schottky + sense FET); no Wi-Fi radiator (D18 lever 2, no edge clears the VTX chain); FC + RX on one 3.3 V LDO and the LED group sharing 5V/GND (D14 levers 3-4); NOR exposed pad trimmed; ESC4 group 1.58 mm left; Bluejay start build as a V2 outcome; RCE + low-power-disarm OFF defaults; VTX power ceiling; sheet file name `rx_esp32_sx1280` (A2 exception); D21 named rules of §8.4 | orchestrator |
+| O19 | Decisions proposed in this revision, to be logged in DECISIONS.md: TPS2116 mux with the boost always on (replacing the Schottky + sense FET); no Wi-Fi radiator (D18 lever 2, no edge clears the VTX chain); FC + RX on one 3.3 V LDO and the LED group sharing 5V/GND (D14 levers 3-4); NOR exposed pad trimmed; ESC4 group 1.58 mm left; Bluejay start build as a V2 outcome; RCE + low-power-disarm OFF defaults; VTX power ceiling; sheet file name `rx_esp32_sx1280` (A2 exception); the D21 named rules as written by `setup_board.py` (`same_net_via_array`, `fet_solid_pads`, `via_in_pad_typeVII`, `trimmed_footprint`, `esp32_ganged_mask`, `rx_antenna_hole`, §8.4); O4 EN PINIO diode BAS16LD instead of a Schottky and the 4.7 kΩ GPIO27 pull-down, PR1 divider 27.4k/10k (§4.2) | orchestrator |
 
 ### 15.3 Sourcing plan
 
@@ -1745,7 +1812,7 @@ door to door (external parts case).
 
 | Risk | Mitigation |
 |---|---|
-| Area: 96.9 % / 97.0 % like-for-like, 104.0 % / 103.9 % with the round-3 allowances, against D20's 96 % (§9) | orchestrator decision (O14); P2 placement is the binding proof (D20); owner levers with numbers (§9.3) |
+| Area: 97.2 % / 97.0 % like-for-like, 104.2 % / 103.9 % with the round-3 allowances, against D20's 96 % (§9) | orchestrator decision (O14); P2 placement is the binding proof (D20); owner levers with numbers (§9.3) |
 | Routing closure with through vias only at this density; about 45-50 nets barred from In2/In3 | P2 channel-capacity probe; counted vias, far-side landings and channels in budget v4; relaxing the L3 ban for slow digital buses is a lever |
 | ESC bursts shorter than the Matrix stage (model 12 A for 1.3-4.2 s vs 5.5-7.3 s at h 80) | measured in V4 and published; case (b) documented (O5) |
 | N-side dead time at the datasheet corners and Cdv/dt on the N gate (§4.3) | first power-up on `A_X_15_96`; release build from the extended V2 |
@@ -1764,23 +1831,65 @@ door to door (external parts case).
 | PA heat on the bench and when disarmed with VREF on (stock ELRS) | RCE defaults with low-power disarm OFF (§4.8), ELRS patches (O6), README bench-fan rule until merged |
 | `400` level open loop until O6 gate 2 | 27 dBm hardware ceiling; "max (measured, power-limited)" published per board |
 
-### 15.5 Items carried to P2 and P4 (D22)
+### 15.5 Deferred to P4 schematic review (D22)
 
 D22: P0 passes with no BLOCKER and every decision applied; circuit-detail items
-go to the schematic critique loop (P4, which must end with no BLOCKER or MAJOR)
-and floorplan items to the P2 probe.
+that need the drawn schematic are closed in the P4 schematic critique loop,
+which must itself end with no BLOCKER or MAJOR. Every item below has its
+topology and parts fixed in this spec; P4 settles the values against the
+drawn sheet and runs the check. Owner: **P4** (schematic author, then the P4
+critique round); a bench item named in the check is the confirmation, not the
+decision.
+
+| # | Item (spec section) | From | Owner | Check to run at P4 (pass criterion) |
+|---|---|---|---|---|
+| P4-1 | O4 switch EN network: 80.6k/49.9k divider, BAS16LD (anode EN, cathode GPIO27), 4.7 kΩ on GPIO27, AP1606 drain on EN, CT 10 nF, QOD tied to VOUT, CIN 1 µF (§4.2) | r3 #0/#34, #1/#17, consolidation | P4 | hand calculation on the drawn net: EN ≤ 0.8 V with GPIO27 low, undriven (4.7 kΩ) and on USB at a 4.35 V cell plus 0.3 V ripple; shed 2.8-3.1 V falling with BAS16LD leakage at 105 °C; netlist script: the EN net holds exactly the divider, the diode, the AP1606 and the TPS22810 pin. V1 confirms |
+| P4-2 | AP1606 USB term against back-feed: worst-case +5V_USB in battery-only operation (TPS2116 IREV has no maximum; MODE and PR1 leakage ≤ 0.1 µA each) into the 37.4 kΩ PR1 divider (§4.2) | r3 #0/#34 | P4 | read the AP1606 Vgs(th) minimum from the maker datasheet (LCSC gives 1.2 V only): the gate stays below half of it at 50x the typical IREV; otherwise lower the divider to 13.7k/5k. V1 logs the gate voltage at 85 and 105 °C |
+| P4-3 | TPS2116 sheet: MODE tied to VIN1, PR1 27.4k/10k (3.44-4.04 V), ST left open (open drain, unused), +5V hold-up (10 µF at the mux + the LDO inputs ≥ 20 µF effective) for the unplug dip (§4.2) | r3 #0/#34, consolidation | P4 | ERC; hand calculation of the switchover dip at 0.7 A: +5V ≥ 3.1 V, +3V3 ≥ 2.9 V; V1 case (b) scopes it |
+| P4-4 | HD gate values: BC847QASZ base resistors 10 kΩ (forced β ≥ 10 against GPIO2's 1 kΩ push-pull and the 100 kΩ / 10 kΩ LP5912 EN), the 1 kΩ VTX SPI series resistors against the RTC6705 SPI timing at the ESP32 clock, the GPIO2 / GPIO21 series values (§4.8) | r3 #36 | P4 | hand calculation per transistor; SPI edge (1 kΩ x pin and trace capacitance) inside the RTC6705 setup and hold times; V9: +3V3_VTX < 0.5 V with stock ELRS writing |
+| P4-5 | PA drive stage values: two-pole RC, series base resistor, base divider, emitter degeneration, collector divider for the 27 dBm ceiling; Q2 against the PAOUT1 current (§4.8) | r3 #19, #47 | P4 (after V8 measures the PAOUT1 current) | hand calculation or SPICE: 25 and 100 mW mid-window with ≥ 20 real duty steps between them; GPIO12 held low at reset; Q2 IC < 50 % of rating and P below the derated Ptot at 85 °C; V5 sets the ceiling divider |
+| P4-6 | ESP32 straps and VTX lines: GPIO12 low at reset (RC + base path), GPIO2 low (10 kΩ on the LP5907 EN node through 1 kΩ), GPIO0 / RXB boot pad, VDD_SDIO eFuse step (§4.7, §12.1) | r3 round-2 carry-over | P4 | netlist strap script: each strap's reset level from its pull network with the ESP32 internal pulls; production step 2 in the fixture plan |
+| P4-7 | TPS61022 sheet: FB divider for 5.15 V with 1 % parts against VFB 585/600/615 mV, MODE to VOUT, EN 100 kΩ from VIN, 4x Cout, Cin (§4.2, §5.3) | r3 #35 | P4 | hand calculation: worst-case setpoint 4.93-5.37 V; MODE high above 1.2 V with VOUT > 2.2 V; EN not shared with any other node |
+| P4-8 | EFM8 channel: VDD straight to the cluster +BATT with 2.2 µF 0402 X6S + 100 nF, DShot 2.4 kΩ series, RSTb internal pull-up, BEMF 6x 0201 against Bluejay layout A, no gate resistors (0 Ω options if P2 has room) (§4.4) | r3 #45, #13 | P4 | netlist against `Layouts/BB51/A.inc` pin use; DC-bias curve of the 2.2 µF part (P3); DShot pin current at a 2.5 V cell (VDD + 0.3 V limit, 2.4 kΩ) stated in the sheet note |
+| P4-9 | Current sense: four-pad Kelvin shunt land as a net-tie, `SHUNT_SENSE_P/N` only at the inner pad edges and the INA186 inputs, input RC from the OpenESC sheet moved to 0201 (§4.1) | r3 #10 | P4 | netlist script: the Kelvin nets touch only the shunt sense pads, the RC and the INA186; net class Analog; In2/In3 ban active (DRU) |
+| P4-10 | OSD front end: level divider scaled about 5x down (top 750-820 Ω, Thevenin about 190 Ω, OSD_W ≤ 3 mA), sync comparator threshold, SDM02U30LP3 clamp (§4.8) | round-2 carry-over | P4 | hand calculation of the OSD levels against the RTC6705 video input; V9 black and white levels on the target cameras |
+| P4-11 | FT pads and power-up sequence: DShot and UART pads driven before IOVDD, EFM8 pull-ups against 3.63 V (PINMAP F16) | r3 round-2 carry-over | P4 | sheet note with the worst-case pad voltage; V9 scope at power-up |
+
+### 15.6 Carried to P2 and P3
 
 | Item | Where it is settled |
 |---|---|
-| O4 switch EN network values (divider 162k/100k, CT 10 nF, diode and AP1606 polarity, QOD) and the shed threshold | P4, V1 |
-| HD gate (BC847QASZ base values; 1 kΩ VTX SPI series against the RTC6705 input timing; GPIO2/GPIO21 series values) | P4, V9 |
-| TPS2116 PR1 divider and the +5V hold-up capacitance at switchover | P4, V1 |
-| Q2 of the PA drive stage against the measured PAOUT1 current | V8 before P4 |
-| Merged-drain FET land with vias in the pin pads | P3 (land), EQ |
-| EFM8 VDD 2.2 µF 0402 X6S MPN and DC-bias curve | P3 |
-| Pad-group interiors, passives fill, routing channels and far-side via landings | P2 probe |
-| Panel tab positions, pogo hole sizes and the adapter (O3) | P2 |
+| Pad-group interiors, passives fill, routing channels and far-side via landings; the area gate (O14) | P2 probe |
+| Panel tab positions, pogo hole sizes and the adapter (O3); rule-area positions (`setup_board.py` uses the sketch v4 values) | P2 |
 | Real-footprint X-ray, H1-H3 and N1 checks (sketch v4 rules on the placed board) | P2 script |
+| Merged-drain FET land with vias in the pin pads | P3 (land), EQ |
+| EFM8 VDD 2.2 µF 0402 X6S MPN and DC-bias curve; the 40 MHz crystal's temperature range; an exactly-8 MHz 2520 crystal | P3 |
+| Antenna-hole footprint named `AE*` so the scoped D21 rule applies; trimmed footprints as their own project-library footprints | P3 |
+
+### 15.7 Round-3 BLOCKER and MAJOR findings: disposition
+
+Round 3 (`r3_issues.json`, 3 BLOCKER and 20 MAJOR) against this revision. All
+23 are fixed in the spec; three leave value checks in §15.5; none is rejected.
+
+| Finding | Severity | Disposition |
+|---|---|---|
+| #0, #34 USB sense FET back-fed through the Schottky, boost shut down when warm | BLOCKER | fixed: TPS2116 mux, boost always on (§4.2); this revision also corrects the IREV "maximum" (typical only), lowers the PR1 divider to 37.4 kΩ, and replaces the PINIO Schottky on the O4 EN by a BAS16LD (same leakage failure class); values P4-1 to P4-3 |
+| #33 D13-D20 not applied | BLOCKER | fixed: §1, §3, §4.2, §4.8, §4.10, §5, §9, §10, §13, PINMAP, COMPETITION, budget v5 |
+| #1, #17 D13/D14 missing (O4 pads, UART, PINIO, load switch, HD load, `USE_OSD_SD`) | MAJOR | fixed: UART1 / PIOUART0 / PINIO1 (PINMAP §5.1), TPS22810 with cell threshold and PINIO, 4th Cout, HD load rows, inductor overload and V1 step |
+| #2 D14 cuts not applied | MAJOR | fixed: camera pads, NOR (none stocked), regulator consolidation, pad trimming, then D18 pogo USB and no Wi-Fi (§9.2 steps); logging in DECISIONS.md is O19 |
+| #3 N-side dead time and Cdv/dt | MAJOR | fixed: §4.3 both sides, start build `A_X_15_96`, V2 criteria |
+| #4, #23, #37 X-ray check on 55 % cores | MAJOR | fixed: sketch v4 on datasheet pads and full LGA fields, NOR pad trimmed, 0 fails |
+| #5, #21, #38 85 °C parts and the RTC6705 inside the ESC quarters; no same-side rule | MAJOR | fixed: rules H1-H3, N1 (§11) on both sides, sketch v4 0 fails, V4 thermocouples |
+| #18 VTX defaults cleared by ELRS | MAJOR | fixed: production flow and RCE + low-power-disarm OFF defaults (§4.8, §12.1) |
+| #19 "400 mW at the limit" criterion | MAJOR | fixed: 27 dBm power ceiling, 1.9 W heat rows, O7; divider set in V5 (P4-5) |
+| #20 no room for the PA passives | MAJOR | fixed: PA ring, match and DC-block zones in sketch v4 and the budget |
+| #22 Wi-Fi radiator without a place | MAJOR | fixed: no radiator (D18 lever 2), `WIFI_STUB` removed |
+| #24 PICO-V3 fallback is an 85 °C part | MAJOR | fixed: rating stated, no place in sketch v4, O15 EQ required before P2 |
+| #35 HD load overloads the BEC | MAJOR | fixed: HD column, LED strip and user 5 V not budgeted in HD mode, TJ at the real location, CT slew, V1 steps |
+| #36 D17 circuit undefined | MAJOR | fixed: HD gate topology and firmware contract (§4.8); values P4-4 |
+| #39 boost under the FET rows | MAJOR | fixed: moved out (rule H2, 2.0 mm) |
+| #40 budget understated | MAJOR | fixed: far-side landings, channels, side vias, 3225 crystal, B4 name in budget v4/v5; the result fails D20 (status item 1) |
+| #41 board fiducials against LINEUP B16 | MAJOR | fixed: rail fiducials only, EQ question (§7) |
 
 ---
 
@@ -1817,11 +1926,15 @@ and floorplan items to the P2 probe.
 | BT2.0 9 A / 15 A | betafpv.com BT2.0 page (06 verification #12) | V |
 | House IMU risk ranking | OpenFC-Lite-Mini `hardware/research/imu-selection/README.md` (05 verification #11) | S |
 | OpenDrone sheet reuse and the SX1281 pin-5 defect | sibling netlists via kicad-cli 10 (09 verification #10) | V |
-| Area, outline, key-package floorplan and the Matrix calibration | scratchpad `spec/outline.py`, `spec/budget_v4.py`, `spec/sketch_v4.py` (v3, v2 and v1 kept) | I |
-| TPS2116: 1.6-5.5 V, 2.5 A, RON 37-60 mΩ, priority mode (PR1 vs VREF 0.92-1.08 V), ST, RCB, IREV ≤ 0.15 µA at 105 °C, tSW 8 µs, TA −40..105 °C | TI SLVSFG1A (https://www.ti.com/lit/ds/symlink/tps2116.pdf, read 2026-10-07); LCSC C3235557 live | V |
+| Area, outline, key-package floorplan and the Matrix calibration | scratchpad `spec/outline.py`, `spec/budget_v5.py`, `spec/sketch_v4.py` (budget v4, v3, v2 and v1 kept) | I |
+| TPS2116: 1.6-5.5 V, 2.5 A, RON 37-60 mΩ, priority mode (MODE = VIN1, PR1 vs VREF 0.92-1.08 V), truth table, ST, RCB (switchover waits for VOUT ≤ VIN + VRCB), IREV 0.001 / 0.05 / 0.15 µA typical at 25 / 85 / 105 °C (no maximum given), MODE and PR1 leakage ≤ 0.1 µA, tSW 8 µs, TA −40..105 °C | TI SLVSFG1A (https://www.ti.com/lit/ds/symlink/tps2116.pdf, read 2026-10-07); LCSC C3235557 live | V |
 | TPS22810: 2.7-18 V, RON 79 mΩ typ / 115 mΩ max, VENR / VENF, CT slew SR = 46.62/Ct, 2 A DBV at TA 65 °C, TA −40..105 °C | TI SLVSDH0C (study-1-2s local copy) | V |
 | TPS61022 valley limit 6.5/8/10 A, short-circuit fold-back, TSD 150 °C, recommended inductors 11.5-28 A, Cout table | TI SLVSDX7D §6.3, §6.5, §7.3, Table 8-2 | V |
 | PMEG2010AEH VF 200/265/380 mV at 10 mA / 0.1 A / 1 A, IR 15 / 50 µA at 5 V (the round-2 USB OR diode) | Nexperia PMEG2010AEH Table 7, Fig. 2 | V |
+| BAS16LD: SOD882D 1.0 x 0.6 mm, VF ≤ 715 mV at 1 mA, IR ≤ 30 nA at 25 V (25 °C), ≤ 30 µA at 25 V (Tj 150 °C), land 1.3 x 0.7 mm | Nexperia BAS16LD Rev. 1, Table 7, Fig. 9 (https://assets.nexperia.com/documents/data-sheet/BAS16LD.pdf, read 2026-10-07); stock LCSC C841775 via search index | V / S (stock) |
+| SDM02U30LP3: IR ≤ 7 µA at 10 V (25 °C), typical reverse current 10-100x higher at 85-125 °C | Diodes SDM02U30LP3 datasheet (OpenDrone library copy), Electrical Characteristics, Fig. 3 | V |
+| LP5912-3.3 dropout ≤ 180 mV at 500 mA | TI LP5912 datasheet (OpenDrone library copy), Electrical Characteristics | V |
+| TPS61022 EN thresholds VEN_H ≤ 1.2 V, VEN_L 0.35-0.45 V | TI SLVSDX7D Table 6.5 | V |
 | DJI O4 Lite input 3.7-13.2 V, BEC ≥ 10 W, wiring colours; current 0.98-1.20 A | DJI O4 Air Unit Series User Manual v1.0; Oscar Liang review | V / S |
 | Betaflight O4 integration: MSP DisplayPort port selection, `USE_OSD_HD` / `USE_OSD_SD`, PINIO, PIOUART0/1 and `PIO_UART_INDEX` 1 | Betaflight 2026.6.2 `config.c` L568-581, `common_pre.h`, `displayport_msp.c`, `pinio.c`, `target_RP2350.h` L32-33, L96-101, `uart_pio.c` (study-1-2s digital-vtx §2-3) | V |
 | ELRS `clearVtxTable()` (power 3, pitmode 0, lowPowerDisarm 0, EEPROM write), RCE pit forcing on index 2, lowPowerDisarm forcing index 1; Betaflight applying `MSP_SET_VTX_CONFIG`; register A 0x0190 and N/A = 25·f/64 | ExpressLRS `devMSPVTX.cpp` l. 71-96, 211-219, `devVTXSPI.cpp` l. 22, 128-131, 251-258, 289; Betaflight `msp.c` l. 3829-3842, `vtx_msp.c` l. 110 | V |

@@ -5,7 +5,7 @@ What OpenAIO-Whoop is measured against. The board itself is a proposal in
 
 Date 2026-10-07, revised the same day after spec review rounds 2 and 3 (ESC
 comparison on the D12 stage and model v3, §2.4; pogo USB adopted, §3; BEC
-figures and the O4 Lite, §8). Sources: maker pages and Shopify/WordPress product JSON,
+figures, the O4 Lite and the D20 model ratings, §8). Sources: maker pages and Shopify/WordPress product JSON,
 Betaflight `betaflight/config` (1e3f778), Bluejay (0368d11), AM32 (5023414) and
 ExpressLRS/targets (42ed776) source, datasheets, BetaFPV product photos measured
 locally, NBD's published LionBee schematic, retailer and forum pages where no
@@ -284,7 +284,7 @@ is what "12 A" should mean.
 | Axis | Bar today | Where an open board can beat it |
 |---|---|---|
 | Openness | no whoop-size maker publishes schematic + layout + BOM (NBD publishes one schematic PDF for a non-whoop board; Fractal promises) | full KiCad sources, BOM, repair map under CERN-OHL-S |
-| ESC rating | "12 A" burst figures on 34 mΩ stages, no test conditions | a rating measured to a published protocol (V4) with every part inside its own rating and the airflow stated, run on a Matrix II on the same rig. Not a stronger stage: the D12 stage is 40 mΩ against 34 mΩ, and the model puts both near 5-6 A on one channel at h 80 and far lower at h 55 |
+| ESC rating | "12 A" burst figures on 34 mΩ stages, no test conditions | a rating measured to a published protocol (V4) with every part inside its own rating and the airflow stated, run on a Matrix II on the same rig. Not a stronger stage: the D12 stage is 40 mΩ against 34 mΩ, and the model puts both near 5-6 A on one channel at h 80 and far lower at h 55. Model figures published beside the measurement (D20; 25 °C, VTX 25 mW, h 64-80): analog mode 4.3-5.2 A on one channel / 3.0-3.8 A on all four (4.7-5.1 / 2.8-3.3 A at h 80 with the PA-case limit, DESIGN-SPEC §1), HD mode 4.9-5.6 / 3.5-4.1 A; bursts measured only; 1S only |
 | Firmware | custom hexes, IMU lottery | upstream Betaflight target, one gyro per revision, stock Bluejay build, ELRS target JSON |
 | RX | ESP8285 | ESP32 on mainline ELRS 4.x that also drives the VTX (no VTX MCU) |
 | VTX | EOL PA, sanded markings, no calibration data | in-production PA, harmonic filter, measured power table per channel |
