@@ -26,3 +26,4 @@ from the shared agent commons (`lessons/*.md`).
 | D18 | 2026-10-07 | Area cuts: camera pads instead of the plug, smaller NOR if stocked, side balancing; next levers pogo-pad USB (UD 4IN1 style), then no Wi-Fi stub | Budget still over after D12 |
 | D19 | 2026-10-07 | 2S belongs on a separate future board (HD-only, 20-30 V FETs) | 1-2S study, D14 |
 | D20 | 2026-10-07 | Area gate recalibrated to <= 96 % per side on the budget method; P2 real placement is the binding proof | The same budget method scores the shipping Matrix II at about 96 %: an 85 % gate was stricter than the board we are matching |
+| D21 | 2026-10-07 | DRC must end at 0 errors / 0 unconnected / parity 0; deliberate rule breaks are named, scoped DRU rules with a justification, never global ignores | Owner: "I need DRC to be clean but you'll need to break some rules" |
