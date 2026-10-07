@@ -3,8 +3,9 @@
 What OpenAIO-Whoop is measured against. The board itself is a proposal in
 [DESIGN-SPEC.md](DESIGN-SPEC.md); nothing here describes it as built.
 
-Date 2026-10-07, revised the same day after spec review round 2 (ESC comparison
-reworded to the D12 stage, §2.4 and §8). Sources: maker pages and Shopify/WordPress product JSON,
+Date 2026-10-07, revised the same day after spec review rounds 2 and 3 (ESC
+comparison on the D12 stage and model v3, §2.4; pogo USB adopted, §3; BEC
+figures and the O4 Lite, §8). Sources: maker pages and Shopify/WordPress product JSON,
 Betaflight `betaflight/config` (1e3f778), Bluejay (0368d11), AM32 (5023414) and
 ExpressLRS/targets (42ed776) source, datasheets, BetaFPV product photos measured
 locally, NBD's published LionBee schematic, retailer and forum pages where no
@@ -117,26 +118,28 @@ series**: the high-side P for the whole step and either the PWM'd N or the
 damping P. With AGM210MAP at the cell's gate voltage the hot path is about
 34 mΩ.
 
-| Motor current | Loss per motor | Four motors |
+| Motor current | Loss per motor (spec model, `thermal_v3.py`, typ Rds hot, `A_X_5_96`) | Four motors |
 |---|---|---|
-| 6 A | about 1.4 W | 5.5 W |
-| 12 A | about 5.2 W | 21 W |
-| 18 A | 10-13 W | seconds only |
+| 6 A | 1.5 W (2.1 W at max Rds) | 6.0 W |
+| 12 A | 5.7 W (8.2 W at max Rds) | 23 W |
+| 18 A (Vgs 3.0 V) | 13.8 W | seconds only |
 
 A 4 g, 26 mm board cannot shed 20 W. The 03 §7 model put the stage near **5 A
 continuous, 12 A for about 5-9 s, 18 A for about 2-4 s** at h ≈ 60 W/m²K. The spec's
-model v2 (DESIGN-SPEC §4.3), which adds the PA-case term and the rest-of-board heat of
-an OpenAIO-Whoop-class board, gives the AGM210MAP stage about 5.8 A on one channel and
-3.3-3.8 A on all four at h 80, and 12 A for about 3-7 s; the Matrix's own non-ESC heat
+model (DESIGN-SPEC §4.3, `thermal_v3.py`), which adds the PA-case term and the
+rest-of-board heat of an OpenAIO-Whoop-class board, gives the AGM210MAP stage 5.7-5.9 A on
+one channel and 3.2-3.8 A on all four at h 80, and 12 A for 3.3-4.7 s at h 55 and
+5.5-7.3 s at h 80 (track 03's figures above come from its own model); the Matrix's own non-ESC heat
 (RFPA5542 at 5 V, G473 + AT7456E, ESP8285) is unknown, so its real figure is for the
 bench. With the verified in-flight range (h 30-80 W/m²K) the continuous figure moves
 with airflow and drops well below 5 A at the low end. Either way "12 A continuous" is a
 burst figure (I, 01 §3.2, 03 §7 and its verification #15).
 
 No claim is made that OpenAIO-Whoop's stage is better: per D12 it uses TI CSD25310Q2 +
-CSD13202Q2 (40 mΩ hot path against the AGM210MAP's 34 mΩ), and the model gives it about
-0.9 A less continuous and about half the 12 A burst time at the same airflow. The
-comparison that counts is protocol V4 run on both boards on the same rig.
+CSD13202Q2 (40 mΩ hot path against the AGM210MAP's 34 mΩ), and the model gives it
+0.8-1.0 A less continuous and a quarter to a half of the 12 A burst time at the same
+airflow (the SON 2x2 spreads heat worse than a PDFN 3.3). The comparison that counts is
+protocol V4 run on both boards on the same rig.
 
 ### 2.5 Known issues
 
@@ -175,7 +178,9 @@ with N 24/29 and P 50/61 mΩ at 4.5/2.5 V; the hot path is about 107 mΩ. At
 5 A target is optimistic. Its P die Crss/Ciss (0.42) gives the lowest Cdv/dt
 margin of the parts compared. Its other choices are data points we adopt or
 reject in DESIGN-SPEC: external RX (rejected, Matrix parity needs onboard),
-pogo USB (rejected, SH1.0 kept for adapter compatibility), RTC6659 PA (not
+pogo USB (adopted in round 3: 4 pogo pads with two different-size alignment holes
+and a clip-on adapter, D18, because the SH1.0 plug cost about 34 mm² on a bottom
+side over budget; BetaFPV adapter compatibility is given up), RTC6659 PA (not
 stocked), AT7456E (not needed on RP2354A), G473 (fallback only).
 
 ---
@@ -283,7 +288,8 @@ is what "12 A" should mean.
 | Firmware | custom hexes, IMU lottery | upstream Betaflight target, one gyro per revision, stock Bluejay build, ELRS target JSON |
 | RX | ESP8285 | ESP32 on mainline ELRS 4.x that also drives the VTX (no VTX MCU) |
 | VTX | EOL PA, sanded markings, no calibration data | in-production PA, harmonic filter, measured power table per channel |
-| BEC | "5 V 3 A" with no input condition | a stated input condition: calculated nominal peak 1.9 A at 2.8 V (TI method, −30 % inductance), claim capped at 1.5 A, and the measured continuous curve as the published figure |
+| BEC | "5 V 3 A" with no input condition | a stated input condition: calculated nominal peak 1.67 A at 2.8 V, 1.82 A at 3.0 V, 1.98 A at 3.2 V (TI method, −30 % inductance, η 0.85-0.87; the same figures as DESIGN-SPEC §4.2 and §5.3), and the measured continuous curve per input voltage and board temperature as the published figure, for the analog and the HD load |
+| Digital VTX | separate HD boards (Matrix 1S 3IN1 HD) | DJI O4 Lite pads with a switched, sag-shed supply on the same board as the analog VTX, one system at a time (D13-D17) |
 | Mounting | 26 or 25.5 | 25.75 mm pattern with grommet holes fits both |
 | Repair | none | C2 pads per ESC, SWD, boot pads, through-hole battery and motor wire anchors |
 | Price | $50-60 | not credible to beat at prototype volume |

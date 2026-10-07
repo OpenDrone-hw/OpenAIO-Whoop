@@ -1,5 +1,5 @@
 {
-  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6, D12), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias follow D6 (OpenDrone 0.35 / 0.20, annular 0.075, minimum through hole 0.20 so DRC enforces the standard via); the RF width is the P1 field-solver value (impedance.json). Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name. Spec review round 2 added RF_PAD_CUTOUT (In1.Cu zone-fill keepout under wide RF pads), RF_RX_FEED (In4.Cu solid under the 2.4 GHz feed; DRU: no non-GND via) and WIFI_STUB (2 x 4 mm, all layers), moved the RX antenna hole to (-12.3, +6.5) with RF_RX_EXIT on B.Cu only (the wire's exit side), and pins the bbox of the two RX antenna areas (spec 10, sketch v3). Expected to FAIL until setup_board.py follows (spec 8.4 follow-up list: through hole 0.20, RX_ANT_HOLE, these rule areas). Other RF positions follow the floorplan and move at P2, so only their layers and flags are pinned. DRU rules (In2/In3 class and name restrictions, RF via rules) are checked by check_rules.py, not here. Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the 1.1 battery and 0.5 wire holes out of the hole list, spec 4.10)",
+  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6, D12, D18, D21), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias follow D6 (OpenDrone 0.35 / 0.20, annular 0.075, minimum through hole 0.20 so DRC enforces the standard via); the RF width is the P1 field-solver value (impedance.json). Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name. Spec review round 3: RF_RX_ANT split into an L1-L5 area (tracks, vias, pads, footprints, zone fills kept out) and RF_RX_ANT_L6 (B.Cu: vias, footprints and zone fills kept out; the 2.4 GHz feed track is allowed); the antenna-hole footprint itself is exempted from both by a named, scoped DRU rule (D21), not by a looser area; RF_RX_EXIT (B.Cu) now keeps footprints out (no parts within 3 mm of the wire exit); RF_PAD_CUTOUT (In1.Cu zone-fill keepout under wide RF pads) gains RF_PAD_CUTOUT_L3 (In2.Cu track keepout; a GND zone there is the local reference); WIFI_STUB removed with the Wi-Fi stub (spec 4.7); SHUNT_CORRIDOR (B.Cu, named area for the battery-to-shunt corridor rule, D10) and TAB_T1/T3/T4 (panel-tab part keepouts, spec 7) added. Positions of the RF, corridor and tab areas follow the floorplan and move at P2, so only the RX antenna areas pin a bbox. Expected to FAIL until setup_board.py follows (spec 8.4 follow-up list). DRU rules (In2/In3 class and name restrictions, RF via rules, D21 exceptions) are checked by check_rules.py, not here. Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the 1.1 battery, 0.5 wire and pogo alignment holes out of the hole list, spec 4.10)",
   "tolerance": 0.0005,
   "expect": {
     "copper_layers": 6,
@@ -280,16 +280,44 @@
           ]
         },
         {
+          "name": "RF_PAD_CUTOUT_L3",
+          "layers": [
+            "In2.Cu"
+          ],
+          "keepout": [
+            "tracks"
+          ]
+        },
+        {
           "name": "RF_RX_ANT",
           "layers": [
             "F.Cu",
-            "B.Cu",
             "In1.Cu",
             "In2.Cu",
             "In3.Cu",
             "In4.Cu"
           ],
           "keepout": [
+            "footprints",
+            "tracks",
+            "vias",
+            "pads",
+            "zone_fills"
+          ],
+          "bbox_mm": [
+            -13.2,
+            4.9,
+            -10.7,
+            8.1
+          ]
+        },
+        {
+          "name": "RF_RX_ANT_L6",
+          "layers": [
+            "B.Cu"
+          ],
+          "keepout": [
+            "footprints",
             "vias",
             "zone_fills"
           ],
@@ -305,7 +333,9 @@
           "layers": [
             "B.Cu"
           ],
-          "keepout": [],
+          "keepout": [
+            "footprints"
+          ],
           "bbox_mm": [
             -13.2,
             3.5,
@@ -339,20 +369,41 @@
           "keepout": []
         },
         {
-          "name": "WIFI_STUB",
+          "name": "SHUNT_CORRIDOR",
+          "layers": [
+            "B.Cu"
+          ],
+          "keepout": []
+        },
+        {
+          "name": "TAB_T1",
           "layers": [
             "F.Cu",
-            "In1.Cu",
-            "In2.Cu",
-            "In3.Cu",
-            "In4.Cu",
             "B.Cu"
           ],
           "keepout": [
-            "vias",
-            "zone_fills"
+            "footprints"
+          ]
+        },
+        {
+          "name": "TAB_T3",
+          "layers": [
+            "F.Cu",
+            "B.Cu"
           ],
-          "area_mm2": 8.0
+          "keepout": [
+            "footprints"
+          ]
+        },
+        {
+          "name": "TAB_T4",
+          "layers": [
+            "F.Cu",
+            "B.Cu"
+          ],
+          "keepout": [
+            "footprints"
+          ]
         }
       ],
       "tol": 0.1
