@@ -1,5 +1,5 @@
 {
-  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias follow D6 (OpenDrone 0.35 / 0.20, annular 0.075) where the spec 8.3/8.4 text still says 0.35 / 0.15; the RF width is the P1 field-solver value (impedance.json, 50 ohm CPWG with mask) that spec 8.2 asked to recompute, replacing the 0.14 estimate. Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name (RF positions follow the floorplan sketch and move at P2, so only their layers and flags are pinned). Run: $KPY hardware/tools/check_board_setup.py --spec hardware/tools/board_spec.json",
+  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias follow D6 (OpenDrone 0.35 / 0.20, annular 0.075, minimum through hole 0.20 so DRC enforces the standard via; spec 8.1/8.3/8.4 after review round 1; setup_board.py still writes 0.15 and must follow); the RF width is the P1 field-solver value (impedance.json, 50 ohm CPWG with mask) that spec 8.2 asked to recompute, replacing the 0.14 estimate. Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name (RF positions follow the floorplan sketch and move at P2, so only their layers and flags are pinned). Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the Ø 1.1 battery and Ø 0.5 wire holes out of the hole list, spec 4.10)",
   "tolerance": 0.0005,
   "expect": {
     "copper_layers": 6,
@@ -96,7 +96,7 @@
     "rules.track_mm": 0.09,
     "rules.connection_mm": 0.09,
     "rules.via_dia_mm": 0.35,
-    "rules.via_drill_mm": 0.15,
+    "rules.via_drill_mm": 0.2,
     "rules.via_annular_mm": 0.075,
     "rules.microvia_dia_mm": 0.2,
     "rules.microvia_drill_mm": 0.1,

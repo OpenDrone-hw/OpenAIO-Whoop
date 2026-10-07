@@ -122,9 +122,11 @@ damping P. With AGM210MAP at the cell's gate voltage the hot path is about
 | 12 A | about 5.2 W | 21 W |
 | 18 A | 10-13 W | seconds only |
 
-A 4 g, 26 mm board cannot shed 20 W. Measured under a thermal protocol the stage
-would come out near **5 A continuous, 12 A for about 5-9 s, 18 A for about 2-4 s**.
-"12 A continuous" is a burst figure (I, 01 §3.2 and 03 §7).
+A 4 g, 26 mm board cannot shed 20 W. The 03 §7 model puts the stage near **5 A
+continuous, 12 A for about 5-9 s, 18 A for about 2-4 s** at h ≈ 60 W/m²K; with the
+verified in-flight range (h 30-80 W/m²K) the continuous figure moves with airflow
+and drops well below 5 A at the low end. Either way "12 A continuous" is a burst figure (I, 01 §3.2, 03 §7 and its
+verification #15).
 
 ### 2.5 Known issues
 
@@ -267,11 +269,11 @@ is what "12 A" should mean.
 | Axis | Bar today | Where an open board can beat it |
 |---|---|---|
 | Openness | no whoop-size maker publishes schematic + layout + BOM (NBD publishes one schematic PDF for a non-whoop board; Fractal promises) | full KiCad sources, BOM, repair map under CERN-OHL-S |
-| ESC rating | "12 A" burst figures on 34 mΩ stages | lower-Rds stage (23 mΩ hot) and a rating measured to a published protocol (6 A continuous target vs about 5 A for the Matrix stage) |
+| ESC rating | "12 A" burst figures on 34 mΩ stages | lower-Rds stage (23 mΩ hot, modelled) and a rating measured to a published protocol with every part inside its own rating (6 A continuous target, to be measured; the model reaches it only at the high end of the in-flight convection range, and the Matrix stage would come out lower on the same rig) |
 | Firmware | custom hexes, IMU lottery | upstream Betaflight target, one gyro per revision, stock Bluejay build, ELRS target JSON |
 | RX | ESP8285 | ESP32 on mainline ELRS 4.x that also drives the VTX (no VTX MCU) |
 | VTX | EOL PA, sanded markings, no calibration data | in-production PA, harmonic filter, measured power table per channel |
-| BEC | "5 V 3 A" with no input condition | guaranteed figure at a stated input (2.2 A at 2.8 V) and a measured curve |
+| BEC | "5 V 3 A" with no input condition | a stated input condition: calculated nominal peak 1.9 A at 2.8 V (TI method, −30 % inductance), claim capped at 1.5 A, and the measured continuous curve as the published figure |
 | Mounting | 26 or 25.5 | 25.75 mm pattern with grommet holes fits both |
 | Repair | none | C2 pads per ESC, SWD, boot pads, through-hole battery and motor wire anchors |
 | Price | $50-60 | not credible to beat at prototype volume |
