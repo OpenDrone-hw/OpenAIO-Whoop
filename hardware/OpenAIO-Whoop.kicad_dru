@@ -75,10 +75,11 @@
   (constraint clearance (min 0.13mm))
   (condition "A.Type == 'Pad' && A.Pad_Type == 'SMD' && (B.Type == 'Track' || B.Type == 'Arc' || B.Type == 'Zone') && A.Net != B.Net"))
 
-# Silk clipped at the routed edge or a hole is lost (line silk rule, pcb-agent-commons).
+# Silk clipped at the routed edge or a hole is lost (line silk rule, pcb-agent-commons). KiCad 10.0.6
+# tests silk against Edge.Cuts with the silk_clearance constraint, not edge_clearance.
 (rule "silk 0.20 from the edge and holes"
-  (constraint edge_clearance (min 0.20mm))
-  (condition "A.Layer == 'F.Silkscreen' || A.Layer == 'B.Silkscreen'"))
+  (constraint silk_clearance (min 0.20mm))
+  (condition "A.Layer == 'Edge.Cuts' && (B.Layer == 'F.Silkscreen' || B.Layer == 'B.Silkscreen')"))
 
 # Spec 7 / 8.1: components 0.30 from the routed edge and the mounting holes (copper 0.20 is the fab limit).
 # Edge solder pads (user, motor and battery pads) are the intended exception, scoped by footprint: they

@@ -1,66 +1,316 @@
 {
-  "_comment": "OpenAIO-Whoop P0 spec (research/DESIGN-SPEC.md, 2026-10-07): 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks, as apply_stackup.py writes it (0.997 mm dielectric + copper). Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Run: $KPY hardware/tools/check_board_setup.py --spec hardware/tools/board_spec.json",
+  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias follow D6 (OpenDrone 0.35 / 0.20, annular 0.075) where the spec 8.3/8.4 text still says 0.35 / 0.15; the RF width is the P1 field-solver value (impedance.json, 50 ohm CPWG with mask) that spec 8.2 asked to recompute, replacing the 0.14 estimate. Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name (RF positions follow the floorplan sketch and move at P2, so only their layers and flags are pinned). Run: $KPY hardware/tools/check_board_setup.py --spec hardware/tools/board_spec.json",
   "tolerance": 0.0005,
   "expect": {
     "copper_layers": 6,
-    "thickness_mm": {"value": 1.027, "tol": 0.002},
-    "stackup": {"value": [
-      {"layer": "F.SilkS"},
-      {"layer": "F.Paste"},
-      {"layer": "F.Mask", "thickness_mm": 0.015},
-      {"layer": "F.Cu", "type": "copper", "thickness_mm": 0.035},
-      {"layer": "dielectric 1", "type": "prepreg", "material": "1080", "thickness_mm": 0.077},
-      {"layer": "In1.Cu", "type": "copper", "thickness_mm": 0.0175},
-      {"layer": "dielectric 2", "type": "core", "material": "FR4", "thickness_mm": 0.3},
-      {"layer": "In2.Cu", "type": "copper", "thickness_mm": 0.0175},
-      {"layer": "dielectric 3", "type": "prepreg", "material": "2313", "thickness_mm": 0.103},
-      {"layer": "In3.Cu", "type": "copper", "thickness_mm": 0.0175},
-      {"layer": "dielectric 4", "type": "core", "material": "FR4", "thickness_mm": 0.3},
-      {"layer": "In4.Cu", "type": "copper", "thickness_mm": 0.0175},
-      {"layer": "dielectric 5", "type": "prepreg", "material": "1080", "thickness_mm": 0.077},
-      {"layer": "B.Cu", "type": "copper", "thickness_mm": 0.035},
-      {"layer": "B.Mask", "thickness_mm": 0.015},
-      {"layer": "B.Paste"},
-      {"layer": "B.SilkS"}
-    ], "tol": 0.0005},
+    "thickness_mm": {
+      "value": 1.027,
+      "tol": 0.002
+    },
+    "stackup": {
+      "value": [
+        {
+          "layer": "F.SilkS"
+        },
+        {
+          "layer": "F.Paste"
+        },
+        {
+          "layer": "F.Mask",
+          "thickness_mm": 0.015
+        },
+        {
+          "layer": "F.Cu",
+          "type": "copper",
+          "thickness_mm": 0.035
+        },
+        {
+          "layer": "dielectric 1",
+          "type": "prepreg",
+          "material": "1080",
+          "thickness_mm": 0.077
+        },
+        {
+          "layer": "In1.Cu",
+          "type": "copper",
+          "thickness_mm": 0.0175
+        },
+        {
+          "layer": "dielectric 2",
+          "type": "core",
+          "material": "FR4",
+          "thickness_mm": 0.3
+        },
+        {
+          "layer": "In2.Cu",
+          "type": "copper",
+          "thickness_mm": 0.0175
+        },
+        {
+          "layer": "dielectric 3",
+          "type": "prepreg",
+          "material": "2313",
+          "thickness_mm": 0.103
+        },
+        {
+          "layer": "In3.Cu",
+          "type": "copper",
+          "thickness_mm": 0.0175
+        },
+        {
+          "layer": "dielectric 4",
+          "type": "core",
+          "material": "FR4",
+          "thickness_mm": 0.3
+        },
+        {
+          "layer": "In4.Cu",
+          "type": "copper",
+          "thickness_mm": 0.0175
+        },
+        {
+          "layer": "dielectric 5",
+          "type": "prepreg",
+          "material": "1080",
+          "thickness_mm": 0.077
+        },
+        {
+          "layer": "B.Cu",
+          "type": "copper",
+          "thickness_mm": 0.035
+        },
+        {
+          "layer": "B.Mask",
+          "thickness_mm": 0.015
+        },
+        {
+          "layer": "B.Paste"
+        },
+        {
+          "layer": "B.SilkS"
+        }
+      ],
+      "tol": 0.0005
+    },
     "rules.clearance_mm": 0.09,
     "rules.track_mm": 0.09,
     "rules.connection_mm": 0.09,
     "rules.via_dia_mm": 0.35,
     "rules.via_drill_mm": 0.15,
-    "rules.via_annular_mm": 0.1,
+    "rules.via_annular_mm": 0.075,
     "rules.microvia_dia_mm": 0.2,
     "rules.microvia_drill_mm": 0.1,
     "rules.hole_to_hole_mm": 0.2,
     "rules.hole_clearance_mm": 0.2,
     "rules.copper_edge_mm": 0.2,
-    "presets.track_mm": [0.1, 0.14, 0.2, 0.3, 0.5, 1.0],
-    "presets.via_mm": [[0.35, 0.15], [0.4, 0.2]],
+    "presets.track_mm": [
+      0.1,
+      0.105,
+      0.14,
+      0.2,
+      0.3,
+      0.5,
+      1.0
+    ],
+    "presets.via_mm": [
+      [
+        0.35,
+        0.2
+      ],
+      [
+        0.4,
+        0.2
+      ]
+    ],
     "netclasses.Default": {
       "clearance_mm": 0.09,
       "track_mm": 0.09,
       "via_dia_mm": 0.35,
-      "via_drill_mm": 0.15,
+      "via_drill_mm": 0.2,
       "uvia_dia_mm": 0.3,
       "uvia_drill_mm": 0.1,
       "dp_width_mm": 0.2,
       "dp_gap_mm": 0.25
     },
-    "netclasses.VBAT": {"clearance_mm": 0.15, "track_mm": 0.5, "via_dia_mm": 0.4, "via_drill_mm": 0.2},
-    "netclasses.Phase": {"clearance_mm": 0.15, "track_mm": 0.5, "via_dia_mm": 0.4, "via_drill_mm": 0.2},
-    "netclasses.Gate": {"clearance_mm": 0.1, "track_mm": 0.15, "via_dia_mm": 0.35, "via_drill_mm": 0.15},
-    "netclasses.Power": {"clearance_mm": 0.09, "track_mm": 0.25, "via_dia_mm": 0.35, "via_drill_mm": 0.15},
-    "netclasses.Analog": {"clearance_mm": 0.15, "track_mm": 0.1, "via_dia_mm": 0.35, "via_drill_mm": 0.15},
-    "netclasses.RF": {"clearance_mm": 0.15, "track_mm": 0.14, "via_dia_mm": 0.35, "via_drill_mm": 0.15},
-    "netclasses.USB": {"clearance_mm": 0.12, "track_mm": 0.12, "via_dia_mm": 0.35, "via_drill_mm": 0.15, "dp_width_mm": 0.12, "dp_gap_mm": 0.12},
+    "netclasses.VBAT": {
+      "clearance_mm": 0.15,
+      "track_mm": 0.5,
+      "via_dia_mm": 0.4,
+      "via_drill_mm": 0.2
+    },
+    "netclasses.Phase": {
+      "clearance_mm": 0.15,
+      "track_mm": 0.5,
+      "via_dia_mm": 0.4,
+      "via_drill_mm": 0.2
+    },
+    "netclasses.Gate": {
+      "clearance_mm": 0.1,
+      "track_mm": 0.15,
+      "via_dia_mm": 0.35,
+      "via_drill_mm": 0.2
+    },
+    "netclasses.Power": {
+      "clearance_mm": 0.09,
+      "track_mm": 0.25,
+      "via_dia_mm": 0.35,
+      "via_drill_mm": 0.2
+    },
+    "netclasses.Analog": {
+      "clearance_mm": 0.15,
+      "track_mm": 0.1,
+      "via_dia_mm": 0.35,
+      "via_drill_mm": 0.2
+    },
+    "netclasses.RF": {
+      "clearance_mm": 0.15,
+      "track_mm": 0.105,
+      "via_dia_mm": 0.35,
+      "via_drill_mm": 0.2
+    },
+    "netclasses.USB": {
+      "clearance_mm": 0.12,
+      "track_mm": 0.12,
+      "via_dia_mm": 0.35,
+      "via_drill_mm": 0.2,
+      "dp_width_mm": 0.12,
+      "dp_gap_mm": 0.12
+    },
+    "netclasses.GND": {
+      "clearance_mm": 0.09,
+      "track_mm": 0.2,
+      "via_dia_mm": 0.4,
+      "via_drill_mm": 0.2
+    },
     "outline.closed": true,
-    "outline.size_mm": {"value": [30.55, 30.55], "tol": 0.02},
-    "outline.bbox_mm": {"value": [97.925, 97.925, 128.475, 128.475], "tol": 0.02},
-    "outline.area_mm2": {"value": 696.6, "tol": 3.0},
-    "holes": {"value": [
-      {"x_mm": -12.875, "y_mm": -12.875, "dia_mm": 3.5, "kind": "cutout"},
-      {"x_mm": -12.875, "y_mm": 12.875, "dia_mm": 3.5, "kind": "cutout"},
-      {"x_mm": 12.875, "y_mm": 12.875, "dia_mm": 3.5, "kind": "cutout"}
-    ], "tol": 0.02}
+    "outline.size_mm": {
+      "value": [
+        30.55,
+        30.55
+      ],
+      "tol": 0.02
+    },
+    "outline.bbox_mm": {
+      "value": [
+        97.925,
+        97.925,
+        128.475,
+        128.475
+      ],
+      "tol": 0.02
+    },
+    "outline.area_mm2": {
+      "value": 696.6,
+      "tol": 3.0
+    },
+    "holes": {
+      "value": [
+        {
+          "x_mm": -12.875,
+          "y_mm": -12.875,
+          "dia_mm": 3.5,
+          "kind": "cutout"
+        },
+        {
+          "x_mm": -12.875,
+          "y_mm": 12.875,
+          "dia_mm": 3.5,
+          "kind": "cutout"
+        },
+        {
+          "x_mm": 12.875,
+          "y_mm": 12.875,
+          "dia_mm": 3.5,
+          "kind": "cutout"
+        }
+      ],
+      "tol": 0.02
+    },
+    "keepouts": {
+      "value": [
+        {
+          "name": "MOUNT_LEFT",
+          "layers": [
+            "F.Cu",
+            "B.Cu"
+          ],
+          "keepout": [
+            "footprints"
+          ],
+          "area_mm2": 9.44
+        },
+        {
+          "name": "MOUNT_REAR",
+          "layers": [
+            "F.Cu",
+            "B.Cu"
+          ],
+          "keepout": [
+            "footprints"
+          ],
+          "area_mm2": 9.44
+        },
+        {
+          "name": "MOUNT_RIGHT",
+          "layers": [
+            "F.Cu",
+            "B.Cu"
+          ],
+          "keepout": [
+            "footprints"
+          ],
+          "area_mm2": 9.44
+        },
+        {
+          "name": "PART_EDGE_BAND",
+          "layers": [
+            "F.Cu",
+            "B.Cu"
+          ],
+          "keepout": [],
+          "area_mm2": 35.14
+        },
+        {
+          "name": "RF_RX_ANT",
+          "layers": [
+            "F.Cu",
+            "B.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu"
+          ],
+          "keepout": [
+            "vias",
+            "zone_fills"
+          ]
+        },
+        {
+          "name": "RF_RX_EXIT",
+          "layers": [
+            "F.Cu",
+            "B.Cu"
+          ],
+          "keepout": []
+        },
+        {
+          "name": "RF_VTX_CHAIN",
+          "layers": [
+            "In1.Cu"
+          ],
+          "keepout": [
+            "tracks"
+          ]
+        },
+        {
+          "name": "RF_VTX_UFL",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": []
+        }
+      ],
+      "tol": 0.1
+    }
   }
 }

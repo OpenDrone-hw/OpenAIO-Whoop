@@ -208,9 +208,10 @@ RULES = [
      "B.Type == 'Zone') && A.Net != B.Net\")"),
 
     ("silk 0.20 from the edge and holes",
-     ["Silk clipped at the routed edge or a hole is lost (line silk rule, pcb-agent-commons)."],
-     "  (constraint edge_clearance (min 0.20mm))\n"
-     "  (condition \"A.Layer == 'F.Silkscreen' || A.Layer == 'B.Silkscreen'\")"),
+     ["Silk clipped at the routed edge or a hole is lost (line silk rule, pcb-agent-commons). KiCad 10.0.6",
+      "tests silk against Edge.Cuts with the silk_clearance constraint, not edge_clearance."],
+     "  (constraint silk_clearance (min 0.20mm))\n"
+     "  (condition \"A.Layer == 'Edge.Cuts' && (B.Layer == 'F.Silkscreen' || B.Layer == 'B.Silkscreen')\")"),
 
     ("parts: pads 0.30 from the edge",
      ["Spec 7 / 8.1: components 0.30 from the routed edge and the mounting holes (copper 0.20 is the fab limit).",
@@ -611,6 +612,36 @@ def outline_primitives():
     return prims
 
 
+def arc_points(a, m, e, sag=0.001):
+    """Points from a to e (inclusive) on the circle through a, m, e, chords with at most `sag` mm sagitta."""
+    ax, ay = a
+    bx, by = m
+    cx, cy = e
+    d = 2 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))
+    ux = ((ax * ax + ay * ay) * (by - cy) + (bx * bx + by * by) * (cy - ay) + (cx * cx + cy * cy) * (ay - by)) / d
+    uy = ((ax * ax + ay * ay) * (cx - bx) + (bx * bx + by * by) * (ax - cx) + (cx * cx + cy * cy) * (bx - ax)) / d
+    r = math.hypot(ax - ux, ay - uy)
+    t = lambda p: math.atan2(p[1] - uy, p[0] - ux)
+    s0, de, dm = t(a), (t(e) - t(a)) % (2 * math.pi), (t(m) - t(a)) % (2 * math.pi)
+    sweep = de if dm < de else de - 2 * math.pi
+    n = max(2, math.ceil(abs(sweep) / (2 * math.acos(1 - sag / r))))
+    return [(ux + r * math.cos(s0 + sweep * i / n), uy + r * math.sin(s0 + sweep * i / n)) for i in range(n + 1)]
+
+
+def outline_points(sag=0.001):
+    """The spec 7 outline as (outer contour, [hole contours]) of points, from the analytic primitives."""
+    outer, holes = [], []
+    for kind, *g in outline_primitives():
+        if kind == "line":
+            outer.append(g[0])
+        elif kind == "arc":
+            outer += arc_points(*g, sag=sag)[:-1]
+        else:
+            n = math.ceil(2 * math.pi / (2 * math.acos(1 - sag / g[1])))
+            holes.append(circle_pts(g[0], g[1], n))
+    return outer, holes
+
+
 def circle_pts(c, r, n=72):
     return [(c[0] + r * math.cos(2 * math.pi * i / n), c[1] + r * math.sin(2 * math.pi * i / n)) for i in range(n)]
 
@@ -930,10 +961,19 @@ def build_board(path, P):
     add_text(cmts, "cmts/layers", "F.Cu sig | In1 GND | In2 sig | In3 +BATT/PWR | In4 GND | B.Cu sig",
              (0.0, 18.5), size=0.8, thick=0.1)
 
-    # outline polygon (for clipping and the band); arcs approximated at the board's max error
+    # outline polygon for clipping and the band, from the analytic geometry (deterministic: the board's own
+    # polygon can still see the deleted arcs, whose re-loaded mid points differ by a nanometre)
+    outer_pts, hole_pts = outline_points()
     poly = P.SHAPE_POLY_SET()
-    if not b.GetBoardPolygonOutlines(poly, False):
-        raise SystemExit("Edge.Cuts outline is not closed")
+    poly.NewOutline()
+    for p in outer_pts:
+        v = V(p)
+        poly.Append(v.x, v.y)
+    for k, hp in enumerate(hole_pts):
+        poly.NewHole(0)
+        for p in hp:
+            v = V(p)
+            poly.Append(v.x, v.y, 0, k)
 
     def to_poly(pts):
         s = P.SHAPE_POLY_SET()
@@ -1172,24 +1212,33 @@ def selftest(P, rf):
     hx, hy = HOLES["RIGHT"][0] * HOLE_HALF, HOLES["RIGHT"][1] * HOLE_HALF
     d = 2.6 / math.sqrt(2)
     fp("C_0201_0603Metric", "C3", hx - d, hy - d)
-    case("0201 on the right grommet flange (keepout MOUNT_RIGHT)", KEEPOUT_HIT, (hx - d, hy - d), r=0.7)
+    case("0201 on the right grommet flange", "keepout area 'MOUNT_RIGHT'", (hx - d, hy - d), r=0.7)
+    def crt_w(f):                     # courtyard width from the polygon vertices (BBox() adds a margin)
+        c = f.GetCourtyard(P.F_CrtYd).COutline(0)
+        xs = [c.CPoint(i).x for i in range(c.PointCount())]
+        return P.ToMM(max(xs) - min(xs))
     fA = fp("C_0402_1005Metric", "C4", 2, 4)
-    w402 = P.ToMM(fA.GetCourtyard(P.F_CrtYd).BBox().GetWidth())
+    w402 = crt_w(fA)
     fp("C_0402_1005Metric", "C5", 2 + w402 + 0.02, 4)
-    case("two 0402, courtyards 0.02 apart", "0402 to 0402: +0.05", (2 + (w402 + 0.02) / 2, 4), r=w402 / 2 + 0.3)
+    case("two 0402, courtyards 0.02 apart", "0402 to 0402: +0.05", (2 + w402 / 2, 4), r=w402 / 2 + 0.3)
     fB = fp("C_0201_0603Metric", "C6", 2, 7)
-    w201 = P.ToMM(fB.GetCourtyard(P.F_CrtYd).BBox().GetWidth())
+    w201 = crt_w(fB)
     fp("C_0201_0603Metric", "C7", 2 + w201 + 0.02, 7)
-    case("two 0201, courtyards 0.02 apart", None, (2 + (w201 + 0.02) / 2, 7), r=w201 / 2 + 0.3)
+    case("two 0201, courtyards 0.02 apart", None, (2 + w201 / 2, 7), r=w201 / 2 + 0.3)
     fT = fp("CONN-SMD_SM03B-SRSS-TB-LF-SN-P", "J2", -4, -3)
     tb = fT.GetCourtyard(P.F_CrtYd).BBox()
     fp("C_0201_0603Metric", "C8", P.ToMM(tb.GetRight()) - cx + w201 / 2 + 0.2, -3)
     case("0201 0.2 mm from an SH1.0 courtyard", "tall parts: 0.5 to 0201 and 0402",
          (P.ToMM(tb.GetRight()) - cx + 0.1, -3), r=1.0)
     text(-6, -BODY_HALF + 0.3, "X"); case("silk text over the edge", "Silkscreen clipped by board edge", (-6, -BODY_HALF + 0.3), r=0.8)
-    t2 = text(-3, 0, "X")
-    t2.Move(P.VECTOR2I(0, mm(cy - BODY_HALF + 0.10) - t2.GetBoundingBox().GetTop()))
-    case("silk text 0.10 inside the edge", "silk 0.20 from the edge", (-3, -BODY_HALF + 0.6), r=0.8)
+    sl = P.PCB_SHAPE(b)
+    sl.SetShape(P.SHAPE_T_SEGMENT)
+    sl.SetLayer(P.F_SilkS)
+    sl.SetWidth(mm(0.15))
+    sl.SetStart(V(-3.5, -BODY_HALF + 0.10 + 0.075))
+    sl.SetEnd(V(-2.5, -BODY_HALF + 0.10 + 0.075))
+    b.Add(sl)
+    case("silk line 0.10 inside the edge", "silk 0.20 from the edge", (-3, -BODY_HALF + 0.2), r=0.8)
     # plated and non-plated holes in a synthetic footprint
     def tht(ref, x, y, pads):
         f = P.FOOTPRINT(b)

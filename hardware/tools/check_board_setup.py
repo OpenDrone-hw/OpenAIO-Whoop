@@ -85,7 +85,8 @@ def report(path, min_hole=1.0):
     ds = b.GetDesignSettings()
 
     classes = {"Default": ds.m_NetSettings.GetDefaultNetclass()}
-    classes.update(dict(ds.m_NetSettings.GetNetclasses().items()))
+    # Names come back as wxString, which neither equals nor hashes like str: convert, or lookups miss.
+    classes.update({str(k): v for k, v in ds.m_NetSettings.GetNetclasses().items()})
     fields = {"clearance": "Clearance", "track": "TrackWidth", "via_dia": "ViaDiameter",
               "via_drill": "ViaDrill", "uvia_dia": "uViaDiameter", "uvia_drill": "uViaDrill",
               "dp_width": "DiffPairWidth", "dp_gap": "DiffPairGap"}
