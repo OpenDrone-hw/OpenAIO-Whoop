@@ -14,7 +14,9 @@ element, objects on the keys the spec lists. See board_spec.example.json.
 
 Holes are pads drilled at least --min-hole mm and closed cut-outs in the
 Edge.Cuts outline. Positions are relative to the outline's bounding-box centre
-(KiCad axes, +y down), or absolute when there is no outline.
+(KiCad axes, +y down), or absolute when there is no outline. Keepouts are the
+board's rule areas by name: layers, the keepout flags set, area and bounding
+box (relative like the holes).
 
 Exit 0 when every spec key matches, 1 on any mismatch, 2 if the board cannot
 be read.
@@ -120,6 +122,21 @@ def report(path, min_hole=1.0):
                 holes[-1]["size_mm"] = [mm(bb.GetWidth()), mm(bb.GetHeight())]
     holes.sort(key=lambda h: (h["y_mm"], h["x_mm"]))
 
+    # Rule areas (keepouts and named areas for custom rules), by name; bbox relative to the outline centre.
+    keepouts = []
+    for z in b.Zones():
+        if not z.GetIsRuleArea():
+            continue
+        flags = [k for k, f in (("footprints", z.GetDoNotAllowFootprints), ("tracks", z.GetDoNotAllowTracks),
+                                ("vias", z.GetDoNotAllowVias), ("pads", z.GetDoNotAllowPads),
+                                ("zone_fills", z.GetDoNotAllowZoneFills)) if f()]
+        zb = z.Outline().BBox()
+        keepouts.append({"name": z.GetZoneName(), "layers": [b.GetLayerName(l) for l in z.GetLayerSet().Seq()],
+                         "keepout": flags, "area_mm2": round(z.Outline().Area() / 1e12, 2),
+                         "bbox_mm": [mm(zb.GetLeft() - centre[0]), mm(zb.GetTop() - centre[1]),
+                                     mm(zb.GetRight() - centre[0]), mm(zb.GetBottom() - centre[1])]})
+    keepouts.sort(key=lambda k: k["name"])
+
     return {
         "copper_layers": b.GetCopperLayerCount(),
         "thickness_mm": mm(ds.GetBoardThickness()),
@@ -143,6 +160,7 @@ def report(path, min_hole=1.0):
         "netclasses": netclasses,
         "outline": outline,
         "holes": holes,
+        "keepouts": keepouts,
     }
 
 

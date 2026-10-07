@@ -1,0 +1,1290 @@
+#!/usr/bin/env python3
+"""OpenAIO-Whoop board setup (phase P1): stackup, rules, net classes, custom DRC rules, outline, keepouts.
+
+    /usr/bin/python3.12 hardware/tools/setup_board.py              apply everything (idempotent, re-runnable)
+    /usr/bin/python3.12 hardware/tools/setup_board.py --check      build in a temp dir, compare, write nothing
+    /usr/bin/python3.12 hardware/tools/setup_board.py --fd         recompute the field-solver impedance table first
+    /usr/bin/python3.12 hardware/tools/setup_board.py --selftest   after applying, test the DRU on a synthetic board
+    python3 hardware/tools/setup_board.py impedance [--fd]         impedance report only (no pcbnew needed)
+
+Every board value lives in the SPEC section below, each with the research/DESIGN-SPEC.md section (or decision
+D<n> in research/DECISIONS.md) it comes from; the layer stack is hardware/tools/stackup.json (spec 8.2). Change a
+value there and re-run: the script rebuilds the same files from scratch, so a second run changes nothing.
+
+What it writes (and nothing else):
+  hardware/OpenAIO-Whoop.kicad_pcb   6 copper layers, stackup (impedance controlled), mask, via fill/cap, origins,
+                                     Edge.Cuts outline (spec 7), named rule areas, User.Eco1/Eco2/User.1/Cmts.User
+                                     guides. Every item the script owns carries a uuid starting 5e7b0a1d- and is
+                                     regenerated on each run; anything else on the board is left alone.
+  hardware/OpenAIO-Whoop.kicad_pro   design rules, the 16 template-ignored DRC checks re-enabled (D7), track / via /
+                                     diff-pair presets, net classes with colours and patterns, the RF50 tuning
+                                     profile, component classes.
+  hardware/OpenAIO-Whoop.kicad_dru   the OpenDrone canonical block (byte-identical to hardware-template, checked)
+                                     plus the board rules generated from RULES below.
+  hardware/tools/impedance.json      50 ohm widths: 2-D field solver (cached; --fd recomputes) and closed forms.
+
+Method (owner rule: KiCad files through KiCad): the .kicad_pro and .kicad_dru are written as JSON / text into a
+temp project, the board is edited through pcbnew there (KiCad 10.0.6 has no Python binding for BOARD_STACKUP,
+so the stackup node is spliced as text into the temp copy and then loaded and re-saved by pcbnew, as in
+pcb-agent-commons tools/layout/board_setup.py), pcbnew re-saves board and project, the result is read back and
+verified, and only then copied over the project files. KiCad must not have the project open.
+
+The field solver needs numpy + scipy. KiCad's Python (3.12) has neither in the agent container, so the
+impedance step runs in a child process under the first interpreter that has them (/usr/bin/python3 here) and
+caches its result; without one the cached table is used, or the closed forms with a warning.
+"""
+import hashlib
+import json
+import math
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+HW = os.path.dirname(HERE)
+PROJECT = "OpenAIO-Whoop"
+PCB, PRO, DRU = (os.path.join(HW, PROJECT + e) for e in (".kicad_pcb", ".kicad_pro", ".kicad_dru"))
+STACKUP_JSON = os.path.join(HERE, "stackup.json")
+IMPEDANCE_JSON = os.path.join(HERE, "impedance.json")
+UUID_PREFIX = "5e7b0a1d"          # marks every board item this script owns
+
+# ==============================================================================================================
+# SPEC.  Units mm.  Board coordinates are KiCad's (+y down); positions relative to the body centre.
+# ==============================================================================================================
+TITLE_REV = "rev1"                               # LINEUP B6, D4: title block rev stays rev1
+CENTRE = (113.2, 113.2)                          # spec 7: body centred here; grid and drill/place origin
+BODY_HALF = 13.2                                 # spec 7: body square +-13.2 (26.4 mm)
+FRONT_R = 5.8                                    # spec 7: front corner (+x, -y) arc R 5.8, centre (+7.4, -7.4)
+FRONT = (1, -1)
+EAR_R = 2.4                                      # spec 7: ears = circles R 2.4 on the holes (ring OD 4.8)
+EAR_FILLET = 0.5                                 # spec 7: concave junctions filleted R 0.5
+HOLE_D = 3.5                                     # spec 7: non-plated Edge.Cuts cut-outs
+HOLE_HALF = 12.875                               # spec 7: 25.75 x 25.75 mm pattern
+HOLES = {"LEFT": (-1, -1), "REAR": (-1, 1), "RIGHT": (1, 1)}     # spec 7 / 10: hole sign (x, y)
+EDGE_LINE_W = 0.05                               # template board_outline_line_width
+FLANGE_D = 5.2                                   # spec 7: grommet flange part keepout, both sides
+PART_EDGE_BAND = 0.30                            # spec 7: part keepout band inside the outline (courtyards)
+FRAME_PATTERNS = (25.5, 26.0)                    # spec 7: frame guides on User.Eco1
+
+# spec 10: RF keepouts (positions are the floorplan sketch's "about" values; P2 moves them with the parts)
+RX_ANT_HOLE = (-12.3, 9.5)                       # RX antenna wire hole, rear-left edge
+RX_ANT_KEEPOUT_R = 1.6                           # all-layer copper keepout: 1.0 mm around an assumed 1.2 mm pad
+RX_ANT_EXIT_R = 3.0                              # no parts within 3 mm of the wire's exit path
+UFL_VTX = (7.5, -7.5)                            # VTX U.FL toward the front corner
+UFL_HALF = 2.0                                   # U.FL zone: 4 x 4 mm square
+VTX_CHAIN = ((2.5, -2.5), (10.0, -10.0), 2.0)    # RTC6705 -> PA -> BPF -> U.FL diagonal, half-width 2.0 (L2 solid)
+
+# spec 8.1 / 8.4 + D6: board minimums (the .kicad_pro "rules" block).  Via 0.35 / 0.20 is the OpenDrone
+# standard via (D6, owner-confirmed buildable at NextPCB), so the annular minimum is 0.075, not the 0.10 of the
+# spec text's 0.35 / 0.15 via; the 0.15 mm drill stays the fab minimum.
+PRO_RULES = {
+    "min_clearance": 0.09, "min_track_width": 0.09, "min_connection": 0.09,
+    "min_via_diameter": 0.35, "min_via_annular_width": 0.075, "min_through_hole_diameter": 0.15,
+    "min_microvia_diameter": 0.2, "min_microvia_drill": 0.1,            # template values; microvias disallowed (DRU)
+    "min_hole_to_hole": 0.2, "min_hole_clearance": 0.2, "min_copper_edge_clearance": 0.2,
+    "min_text_height": 1.0, "min_text_thickness": 0.15,                 # spec 8.1 silk 1.0 / 0.15 (JLC floor)
+    "min_silk_clearance": 0.0, "solder_mask_to_copper_clearance": 0.005,
+}
+MASK_EXPANSION = 0.04                            # spec 8.1
+MASK_MIN_WEB = 0.10                              # spec 8.1 (green)
+VIA_FILL_CAP = True                              # spec 8: IPC-4761 type VII filled + capped (board setting)
+
+# D7: the 16 checks hardware-template ignores, re-enabled before placement.
+SEVERITIES = {
+    "copper_edge_clearance": "error", "courtyards_overlap": "error", "missing_courtyard": "error",
+    "malformed_courtyard": "error", "npth_inside_courtyard": "error", "pth_inside_courtyard": "error",
+    "silk_edge_clearance": "error", "silk_over_copper": "error", "text_height": "error",
+    "text_thickness": "error", "footprint_type_mismatch": "error", "tuning_profile_track_geometries": "error",
+    "footprint_filters_mismatch": "warning", "silk_overlap": "warning", "track_not_centered_on_via": "warning",
+    "via_dangling": "warning",
+}
+
+TRACK_PRESETS = [0.10, 0.14, 0.20, 0.30, 0.50, 1.00]       # spec 8.4 (+ the RF 50 ohm width, computed)
+VIA_PRESETS = [(0.35, 0.20), (0.40, 0.20)]                 # D6 standard via; spec 8.3 power via
+DIFF_PAIR_PRESETS = [(0.12, 0.12, 0.25)]                   # spec 8.2 USB FS pair: width, gap, via gap
+TEXT_DEFAULTS = {"silk_line_width": 0.15, "silk_text_size_h": 1.0, "silk_text_size_v": 1.0,
+                 "silk_text_thickness": 0.15}             # new silk items start at the 1.0 / 0.15 floor
+
+# spec 8.4 net classes (names after OpenAIO, LINEUP C8) + GND (orchestrator, spec 8.3 power-via arrays).
+# (name, track, clearance, via dia, via drill, colour, priority, extra)  track None = computed RF width
+NETCLASSES = [
+    ("RF", None, 0.15, 0.35, 0.20, "rgb(0, 170, 60)", 0, {"tuning_profile": "RF50"}),
+    ("USB", 0.12, 0.12, 0.35, 0.20, "rgb(30, 110, 255)", 1, {"diff_pair_width": 0.12, "diff_pair_gap": 0.12}),
+    ("VBAT", 0.50, 0.15, 0.40, 0.20, "rgb(220, 30, 30)", 2, {}),
+    ("Phase", 0.50, 0.15, 0.40, 0.20, "rgb(255, 140, 0)", 3, {}),
+    ("Gate", 0.15, 0.10, 0.35, 0.20, "rgb(230, 200, 0)", 4, {}),
+    ("Analog", 0.10, 0.15, 0.35, 0.20, "rgb(0, 170, 190)", 5, {}),
+    ("Power", 0.25, 0.09, 0.35, 0.20, "rgb(200, 0, 200)", 6, {}),
+    ("GND", 0.20, 0.09, 0.40, 0.20, "rgb(130, 130, 130)", 7, {}),
+]
+DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "via_drill": 0.20,
+                 "microvia_diameter": 0.3, "microvia_drill": 0.1, "diff_pair_width": 0.2, "diff_pair_gap": 0.25}
+# Planned net names (D4 power names; PINMAP.md; OpenAIO esc_channel upper-cased per LINEUP). Root-sheet local
+# labels appear as "/NAME", sub-sheet ones as "/SHEET/NAME", power nets bare.
+NETCLASS_PATTERNS = [
+    ("VBAT", ["+BATT", "+BATT_*", "*SHUNT*"]),
+    ("Phase", ["/ESC?/MOTOR?", "/ESC?/MOTOR_?", "/ESC?/PHASE_?"]),
+    ("Gate", ["/ESC?/GH?", "/ESC?/GL?", "/ESC?/GATE_*"]),
+    ("Power", ["+5V", "+5V_*", "+3V3", "+3V3_*", "+1V8", "+1V8_*", "+1V1", "+1V1_*", "VBUS", "*/VBUS", "/ESC?/VDD"]),
+    ("GND", ["GND"]),
+    ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", "*/CSA*",
+                "*/PA_DET*", "*/VPD*"]),
+    ("RF", ["*/RF_*", "*/ANT*", "*/RFIO*", "*/RFOUT*", "*/RFIN*"]),
+    ("USB", ["*/USB_DP", "*/USB_DN", "*/USB_DM", "*/USB_D+", "*/USB_D-"]),
+]
+# Component classes for the spec 8.4 spacing rules, by footprint name (P3 checks these against the real names).
+COMPONENT_CLASSES = [
+    ("PASSIVE_0201", ["*0201*"]),
+    ("PASSIVE_0402", ["*0402*"]),
+    ("TALL", ["*U.FL*", "*U_FL*", "*UFL*", "*SRSS*", "*L2.5-W2.0*", "*_2520*"]),      # U.FL, SH1.0, 2520 L
+    ("SOLDER_PAD", ["*small_pad*", "*SolderPad*", "*motor_pad*", "*battery_pad*", "*BT2*"]),
+]
+SOLDER_PAD_FPIDS = ["*:small_pad*", "*:SolderPad*", "*:motor_pad*", "*:battery_pad*", "*:BT2*"]  # memberOfFootprint
+
+# Impedance (spec 8.2): CPWG on L1 over L2 (and L6 over L5, same geometry), gap 0.15, target 50 ohm +- 10 %.
+RF_GAP = 0.15
+RF_TARGET = 50.0
+ER_ALT = 3.91                  # 1080 prepreg in the NextPCB impedance finder model (resin-rich), sensitivity case
+MASK_MODEL = {"er": 3.5, "t_on_cu": 0.0127, "t_on_sub": 0.0305}   # NextPCB finder solder-mask model
+MASK_STACKUP = {"color": "Green", "epsilon_r": 3.5, "loss_tangent": 0.025}
+SILK_COLOR = "White"
+
+# ==============================================================================================================
+# Custom DRC rules (written below the canonical marker).  KiCad 10.0.6: the LAST matching rule wins, so general
+# rules come first and exceptions after.  @W_RF@ etc. are filled from the impedance step.
+# (name, comment lines, body)  body None = comment block only.
+# ==============================================================================================================
+RULES = [
+    ("header",
+     ["OpenAIO-Whoop board rules (research/DESIGN-SPEC.md 7, 8.1, 8.4, 10; D6, D7). Generated by",
+      "hardware/tools/setup_board.py: change the script, not this file. Numbers that gate every fab live in the",
+      ".kicad_pro (clearance 0.09, track 0.09, via 0.35 / 0.20 (D6), annular 0.075, drill 0.15, hole to hole 0.20,",
+      "hole clearance 0.20, copper to edge 0.20); the rules below are what this board needs on top of them,",
+      "taken from the NextPCB and JLCPCB intersection in spec 8.1."], None),
+
+    ("through vias only",
+     ["Owner rule and spec 8: no microvias, blind or buried vias. Filled and capped via-in-pad is a through via."],
+     "  (constraint disallow micro_via blind_via buried_via)"),
+
+    ("hole to hole, different nets 0.30",
+     ["NextPCB 0.30 between holes of different nets (CAF); JLCPCB 0.20. Same net stays at the 0.20 minimum."],
+     "  (constraint hole_to_hole (min 0.30mm))\n  (condition \"A.Net != B.Net\")"),
+
+    ("PTH pad holes 0.45 apart",
+     ["JLCPCB 0.45 hole to hole between plated pad holes (battery holes, motor wire anchors)."],
+     "  (constraint hole_to_hole (min 0.45mm))\n"
+     "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.isPlated() && B.isPlated()\")"),
+
+    ("PTH pads, copper 0.40 apart",
+     ["NextPCB 0.40 copper between pads with holes, different nets."],
+     "  (constraint clearance (min 0.40mm))\n"
+     "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.Pad_Type == 'Through-hole' && "
+     "B.Pad_Type == 'Through-hole' && A.Net != B.Net\")"),
+
+    ("PTH annular ring 0.20",
+     ["Component holes: JLCPCB 0.15 absolute, 0.20 recommended; NextPCB 0.20. Vias keep the 0.075 of D6."],
+     "  (constraint annular_width (min 0.20mm))\n  (condition \"A.Type == 'Pad' && A.isPlated()\")"),
+
+    ("PTH hole to copper 0.28",
+     ["JLCPCB 0.28 from a plated pad hole to other copper (NextPCB 0.23). Via holes keep the 0.20 minimum."],
+     "  (constraint hole_clearance (min 0.28mm))\n  (condition \"A.Type == 'Pad' && A.isPlated()\")"),
+
+    ("inner layers: PTH hole to copper 0.30",
+     ["JLCPCB 0.30 on inner layers for plated pad holes."],
+     "  (layer inner)\n  (constraint hole_clearance (min 0.30mm))\n  (condition \"A.Type == 'Pad' && A.isPlated()\")"),
+
+    ("NPTH at least 0.50",
+     ["JLCPCB 0.50 minimum non-plated hole (NextPCB 0.40). The mounting holes are Edge.Cuts cut-outs, not pads."],
+     "  (constraint hole_size (min 0.50mm))\n  (condition \"A.Type == 'Pad' && !A.isPlated()\")"),
+
+    ("SMD pad to track and pour 0.13",
+     ["Spec 8.1: 0.04 mask expansion + JLCPCB 0.09 from a mask opening to copper. Pours are copper too, so the",
+      "zone fill keeps the same distance (spec text names tracks; zones added for the same reason)."],
+     "  (constraint clearance (min 0.13mm))\n"
+     "  (condition \"A.Type == 'Pad' && A.Pad_Type == 'SMD' && (B.Type == 'Track' || B.Type == 'Arc' || "
+     "B.Type == 'Zone') && A.Net != B.Net\")"),
+
+    ("silk 0.20 from the edge and holes",
+     ["Silk clipped at the routed edge or a hole is lost (line silk rule, pcb-agent-commons)."],
+     "  (constraint edge_clearance (min 0.20mm))\n"
+     "  (condition \"A.Layer == 'F.Silkscreen' || A.Layer == 'B.Silkscreen'\")"),
+
+    ("parts: pads 0.30 from the edge",
+     ["Spec 7 / 8.1: components 0.30 from the routed edge and the mounting holes (copper 0.20 is the fab limit).",
+      "Edge solder pads (user, motor and battery pads) are the intended exception, scoped by footprint: they",
+      "keep the 0.20 copper-to-edge minimum (D7: exceptions as named, scoped rules)."],
+     "  (constraint edge_clearance (min 0.30mm))\n"
+     "  (condition \"A.Type == 'Pad' && !(@SOLDER_PAD_FPID@)\")"),
+
+    ("parts: courtyards off the edge band",
+     ["Spec 7 part keepout band (rule area PART_EDGE_BAND, @BAND@ mm inside the outline), tested on courtyards;",
+      "solder-pad footprints (component class SOLDER_PAD) are exempt like above."],
+     "  (constraint disallow footprint)\n"
+     "  (condition \"A.Type == 'Footprint' && A.intersectsArea('PART_EDGE_BAND') && "
+     "!A.hasComponentClass('SOLDER_PAD')\")"),
+
+    ("courtyards: touching allowed, overlap is an error",
+     ["Spec 8.4 / D2 body rule: courtyards are drawn at max(body, land) + 0.10 (P3 normalises the library), so",
+      "touching courtyards are 0.20 mm body to body. courtyards_overlap is an error in the .kicad_pro."],
+     "  (constraint courtyard_clearance (min 0mm))"),
+
+    ("0402 to 0402: +0.05",
+     ["Spec 8.1 / 8.4: NextPCB asks 0.25 between two 0402 (0.20 for 0201)."],
+     "  (constraint courtyard_clearance (min 0.05mm))\n"
+     "  (condition \"A.hasComponentClass('PASSIVE_0402') && B.hasComponentClass('PASSIVE_0402')\")"),
+
+    ("tall parts: 0.5 to 0201 and 0402",
+     ["Spec 8.4: U.FL, SH1.0 and the 2520 inductor shadow small passives for paste, AOI and rework."],
+     "  (constraint courtyard_clearance (min 0.5mm))\n"
+     "  (condition \"A.hasComponentClass('TALL') && (B.hasComponentClass('PASSIVE_0201') || "
+     "B.hasComponentClass('PASSIVE_0402'))\")"),
+
+    ("solder pads: 0.5 to 0201 and 0402",
+     ["Spec 8.4: user, battery and motor pads take a 60-80 W iron; keep small passives 0.5 mm away."],
+     "  (constraint courtyard_clearance (min 0.5mm))\n"
+     "  (condition \"A.hasComponentClass('SOLDER_PAD') && (B.hasComponentClass('PASSIVE_0201') || "
+     "B.hasComponentClass('PASSIVE_0402'))\")"),
+
+    ("via in pad: type VII everywhere",
+     ["Spec 8 / 11 and D6: every via that sits in a pad is filled with non-conductive epoxy and capped",
+      "(IPC-4761 type VII). The board setting fills and caps all vias (filling yes, capping yes), so no via",
+      "is ever left open in a pad. KiCad 10.0.6 cannot test a via inside a same-net pad, so there is no rule",
+      "for it; order the NextPCB via-in-pad option (spec 8.1) and keep the 0.35 / 0.20 via (0.40 / 0.20 in",
+      "power arrays outside pads)."], None),
+
+    ("In1 and In4 are solid GND planes",
+     ["Spec 8.2 / 11: L2 and L5 unbroken under every signal. A track on them cuts the plane; warn so each one",
+      "is reviewed (L2 under the 5.8 GHz chain is a hard keepout, rule area RF_VTX_CHAIN)."],
+     "  (severity warning)\n  (constraint disallow track)\n"
+     "  (condition \"A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu'\")"),
+
+    ("RF: no vias",
+     ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L6 to the antenna hole without one."],
+     "  (constraint disallow via)\n  (condition \"A.NetClass == 'RF'\")"),
+
+    ("RF: 50 ohm width on the outer layers",
+     ["Spec 8.2: CPWG, gap @GAP@ mm (the RF clearance), L1 over L2 and L6 over L5, 50 ohm +- 10 %.",
+      "Width @W_RF@ mm from the 2-D field solver with solder mask (setup_board.py, impedance.json):",
+      "@Z_NOTE@"],
+     "  (layer outer)\n  (constraint track_width (min @W_MIN@mm) (opt @W_RF@mm) (max @W_MAX@mm))\n"
+     "  (condition \"A.NetClass == 'RF'\")"),
+
+    ("RF_VTX_UFL: only RF and GND copper on F.Cu",
+     ["Spec 10: no other copper or parts next to the 5.8 GHz line and the U.FL (rule area RF_VTX_UFL)."],
+     "  (layer \"F.Cu\")\n  (constraint disallow track via zone)\n"
+     "  (condition \"A.intersectsArea('RF_VTX_UFL') && A.NetClass != 'RF' && A.NetName != 'GND'\")"),
+
+    ("RF_RX_ANT: only the RF feed",
+     ["Spec 10: all-layer copper keepout around the RX antenna hole except the feed. Pours and vias are kept",
+      "out by the rule area itself; this rule keeps other tracks out."],
+     "  (constraint disallow track)\n  (condition \"A.intersectsArea('RF_RX_ANT') && A.NetClass != 'RF'\")"),
+
+    ("RF_RX_EXIT: no parts on the antenna wire exit",
+     ["Spec 10: no parts within 3 mm of the wire's exit path (rule area RF_RX_EXIT); the antenna footprint",
+      "(AE*) is exempt. Warning: P2 fixes the wire path and the pad placement around it."],
+     "  (severity warning)\n  (constraint disallow footprint)\n"
+     "  (condition \"A.Type == 'Footprint' && A.intersectsArea('RF_RX_EXIT') && A.Reference != 'AE*'\")"),
+
+    ("USB: pair gap",
+     ["Spec 8.2: USB FS pair 0.12 / 0.12. Inert until the nets end in _P/_N, P/N or +/- (KiCad 10.0.6 does",
+      "not pair USB_DP/USB_DM): name them USB_D+ / USB_D- or USB_DP / USB_DN in P4."],
+     "  (constraint diff_pair_gap (min 0.10mm) (opt 0.12mm) (max 0.20mm))\n  (condition \"A.NetClass == 'USB'\")"),
+
+    ("USB: length match",
+     ["Spec 8.2: length-matched pair; 0.5 mm is about 3 ps, far inside the 12 Mbit/s budget."],
+     "  (constraint skew (max 0.5mm))\n  (condition \"A.NetClass == 'USB'\")"),
+]
+
+# ==============================================================================================================
+# 1. Impedance: closed forms (always) and a 2-D field solver (numpy + scipy).
+# ==============================================================================================================
+def hj_microstrip(w, h, t, er):
+    """Hammerstad-Jensen microstrip with thickness correction (Wadell 3.6), bare copper.  (Z0, Eeff)."""
+    u = w / h
+    th = math.tanh(math.sqrt(6.517 * u))
+    du1 = (t / h) / math.pi * math.log(1 + 4 * math.e / ((t / h) / (th * th)))
+    ur = u + 0.5 * du1 * (1 + 1 / math.cosh(math.sqrt(er - 1)))
+    f = 6 + (2 * math.pi - 6) * math.exp(-((30.666 / ur) ** 0.7528))
+    z01 = 60 * math.log(f / ur + math.sqrt(1 + (2 / ur) ** 2))
+    a = 1 + math.log((ur ** 4 + (ur / 52) ** 2) / (ur ** 4 + 0.432)) / 49 + math.log(1 + (ur / 18.1) ** 3) / 18.7
+    b = 0.564 * ((er - 0.9) / (er + 3)) ** 0.053
+    ee = (er + 1) / 2 + (er - 1) / 2 * (1 + 10 / ur) ** (-a * b)
+    return z01 / math.sqrt(ee), ee
+
+
+def _ellip_ratio(k):
+    def K(m):
+        a, b = 1.0, math.sqrt(1 - m * m)
+        for _ in range(40):
+            a, b = (a + b) / 2, math.sqrt(a * b)
+        return math.pi / (2 * a)
+    return K(k) / K(math.sqrt(1 - k * k))
+
+
+def cpwg_closed(w, g, h, t, er):
+    """Grounded coplanar waveguide, conformal mapping (Wadell 3.4.3) with the thickness correction of KiCad's
+    calculator (pcb_calculator transline coplanar.cpp).  Bare copper.  (Z0, Eeff)."""
+    k1 = w / (w + 2 * g)
+    k3 = math.tanh(math.pi * w / (4 * h)) / math.tanh(math.pi * (w + 2 * g) / (4 * h))
+    q1, q3 = _ellip_ratio(k1), _ellip_ratio(k3)
+    qe = q1
+    if t > 0:
+        d = (t * 1.25 / math.pi) * (1 + math.log(4 * math.pi * w / t))
+        qe = _ellip_ratio(k1 + (1 - k1 * k1) * d / (2 * g))
+    qz = 1 / (qe + q3)
+    ee = 1 + q3 * qz * (er - 1)
+    if t > 0:
+        ee -= (0.7 * (ee - 1) * t / g) / (q1 + 0.7 * t / g)
+    return 60 * math.pi * qz / math.sqrt(ee), ee
+
+
+def bisect(f, target, lo, hi):
+    """x with f(x) = target for f falling in x."""
+    for _ in range(60):
+        m = (lo + hi) / 2
+        if f(m) > target:
+            lo = m
+        else:
+            hi = m
+    return (lo + hi) / 2
+
+
+FD_GRID = {"dx": 0.007 / 3, "X": 3.0, "air": 1.0, "ground_strip": 0.5}   # dx divides 0.077 and 0.035 exactly
+
+
+def fd_z0(w, h, t, er, gap=None, mask=True, grid=FD_GRID):
+    """2-D finite-difference Laplace solve (numpy + scipy sparse LU): node grid, cell permittivities, links
+    weighted by the mean of the two cells they border; grounded plane at y = 0 and grounded walls.  Energy
+    W = 1/2 sum eps (dphi)^2 in eps0 units; Z0 = eta0 / sqrt(C C0) with C = 2 W at 1 V (grid step cancels in 2-D).
+    gap None = microstrip, else CPWG with ground strips of FD_GRID ground_strip at that gap.  Mask: Er, thickness
+    on copper and on bare substrate as MASK_MODEL (NextPCB finder).  Validated: bare microstrip within 1 % of
+    Hammerstad-Jensen for this stackup (see impedance.json)."""
+    import numpy as np
+    import scipy.sparse as sp
+    import scipy.sparse.linalg as spl
+    from scipy import ndimage
+    dx, X, air = grid["dx"], grid["X"], grid["air"]
+    nx, nh, nt = int(round(X / dx)), int(round(h / dx)), int(round(t / dx))
+    ny = nh + int(round(air / dx))
+    eps = np.ones((ny, nx))
+    eps[:nh, :] = er
+    NX, NY = nx + 1, ny + 1
+    fixed = np.zeros((NY, NX), bool)
+    volt = np.zeros((NY, NX))
+    fixed[0, :] = fixed[-1, :] = True
+    fixed[:, 0] = fixed[:, -1] = True
+    cell = np.zeros((ny, nx), bool)
+    strips = [(-w / 2, w / 2, 1.0)]
+    if gap is not None:
+        G = grid["ground_strip"]
+        strips += [(-w / 2 - gap - G, -w / 2 - gap, 0.0), (w / 2 + gap, w / 2 + gap + G, 0.0)]
+    for x0, x1, v in strips:
+        i0, i1 = int(round((x0 + X / 2) / dx)), int(round((x1 + X / 2) / dx))
+        fixed[nh:nh + nt + 1, i0:i1 + 1] = True
+        volt[nh:nh + nt + 1, i0:i1 + 1] = v
+        cell[nh:nh + nt, i0:i1] = True
+    if mask:
+        r = max(1, int(round(MASK_MODEL["t_on_cu"] / dx)))
+        m = np.zeros_like(cell)
+        m[nh:nh + int(round(MASK_MODEL["t_on_sub"] / dx)), :] = True
+        m |= ndimage.binary_dilation(cell, structure=np.ones((2 * r + 1, 2 * r + 1), bool))
+        m[:nh, :] = False
+        m &= ~cell
+        eps[m] = MASK_MODEL["er"]
+
+    def energy(e):
+        pad = np.zeros((ny + 2, nx + 2))
+        pad[1:-1, 1:-1] = e
+        wh = (pad[0:NY, 1:NX] + pad[1:NY + 1, 1:NX]) / 2
+        wv = (pad[1:NY, 0:NX] + pad[1:NY, 1:NX + 1]) / 2
+        idx = np.arange(NY * NX).reshape(NY, NX)
+        a = np.concatenate([idx[:, :-1].ravel(), idx[:-1, :].ravel()])
+        b = np.concatenate([idx[:, 1:].ravel(), idx[1:, :].ravel()])
+        wl = np.concatenate([wh.ravel(), wv.ravel()])
+        N = NY * NX
+        L = sp.coo_matrix((np.concatenate([wl, wl, -wl, -wl]),
+                           (np.concatenate([a, b, a, b]), np.concatenate([a, b, b, a]))), shape=(N, N)).tocsr()
+        f = fixed.ravel()
+        free = ~f
+        phi = volt.ravel().copy()
+        phi[free] = spl.spsolve(L[free][:, free].tocsc(), -L[free][:, f] @ phi[f])
+        return 0.5 * float(phi @ (L @ phi))
+
+    return 376.7303 / math.sqrt((2 * energy(eps)) * (2 * energy(np.ones_like(eps))))
+
+
+def fd_width(target, h, t, er, gap=None, mask=True, w_guess=0.12):
+    """Width for Z0 = target on grid-aligned widths, linear interpolation between the two bracketing cells."""
+    dx = FD_GRID["dx"]
+    cache = {}
+
+    def z(k):
+        if k not in cache:
+            cache[k] = fd_z0(k * dx, h, t, er, gap, mask)
+        return cache[k]
+    k = max(2, int(round(w_guess / dx)))
+    if z(k) > target:
+        while z(k + 1) > target:
+            k += 1
+        lo = k
+    else:
+        while z(k - 1) <= target:
+            k -= 1
+        lo = k - 1
+    zl, zh = z(lo), z(lo + 1)
+    return round((lo + (zl - target) / (zl - zh)) * dx, 4), {round(kk * dx, 5): round(v, 2) for kk, v in sorted(cache.items())}
+
+
+def rf_geometry():
+    s = json.load(open(STACKUP_JSON))["layers"]
+    return {"h": s["dielectric 1"]["thickness"], "t": s["F.Cu"]["thickness"], "er": s["dielectric 1"]["epsilon_r"],
+            "h_b": s["dielectric 5"]["thickness"], "t_b": s["B.Cu"]["thickness"], "er_b": s["dielectric 5"]["epsilon_r"]}
+
+
+def impedance_inputs():
+    g = rf_geometry()
+    return {"h": g["h"], "t": g["t"], "er": g["er"], "er_alt": ER_ALT, "gap": RF_GAP, "target": RF_TARGET,
+            "mask": MASK_MODEL, "grid": FD_GRID, "solver": "setup_board.fd_z0 v1"}
+
+
+def closed_forms(inp):
+    h, t, g = inp["h"], inp["t"], inp["gap"]
+    out = {}
+    for er in (inp["er"], inp["er_alt"]):
+        out["er %.2f" % er] = {
+            "microstrip_hj_bare_w50": round(bisect(lambda w: hj_microstrip(w, h, t, er)[0], inp["target"], 0.02, 0.6), 4),
+            "cpwg_kicad_calculator_bare_w50": round(bisect(lambda w: cpwg_closed(w, g, h, t, er)[0], inp["target"], 0.02, 0.6), 4),
+        }
+    return out
+
+
+def compute_fd(inp):
+    """Field-solver table: CPWG at the spec gap and microstrip, with mask, at the stackup Er and ER_ALT; the RF width
+    is the 0.005-rounded mean of the two CPWG widths; its Z0 is solved at both Er."""
+    h, t, g, T = inp["h"], inp["t"], inp["gap"], inp["target"]
+    res = {"validation": {}}
+    w0 = 0.139
+    res["validation"]["microstrip_bare_w0.139_er%.2f" % inp["er"]] = {
+        "fd": round(fd_z0(w0, h, t, inp["er"], None, False), 2), "hammerstad_jensen": round(hj_microstrip(w0, h, t, inp["er"])[0], 2)}
+    for er in (inp["er"], inp["er_alt"]):
+        key = "er %.2f" % er
+        res[key] = {}
+        guess = bisect(lambda w: hj_microstrip(w, h, t, er)[0], T, 0.02, 0.6) - 0.012
+        for name, gap in (("cpwg_gap%.2f_mask" % g, g), ("microstrip_mask", None)):
+            w, samples = fd_width(T, h, t, er, gap, True, guess)
+            res[key][name] = {"w50": w, "samples_w_z0": samples}
+            print("  fd %s %s: 50 ohm at w = %.4f mm" % (key, name, w), flush=True)
+    wc = [res["er %.2f" % er]["cpwg_gap%.2f_mask" % g]["w50"] for er in (inp["er"], inp["er_alt"])]
+    w_rf = round(round(sum(wc) / 2 / 0.005) * 0.005, 3)
+    res["rf_width"] = {"w": w_rf, "rule": "0.005-rounded mean of the CPWG widths at the two Er",
+                       "z0": {"er %.2f" % er: round(fd_z0(w_rf, h, t, er, g, True), 2) for er in (inp["er"], inp["er_alt"])}}
+    print("  RF width %.3f mm: Z0 %s" % (w_rf, res["rf_width"]["z0"]), flush=True)
+    return res
+
+
+def have_scipy():
+    try:
+        import numpy, scipy.sparse.linalg, scipy.ndimage   # noqa: F401
+        return True
+    except Exception:
+        return False
+
+
+def impedance(recompute=False, write=True):
+    """Return the impedance record, recomputing the field-solver part when asked or when its inputs changed."""
+    inp = impedance_inputs()
+    old = json.load(open(IMPEDANCE_JSON)) if os.path.isfile(IMPEDANCE_JSON) else {}
+    fd = old.get("field_solver") if old.get("inputs") == inp and not recompute else None
+    if fd is None:
+        if have_scipy():
+            print("impedance: running the field solver (a few minutes)", flush=True)
+            fd = compute_fd(inp)
+        else:
+            py = next((p for p in ("/usr/bin/python3", shutil.which("python3") or "") if p and os.path.exists(p) and
+                       subprocess.run([p, "-I", "-c", "import numpy, scipy.sparse.linalg, scipy.ndimage"],
+                                      capture_output=True).returncode == 0), None)
+            if py:
+                print("impedance: field solver in a child process (%s)" % py, flush=True)
+                r = subprocess.run([py, "-I", os.path.abspath(__file__), "impedance", "--fd", "--json-only"],
+                                   capture_output=True, text=True)
+                if r.returncode != 0:
+                    sys.exit("field solver failed:\n" + r.stdout[-2000:] + r.stderr[-2000:])
+                return json.load(open(IMPEDANCE_JSON))
+            print("WARNING: no numpy/scipy anywhere; RF width from the closed forms, field solver not run")
+    rec = {"_comment": "Written by setup_board.py (impedance step). 50 ohm widths for the RF layers: L1 over L2 "
+                       "and L6 over L5 have the same geometry (stackup.json). Widths in mm, Z0 in ohm.",
+           "inputs": inp, "closed_forms": closed_forms(inp), "field_solver": fd}
+    if fd:
+        rec["rf_width_mm"] = fd["rf_width"]["w"]
+    else:
+        cf = rec["closed_forms"]["er %.2f" % inp["er"]]["microstrip_hj_bare_w50"]
+        rec["rf_width_mm"] = round(round(cf / 0.005) * 0.005, 3)
+    if write and json.dumps(rec, sort_keys=True) != json.dumps(old, sort_keys=True):
+        with open(IMPEDANCE_JSON, "w") as f:
+            f.write(json.dumps(rec, indent=2) + "\n")
+    return rec
+
+
+def rf_values(rec):
+    w = rec["rf_width_mm"]
+    fd = rec.get("field_solver") or {}
+    z = fd.get("rf_width", {}).get("z0", {})
+    note = ", ".join("%s ohm at Er %s" % (v, k.split()[1]) for k, v in z.items()) or "closed form only (no field solver)"
+    return {"W_RF": "%.3f" % w, "W_MIN": "%.3f" % (w - 0.005), "W_MAX": "%.3f" % (w + 0.005),
+            "GAP": "%.2f" % RF_GAP, "Z_NOTE": note, "w": w}
+
+
+def impedance_report(rec):
+    L = ["Impedance record (%s)" % os.path.relpath(IMPEDANCE_JSON, HW)]
+    inp = rec["inputs"]
+    L.append("  L1/L6: h %.3f mm, t %.3f mm, Er %.2f (stackup) / %.2f (alt), CPWG gap %.2f, mask %s"
+             % (inp["h"], inp["t"], inp["er"], inp["er_alt"], inp["gap"], inp["mask"]))
+    for k, v in rec["closed_forms"].items():
+        L.append("  closed form %s: microstrip HJ bare w50 %.4f, CPWG (KiCad calculator model) bare w50 %.4f"
+                 % (k, v["microstrip_hj_bare_w50"], v["cpwg_kicad_calculator_bare_w50"]))
+    fd = rec.get("field_solver")
+    if fd:
+        for k, v in fd["validation"].items():
+            L.append("  validation %s: field solver %.2f ohm, Hammerstad-Jensen %.2f ohm" % (k, v["fd"], v["hammerstad_jensen"]))
+        for k in [k for k in fd if k.startswith("er ")]:
+            for name, v in fd[k].items():
+                L.append("  field solver %s %s: w50 %.4f" % (k, name, v["w50"]))
+        L.append("  RF width %.3f mm -> %s" % (fd["rf_width"]["w"], fd["rf_width"]["z0"]))
+    else:
+        L.append("  field solver: not run")
+    return "\n".join(L)
+
+
+# ==============================================================================================================
+# 2. Geometry (pure Python): outline primitives, rule-area polygons
+# ==============================================================================================================
+def outline_primitives():
+    """Edge.Cuts primitives relative to the centre: ("line", a, b), ("arc", start, mid, end), ("circle", c, r)."""
+    B, P, RE, RF = BODY_HALF, HOLE_HALF, EAR_R, EAR_FILLET
+    dxf = math.sqrt((RE + RF) ** 2 - (B - P + RF) ** 2)    # fillet centre offset along the edge from the hole
+
+    def ear(sx, sy):
+        E = (sx * P, sy * P)
+        Fh = (sx * P - sx * dxf, sy * (B + RF))            # fillet on the horizontal edge (y = sy B)
+        Fv = (sx * (B + RF), sy * P - sy * dxf)            # fillet on the vertical edge (x = sx B)
+        on = lambda F: (E[0] + RE * (F[0] - E[0]) / (RE + RF), E[1] + RE * (F[1] - E[1]) / (RE + RF))
+        return {"E": E, "Fh": Fh, "Fv": Fv, "Th": (Fh[0], sy * B), "Tv": (sx * B, Fv[1]), "Uh": on(Fh), "Uv": on(Fv),
+                "M": (E[0] + RE * sx / math.sqrt(2), E[1] + RE * sy / math.sqrt(2))}
+
+    def minor_mid(C, r, a, b):
+        a1, a2 = math.atan2(a[1] - C[1], a[0] - C[0]), math.atan2(b[1] - C[1], b[0] - C[0])
+        d = (a2 - a1 + math.pi) % (2 * math.pi) - math.pi
+        return (C[0] + r * math.cos(a1 + d / 2), C[1] + r * math.sin(a1 + d / 2))
+
+    def ear_path(e, first):          # first: "h" when the path arrives along the horizontal edge
+        if first == "h":
+            seq = [("Th", "Uh", "Fh"), None, ("Uv", "Tv", "Fv")]
+            arc = (e["Uh"], e["M"], e["Uv"])
+        else:
+            seq = [("Tv", "Uv", "Fv"), None, ("Uh", "Th", "Fh")]
+            arc = (e["Uv"], e["M"], e["Uh"])
+        out = []
+        for s in seq:
+            if s is None:
+                out.append(("arc",) + arc)
+            else:
+                a, b, F = e[s[0]], e[s[1]], e[s[2]]
+                out.append(("arc", a, minor_mid(e[s[2]], RF, a, b), b))
+        return out
+
+    L, R, Q = ear(-1, -1), ear(1, 1), ear(-1, 1)            # left, right, rear
+    fc = B - FRONT_R
+    C = (fc, -fc)
+    prims = [("line", L["Th"], (fc, -B)),
+             ("arc", (fc, -B), (C[0] + FRONT_R / math.sqrt(2), C[1] - FRONT_R / math.sqrt(2)), (B, -fc)),
+             ("line", (B, -fc), R["Tv"])]
+    prims += ear_path(R, "v")
+    prims.append(("line", R["Th"], Q["Th"]))
+    prims += ear_path(Q, "h")
+    prims.append(("line", Q["Tv"], L["Tv"]))
+    prims += ear_path(L, "v")
+    for name, (sx, sy) in HOLES.items():
+        prims.append(("circle", (sx * HOLE_HALF, sy * HOLE_HALF), HOLE_D / 2))
+    return prims
+
+
+def circle_pts(c, r, n=72):
+    return [(c[0] + r * math.cos(2 * math.pi * i / n), c[1] + r * math.sin(2 * math.pi * i / n)) for i in range(n)]
+
+
+def rect_along(a, b, hw):
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    n = math.hypot(dx, dy)
+    nx, ny = -dy / n * hw, dx / n * hw
+    return [(a[0] + nx, a[1] + ny), (b[0] + nx, b[1] + ny), (b[0] - nx, b[1] - ny), (a[0] - nx, a[1] - ny)]
+
+
+def stadium(a, b, r, n=36):
+    ang = math.atan2(b[1] - a[1], b[0] - a[0])
+    pts = [(b[0] + r * math.cos(ang - math.pi / 2 + math.pi * i / n), b[1] + r * math.sin(ang - math.pi / 2 + math.pi * i / n)) for i in range(n + 1)]
+    pts += [(a[0] + r * math.cos(ang + math.pi / 2 + math.pi * i / n), a[1] + r * math.sin(ang + math.pi / 2 + math.pi * i / n)) for i in range(n + 1)]
+    return pts
+
+
+CU = ["F.Cu", "In1.Cu", "In2.Cu", "In3.Cu", "In4.Cu", "B.Cu"]
+# (name, layers, keepout flags (footprints, tracks, vias, pads, zone fills), shape, clip to board, spec note)
+def keepouts():
+    K = []
+    for name, (sx, sy) in HOLES.items():
+        K.append(("MOUNT_" + name, ["F.Cu", "B.Cu"], dict(footprints=True),
+                  ("poly", circle_pts((sx * HOLE_HALF, sy * HOLE_HALF), FLANGE_D / 2)), True,
+                  "spec 7: grommet flange D %.1f, no parts, both sides" % FLANGE_D))
+    K.append(("PART_EDGE_BAND", ["F.Cu", "B.Cu"], {}, ("band", PART_EDGE_BAND), False,
+              "spec 7: %.2f mm part keepout band (DRU 'parts: courtyards off the edge band')" % PART_EDGE_BAND))
+    K.append(("RF_VTX_CHAIN", ["In1.Cu"], dict(tracks=True), ("poly", rect_along(*VTX_CHAIN)), True,
+              "spec 10: L2 solid under the 5.8 GHz chain plus 1 mm"))
+    K.append(("RF_VTX_UFL", ["F.Cu"], {}, ("poly", rect_along((UFL_VTX[0] - UFL_HALF, UFL_VTX[1]),
+                                                               (UFL_VTX[0] + UFL_HALF, UFL_VTX[1]), UFL_HALF)), True,
+              "spec 10: U.FL zone, only RF and GND copper on L1 (DRU)"))
+    K.append(("RF_RX_ANT", CU, dict(vias=True, zone_fills=True), ("poly", circle_pts(RX_ANT_HOLE, RX_ANT_KEEPOUT_R)), True,
+              "spec 10: all-layer copper keepout at the RX antenna hole except the feed (DRU)"))
+    edge_pt = (-BODY_HALF, RX_ANT_HOLE[1])
+    K.append(("RF_RX_EXIT", ["F.Cu", "B.Cu"], {}, ("poly", stadium(RX_ANT_HOLE, edge_pt, RX_ANT_EXIT_R)), True,
+              "spec 10: no parts within 3 mm of the antenna wire exit (DRU, warning)"))
+    return K
+
+
+def owned_uuid(key):
+    h = hashlib.sha1(("OpenAIO-Whoop/setup_board/" + key).encode()).hexdigest()
+    return "%s-%s-4%s-8%s-%s" % (UUID_PREFIX, h[0:4], h[4:7], h[7:10], h[10:22])
+
+
+# ==============================================================================================================
+# 3. .kicad_pro and .kicad_dru writers (JSON / text; KiCad re-saves the project afterwards)
+# ==============================================================================================================
+def write_pro(path, rf):
+    p = json.load(open(path))
+    ds = p["board"]["design_settings"]
+    ds["rules"].update(PRO_RULES)
+    ignored_before = sorted(k for k, v in ds["rule_severities"].items() if v == "ignore")
+    ds["rule_severities"].update(SEVERITIES)
+    ds["defaults"].update(TEXT_DEFAULTS)
+    tracks = sorted(set(TRACK_PRESETS + [rf["w"]]))
+    ds["track_widths"] = [0.0] + tracks
+    ds["via_dimensions"] = [{"diameter": 0.0, "drill": 0.0}] + [{"diameter": d, "drill": h} for d, h in VIA_PRESETS]
+    ds["diff_pair_dimensions"] = [{"gap": 0.0, "via_gap": 0.0, "width": 0.0}] + \
+        [{"gap": g, "via_gap": vg, "width": w} for w, g, vg in DIFF_PAIR_PRESETS]
+    ns = p["net_settings"]
+    base = next(c for c in ns["classes"] if c["name"] == "Default")
+    base.update(DEFAULT_CLASS)
+    classes = [base]
+    for name, tw, cl, vd, vh, col, prio, extra in NETCLASSES:
+        c = dict(base)
+        c.update({"name": name, "track_width": rf["w"] if tw is None else tw, "clearance": cl, "via_diameter": vd,
+                  "via_drill": vh, "pcb_color": col, "schematic_color": col, "priority": prio, "tuning_profile": ""})
+        c.update(extra)
+        classes.append(c)
+    ns["classes"] = classes
+    ns["netclass_patterns"] = [{"netclass": n, "pattern": pat} for n, pats in NETCLASS_PATTERNS for pat in pats]
+    ns["net_colors"] = {}            # template per-net colours (+3.3V, +10V, ...) would override the class colours
+    wnm = int(round(rf["w"] * 1e6))
+    p["tuning_profiles"]["tuning_profiles_impedance_geometric"] = [{
+        "profile_name": "RF50", "type": 0, "target_impedance": RF_TARGET, "enable_time_domain_tuning": False,
+        "via_prop_delay": 0,
+        "layer_entries": [
+            {"signal_layer": "F.Cu", "top_reference_layer": "UNDEFINED", "bottom_reference_layer": "In1.Cu",
+             "width": wnm, "diff_pair_gap": 0, "delay": 0},
+            {"signal_layer": "B.Cu", "top_reference_layer": "In4.Cu", "bottom_reference_layer": "UNDEFINED",
+             "width": wnm, "diff_pair_gap": 0, "delay": 0}],
+        "via_overrides": []}]
+    asg = []
+    for cls, pats in COMPONENT_CLASSES:
+        cond = {("FOOTPRINT" if i == 0 else "FOOTPRINT-%d" % i): {"primary": pat} for i, pat in enumerate(pats)}
+        asg.append({"component_class": cls, "conditions_operator": "ANY", "conditions": cond})
+    p["component_class_settings"]["assignments"] = asg
+    with open(path, "w") as f:
+        f.write(json.dumps(p, indent=2) + "\n")
+    return ignored_before
+
+
+CANONICAL = '''(version 1)
+
+# OpenDrone canonical design rules.
+#
+# Copied from hardware-template into every board repo. Keep the block above the
+# marker byte-identical across repos. Board-specific rules go
+# below the marker, never in the middle.
+#
+# This file holds CUSTOM rules only. The fab numbers that gate a JLCPCB order
+# live in the project file under board.design_settings.rules, and come from
+# Board Setup > Import Settings from Another Board, pointed at
+# kicad/templates/OpenDrone-6L. The line standard is:
+#
+#   clearance 0.09   track 0.09   via 0.35 / 0.20 drill
+#   annular 0.075    hole-to-hole 0.20        edge clearance 0.20
+#
+# Do not restate those here. Two copies of a number drift, and the one you are
+# not looking at is the one that is wrong.
+
+(rule "silkscreen over pad"
+  (constraint silk_clearance (min 0.15mm))
+  (condition "A.Type == 'Pad'"))
+
+# --- board-specific rules below this line ------------------------------------
+'''
+MARKER = "# --- board-specific rules below this line ------------------------------------\n"
+
+
+def dru_text(rf, existing):
+    head = existing[:existing.index(MARKER) + len(MARKER)] if MARKER in existing else None
+    if head != CANONICAL:
+        sys.exit("the canonical block of %s differs from hardware-template; not touching it" % DRU)
+    sub = dict(rf)
+    sub["SOLDER_PAD_FPID"] = " || ".join("A.memberOfFootprint('%s')" % p for p in SOLDER_PAD_FPIDS)
+    sub["BAND"] = "%.2f" % PART_EDGE_BAND
+    out = [CANONICAL]
+    for name, comment, body in RULES:
+        out.append("#\n" if name == "header" else "\n")
+        for c in comment:
+            for k, v in sub.items():
+                c = c.replace("@%s@" % k, str(v))
+            out.append(("# " + c).rstrip() + "\n")
+        if body:
+            for k, v in sub.items():
+                body = body.replace("@%s@" % k, str(v))
+            out.append('(rule "%s"\n%s)\n' % (name, body))
+    text = "".join(out)
+    if "@" in re.sub(r"#.*", "", text):
+        sys.exit("unfilled @ marker in the DRU")
+    return text
+
+
+# ==============================================================================================================
+# 4. Board (pcbnew)
+# ==============================================================================================================
+def quiet_pcbnew():
+    saved, null = os.dup(2), os.open(os.devnull, os.O_WRONLY)
+    os.dup2(null, 2)
+    try:
+        import pcbnew
+    finally:
+        os.dup2(saved, 2)
+        os.close(saved)
+        os.close(null)
+    return pcbnew
+
+
+def stackup_sexpr(indent):
+    spec = json.load(open(STACKUP_JSON))
+    L = spec["layers"]
+
+    def fmt(v):
+        return ("%.4f" % v).rstrip("0").rstrip(".")
+    out = [indent + "(stackup"]
+    rows = [("F.SilkS", "Top Silk Screen"), ("F.Paste", "Top Solder Paste"), ("F.Mask", "Top Solder Mask")]
+    rows += [(n, None) for n in L if n not in ("F.Mask", "B.Mask")]
+    rows += [("B.Mask", "Bottom Solder Mask"), ("B.Paste", "Bottom Solder Paste"), ("B.SilkS", "Bottom Silk Screen")]
+    for name, typ in rows:
+        v = L.get(name, {})
+        out.append(indent + '\t(layer "%s"' % name)
+        if name.endswith(".Cu"):
+            out.append(indent + '\t\t(type "copper")')
+        elif name.startswith("dielectric"):
+            out.append(indent + '\t\t(type "%s")' % v["type"])
+        else:
+            out.append(indent + '\t\t(type "%s")' % typ)
+        if name.endswith("SilkS"):
+            out.append(indent + '\t\t(color "%s")' % SILK_COLOR)
+        if name.endswith("Mask"):
+            out.append(indent + '\t\t(color "%s")' % MASK_STACKUP["color"])
+        if "thickness" in v:
+            out.append(indent + "\t\t(thickness %s)" % fmt(v["thickness"]))
+        if name.startswith("dielectric"):
+            out.append(indent + '\t\t(material "%s")' % v["material"])
+            out.append(indent + "\t\t(epsilon_r %s)" % fmt(v["epsilon_r"]))
+            out.append(indent + "\t\t(loss_tangent %s)" % fmt(v["loss_tangent"]))
+        if name.endswith("Mask"):
+            out.append(indent + "\t\t(epsilon_r %s)" % fmt(MASK_STACKUP["epsilon_r"]))
+            out.append(indent + "\t\t(loss_tangent %s)" % fmt(MASK_STACKUP["loss_tangent"]))
+        out.append(indent + "\t)")
+    out.append(indent + '\t(copper_finish "%s")' % spec.get("copper_finish", "ENIG"))
+    out.append(indent + "\t(dielectric_constraints yes)")      # impedance controlled
+    out.append(indent + ")")
+    return "\n".join(out), round(sum(v.get("thickness", 0) for v in L.values()), 4)
+
+
+def balanced_end(text, start):
+    depth, i, instr = 0, start, False
+    while i < len(text):
+        c = text[i]
+        if instr:
+            if c == "\\":
+                i += 1
+            elif c == '"':
+                instr = False
+        elif c == '"':
+            instr = True
+        elif c == "(":
+            depth += 1
+        elif c == ")":
+            depth -= 1
+            if depth == 0:
+                return i + 1
+        i += 1
+    raise ValueError("unbalanced s-expression")
+
+
+def splice_stackup(path):
+    text = open(path).read()
+    i = text.find("(stackup")
+    if i < 0:
+        raise SystemExit("pcbnew wrote no stackup node")
+    j = balanced_end(text, i)
+    ls = text.rfind("\n", 0, i) + 1
+    sx, total = stackup_sexpr(text[ls:i])
+    open(path, "w").write(text[:ls] + sx + text[j:])
+    return total
+
+
+def build_board(path, P):
+    """All pcbnew edits on the temp board.  Returns a summary dict."""
+    mm = P.FromMM
+    cx, cy = CENTRE
+    V = lambda p: P.VECTOR2I(mm(cx + p[0]), mm(cy + p[1]))
+    b = P.LoadBoard(path)
+    ds = b.GetDesignSettings()
+    if b.GetCopperLayerCount() != 6:
+        b.SetCopperLayerCount(6)
+    for lname, kind in (("In1.Cu", P.LT_POWER), ("In4.Cu", P.LT_POWER), ("In3.Cu", P.LT_MIXED),
+                        ("In2.Cu", P.LT_SIGNAL), ("F.Cu", P.LT_SIGNAL), ("B.Cu", P.LT_SIGNAL)):
+        b.SetLayerType(b.GetLayerID(lname), kind)
+    ds.m_HasStackup = True
+    ds.m_SolderMaskExpansion = mm(MASK_EXPANSION)
+    ds.m_SolderMaskMinWidth = mm(MASK_MIN_WEB)
+    ds.m_TentViasFront = ds.m_TentViasBack = True
+    ds.m_FillVias = ds.m_CapVias = VIA_FILL_CAP
+    ds.SetGridOrigin(V((0, 0)))
+    ds.SetAuxOrigin(V((0, 0)))
+    tb = b.GetTitleBlock()
+    tb.SetRevision(TITLE_REV)
+    b.SetTitleBlock(tb)
+
+    # remove everything this script owns, and any stray board-level outline
+    removed = 0
+    for item in list(b.GetDrawings()) + list(b.Zones()):
+        own = item.m_Uuid.AsString().startswith(UUID_PREFIX + "-")
+        if own or (item.GetClass() == "PCB_SHAPE" and item.GetLayer() == P.Edge_Cuts):
+            if not own:
+                print("  note: removing a board-level Edge.Cuts item the script did not draw")
+            b.Delete(item)
+            removed += 1
+
+    def add_shape(kind, layer, key, *geo, width=EDGE_LINE_W):
+        s = P.PCB_SHAPE(b)
+        s.SetLayer(layer)
+        s.SetWidth(mm(width))
+        if kind == "line":
+            s.SetShape(P.SHAPE_T_SEGMENT)
+            s.SetStart(V(geo[0]))
+            s.SetEnd(V(geo[1]))
+        elif kind == "arc":
+            s.SetShape(P.SHAPE_T_ARC)
+            s.SetArcGeometry(V(geo[0]), V(geo[1]), V(geo[2]))
+        elif kind == "circle":
+            s.SetShape(P.SHAPE_T_CIRCLE)
+            s.SetCenter(V(geo[0]))
+            s.SetEnd(V((geo[0][0] + geo[1], geo[0][1])))
+        s.SetUuid(P.KIID(owned_uuid(key)))
+        b.Add(s)
+
+    def add_text(layer, key, text, pos, size=1.0, thick=0.15, mirrored=False):
+        t = P.PCB_TEXT(b)
+        t.SetLayer(layer)
+        t.SetText(text)
+        t.SetPosition(V(pos))
+        t.SetTextSize(P.VECTOR2I(mm(size), mm(size)))
+        t.SetTextThickness(mm(thick))
+        t.SetMirrored(mirrored)
+        t.SetUuid(P.KIID(owned_uuid(key)))
+        b.Add(t)
+
+    for i, (kind, *geo) in enumerate(outline_primitives()):
+        add_shape(kind, P.Edge_Cuts, "edge/%d" % i, *geo)
+
+    # guides (not fabricated): frame patterns, front marker, grommet flanges, layer roles
+    eco1, eco2, u1, cmts = (b.GetLayerID(n) for n in ("User.Eco1", "User.Eco2", "User.1", "User.Comments"))
+    for s in FRAME_PATTERNS:
+        for qx in (-1, 1):
+            for qy in (-1, 1):
+                c = (qx * s / 2, qy * s / 2)
+                k = "eco1/%.1f/%d%d" % (s, qx, qy)
+                add_shape("circle", eco1, k + "/c", c, 0.5, width=0.05)
+                add_shape("line", eco1, k + "/h", (c[0] - 0.8, c[1]), (c[0] + 0.8, c[1]), width=0.05)
+                add_shape("line", eco1, k + "/v", (c[0], c[1] - 0.8), (c[0], c[1] + 0.8), width=0.05)
+    add_text(eco1, "eco1/label", "FRAME 25.5 / 26.0", (0.0, -17.5), size=0.8, thick=0.1)
+    a0, a1 = (12.5, -12.5), (16.5, -16.5)
+    add_shape("line", eco2, "eco2/arrow", a0, a1, width=0.15)
+    add_shape("line", eco2, "eco2/head1", a1, (a1[0] - 1.0, a1[1]), width=0.15)
+    add_shape("line", eco2, "eco2/head2", a1, (a1[0], a1[1] + 1.0), width=0.15)
+    add_text(eco2, "eco2/text", "FRONT", (17.0, -18.2), size=1.0, thick=0.15)
+    for name, (sx, sy) in HOLES.items():
+        add_shape("circle", u1, "user1/" + name, (sx * HOLE_HALF, sy * HOLE_HALF), FLANGE_D / 2, width=0.05)
+    add_text(cmts, "cmts/layers", "F.Cu sig | In1 GND | In2 sig | In3 +BATT/PWR | In4 GND | B.Cu sig",
+             (0.0, 18.5), size=0.8, thick=0.1)
+
+    # outline polygon (for clipping and the band); arcs approximated at the board's max error
+    poly = P.SHAPE_POLY_SET()
+    if not b.GetBoardPolygonOutlines(poly, False):
+        raise SystemExit("Edge.Cuts outline is not closed")
+
+    def to_poly(pts):
+        s = P.SHAPE_POLY_SET()
+        s.NewOutline()
+        for p in pts:
+            v = V(p)
+            s.Append(v.x, v.y)
+        return s
+
+    zones = []
+    for name, layers, flags, shape, clip, note in keepouts():
+        if shape[0] == "band":
+            outer = P.SHAPE_POLY_SET(poly.COutline(0))       # outer contour only; holes have MOUNT_* areas
+            inner = P.SHAPE_POLY_SET(outer)
+            inner.Deflate(mm(shape[1]), P.CORNER_STRATEGY_ROUND_ALL_CORNERS, mm(0.002))
+            area = P.SHAPE_POLY_SET()
+            area.BooleanSubtract(outer, inner)
+        else:
+            area = to_poly(shape[1])
+            if clip:
+                area.BooleanIntersection(poly)
+        if area.OutlineCount() != 1:
+            raise SystemExit("rule area %s has %d outlines (a zone keeps one)" % (name, area.OutlineCount()))
+        z = P.ZONE(b)
+        z.SetIsRuleArea(True)
+        z.SetZoneName(name)
+        ls = P.LSET()
+        for ln in layers:
+            ls.AddLayer(b.GetLayerID(ln))
+        z.SetLayerSet(ls)
+        z.SetDoNotAllowFootprints(bool(flags.get("footprints")))
+        z.SetDoNotAllowTracks(bool(flags.get("tracks")))
+        z.SetDoNotAllowVias(bool(flags.get("vias")))
+        z.SetDoNotAllowPads(bool(flags.get("pads")))
+        z.SetDoNotAllowZoneFills(bool(flags.get("zone_fills")))
+        z.Outline().RemoveAllContours()
+        z.Outline().Append(area)
+        z.SetUuid(P.KIID(owned_uuid("zone/" + name)))
+        b.Add(z)
+        zones.append((name, layers, sorted(k for k, v in flags.items() if v), round(area.Area() / 1e12, 2), note))
+    if not P.SaveBoard(path, b):
+        raise SystemExit("pcbnew could not save the temp board")
+    return {"removed": removed, "zones": zones}
+
+
+def verify_board(path, P):
+    """Read the saved board back: stackup values, settings, outline, zones.  Returns report lines."""
+    text = open(path).read()
+    spec = json.load(open(STACKUP_JSON))
+    i = text.find("(stackup")
+    s = text[i:balanced_end(text, i)]
+    bad = []
+    for name, v in spec["layers"].items():
+        m = re.search(r'\(layer "%s"(.*?)\n\t\t\t\)' % re.escape(name), s, re.S)
+        if not m:
+            bad.append("stackup layer %s missing" % name)
+            continue
+        blk = m.group(1)
+        for key in ("thickness", "epsilon_r", "loss_tangent"):
+            if key in v:
+                mm_ = re.search(r"\(%s ([\d.]+)\)" % key, blk)
+                if not mm_ or abs(float(mm_.group(1)) - v[key]) > 1e-6:
+                    bad.append("%s %s" % (name, key))
+        for key in ("material", "type"):
+            if key in v and '(%s "%s")' % (key, v[key]) not in blk:
+                bad.append("%s %s" % (name, key))
+    for need in ('(copper_finish "%s")' % spec.get("copper_finish", "ENIG"), "(dielectric_constraints yes)",
+                 '(color "%s")' % MASK_STACKUP["color"], '(color "%s")' % SILK_COLOR, "(filling yes)", "(capping yes)",
+                 '(rev "%s")' % TITLE_REV):
+        if need not in text:
+            bad.append("missing " + need)
+    b = P.LoadBoard(path)
+    ds = b.GetDesignSettings()
+    mm = lambda v: round(P.ToMM(v), 4)
+    poly = P.SHAPE_POLY_SET()
+    closed = b.GetBoardPolygonOutlines(poly, False)
+    bb = poly.BBox()
+    holes = [poly.CHole(0, j).BBox() for j in range(poly.HoleCount(0))] if closed else []
+    rep = {
+        "copper_layers": b.GetCopperLayerCount(), "thickness": mm(ds.GetBoardThickness()),
+        "mask_expansion": mm(ds.m_SolderMaskExpansion), "mask_min_web": mm(ds.m_SolderMaskMinWidth),
+        "outline_closed": closed, "outline_bbox": [mm(bb.GetLeft()), mm(bb.GetTop()), mm(bb.GetRight()), mm(bb.GetBottom())],
+        "outline_size": [mm(bb.GetWidth()), mm(bb.GetHeight())], "outline_area": round(poly.Area() / 1e12, 2),
+        "holes": [(round(mm(h.Centre().x) - CENTRE[0], 3), round(mm(h.Centre().y) - CENTRE[1], 3), mm(h.GetWidth())) for h in holes],
+        "grid_origin": [mm(ds.GetGridOrigin().x), mm(ds.GetGridOrigin().y)],
+        "aux_origin": [mm(ds.GetAuxOrigin().x), mm(ds.GetAuxOrigin().y)],
+        "zones": sorted((z.GetZoneName(), z.GetIsRuleArea()) for z in b.Zones()),
+    }
+    if rep["copper_layers"] != 6:
+        bad.append("copper layers")
+    if not closed or len(holes) != len(HOLES):
+        bad.append("outline closed %s with %d holes" % (closed, len(holes)))
+    if bad:
+        raise SystemExit("board verification failed: " + "; ".join(bad))
+    return rep
+
+
+def verify_pro(path, rf):
+    p = json.load(open(path))
+    ds = p["board"]["design_settings"]
+    bad = [k for k, v in PRO_RULES.items() if abs(ds["rules"].get(k, -1) - v) > 1e-9]
+    bad += ["severity " + k for k, v in SEVERITIES.items() if ds["rule_severities"].get(k) != v]
+    names = {c["name"]: c for c in p["net_settings"]["classes"]}
+    bad += ["netclass " + n[0] for n in NETCLASSES if n[0] not in names]
+    if names.get("RF", {}).get("tuning_profile") != "RF50":
+        bad.append("RF tuning profile link")
+    prof = p["tuning_profiles"]["tuning_profiles_impedance_geometric"]
+    if not prof or prof[0]["layer_entries"][0]["width"] != int(round(rf["w"] * 1e6)):
+        bad.append("tuning profile RF50")
+    if len(p["component_class_settings"]["assignments"]) != len(COMPONENT_CLASSES):
+        bad.append("component classes")
+    if len(p["net_settings"]["netclass_patterns"]) != sum(len(x[1]) for x in NETCLASS_PATTERNS):
+        bad.append("netclass patterns")
+    if bad:
+        raise SystemExit(".kicad_pro verification failed (KiCad dropped or changed): " + ", ".join(bad))
+
+
+# ==============================================================================================================
+# 5. Self test: synthetic items on a copy of the generated board, kicad-cli DRC, expected hits / no hits
+# ==============================================================================================================
+def selftest(P, rf):
+    mm = P.FromMM
+    tmp = tempfile.mkdtemp(prefix="setup_board_selftest_")
+    for src in (PCB, PRO, DRU):
+        shutil.copy(src, os.path.join(tmp, os.path.basename(src)))
+    for t in ("fp-lib-table", "sym-lib-table"):
+        if os.path.exists(os.path.join(HW, t)):
+            shutil.copy(os.path.join(HW, t), tmp)
+    os.symlink(os.path.join(HW, "KiCad-Library"), os.path.join(tmp, "KiCad-Library"))
+    pcb = os.path.join(tmp, os.path.basename(PCB))
+    b = P.LoadBoard(pcb)
+    cx, cy = CENTRE
+    V = lambda x, y: P.VECTOR2I(mm(cx + x), mm(cy + y))
+    nets, cases = {}, []
+    lib = os.path.join(HW, "KiCad-Library", "footprint", "OpenDrone.pretty")
+
+    def net(name):
+        if name not in nets:
+            n = P.NETINFO_ITEM(b, name)
+            b.Add(n)
+            nets[name] = n
+        return nets[name]
+
+    def trk(x1, y1, x2, y2, w, name, layer="F.Cu"):
+        t = P.PCB_TRACK(b)
+        t.SetStart(V(x1, y1))
+        t.SetEnd(V(x2, y2))
+        t.SetWidth(mm(w))
+        t.SetLayer(b.GetLayerID(layer))
+        t.SetNet(net(name))
+        b.Add(t)
+
+    def via(x, y, d, dr, name, kind=None):
+        v = P.PCB_VIA(b)
+        v.SetPosition(V(x, y))
+        v.SetViaType(kind if kind is not None else P.VIATYPE_THROUGH)
+        v.SetWidth(mm(d))
+        v.SetDrill(mm(dr))
+        if kind == P.VIATYPE_MICROVIA:
+            v.SetLayerPair(P.F_Cu, b.GetLayerID("In1.Cu"))
+        else:
+            v.SetLayerPair(P.F_Cu, P.B_Cu)
+        v.SetNet(net(name))
+        b.Add(v)
+
+    def fp(name, ref, x, y, rot=0, back=False, padnet=None, edge_gap=None):
+        f = P.FootprintLoad(lib, name)
+        f.SetFPID(P.LIB_ID("OpenDrone", name))
+        f.SetReference(ref)
+        f.SetPosition(V(x, y))
+        f.SetOrientationDegrees(rot)
+        b.Add(f)
+        if back:
+            f.Flip(f.GetPosition(), P.FLIP_DIRECTION_LEFT_RIGHT)
+        for p in f.Pads():
+            p.SetNet(net(padnet or "/T/%s_%s" % (ref, p.GetNumber())))
+        if edge_gap is not None:          # move so the nearest pad edge is edge_gap from the top (-) or bottom (+) edge
+            top = min(p.GetBoundingBox().GetTop() for p in f.Pads())
+            bot = max(p.GetBoundingBox().GetBottom() for p in f.Pads())
+            want = mm(cy - BODY_HALF + edge_gap) - top if y < 0 else mm(cy + BODY_HALF - edge_gap) - bot
+            f.Move(P.VECTOR2I(0, want))
+        return f
+
+    def text(x, y, s, layer="F.SilkS"):
+        t = P.PCB_TEXT(b)
+        t.SetText(s)
+        t.SetLayer(b.GetLayerID(layer))
+        t.SetPosition(V(x, y))
+        t.SetTextSize(P.VECTOR2I(mm(1.0), mm(1.0)))
+        t.SetTextThickness(mm(0.15))
+        b.Add(t)
+
+    def case(tag, expect, xy, r=0.6):
+        cases.append((tag, expect, (cx + xy[0], cy + xy[1]), r))
+
+    W = rf["w"]
+    # standard numbers
+    via(-6, -9, 0.35, 0.20, "/T/V1"); case("via 0.35 / 0.20 (D6 standard)", None, (-6, -9))
+    via(-6, -7, 0.30, 0.20, "/T/V2"); case("via 0.30 / 0.20", "min diameter 0.3500", (-6, -7))
+    via(-4, -9, 0.35, 0.20, "/T/V3"); via(-3.55, -9, 0.35, 0.20, "/T/V4")
+    case("vias of two nets, holes 0.25 apart", "rule 'hole to hole, different nets 0.30'", (-3.8, -9))
+    via(-4, -7, 0.35, 0.20, "/T/V5"); via(-3.55, -7, 0.35, 0.20, "/T/V5")
+    case("vias of one net, holes 0.25 apart", None, (-3.8, -7))
+    via(-2, -9, 0.35, 0.15, "/T/V6", P.VIATYPE_MICROVIA); case("microvia", "through vias only", (-2, -9))
+    # RF
+    trk(-1, -9, 1, -9, W, "/VTX/RF_OUT"); case("RF track at the 50 ohm width", None, (0, -9))
+    trk(-1, -7, 1, -7, 0.14, "/VTX/RF_IN"); case("RF track 0.14 wide", "RF: 50 ohm width", (0, -7))
+    via(2, -9, 0.35, 0.20, "/VTX/RF_X"); case("via on an RF net", "RF: no vias", (2, -9))
+    ux, uy = UFL_VTX
+    trk(ux - 0.5, uy, ux + 0.5, uy, 0.1, "/T/SIG1"); case("signal track in RF_VTX_UFL", "RF_VTX_UFL", (ux, uy))
+    trk(ux - 0.5, uy + 1, ux + 0.5, uy + 1, 0.2, "GND"); case("GND track in RF_VTX_UFL", None, (ux, uy + 1), r=0.3)
+    trk(4.0, -4.5, 5.0, -4.5, 0.1, "/T/SIG2", "In1.Cu"); case("In1 track under the VTX chain", "RF_VTX_CHAIN", (4.5, -4.5))
+    trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 track (plane warning)", "In1 and In4 are solid GND planes", (-2.5, 3))
+    ax, ay = RX_ANT_HOLE
+    trk(ax + 0.2, ay - 0.6, ax + 1.0, ay - 0.6, 0.1, "/T/SIG4", "B.Cu"); case("signal track in RF_RX_ANT", "RF_RX_ANT", (ax + 0.6, ay - 0.6))
+    trk(ax + 0.2, ay + 0.6, ax + 1.0, ay + 0.6, W, "/RX/ANT_FEED", "B.Cu"); case("RF feed in RF_RX_ANT", None, (ax + 0.6, ay + 0.6), r=0.3)
+    # SMD pad to track 0.13, pads 0.30 from the edge, edge band, flange, courtyard classes
+    f1 = fp("C_0402_1005Metric", "C1", -6, 4)
+    p1 = [p for p in f1.Pads() if p.GetNumber() == "1"][0]
+    px, py = P.ToMM(p1.GetPosition().x) - cx, P.ToMM(p1.GetPosition().y) - cy
+    edge_y = py - P.ToMM(p1.GetSize(P.F_Cu).y) / 2
+    trk(px - 0.6, edge_y - 0.11 - 0.05, px + 0.6, edge_y - 0.11 - 0.05, 0.1, "/T/SIG5")
+    case("track 0.11 from an SMD pad", "SMD pad to track and pour 0.13", (px, edge_y - 0.16), r=0.4)
+    fp("C_0402_1005Metric", "C2", 0, -BODY_HALF + 0.8, edge_gap=0.25)
+    case("0402 near the top edge (pad 0.25 from it)", "parts: pads 0.30 from the edge", (0, -BODY_HALF + 0.6), r=0.9)
+    case("0402 courtyard in the edge band", "parts: courtyards off the edge band", (0, -BODY_HALF + 0.6), r=0.9)
+    fp("small_pad", "J1", 4, BODY_HALF - 1.0, edge_gap=0.25)
+    case("small_pad solder pad 0.25 from the edge", None, (4, BODY_HALF - 0.8), r=0.6)
+    hx, hy = HOLES["REAR"][0] * HOLE_HALF, HOLES["REAR"][1] * HOLE_HALF
+    fp("C_0201_0603Metric", "C3", hx + 2.25, hy - 0.3)
+    case("0201 on the rear grommet flange", "MOUNT_REAR", (hx + 2.25, hy - 0.3), r=0.7)
+    fA = fp("C_0402_1005Metric", "C4", 2, 4)
+    w402 = P.ToMM(fA.GetCourtyard(P.F_CrtYd).BBox().GetWidth())
+    fp("C_0402_1005Metric", "C5", 2 + w402 + 0.02, 4)
+    case("two 0402, courtyards 0.02 apart", "0402 to 0402: +0.05", (2 + (w402 + 0.02) / 2, 4), r=0.8)
+    fB = fp("C_0201_0603Metric", "C6", 2, 7)
+    w201 = P.ToMM(fB.GetCourtyard(P.F_CrtYd).BBox().GetWidth())
+    fp("C_0201_0603Metric", "C7", 2 + w201 + 0.02, 7)
+    case("two 0201, courtyards 0.02 apart", None, (2 + (w201 + 0.02) / 2, 7), r=0.3)
+    fT = fp("CONN-SMD_SM03B-SRSS-TB-LF-SN-P", "J2", -4, -3)
+    tb = fT.GetCourtyard(P.F_CrtYd).BBox()
+    fp("C_0201_0603Metric", "C8", P.ToMM(tb.GetRight()) - cx + w201 / 2 + 0.2, -3)
+    case("0201 0.2 mm from an SH1.0 courtyard", "tall parts: 0.5 to 0201 and 0402",
+         (P.ToMM(tb.GetRight()) - cx + 0.1, -3), r=1.0)
+    text(-6, -BODY_HALF + 0.3, "X"); case("silk text over the edge", "silk 0.20 from the edge", (-6, -BODY_HALF + 0.3), r=0.8)
+    # netclass patterns
+    sample = {"+BATT": "VBAT", "/ESC1/MOTORA": "Phase", "/ESC3/GHB": "Gate", "+3V3_RX": "Power", "+5V": "Power",
+              "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog", "/VTX/RF_OUT": "RF",
+              "/RX/ANT_FEED": "RF", "/USB_DP": "USB", "/USB_DN": "USB", "/MOTOR1": "Default", "/SPI0.SCK": "Default"}
+    for n in sample:
+        net(n)
+    P.SaveBoard(pcb, b)
+    shutil.copy(PRO, os.path.join(tmp, os.path.basename(PRO)))
+    b2 = P.LoadBoard(pcb)
+    nsets = b2.GetDesignSettings().m_NetSettings
+    got = {n: nsets.GetEffectiveNetClass(n).GetName() for n in sample}
+    rpt = os.path.join(tmp, "drc.json")
+    subprocess.run(["kicad-cli", "pcb", "drc", "--severity-all", "--format", "json", "-o", rpt, pcb],
+                   capture_output=True, text=True)
+    viol = json.load(open(rpt))["violations"]
+    results = []
+    for tag, expect, (x, y), r in cases:
+        near = []
+        for v in viol:
+            if any(abs(it["pos"]["x"] - x) < r and abs(it["pos"]["y"] - y) < r for it in v["items"]):
+                near.append(v["type"] + ": " + v["description"] + " | " + " / ".join(i["description"] for i in v["items"]))
+        ok = (not [n for n in near if not n.startswith(("track_dangling", "via_dangling", "unconnected", "isolated",
+                                                       "solder_mask_bridge", "lib_footprint", "missing_courtyard"))]) \
+            if expect is None else any(expect in n for n in near)
+        results.append((ok, tag, expect, near))
+    for n, want in sample.items():
+        results.append((got[n].split(",")[0] == want, "net %s -> class %s" % (n, want), None,
+                        ["got " + got[n]] if got[n].split(",")[0] != want else []))
+    return tmp, results
+
+
+# ==============================================================================================================
+# 6. Main
+# ==============================================================================================================
+def run(check=False, recompute_fd=False, do_selftest=False):
+    rec = impedance(recompute_fd, write=not check)
+    rf = rf_values(rec)
+    print(impedance_report(rec))
+    P = quiet_pcbnew()
+    tmp = tempfile.mkdtemp(prefix="setup_board_")
+    try:
+        t_pcb, t_pro, t_dru = (os.path.join(tmp, os.path.basename(x)) for x in (PCB, PRO, DRU))
+        for s, d in ((PCB, t_pcb), (PRO, t_pro), (DRU, t_dru)):
+            shutil.copy(s, d)
+        ignored_before = write_pro(t_pro, rf)
+        open(t_dru, "w").write(dru_text(rf, open(DRU).read()))
+        summary = build_board(t_pcb, P)
+        total = splice_stackup(t_pcb)
+        b = P.LoadBoard(t_pcb)
+        b.GetDesignSettings().SetBoardThickness(P.FromMM(total))
+        if not P.SaveBoard(t_pcb, b):
+            raise SystemExit("pcbnew could not re-save the board after the stackup splice")
+        b = P.LoadBoard(t_pcb)                                  # final normalising round trip
+        if not P.SaveBoard(t_pcb, b):
+            raise SystemExit("pcbnew could not re-save the board")
+        rep = verify_board(t_pcb, P)
+        verify_pro(t_pro, rf)
+        print("re-enabled DRC checks (%d): %s" % (len(SEVERITIES), ", ".join("%s=%s" % kv for kv in sorted(SEVERITIES.items()))))
+        if ignored_before:
+            still = sorted(set(ignored_before) - set(SEVERITIES))
+            print("checks ignored before this run: %d%s" % (len(ignored_before), (", still ignored: " + ", ".join(still)) if still else ""))
+        print("board: %d copper layers, thickness %.3f mm (stackup sum incl. masks), mask expansion %.2f, min web %.2f"
+              % (rep["copper_layers"], rep["thickness"], rep["mask_expansion"], rep["mask_min_web"]))
+        print("outline: closed %s, bbox %s, size %s, area %.2f mm2 net of holes" % (rep["outline_closed"], rep["outline_bbox"], rep["outline_size"], rep["outline_area"]))
+        print("holes (relative to the centre): %s" % rep["holes"])
+        print("grid origin %s, aux origin %s" % (rep["grid_origin"], rep["aux_origin"]))
+        for z in summary["zones"]:
+            print("rule area %-15s %-38s keepout %-22s %6.2f mm2  %s" % (z[0], ",".join(z[1]), ",".join(z[2]) or "named only", z[3], z[4]))
+        changed = []
+        for s, d in ((t_pcb, PCB), (t_pro, PRO), (t_dru, DRU)):
+            if open(s, "rb").read() != open(d, "rb").read():
+                changed.append(os.path.relpath(d, os.path.dirname(HW)))
+                if not check:
+                    shutil.copy(s, d)
+        if check:
+            print("check: %s" % ("would change " + ", ".join(changed) if changed else "project files are up to date"))
+            return 1 if changed else 0
+        print("wrote: %s" % (", ".join(changed) if changed else "nothing (already up to date)"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    if do_selftest:
+        st, results = selftest(P, rf)
+        bad = 0
+        for ok, tag, expect, near in results:
+            print(("PASS " if ok else "FAIL ") + tag + ("  [expect: %s]" % expect if expect else "  [expect: no violation]"))
+            if not ok:
+                bad += 1
+                for n in near:
+                    print("      found:", n[:200])
+        print("selftest scratch %s | failures: %d" % (st, bad))
+        return 1 if bad else 0
+    return 0
+
+
+def main():
+    a = sys.argv[1:]
+    if "-h" in a or "--help" in a:
+        print(__doc__)
+        return 0
+    if a and a[0] == "impedance":
+        rec = impedance("--fd" in a, write=True)
+        if "--json-only" not in a:
+            print(impedance_report(rec))
+        return 0
+    return run(check="--check" in a, recompute_fd="--fd" in a, do_selftest="--selftest" in a)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
