@@ -5,8 +5,9 @@ flight controller (FC), the resource allocation behind it, the planned Betafligh
 board config, and the pin plans of the receiver MCU and the four ESC MCUs. P4
 (schematic) draws from it; anything that moves later is named as an open item in §9.
 
-Date 2026-10-07, revised the same day with DESIGN-SPEC review round 1 (second user UART
-dropped, VTX drive stage, ESC MCU grade, power-sequencing cases). Inputs:
+Date 2026-10-07, revised the same day with DESIGN-SPEC review rounds 1 and 2 (second user UART
+dropped, VTX drive stage specified against the ELRS PWM window, switched PA reference, ESC MCU
+grade, EFM8 VDD ripple, boost held off on USB, in-sheet ESC net names). Inputs:
 [DESIGN-SPEC.md](DESIGN-SPEC.md) §4.4-4.10 and §12, research
 tracks 01 (Matrix 1S 5IN1 II) and 05 (FC/RX/firmware), the house OpenFC-Lite-Mini
 schematic (netlist exported with kicad-cli 10), and source code fetched fresh on
@@ -28,7 +29,7 @@ netlist), **S** screened (secondary), **I** inferred (my reasoning, given).
 | UARTs | UART0 (GPIO0/1) = CRSF to the onboard ESP32 ELRS RX. UART1 (GPIO4/5) = pads TX1/RX1. No PIOUART |
 | SPI | SPI1 = gyro (CS GPIO13, INT GPIO9, CLKIN GPIO6). SPI0 = 16 MB NOR blackbox (CS GPIO21). The OSD is a PIO framebuffer (PIO2, GPIO14/15/16), not SPI. The VTX SPI sits on the **ESP32**, not on the FC |
 | DMA | 8 of 16 channels: SPI0 2, SPI1 2, OSD 2, LED strip 1, ADC 1. RP2350 claims channels at run time, and any channel serves any request, so streams cannot collide |
-| Conflicts found | None blocks the layout. Flags in §9: the OpenFC LED-strip stage inverts the signal, so a translator replaces it (F1); MSP-VTX over CRSF cannot be made the default in a config.h on 2026.6.2 (F2); a 2 MB flash layout is mandatory (F3); EFM8 logic-high margin is 0.2 V at 4.35 V (F4); the LED strip needs the PIO1 index override (F5); the ESP32 Wi-Fi pin gets a minimal radiator (F9); the VTX drive stage inverts (F15); USB-only back-feed and battery-first sequencing are bench items (F16) |
+| Conflicts found | None blocks the layout. Flags in §9: the OpenFC LED-strip stage inverts the signal, so a translator replaces it (F1); MSP-VTX over CRSF cannot be made the default in a config.h on 2026.6.2 (F2); a 2 MB flash layout is mandatory (F3); EFM8 logic-high margin is 0.04-0.11 V at a 4.35 V cell with the 96 kHz ripple, negative at 48 kHz (F4); the LED strip needs the PIO1 index override (F5); the ESP32 Wi-Fi pin gets a minimal radiator and auto-Wi-Fi is a flash option, not a target key (F9); the VTX drive stage inverts and is specified against the ELRS PWM window (F15); USB-only back-feed and battery-first sequencing are bench items, with the boost now held off on USB (F16); production first flash (F18); ESP32 ADC erratum and radio BUSY (F19) |
 | ESC MCU | EFM8BB51F16I (I grade, 125 °C) QFN-20, **stock Bluejay layout BB51 "A"**, pin plan in §7 |
 
 ---
@@ -63,9 +64,9 @@ Net names follow LINEUP-CONVENTIONS rule 12.
 | 5 | GPIO3 | `GP3` | **spare** | - | - | no-connect flag | L |
 | 7 | GPIO4 | `UART1_TX` | pad **TX1** | `UART1_TX_PIN PA4` | UART1 TX (F2) | pad | L |
 | 8 | GPIO5 | `UART1_RX` | pad **RX1** | `UART1_RX_PIN PA5` | UART1 RX (F2) | pad | L |
-| 9 | GPIO6 | `GYRO_CLKIN` | IMU pin 9: CLKIN on TDK parts (32 kHz), INT2 on BMI270 (left disabled) | `GYRO_1_CLKIN_PIN PA6` | PWM slice 3 A (F4), only with ICM-42688-P | none | L |
+| 9 | GPIO6 | `GYRO_CLKIN` | IMU pin 9: CLKIN on TDK parts (32 kHz), INT2 on BMI270 (left disabled) | `GYRO_1_CLKIN_PIN PA6` | PWM slice 3 A (F13), only with ICM-42688-P | none | L |
 | 10 | GPIO7 | `LED0` | status LED, green | `LED0_PIN PA7` | SIO | LED + 0201 R from +3V3, pin sinks (Betaflight default: low = on) | L |
-| 12 | GPIO8 | `LED_STRIP_IO` | WS2812 data | `LED_STRIP_PIN PA8` | PIO1, 1 SM (ws2812, 4 instr) + 1 DMA | **non-inverting** translator to pad LED (F1) | L |
+| 12 | GPIO8 | `LED_STRIP_IO` | WS2812 data | `LED_STRIP_PIN PA8` | PIO1, 1 SM (ws2812, 4 instr) + 1 DMA | **non-inverting** translator Nexperia 74LVC1T45GS (XSON6, VCCA +3V3, VCCB +5V, DIR to VCCA) to pad LED (F1) | L |
 | 13 | GPIO9 | `GYRO_INT` | IMU INT1 (LGA pin 4) | `GYRO_1_EXTI_PIN PA9` | GPIO IRQ | none | L |
 | 14 | GPIO10 | `SPI1.SCK` | IMU SCK (LGA pin 13) | `SPI1_SCK_PIN PA10` | SPI1 SCK (F1) | none | L |
 | 15 | GPIO11 | `SPI1.MOSI` | IMU SDI (LGA pin 14) | `SPI1_SDO_PIN PA11` | SPI1 TX (F1) | none | L |
@@ -74,7 +75,7 @@ Net names follow LINEUP-CONVENTIONS rule 12.
 | 18 | GPIO14 | `OSD_W` | OSD white-level drive | `OSD_W_PIN PA14` | PIO2 (FB OSD) | `osd` sheet | B |
 | 19 | GPIO15 | `OSD_EN` | OSD switch select (must be W+1) | `OSD_EN_PIN PA15` | PIO2 | SN74LVC1G3157 S | B |
 | 27 | GPIO16 | `OSD_SYNC` | sync comparator output (must be EN+1) | `OSD_SYNC_PIN PA16` | PIO2 input | TLV7031 output | B |
-| 28 | GPIO17 | `BEEPER` | buzzer FET gate | `BEEPER_PIN PA17` + `BEEPER_INVERTED` | SIO (no `BEEPER_PWM_HZ`: active buzzer) | DFN1006 N-FET, 100 kΩ gate pull-down; drain to pad BZ−, BZ+ = +5V | B |
+| 28 | GPIO17 | `BEEPER` | buzzer FET gate | `BEEPER_PIN PA17` + `BEEPER_INVERTED` | SIO (no `BEEPER_PWM_HZ`: active buzzer) | ALLPOWER AP1606 N-FET (DFN-3L 1.0x0.6, C2849580) [PU], 100 kΩ gate pull-down; drain to pad BZ−, BZ+ = +5V | B |
 | 29 | GPIO18 | `SPI0.SCK` | NOR CLK | `SPI0_SCK_PIN PA18` | SPI0 SCK (F1) | none | B |
 | 31 | GPIO19 | `SPI0.MOSI` | NOR DI | `SPI0_SDO_PIN PA19` | SPI0 TX (F1) | none | R |
 | 32 | GPIO20 | `SPI0.MISO` | NOR DO | `SPI0_SDI_PIN PA20` | SPI0 RX (F1) | none | R |
@@ -182,10 +183,10 @@ load and loop overruns with the ICM-42688-P at 8 kHz, FB OSD and blackbox togeth
 
 | Check | Result |
 |---|---|
-| FC → EFM8 logic high | EFM8BB51 VIH = 0.7 x VDD = **3.05 V at a 4.35 V LiHV cell**, 2.94 V at 4.2 V (V, datasheet). The RP2350 drives about IOVDD (3.27-3.3 V) into a µA load. Margin about 0.2 V: Matrix parity (G473 at 3.3 V into BB51 on the cell). Flag F4 |
+| FC → EFM8 logic high | EFM8BB51 VIH = 0.7 x VDD (V, Table 4.18), and VDD is the cluster +BATT including its PWM ripple (spec §4.1, §4.4). DC: 3.05 V at a 4.35 V cell, 2.94 V at 4.2 V. At the ripple peaks of the `A_X_10_96` start build (0.4-0.6 V p-p at 96 kHz, VDD 4.55-4.65 V) VIH is 3.19-3.26 V; at 48 kHz (0.8-1.25 V p-p) it would reach 3.33-3.47 V. The RP2350 drives about IOVDD (3.27-3.3 V) into a µA load: margin 0.04-0.11 V at 96 kHz, negative at 48 kHz. Matrix parity (G473 at 3.3 V into BB51 on the cell, also at 96 kHz). Flag F4; V9 counts ESC-side errors |
 | EFM8 → FC (bidirectional telemetry) | the EFM8 drives up to VDD = 4.35 V through 2.4 kΩ into FT pads (5.5 V tolerant with IOVDD up): OK |
-| Unpowered-ESC case (USB only) | bidirectional DShot idles high (PIO drive, `gpio_set_pulls` up), so 4 x (3.3 V − VF) / 2.4 kΩ, about 5 mA, back-feeds +BATT through the EFM8 I/O diodes. The only loads are the 20 kΩ divider and the EFM8s, so +BATT settles around 1.2-1.7 V (I): near the EFM8 POR (1.71 V) and inside the TPS61022 UVLO window (1.3-1.6 V once VOUT > 2.2 V, which USB pre-biases). The EFM8s and the boost may cycle at low energy. Not verified: bench check in V9 (measure +BATT, watch for brown-out cycling); the fallback is 10 kΩ DShot series R (no new part). Matrix parity: its G473 drives BB51 on the cell the same way (F16) |
-| Battery first, IOVDD not yet up | the EFM8 weak pull-ups (70-220 kΩ to up to 4.35 V) reach the RP2350 FT pads through 2.4 kΩ before IOVDD is up; FT pads are 3.3 V-failsafe, abs max 3.63 V with IOVDD = 0. Current ≤ 60 µA, for the boost soft start plus LDO ramp (about 1-2 ms, I). Documented, scoped in V9 (F16) |
+| Unpowered-ESC case (USB only) | bidirectional DShot idles high (PIO drive, `gpio_set_pulls` up), so up to 4 x (3.3 V − VF) / 2.4 kΩ, about 5 mA, back-feeds +BATT through the EFM8 I/O diodes. With µA loads (20 kΩ divider, EFM8s below POR) +BATT rises towards about 2.5-2.8 V until the EFM8s start near their POR (1.71 V) and draw current, so the EFM8s may cycle at low energy (I). The boost no longer joins in: the +5V_USB sense FET holds TPS61022 EN low while USB is present (spec §4.2), so it cannot start from the weak back-fed rail. Bench check in V9 (measure +BATT, watch for brown-out cycling, confirm the boost stays off); the fallback is 10 kΩ DShot series R (no new part). Matrix parity: its G473 drives BB51 on the cell the same way (F16) |
+| Battery first, IOVDD not yet up | the EFM8 weak pull-ups (70-220 kΩ to up to 4.35 V) reach the RP2350 FT pads through 2.4 kΩ before IOVDD is up, for the boost soft start plus LDO ramp (about 1-2 ms, I). With IOVDD = 0 the FT pads are limited to 3.63 V: a **voltage** limit, so this is an abs-max excursion if the pad floats up towards the cell voltage; the 10 kΩ fallback limits current, not voltage. Matrix parity: the G473's FT pins are limited to about 4 V with VDD = 0 (S). V9 scopes the pad against 3.63 V; if exceeded, a 3.3 V-domain clamp option or an enable on the DShot path (F16) |
 | Motor line at power-up | RP2350 pull-down (35-189 kΩ) fights the EFM8 weak pull-up (70-220 kΩ to the cell), so the level is undefined. The Bluejay bootloader (`BLHeliBootLoad.inc`) loops while RTX is high and leaves after 250 ms of low or 250 failed sign-on attempts. Either way the application starts once DShot frames arrive (V code, I outcome). No extra resistor |
 | Gyro CS / NOR CS at reset | the internal pull-down would select the chips. 10 kΩ external pull-ups give ≥ 2.75 V at the strongest pull-down: OK |
 | VBAT ADC | 4.35 V → 2.18 V, inside the 3.3 V range, on a non-FT pad: OK |
@@ -385,17 +386,17 @@ datasheet pin overview (V).
 | GPIO18 | 35 | `vtx_mosi` | `VTX_SPI.DATA` | RTC6705 SPIDATA | |
 | GPIO5 | 34 | `vtx_sck` | `VTX_SPI.CLK` | RTC6705 SPICLK | strap pin (default pull-up), harmless into a CMOS input |
 | GPIO23 | 36 | `vtx_miso` | - | **no-connect** | ELRS only writes the RTC6705 (`transfer32`, no reads in `devVTXSPI.cpp`, V). The pin is still claimed by the SPI driver (F8) |
-| GPIO12 (MTDI) | 18 | `vtx_amp_pwm` | `PA_BIAS_PWM` | two-pole RC (≤ 100 Hz, ≥ 40 dB at 10 kHz) → BC847QAS Q1 common emitter → Q2 emitter follower → RTC6705 PAOUT1 choke supply; Q1 collector divider = hardware 400 mW cap (spec §4.8) | **strap: must read low at reset** (3.3 V VDD_SDIO for the flash); internal pull-down, and the RC plus Q1's base-emitter path pull the net low, nothing pulls it up. The stage **inverts** (lower duty = more drive, F15), so the reset-low strap means maximum PAOUT1 drive into a PA held off by GPIO2: harmless. The first-flash procedure burns the VDD_SDIO eFuse to 3.3 V, which removes the strap dependency |
-| GPIO4 | 24 | `vtx_amp_vpd` | `PA_DET` | SE5004L DET via 1 kΩ / 100 pF | ADC2_CH0: cannot be read while Wi-Fi is on, which is not a flight state (I); same pin on the Happymodel AIO target |
-| GPIO2 | 22 | `vtx_amp_vref` | `PA_EN` | SE5004L VREF/EN via a 0201 series R (0-15 Ω, fitted from V5) | **strap**: 10 kΩ pull-down. Low = PA off. ELRS holds it low at init and in pit mode, but drives it high at power index 1 (disarmed with `vtx_low_power_disarm`). VREF must sit at 2.80-2.90 V at about 10 mA: GPIO drive strength fixed in the target, VREF measured on the first boards (spec §4.8) |
+| GPIO12 (MTDI) | 18 | `vtx_amp_pwm` | `PA_BIAS_PWM` | two-pole RC (≤ 100 Hz, ≥ 40 dB at 10 kHz) → series base R → base divider (Q1 just off at 1.6 V = 49 % duty, YOLO; conducting at 3.0 V = 90 %, pit) → BC847QAS Q1 common emitter with emitter degeneration → Q2 emitter follower → RTC6705 PAOUT1 choke supply; Q1 collector divider = hardware fault limit (spec §4.8). ELRS `MIN_PWM` 2000 / `MAX_PWM` 3700 are firmware constants, not target keys | **strap: must read low at reset** (3.3 V VDD_SDIO for the flash); internal pull-down, and the RC plus Q1's base-emitter path pull the net low, nothing pulls it up. The stage **inverts** (lower duty = more drive, F15), so the reset-low strap means maximum PAOUT1 drive into a PA held off by GPIO2: harmless. The first-flash procedure burns the VDD_SDIO eFuse to 3.3 V, which removes the strap dependency |
+| GPIO4 | 24 | `vtx_amp_vpd` | `PA_DET` | SE5004L DET via 1 kΩ / 100 pF | ADC2_CH0: cannot be read while Wi-Fi is on, which is not a flight state (I); same pin on the Happymodel AIO target. ELRS reads raw `analogRead()` counts at the default 11 dB attenuation (range to about 3 V), without eFuse calibration (per-unit calibration is an O6 item) |
+| GPIO2 | 22 | `vtx_amp_vref` | `PA_EN` | EN of the switched 2.85 V PA reference (TI LP5907SNX-2.85, ±2 %, from +3V3_RX), whose output is SE5004L VREF/EN | **strap**: 10 kΩ pull-down. Low = reference off (active discharge) = PA off. ELRS holds it low at init and in pit mode, but drives it high at power index 1 (disarmed with `vtx_low_power_disarm`). The reference, not the GPIO, sets VREF 2.80-2.90 V at about 10 mA: ELRS has no drive-strength key, and a GPIO plus series R would move ±0.1 V or more (spec §4.8) |
 | GPIO0 | 23 | `button` | `RX_BOOT` | pad **RXB** (+ GND) | strap, internal pull-up; GND at reset = download mode |
-| GPIO21 | 42 | (patched ELRS: VTX power) | `VTX_PWR_EN` | TPS7A2033 EN, 100 kΩ pull-up to +3V3_RX | default on, so stock ELRS runs the VTX unchanged; the patched firmware pulls it low in pit and when disarmed, with the VTX SPI pins tri-stated so the unpowered RTC6705 is not back-powered, and re-sends the frequency at power-up (spec §12 gate 4) |
-| GPIO34 | 10 | (patched ELRS: PA temperature) | `PA_NTC` | 0201 NTC next to the PA + 0201 divider R from +3V3_RX | ADC1, input only; thermal derate (spec §12 gate 6) |
+| GPIO21 | 42 | (patched ELRS: VTX power) | `VTX_PWR_EN` | +3V3_VTX LDO (LP5912-3.3) EN, 100 kΩ pull-up to +3V3_RX | default on, so stock ELRS runs the VTX unchanged; the patched firmware pulls it low in pit and when disarmed, with the VTX SPI pins tri-stated so the unpowered RTC6705 is not back-powered, and re-sends the frequency at power-up (spec §12 gate 4) |
+| GPIO34 | 10 | (patched ELRS: PA temperature) | `PA_NTC` | Murata NCP03XH103F05RL next to the PA + Yageo RC0201FR-0710KL divider from +3V3_RX | ADC1, input only; thermal derate (spec §12 patch 6), read only in the `hwTimer::isTick` window like the detector: powering an ADC pulls GPIO36 (radio BUSY) low for about 80 ns (ESP32 erratum 3.11, F19) |
 | CHIP_PU | 9 | - | `RX_EN` | 10 kΩ to +3V3_RX + 1 µF | the datasheet says never leave it floating |
 | GPIO6/11/7/8/9/10 | 31/30/32/33/28/29 | flash | `RX_FLASH.*` | GD25Q32 CLK, /CS, DO, DI, /HOLD, /WP | VDD_SDIO (pin 26) powers the flash at 3.3 V |
 | GPIO15 (MTDO) | 21 | - | - | no-connect | strap (boot log on) |
 | XTAL_P / XTAL_N | 45 / 44 | - | | 40 MHz CJ17 1612 | |
-| LNA_IN | 2 | Wi-Fi RF | `WIFI_RF` | 0201 pi match → short printed stub on L6 at the board edge, 2 x 4 mm all-layer keepout | F9 decided: Matrix parity (it has a Wi-Fi chip antenna); the overlay turns auto-Wi-Fi off |
+| LNA_IN | 2 | Wi-Fi RF | `RF_WIFI` | 0201 pi match → short printed stub on L6 at the board edge, 2 x 4 mm all-layer keepout (`WIFI_STUB`) | F9 decided: Matrix parity (it has a Wi-Fi chip antenna); auto-Wi-Fi is switched off at flash time (`--no-auto-wifi`), it is not a target key |
 
 The FC has no VTX pin. Power and pit mode go FC → (MSP-VTX over CRSF) → ESP32. Stock
 ELRS pit only drops GPIO2 (PA VREF) and sets the maximum PWM count; it never writes
@@ -418,44 +419,51 @@ numbers are from EFM8BB51 data sheet Rev 1.0, Table 6.1 (V).
 
 ### 7.1 Per channel (n = 1..4)
 
-| QFN-20 pin | Port | Layout A role | Net | Connects to |
+One `esc_channel` sheet is instanced four times (`ESC1`..`ESC4`), so its nets are
+in-sheet local labels and KiCad names them `/ESCn/<label>`: the Net column gives the
+in-sheet label, which the setup_board.py net-class patterns match (`/ESC?/PHASE_?`,
+`/ESC?/?_COM`, `/ESC?/?_PWM`). "ESCn_..." elsewhere in the docs is shorthand.
+
+| QFN-20 pin | Port | Layout A role | Net (in-sheet) | Connects to |
 |---|---|---|---|---|
-| 1 | P0.1 | `B_Mux` (CMP0.P0) | `ESCn_BEMF_B` | phase B through series R (BEMF network) |
+| 1 | P0.1 | `B_Mux` (CMP0.P0) | `BEMF_B` | phase B through series R (BEMF network) |
 | 2 | P0.0 | unused | - | no-connect |
 | 3 | GND | | GND | |
-| 4 | VDD | | `+BATT` | its own cluster's +BATT copper, no series R (it must track the P sources); 1 µF + 100 nF at the pin |
-| 5 | RSTb / C2CK | reset | `ESCn_C2CK` | C2CK test pad; 1 kΩ pull-up to VDD (F12, datasheet Fig 5.2) |
-| 6 | P2.0 / C2D | `DebugPin` (push-pull output in layout A) | `ESCn_C2D` | C2D test pad only, nothing else on the net |
+| 4 | VDD | | `+BATT` | its own cluster's +BATT copper, no series R (it must track the P sources); 1 µF + 100 nF X6S at the pin |
+| 5 | RSTb / C2CK | reset | `C2CK` | C2CK test pad; internal pull-up only (F12: the 1 kΩ of datasheet Fig 5.2 is dropped, lean rule) |
+| 6 | P2.0 / C2D | `DebugPin` (push-pull output in layout A) | `C2D` | C2D test pad only, nothing else on the net |
 | 7 | P1.6 | unused | - | no-connect |
-| 8 | P1.5 | `C_Com` (active low) | `ESCn_C_COM` | P-FET gate, phase C (CSD25402Q3A) |
-| 9 | P1.4 | `C_Pwm` (active high) | `ESCn_C_PWM` | N-FET gate, phase C (CSD13202Q2) |
-| 10 | P1.3 | `B_Com` | `ESCn_B_COM` | P-FET gate, phase B |
-| 11 | P1.2 | `B_Pwm` | `ESCn_B_PWM` | N-FET gate, phase B |
+| 8 | P1.5 | `C_Com` (active low) | `C_COM` | P-FET gate, phase C (CSD25310Q2) |
+| 9 | P1.4 | `C_Pwm` (active high) | `C_PWM` | N-FET gate, phase C (CSD13202Q2) |
+| 10 | P1.3 | `B_Com` | `B_COM` | P-FET gate, phase B |
+| 11 | P1.2 | `B_Pwm` | `B_PWM` | N-FET gate, phase B |
 | 12 | GND | | GND | |
-| 13 | P1.1 | `A_Com` | `ESCn_A_COM` | P-FET gate, phase A |
-| 14 | P1.0 | `A_Pwm` | `ESCn_A_PWM` | N-FET gate, phase A |
+| 13 | P1.1 | `A_Com` | `A_COM` | P-FET gate, phase A |
+| 14 | P1.0 | `A_Pwm` | `A_PWM` | N-FET gate, phase A |
 | 15 | P0.7 | unused | - | no-connect |
 | 16 | P0.6 | unused | - | no-connect |
-| 17 | P0.5 | `RTX_PIN` | `ESCn_RTX` | 2.4 kΩ (Ralec RTT012401FTH) to FC `MOTORn` |
-| 18 | P0.4 | `V_Mux` (CMP0.N1) | `ESCn_NEUTRAL` | star point of three phase resistors |
-| 19 | P0.3 | `A_Mux` (CMP0.P2) | `ESCn_BEMF_A` | phase A through series R |
-| 20 | P0.2 | `C_Mux` | `ESCn_BEMF_C` | phase C through series R |
+| 17 | P0.5 | `RTX_PIN` | `RTX` | 2.4 kΩ (Ralec RTT012401FTH) to FC `MOTORn` (hierarchical pin) |
+| 18 | P0.4 | `V_Mux` (CMP0.N1) | `NEUTRAL` | star point of three phase resistors |
+| 19 | P0.3 | `A_Mux` (CMP0.P2) | `BEMF_A` | phase A through series R |
+| 20 | P0.2 | `C_Mux` | `BEMF_C` | phase C through series R |
 | EP | GND | | GND | Type VII via-in-pad |
 
 There are no gate resistors, by field record (tinyPEPPER drives its gates directly, V). The
 datasheet's ≤ 60 Ω is the VOH limit at 10 mA, not a gate resistance; edge currents of
-about 0.13-0.17 A for nanoseconds exceed the 50 mA per-pin DC rating (spec §4.4).
-Phase nets: `ESCn_PHASE_A/B/C` = motor pads `Mn` A/B/C. Bluejay sets the direction,
-so pad order is free.
+about 0.13-0.17 A for nanoseconds are a transient exceedance of the 50 mA per-pin absolute
+maximum (Table 4.1), accepted on field record (tinyPEPPER, Matrix parity; spec §4.4).
+Gate nets are class Gate and stay off In2/In3: the N gates cross to the bottom with one via
+and run on L6 over L5. Phase nets: in-sheet `PHASE_A/B/C` = motor pads `Mn` A/B/C. Bluejay
+sets the direction, so pad order is free.
 
 ### 7.2 FC ↔ ESC map
 
 | Motor (Betaflight quad-X) | Position | FC GPIO (pin) | ESC block (spec §10) | Motor pads |
 |---|---|---|---|---|
-| M1 | rear right | GPIO25 (37) | ESC1, right-ear quadrant | bottom edge, x +5…+10 |
-| M2 | front right | GPIO24 (36) | ESC2, right-ear quadrant | right edge, y +5…+10 |
-| M3 | rear left | GPIO23 (35) | ESC3, left-ear quadrant | left edge, y −10…−5 |
-| M4 | front left | GPIO22 (34) | ESC4, left-ear quadrant | top edge, x −10…−5 |
+| M1 | rear right | GPIO25 (37) | ESC1, right-ear quadrant | bottom edge, x +4…+8 |
+| M2 | front right | GPIO24 (36) | ESC2, right-ear quadrant | right edge, y +4.5…+8.5 |
+| M3 | rear left | GPIO23 (35) | ESC3, left-ear quadrant | left edge, y −7…−3 |
+| M4 | front left | GPIO22 (34) | ESC4, left-ear quadrant | top edge, x −7…−3 |
 
 All four motor pins sit on one side of the QFN (pins 34-37). Two lines therefore run
 about 12-15 mm to the far quadrant. DShot is slow (≤ 750 kbit/s for telemetry), so
@@ -469,11 +477,14 @@ this is a placement fact for P5, not a signal-integrity problem (I).
   (off) and all N gates weakly high (on): the motor is braked and no current comes
   from the supply. There is no shoot-through path. Every BB51 layout A board
   (Matrix II) behaves the same.
-- **Flashing:** Betaflight 4-way passthrough over `MOTORn` (2026.6.2+, untested with
-  BB51 on RP2350: spec gate V9). Recovery through C2D/C2CK pads per ESC (8 pads).
-- **Firmware:** stock Bluejay BB51 "A", `A_X_20_48` first (covers the datasheet
-  worst-case P turn-off of 276-326 ns), shorter dead times only after the extended
-  V2 test (spec §4.3, §12).
+- **Flashing:** blank EFM8s carry no BLHeli bootloader, so production writes the bootloader
+  and the stock Bluejay build over C2 with +BATT fed at 3.3 V by the fixture (spec §12.1,
+  F18). After that, Betaflight 4-way passthrough over `MOTORn` (2026.6.2+, untested with
+  BB51 on RP2350: spec gate V9). Recovery through the same C2D/C2CK pads (8 pads).
+- **Firmware:** stock Bluejay BB51 "A", `A_X_10_96` first (covers the CSD25310Q2
+  worst-case P turn-off of 138-161 ns at high port drive), `A_X_5_96` only after the
+  extended V2 test (spec §4.3, §12); temperature protection on at 100 °C in the
+  published settings.
 - **Unused pins** P0.0, P0.6, P0.7, P1.6 stay defined: Bluejay leaves them digital
   open-drain with the weak pull-up on. Trimming their pads off the footprint is
   allowed electrically. Solder balance on a 3x3 QFN decides it at P3 (I).
@@ -496,7 +507,7 @@ DESIGN-SPEC in its review revision; the table stays as the record:
 | §4.9 "CS pull-up" | on both CS lines (gyro and NOR) |
 | §12 "VBAT scale measured" | `DEFAULT_VOLTAGE_METER_DIVIDER 100` for 0.5 % steps |
 | §12 target | needs `config.mk` + `pico_flash_mem.ld` (F3) |
-| §4.7 ESP32 pins | `vtx_miso` GPIO23 left unconnected (F8). The Wi-Fi pin needs a decision (F9) |
+| §4.7 ESP32 pins | `vtx_miso` GPIO23 left unconnected (F8). Wi-Fi radiator, auto-Wi-Fi off at flash time (F9) |
 | §4.8 "PWM → RC → transistor follower" | must be an inverting stage for the ELRS loop (F15) |
 | §4.5 "2 free UARTs" | one user UART (UART1), GPIO2/3 spare; PIO1 holds only the LED strip |
 
@@ -506,25 +517,27 @@ DESIGN-SPEC in its review revision; the table stays as the record:
 
 | # | Item | Status | Resolution / owner |
 |---|---|---|---|
-| F1 | **LED strip driver.** The OpenFC LED stage (AP1606 N-FET, gate on GPIO8, drain to pad with 2.4 kΩ to +5V) **inverts** the data. Betaflight's PICO WS2812 driver has no inversion option (side-set, no `outover`; V) | **resolved: (b), budgeted** | Do not copy it. (b) a non-inverting translator such as SN74LVC1T45 (VCCA 3V3 / VCCB 5V, DIR fixed) or 74AHCT1G125 at 5 V is in the area budget (X2SON-6 + 2x 0201); (a) direct 3.3 V drive through a 0201 series resistor (below the WS2812B VIH of 3.5 V at 5 V but widely flown, I) is the P2 area fallback. MPN in P3. The OpenFC-Lite-Mini LED output should be checked for the same defect |
+| F1 | **LED strip driver.** The OpenFC LED stage (AP1606 N-FET, gate on GPIO8, drain to pad with 2.4 kΩ to +5V) **inverts** the data. Betaflight's PICO WS2812 driver has no inversion option (side-set, no `outover`; V) | **resolved: (b), budgeted** | Do not copy it. (b) Nexperia **74LVC1T45GS** (XSON6 1.0 x 1.0, VCCA +3V3 / VCCB +5V, DIR tied to VCCA, ±24 mA at 4.5 V class drive; S, Nexperia datasheet and Element14 listing) + 2x 0201 is in the area budget; (a) direct 3.3 V drive through a 0201 series resistor (below the WS2812B VIH of 3.5 V at 5 V but widely flown, I) is the P2 area fallback. The OpenFC-Lite-Mini LED output should be checked for the same defect |
 | F2 | **MSP-VTX over CRSF default.** On 2026.6.2 the RX port needs `FUNCTION_VTX_MSP` set by CLI; `VTX_MSP_UART` works only on master | **open (firmware)** | Ship the §5.4 CLI line in the README and the first-flash dump. It is no longer needed once a release contains the `vtx_uart` model |
 | F3 | **Flash size.** RP2350A builds default to 8 MB / 4 MB layout; the RP2354A has 2 MB | resolved | `config.mk` + `pico_flash_mem.ld` (§5.2-5.3). Check what the house target does |
-| F4 | **EFM8 VIH margin** 0.2-0.25 V at 4.35 V (0.7 x VDD) | accepted (Matrix parity) | Bench: DShot error count at a 4.35 V cell (spec V9). No cheap fix: a translator per channel costs 4 parts and adds delay |
+| F4 | **EFM8 VIH margin.** VIH = 0.7 x VDD and VDD follows the cluster +BATT with its PWM ripple: 0.2 V at DC on a 4.35 V cell, 0.04-0.11 V at the ripple peaks of the 96 kHz start build, negative at 48 kHz (§4.5) | accepted (Matrix parity, which also runs 96 kHz); 48 kHz builds not used | Bench V9: ESC-side DShot error count (EDT status or command echo) on a fresh 4.35 V pack under load, with EFM8 VDD and the DShot high level scoped; V3c checks the VDD peak. No cheap fix: a translator per channel costs 4 parts and adds delay |
 | F5 | **LED strip on PIO1** (`PIO_LEDSTRIP_INDEX 1`; PIOUART dropped). No upstream config combines FB OSD + LED strip | code-verified, hardware-untested | Bench gate V9: LED strip + OSD at the same time on the OpenFC-Lite-Mini |
 | F6 | Spec DMA count wrong (DShot needs no DMA) | resolved | 8 of 16 |
 | F7 | **SPI NOR blackbox on RP2350**: `USE_FLASH` only from 2026.6.2, and no upstream RP2350 config uses SPI NOR | open (gate V9) | Spec gate: 2 kHz logging without loop overrun |
 | F8 | ESP32 `vtx_miso` GPIO23 | resolved | Leave unconnected. Route to a test pad only if P5 has room |
-| F9 | **ESP32 LNA_IN with no antenna**: ELRS turns Wi-Fi on by itself after the auto-Wi-Fi interval with no link, and `devWIFI.cpp` then calls `disableVTxSpi()`, so the VTX goes dark until reboot | **decided (P0)** | Matrix parity: a minimal radiator (printed stub on L6 + 0201 pi match; Johanson 2450AT18B100E chip antenna as fallback), no 50 Ω dummy load; the target overlay turns auto-Wi-Fi off and Wi-Fi is started on demand. Range checked in V7 |
+| F9 | **ESP32 LNA_IN with no antenna**: ELRS turns Wi-Fi on by itself after the auto-Wi-Fi interval with no link, and `devWIFI.cpp` then calls `disableVTxSpi()`, so the VTX goes dark until reboot | **decided (P0)** | Matrix parity: a minimal radiator (printed stub on L6 + 0201 pi match; Johanson 2450AT18B100E chip antenna as fallback), no 50 Ω dummy load. `wifi-on-interval` is a flash-time firmware option (V, binary_configurator `--auto-wifi` / `--no-auto-wifi`, on by default), not a hardware-layout key, so no target overlay can turn it off: flashing instructions and README use `--no-auto-wifi`, Wi-Fi is started on demand, and an ELRS patch keeps the VTX alive when Wi-Fi starts (spec §12 patch 7). Range checked in V7 |
 | F10 | Manufacturer ID: spec proposes INCU, house uses unregistered OPFC | open (lineup) | Register INCU in the config PR; FOSS is the registered fallback |
 | F11 | `GYRO_1_ALIGN` and the sign of `DEFAULT_ALIGN_BOARD_YAW` | open, P5 | from the placed LGA orientation; the alternative is to rotate the gyro 45° on the PCB and drop the board yaw |
-| F12 | EFM8 RSTb: datasheet Fig 5.2 shows 1 kΩ to VDD | resolved, budgeted | 4x 0201 1 kΩ (reset noise immunity next to the phase nodes); dropped only if P2 has no room (most BB51 ESCs rely on the internal pull-up, S) |
+| F12 | EFM8 RSTb: datasheet Fig 5.2 shows 1 kΩ to VDD | resolved: dropped | Lean rule: most BB51 ESCs rely on the internal pull-up (S); the land is kept only if P2 has room |
 | F13 | CLKIN slice shared with M4/M3 PWM slices | benign | DShot-only build in practice; documented |
 | F14 | GPIO2, GPIO3, GPIO27 spare | - | No-connect flags, or test pads if P5 has room |
-| F15 | **PA drive polarity on ESP32 GPIO12.** ELRS lowers the PWM count to raise output (`VTxOutputIncrease` decrements; `VTxOutputMinimum` sets the maximum count and drops GPIO2; calibration arrays have lower counts at 100 mW than at 25 mW; V, `devVTXSPI.cpp`). A follower would turn the VPD loop into positive feedback; a single common emitter with a collector pull-up has a resistive output that sags under the PAOUT1 load | **resolved (spec §4.8)** | Two-pole RC → Q1 NPN common emitter → Q2 NPN emitter follower (one BC847QASZ, DFN1010B-6) → PAOUT1 choke supply; Q1's collector divider caps the drive (400 mW, sized in V5). Strap-safe as in §6 |
-| F16 | **Power sequencing.** USB only: DShot idle-high back-feeds +BATT to about 1.2-1.7 V (EFM8 POR and TPS61022 UVLO window). Battery first: EFM8 pull-ups reach unpowered FT pads for 1-2 ms | documented (§4.5), bench V9 | Measure +BATT on USB only and watch for brown-out cycling; scope the power-up sequence; 10 kΩ DShot series R is the fallback |
+| F15 | **PA drive polarity on ESP32 GPIO12.** ELRS lowers the PWM count to raise output (`VTxOutputIncrease` decrements; `VTxOutputMinimum` sets the maximum count and drops GPIO2; calibration arrays have lower counts at 100 mW than at 25 mW; V, `devVTXSPI.cpp`). A follower would turn the VPD loop into positive feedback; a single common emitter with a collector pull-up has a resistive output that sags under the PAOUT1 load | **resolved (spec §4.8)** | The usable ELRS window is 49-90 % duty (`MIN_PWM` 2000 = YOLO, `MAX_PWM` 3700 = pit, `setDuty(count*1000/4096)`, firmware constants; V at 8c51826), 1.6-3.0 V after the RC. Two-pole RC → series base R (keeps the RC linear) → base divider (Q1 just off at 1.6 V, conducting at 3.0 V) → Q1 NPN common emitter with emitter degeneration (sets the slope: 25 and 100 mW mid-window, ≥ 20 duty steps apart) → Q2 NPN emitter follower (one BC847QASZ) → PAOUT1 choke supply; 9 passives. Q1's collector divider is the fault limit: a minimum-gain part at 85 °C and 3.0 V just reaches 400 mW (V5). Strap-safe as in §6 |
+| F16 | **Power sequencing.** USB only: DShot idle-high back-feeds +BATT (towards about 2.5-2.8 V with µA loads, EFM8s near POR); the boost is held off on USB (spec §4.2), so only the EFM8s can cycle. Battery first: EFM8 pull-ups reach unpowered FT pads for 1-2 ms, an abs-max (3.63 V) voltage excursion if the pad floats up | documented (§4.5), bench V9 | Measure +BATT on USB only, watch for brown-out cycling, confirm the boost stays off; scope the FT pads against 3.63 V at power-up; fallbacks: 10 kΩ DShot series R (current), a 3.3 V-domain clamp or DShot-path enable (voltage) |
 | F17 | **MSP-VTX boot window.** `devMSPVTX` stops for good if it has not reached MONITORING within 5 s of ESP32 boot (`MSP_VTX_TIMEOUT_NO_CONNECTION`, V); the VTX then stays in pit until the RX reboots. RP2350 Betaflight boot time (gyro config upload, FB OSD PAL/NTSC detection, USB) is unmeasured | open, bench V9 | Cold boot x 20 with and without the TX on, timing the VTX state restore |
+| F18 | **Production first flash.** Blank EFM8s have no BLHeli bootloader (4-way passthrough cannot reach them); a blank ESP32 must be strapped into download mode (RXB low at power-up) for its first flash; the VDD_SDIO eFuse is burned in the same session | resolved (spec §12.1) | Pogo fixture on the C2, FCB, RXB, GND and battery pads; +BATT fed at 3.3 V during C2 (VIH 2.31 V for a 3.3 V adapter); order RP2354A UF2 → ESP32 (passthrough, RXB held) → eFuse → ELRS → EFM8 bootloader + Bluejay over C2 → 4-way verify |
+| F19 | **ESP32 erratum 3.11**: powering SAR ADC1/ADC2 pulls GPIO36/39 low for about 80 ns; GPIO36 is radio BUSY | resolved in firmware rules | Stock ELRS reads the detector (ADC2) only in the `hwTimer::isTick` window; the planned NTC read (ADC1, GPIO34) must follow the same rule (spec §12 patch 6); V7 checks packet loss with the derate active |
 
-Nothing blocks the layout. F1, F9, F12 and F15 add parts, all in the spec's area budget.
+Nothing in the pin plan blocks the layout (the open gate is the board area, spec §9). F1, F9, F15 and the PA reference add parts, all in the spec's area budget; F12 removed four.
 
 ---
 
@@ -647,7 +660,7 @@ no two features on one channel.
 | 1 | QFN-60 pin numbers | RP2350 datasheet Fig 2 (`05-dl/ds/rp2350.txt` l. 963-1060) and the OpenFC netlist (`kicad-cli sch export netlist`, U10) | match for all 61 pads |
 | 2 | GPIO function mux (UART0 0/1, UART1 4/5, SPI1 10-13, SPI0 18-21, PWM 3A on 6) | datasheet Table 677 | confirmed |
 | 3 | Allowed pins in Betaflight | `uart_hw.c`, `bus_spi_pico.c` (master 498430a) | all chosen pins listed |
-| 4 | PIO budgets | `dshot_pio_programs.h` (13/29), `uart_*_program.c` (10/9), ws2812 (4), `osd_tx.pio.h` (31/31/25) | 23/32 on PIO1, 31/32 on PIO2 |
+| 4 | PIO budgets | `dshot_pio_programs.h` (13/29), `uart_*_program.c` (10/9), ws2812 (4), `osd_tx.pio.h` (31/31/25) | 4/32 on PIO1 (WS2812 only; the PIOUART was dropped), 31/32 on PIO2 |
 | 5 | DMA users | grep of `dma_claim_unused_channel`/`dmaGetFreeIdentifier` across `src/platform/PICO` | SPI, OSD, LED, ADC, QSPI (unused) only |
 | 6 | 2026.6.2 = master for the PICO files used | raw.githubusercontent fetch at tag 2026.6.2 + diff | identical except `AFATFS_NUM_CACHE_SECTORS` |
 | 7 | `VTX_MSP_UART` only on master; 2026.6.2 needs both port functions | `io/vtx.c`, `io/vtx_msp.c` at both refs | confirmed |

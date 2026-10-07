@@ -3,7 +3,8 @@
 What OpenAIO-Whoop is measured against. The board itself is a proposal in
 [DESIGN-SPEC.md](DESIGN-SPEC.md); nothing here describes it as built.
 
-Date 2026-10-07. Sources: maker pages and Shopify/WordPress product JSON,
+Date 2026-10-07, revised the same day after spec review round 2 (ESC comparison
+reworded to the D12 stage, §2.4 and §8). Sources: maker pages and Shopify/WordPress product JSON,
 Betaflight `betaflight/config` (1e3f778), Bluejay (0368d11), AM32 (5023414) and
 ExpressLRS/targets (42ed776) source, datasheets, BetaFPV product photos measured
 locally, NBD's published LionBee schematic, retailer and forum pages where no
@@ -122,11 +123,20 @@ damping P. With AGM210MAP at the cell's gate voltage the hot path is about
 | 12 A | about 5.2 W | 21 W |
 | 18 A | 10-13 W | seconds only |
 
-A 4 g, 26 mm board cannot shed 20 W. The 03 §7 model puts the stage near **5 A
-continuous, 12 A for about 5-9 s, 18 A for about 2-4 s** at h ≈ 60 W/m²K; with the
-verified in-flight range (h 30-80 W/m²K) the continuous figure moves with airflow
-and drops well below 5 A at the low end. Either way "12 A continuous" is a burst figure (I, 01 §3.2, 03 §7 and its
-verification #15).
+A 4 g, 26 mm board cannot shed 20 W. The 03 §7 model put the stage near **5 A
+continuous, 12 A for about 5-9 s, 18 A for about 2-4 s** at h ≈ 60 W/m²K. The spec's
+model v2 (DESIGN-SPEC §4.3), which adds the PA-case term and the rest-of-board heat of
+an OpenAIO-Whoop-class board, gives the AGM210MAP stage about 5.8 A on one channel and
+3.3-3.8 A on all four at h 80, and 12 A for about 3-7 s; the Matrix's own non-ESC heat
+(RFPA5542 at 5 V, G473 + AT7456E, ESP8285) is unknown, so its real figure is for the
+bench. With the verified in-flight range (h 30-80 W/m²K) the continuous figure moves
+with airflow and drops well below 5 A at the low end. Either way "12 A continuous" is a
+burst figure (I, 01 §3.2, 03 §7 and its verification #15).
+
+No claim is made that OpenAIO-Whoop's stage is better: per D12 it uses TI CSD25310Q2 +
+CSD13202Q2 (40 mΩ hot path against the AGM210MAP's 34 mΩ), and the model gives it about
+0.9 A less continuous and about half the 12 A burst time at the same airflow. The
+comparison that counts is protocol V4 run on both boards on the same rig.
 
 ### 2.5 Known issues
 
@@ -269,7 +279,7 @@ is what "12 A" should mean.
 | Axis | Bar today | Where an open board can beat it |
 |---|---|---|
 | Openness | no whoop-size maker publishes schematic + layout + BOM (NBD publishes one schematic PDF for a non-whoop board; Fractal promises) | full KiCad sources, BOM, repair map under CERN-OHL-S |
-| ESC rating | "12 A" burst figures on 34 mΩ stages | lower-Rds stage (23 mΩ hot, modelled) and a rating measured to a published protocol with every part inside its own rating (6 A continuous target, to be measured; the model reaches it only at the high end of the in-flight convection range, and the Matrix stage would come out lower on the same rig) |
+| ESC rating | "12 A" burst figures on 34 mΩ stages, no test conditions | a rating measured to a published protocol (V4) with every part inside its own rating and the airflow stated, run on a Matrix II on the same rig. Not a stronger stage: the D12 stage is 40 mΩ against 34 mΩ, and the model puts both near 5-6 A on one channel at h 80 and far lower at h 55 |
 | Firmware | custom hexes, IMU lottery | upstream Betaflight target, one gyro per revision, stock Bluejay build, ELRS target JSON |
 | RX | ESP8285 | ESP32 on mainline ELRS 4.x that also drives the VTX (no VTX MCU) |
 | VTX | EOL PA, sanded markings, no calibration data | in-production PA, harmonic filter, measured power table per channel |

@@ -1,5 +1,5 @@
 {
-  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias follow D6 (OpenDrone 0.35 / 0.20, annular 0.075, minimum through hole 0.20 so DRC enforces the standard via; spec 8.1/8.3/8.4 after review round 1; setup_board.py still writes 0.15 and must follow); the RF width is the P1 field-solver value (impedance.json, 50 ohm CPWG with mask) that spec 8.2 asked to recompute, replacing the 0.14 estimate. Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name (RF positions follow the floorplan sketch and move at P2, so only their layers and flags are pinned). Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the Ø 1.1 battery and Ø 0.5 wire holes out of the hole list, spec 4.10)",
+  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6, D12), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias follow D6 (OpenDrone 0.35 / 0.20, annular 0.075, minimum through hole 0.20 so DRC enforces the standard via); the RF width is the P1 field-solver value (impedance.json). Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name. Spec review round 2 added RF_PAD_CUTOUT (In1.Cu zone-fill keepout under wide RF pads), RF_RX_FEED (In4.Cu solid under the 2.4 GHz feed; DRU: no non-GND via) and WIFI_STUB (2 x 4 mm, all layers), moved the RX antenna hole to (-12.3, +6.5) with RF_RX_EXIT on B.Cu only (the wire's exit side), and pins the bbox of the two RX antenna areas (spec 10, sketch v3). Expected to FAIL until setup_board.py follows (spec 8.4 follow-up list: through hole 0.20, RX_ANT_HOLE, these rule areas). Other RF positions follow the floorplan and move at P2, so only their layers and flags are pinned. DRU rules (In2/In3 class and name restrictions, RF via rules) are checked by check_rules.py, not here. Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the 1.1 battery and 0.5 wire holes out of the hole list, spec 4.10)",
   "tolerance": 0.0005,
   "expect": {
     "copper_layers": 6,
@@ -271,6 +271,15 @@
           "area_mm2": 35.14
         },
         {
+          "name": "RF_PAD_CUTOUT",
+          "layers": [
+            "In1.Cu"
+          ],
+          "keepout": [
+            "zone_fills"
+          ]
+        },
+        {
           "name": "RF_RX_ANT",
           "layers": [
             "F.Cu",
@@ -283,15 +292,35 @@
           "keepout": [
             "vias",
             "zone_fills"
+          ],
+          "bbox_mm": [
+            -13.2,
+            4.9,
+            -10.7,
+            8.1
           ]
         },
         {
           "name": "RF_RX_EXIT",
           "layers": [
-            "F.Cu",
             "B.Cu"
           ],
-          "keepout": []
+          "keepout": [],
+          "bbox_mm": [
+            -13.2,
+            3.5,
+            -9.3,
+            9.5
+          ]
+        },
+        {
+          "name": "RF_RX_FEED",
+          "layers": [
+            "In4.Cu"
+          ],
+          "keepout": [
+            "tracks"
+          ]
         },
         {
           "name": "RF_VTX_CHAIN",
@@ -308,6 +337,22 @@
             "F.Cu"
           ],
           "keepout": []
+        },
+        {
+          "name": "WIFI_STUB",
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu"
+          ],
+          "keepout": [
+            "vias",
+            "zone_fills"
+          ],
+          "area_mm2": 8.0
         }
       ],
       "tol": 0.1
