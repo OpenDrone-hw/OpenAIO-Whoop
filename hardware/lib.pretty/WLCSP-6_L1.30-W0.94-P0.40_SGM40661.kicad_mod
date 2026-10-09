@@ -1,0 +1,164 @@
+(footprint "WLCSP-6_L1.30-W0.94-P0.40_SGM40661"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "SG Micro WLCSP-1.30x0.94-6B (SGM40659/60/61), 0.4 mm pitch, NSMD land dia 0.23 (datasheet 0.210-0.250), A1 top-left; balls A1/B1 OUT, A2/B2 IN, C1 GND, C2 OVLO")
+	(tags "WLCSP-6 SGM40661 OVP switch")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "a3880fcd-4f8a-4018-ba85-7e1773196c33")
+		(effects
+			(font
+				(size 0.52 0.52)
+				(thickness 0.078)
+			)
+		)
+	)
+	(property "Value" "WLCSP-6_L1.30-W0.94-P0.40_SGM40661"
+		(at 0 1.17 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c025a3b4-b042-4b1d-83ba-e9ab538869d2")
+		(effects
+			(font
+				(size 0.52 0.52)
+				(thickness 0.078)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "96f0e6b5-e5a6-4323-b582-2b0b61b5cdc3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "79a137e3-8483-4c62-991b-c6ac58d1c754")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.57 -0.75)
+		(end 0.57 0.75)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "7aa7f1e6-e465-414b-8790-eb18e06f9e01")
+	)
+	(fp_line
+		(start -0.47 -0.415)
+		(end -0.235 -0.65)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "13afd5b5-2597-43be-a611-b3c96e54f820")
+	)
+	(fp_line
+		(start -0.47 0.65)
+		(end -0.47 -0.415)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "24da8d9f-c961-4202-85ea-5662ffb731d5")
+	)
+	(fp_line
+		(start -0.235 -0.65)
+		(end 0.47 -0.65)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "7fb1734c-f629-4277-aea7-2e1cad23888c")
+	)
+	(fp_line
+		(start 0.47 -0.65)
+		(end 0.47 0.65)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "0b2a13e4-ce5e-4de7-847a-f8b89646f3c7")
+	)
+	(fp_line
+		(start 0.47 0.65)
+		(end -0.47 0.65)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "a248901b-a00f-4ada-8341-0baf27931c16")
+	)
+	(pad "A1" smd circle
+		(at -0.2 -0.4)
+		(size 0.23 0.23)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "5b29f937-ddd4-42ea-9d49-f3e207b9f8f9")
+	)
+	(pad "A2" smd circle
+		(at 0.2 -0.4)
+		(size 0.23 0.23)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "37940f14-d6e6-497a-9367-ae424fd96787")
+	)
+	(pad "B1" smd circle
+		(at -0.2 0)
+		(size 0.23 0.23)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "b7337569-4928-4528-a272-fa778bb16639")
+	)
+	(pad "B2" smd circle
+		(at 0.2 0)
+		(size 0.23 0.23)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "7b73174c-24d3-4b47-918b-cfdc7e9149f3")
+	)
+	(pad "C1" smd circle
+		(at -0.2 0.4)
+		(size 0.23 0.23)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "16c2c3bb-deb7-4e0a-a4f6-ccb9011ba849")
+	)
+	(pad "C2" smd circle
+		(at 0.2 0.4)
+		(size 0.23 0.23)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "92f80b56-2373-4beb-babe-7ffbda1dda4f")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/WLCSP-6_L1.30-W0.94-P0.40.step"
+		(offset
+			(xyz 0 0.11 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 270)
+		)
+	)
+)

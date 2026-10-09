@@ -1,0 +1,292 @@
+(footprint "ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Johanson 2450AT07A0100001T 2.4 GHz chip antenna, 1.00 x 0.50 x 0.37 mm (0402), 4 terminals (1 Feed, 2 GND, 3 GND, 4 Feed), mid-edge mount. Pattern from DS Ver 3.1 p2 test board (lands 0.20 x 0.30, 0.3 row gap, 0.1 column slot; GND strip along the edge; feed tongue), moved 0.20 mm inward for the 0.30 mm pad-to-edge rule. Place with the Dwgs.User EDGE line ON the board outline (body long axis perpendicular to the edge). Keep-out WIFI_ANT_KEEPOUT 5.0 x 3.2 mm on every copper layer, no parts on either side. Pi matching network (3x 0201, shunt-series-shunt) at the tongue, outside the keep-out. https://www.johansontechnology.com/datasheets/antennas/2450AT07A0100.pdf")
+	(tags "antenna chip 2.4GHz WiFi Bluetooth ISM Johanson 2450AT07A0100 0402 ELRS")
+	(property "Reference" "REF**"
+		(at 1.9 1.2 0)
+		(layer "F.Fab")
+		(uuid "46213839-272b-4bda-a64d-d8ed59231d6b")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Value" "ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2"
+		(at 1.9 1.7 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "46c4aef7-b8c1-4821-8768-3b72e61e5d01")
+		(effects
+			(font
+				(size 0.3 0.3)
+				(thickness 0.05)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4621ad95-926f-4370-9be5-50bb16b43ce6")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2f09afad-762e-4499-bcc5-f5e32833c013")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -1.45 -1.15)
+		(end 4.55 -1.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Dwgs.User")
+		(uuid "cd0ac21d-d0ed-4e2f-b4ae-3e67354e0eff")
+	)
+	(fp_line
+		(start -0.95 -1.15)
+		(end 4.05 -1.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Dwgs.User")
+		(uuid "24f1ca94-3e2c-425b-86d1-22700faa4777")
+	)
+	(fp_line
+		(start -0.95 2.05)
+		(end -0.95 -1.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Dwgs.User")
+		(uuid "db3200d3-7b6a-46a4-b5d0-b9bdaee52c2e")
+	)
+	(fp_line
+		(start 4.05 -1.15)
+		(end 4.05 2.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Dwgs.User")
+		(uuid "654be49d-e59e-494f-bc66-4f870876551d")
+	)
+	(fp_line
+		(start 4.05 2.05)
+		(end -0.95 2.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "Dwgs.User")
+		(uuid "d4853e7d-553d-4021-a192-508871fa6c3f")
+	)
+	(fp_rect
+		(start -1.35 -0.95)
+		(end 4.45 0.95)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "0c35f77d-a6aa-4069-b480-095586c8f3db")
+	)
+	(fp_line
+		(start -0.25 -0.5)
+		(end 0.25 -0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "61f3177b-9f04-4935-b613-6c013ead170d")
+	)
+	(fp_line
+		(start -0.25 0.5)
+		(end -0.25 -0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "6eb328e4-f5f0-414b-8b82-826fba56ce09")
+	)
+	(fp_line
+		(start 0.1 0.5)
+		(end -0.25 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "8408c124-d1db-4f63-84a3-44271122afc8")
+	)
+	(fp_line
+		(start 0.25 -0.5)
+		(end 0.25 0.35)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3e8ee55e-7455-4edd-92d0-1ff76d56224e")
+	)
+	(fp_line
+		(start 0.25 0.35)
+		(end 0.1 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "5d8f576c-e20e-4a2f-923e-f2543a24128c")
+	)
+	(fp_text user "KEEP-OUT ALL CU"
+		(at 1.9 0.6 0)
+		(layer "Dwgs.User")
+		(uuid "4ae8d41c-56ac-48e2-8f4f-34d6603f540d")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(fp_text user "EDGE"
+		(at 4.15 -1.4 0)
+		(layer "Dwgs.User")
+		(uuid "099f89f3-bda7-4d2d-8f87-e9f5d042c71b")
+		(effects
+			(font
+				(size 0.25 0.25)
+				(thickness 0.0375)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at 0.15 0.3)
+		(size 0.2 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "3e2a05a7-a983-4de1-b6d4-a8d8b3bdc580")
+	)
+	(pad "2" smd rect
+		(at 0.15 -0.3)
+		(size 0.2 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "cf4f32ac-288f-4cd2-8039-4ca2f4051951")
+	)
+	(pad "2" smd rect
+		(at 2.2 -0.625)
+		(size 4.3 0.45)
+		(layers "F.Cu")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "5bdd3792-a805-4449-958c-739357cf69ea")
+	)
+	(pad "3" smd rect
+		(at -0.65 -0.525)
+		(size 1.2 0.65)
+		(layers "F.Cu")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "640e9d84-3943-4b06-a1a1-fe406f2939b5")
+	)
+	(pad "3" smd rect
+		(at -0.15 -0.3)
+		(size 0.2 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "1eabced0-7d2c-4310-a432-77a123c4b902")
+	)
+	(pad "4" smd rect
+		(at -0.375 0.5)
+		(size 1.75 0.7)
+		(layers "F.Cu")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "1321bff2-854f-424a-a8f4-a00ce754440c")
+	)
+	(pad "4" smd rect
+		(at -0.15 0.3)
+		(size 0.2 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "820b97c3-e723-47cf-94a4-3303b6e791e8")
+	)
+	(zone
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu"
+			"In7.Cu" "In8.Cu" "In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu"
+			"In15.Cu" "In16.Cu" "In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu"
+			"In22.Cu" "In23.Cu" "In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu"
+			"In29.Cu" "In30.Cu"
+		)
+		(uuid "33fa9146-d1c0-4b13-bff5-7e7ee421c408")
+		(name "WIFI_ANT_KEEPOUT")
+		(hatch edge 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(keepout
+			(tracks not_allowed)
+			(vias not_allowed)
+			(pads allowed)
+			(copperpour not_allowed)
+			(footprints not_allowed)
+		)
+		(placement
+			(enabled no)
+			(sheetname "")
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+			(island_removal_mode 0)
+		)
+		(polygon
+			(pts
+				(xy -0.95 -1.35) (xy 4.05 -1.35) (xy 4.05 2.05) (xy -0.95 2.05)
+			)
+		)
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 90)
+		)
+	)
+)
