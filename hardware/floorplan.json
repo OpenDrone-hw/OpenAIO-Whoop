@@ -193,29 +193,29 @@
    "side": "F",
    "poly": [
     [
-     117.85,
+     117.05,
      106.65
     ],
     [
-     126.05,
+     125.35,
      106.65
     ],
     [
-     126.05,
+     125.35,
      120.05
     ],
     [
-     117.85,
+     117.05,
      120.05
     ]
    ],
    "rel_mm": [
-    4.65,
+    3.85,
     -6.55,
-    12.85,
+    12.15,
     6.85
    ],
-   "area_mm2": 109.9,
+   "area_mm2": 111.2,
    "src": "spec 10 block esc2",
    "parts": 13
   },
@@ -257,11 +257,11 @@
      106.35
     ],
     [
-     111.55,
+     111.9,
      106.35
     ],
     [
-     111.55,
+     111.9,
      116.55
     ],
     [
@@ -272,10 +272,10 @@
    "rel_mm": [
     -9.2,
     -6.85,
-    -1.65,
+    -1.3,
     3.35
    ],
-   "area_mm2": 77.0,
+   "area_mm2": 80.5,
    "src": "spec 10 block esc3",
    "parts": 13
   },
@@ -322,33 +322,33 @@
     ],
     [
      111.3,
-     110.45
+     111.1
     ],
     [
      102.5,
-     110.45
+     111.1
     ]
    ],
    "rel_mm": [
     -10.7,
     -9.2,
     -1.9,
-    -2.75
+    -2.1
    ],
-   "area_mm2": 56.7,
+   "area_mm2": 62.4,
    "src": "spec 10 block esc4",
-   "parts": 5
+   "parts": 6
   },
   "esc4_outer_t": {
    "side": "F",
    "poly": [
     [
      101.9,
-     100.4
+     100.7
     ],
     [
      111.35,
-     100.4
+     100.7
     ],
     [
      111.35,
@@ -361,73 +361,73 @@
    ],
    "rel_mm": [
     -11.3,
-    -12.8,
+    -12.5,
     -1.85,
     3.75
    ],
-   "area_mm2": 156.4,
+   "area_mm2": 153.6,
    "src": "spec 10 block esc4; parts more than 3.0 mm from the block's main part (P5 review)",
-   "parts": 8
+   "parts": 7
   },
   "fc_b": {
    "side": "B",
    "poly": [
     [
-     106.65,
-     107.1
+     108.8,
+     106.5
     ],
     [
      120.4,
-     107.1
+     106.5
     ],
     [
      120.4,
-     120.55
+     120.4
     ],
     [
-     106.65,
-     120.55
+     108.8,
+     120.4
     ]
    ],
    "rel_mm": [
-    -6.55,
-    -6.1,
+    -4.4,
+    -6.7,
     7.2,
-    7.35
+    7.2
    ],
-   "area_mm2": 184.9,
+   "area_mm2": 161.2,
    "src": "spec 10 RP2354A + crystal (bottom centre)",
-   "parts": 24
+   "parts": 26
   },
   "fc_outer_b": {
    "side": "B",
    "poly": [
     [
-     116.55,
-     113.15
+     116.05,
+     117.35
     ],
     [
      122.2,
-     113.15
+     117.35
     ],
     [
      122.2,
      125.95
     ],
     [
-     116.55,
+     116.05,
      125.95
     ]
    ],
    "rel_mm": [
-    3.35,
-    -0.05,
+    2.85,
+    4.15,
     9.0,
     12.75
    ],
-   "area_mm2": 72.3,
+   "area_mm2": 52.9,
    "src": "spec 10 RP2354A + crystal (bottom centre); parts more than 3.0 mm from the block's main part (P5 review)",
-   "parts": 6
+   "parts": 4
   },
   "fc_t": {
    "side": "F",
@@ -497,11 +497,11 @@
      114.3
     ],
     [
-     115.75,
+     116.106,
      114.3
     ],
     [
-     115.75,
+     116.106,
      118.75
     ],
     [
@@ -512,102 +512,72 @@
    "rel_mm": [
     -3.2,
     1.1,
-    2.55,
+    2.91,
     5.55
    ],
-   "area_mm2": 25.6,
+   "area_mm2": 27.2,
    "src": "spec 10 gyro + 1.8 V LDO",
-   "parts": 6
-  },
-  "imu_outer_t": {
-   "side": "F",
-   "poly": [
-    [
-     117.1,
-     114.85
-    ],
-    [
-     117.7,
-     114.85
-    ],
-    [
-     117.7,
-     115.95
-    ],
-    [
-     117.1,
-     115.95
-    ]
-   ],
-   "rel_mm": [
-    3.9,
-    1.65,
-    4.5,
-    2.75
-   ],
-   "area_mm2": 0.7,
-   "src": "spec 10 gyro + 1.8 V LDO; parts more than 3.0 mm from the block's main part (P5 review)",
-   "parts": 1
+   "parts": 7
   },
   "led_b": {
    "side": "B",
    "poly": [
     [
-     110.2,
-     119.4
+     109.1,
+     118.2
     ],
     [
      111.6,
-     119.4
+     118.2
     ],
     [
      111.6,
      120.6
     ],
     [
-     110.2,
+     109.1,
      120.6
     ]
    ],
    "rel_mm": [
-    -3.0,
-    6.2,
+    -4.1,
+    5.0,
     -1.6,
     7.4
    ],
-   "area_mm2": 1.7,
+   "area_mm2": 6.0,
    "src": "LED / beeper drivers",
-   "parts": 1
+   "parts": 3
   },
   "led_outer_b": {
    "side": "B",
    "poly": [
     [
-     100.35,
-     110.95
+     100.475,
+     108.75
     ],
     [
-     116.35,
-     110.95
+     101.95,
+     108.75
     ],
     [
-     116.35,
-     121.4
+     101.95,
+     115.1
     ],
     [
-     100.35,
-     121.4
+     100.475,
+     115.1
     ]
    ],
    "rel_mm": [
-    -12.85,
-    -2.25,
-    3.15,
-    8.2
+    -12.72,
+    -4.45,
+    -11.25,
+    1.9
    ],
-   "area_mm2": 167.2,
+   "area_mm2": 9.4,
    "src": "LED / beeper drivers; parts more than 3.0 mm from the block's main part (P5 review)",
-   "parts": 6
+   "parts": 4
   },
   "o4_b": {
    "side": "B",
@@ -622,20 +592,20 @@
     ],
     [
      109.9,
-     114.7
+     114.65
     ],
     [
      105.15,
-     114.7
+     114.65
     ]
    ],
    "rel_mm": [
     -8.05,
     -4.95,
     -3.3,
-    1.5
+    1.45
    ],
-   "area_mm2": 30.6,
+   "area_mm2": 30.4,
    "src": "spec 10 O4 switch block (bottom, side-balancing lever)",
    "parts": 8
   },
@@ -643,31 +613,31 @@
    "side": "B",
    "poly": [
     [
-     120.4,
-     115.99
+     119.367,
+     113.13
     ],
     [
      122.16,
-     115.99
+     113.13
     ],
     [
      122.16,
-     120.205
+     120.38
     ],
     [
-     120.4,
-     120.205
+     119.367,
+     120.38
     ]
    ],
    "rel_mm": [
-    7.2,
-    2.79,
+    6.17,
+    -0.07,
     8.96,
-    7.0
+    7.18
    ],
-   "area_mm2": 7.4,
+   "area_mm2": 20.2,
    "src": "spec 10 OSD front end",
-   "parts": 3
+   "parts": 6
   },
   "osd_outer_b": {
    "side": "B",
@@ -682,22 +652,22 @@
     ],
     [
      125.7,
-     123.6
+     121.15
     ],
     [
      123.2,
-     123.6
+     121.15
     ]
    ],
    "rel_mm": [
     10.0,
     -0.9,
     12.5,
-    10.4
+    7.95
    ],
-   "area_mm2": 28.2,
+   "area_mm2": 22.1,
    "src": "spec 10 OSD front end; parts more than 3.0 mm from the block's main part (P5 review)",
-   "parts": 8
+   "parts": 5
   },
   "osd_t": {
    "side": "F",
@@ -827,25 +797,25 @@
      115.7
     ],
     [
-     116.55,
+     116.05,
      115.7
     ],
     [
-     116.55,
-     125.9
+     116.05,
+     125.65
     ],
     [
      100.45,
-     125.9
+     125.65
     ]
    ],
    "rel_mm": [
     -12.75,
     2.5,
-    3.35,
-    12.7
+    2.85,
+    12.45
    ],
-   "area_mm2": 164.2,
+   "area_mm2": 155.2,
    "src": "spec 10 shunt, INA186, TVS / pad bulk; parts more than 3.0 mm from the block's main part (P5 review)",
    "parts": 6
   },
@@ -913,29 +883,29 @@
    "side": "B",
    "poly": [
     [
-     102.8,
+     102.825,
      112.65
     ],
     [
-     110.6,
+     110.0,
      112.65
     ],
     [
-     110.6,
+     110.0,
      121.35
     ],
     [
-     102.8,
+     102.825,
      121.35
     ]
    ],
    "rel_mm": [
-    -10.4,
+    -10.38,
     -0.55,
-    -2.6,
+    -3.2,
     8.15
    ],
-   "area_mm2": 67.9,
+   "area_mm2": 62.4,
    "src": "spec 10 SX1280 + TCXO + LPF (bottom rear-left)",
    "parts": 13
   },
@@ -943,7 +913,7 @@
    "side": "B",
    "poly": [
     [
-     112.75,
+     113.35,
      100.5
     ],
     [
@@ -955,17 +925,17 @@
      108.45
     ],
     [
-     112.75,
+     113.35,
      108.45
     ]
    ],
    "rel_mm": [
-    -0.45,
+    0.15,
     -12.7,
     10.8,
     -4.75
    ],
-   "area_mm2": 89.4,
+   "area_mm2": 84.7,
    "src": "spec 10 ESP32 + flash + crystal (bottom front-right)",
    "parts": 18
   },
@@ -1067,25 +1037,25 @@
      114.9
     ],
     [
-     120.0,
+     120.5,
      114.9
     ],
     [
-     120.0,
-     117.6
+     120.5,
+     118.2
     ],
     [
      115.95,
-     117.6
+     118.2
     ]
    ],
    "rel_mm": [
     2.75,
     1.7,
-    6.8,
-    4.4
+    7.3,
+    5.0
    ],
-   "area_mm2": 10.9,
+   "area_mm2": 15.0,
    "src": "VTX LDO, PA reference, drive stage (P2)",
    "parts": 3
   },
@@ -1273,7 +1243,7 @@
    "side": "F",
    "poly": [
     [
-     115.55,
+     116.15,
      107.1
     ],
     [
@@ -1282,20 +1252,20 @@
     ],
     [
      122.45,
-     115.575
+     115.675
     ],
     [
-     115.55,
-     115.575
+     116.15,
+     115.675
     ]
    ],
    "rel_mm": [
-    2.35,
+    2.95,
     -6.1,
     9.25,
-    2.38
+    2.48
    ],
-   "area_mm2": 58.5,
+   "area_mm2": 54.0,
    "src": "spec 10 RTC6705 + crystal + loop filter; parts more than 3.0 mm from the block's main part (P5 review)",
    "parts": 2
   },
@@ -1408,7 +1378,7 @@
    "region": "power_entry_outer_b",
    "side": "B",
    "at": [
-    1.9,
+    2.55,
     10.8,
     90.0
    ],
@@ -1454,7 +1424,7 @@
    "side": "B",
    "at": [
     2.5,
-    11.5,
+    11.9,
     90.0
    ],
    "side_changed": false
@@ -1468,9 +1438,9 @@
    "region": "power_entry_outer_b",
    "side": "B",
    "at": [
-    2.8,
-    12.4,
-    0.0
+    1.925,
+    10.775,
+    90.0
    ],
    "side_changed": false
   },
@@ -1738,7 +1708,7 @@
    "region": "pwr_outer_b",
    "side": "B",
    "at": [
-    4.4,
+    5.5,
     -1.0,
     0.0
    ],
@@ -1753,8 +1723,8 @@
    "region": "pwr_outer_b",
    "side": "B",
    "at": [
-    8.6,
-    -5.7,
+    6.2,
+    -5.0,
     0.0
    ],
    "side_changed": false
@@ -1873,8 +1843,8 @@
    "region": "o4_b",
    "side": "B",
    "at": [
-    -4.4,
-    1.2,
+    -6.0,
+    -4.2,
     0.0
    ],
    "side_changed": true
@@ -2189,7 +2159,7 @@
    "side": "B",
    "at": [
     11.2,
-    8.0,
+    9.4,
     90.0
    ],
    "side_changed": false
@@ -2323,9 +2293,9 @@
    "region": "esc2_t",
    "side": "F",
    "at": [
-    6.3,
-    -0.7,
-    0.0
+    5.55,
+    -0.45,
+    90.0
    ],
    "side_changed": false
   },
@@ -2338,8 +2308,8 @@
    "region": "esc2_t",
    "side": "F",
    "at": [
-    5.2,
-    -0.7,
+    4.4,
+    -0.9,
     0.0
    ],
    "side_changed": false
@@ -2413,8 +2383,8 @@
    "region": "esc2_t",
    "side": "F",
    "at": [
-    12.3,
-    0.2,
+    6.4,
+    -0.7,
     0.0
    ],
    "side_changed": false
@@ -2624,7 +2594,7 @@
    "side": "F",
    "at": [
     -2.3,
-    -1.4,
+    0.15,
     90.0
    ],
    "side_changed": false
@@ -2638,8 +2608,8 @@
    "region": "esc3_t",
    "side": "F",
    "at": [
-    -2.4,
-    -0.1,
+    -2.45,
+    -1.15,
     90.0
    ],
    "side_changed": false
@@ -2668,7 +2638,7 @@
    "region": "esc3_t",
    "side": "F",
    "at": [
-    -4.9,
+    -2.5,
     -2.3,
     0.0
    ],
@@ -2698,7 +2668,7 @@
    "region": "esc3_t",
    "side": "F",
    "at": [
-    -6.0,
+    -5.8,
     -2.3,
     0.0
    ],
@@ -2713,7 +2683,7 @@
    "region": "esc3_t",
    "side": "F",
    "at": [
-    -3.8,
+    -3.6,
     -2.3,
     0.0
    ],
@@ -2728,9 +2698,9 @@
    "region": "esc3_t",
    "side": "F",
    "at": [
-    -2.2,
-    0.8,
-    0.0
+    -1.6,
+    0.5,
+    90.0
    ],
    "side_changed": false
   },
@@ -2968,9 +2938,9 @@
    "region": "esc4_t",
    "side": "F",
    "at": [
-    -2.2,
-    -3.3,
-    90.0
+    -4.7,
+    -2.4,
+    0.0
    ],
    "side_changed": false
   },
@@ -3010,12 +2980,12 @@
    "value": "10k",
    "block": "esc4",
    "bom_side": "F",
-   "region": "esc4_outer_t",
+   "region": "esc4_t",
    "side": "F",
    "at": [
-    -2.4,
-    -11.0,
-    0.0
+    -2.2,
+    -3.3,
+    90.0
    ],
    "side_changed": false
   },
@@ -3073,8 +3043,8 @@
    "region": "esc4_outer_t",
    "side": "F",
    "at": [
-    -3.7,
-    -12.5,
+    -2.4,
+    -11.0,
     0.0
    ],
    "side_changed": false
@@ -3254,7 +3224,7 @@
    "side": "B",
    "at": [
     -1.9,
-    -4.4,
+    -5.0,
     90.0
    ],
    "side_changed": false
@@ -3269,7 +3239,7 @@
    "side": "B",
    "at": [
     1.5,
-    -4.4,
+    -5.5,
     90.0
    ],
    "side_changed": false
@@ -3283,9 +3253,9 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    -2.5,
-    -4.4,
-    90.0
+    -0.3,
+    -6.4,
+    0.0
    ],
    "side_changed": false
   },
@@ -3328,9 +3298,9 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    -6.0,
-    -4.2,
-    0.0
+    -4.1,
+    1.5,
+    90.0
    ],
    "side_changed": false
   },
@@ -3344,7 +3314,7 @@
    "side": "B",
    "at": [
     -2.2,
-    -5.3,
+    -4.15,
     0.0
    ],
    "side_changed": false
@@ -3388,9 +3358,9 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    2.4,
-    4.4,
-    90.0
+    3.3,
+    5.3,
+    0.0
    ],
    "side_changed": false
   },
@@ -3404,7 +3374,7 @@
    "side": "B",
    "at": [
     -4.1,
-    3.9,
+    5.1,
     90.0
    ],
    "side_changed": false
@@ -3419,7 +3389,7 @@
    "side": "B",
    "at": [
     1.5,
-    -5.5,
+    -4.35,
     90.0
    ],
    "side_changed": false
@@ -3433,7 +3403,7 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    5.5,
+    4.35,
     -1.0,
     0.0
    ],
@@ -3448,8 +3418,8 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    3.3,
-    4.7,
+    3.25,
+    4.1,
     0.0
    ],
    "side_changed": false
@@ -3463,9 +3433,9 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    -2.6,
-    4.4,
-    90.0
+    -2.2,
+    5.9,
+    0.0
    ],
    "side_changed": false
   },
@@ -3478,8 +3448,8 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    -3.2,
-    4.4,
+    -2.6,
+    4.35,
     90.0
    ],
    "side_changed": false
@@ -3493,9 +3463,9 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    2.7,
-    5.4,
-    0.0
+    1.6,
+    6.4,
+    90.0
    ],
    "side_changed": false
   },
@@ -3509,7 +3479,7 @@
    "side": "B",
    "at": [
     2.8,
-    6.3,
+    6.0,
     0.0
    ],
    "side_changed": false
@@ -3523,8 +3493,8 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    1.6,
-    6.6,
+    2.3,
+    4.55,
     90.0
    ],
    "side_changed": false
@@ -3535,12 +3505,12 @@
    "value": "30R",
    "block": "fc",
    "bom_side": "B",
-   "region": "fc_outer_b",
+   "region": "fc_b",
    "side": "B",
    "at": [
-    6.5,
-    6.8,
-    0.0
+    4.9,
+    6.15,
+    90.0
    ],
    "side_changed": false
   },
@@ -3550,11 +3520,11 @@
    "value": "27R",
    "block": "fc",
    "bom_side": "B",
-   "region": "fc_outer_b",
+   "region": "fc_b",
    "side": "B",
    "at": [
-    5.4,
-    6.8,
+    2.6,
+    6.75,
     0.0
    ],
    "side_changed": false
@@ -3598,8 +3568,8 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    4.4,
-    -2.2,
+    3.7,
+    6.9,
     0.0
    ],
    "side_changed": false
@@ -3613,9 +3583,9 @@
    "region": "fc_outer_b",
    "side": "B",
    "at": [
-    8.5,
-    0.5,
-    90.0
+    4.8,
+    7.0,
+    0.0
    ],
    "side_changed": false
   },
@@ -3643,9 +3613,9 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    2.1,
-    -5.0,
-    90.0
+    4.35,
+    -2.2,
+    0.0
    ],
    "side_changed": false
   },
@@ -3658,9 +3628,9 @@
    "region": "fc_b",
    "side": "B",
    "at": [
-    6.0,
+    2.1,
     -5.0,
-    0.0
+    90.0
    ],
    "side_changed": false
   },
@@ -3673,7 +3643,7 @@
    "region": "fc_outer_b",
    "side": "B",
    "at": [
-    4.0,
+    3.5,
     12.3,
     0.0
    ],
@@ -3688,9 +3658,9 @@
    "region": "fc_outer_b",
    "side": "B",
    "at": [
-    4.3,
-    7.0,
-    0.0
+    3.25,
+    7.875,
+    90.0
    ],
    "side_changed": false
   },
@@ -3733,9 +3703,9 @@
    "region": "imu_t",
    "side": "F",
    "at": [
-    2.0,
-    3.5,
-    0.0
+    2.606,
+    2.16,
+    90.0
    ],
    "side_changed": false
   },
@@ -3745,12 +3715,12 @@
    "value": "1uF",
    "block": "imu",
    "bom_side": "F",
-   "region": "imu_outer_t",
+   "region": "imu_t",
    "side": "F",
    "at": [
-    4.2,
-    2.2,
-    90.0
+    1.194,
+    3.56,
+    0.0
    ],
    "side_changed": false
   },
@@ -3925,11 +3895,11 @@
    "value": "820R",
    "block": "osd",
    "bom_side": "B",
-   "region": "osd_outer_b",
+   "region": "osd_b",
    "side": "B",
    "at": [
-    12.2,
-    1.3,
+    8.517,
+    0.48,
     90.0
    ],
    "side_changed": false
@@ -3970,11 +3940,11 @@
    "value": "680R",
    "block": "osd",
    "bom_side": "B",
-   "region": "osd_outer_b",
+   "region": "osd_b",
    "side": "B",
    "at": [
-    11.3,
-    9.5,
+    6.717,
+    6.88,
     0.0
    ],
    "side_changed": false
@@ -3989,7 +3959,7 @@
    "side": "B",
    "at": [
     12.2,
-    9.3,
+    1.3,
     90.0
    ],
    "side_changed": false
@@ -4000,12 +3970,12 @@
    "value": "1uF",
    "block": "osd",
    "bom_side": "B",
-   "region": "osd_outer_b",
+   "region": "osd_b",
    "side": "B",
    "at": [
-    11.3,
-    10.1,
-    0.0
+    6.9,
+    3.55,
+    90.0
    ],
    "side_changed": false
   },
@@ -4288,8 +4258,8 @@
    "region": "rx_b",
    "side": "B",
    "at": [
-    0.3,
-    -6.8,
+    1.55,
+    -6.475,
     0.0
    ],
    "side_changed": false
@@ -4363,8 +4333,8 @@
    "region": "radio_b",
    "side": "B",
    "at": [
-    -10.1,
-    3.6,
+    -9.3,
+    3.5,
     90.0
    ],
    "side_changed": false
@@ -4408,9 +4378,9 @@
    "region": "radio_b",
    "side": "B",
    "at": [
-    -8.4,
-    1.1,
-    90.0
+    -5.05,
+    1.35,
+    0.0
    ],
    "side_changed": false
   },
@@ -4423,8 +4393,8 @@
    "region": "radio_b",
    "side": "B",
    "at": [
-    -4.1,
-    5.0,
+    -8.5,
+    0.0,
     90.0
    ],
    "side_changed": false
@@ -4438,9 +4408,9 @@
    "region": "radio_b",
    "side": "B",
    "at": [
-    -3.5,
-    5.5,
-    90.0
+    -6.3,
+    6.6,
+    0.0
    ],
    "side_changed": false
   },
@@ -4453,8 +4423,8 @@
    "region": "radio_b",
    "side": "B",
    "at": [
-    -2.9,
-    5.5,
+    -3.5,
+    4.4,
     90.0
    ],
    "side_changed": false
@@ -4468,8 +4438,8 @@
    "region": "radio_b",
    "side": "B",
    "at": [
-    -8.5,
-    0.0,
+    -8.4,
+    1.1,
     90.0
    ],
    "side_changed": false
@@ -4483,9 +4453,9 @@
    "region": "radio_b",
    "side": "B",
    "at": [
-    -6.3,
-    6.6,
-    0.0
+    -4.1,
+    4.0,
+    90.0
    ],
    "side_changed": false
   },
@@ -4498,8 +4468,8 @@
    "region": "radio_b",
    "side": "B",
    "at": [
-    -9.4,
-    3.3,
+    -10.0,
+    3.4,
     90.0
    ],
    "side_changed": false
@@ -4633,9 +4603,9 @@
    "region": "vtx_rtc_t",
    "side": "F",
    "at": [
-    -0.1,
-    -8.8,
-    0.0
+    -0.3,
+    -9.0,
+    90.0
    ],
    "side_changed": false
   },
@@ -4690,11 +4660,11 @@
    "value": "100pF",
    "block": "vtx",
    "bom_side": "F",
-   "region": "vtx_rtc_outer_t",
+   "region": "vtx_rtc_t",
    "side": "F",
    "at": [
-    8.7,
-    -5.8,
+    0.79,
+    -8.75,
     0.0
    ],
    "side_changed": false
@@ -4705,12 +4675,12 @@
    "value": "100pF",
    "block": "vtx",
    "bom_side": "F",
-   "region": "vtx_rtc_t",
+   "region": "vtx_rtc_outer_t",
    "side": "F",
    "at": [
-    -0.3,
-    -9.7,
-    90.0
+    8.7,
+    -5.8,
+    0.0
    ],
    "side_changed": false
   },
@@ -4843,8 +4813,8 @@
    "region": "vtx_rtc_outer_t",
    "side": "F",
    "at": [
-    3.1,
-    2.0,
+    3.7,
+    2.1,
     0.0
    ],
    "side_changed": false
@@ -5203,9 +5173,9 @@
    "region": "vtx_pwr_b",
    "side": "B",
    "at": [
-    6.5,
-    3.5,
-    90.0
+    6.75,
+    2.6,
+    0.0
    ],
    "side_changed": true
   },
@@ -5219,7 +5189,7 @@
    "side": "B",
    "at": [
     3.3,
-    4.1,
+    4.7,
     0.0
    ],
    "side_changed": true
@@ -5623,8 +5593,8 @@
    "region": "led_outer_b",
    "side": "B",
    "at": [
-    -11.6,
-    0.3,
+    -11.55,
+    -3.9,
     90.0
    ],
    "side_changed": false
@@ -5638,8 +5608,8 @@
    "region": "led_outer_b",
    "side": "B",
    "at": [
-    -12.3,
-    1.2,
+    -12.15,
+    1.6,
     0.0
    ],
    "side_changed": false
@@ -5665,11 +5635,11 @@
    "value": "100nF",
    "block": "led",
    "bom_side": "B",
-   "region": "led_outer_b",
+   "region": "led_b",
    "side": "B",
    "at": [
-    -7.0,
-    7.9,
+    -3.55,
+    5.95,
     0.0
    ],
    "side_changed": false
@@ -5680,11 +5650,11 @@
    "value": "100nF",
    "block": "led",
    "bom_side": "B",
-   "region": "led_outer_b",
+   "region": "led_b",
    "side": "B",
    "at": [
-    2.6,
-    7.1,
+    -2.9,
+    5.3,
     0.0
    ],
    "side_changed": false

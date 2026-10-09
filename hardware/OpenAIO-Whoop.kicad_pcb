@@ -2169,7 +2169,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "0f4de2db-6920-4dd5-bd52-dd80c1d0caa0")
-		(at 109.4 110.9)
+		(at 109.6 110.9)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R30"
@@ -2313,7 +2313,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "1123530a-86aa-47d6-b27c-af4216e3edb2")
-		(at 107.2 110.9)
+		(at 107.4 110.9)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R29"
@@ -2745,7 +2745,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "157183cb-17b5-4dd6-96e9-7f9b5af17337")
-		(at 108.3 110.9)
+		(at 110.7 110.9)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R27"
@@ -5086,7 +5086,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "31019f7b-cf72-4b40-bc37-b0c769bd5992")
-		(at 121.9 107.4)
+		(at 113.99 104.45)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C102"
@@ -5950,11 +5950,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "3bd01c10-56ba-4370-9884-f505388cb8c5")
-		(at 113.1 104.4)
+		(at 112.9 104.2 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C98"
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "54d4ad7d-114e-474c-ac06-5093d9a49e7a")
@@ -5966,7 +5966,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 0.35 0)
+			(at 0 0.35 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "7dbbd218-31a0-4f9f-bde4-108c0f7a600a")
@@ -5978,7 +5978,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "3590031e-9b34-4ddb-a87c-30e375c71872")
@@ -5989,7 +5989,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "a61ac07d-6a05-4de8-bccb-bcf5d35ef9b8")
@@ -6013,24 +6013,14 @@
 			(uuid "3b776c3a-8623-421f-92f4-32fbc2dc3ee3")
 		)
 		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "7b105fdf-01b2-4e5f-9c3b-41bb8afa49b9")
-		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "a8fa7b1d-2828-4a43-aae5-de860d1a9f88")
+			(uuid "570ab924-8d47-44e2-8e0d-c9b713d1e7a8")
 		)
 		(fp_line
 			(start -0.225 -0.15)
@@ -6043,14 +6033,14 @@
 			(uuid "a8966954-d7ba-484f-a8c5-b14a90a1d291")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "570ab924-8d47-44e2-8e0d-c9b713d1e7a8")
+			(uuid "7b105fdf-01b2-4e5f-9c3b-41bb8afa49b9")
 		)
 		(fp_line
 			(start 0.3 0.15)
@@ -6062,8 +6052,18 @@
 			(layer "F.Fab")
 			(uuid "10657b33-88c6-493e-8434-ba68f0eed3a8")
 		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "a8fa7b1d-2828-4a43-aae5-de860d1a9f88")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -6071,7 +6071,7 @@
 			(uuid "d26744cd-9153-46a2-8d32-b5907a9f89c4")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -6446,7 +6446,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "3ddb8b3f-076b-459d-890d-90a4cdfdf968")
-		(at 125.5 113.4)
+		(at 119.6 112.5)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R25"
@@ -6824,11 +6824,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "40e21519-fe78-4fc0-ae04-454ce2a3ee3b")
-		(at 117.4 115.4 90)
+		(at 114.394 116.76)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C62"
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "313ec8f6-6ef7-4ff4-9e51-79406182b186")
@@ -6840,7 +6840,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 0 0.35 90)
+			(at 0 0.35 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "2912cf46-72de-475a-a14b-e276df328a2f")
@@ -6852,7 +6852,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "247ec2c3-87f9-4b46-ae5f-690f73f9ef71")
@@ -6863,7 +6863,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "e168612a-cc7d-4270-840f-191a163da16a")
@@ -6887,14 +6887,24 @@
 			(uuid "cfb4a19d-b8e3-4a50-a9ed-32f56e26116c")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "879e73ee-5974-4f7d-b2c9-e8fc07dbab1b")
+			(uuid "c7577df5-1d64-4aca-a2ea-4630a272034a")
+		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "94ebb5fd-2285-4ddb-bd0e-8ea7dbd04cac")
 		)
 		(fp_line
 			(start -0.225 -0.15)
@@ -6907,14 +6917,14 @@
 			(uuid "b99bcf63-6560-4783-9cdd-4e2aea6dc6d1")
 		)
 		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "c7577df5-1d64-4aca-a2ea-4630a272034a")
+			(uuid "879e73ee-5974-4f7d-b2c9-e8fc07dbab1b")
 		)
 		(fp_line
 			(start 0.3 0.15)
@@ -6926,18 +6936,8 @@
 			(layer "F.Fab")
 			(uuid "f1181236-6f0d-44c2-8ad1-3ed8fa67c0e8")
 		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "94ebb5fd-2285-4ddb-bd0e-8ea7dbd04cac")
-		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -6945,7 +6945,7 @@
 			(uuid "e4b0dc9b-23e5-42f6-98da-7b3ec7490391")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -8009,11 +8009,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "4be0e3a6-77b9-4f34-ae22-758b20f68946")
-		(at 112.9 103.5 90)
+		(at 121.9 107.4)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C103"
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "e7b2df73-c728-40e3-b9ce-d841627a7d5f")
@@ -8025,7 +8025,7 @@
 			)
 		)
 		(property "Value" "100pF"
-			(at 0 0.35 90)
+			(at 0 0.35 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4e802b82-54c2-49ee-b2f9-355b6d1f9877")
@@ -8037,7 +8037,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "86c73074-746d-4c84-93b8-bc43c9446ab1")
@@ -8048,7 +8048,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "5ff74f38-e1b6-4465-89a1-a846831c9731")
@@ -8072,14 +8072,24 @@
 			(uuid "44d411c2-87e0-4e08-98b1-af161cf38925")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "dbc1881e-8617-4674-a67b-2b9eae291b38")
+			(uuid "982beb6b-4058-444f-b833-0e42023e8744")
+		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "054c1d5a-aada-4b63-93b0-602c61c1fddb")
 		)
 		(fp_line
 			(start -0.225 -0.15)
@@ -8092,14 +8102,14 @@
 			(uuid "f3bddce3-9890-4732-a7e3-be4620d15bdc")
 		)
 		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "982beb6b-4058-444f-b833-0e42023e8744")
+			(uuid "dbc1881e-8617-4674-a67b-2b9eae291b38")
 		)
 		(fp_line
 			(start 0.3 0.15)
@@ -8111,18 +8121,8 @@
 			(layer "F.Fab")
 			(uuid "02ec0e3b-855e-4487-b0b3-2d3caada19b4")
 		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "054c1d5a-aada-4b63-93b0-602c61c1fddb")
-		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -8130,7 +8130,7 @@
 			(uuid "22e8a412-4e3a-4905-83ce-86fa06442a49")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -8153,11 +8153,11 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "4c5de5e9-af02-49e0-b94f-46aaaaae8354")
-		(at 119.5 112.5)
+		(at 118.75 112.75 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R19"
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "fe04b497-d874-4852-b04c-87b17553da77")
@@ -8169,7 +8169,7 @@
 			)
 		)
 		(property "Value" "2.4k"
-			(at 0 0.35 0)
+			(at 0 0.35 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "978ca670-2999-419e-a4aa-e86676f9b2f3")
@@ -8181,7 +8181,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "70732fd6-96d2-4d80-b422-003c9103c665")
@@ -8192,7 +8192,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "fca0baeb-523f-40a2-8b6d-369a2730c80b")
@@ -8216,24 +8216,14 @@
 			(uuid "9ec01345-7ca8-4f55-988d-628e64f566ee")
 		)
 		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "f9d93501-170d-4c56-9682-63f97844b60c")
-		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "2bd5ce0b-af37-46d6-9d41-7741ccb30cce")
+			(uuid "b2bcc86b-ebdc-4fd8-978b-09c36925a1e7")
 		)
 		(fp_line
 			(start -0.225 -0.15)
@@ -8246,14 +8236,14 @@
 			(uuid "0c12087c-69af-47f6-b1bf-f23d866fa606")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "b2bcc86b-ebdc-4fd8-978b-09c36925a1e7")
+			(uuid "f9d93501-170d-4c56-9682-63f97844b60c")
 		)
 		(fp_line
 			(start 0.3 0.15)
@@ -8265,8 +8255,18 @@
 			(layer "F.Fab")
 			(uuid "87f9fcf8-2486-4a7c-9c0d-023e7435c5ef")
 		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "2bd5ce0b-af37-46d6-9d41-7741ccb30cce")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -8274,7 +8274,7 @@
 			(uuid "a8134576-81fb-49e4-bca4-1a8dd6ff1e3d")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -8641,7 +8641,7 @@
 	(footprint "lib:C_0402_1005Metric_W"
 		(layer "F.Cu")
 		(uuid "4f669384-bf4c-4dbd-ba7a-00c7c6c9c7ad")
-		(at 116.3 115.2)
+		(at 116.9 115.3)
 		(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*15 row: a 0.30-0.50, b 0.35-0.45, c 0.40-0.60. Chosen a 0.40, b 0.45, c 0.55: lands 0.45 x 0.55 at +-0.425 (1.30 x 0.55 = budget envelope '0402'; same land as lib:R_0402_1005Metric). Samsung CL05 parts share the EIA 0402 chip format.. Corrected copy of OpenDrone:C_0402_1005Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0402_1005Metric_W.json")
 		(tags "0402 (1005 metric 1.0 x 0.5")
 		(property "Reference" "C106"
@@ -8785,11 +8785,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "50b5f2ab-31f9-4e52-b5e4-c311e0cd35ec")
-		(at 115.2 116.7)
+		(at 115.806 115.36 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C61"
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "76bfa5b1-b251-46cc-8267-640dcd17ee4f")
@@ -8801,7 +8801,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 0 0.35 0)
+			(at 0 0.35 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "c031c369-bde7-4203-8b70-6c4681397617")
@@ -8813,7 +8813,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "e2146574-5098-4aa8-a62c-056911146b19")
@@ -8824,7 +8824,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "2f832e59-28fa-4a1a-9e6c-67b08b902af7")
@@ -8848,24 +8848,14 @@
 			(uuid "3be68ba8-0df9-460f-be71-190ee009bd91")
 		)
 		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "bc02b8b7-4340-497c-882c-b4d4210c7010")
-		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "f4d9f96f-48d9-4ba2-b13a-8daea16f0525")
+			(uuid "9388d931-2a11-40b1-a931-09fa3a8ff215")
 		)
 		(fp_line
 			(start -0.225 -0.15)
@@ -8878,14 +8868,14 @@
 			(uuid "8d260893-8a5a-4f43-80e5-54ceca286af0")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "9388d931-2a11-40b1-a931-09fa3a8ff215")
+			(uuid "bc02b8b7-4340-497c-882c-b4d4210c7010")
 		)
 		(fp_line
 			(start 0.3 0.15)
@@ -8897,8 +8887,18 @@
 			(layer "F.Fab")
 			(uuid "595f47da-d71e-491b-94f5-74965f866586")
 		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "f4d9f96f-48d9-4ba2-b13a-8daea16f0525")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -8906,7 +8906,7 @@
 			(uuid "5f9b8a3a-e94c-4b58-9165-ee8bc3e316c9")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -8929,7 +8929,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "52a8b292-a751-4e39-8385-fbb06110214f")
-		(at 110.8 113.1 90)
+		(at 110.75 112.05 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C31"
@@ -11153,11 +11153,11 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "68fdd2b0-c071-42d5-ade4-cb9b8c003866")
-		(at 110.8 102.2)
+		(at 111 109.9 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R35"
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d00f7376-68f4-4349-aefc-71b321e0d47f")
@@ -11169,7 +11169,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 0.35 0)
+			(at 0 0.35 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4443c66b-8691-4041-86a7-fb276b6b779a")
@@ -11181,7 +11181,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "01b0b547-dd06-4cf5-af92-6d7fa35a6759")
@@ -11192,7 +11192,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "552be4f6-c15c-4b67-a947-d9d6045abb83")
@@ -11216,24 +11216,14 @@
 			(uuid "f1a7b6c0-fc70-456c-828c-7204c3f20b3d")
 		)
 		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "f8ba8729-04a0-4cee-b04d-10ce72c14f91")
-		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "7aa29174-cf33-45fd-8576-2a03c8240d21")
+			(uuid "10fa33b1-59bf-4405-bd67-3e3d3663744e")
 		)
 		(fp_line
 			(start -0.225 -0.15)
@@ -11246,14 +11236,14 @@
 			(uuid "bd0bd83f-b294-4d4a-af9d-0a7d691f8cd5")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "10fa33b1-59bf-4405-bd67-3e3d3663744e")
+			(uuid "f8ba8729-04a0-4cee-b04d-10ce72c14f91")
 		)
 		(fp_line
 			(start 0.3 0.15)
@@ -11265,8 +11255,18 @@
 			(layer "F.Fab")
 			(uuid "219239a2-c4ed-40f7-9279-dac836ab1ea6")
 		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "7aa29174-cf33-45fd-8576-2a03c8240d21")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -11274,7 +11274,7 @@
 			(uuid "f9143ce6-a43e-46c8-9575-287894a6349b")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -11641,11 +11641,11 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "6b9da141-9cdd-4412-93a1-bc0cf48b9efa")
-		(at 111 114)
+		(at 111.6 113.7 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R31"
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "9c403aeb-c5ef-4f80-ad4e-f2be63d1705b")
@@ -11657,7 +11657,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 0 0.35 0)
+			(at 0 0.35 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "2e9d5ffe-436f-4def-99fb-f3ee4149c484")
@@ -11669,7 +11669,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "0457f5b3-8643-413f-8605-7a2430eb56b4")
@@ -11680,7 +11680,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "5472f05b-65cb-4e7f-9ad5-0c3b67557b0d")
@@ -11704,24 +11704,14 @@
 			(uuid "0caad51d-7a27-483c-9845-8953b0cab7df")
 		)
 		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "51058591-a465-4ef3-ab88-87457c93c483")
-		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "d692d69a-50b6-4eb9-b4e1-f0a668abe7bb")
+			(uuid "5be36709-0c8d-4c7a-9656-fd900643abd6")
 		)
 		(fp_line
 			(start -0.225 -0.15)
@@ -11734,14 +11724,14 @@
 			(uuid "11a348eb-1e9e-4d49-b993-297b9383c86a")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "5be36709-0c8d-4c7a-9656-fd900643abd6")
+			(uuid "51058591-a465-4ef3-ab88-87457c93c483")
 		)
 		(fp_line
 			(start 0.3 0.15)
@@ -11753,8 +11743,18 @@
 			(layer "F.Fab")
 			(uuid "d1170ee1-0ea8-44c5-92fd-bc0fda29ded8")
 		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "d692d69a-50b6-4eb9-b4e1-f0a668abe7bb")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -11762,7 +11762,7 @@
 			(uuid "b2a12f32-09cd-4b6c-af0a-e3d1008fc9c0")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -14753,7 +14753,7 @@
 	(footprint "lib:C_0402_1005Metric_W"
 		(layer "F.Cu")
 		(uuid "96f61c96-89b5-436f-bc3b-26fabb58545e")
-		(at 110.9 111.8 90)
+		(at 110.9 113.35 90)
 		(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*15 row: a 0.30-0.50, b 0.35-0.45, c 0.40-0.60. Chosen a 0.40, b 0.45, c 0.55: lands 0.45 x 0.55 at +-0.425 (1.30 x 0.55 = budget envelope '0402'; same land as lib:R_0402_1005Metric). Samsung CL05 parts share the EIA 0402 chip format.. Corrected copy of OpenDrone:C_0402_1005Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0402_1005Metric_W.json")
 		(tags "0402 (1005 metric 1.0 x 0.5")
 		(property "Reference" "C30"
@@ -14897,7 +14897,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "97cec25c-478f-4a77-ab89-59c31f99c8ae")
-		(at 109.5 100.7)
+		(at 110.8 102.2)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R39"
@@ -18913,7 +18913,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "b92a3ac0-e618-4940-8caf-7c594e9e3c1d")
-		(at 118.4 112.5)
+		(at 117.6 112.3)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R20"
@@ -21994,11 +21994,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "F.Cu")
 		(uuid "db765abc-065e-4170-989d-ed99098d4aef")
-		(at 111 109.9 90)
+		(at 108.5 110.8)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C37"
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "b2b7b965-db45-432e-8fda-c55e229922a3")
@@ -22010,7 +22010,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 0.35 90)
+			(at 0 0.35 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "bad7a65b-30f7-4ffa-8598-32085b05a43a")
@@ -22022,7 +22022,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "50d93a68-2cdb-4824-acbe-9a39a26a2f67")
@@ -22033,7 +22033,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "0ab61c83-af4f-4fff-a4df-2190005007c1")
@@ -22057,14 +22057,24 @@
 			(uuid "240dd8d5-e175-48db-9958-9560d8de6fe4")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "902eb14d-9f2d-4fcc-add7-37607650916d")
+			(uuid "6ad0358c-7ffc-40e3-a39a-505ebd574b1c")
+		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "fab1d559-4b68-46df-bf92-387411103fda")
 		)
 		(fp_line
 			(start -0.225 -0.15)
@@ -22077,14 +22087,14 @@
 			(uuid "00a54afd-462e-4bbd-9c24-309e67f566a5")
 		)
 		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "F.Fab")
-			(uuid "6ad0358c-7ffc-40e3-a39a-505ebd574b1c")
+			(uuid "902eb14d-9f2d-4fcc-add7-37607650916d")
 		)
 		(fp_line
 			(start 0.3 0.15)
@@ -22096,18 +22106,8 @@
 			(layer "F.Fab")
 			(uuid "bbc103e2-f4b9-4274-9108-95c43b081c02")
 		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "fab1d559-4b68-46df-bf92-387411103fda")
-		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -22115,7 +22115,7 @@
 			(uuid "582c8f12-e4d9-4c72-bae5-004a876dbffb")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -24719,7 +24719,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "0141edd9-1b50-488d-b4e0-9923bc132fb1")
-		(at 109.1 118.2 90)
+		(at 104.7 113.2 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C88"
@@ -25115,7 +25115,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "083860e5-fca4-4aa1-bd95-0a22cb7c1378")
-		(at 109.1 117.1 90)
+		(at 109.1 118.3 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C50"
@@ -26715,11 +26715,11 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "1582dd4c-8463-4ddd-bcda-ce63b9f07d47")
-		(at 115.3 108.2 90)
+		(at 117.55 111)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R47"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a6e921d8-0a40-4923-9e9e-de2478498337")
@@ -26732,7 +26732,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 0 -0.35 270)
+			(at 0 -0.35 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "8e2c2644-f44e-4d47-b0dc-e862d61c526f")
@@ -26745,7 +26745,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "36c3cb77-8613-49ed-bf8d-97d8acb3dab3")
@@ -26757,7 +26757,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c3610357-96f9-40e6-99bd-1484c2ec0b82")
@@ -26782,16 +26782,6 @@
 			(uuid "91a23a5e-aa61-4c31-9064-1fa62c82ef20")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "f2144366-2562-4584-8836-23d79cebae68")
-		)
-		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -26812,16 +26802,6 @@
 			(uuid "ca4463e3-e6ea-46b4-b981-33beedf79ad9")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "4fe4ab20-ef44-4df1-8e0e-993398c6e1cc")
-		)
-		(fp_line
 			(start -0.225 0.15)
 			(end 0.3 0.15)
 			(stroke
@@ -26831,8 +26811,28 @@
 			(layer "B.Fab")
 			(uuid "f98ef32f-8253-44a2-ab7f-1e900fafcd20")
 		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "f2144366-2562-4584-8836-23d79cebae68")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "4fe4ab20-ef44-4df1-8e0e-993398c6e1cc")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -26840,7 +26840,7 @@
 			(uuid "7acfcd66-8772-449e-a456-87bb1e2e14c5")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -27407,7 +27407,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "19a971ce-6b65-4833-8566-6d4e03f9e6f6")
-		(at 103.1 116.8 90)
+		(at 103.9 116.7 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C84"
@@ -28171,11 +28171,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "1f5fb375-afc3-4866-9fa2-429d1dd41232")
-		(at 110.6 117.6 90)
+		(at 111 119.1)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C54"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c36917e1-ab9d-4c38-abbe-06f406757232")
@@ -28188,7 +28188,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 -0.35 270)
+			(at 0 -0.35 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "8d4db4b1-d244-4b2f-8362-50036cafd2e6")
@@ -28201,7 +28201,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "3261b06d-5a2e-4f5f-99aa-639bdd73999d")
@@ -28213,7 +28213,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "26b0194f-823f-4012-a583-88a4042a2cf2")
@@ -28238,16 +28238,6 @@
 			(uuid "656c0dce-6a34-47b6-a88d-ca1e5c27b443")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "9f4002a1-fcb5-4866-9bc9-d5e3b8899d87")
-		)
-		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -28268,16 +28258,6 @@
 			(uuid "ff3cd461-df24-4d73-925a-d4fe018edae6")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "eb67d359-2b1a-4aca-b693-cfd8cd7de35e")
-		)
-		(fp_line
 			(start -0.225 0.15)
 			(end 0.3 0.15)
 			(stroke
@@ -28287,8 +28267,28 @@
 			(layer "B.Fab")
 			(uuid "b4d8ec18-cc75-4ff2-8bfc-6c6dad0c2bb3")
 		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "9f4002a1-fcb5-4866-9bc9-d5e3b8899d87")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "eb67d359-2b1a-4aca-b693-cfd8cd7de35e")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -28296,7 +28296,7 @@
 			(uuid "9d8af42d-221e-4c6c-92d3-878c73131ecc")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -28763,7 +28763,7 @@
 	(footprint "lib:C_0402_1005Metric_W"
 		(layer "B.Cu")
 		(uuid "22c71bed-b666-4d93-9a80-ce060e163455")
-		(at 116 119.5)
+		(at 116 119.2)
 		(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*15 row: a 0.30-0.50, b 0.35-0.45, c 0.40-0.60. Chosen a 0.40, b 0.45, c 0.55: lands 0.45 x 0.55 at +-0.425 (1.30 x 0.55 = budget envelope '0402'; same land as lib:R_0402_1005Metric). Samsung CL05 parts share the EIA 0402 chip format.. Corrected copy of OpenDrone:C_0402_1005Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0402_1005Metric_W.json")
 		(tags "0402 (1005 metric 1.0 x 0.5")
 		(property "Reference" "C57"
@@ -29388,7 +29388,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "2f309453-0ec6-4c9d-9fb6-866973410092")
-		(at 116.5 117.9)
+		(at 116.45 117.3)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C53"
@@ -30454,11 +30454,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "37733f72-006c-4509-a435-a460382cbfa8")
-		(at 116 125.6)
+		(at 115.125 123.975 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C5"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "84627eaa-3c3c-435a-9374-fccf35a2535f")
@@ -30471,7 +30471,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 0 -0.35 180)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "0a2ad3ef-e0a5-44c6-aa9f-0cce767e6cee")
@@ -30484,7 +30484,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "ab7d7449-2cf6-4d7a-afee-dfe36635a44e")
@@ -30496,7 +30496,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "e4805ac7-2a62-4c19-9a64-ae920971771e")
@@ -30521,6 +30521,16 @@
 			(uuid "546759f5-055a-43fd-8bc3-c99b9dcfde48")
 		)
 		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "90a49e46-224d-4643-abe5-b6f96cf9b845")
+		)
+		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -30541,26 +30551,6 @@
 			(uuid "7b57be71-2890-46e6-995b-399ea837148f")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "bcff7397-6a80-4661-ba41-e74bfa266a62")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "90a49e46-224d-4643-abe5-b6f96cf9b845")
-		)
-		(fp_line
 			(start 0.3 0.15)
 			(end 0.3 -0.15)
 			(stroke
@@ -30570,8 +30560,18 @@
 			(layer "B.Fab")
 			(uuid "3d86efa4-a00a-4345-ba2b-fc7be2cbc907")
 		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "bcff7397-6a80-4661-ba41-e74bfa266a62")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -30579,7 +30579,7 @@
 			(uuid "612b542f-a61e-4897-a906-379b92887cbe")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -31154,7 +31154,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "3dfff443-3616-4ad1-9bdd-5713a9192830")
-		(at 110 117.6 90)
+		(at 110.6 117.55 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C55"
@@ -31744,11 +31744,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "4878703f-18b3-4204-b0ce-99222815c0ed")
-		(at 119.2 108.2)
+		(at 115.3 108.2 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C60"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "e0f01193-a123-4ab0-8645-677bdde35d44")
@@ -31761,7 +31761,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 -0.35 180)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "085bdf8c-03e5-496a-903a-81302772a47a")
@@ -31774,7 +31774,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "b4a65840-7532-4f78-b380-ab1bd0dc4510")
@@ -31786,7 +31786,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "ddd2da8d-0bac-4f88-8c27-44c4575e4210")
@@ -31811,6 +31811,16 @@
 			(uuid "0cdda319-07ba-4558-977c-93bf6697b0b0")
 		)
 		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "9f5f5e37-a763-4a17-9702-2ffab0c62442")
+		)
+		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -31831,26 +31841,6 @@
 			(uuid "a621114e-bc24-42fb-af53-91496fd5e9ba")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "b22ffef4-7ceb-49cb-8e56-e83ee5707507")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "9f5f5e37-a763-4a17-9702-2ffab0c62442")
-		)
-		(fp_line
 			(start 0.3 0.15)
 			(end 0.3 -0.15)
 			(stroke
@@ -31860,8 +31850,18 @@
 			(layer "B.Fab")
 			(uuid "805f3463-b3f6-4239-8ed5-09550471df0f")
 		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "b22ffef4-7ceb-49cb-8e56-e83ee5707507")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -31869,7 +31869,7 @@
 			(uuid "8124ab1e-ed71-4549-b246-99b1afbd0a27")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -31892,11 +31892,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "494af495-11b3-46f3-9293-1695d60b64e8")
-		(at 107.2 109)
+		(at 109.1 114.7 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C45"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "30c019e5-cf3c-4828-a219-d93f1d9441a9")
@@ -31909,7 +31909,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 -0.35 180)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "be1caec0-06b0-4d4c-b68d-7da7753c44bd")
@@ -31922,7 +31922,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "4dbd3e4d-36df-4bed-8979-e05adbd246c5")
@@ -31934,7 +31934,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "7be30a00-d965-40f1-ae50-5c56c3d90c30")
@@ -31959,6 +31959,16 @@
 			(uuid "fbff0365-5687-4955-808f-64c0580858ae")
 		)
 		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "759d5d83-a329-4cba-81c6-425a47cd68f0")
+		)
+		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -31979,26 +31989,6 @@
 			(uuid "da8bb4d0-c15b-4f73-ab54-f7aedb2ca506")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "8ea7bcb3-8781-4c3d-bedd-d69426a254e2")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "759d5d83-a329-4cba-81c6-425a47cd68f0")
-		)
-		(fp_line
 			(start 0.3 0.15)
 			(end 0.3 -0.15)
 			(stroke
@@ -32008,8 +31998,18 @@
 			(layer "B.Fab")
 			(uuid "ce03ea78-9bd6-4918-a50e-95125f9e6b61")
 		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "8ea7bcb3-8781-4c3d-bedd-d69426a254e2")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -32017,7 +32017,7 @@
 			(uuid "7db624b2-30c4-41e5-8757-b9edba8cca1c")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -32188,7 +32188,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "4e4ee6f4-b4ce-4ba6-854b-43cf66d12a50")
-		(at 115.1 124 90)
+		(at 115.75 124 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R2"
@@ -33113,11 +33113,11 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "5686faa9-f128-425c-869c-7310b18ee51e")
-		(at 121.7 113.7 90)
+		(at 118 120.2)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R46"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "d93eab45-0913-4390-9a2b-92bad2108095")
@@ -33130,7 +33130,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 0 -0.35 270)
+			(at 0 -0.35 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "58406da5-2f94-4cdf-a004-a4ff4181b21e")
@@ -33143,7 +33143,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "05ede371-baaf-42f6-b114-8750fc193d6f")
@@ -33155,7 +33155,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "d177cb14-ca28-49c5-bdcf-ff993bd88856")
@@ -33180,16 +33180,6 @@
 			(uuid "994e5e95-9478-449f-9a25-b861e85084e1")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "8f56a7b7-e2d7-4539-bd03-d95954fbd08d")
-		)
-		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -33210,16 +33200,6 @@
 			(uuid "e0273c93-fb52-4171-9974-9889429e04db")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "2370188a-40db-4fa1-8849-a6ebe9acc795")
-		)
-		(fp_line
 			(start -0.225 0.15)
 			(end 0.3 0.15)
 			(stroke
@@ -33229,8 +33209,28 @@
 			(layer "B.Fab")
 			(uuid "2d4c049e-8dfb-4c9c-b8a3-b117ddb02257")
 		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "8f56a7b7-e2d7-4539-bd03-d95954fbd08d")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "2370188a-40db-4fa1-8849-a6ebe9acc795")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -33238,7 +33238,7 @@
 			(uuid "52af35d6-7aae-4cd6-aba1-867e06e278f5")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -33261,11 +33261,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "56db580a-86b8-40d7-92f5-a9336b9473f2")
-		(at 124.5 123.3)
+		(at 120.1 116.75 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C68"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "0370cc8d-df12-49ce-8b76-ab76d227b6e7")
@@ -33278,7 +33278,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 0 -0.35 180)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9a2caf87-25b4-4fd4-89a2-b0d05b2107ce")
@@ -33291,7 +33291,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "6a9393eb-b82c-43c7-89c2-7a88222b1889")
@@ -33303,7 +33303,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "52ab01f6-6780-4277-86f9-74f55fdc2b04")
@@ -33328,6 +33328,16 @@
 			(uuid "0c097128-6324-4725-88e4-ae65e408f23e")
 		)
 		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "342afa80-c92a-45d2-a1d4-4263fc9d57a3")
+		)
+		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -33348,26 +33358,6 @@
 			(uuid "108ee8b7-821e-4946-aec8-35eb492e2141")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "99bab6d1-0261-4353-a4c9-83809fa90555")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "342afa80-c92a-45d2-a1d4-4263fc9d57a3")
-		)
-		(fp_line
 			(start 0.3 0.15)
 			(end 0.3 -0.15)
 			(stroke
@@ -33377,8 +33367,18 @@
 			(layer "B.Fab")
 			(uuid "04746e11-9dce-4f3d-afc9-9b489c149256")
 		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "99bab6d1-0261-4353-a4c9-83809fa90555")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -33386,7 +33386,7 @@
 			(uuid "f5b8fc10-62fe-4c9d-911c-0065b59d2e39")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -34331,7 +34331,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "5a28a919-225f-4050-a114-69993570f37a")
-		(at 100.9 114.4)
+		(at 101.05 114.8)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R86"
@@ -35193,7 +35193,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "5f2ab700-6648-4f8f-9301-aaee04d087fd")
-		(at 116.5 117.3)
+		(at 116.5 117.9)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C121"
@@ -35341,7 +35341,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "5f8c5422-ac00-408f-9c7e-92c0d284c43c")
-		(at 118.6 120)
+		(at 115.8 119.95)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R42"
@@ -35489,11 +35489,11 @@
 	(footprint "lib:C_0402_1005Metric_W"
 		(layer "B.Cu")
 		(uuid "6288ba06-26e7-498a-a0dc-6bd2c0a7581f")
-		(at 115.9 118.6)
+		(at 114.8 119.6 90)
 		(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*15 row: a 0.30-0.50, b 0.35-0.45, c 0.40-0.60. Chosen a 0.40, b 0.45, c 0.55: lands 0.45 x 0.55 at +-0.425 (1.30 x 0.55 = budget envelope '0402'; same land as lib:R_0402_1005Metric). Samsung CL05 parts share the EIA 0402 chip format.. Corrected copy of OpenDrone:C_0402_1005Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0402_1005Metric_W.json")
 		(tags "0402 (1005 metric 1.0 x 0.5")
 		(property "Reference" "C56"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "7a801449-74b7-4993-976c-a46307dd15a0")
@@ -35506,7 +35506,7 @@
 			)
 		)
 		(property "Value" "4.7uF"
-			(at 0 -0.45 180)
+			(at 0 -0.45 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "3728c65c-e04c-4888-9212-b8379667bc6c")
@@ -35519,7 +35519,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "bd64b327-3105-454c-b5a4-3c5d1a0336bd")
@@ -35531,7 +35531,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "2930ccc7-f082-4a49-8063-3922c613534d")
@@ -35556,6 +35556,16 @@
 			(uuid "d45e1f73-a302-410c-9255-7ad639b80f14")
 		)
 		(fp_line
+			(start 0.5 -0.25)
+			(end -0.5 -0.25)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "29807a46-1029-45a1-b78a-52f70cd2972b")
+		)
+		(fp_line
 			(start -0.5 -0.25)
 			(end -0.5 0.125)
 			(stroke
@@ -35576,26 +35586,6 @@
 			(uuid "01f60755-d747-4997-ae5f-fa836b7a0abc")
 		)
 		(fp_line
-			(start -0.375 0.25)
-			(end 0.5 0.25)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "2c3bd45d-da0c-4eb1-add7-3b5071f1cff8")
-		)
-		(fp_line
-			(start 0.5 -0.25)
-			(end -0.5 -0.25)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "29807a46-1029-45a1-b78a-52f70cd2972b")
-		)
-		(fp_line
 			(start 0.5 0.25)
 			(end 0.5 -0.25)
 			(stroke
@@ -35605,8 +35595,18 @@
 			(layer "B.Fab")
 			(uuid "92015531-74f9-4104-95cb-2698c0b09d5e")
 		)
+		(fp_line
+			(start -0.375 0.25)
+			(end 0.5 0.25)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "2c3bd45d-da0c-4eb1-add7-3b5071f1cff8")
+		)
 		(pad "1" smd roundrect
-			(at -0.425 0)
+			(at -0.425 0 90)
 			(size 0.45 0.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -35614,7 +35614,7 @@
 			(uuid "c132c474-8069-4793-97c0-b720ca3974f2")
 		)
 		(pad "2" smd roundrect
-			(at 0.425 0)
+			(at 0.425 0 90)
 			(size 0.45 0.55)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -35637,7 +35637,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "640d4346-cc4e-40bd-a2ca-d1a085f22eb1")
-		(at 111.3 108.8 90)
+		(at 111.3 108.2 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C42"
@@ -36081,7 +36081,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "68ca1751-6d8c-4cef-a940-4bea87fde235")
-		(at 125.4 122.5 90)
+		(at 125.4 114.5 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C67"
@@ -37144,11 +37144,11 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "73eb80d4-53de-4b1a-aa53-ea1c9a2b14f9")
-		(at 117.5 120.2)
+		(at 116.45 121.075 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R48"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "6dc0e330-8ba1-4610-b5f6-4578e237c6d6")
@@ -37161,7 +37161,7 @@
 			)
 		)
 		(property "Value" "100k"
-			(at 0 -0.35 180)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "48ccfd74-958d-4d50-8ae1-8f36f1abc0a7")
@@ -37174,7 +37174,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "5cee93bd-4272-4f57-8498-8bc0e767ffb5")
@@ -37186,7 +37186,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "48e5180c-9451-4955-b03c-44e8509bb896")
@@ -37211,6 +37211,16 @@
 			(uuid "f1cc9a44-8a6e-4a9c-9296-0ead7a8f3ce8")
 		)
 		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "10073646-f052-456f-bca1-737be025229f")
+		)
+		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -37231,26 +37241,6 @@
 			(uuid "eb78fffb-eca9-463e-8c68-8333e391dc57")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "8f298f8f-99d2-491a-ac43-20f830d1cd5b")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "10073646-f052-456f-bca1-737be025229f")
-		)
-		(fp_line
 			(start 0.3 0.15)
 			(end 0.3 -0.15)
 			(stroke
@@ -37260,8 +37250,18 @@
 			(layer "B.Fab")
 			(uuid "b0e6e277-97a4-4be7-993d-806cdfb571c6")
 		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "8f298f8f-99d2-491a-ac43-20f830d1cd5b")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -37269,7 +37269,7 @@
 			(uuid "b1955170-475d-416b-bd2d-c03d55279281")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -37292,7 +37292,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "76897c60-db7d-4ca3-ac83-9adb08010866")
-		(at 101.6 113.5 90)
+		(at 101.65 109.3 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R85"
@@ -37734,7 +37734,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "7b27a189-c761-49dc-b3da-fa3234de0193")
-		(at 104.7 113.2 90)
+		(at 104.8 114.3 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C91"
@@ -39378,7 +39378,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "87609b40-0492-4383-8556-a44ed884ff3d")
-		(at 111 107.9)
+		(at 111 109.05)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C46"
@@ -39974,7 +39974,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "892ed3ba-de66-453d-b7ea-725addd92143")
-		(at 124.5 122.7)
+		(at 119.917 120.08)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R55"
@@ -41477,7 +41477,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "99005cd9-d179-4824-bc8a-3fcf7a2781e5")
-		(at 115.7 124.7 90)
+		(at 115.7 125.1 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C4"
@@ -42815,11 +42815,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "a6259456-f9d6-42a2-9de3-8f9e29c56ac3")
-		(at 115.6 117.6 90)
+		(at 116.5 118.5)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C49"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9451579d-8b13-48cb-a7d1-e3d4519ec471")
@@ -42832,7 +42832,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 -0.35 270)
+			(at 0 -0.35 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9e3d7f6e-69fa-4b69-bb97-662f8dda879c")
@@ -42845,7 +42845,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "eea1276f-a211-489f-a9d1-e4dc03e35252")
@@ -42857,7 +42857,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c56da9d0-d019-4ebc-bcce-6e261a244d5c")
@@ -42882,16 +42882,6 @@
 			(uuid "bc977639-42ac-4d3f-912a-c1989d5dc10d")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "6e32d5cc-6d82-4797-89fe-55dcc7f03b8c")
-		)
-		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -42912,16 +42902,6 @@
 			(uuid "9eeeb49b-f69e-45eb-beaf-cea606fc7141")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "31c3c251-cce8-4179-a8cf-46cc27b0475e")
-		)
-		(fp_line
 			(start -0.225 0.15)
 			(end 0.3 0.15)
 			(stroke
@@ -42931,8 +42911,28 @@
 			(layer "B.Fab")
 			(uuid "aac6bbbc-c78f-4b66-96e6-4e87c83b9192")
 		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "6e32d5cc-6d82-4797-89fe-55dcc7f03b8c")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "31c3c251-cce8-4179-a8cf-46cc27b0475e")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -42940,7 +42940,7 @@
 			(uuid "81767581-51bf-4bdd-854d-d86245c85e7f")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -43259,7 +43259,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "ac107f23-14c5-40b5-9320-019fe5d6c2ad")
-		(at 117.6 111)
+		(at 116.9 120.1)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R45"
@@ -43860,7 +43860,7 @@
 	(footprint "lib:C_0402_1005Metric_W"
 		(layer "B.Cu")
 		(uuid "af914cf5-c23d-4a87-8dc6-6ce66a407914")
-		(at 114.8 119.8 90)
+		(at 115.5 117.75 90)
 		(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*15 row: a 0.30-0.50, b 0.35-0.45, c 0.40-0.60. Chosen a 0.40, b 0.45, c 0.55: lands 0.45 x 0.55 at +-0.425 (1.30 x 0.55 = budget envelope '0402'; same land as lib:R_0402_1005Metric). Samsung CL05 parts share the EIA 0402 chip format.. Corrected copy of OpenDrone:C_0402_1005Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0402_1005Metric_W.json")
 		(tags "0402 (1005 metric 1.0 x 0.5")
 		(property "Reference" "C58"
@@ -44008,7 +44008,7 @@
 	(footprint "lib:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "b11fe66a-9913-4251-b5fd-b46c5f48b3a9")
-		(at 113.5 106.4)
+		(at 114.75 106.725)
 		(descr "Resistor 0402 (1005 metric), Yageo RC0402 body 1.00 x 0.50 (spec sheet p1); IPC-7351B-derived lands 0.45 x 0.55 at +-0.425 (Z 1.30 = area budget)")
 		(tags "resistor 0402 1005 RC0402")
 		(property "Reference" "R57"
@@ -44156,11 +44156,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "b20cc2ce-b06f-4529-93db-54cfe7d91da8")
-		(at 106.9 119.8)
+		(at 109.1 117.2 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C92"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "82819ca8-9c1f-466e-8ccd-a498d1554d68")
@@ -44173,7 +44173,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 0 -0.35 180)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9ad1ea28-0e3c-45ec-a541-f1750981c2c9")
@@ -44186,7 +44186,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "895537d8-40b0-476f-9b92-40863faf7d2f")
@@ -44198,7 +44198,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "b5bece1c-a408-4b5d-93a1-3cf73367de6a")
@@ -44223,6 +44223,16 @@
 			(uuid "797586ec-edb5-4619-8454-026494cf7d4d")
 		)
 		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "7e77d484-d74e-45d0-875c-2581c743bf18")
+		)
+		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -44243,26 +44253,6 @@
 			(uuid "1b7f2059-b56d-4225-b723-c3e6975db900")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "e8c7b338-daab-47bb-904f-442c7ef0d9c3")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "7e77d484-d74e-45d0-875c-2581c743bf18")
-		)
-		(fp_line
 			(start 0.3 0.15)
 			(end 0.3 -0.15)
 			(stroke
@@ -44272,8 +44262,18 @@
 			(layer "B.Fab")
 			(uuid "2ff2499b-5d52-44d9-a830-40c86483603d")
 		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "e8c7b338-daab-47bb-904f-442c7ef0d9c3")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -44281,7 +44281,7 @@
 			(uuid "a5372650-c834-4ed4-b7de-68cadae95dd1")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -44304,11 +44304,11 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "b33996c1-694e-438f-b2fc-0a3b8e2126fe")
-		(at 110.7 108.8 90)
+		(at 112.9 106.8)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R40"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9942b229-7274-49ce-859f-19bb29322e7d")
@@ -44321,7 +44321,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 0 -0.35 270)
+			(at 0 -0.35 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "017ccce1-943e-473b-a663-6b01e159779f")
@@ -44334,7 +44334,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "339384a4-ccfd-4838-873c-e845b764ee7f")
@@ -44346,7 +44346,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "82316570-fbc4-413f-9bca-64a8ae5a980f")
@@ -44371,16 +44371,6 @@
 			(uuid "15390237-087f-43fc-8b5d-f8d8a8422561")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "f183414d-a60d-4d1c-a176-e4c137ade4a5")
-		)
-		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -44401,16 +44391,6 @@
 			(uuid "f0ee180a-132f-46f5-9622-0803677641a2")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "ed0c3d94-62a6-414f-a690-1db2183db5a9")
-		)
-		(fp_line
 			(start -0.225 0.15)
 			(end 0.3 0.15)
 			(stroke
@@ -44420,8 +44400,28 @@
 			(layer "B.Fab")
 			(uuid "0ce5ed53-1f92-4fd7-ab98-8c1f33a962e2")
 		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "f183414d-a60d-4d1c-a176-e4c137ade4a5")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "ed0c3d94-62a6-414f-a690-1db2183db5a9")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -44429,7 +44429,7 @@
 			(uuid "5b86afd8-e190-40fa-ad21-78d640b3a251")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -44756,7 +44756,7 @@
 	(footprint "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W"
 		(layer "B.Cu")
 		(uuid "b48cfb63-9498-4100-a2b9-8c895655aaee")
-		(at 117.2 125.5)
+		(at 116.7 125.5)
 		(descr "ALLPOWER AP1606 DFN-3L 1.0 x 0.6. Land per Nexperia SOT883 package information (20 May 2022) p2 outline DFN1006-3 (D 0.6 x E 1.0, e 0.35, e1 0.65) and p3 'Footprint information for reflow soldering' (lands 0.40 x 0.25 at 0.45 pitch, 0.40 x 0.70, 0.70 between columns, R0.05); p23/merge/od/dl/ap/SOT883.pdf. The AP1606 data sheet (${OPENDRONE_LIB}/datasheet/AP1606.pdf, also LCSC C2849580) has no package drawing; LCSC lists DFN-3L(0.6x1), i.e. the industry DFN1006-3 (SOT883, JEITA SC-101). Land = Nexperia's SOT883 reflow footprint drawn in the OpenDrone '-BR' frame (pins 1/2 right column, pin 1 lower right, pin 3 left), which keeps the pin numbering OpenDrone built with on OpenFC-Core/Lite/Lite-Mini (PARTS-USED.md). Inside the budget envelope DFN1006 1.1 x 0.7.. Corrected copy of OpenDrone:DFN-3L_L1.0-W0.6-P0.65-BR (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/DFN-3L_L1.0-W0.6-P0.65-BR_W.json")
 		(tags "ALLPOWER AP1606 DFN-3L 1.0 x 0.6")
 		(property "Reference" "Q26"
@@ -44913,11 +44913,11 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "b5a72198-e280-4000-8e82-7586471aa1dd")
-		(at 119.7 120)
+		(at 118.1 119.35 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R41"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c011c682-b99d-4293-a130-73cc05e44a89")
@@ -44930,7 +44930,7 @@
 			)
 		)
 		(property "Value" "30R"
-			(at 0 -0.35 180)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "2194227a-1324-405b-968f-aec669bc1035")
@@ -44943,7 +44943,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "ff3f5c38-2ca1-40c7-9bfb-7cae53d925fb")
@@ -44955,7 +44955,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "12ae9853-6364-4632-920b-e33403dc1e6e")
@@ -44980,6 +44980,16 @@
 			(uuid "1582969a-9c64-4d31-af55-54aad547a8c7")
 		)
 		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "5649e917-7e0d-48c7-acd8-cf7456f24b7a")
+		)
+		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -45000,26 +45010,6 @@
 			(uuid "7823428c-2f49-4005-b180-49c04662f05e")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "178485b5-c941-4a37-9b9e-f1a7ad81cfd2")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "5649e917-7e0d-48c7-acd8-cf7456f24b7a")
-		)
-		(fp_line
 			(start 0.3 0.15)
 			(end 0.3 -0.15)
 			(stroke
@@ -45029,8 +45019,18 @@
 			(layer "B.Fab")
 			(uuid "98e527d5-cfcf-4dc8-a70d-3549994cab72")
 		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "178485b5-c941-4a37-9b9e-f1a7ad81cfd2")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0)
+			(at -0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -45038,7 +45038,7 @@
 			(uuid "07c6b0fc-dbe7-46b6-802b-ae87ec8ae23f")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0)
+			(at 0.275 0 90)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -45659,7 +45659,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "ba20c150-8558-4654-a7cc-d43c51cdad43")
-		(at 118.7 112.2)
+		(at 117.55 112.2)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C52"
@@ -46757,7 +46757,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "c1bf2d90-ca8d-4b52-9df2-26bd8071c195")
-		(at 117.6 112.2)
+		(at 118.7 112.2)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C14"
@@ -48056,7 +48056,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "c994cb5f-2c0b-4827-a522-e43d23777273")
-		(at 106.2 121.1)
+		(at 109.649999 119.149999)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C126"
@@ -48204,7 +48204,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "c9dd8f5a-30be-46db-90c1-2558e1e6bee5")
-		(at 108.8 114.4)
+		(at 107.2 109)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R11"
@@ -48352,7 +48352,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "cb5b7ab6-9c2c-44da-bcd1-b192cf701fc4")
-		(at 110.3 118.7 90)
+		(at 109.7 117.6 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C90"
@@ -48648,11 +48648,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "cca266a6-48c9-42af-921d-d401ca208f58")
-		(at 119.7 116.7 90)
+		(at 119.95 115.8)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C120"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a2a095a3-cb3e-4f97-995a-81aff19ee0b1")
@@ -48665,7 +48665,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 0 -0.35 270)
+			(at 0 -0.35 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "655151f1-14c2-42ca-ae37-210b38e11a8e")
@@ -48678,7 +48678,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f712188e-e6b6-4b6c-bb32-3db13429a689")
@@ -48690,7 +48690,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "95670e71-03a1-4086-8665-92f7722f9758")
@@ -48715,16 +48715,6 @@
 			(uuid "cff276fb-4cc9-46e3-8875-a626553c8966")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "6c7c1cf0-585d-4daa-a880-1125ab477fa2")
-		)
-		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -48745,16 +48735,6 @@
 			(uuid "e02d19a0-c5a8-4933-82cc-9fb07d81845c")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "38c8583a-2a23-45b6-802c-f8fec275576f")
-		)
-		(fp_line
 			(start -0.225 0.15)
 			(end 0.3 0.15)
 			(stroke
@@ -48764,8 +48744,28 @@
 			(layer "B.Fab")
 			(uuid "eda62672-07c7-49a9-9aef-46d4a717adc5")
 		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "6c7c1cf0-585d-4daa-a880-1125ab477fa2")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "38c8583a-2a23-45b6-802c-f8fec275576f")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -48773,7 +48773,7 @@
 			(uuid "4a37363f-a69b-44f5-97e4-385ca744d782")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -49570,11 +49570,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "d428b463-0bac-4755-a9bf-2ef0ec23a271")
-		(at 104.8 114.3 90)
+		(at 108.15 114.55)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C87"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f53a4401-e3e6-4741-b280-b86488a571cc")
@@ -49587,7 +49587,7 @@
 			)
 		)
 		(property "Value" "470nF"
-			(at 0 -0.35 270)
+			(at 0 -0.35 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a6ca1d15-c3d7-4f3e-99cf-173a20da6c55")
@@ -49600,7 +49600,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "e9ae13db-6861-4163-b357-4bed30ebcd8d")
@@ -49612,7 +49612,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "b12e959e-f766-4614-b1ee-f95b79aecb18")
@@ -49637,16 +49637,6 @@
 			(uuid "05d9d92a-64bf-4a0d-9c5c-65d85d695bde")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "7d61e119-8b11-4bad-90cc-3595ca648e57")
-		)
-		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -49667,16 +49657,6 @@
 			(uuid "507e8e1c-5d91-45ee-b682-5a83fde502d4")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "ac18a78e-9c64-4e49-ab1a-994895317614")
-		)
-		(fp_line
 			(start -0.225 0.15)
 			(end 0.3 0.15)
 			(stroke
@@ -49686,8 +49666,28 @@
 			(layer "B.Fab")
 			(uuid "96b16a8e-0eeb-43e1-9bf0-92e3144a2346")
 		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "7d61e119-8b11-4bad-90cc-3595ca648e57")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "ac18a78e-9c64-4e49-ab1a-994895317614")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -49695,7 +49695,7 @@
 			(uuid "f7b63570-5e8c-41d1-aad4-b78f5a6854d9")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -50516,7 +50516,7 @@
 	(footprint "lib:R_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "dd40774c-bdbb-470b-b38c-b38d48a5efe4")
-		(at 125.4 114.5 90)
+		(at 121.717 113.68 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/NCP03 chip resistor / NTC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:R_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/R_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R52"
@@ -51905,7 +51905,7 @@
 	(footprint "lib:C_0402_1005Metric_W"
 		(layer "B.Cu")
 		(uuid "f14ef1a9-8553-49e8-9e04-96ba9080dc75")
-		(at 103.8 116.5 90)
+		(at 103.2 116.6 90)
 		(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*15 row: a 0.30-0.50, b 0.35-0.45, c 0.40-0.60. Chosen a 0.40, b 0.45, c 0.55: lands 0.45 x 0.55 at +-0.425 (1.30 x 0.55 = budget envelope '0402'; same land as lib:R_0402_1005Metric). Samsung CL05 parts share the EIA 0402 chip format.. Corrected copy of OpenDrone:C_0402_1005Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0402_1005Metric_W.json")
 		(tags "0402 (1005 metric 1.0 x 0.5")
 		(property "Reference" "C93"
@@ -52201,7 +52201,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "f4a51cb8-50a5-4fa1-bd5e-b884cf1ba135")
-		(at 114.7 107.7 90)
+		(at 114.7 108.85 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C51"
@@ -52509,11 +52509,11 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "fc5b603d-d280-4980-b3cf-b02506603344")
-		(at 109.7 118.7 90)
+		(at 106.9 119.8)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C89"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "490c1f94-d709-43a6-86d1-99a657725596")
@@ -52526,7 +52526,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 0 -0.35 270)
+			(at 0 -0.35 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "202fc914-51b1-4902-87f6-082c3776065a")
@@ -52539,7 +52539,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "161accf0-c92f-4237-9ed1-26eacae1e452")
@@ -52551,7 +52551,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "2c142c29-21d3-4098-88f2-519ace65f667")
@@ -52576,16 +52576,6 @@
 			(uuid "7a769072-c7c8-4634-8f5b-f0da760cd8cb")
 		)
 		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "46e22b22-268b-406e-aeba-c81274083776")
-		)
-		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -52606,16 +52596,6 @@
 			(uuid "6f34f571-b57e-4a45-ab6d-1e8cdcc09be9")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "68e0e141-6478-4109-91f4-8b4e98a02a3a")
-		)
-		(fp_line
 			(start -0.225 0.15)
 			(end 0.3 0.15)
 			(stroke
@@ -52625,8 +52605,28 @@
 			(layer "B.Fab")
 			(uuid "3cd2ea67-e4e6-4eba-a7c2-17b659b44ada")
 		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "46e22b22-268b-406e-aeba-c81274083776")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "68e0e141-6478-4109-91f4-8b4e98a02a3a")
+		)
 		(pad "1" smd roundrect
-			(at -0.275 0 90)
+			(at -0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -52634,7 +52634,7 @@
 			(uuid "d7fa59a7-5011-4754-b48a-3004c958b513")
 		)
 		(pad "2" smd roundrect
-			(at 0.275 0 90)
+			(at 0.275 0)
 			(size 0.35 0.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -52657,7 +52657,7 @@
 	(footprint "lib:C_0603_1608Metric_W"
 		(layer "B.Cu")
 		(uuid "fc68d47b-1ba0-4cac-9b77-0323509b066c")
-		(at 124.4 121.2 90)
+		(at 124.4 122.6 90)
 		(descr "0603 (1608 metric, 1.6 x 0.8 mm) MLCC GRM188 / CL10. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*18 row: a 0.6-0.8, b 0.6-0.7, c 0.6-0.8. Chosen a 0.70, b 0.70, c 0.80: lands 0.70 x 0.80 at +-0.70 (2.10 x 0.80, inside the budget envelope '0603' 2.1 x 0.9).. Corrected copy of OpenDrone:C_0603_1608Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0603_1608Metric_W.json")
 		(tags "0603 (1608 metric 1.6 x 0.8")
 		(property "Reference" "C23"
@@ -52805,7 +52805,7 @@
 	(footprint "lib:L_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "fd11874f-46ee-4011-8699-a6e855f39dce")
-		(at 121.8 107.5)
+		(at 119.4 108.2)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) BLM03 ferrite bead / LQP03 inductor. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:L_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/L_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "FB1"
@@ -53257,7 +53257,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "fe0a4ec3-937f-4798-aeb8-7c90192c9193")
-		(at 115.8 120.3)
+		(at 110.3 118.5)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C127"
@@ -53405,7 +53405,7 @@
 	(footprint "lib:C_0201_0603Metric_W"
 		(layer "B.Cu")
 		(uuid "ffa5105c-b565-48e1-83c7-00dac7a6859b")
-		(at 114.7 108.8 90)
+		(at 114.7 107.7 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C43"

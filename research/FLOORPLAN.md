@@ -1,7 +1,8 @@
 # OpenAIO-Whoop floorplan (P2 proof)
 
 Placed 2026-10-09 on `hardware/OpenAIO-Whoop.kicad_pcb`. It starts from the early preview's block plan
-(`scratchpad/preview`) and uses the real P3 library footprints. Every number below comes from the runs listed
+(`scratchpad/preview`) and uses the real P3 library footprints. A compaction pass (stage 6) followed the owner
+note on via-in-pad and empty space (CONTEXT "OWNER NOTE D34"; logged as D51), see Compaction below. Every number below comes from the runs listed
 under Verification. The board has no schematic yet (P4), so it has no real nets and no routing.
 
 ## Result
@@ -13,12 +14,14 @@ under Verification. The board has no schematic yet (P4), so it has no real nets 
 | Parts on their bom_plan side | 311; 15 changed side (listed under Changes) |
 | `check_spacing.py --min 0.20 --edge 0.20` | **0** pairs < 0.20 mm, **0** edge hits, nearest-neighbour median 0.200 mm; 3 keepout hits = AE1 inside its own antenna areas (D44 exemption, by design) |
 | `kicad-cli pcb drc --refill-zones` (10.0.6) | **0 errors**, 4 warnings, 0 unconnected; courtyard 0, edge 0, silk 0 |
+| Empty patches (room for a 1 x 1 mm square at rule clearance, outside deliberate keepouts) | top **0**; bottom 1 (1.9 mm², the ESC4 +BATT via-landing copper, deliberate) |
 | Every part inside its floorplan region and on its side | 326 / 326 |
 | Usable area per side, package / incl. 0.1 mm halo | top 628.5 mm²: 49.8 % / **70.9 %**; bottom 616.6 mm²: 53.2 % / **74.2 %** |
 | X-ray (exposed pad over exposed pad or LGA field across the sides) | 0 |
 | ESC via sites | P source 47/48, N phase 96/96, N source 36/36, gate 24/24, leg-cap 12/12 |
-| IC GND / EP vias | 48 of 62 planned |
-| Free through-via sites on both sides (0.55 mm lattice) | 108 |
+| IC GND / EP vias | **54 of 62** with filled+capped via-in-pad landing in far-side pads (D34); 46 with free far-side landings only |
+| Through-via sites on both sides (0.55 mm lattice) | 120 free; **228** counting via-in-pad landings (spec 9.2 allowance about 150) |
+| Anchor distance (231 search-placed parts) | median 2.42 mm; 124 over 2 mm, 47 over 4 mm |
 
 The four DRC warnings are `solder_mask_bridge` at the RP2354A QFN-60 `_Dense` corner pad pairs (1/60, 15/16,
 30/31, 45/46): the mask web between corner pads is below 0.10 mm, a library item for P3. The DRC is clean only
@@ -35,7 +38,7 @@ block maps are in `scratchpad/p23/renders/` and `scratchpad/p23/fp/map05-*.png`.
 
 `scratchpad/p23/fp/work/stages.py` is a hand-tuned placement script that rebuilds the board from the P1 board on
 every run. Each stage saves a numbered checkpoint in `scratchpad/p23/fp_checkpoints/` (01_fixed, 02_esc,
-03_escvias, 04_ics, 05_passives). The stages are:
+03_escvias, 04_ics, 05_passives, 06_compact). The stages are:
 
 1. **Fixed items**: motor, battery, user, HD, CAM and LED pads, the antenna hole, U.FL and pogo USB, then their
    silk labels, then the bottom art.
@@ -52,6 +55,7 @@ every run. Each stage saves a numbered checkpoint in `scratchpad/p23/fp_checkpoi
    - gyro, NOR, ESC cells, the remaining mid parts, then the rest.
 
    The anchor is the IC pin named in the bom_plan notes where there is one.
+5. **Compaction** (`compact.py`, `fill.py`, D34): see Compaction below.
 
 The kernel (`fpk.py`) measures with check_spacing's package extents and with the real courtyards, so its result
 matches both checkers. It enforces:
@@ -68,11 +72,77 @@ matches both checkers. It enforces:
 `mkplan.py` writes `hardware/floorplan.json`, `verify.py` produces the checks below, and `occ.py` measures
 utilisation.
 
+## Compaction and via-in-pad (owner note D34)
+
+The owner looked at the floorplan WIP (checkpoint 06, 08:32) and asked for via-in-pad everywhere and no wasted
+space. The P2 run 2 placement (courtyard-aware kernel, explicit priority order) had already closed most of those
+regions before the note arrived. Stage 6 then compacted that board further.
+
+- **Rip-up and replace**: each part far from its anchor pin gets a spot closer to the pin. Up to three lighter
+  passives that block that spot are moved out and searched again near their own anchors. A move is kept only when
+  the weighted anchor distance drops (caps weight 3, L / FB / crystals 2, others 1).
+- **Fill**: a nearby part whose anchor distance stays within limits is pulled into each patch that compaction
+  leaves behind.
+- **Fixed during the pass**: hand-placed ICs, pads, FETs, EFM8s, leg caps, the RF chain and PA ring, crystals,
+  the gyro and the test pads. These are the parts that the rule areas and distance rules depend on.
+- **Via-in-pad accounting**: no free board area is reserved for vias any more, except the ESC power-via landings,
+  which are the +BATT / GND / phase copper of the cells. A filled+capped 0.35/0.20 via may land in a pad on the
+  far side, so a via counts when its far-side land sits fully inside one pad and keeps 0.15 mm from every other
+  pad. Same-net landings are a P4 netlist check.
+
+All three columns are measured with the same scripts. The 06 checkpoint had 318 of 329 parts placed.
+
+| Per side, top / bottom | Checkpoint 06 (owner WIP) | P2 run 2 (before D34) | After stage 6 |
+|---|---|---|---|
+| Package area, % of usable (628.5 / 616.6 mm²) | 49.6 / 49.4 | 49.8 / 53.2 | 49.8 / 53.2 |
+| Package + 0.1 mm halo, % | 68.4 / 63.9 | 70.9 / 74.2 | 70.9 / 74.2 |
+| Free area at rule clearance, mm² (0.2 mm; 0.7 mm at solder pads / TALL) | 54.1 / 110.2 | 38.6 / 50.2 | 38.5 / 51.5 |
+| Empty patches, mm² (count) | 17.4 (6) / 38.1 (10) | 0 / 1.9 (1) | 0 / 1.9 (1, deliberate) |
+| Nearest-neighbour gap, median | - | 0.200 mm | 0.200 mm |
+| Anchor distance, median / over 4 mm / caps over 2 mm | - | 2.55 / 56 / 53 | 2.42 / 47 / 42 |
+| IC GND / EP vias (free landing / with via-in-pad) | - | 48 / 54 of 62 | 46 / 54 of 62 |
+| Through-via sites on both sides (free / with via-in-pad) | - | 108 / 215 | 120 / 228 |
+
+**What stage 6 moved**
+
+- 67 parts moved and none changed side: 29 rip-ups plus 18 plain moves.
+- Pulled in: C68 7.2→1.3 mm, C92 3.3→0.8, C91 3.3→1.1, C87 3.1→0.8, C58 3.3→1.4, C45 4.0→2.6, C102 4.6→3.9,
+  C103 5.4→4.5, C126 / C127 4.4→1.5 / 1.9, R25 6.2→2.6, R55 6.4→3.5, R41, R52, R47, R48.
+- Moved out further, as rip-up blockers or fills: C50 → 4.4 mm, C15 → 4.9 mm, R86 0.8→1.8 mm, C23 4.4→4.7 mm.
+
+**Side balance**
+
+- Package area is 49.8 % top and 53.2 % bottom.
+- Free area at rule clearance is 38.5 mm² (6.3 %) top and 51.5 mm² (8.6 %) bottom. The top spends more area on
+  the solder-pad halos and the pad labels.
+- Both sides are within about 3 points by either measure, so no part changed side in stage 6. Moving a part to
+  the bottom would worsen its package share, and moving one to the top would worsen its free area.
+
+**What the freed area could not buy**
+
+1. **The 2.0 mm product name.** A scan of every position on the bottom found no 8.6 x 7.1 mm block, or even a
+   5.6 x 6.4 mm one, without moving at least one hand-placed IC. The best sites hit U10, U4 and U21.
+   - The name therefore stays in 1.4 mm rows (D48).
+   - Moving the RP2354A forward is blocked by the X-ray rule with the RTC6705 exposed pad above it.
+2. **A bigger logo.** The project library has only the 6.1 x 1.4 mm incutec logo.
+3. **Stitching vias as copper.** They are not drawn, because the board has no nets until P4. Their sites are the
+   228 counted above.
+
+**Free area that remains on purpose**
+
+- The ESC via-landing bands and phase fields: N phase vias, P-source and N-source landings, and the bottom +BATT
+  copper of ESC4 (the 1.9 mm² patch).
+- The antenna and RF keepouts, the mounting flanges and tabs.
+- The 0.5 / 0.7 mm iron-rework halos around the solder pads.
+
+**Empty-patch maps**: `scratchpad/p23/renders/empty-06silk.png`, `empty-before.png`, `empty-after.png`. In these
+maps, red marks a patch, dark green marks parts and silk, and light green marks clearance.
+
 ## Regions (`hardware/floorplan.json`)
 
-There are 44 regions. Each spec 10 block has a core region around its main part. Parts more than 3 mm from that
+There are 43 regions. Each spec 10 block has a core region around its main part. Parts more than 3 mm from that
 part go to a `<block>_outer_<side>` region, so spread-out parts show in the report instead of being hidden
-(50 parts in total). The main areas, in mm from the body centre:
+(41 parts in total). The main areas, in mm from the body centre:
 
 | Side | Block | Region (x0, y0, x1, y1) | Notes |
 |---|---|---|---|
@@ -81,13 +151,13 @@ part go to a `<block>_outer_<side>` region, so spread-out parts show in the repo
 | T | VTX RTC6705 | −2.58, −10.3, 4.7, 1.6 | RTC6705 at (1.4, −5.15), rotated 270 |
 | T | VTX PA reference + drive stage | −12.85, 3.9, −8.65, 10.6 (plus outer) | moved around the NOR |
 | T | NOR | −10.0, 4.1, −2.44, 9.95 | 3.04 mm from the antenna hole |
-| T | gyro + LDO | −3.2, 1.1, 2.55, 5.55 | gyro at (−1.0, 3.05) |
-| B | FC (RP2354A) | −6.55, −6.1, 7.2, 7.35 | MCU centred at (0, 0) |
-| B | RX (ESP32, flash, crystal) | −0.45, −12.7, 10.8, −4.75 | ESP32 at (5.15, −9.9) |
-| B | radio (SX1280, TCXO, LPF) | −10.4, −0.55, −2.6, 8.15 | SX1280 at (−6.7, 3.95) |
+| T | gyro + LDO | −3.2, 1.1, 2.91, 5.55 | gyro at (−1.0, 3.05) |
+| B | FC (RP2354A) | −4.4, −6.7, 7.2, 7.2 | MCU centred at (0, 0) |
+| B | RX (ESP32, flash, crystal) | 0.15, −12.7, 10.8, −4.75 | ESP32 at (5.15, −9.9) |
+| B | radio (SX1280, TCXO, LPF) | −10.38, −0.55, −3.2, 8.15 | SX1280 at (−6.7, 3.95) |
 | B | boost | 5.3, −5.4, 12.45, 2.25 | U2 at (8.95, −2.45), L1 at (11.3, −3.0) |
 | B | power entry | −10.7, 7.65, 1.6, 12.6 | shunt at (−5.4, 9.25) |
-| B | O4 switch | −8.05, −4.95, −3.3, 1.5 | U5 at (−5.57, −2.35) |
+| B | O4 switch | −8.05, −4.95, −3.3, 1.45 | U5 at (−5.57, −2.35) |
 | B | art | 3.65, 7.4, 9.95, 9.0 | logo; the name block is silk text at the rear centre |
 
 ## Block placement rationale
@@ -159,7 +229,9 @@ pads.
 ## Via sites
 
 Via sites are counted for 0.35/0.20 Type VII vias. A site counts when the drill sits inside the pad and the
-far-side landing keeps 0.15 mm from other parts' pads, holes and the edge.
+far-side landing keeps 0.15 mm from other parts' pads, holes and the edge. The "via-in-pad" column also counts a
+far-side land that sits fully inside a far-side pad (filled and capped, owner note D34); the same net there is a
+P4 netlist check.
 
 - **ESC cells**:
   - P source: 47 of 48. On Q16 (ESC3) the fourth in-pad via lands on a bottom pad; P5 nudges that part.
@@ -167,27 +239,29 @@ far-side landing keeps 0.15 mm from other parts' pads, holes and the edge.
   - Leg-cap +BATT vias 12/12 land on the top clear of the motor pads.
 - **IC exposed pads, fitting / planned**:
 
-  | Part | Fit | Planned |
-  |---|---|---|
-  | U16 ESP32 | 9 | 9 |
-  | U19 RTC6705 | 9 | 9 |
-  | U20 PA | 9 | 9 |
-  | U18 SX1280 | 4 | 4 |
-  | U12 | 1 | 1 |
-  | **U10 RP2354A** | **4** | **9** |
-  | U4 LP5912 (+3V3) | 1 | 2 |
-  | U21 LP5912 (+3V3_VTX) | 0 | 2 |
-  | U22 LP5907 | 0 | 1 |
-  | U17 GD25Q32 | 0 | 1 |
+  | Part | Free landing | With via-in-pad | Planned |
+  |---|---|---|---|
+  | U16 ESP32 | 9 | 9 | 9 |
+  | U19 RTC6705 | 9 | 9 | 9 |
+  | U20 PA | 9 | 9 | 9 |
+  | U18 SX1280 | 4 | 4 | 4 |
+  | U12 | 1 | 1 | 1 |
+  | **U10 RP2354A** | 2 | **9** | **9** |
+  | U4 LP5912 (+3V3) | 1 | 1 | 2 |
+  | U21 LP5912 (+3V3_VTX) | 0 | 0 | 2 |
+  | U22 LP5907 | 0 | 0 | 1 |
+  | U17 GD25Q32 | 0 | 0 | 1 |
 
-  - The RP2354A meets the spec 8.3 minimum of 4. Its other landings fall under the RTC crystal and the gyro LDO
-    on the top.
+  - The RP2354A gets all 9. Seven of them land inside pads of the top parts above it, and those pads must then be
+    GND pads at P4. With free landings only it has 2: stage 6 put
+    passives over the other free landings, so via-in-pad is now required to meet the spec 8.3 minimum of 4.
   - The LP5912 and LP5907 EPs on the far side are under top parts: they need dog-bone vias (P6).
   - The U17 EP strip is 0.2 mm wide, so no drill fits in it.
-- **GND pins**: 10 of 14 checked parts have an in-pad or adjacent via site. U5, U14, U15 and X1 need a short
-  trace to a via (P6).
-- **Free via sites on both sides**: 108 on a 0.55 mm lattice. The spec 9.2 allowance is 150 vias outside pads and
-  cells, so stitching and side changes depend on via-in-pad in 0201 and QFN pads (D23). P6 confirms this.
+- **GND pins**: 12 of 15 checked parts have a site in the pad or next to it (X1 only with via-in-pad). U5, U14
+  and U15 need a short trace to a via (P6).
+- **Through-via sites on both sides**: 120 free on a 0.55 mm lattice, and 228 when a land in a pad on either side
+  counts. That covers the spec 9.2 allowance of about 150 stitching and side-change vias, as owner note D34
+  intends.
 
 ## What changed against the spec, and what did not fit
 
@@ -231,21 +305,22 @@ far-side landing keeps 0.15 mm from other parts' pads, holes and the edge.
    - B- moved 0.1 mm left.
    - HD column moved 0.3 mm rearward.
    - The shunt is rotated 180° (sense pads toward the battery pads); P5 may turn it back.
-10. **Parts far from their anchor**: the median anchor distance is 2.55 mm, and 56 parts are more than 4 mm away.
-    Capacitors more than 4 mm from their pin, for P5:
+10. **Parts far from their anchor** after stage 6: the median anchor distance is 2.42 mm (2.55 before), and 47
+    parts are more than 4 mm away (56 before). Capacitors more than 4 mm from their pin, for P5:
 
     | Group | Parts (mm from pin) |
     |---|---|
     | ESC4 EFM8 VDD bulk | C36 6.6 |
-    | RTC6705 VCO | C103 5.4, C102 4.6 |
-    | Loop filter | C106 / C107 4.3 |
-    | ADC RC | C59 / C60 6-7 |
-    | OSD | C66, C67, C68, C70 4.3-7.2 |
-    | ESC bulk | C23, C29, C35, C41 4.4-5.1 |
+    | RTC6705 VCO | C103 4.5 |
+    | Loop filter | C106 / C107 4.3-4.4 (≥ 3 mm from phase copper, hard) |
+    | ADC RC | C59 6.0, C60 6.7 |
+    | OSD | C66, C67, C70 4.3-4.7 |
+    | ESC bulk | C23, C29, C35, C41 4.6-5.1 |
     | Pad bulk | C2 7.5 (kept 5 mm from the gyro) |
-    | LED translator | C126 / C127 4.4-4.6 |
+    | MCU decoupling | C50 4.4 (a rip-up blocker) |
+    | Camera filter | C15 4.9 |
 
-## Rule and tool changes (`hardware/tools/setup_board.py`, logged as D45-D50)
+## Rule and tool changes (`hardware/tools/setup_board.py`, logged as D45-D50; D51 for stage 6)
 
 - Tab T1 moved to the right edge at y −6.6, as spec 7 round 4 asked.
 - The `TALL` class pattern now matches `*IND-SMD_L2.5-W2.0*`. The old `*L2.5-W2.0*` also caught the 12 MHz 2520
@@ -270,9 +345,12 @@ far-side landing keeps 0.15 mm from other parts' pads, holes and the edge.
 - P5:
   - boost H2;
   - the 5.8 GHz input line's 1 mm part-free band (PA VCC caps C114-C116 sit next to it);
-  - pull the far capacitors listed above in;
+  - pull in the far capacitors listed above (stage 6 already brought C68, C102, C126 and C127 under 4 mm);
   - check the PA_VREF and drive-stage DC lines;
   - CAM pad over L1;
   - the Q16 fourth source via.
-- P6: dog-bone vias for the U4, U21 and U22 EPs; GND vias for U5, U14, U15 and X1; via-in-pad in decoupling
-  pads to close the via count.
+- P6:
+  - dog-bone vias for the U4, U21 and U22 EPs;
+  - GND vias for U5, U14 and U15;
+  - check that the via-in-pad landings counted here (U10 EP under the top parts, X1, the stitching sites) are
+    same-net once P4 sets the nets.
