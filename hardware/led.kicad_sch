@@ -1115,13 +1115,23 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 53.34) (xy 66.04 57.15)
+			(xy 66.04 64.77) (xy 66.04 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "9e3265a0-1930-50a8-b971-88579d226de4")
+		(uuid "12ba471b-bc90-54d9-ac1c-741d69908914")
+	)
+	(wire
+		(pts
+			(xy 45.72 64.77) (xy 45.72 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "770c9309-e4f3-55d8-8f36-7a035c4da00c")
 	)
 	(wire
 		(pts
@@ -1131,7 +1141,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "a6572586-3879-570e-b9f6-7487f7f58bb6")
+		(uuid "9e3265a0-1930-50a8-b971-88579d226de4")
 	)
 	(wire
 		(pts
@@ -1145,23 +1155,13 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 64.77) (xy 66.04 71.12)
+			(xy 66.04 53.34) (xy 66.04 57.15)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "cb91a5e7-4683-5043-bafb-b674778d6a76")
-	)
-	(wire
-		(pts
-			(xy 45.72 64.77) (xy 45.72 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ce7b2552-cb35-5db1-8a1e-e9d5f73232af")
 	)
 	(wire
 		(pts
@@ -1173,16 +1173,25 @@
 		)
 		(uuid "e55cdd69-10d6-53ad-b914-46c59d26ccc5")
 	)
-	(hierarchical_label "LED0"
-		(shape input)
-		(at 45.72 71.12 270)
+	(label "D5_K"
+		(at 45.72 55.88 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify right bottom)
 		)
-		(uuid "a6c8d2d2-9387-5ffd-97e5-0e6b67b4e886")
+		(uuid "4a4bda80-2c20-53be-91ee-fd6c4ef0ef44")
+	)
+	(label "D6_K"
+		(at 66.04 55.88 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "84ad7573-d921-5af5-a301-aa8a046e9335")
 	)
 	(hierarchical_label "LED1"
 		(shape input)
@@ -1193,7 +1202,18 @@
 			)
 			(justify right)
 		)
-		(uuid "c52b0ef7-2c83-5086-9c66-746ef59093f2")
+		(uuid "451b0f06-5fbc-5ffe-af5d-265f3aec442f")
+	)
+	(hierarchical_label "LED0"
+		(shape input)
+		(at 45.72 71.12 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bc4a752e-a72d-577a-aba3-8ec082813ffa")
 	)
 	(symbol
 		(lib_id "Device:R")
@@ -1436,7 +1456,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "631e3a1a-de22-5535-99f2-450046f659b4")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR230"
 			(at 45.72 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -1496,7 +1516,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0a9dca22-7345-53f8-9367-07faa3e8899c"
-					(reference "#PWR01")
+					(reference "#PWR230")
 					(unit 1)
 				)
 			)
@@ -1764,8 +1784,8 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "9357c99d-9b24-522a-8700-970389f58af5")
-		(property "Reference" "#PWR02"
+		(uuid "f882358a-447c-5b31-a027-3ba5f6daa202")
+		(property "Reference" "#PWR231"
 			(at 66.04 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -1820,12 +1840,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "ecf1e9c4-cf3d-5ef9-9cea-f6239fad238c")
+			(uuid "40a46999-67c9-5eea-8298-12a65fa408ad")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0a9dca22-7345-53f8-9367-07faa3e8899c"
-					(reference "#PWR02")
+					(reference "#PWR231")
 					(unit 1)
 				)
 			)

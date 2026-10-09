@@ -68,7 +68,10 @@ Where boards disagree, the canonical choice is the newest written source
 9. **BOM fields**: every BOM symbol MUST have `MPN`, `Manufacturer` and `LCSC`
    (c). [R] CONTRIBUTING ("every orderable component needs Manufacturer and
    MPN", LCSC when available) + README constraint (LCSC assembly). [E] 100% on
-   all alpha boards.
+   all alpha boards. OpenAIO-Whoop (D60, NextPCB turnkey by MPN; P4 integration
+   2026-10-09): `MPN` + `Manufacturer` MUST, the `LCSC` field MUST exist and is
+   filled where the part has an LCSC number; `check_conventions.py` A9 checks the
+   fields, `check_netlist.py` N3 checks the LCSC values against `bom_plan.json`.
 10. **Datasheet**: symbols placed from `OpenDrone` keep
     `${OPENDRONE_LIB}/datasheet/<file>.pdf`; no absolute or user-local paths
     (c). Generic primitives need none; a `lib` part may link the LCSC/maker PDF

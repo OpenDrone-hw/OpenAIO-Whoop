@@ -305,7 +305,10 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "OpenDrone:SDM02U30LP3-7B"
+		(symbol "lib:SDM02U30LP3-7B"
+			(pin_names
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -353,7 +356,7 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "[project copy of OpenDrone:SDM02U30LP3-7B with datasheet pin types, P4 integration 2026-10-09]"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -400,7 +403,7 @@
 						(type background)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -5.08 0 0)
 					(length 3.81)
 					(name "C"
@@ -418,7 +421,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 5.08 0 180)
 					(length 3.81)
 					(name "A"
@@ -439,7 +442,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "OpenDrone:SN74LVC1G3157DTBR"
+		(symbol "lib:SN74LVC1G3157DTBR"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -487,7 +490,7 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "[project copy of OpenDrone:SN74LVC1G3157DTBR with datasheet pin types, P4 integration 2026-10-09]"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -532,7 +535,7 @@
 						(type none)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -8.89 2.54 0)
 					(length 2.54)
 					(name "B2"
@@ -550,7 +553,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -8.89 0 0)
 					(length 2.54)
 					(name "GND"
@@ -568,7 +571,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at -8.89 -2.54 0)
 					(length 2.54)
 					(name "B1"
@@ -586,7 +589,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 8.89 -2.54 180)
 					(length 2.54)
 					(name "A"
@@ -604,7 +607,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 8.89 0 180)
 					(length 2.54)
 					(name "VCC"
@@ -622,7 +625,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at 8.89 2.54 180)
 					(length 2.54)
 					(name "S"
@@ -643,7 +646,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "OpenDrone:TLV7031DPWR"
+		(symbol "lib:TLV7031DPWR"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -691,7 +694,7 @@
 					)
 				)
 			)
-			(property "Description" "Nanopower push-pull comparator in X2SON package."
+			(property "Description" "Nanopower push-pull comparator in X2SON package. [project copy of OpenDrone:TLV7031DPWR with datasheet pin types, P4 integration 2026-10-09]"
 				(at 0 -12.7 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -769,7 +772,7 @@
 						(type none)
 					)
 				)
-				(pin unspecified line
+				(pin output line
 					(at -8.89 2.54 0)
 					(length 2.54)
 					(name "OUT"
@@ -787,7 +790,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -8.89 0 0)
 					(length 2.54)
 					(name "V+"
@@ -805,7 +808,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -8.89 -2.54 0)
 					(length 2.54)
 					(name "V-"
@@ -823,7 +826,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at 8.89 -2.54 180)
 					(length 2.54)
 					(name "IN-"
@@ -841,7 +844,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at 8.89 2.54 180)
 					(length 2.54)
 					(name "IN+"
@@ -2609,7 +2612,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "16469b10-0904-5832-b8fd-868ba18c7767")
-		(property "Reference" "#PWR1005"
+		(property "Reference" "#PWR142"
 			(at 158.75 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -2669,14 +2672,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1005")
+					(reference "#PWR142")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "OpenDrone:SDM02U30LP3-7B")
+		(lib_id "lib:SDM02U30LP3-7B")
 		(at 125.73 60.96 270)
 		(unit 1)
 		(body_style 1)
@@ -2800,7 +2803,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "2842f491-a4e1-5eba-bd6c-452dfb844a06")
-		(property "Reference" "#PWR1001"
+		(property "Reference" "#PWR143"
 			(at 54.61 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -2860,7 +2863,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1001")
+					(reference "#PWR143")
 					(unit 1)
 				)
 			)
@@ -2877,7 +2880,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "39ff2d68-377a-5b69-93ce-13f8ce0c4615")
-		(property "Reference" "#PWR1010"
+		(property "Reference" "#PWR152"
 			(at 106.68 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -2937,7 +2940,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1010")
+					(reference "#PWR152")
 					(unit 1)
 				)
 			)
@@ -2954,7 +2957,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "3dac65e6-1a24-5fcb-8cfe-bb70baee6071")
-		(property "Reference" "#PWR1002"
+		(property "Reference" "#PWR144"
 			(at 63.5 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -3014,7 +3017,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1002")
+					(reference "#PWR144")
 					(unit 1)
 				)
 			)
@@ -3145,7 +3148,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "4aa695fb-5de9-54b8-9346-ae4c5d33a358")
-		(property "Reference" "#PWR1009"
+		(property "Reference" "#PWR153"
 			(at 66.04 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -3205,7 +3208,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1009")
+					(reference "#PWR153")
 					(unit 1)
 				)
 			)
@@ -3222,7 +3225,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "58b96630-0fc0-5f82-a107-0fe3d0f1dd5c")
-		(property "Reference" "#PWR1007"
+		(property "Reference" "#PWR141"
 			(at 184.15 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -3282,14 +3285,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1007")
+					(reference "#PWR141")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "OpenDrone:TLV7031DPWR")
+		(lib_id "lib:TLV7031DPWR")
 		(at 167.64 58.42 0)
 		(mirror y)
 		(unit 1)
@@ -3761,7 +3764,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "73b27e23-30cb-5732-8b19-cd794e49973e")
-		(property "Reference" "#PWR1011"
+		(property "Reference" "#PWR149"
 			(at 106.68 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -3821,7 +3824,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1011")
+					(reference "#PWR149")
 					(unit 1)
 				)
 			)
@@ -3838,7 +3841,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "73d9e055-a01d-548a-bf8e-0f94a1da2aa6")
-		(property "Reference" "#PWR1008"
+		(property "Reference" "#PWR151"
 			(at 66.04 113.03 0)
 			(hide yes)
 			(show_name no)
@@ -3898,7 +3901,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1008")
+					(reference "#PWR151")
 					(unit 1)
 				)
 			)
@@ -4243,7 +4246,7 @@
 		)
 	)
 	(symbol
-		(lib_id "OpenDrone:SN74LVC1G3157DTBR")
+		(lib_id "lib:SN74LVC1G3157DTBR")
 		(at 106.68 101.6 270)
 		(mirror x)
 		(unit 1)
@@ -4494,7 +4497,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "dde6a493-ce15-5802-ae69-c579d0e9f55a")
-		(property "Reference" "#PWR1004"
+		(property "Reference" "#PWR146"
 			(at 125.73 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -4554,7 +4557,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1004")
+					(reference "#PWR146")
 					(unit 1)
 				)
 			)
@@ -4571,7 +4574,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "df5c0e64-b222-5099-8074-66f8896826d8")
-		(property "Reference" "#PWR1013"
+		(property "Reference" "#PWR150"
 			(at 91.44 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -4631,7 +4634,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1013")
+					(reference "#PWR150")
 					(unit 1)
 				)
 			)
@@ -4648,7 +4651,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "dfeb89fc-7e8b-562b-9035-232e0e5d8c88")
-		(property "Reference" "#PWR1012"
+		(property "Reference" "#PWR148"
 			(at 91.44 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -4708,7 +4711,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1012")
+					(reference "#PWR148")
 					(unit 1)
 				)
 			)
@@ -4837,7 +4840,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ef15cf98-df67-574d-8541-87df50dd4219")
-		(property "Reference" "#PWR1003"
+		(property "Reference" "#PWR145"
 			(at 93.98 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -4897,7 +4900,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1003")
+					(reference "#PWR145")
 					(unit 1)
 				)
 			)
@@ -4914,7 +4917,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "fb8284be-5e81-51c1-ab29-e9d60154d530")
-		(property "Reference" "#PWR1006"
+		(property "Reference" "#PWR147"
 			(at 176.53 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -4974,7 +4977,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR1006")
+					(reference "#PWR147")
 					(unit 1)
 				)
 			)

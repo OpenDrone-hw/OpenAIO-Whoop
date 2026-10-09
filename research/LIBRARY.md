@@ -576,3 +576,28 @@ Warnings are 'SMD lands without paste' on hand-soldered wire pads, the plug-read
 
 `CRYSTAL-SMD_4P-L1.6-W1.2-BL_W`, `CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W`, `CRYSTAL-SMD_4P-L3.2-W2.5-BL`, `IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W`, `LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W`, `OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_W`, `QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_W`, `QFN-40_6x6mm_P0.5mm_EP_RTC6705`, `QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_W`, `R_1206_Kelvin_4Pad_NetTie_HCS1206`, `SOD-123FL_L2.7-W1.8-LS3.7-RD_W`, `SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_W`, `SOT-363_SC-70-6_W`, `WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_W`, `X2SON-4_L0.8-W0.8-P0.48-TL-A_W`, `X2SON-4_L1.0-W1.0-P0.65-TL-EP_W`, `X2SON-6_L1.0-W0.8-BL_W`, `CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W` (D64 camera-plug fallback), `MotorPad_1.0x1.8mm_PTH0.5` (D65 fallback: three single pads per motor); retired by D65-D67: `WSON-8_6x5mm_P1.27mm_NoEP` (W25Q128JVPIM), `SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W` (TS2306A), `TestPoint_Pad_D0.8mm`
 
+
+## P4 integration: project copies with datasheet pin types (2026-10-09)
+
+Twelve OpenDrone catalogue symbols type every pin `unspecified`, which gave 105 ERC pin_to_pin warnings and two
+pin_not_driven errors on the merged schematic. Per the orchestrator ruling (project-lib copies, no ERC
+exclusions) they are copied into `hardware/lib.kicad_sym` under the same names with datasheet pin types; geometry,
+pin numbers, names and fields are unchanged, the Description says which catalogue symbol it copies, and
+`bom_plan.json` `symbol` points at `lib:<name>`. Script: scratchpad `p2v3/p4/integrate/scripts/retype_lib.py`
+(idempotent; re-run it after a catalogue update, then `hardware/tools/sch_integrate.py` refreshes the sheets).
+
+| Copy | Pin types |
+|---|---|
+| `lib:RP2354A` | IOVDD, DVDD, ADC_AVDD, VREG_AVDD, VREG_VIN, USB_OTP_VDD, QSPI_IOVDD, VREG_PGND, EP power_in; VREG_LX power_out; XIN, SWCLK, RUN, VREG_FB input; XOUT output; GPIO, QSPI, USB, SWDIO bidirectional |
+| `lib:LP5912-3.3DRVR` | OUT power_out, IN / GND power_in, EN input, PG open_collector, NC no_connect, EP passive |
+| `lib:INA186A3IDCKR` | REF, IN+, IN- input (VS, GND, OUT were typed); pin names hidden (drawn over the triangle) |
+| `lib:BMI270` | VDD, VDDIO, GND, GNDIO power_in; CSB, SCx, ASCx, OCSB input; SDx, ASDx bidirectional; SDO tri_state; INT1, INT2, OSDO output; pins 2/3 lengthened 2.54 -> 3.81 mm so they reach the body (connection point unchanged) |
+| `lib:SN74LVC1G3157DTBR` | A, B1, B2 passive, S input, VCC / GND power_in |
+| `lib:TLV7031DPWR` | OUT output (push-pull), IN+ / IN- input, V+ / V- power_in |
+| `lib:OW7EL89CENUNFAYLC-52M` | OUT output, VDD / GND power_in |
+| `lib:XL-1010RGBC-WS2812B` | DIN input, DOUT output, VDD / GND power_in |
+| `lib:AP1606`, `lib:SDM02U30LP3-7B` | all passive, pin names hidden |
+| `lib:AOTA-B201610S3R3-101-T` | passive, pin numbers hidden |
+| `lib:DEA102700LT-6307A2` | all passive (RF filter) |
+
+Also: `lib:SDM02M30CLP3-7B` (D8) pin names hidden (they sat on the body; sch_visual_check pin_text_clash).

@@ -318,10 +318,15 @@ def check_schematic(prj, brev):
         # A bare pad is copper, not an orderable part: it belongs out of the BOM (A16), not in A9.
         is_pad = lambda p: re.search(r"small_pad|SolderPad|TestPoint", p.get("Footprint", ""))
         bom = [(f, p) for f, s, p, r in parts if flag(s, "in_bom") is not False and not flag(s, "dnp")]
-        empty = lambda p: [k for k in ("MPN", "Manufacturer", "LCSC") if p.get(k, "").strip() in ("", "~")]
-        verdict("A9", "BOM fields MPN, Manufacturer, LCSC on every BOM part",
+        # MPN + Manufacturer must be filled; the LCSC field must exist and is filled where the part has an LCSC
+        # number (D60: NextPCB turnkey sources by MPN, CONTRIBUTING "LCSC when available"; hardware/tools/
+        # check_netlist.py N3 checks the LCSC values against bom_plan.json).
+        empty = lambda p: [k for k in ("MPN", "Manufacturer") if p.get(k, "").strip() in ("", "~")] + \
+            (["LCSC field"] if "LCSC" not in p else [])
+        no_lcsc = sum(1 for f, p in bom if not is_pad(p) and not p.get("LCSC", "").strip())
+        verdict("A9", "BOM fields MPN, Manufacturer (+ LCSC field) on every BOM part",
                 [f"{p.get('Reference')} ({f}) lacks {', '.join(empty(p))}" for f, p in bom if empty(p) and not is_pad(p)],
-                ok_detail=f"{len(bom)} BOM symbol(s)")
+                ok_detail=f"{len(bom)} BOM symbol(s), {no_lcsc} without an LCSC number (D60)")
         verdict("A16", "solder pads and test points excluded from the BOM",
                 [f"{p.get('Reference')} ({f})" for f, p in bom if is_pad(p)], must=False)
 

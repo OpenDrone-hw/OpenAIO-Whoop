@@ -15,7 +15,8 @@
    "research/DECISIONS.md D1-D70",
    "hardware/tools/setup_board.py NETCLASSES / NETCLASS_PATTERNS"
   ],
-  "kicad": "10.0.6; files written by hardware/tools/sch_build.py and re-saved by kicad-cli sch upgrade"
+  "kicad": "10.0.6; files written by hardware/tools/sch_build.py and re-saved by kicad-cli sch upgrade",
+  "integrated": "2026-10-09 P4 integration (p2v3/p4/integrate): sheets merged, contract text fixed (J31 pinout, USB source, IMU NC pins, R84, C134, VTX label names, PWR_FLAG rule, A9)"
  },
  "rules": [
   "Shard API: prj = sch_build.Project('hardware/OpenAIO-Whoop.kicad_sch'); sheets = sch_root.build_root(prj, sch_root.load_contract()) gives every Sheet already decorated (paper, title block, wordmark) and placed with the fixed uuids; fill your sheets, then sch_root.save_sheets(prj, [your files]) - never prj.save() from a shard (it would overwrite the other shards' files). sch_root.note() = borderless block-note text box, sch_root.netclass_flag() = directive label. Verified on a scratch copy: ESC1 R12/R13 become R19/R20 (ESC2), R26/R27, R33/R34; nets /ESC2/PHASE_A, /MOTOR2, /VBUS come out as specified.",
@@ -25,25 +26,27 @@
   "Root net names: each root wire carries a root local label with the net name (net '/<NAME>'), except the motor phases: the ESC sheet puts a LOCAL label PHASE_x (plus the hierarchical label) on the phase net, and the root wire has no label, so the net is '/ESCn/PHASE_x' (verified with kicad-cli 10.0.6: a sub-sheet local label beats root sheet pins; a root local label beats sub-sheet hierarchical labels).",
   "Sub-sheets must not put a local label on a net that leaves through a hierarchical label (except ESC PHASE_x): the root label names it.",
   "Rails are power symbols from the stock 'power' library; the Value is the rail name (net = Value, verified): +BATT_IN uses power:+BATT, +5V_BST/+5V_USB/+5V_CAM/+5V_HD use power:+5V, +3V3_VTX uses power:+3V3. VBUS is a hierarchical net (LINEUP A11: power symbols must be + rails).",
-  "PWR_FLAG on every rail whose only source is passive or a connector: +BATT_IN and GND (POWER), +BATT (after the shunt), +5V_CAM (after FB1), VBUS (PADS, at J31); add others only where ERC asks.",
+  "PWR_FLAG on every rail whose only source is passive or a connector: +BATT_IN and GND (POWER), +BATT (after the shunt), +5V_CAM (after FB1), VBUS (PADS, at J31), +1V1 (RP2350A: SMPS through L2), VREG_AVDD (RP2350A: R41 RC filter) and PA_VCC (VTX: R67 selector). Regulator outputs are typed power_out in the project library (LP5912, TPS61022, TPS2116, SGM40661, TPS22810, TPS7A2018, LP5907), so +3V3 / +3V3_VTX carry no flag.",
   "Multi-pin nets inside a sheet get a local label named after the driving pin (U2_SW, U5_EN, Q27_C), except the fixed names listed per sheet (local_nets_fixed / spec names such as RF_*, PA_DET_RAW, SHUNT_SENSE_P/N, which the netclass patterns match).",
   "Never rotate a ground symbol; block notes go in borderless text boxes (stroke width -0.0001); sheet title block fields title/date/rev filled, company empty, wordmark polylines from hardware/tools/opendrone_wordmark.json (shipped art, black + #c89d2e) via sch_root.decorate().",
   "Deterministic uuids: sch_build uuid5(root uuid, file|kind|key); symbol key = the ESC1 / single-instance reference. Sheet symbol, sheet file and instance-path uuids are fixed in this file.",
   "ESC refs: draw the ESC1 references in esc_channel.kicad_sch; the other instances use the per-prefix ref_offset below (sch_build accepts {prefix: n} dicts). The four ref lists are checked against bom_plan.",
   "Netclass directive flags: one per class group per sheet on the topmost label of the group (list below); the project netclass patterns (setup_board.py) assign every member. Add pattern '/VBUS' to Power.",
-  "Symbols: OpenDrone / lib / KiCad stock only (bom_plan 'symbol'), Footprint = bom_plan footprint, fields MPN and Manufacturer from bom_plan, LCSC = bom_plan lcsc where known (see open_items A9), Value = bom_plan value, dnp / exclude_from_bom / exclude_from_pos per bom_plan; solder pads Connector_Generic:Conn_01x01 with Value = the <= 3-character pad code; test points Connector:TestPoint out of the BOM.",
+  "Symbols: OpenDrone / lib / KiCad stock only (bom_plan 'symbol'), Footprint = bom_plan footprint, fields MPN and Manufacturer from bom_plan, LCSC field on every BOM part = bom_plan lcsc ('' where none exists; A9 decided at P4 integration, D60), Value = bom_plan value, dnp / exclude_from_bom / exclude_from_pos per bom_plan; solder pads Connector_Generic:Conn_01x01 with Value = the <= 3-character pad code; test points Connector:TestPoint out of the BOM. OpenDrone catalogue symbols whose pins are all 'unspecified' are used through project-lib copies with datasheet pin types (lib:RP2354A, lib:LP5912-3.3DRVR, ...; ruling 2026-10-09).",
   "Sheet notes carry the P4 items and the BOM-REDUCTION §7 placement conditions owned by the sheet (p4 lists per block); the critique loop closes them (D22)."
  ],
  "open_items": [
   {
    "id": "A9-LCSC",
    "for": "orchestrator",
-   "text": "check_conventions A9 requires a non-empty LCSC field on every BOM symbol, but 75 BOM parts have no LCSC number (D60: NextPCB sources by MPN; CONTRIBUTING says 'LCSC when available'). Proposed: A9 checks MPN + Manufacturer and LCSC only where bom_plan has one; until decided, sheets write LCSC = '' and A9 FAILs on those parts. Do not fill placeholders."
+   "text": "check_conventions A9 requires a non-empty LCSC field on every BOM symbol, but 75 BOM parts have no LCSC number (D60: NextPCB sources by MPN; CONTRIBUTING says 'LCSC when available'). Proposed: A9 checks MPN + Manufacturer and LCSC only where bom_plan has one; until decided, sheets write LCSC = '' and A9 FAILs on those parts. Do not fill placeholders.",
+   "status": "closed at P4 integration: check_conventions A9 requires MPN + Manufacturer and an LCSC field; check_netlist.py requires LCSC = bom_plan lcsc (non-empty where bom_plan has one); MPN-level LCSC made consistent (C181047, C237279)"
   },
   {
    "id": "VBUS-pattern",
    "for": "integrator (after floorplan v3 releases .kicad_pro)",
-   "text": "add NETCLASS_PATTERNS ('Power', '/VBUS') in setup_board.py and re-apply; until then the root directive flag assigns it"
+   "text": "add NETCLASS_PATTERNS ('Power', '/VBUS') in setup_board.py and re-apply; until then the root directive flag assigns it",
+   "status": "done at P4 integration: setup_board.py NETCLASS_PATTERNS + .kicad_pro carry Power '/VBUS' and Analog '*ADC_CURR*'"
   },
   {
    "id": "kicad_pro-sheets",
@@ -71,6 +74,10 @@
    {
     "class": "Power",
     "pattern": "/VBUS"
+   },
+   {
+    "class": "Analog",
+    "pattern": "*ADC_CURR*"
    }
   ],
   "directive_labels": [
@@ -205,13 +212,13 @@
   {
    "rail": "/VBUS",
    "symbol": "hierarchical (PADS -> POWER)",
-   "source": "USB J31 pin 1",
+   "source": "USB J31 pin 4",
    "nominal": "5 V",
    "budget": "0.42 A USB only (O4 off)",
    "feeds": "U24 SGM40661 IN",
    "class": "Power",
    "table": [
-    "USB J31 pin 1 (hier. net)",
+    "USB J31 pin 4 (hier. net)",
     "5 V",
     "0.42 A, USB only",
     "U24 OVP"
@@ -297,13 +304,13 @@
    "symbol": "power:+3V3",
    "source": "U4 LP5912-3.3",
    "nominal": "3.3 V",
-   "budget": "0.20 A (FC 0.09 + RX 0.11, 0.16 peak)",
+   "budget": "0.20 A (FC 0.09 + RX 0.11, 0.16 peak); 0.48 A peak in ELRS Wi-Fi update mode (ESP32-PICO TX 370 mA, bench only, disarmed; LP5912 500 mA, ~0.9 W bursts; ruling 2026-10-09)",
    "feeds": "RP2350A, IMU (U12 IN), BLACKBOX, OSD, RX, LED, INA186, VTX pull-ups R68/R70",
    "class": "Power",
    "table": [
     "U4 LP5912-3.3",
     "3.3 V",
-    "0.20 A",
+    "0.20 A (0.48 A Wi-Fi bench)",
     "FC, IMU, NOR, OSD, RX, LEDs, INA186"
    ]
   },
@@ -1955,11 +1962,12 @@
      "refs": [
       "L2",
       "C56",
+      "C134",
       "C57",
       "R41"
      ],
      "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
-     "notes": "VREG_LX -> L2 -> +1V1; 27R + 4.7u RC",
+     "notes": "VREG_LX -> L2 -> +1V1 (pin-side net VREG_LX); C56 4.7u at VREG_FB + C134 4.7u at DVDD pin 23 (RP2350 DS 6.3.8, ruling 2026-10-09); 27R + 4.7u RC",
      "p4": []
     },
     {
@@ -2261,6 +2269,7 @@
     "C58",
     "L2",
     "C56",
+    "C134",
     "C57",
     "R41",
     "X1",
@@ -2281,7 +2290,7 @@
     "Q26",
     "R48"
    ],
-   "ref_count": 33,
+   "ref_count": 34,
    "file_uuid": "c4f624fc-57b8-50ab-a6ff-1ad252940f3e"
   },
   {
@@ -2310,7 +2319,7 @@
       "R49"
      ],
      "source": "OpenFC-Lite-Mini/hardware/imu.kicad_sch",
-     "notes": "pins 2/3 GND, 10/11 NC, pin 9 = GYRO_CLKIN; R49 GYRO_CS pull-up",
+     "notes": "pins 2/3/10/11 NC (BMI270 DS Table 22: ASDx/ASCx to VDDIO or open, never GND; ICM-42688-P RESV), pin 7 GND, pin 9 = GYRO_CLKIN; R49 GYRO_CS pull-up",
      "p4": []
     },
     {
@@ -2824,7 +2833,7 @@
       "C107"
      ],
      "source": "OpenOSD-X v1.01 (R32 C18 R26 C19)",
-     "notes": "RTC_CP / RTC_VT / RTC_LF",
+     "notes": "RTC_CP / RTC_VT / RTC_LF (R64 on RTC_VT as OpenOSD-X R26)",
      "p4": []
     },
     {
@@ -2839,7 +2848,7 @@
       "R62"
      ],
      "source": "OpenOSD-X v1.01 (R24 C17 R25 C21 R29 R30 R31)",
-     "notes": "VIDEO_OUT (hierarchical) -> VT_MOD",
+     "notes": "VIDEO_OUT (hierarchical) -> R58 || C104 -> VT_MOD_N1 (R59 shunt) -> C105 -> VT_MOD_N2 -> R60 -> VT_MOD",
      "p4": []
     },
     {
@@ -2853,7 +2862,7 @@
       "C108"
      ],
      "source": "D12 / D53 BR-03",
-     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 100k to +3V3, R84 10k from VTX_PWR_CTL, Q28 AP1606 drain; gate HD_EN)",
+     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 100k to +3V3, R84 1k from VTX_PWR_CTL (ruling 2026-10-09: EN < 0.3 V guaranteed), Q28 AP1606 drain; gate HD_EN)",
      "p4": [
       "P4-4",
       "P4-12"
@@ -2885,7 +2894,7 @@
       "R65"
      ],
      "source": "D52 BR-02",
-     "notes": "PA_BIAS_PWM -> 2-pole RC -> PA_DRV_B; emitter R73 to +3V3_VTX; collector PA_DRV_C -> R65 -> PAOUT1_SUP",
+     "notes": "PA_BIAS_PWM -> R71 -> PA_RC1 -> R72 -> Q27_B (2-pole RC); emitter Q27_E -> R73 to +3V3_VTX; collector Q27_C -> R65 -> PAOUT1_SUP",
      "p4": [
       "P4-5"
      ]
@@ -3169,7 +3178,7 @@
     "HD (O4)",
     "USB JST SH"
    ],
-   "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch (Conn_01x01 pad groups under blue headings) + OpenFC-Lite/hardware/pads.kicad_sch (JST SH SM04B USB plug); camera plug, motor lands and the ESD array new (D57, D63-D65)",
+   "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch (Conn_01x01 pad groups under blue headings) + OpenFC-Lite/hardware/pads.kicad_sch (JST SH plug frame and style; USB J31 = vertical BM04B, D76); camera plug, motor lands and the ESD array new (D57, D63-D65)",
    "blocks": [
     {
      "name": "Battery pads",
@@ -3247,8 +3256,8 @@
       "J31",
       "D7"
      ],
-     "source": "OpenFC-Lite/hardware/pads.kicad_sch (SH 4-pin USB); D7 TPD2EUSB30 new (D57)",
-     "notes": "J31: 1 VBUS (hierarchical), 2 D-, 3 D+, 4 GND (pinout per D57 adapters); D7 at J31 ahead of R42/R43",
+     "source": "OpenFC-Lite/hardware/pads.kicad_sch (JST SH plug frame and style only; its SM04B CN1 is the free UART, its USB is on the rp2350a sheet); USB pinout, D7 TPD2EUSB30 and the VBUS PWR_FLAG new (D57, D76)",
+     "notes": "J31 vertical BM04B-SRSS-TB (D76): 1 GND, 2 D- (USB_D_N), 3 D+ (USB_D_P), 4 VBUS (hierarchical), tabs 5/6 GND (BetaFPV 'USB(GND DM DP 5V)' order, bom_plan / IO-SET / LIBRARY D57; pin 1 bench check on proto 1); D7 at J31 ahead of R42/R43",
      "p4": []
     },
     {

@@ -139,10 +139,10 @@ NETCLASS_PATTERNS = [
     ("Phase", ["/ESC?/PHASE_?"]),                                         # in-sheet PHASE_A/B/C (spec 8.4)
     ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
     ("Power", ["+5V", "+5V_BST", "+5V_USB", "+5V_HD", "+3V3", "+3V3_VTX", "+1V8", "+1V1",
-               "+5V_*", "+3V3_*", "+1V8_*", "+1V1_*"]),                    # LINEUP A11 names; EFM8 VDD is on +BATT
+               "+5V_*", "+3V3_*", "+1V8_*", "+1V1_*", "/VBUS"]),           # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
     ("GND", ["GND"]),
     ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", "*/CSA*",
-                "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*"]),                  # Kelvin pair SHUNT_SENSE_P/N (spec 4.1)
+                "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*"]),    # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
     ("RF", ["*/RF_*", "*/ANT*", "*/RFIO*", "*/RFOUT*", "*/RFIN*"]),
     ("USB", ["*/USB_D_P", "*/USB_D_N"]),                                  # _P/_N: KiCad pairs them (spec 8.2)
 ]

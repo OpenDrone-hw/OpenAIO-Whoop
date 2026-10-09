@@ -874,6 +874,10 @@
         "pattern": "+1V1_*"
       },
       {
+        "netclass": "Power",
+        "pattern": "/VBUS"
+      },
+      {
         "netclass": "GND",
         "pattern": "GND"
       },
@@ -916,6 +920,10 @@
       {
         "netclass": "Analog",
         "pattern": "*SHUNT_SENSE_*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*ADC_CURR*"
       },
       {
         "netclass": "RF",

@@ -1845,7 +1845,7 @@
 		(row_heights 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81
 			3.81 3.81 3.81
 		)
-		(uuid "f827bd8e-5015-40c3-8c9d-9c71d604cce0")
+		(uuid "47cbc619-2bdc-5efd-9fa4-666c03a3b6ac")
 		(cells
 			(table_cell "Rail"
 				(exclude_from_sim no)
@@ -2124,7 +2124,7 @@
 				)
 				(uuid "bf665b46-6397-5b22-a1d2-20ddf20e250c")
 			)
-			(table_cell "USB J31 pin 1 (hier. net)"
+			(table_cell "USB J31 pin 4 (hier. net)"
 				(exclude_from_sim no)
 				(at 40.64 223.52 0)
 				(size 55.88 3.81)
@@ -2668,7 +2668,7 @@
 				)
 				(uuid "83d58158-76cd-5e3a-9a93-ed4917fcb35a")
 			)
-			(table_cell "0.20 A"
+			(table_cell "0.20 A (0.48 A Wi-Fi bench)"
 				(exclude_from_sim no)
 				(at 119.38 246.38 0)
 				(size 50.8 3.81)

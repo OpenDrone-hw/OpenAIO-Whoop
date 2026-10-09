@@ -432,499 +432,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "OpenDrone:DEA102700LT-6307A2"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "USB"
-				(at 4.826 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "DEA102700LT-6307A2"
-				(at 11.684 8.382 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "OpenDrone:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX"
-				(at 0 -8.89 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "${OPENDRONE_LIB}/datasheet/DEA102700LT-6307A2.pdf"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC" "C574024"
-				(at 0 -11.43 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "DEA102700LT-6307A2_0_1"
-				(rectangle
-					(start -6.35 5.08)
-					(end 6.35 -5.08)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin unspecified line
-					(at -8.89 0 0)
-					(length 2.54)
-					(name "IN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 8.89 0 180)
-					(length 2.54)
-					(name "OUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 0 7.62 270)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "OpenDrone:OW7EL89CENUNFAYLC-52M"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "OSC"
-				(at 0 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "OW7EL89CENUNFAYLC-52M"
-				(at 0 -6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "OpenDrone:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z"
-				(at 0 -8.89 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "${OPENDRONE_LIB}/datasheet/TXC-OW-Series.pdf"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC" "C22434896"
-				(at 0 -11.43 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "OW7EL89CENUNFAYLC-52M_0_1"
-				(rectangle
-					(start -10.16 3.81)
-					(end 10.16 -3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(circle
-					(center -8.89 2.54)
-					(radius 0.38)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin unspecified line
-					(at -12.7 1.27 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at -12.7 -1.27 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 12.7 -1.27 180)
-					(length 2.54)
-					(name "Out_Put"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 12.7 1.27 180)
-					(length 2.54)
-					(name "VDD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "OpenDrone:XL-1010RGBC-WS2812B"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "D"
-				(at 0 13.97 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "XL-1010RGBC-WS2812B"
-				(at 0 -13.97 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "OpenDrone:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B"
-				(at 0 -16.51 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "${OPENDRONE_LIB}/datasheet/XL-1010RGBC-WS2812B.pdf"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC" "C5349953"
-				(at 0 -19.05 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "XL-1010RGBC-WS2812B_0_1"
-				(rectangle
-					(start -7.62 6.35)
-					(end 7.62 -6.35)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(circle
-					(center -5.08 5.08)
-					(radius 0.38)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin unspecified line
-					(at 10.16 3.81 180)
-					(length 2.54)
-					(name "DOUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at -3.81 8.89 270)
-					(length 2.54)
-					(name "VDD"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at 5.08 -8.89 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin unspecified line
-					(at -10.16 -3.81 0)
-					(length 2.54)
-					(name "DIN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "lib:2450AT07A0100001T"
 			(pin_numbers
 				(hide yes)
@@ -1219,6 +726,163 @@
 					(length 2.54)
 					(hide yes)
 					(name "FEED"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "lib:DEA102700LT-6307A2"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "USB"
+				(at 4.826 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "DEA102700LT-6307A2"
+				(at 11.684 8.382 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "OpenDrone:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX"
+				(at 0 -8.89 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "${OPENDRONE_LIB}/datasheet/DEA102700LT-6307A2.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "[project copy of OpenDrone:DEA102700LT-6307A2 with datasheet pin types, P4 integration 2026-10-09]"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C574024"
+				(at 0 -11.43 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "DEA102700LT-6307A2_0_1"
+				(rectangle
+					(start -6.35 5.08)
+					(end 6.35 -5.08)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -8.89 0 0)
+					(length 2.54)
+					(name "IN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 8.89 0 180)
+					(length 2.54)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 7.62 270)
+					(length 2.54)
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2240,9 +1904,178 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "lib:OW7EL89CENUNFAYLC-52M"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "OSC"
+				(at 0 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "OW7EL89CENUNFAYLC-52M"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "OpenDrone:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z"
+				(at 0 -8.89 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "${OPENDRONE_LIB}/datasheet/TXC-OW-Series.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "[project copy of OpenDrone:OW7EL89CENUNFAYLC-52M with datasheet pin types, P4 integration 2026-10-09]"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C22434896"
+				(at 0 -11.43 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "OW7EL89CENUNFAYLC-52M_0_1"
+				(rectangle
+					(start -10.16 3.81)
+					(end 10.16 -3.81)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(circle
+					(center -8.89 2.54)
+					(radius 0.38)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_in line
+					(at -12.7 1.27 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -12.7 -1.27 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 12.7 -1.27 180)
+					(length 2.54)
+					(name "Out_Put"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 12.7 1.27 180)
+					(length 2.54)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "lib:SDM02M30CLP3-7B"
 			(pin_names
 				(offset 1.016)
+				(hide yes)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -3355,6 +3188,174 @@
 						)
 					)
 					(number "25"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "lib:XL-1010RGBC-WS2812B"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 13.97 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "XL-1010RGBC-WS2812B"
+				(at 0 -13.97 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "OpenDrone:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B"
+				(at 0 -16.51 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "${OPENDRONE_LIB}/datasheet/XL-1010RGBC-WS2812B.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "[project copy of OpenDrone:XL-1010RGBC-WS2812B with datasheet pin types, P4 integration 2026-10-09]"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C5349953"
+				(at 0 -19.05 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "XL-1010RGBC-WS2812B_0_1"
+				(rectangle
+					(start -7.62 6.35)
+					(end 7.62 -6.35)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(circle
+					(center -5.08 5.08)
+					(radius 0.38)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin output line
+					(at 10.16 3.81 180)
+					(length 2.54)
+					(name "DOUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -3.81 8.89 270)
+					(length 2.54)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 5.08 -8.89 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -3.81 0)
+					(length 2.54)
+					(name "DIN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6140,7 +6141,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "08723ff0-2c84-5fd6-b3c3-e723cb193b56")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR159"
 			(at 76.2 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -6200,7 +6201,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR04")
+					(reference "#PWR159")
 					(unit 1)
 				)
 			)
@@ -6217,7 +6218,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0e805ef4-da0d-586d-bd64-08424136c4b0")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR155"
 			(at 109.22 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -6277,7 +6278,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR02")
+					(reference "#PWR155")
 					(unit 1)
 				)
 			)
@@ -6520,7 +6521,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "1b6a617e-f8a3-5655-93a4-2db4a538ebe7")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR165"
 			(at 125.73 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -6580,7 +6581,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR07")
+					(reference "#PWR165")
 					(unit 1)
 				)
 			)
@@ -6832,7 +6833,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "2b0fd9a4-4405-5c39-8ce1-897a3be5dcc9")
-		(property "Reference" "#PWR15"
+		(property "Reference" "#PWR168"
 			(at 292.1 171.45 0)
 			(hide yes)
 			(show_name no)
@@ -6892,7 +6893,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR15")
+					(reference "#PWR168")
 					(unit 1)
 				)
 			)
@@ -6909,7 +6910,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "2b1abfa0-8898-5727-aae3-d482ba0f44b5")
-		(property "Reference" "#PWR21"
+		(property "Reference" "#PWR176"
 			(at 182.88 207.01 0)
 			(hide yes)
 			(show_name no)
@@ -6969,7 +6970,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR21")
+					(reference "#PWR176")
 					(unit 1)
 				)
 			)
@@ -7155,7 +7156,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C237279"
 			(at 292.1 171.45 0)
 			(hide yes)
 			(show_name no)
@@ -7316,7 +7317,7 @@
 		)
 	)
 	(symbol
-		(lib_id "OpenDrone:OW7EL89CENUNFAYLC-52M")
+		(lib_id "lib:OW7EL89CENUNFAYLC-52M")
 		(at 71.12 118.11 0)
 		(unit 1)
 		(body_style 1)
@@ -7434,7 +7435,7 @@
 		)
 	)
 	(symbol
-		(lib_id "OpenDrone:DEA102700LT-6307A2")
+		(lib_id "lib:DEA102700LT-6307A2")
 		(at 166.37 116.84 0)
 		(unit 1)
 		(body_style 1)
@@ -7562,7 +7563,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5882632b-84d8-5fc8-aa6e-f9d7767fe455")
-		(property "Reference" "#PWR11"
+		(property "Reference" "#PWR164"
 			(at 166.37 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -7622,7 +7623,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR11")
+					(reference "#PWR164")
 					(unit 1)
 				)
 			)
@@ -7639,7 +7640,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5883f9f7-f5ce-5b93-b533-739adc7d1f01")
-		(property "Reference" "#PWR10"
+		(property "Reference" "#PWR161"
 			(at 157.48 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -7699,7 +7700,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR10")
+					(reference "#PWR161")
 					(unit 1)
 				)
 			)
@@ -7716,7 +7717,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "61c54493-db7b-50fe-ac2f-bb03a44aedba")
-		(property "Reference" "#PWR17"
+		(property "Reference" "#PWR169"
 			(at 213.36 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -7776,7 +7777,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR17")
+					(reference "#PWR169")
 					(unit 1)
 				)
 			)
@@ -7793,7 +7794,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "6aab06a2-d882-5a98-98a1-7a7bb8cf290e")
-		(property "Reference" "#PWR16"
+		(property "Reference" "#PWR171"
 			(at 292.1 181.61 0)
 			(hide yes)
 			(show_name no)
@@ -7853,7 +7854,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR16")
+					(reference "#PWR171")
 					(unit 1)
 				)
 			)
@@ -7984,7 +7985,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "756fb7cf-9125-5542-9cda-e87c03c72440")
-		(property "Reference" "#PWR14"
+		(property "Reference" "#PWR170"
 			(at 279.4 181.61 0)
 			(hide yes)
 			(show_name no)
@@ -8044,7 +8045,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR14")
+					(reference "#PWR170")
 					(unit 1)
 				)
 			)
@@ -8428,7 +8429,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "83b90b4a-b63a-5b32-af5a-04910ff16a2a")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR160"
 			(at 83.82 107.95 0)
 			(hide yes)
 			(show_name no)
@@ -8488,7 +8489,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR06")
+					(reference "#PWR160")
 					(unit 1)
 				)
 			)
@@ -8505,7 +8506,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "840ae52a-7631-5673-9242-54b63068c8f9")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR163"
 			(at 104.14 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -8565,7 +8566,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR09")
+					(reference "#PWR163")
 					(unit 1)
 				)
 			)
@@ -8879,7 +8880,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "8adfc505-0012-567e-970e-de858ff62843")
-		(property "Reference" "#PWR26"
+		(property "Reference" "#PWR178"
 			(at 71.12 210.82 0)
 			(hide yes)
 			(show_name no)
@@ -8939,7 +8940,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR26")
+					(reference "#PWR178")
 					(unit 1)
 				)
 			)
@@ -8956,7 +8957,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "8bbfa82f-97ae-56b2-8b65-92e4e1b5bc00")
-		(property "Reference" "#PWR18"
+		(property "Reference" "#PWR172"
 			(at 205.74 191.77 0)
 			(hide yes)
 			(show_name no)
@@ -9016,7 +9017,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR18")
+					(reference "#PWR172")
 					(unit 1)
 				)
 			)
@@ -9033,7 +9034,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "8e8233a1-f4bf-59c6-9500-81fe4d045db3")
-		(property "Reference" "#PWR13"
+		(property "Reference" "#PWR167"
 			(at 279.4 171.45 0)
 			(hide yes)
 			(show_name no)
@@ -9093,7 +9094,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR13")
+					(reference "#PWR167")
 					(unit 1)
 				)
 			)
@@ -9110,7 +9111,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "8ea41d56-7e40-5993-ad64-d4fdd8677179")
-		(property "Reference" "#PWR12"
+		(property "Reference" "#PWR166"
 			(at 228.6 171.45 0)
 			(hide yes)
 			(show_name no)
@@ -9170,7 +9171,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR12")
+					(reference "#PWR166")
 					(unit 1)
 				)
 			)
@@ -9529,7 +9530,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "a02b156c-1af5-5104-910f-349d6c111a48")
-		(property "Reference" "#PWR19"
+		(property "Reference" "#PWR180"
 			(at 233.68 252.73 0)
 			(hide yes)
 			(show_name no)
@@ -9589,7 +9590,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR19")
+					(reference "#PWR180")
 					(unit 1)
 				)
 			)
@@ -9798,7 +9799,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ac778794-5a3a-5a65-b818-081190847da6")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR156"
 			(at 77.47 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -9858,7 +9859,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR03")
+					(reference "#PWR156")
 					(unit 1)
 				)
 			)
@@ -9875,7 +9876,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "c1448df9-6768-50ec-a371-e3c4b3ddbfa3")
-		(property "Reference" "#PWR23"
+		(property "Reference" "#PWR173"
 			(at 93.98 195.58 0)
 			(hide yes)
 			(show_name no)
@@ -9935,7 +9936,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR23")
+					(reference "#PWR173")
 					(unit 1)
 				)
 			)
@@ -9952,7 +9953,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "c53d980f-daa1-5838-8b1a-4500de4e2615")
-		(property "Reference" "#PWR25"
+		(property "Reference" "#PWR179"
 			(at 102.87 215.9 0)
 			(hide yes)
 			(show_name no)
@@ -10012,7 +10013,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR25")
+					(reference "#PWR179")
 					(unit 1)
 				)
 			)
@@ -10029,7 +10030,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "c5a81765-b99e-58aa-90b8-3bb4ec361cf1")
-		(property "Reference" "#PWR24"
+		(property "Reference" "#PWR174"
 			(at 71.12 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -10089,7 +10090,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR24")
+					(reference "#PWR174")
 					(unit 1)
 				)
 			)
@@ -10332,7 +10333,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "eda06b53-ef7f-56b5-b3e5-326724db3ec3")
-		(property "Reference" "#PWR27"
+		(property "Reference" "#PWR158"
 			(at 289.56 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -10392,7 +10393,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR27")
+					(reference "#PWR158")
 					(unit 1)
 				)
 			)
@@ -10409,7 +10410,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f0367b5b-afdb-5b65-bf9d-09c3962300d4")
-		(property "Reference" "#PWR20"
+		(property "Reference" "#PWR177"
 			(at 203.2 207.01 0)
 			(hide yes)
 			(show_name no)
@@ -10469,14 +10470,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR20")
+					(reference "#PWR177")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "OpenDrone:XL-1010RGBC-WS2812B")
+		(lib_id "lib:XL-1010RGBC-WS2812B")
 		(at 97.79 200.66 0)
 		(unit 1)
 		(body_style 1)
@@ -10719,7 +10720,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f924d0e8-0238-5ae7-8a85-700993b8a650")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR157"
 			(at 163.83 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -10779,7 +10780,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR05")
+					(reference "#PWR157")
 					(unit 1)
 				)
 			)
@@ -10908,7 +10909,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "fdf45a31-7a3c-52f9-a9bb-13d80b35db0b")
-		(property "Reference" "#PWR22"
+		(property "Reference" "#PWR175"
 			(at 165.1 204.47 0)
 			(hide yes)
 			(show_name no)
@@ -10968,7 +10969,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR22")
+					(reference "#PWR175")
 					(unit 1)
 				)
 			)
@@ -10985,7 +10986,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "fe234a83-e311-537c-b532-52729ac5960e")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR154"
 			(at 109.22 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -11045,7 +11046,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR01")
+					(reference "#PWR154")
 					(unit 1)
 				)
 			)
@@ -11062,7 +11063,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ff7b0045-f34a-5221-a366-457ccf4f3743")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR162"
 			(at 54.61 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -11122,7 +11123,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR08")
+					(reference "#PWR162")
 					(unit 1)
 				)
 			)

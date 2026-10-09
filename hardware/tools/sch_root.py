@@ -115,6 +115,7 @@ def table(sheet, x, y, col_w, row_h, rows, key):
                          S("border", S("external", True), S("header", True), stroke),
                          S("separators", S("rows", True), S("cols", True), stroke),
                          S("column_widths", *col_w), S("row_heights", *([row_h] * len(rows))),
+                         S("uuid", sheet.prj.uid(sheet.file, "table", key)),   # else KiCad picks a random one
                          [Atom("cells")] + cells))
 
 

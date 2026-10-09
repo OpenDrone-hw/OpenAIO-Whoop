@@ -190,7 +190,9 @@ class LibSymbol:
         self.nick, self.node = nick, node
         self.name = node[1]
         self.lib_id = "%s:%s" % (nick, self.name)
-        self.props = {p[1]: p[2] for p in findall(node, "property")}
+        # `(property private "KLC_S4.1" ...)` (stock Crystal_GND24 etc.): the name is the atom `private`, not a
+        # field; copying it onto a placed symbol writes an unquoted `private` that kicad-cli refuses (P4 integration)
+        self.props = {p[1]: p[2] for p in findall(node, "property") if not isinstance(p[1], Atom)}
         self.is_power = find(node, "power") is not None
         self.pins = []
         self.units = 1

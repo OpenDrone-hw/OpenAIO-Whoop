@@ -305,7 +305,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "OpenDrone:BMI270"
+		(symbol "lib:BMI270"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -353,7 +353,7 @@
 					)
 				)
 			)
-			(property "Description" "Low-power 6-axis inertial measurement unit."
+			(property "Description" "Low-power 6-axis inertial measurement unit. [project copy of OpenDrone:BMI270 with datasheet pin types, P4 integration 2026-10-09]"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -420,7 +420,7 @@
 						(type none)
 					)
 				)
-				(pin unspecified line
+				(pin tri_state line
 					(at 21.59 5.08 180)
 					(length 2.54)
 					(name "SDO"
@@ -438,9 +438,9 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at -22.86 -8.89 0)
-					(length 2.54)
+					(length 3.81)
 					(name "ASDx"
 						(effects
 							(font
@@ -456,9 +456,9 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at -22.86 -11.43 0)
-					(length 2.54)
+					(length 3.81)
 					(name "ASCx"
 						(effects
 							(font
@@ -474,7 +474,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin output line
 					(at 21.59 7.62 180)
 					(length 2.54)
 					(name "INT1"
@@ -492,7 +492,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 1.27 12.7 270)
 					(length 2.54)
 					(name "VDDIO"
@@ -510,7 +510,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -1.27 -20.32 90)
 					(length 2.54)
 					(name "GNDIO"
@@ -528,7 +528,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at 1.27 -20.32 90)
 					(length 2.54)
 					(name "GND"
@@ -546,7 +546,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin power_in line
 					(at -1.27 12.7 270)
 					(length 2.54)
 					(name "VDD"
@@ -564,7 +564,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin output line
 					(at 21.59 -13.97 180)
 					(length 2.54)
 					(name "INT2"
@@ -582,7 +582,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at 21.59 -11.43 180)
 					(length 2.54)
 					(name "OCSB"
@@ -600,7 +600,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin output line
 					(at 21.59 -8.89 180)
 					(length 2.54)
 					(name "OSDO"
@@ -618,7 +618,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at 21.59 -2.54 180)
 					(length 2.54)
 					(name "CSB"
@@ -636,7 +636,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin input line
 					(at 21.59 0 180)
 					(length 2.54)
 					(name "SCx"
@@ -654,7 +654,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin bidirectional line
 					(at 21.59 2.54 180)
 					(length 2.54)
 					(name "SDx"
@@ -2289,7 +2289,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "1f32a0bd-cd9f-5522-99e9-f5b641bc299e")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR130"
 			(at 83.82 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -2349,7 +2349,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR01")
+					(reference "#PWR130")
 					(unit 1)
 				)
 			)
@@ -2366,7 +2366,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "2270f482-057a-516d-9300-8ab7bc2b5c98")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR128"
 			(at 26.67 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -2426,7 +2426,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR07")
+					(reference "#PWR128")
 					(unit 1)
 				)
 			)
@@ -2661,7 +2661,7 @@
 		)
 	)
 	(symbol
-		(lib_id "OpenDrone:BMI270")
+		(lib_id "lib:BMI270")
 		(at 72.39 69.85 0)
 		(unit 1)
 		(body_style 1)
@@ -2942,7 +2942,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "addf9b93-e512-5044-be47-c030088c7f62")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR133"
 			(at 41.91 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -3002,7 +3002,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR08")
+					(reference "#PWR133")
 					(unit 1)
 				)
 			)
@@ -3019,7 +3019,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b0106b3d-f7d0-5607-8f43-04412a2ae971")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR135"
 			(at 72.39 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -3079,7 +3079,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR05")
+					(reference "#PWR135")
 					(unit 1)
 				)
 			)
@@ -3096,7 +3096,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "cb189a1b-0326-5060-8c28-69c53be050e1")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR132"
 			(at 83.82 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -3156,7 +3156,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR02")
+					(reference "#PWR132")
 					(unit 1)
 				)
 			)
@@ -3173,7 +3173,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "dc31db5d-fba5-5f2c-ba51-d037d855f8eb")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR131"
 			(at 62.23 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -3233,7 +3233,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR04")
+					(reference "#PWR131")
 					(unit 1)
 				)
 			)
@@ -3250,7 +3250,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "dde1833a-4734-548f-a927-ee59815b38f3")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR134"
 			(at 116.84 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -3310,7 +3310,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR06")
+					(reference "#PWR134")
 					(unit 1)
 				)
 			)
@@ -3439,7 +3439,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f35b106e-38d2-5400-b145-b4e81d14a7d9")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR129"
 			(at 62.23 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -3499,7 +3499,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR03")
+					(reference "#PWR129")
 					(unit 1)
 				)
 			)

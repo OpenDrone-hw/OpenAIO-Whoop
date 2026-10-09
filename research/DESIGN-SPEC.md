@@ -236,7 +236,7 @@ BT2.0 -> +BATT_IN pads -- SMF5.0A, 2x22u -- shunt (Kelvin SHUNT_SENSE_P/N -> INA
              +5V -> buzzer +, user 5V pad (also the LED-strip 5V; strip data driven direct from GPIO8, BR-04)
              +5V -> LP5912-3.3 (EN = +5V) -> +3V3 (RP2354A, NOR, OSD front end, INA186, LEDs, ESP32-PICO-V3, SX1281, RGB LED)
                       +3V3 -> TPS7A2018 (EN = +3V3) -> +1V8 (gyro)
-             +5V -> LP5912-3.3 (EN: 100k to +3V3, ESP32 GPIO21 via 10k; HD gate AP1606 pulls it low) -> +3V3_VTX
+             +5V -> LP5912-3.3 (EN: 100k to +3V3, ESP32 GPIO21 via 1k; HD gate AP1606 pulls it low) -> +3V3_VTX
                       +3V3_VTX -> RTC6705, PNP PA drive stage (BR-02)
                       +3V3_VTX -> LP5907-2.85 (EN = ESP32 GPIO2 direct, internal 1M pull-down; BR-03, BR-12) -> PA VREF
              (both LP5912 inputs share one 10u X6S 0402 between their IN pins, BR-14)
@@ -781,7 +781,7 @@ F6).
 | ST LSM6DSV16X | 7,523 [PU] | rejected: house and Betaflight ecosystem call it unflyable |
 | TDK ICM-45686 | 3 | no stock |
 
-**Decision:** universal LGA-14 land of the OpenFC `imu` sheet (pins 2/3 GND,
+**Decision:** universal LGA-14 land of the OpenFC `imu` sheet (P4: pins 2/3 NC, not GND - BMI270 DS Table 22; was: pins 2/3 GND,
 10/11 NC, pin 9 to GPIO6), **BMI270 on the BOM**, ICM-42688-P qualified on the
 same land. The prototype run is split 5 + 5 and a hover fly-off on the target
 frame (noise metric §2 rank 6) picks the release population. One gyro per
@@ -909,6 +909,8 @@ sheets** (09 verification). Sheet file name `rx_esp32_sx1281` (D53; round 4
 proposed `rx_esp32_sx1280` under D33): a lineup exception to A2 ("a copied
 sheet keeps its file name"), because the MCU changed and the copied name
 `rx_esp32c3_sx1281` would describe a part the sheet no longer has.
+
+> **Superseded by D58 (owner, 2026-10-09):** ELRS Wi-Fi is restored with the Johanson 2450AT07A0100001T chip antenna AE2 behind R88 0 Ω and the C132/C133 (DNP) pi match on `RF_WIFI` / `RF_WIFI_ANT`; the schematic (`rx_esp32_sx1281.kicad_sch`, P4) follows D58 and Wi-Fi is a bench-only update mode (+3V3 peak about 0.48 A). The paragraph below is the pre-D58 record.
 
 **Wi-Fi (PINMAP F9): no radiator** (D18 lever 2, logged as D25). The
 round-2 printed stub needed a board edge next to ESP32 LNA_IN with a 2 x 4 mm
@@ -1080,7 +1082,7 @@ feeds ESP32 GPIO34 for the thermal derate (O6 gate 6).
 HD line; 2.4 kΩ pull-down = analog at reset) drives the gate of an ALLPOWER
 **AP1606** on the bottom (Vgs(th) 1.2 V, S; the beeper FET part), drain on the
 `+3V3_VTX` LP5912 EN (that EN has a 100 kΩ pull-up to +3V3 and the
-patched-ELRS GPIO21 reaches it through 10 kΩ), source on GND. In HD mode
+patched-ELRS GPIO21 reaches it through 1 kΩ, R84), source on GND. In HD mode
 `+3V3_VTX` collapses, and with it the RTC6705, the PNP drive stage and the
 LP5907 PA reference, which BR-03 moved onto that rail: PA_VREF falls to 0 V
 whatever GPIO2 does (LP5907 active discharge plus the PA's 10 mA VREF load), so
@@ -1150,7 +1152,7 @@ P4-16): pin 40 (LDD2V5) lacks the reference's 51 Ω + 1 µF filter, and the
 | U.FL | Hirose **U.FL-R-SMT-1(80)**, −40..90 °C, C88374, 65,950 [PU] | I-PEX 20279-001E-03 (S) |
 | PAOUT1 choke | Murata **LQP03TN4N7H02D** 4.7 nH 0201, C86126, 148,100 | none verified |
 | PA drive stage | Nexperia **BC857BM,315**, PNP 45 V / 100 mA, hFE 220-475, DFN1006-3 SOT883 (S; may reuse the AP1606-class land, P3) + 2x 1 kΩ + 2x 1 µF + Re 10-15 Ω (D52 BR-02; gate: P4 SPICE, then V5 / V8) | PS-12: round 4's Nexperia BC847QASZ two-NPN stage with corrected values (§4.8; brings back the 0.35 mm EQ) |
-| HD gate (D17) | ALLPOWER **AP1606**, DFN-3L 1.0x0.6 [PU] (D53 BR-03; no resistors) + the 1 kΩ VTX SPI series resistors and the 10 kΩ GPIO21 series resistor | - |
+| HD gate (D17) | ALLPOWER **AP1606**, DFN-3L 1.0x0.6 [PU] (D53 BR-03; no resistors) + the 1 kΩ VTX SPI series resistors and the 1 kΩ GPIO21 series resistor (R84, P4 ruling) | - |
 | PA reference | TI **LP5907SNX-2.85/NOPB** (§4.2) | 2.8 V variant (lever a) |
 | PA NTC | Murata **NCP03XH103F05RL** + Yageo RC0201FR-0710KL | none verified |
 | OSD switch | TI **SN74LVC1G3157DTBR**, X2SON-6, −40..125 °C, C2673087, 1,540 [PU] | none (TI single source in X2SON) |
@@ -1512,7 +1514,7 @@ labels):
 | Gate | 24 FET gate nets (in-sheet `A_COM`, `A_PWM`, ...) | 0.15 | 0.10 | 0.35/0.20 | yellow |
 | Power | +5V, +5V_BST, +5V_USB, +5V_HD, +3V3, +3V3_VTX, +1V8, +1V1 | 0.25 (+5V_BST and +5V_HD 0.50 or pours: 1.5-3 A) | 0.09 | 0.35/0.20 | magenta |
 | Analog | video, OSD level/sync, VBAT/current sense, Kelvin pair `SHUNT_SENSE_P/N`, PA detector | 0.10 | 0.15 | 0.35/0.20 | cyan |
-| RF | `RF_*` nets: 5.8 GHz chain, 2.4 GHz feed (`RF_WIFI` ends in a 51 Ω dummy load, §4.7) | 0.105 | 0.15 | 0.35/0.20 (fence) | green |
+| RF | `RF_*` nets: 5.8 GHz chain, 2.4 GHz feed (`RF_WIFI` -> R88 -> AE2 chip antenna, D58; was a 51 Ω dummy load) | 0.105 | 0.15 | 0.35/0.20 (fence) | green |
 | USB | USB_D_P / USB_D_N | 0.12 (pair gap 0.12) | 0.12 | 0.35/0.20 | blue |
 | GND | GND | 0.20 | 0.09 | 0.40/0.20 | - |
 
@@ -2201,7 +2203,7 @@ D52-D54) and the gated items BR-02 (P4-5), BR-17 and BR-20.
 | P4-1 | O4 switch EN network: 33k/18k divider, 510 kΩ hysteresis from +5V_HD, 100 nF EN filter, BAS16LD (anode EN, cathode GPIO27), 2.4 kΩ on GPIO27, CT 10 nF, QOD tied to VOUT, CIN 1 µF on `+5V_BST`; no USB term (§4.2; D53 BR-10, BR-22, BR-24) | r3 #0/#34, #1/#17, consolidation, r4 (EN filter, hysteresis), D53 | P4 | hand calculation on the drawn net with 1 % resistors and +5V_HD 4.93-5.37 V: EN ≤ 0.87 V with GPIO27 low or undriven (recompute the reset clamp once with the 2.4 kΩ, BR-24) and on USB only at the back-fed 2.5-2.8 V plus 0.3 V ripple; shed 2.8-3.1 V falling with BAS16LD leakage at 105 °C; resistor-only hysteresis ≥ the 0.31 V cell rebound (0.333 V calculated) and switch-on ≤ 3.8 V (a storage-charged pack starts the O4); 96 kHz ripple at EN ≤ 1 mV; the filter discharges through the diode and the 2.4 kΩ within 1 ms; τ (1.1 ms) inside 1-10 ms against the punch-sag ride-through; netlist script: the EN net holds exactly the divider, the hysteresis resistor, the filter, the diode and the TPS22810 pin. V1 confirms the shed and switch-on points with one ESC loaded (ripple present) and the absence of cycling |
 | P4-2 | O4 supply ahead of the mux (D53 BR-10; replaces round 4's AP1606 USB term): TPS22810 VIN on `+5V_BST` at TPS2116 VIN2, so USB never reaches the O4 (§4.2) | r3 #0/#34, D53 | P4 | netlist script: `+5V_BST` holds only the boost output and its caps, the FB divider, TPS2116 VIN2, the TPS22810 VIN and its CIN; the TPS2116 reverse-current blocking on the unselected VIN2 read from SLVSFG1A for the USB + cell case; one shared CIN if P5 brings VIN2 and the switch VIN within about 2 mm. V1: USB + cell + HD mode, no current from +5V_USB into `+5V_BST` |
 | P4-3 | TPS2116 sheet: MODE tied to VIN1, PR1 27.4k/10k (3.44-4.04 V; 3.3k/1.2k with the PS-12 fallback, PS-14), ST left open (open drain, unused), 10 µF X6S at VIN1 next to the pin (GRM155C80J106ME11D, D52 BR-20; TI CIN, §9-10), +5V hold-up (10 µF at the mux + the shared 10 µF LDO CIN of BR-14, recounted effective) for the unplug dip; adapter-side VBUS TVS and damped bulk in the O3 adapter spec (§4.2) | r3 #0/#34, consolidation, r4 (VIN1 transient), D52 | P4 | ERC; hand calculation of the switchover dip at 0.7 A: +5V ≥ 3.1 V, +3V3 ≥ 2.9 V; VIN1, MODE and PR1 peak on a 0.5-1 µH cable through the adapter and on pogo bounce ≤ 6.0 V (damping ratio stated with the 10 µF part); board VIN1 plus adapter bulk inside USB's 10 µF attach limit; RCB events interrupt only near-zero current here (switchover at plug and unplug, I), so no output clamp beyond the hold-up; V1 case (b) scopes the dip and the VIN1 peak |
-| P4-4 | HD gate (D53 BR-03): AP1606 gate on HD_EN, drain on the +3V3_VTX LP5912 EN (100 kΩ to +3V3, GPIO21 through 10 kΩ), source GND; the 1 kΩ VTX SPI series resistors; the LP5907 on `+3V3_VTX` with EN straight from GPIO2 (§4.8) | r3 #36, D53 | P4 | hand calculation: AP1606 Vgs(th) minimum from the maker datasheet above the 0.2 V reset level on GPIO27 and its RDS(on) at 3.3 V holding the LP5912 EN below VEN low against the 100 kΩ and GPIO21's push-pull high through 10 kΩ; SPI edge (1 kΩ x pin and trace capacitance) inside the RTC6705 setup and hold times; LP5907 VIN + 0.3 V excursion at HD turn-off bounded; V9: +3V3_VTX and PA_VREF < 0.5 V with stock ELRS writing |
+| P4-4 | HD gate (D53 BR-03): AP1606 gate on HD_EN, drain on the +3V3_VTX LP5912 EN (100 kΩ to +3V3, GPIO21 through 1 kΩ: P4 ruling, EN < 0.3 V guaranteed), source GND; the 1 kΩ VTX SPI series resistors; the LP5907 on `+3V3_VTX` with EN straight from GPIO2 (§4.8) | r3 #36, D53 | P4 | hand calculation: AP1606 Vgs(th) minimum from the maker datasheet above the 0.2 V reset level on GPIO27 and its RDS(on) at 3.3 V holding the LP5912 EN below VEN low against the 100 kΩ and GPIO21's push-pull high through 10 kΩ; SPI edge (1 kΩ x pin and trace capacitance) inside the RTC6705 setup and hold times; LP5907 VIN + 0.3 V excursion at HD turn-off bounded; V9: +3V3_VTX and PA_VREF < 0.5 V with stock ELRS writing |
 | P4-5 | PA drive stage (D52 BR-02): BC857BM PNP, emitter through Re to `+3V3_VTX`, collector → R65 10 Ω → choke → PAOUT1; two-pole RC 2x 1 kΩ / 2x 1 µF from GPIO13; Re starts at 10-15 Ω (§4.8) | r3 #19, #47, D52 | P4 (SPICE gate before the schematic freeze; V8 measures the PAOUT1 current) | SPICE against `research/bomred/verify/pnp_fix.py` (not the first `pnp.py`, whose base-current sign is reversed) with a PAOUT1 load model: 25 and 100 mW mid-window with ≥ 20 real duty steps between them; YOLO current against the 27 dBm ceiling across hFE 220-475 and the Veb tempco; PNP dissipation below Ptot derated at 85 °C; reset and boot behaviour with GPIO13 undriven; both junctions reverse-biased in HD mode. Fail: PS-12 values on the two-NPN stage plus PS-14 (§4.8). V5 sets Re |
 | P4-6 | ESP32 straps and pins (D53): GPIO12 unconnected (internal pull-down holds the 3.3 V-flash strap), GPIO2 straight to the LP5907 EN (internal 1 MΩ, no external pull-down, BR-12), GPIO0 / RXB boot pad; `vtx_amp_pwm` GPIO13 and `vtx_mosi` GPIO14 (no straps), `vtx_miso` unset; ESP32-PICO-V3 pins 30/31 (in-package flash) and the NC pins left open; VDD_SDIO eFuse step optional (§4.7, §12.1) | r3 round-2 carry-over, D53 | P4 | netlist strap script: each strap's reset level from its pull network with the ESP32 internal pulls; the PICO symbol leaves pins 25, 30, 31, 35, 36, 44, 45, 47 and 48 unconnected; the board's ELRS layout JSON matches the drawn pins; production step 2 in the fixture plan |
 | P4-7 | TPS61022 sheet: FB divider 47k / 6.2k for 5.148 V with 1 % parts against VFB 585/600/615 mV (D52 BR-23), MODE to VOUT, EN tied to VIN (BR-11), 4x Cout, Cin (§4.2, §5.3) | r3 #35, D52 | P4 | hand calculation: worst-case setpoint 4.93-5.37 V; bottom resistor < 300 kΩ (TI); MODE high above 1.2 V with VOUT > 2.2 V; EN on the VIN net and nothing else |

@@ -2438,7 +2438,7 @@
 		)
 		(uuid "6901b8ab-f643-5e9f-b8f1-b9fd2b87c3cb")
 	)
-	(text_box "Source: OpenFC-Lite hardware/pads.kicad_sch (JST SH SM04B plug in a frame; there it carries a UART). The USB pinout, D7 and the VBUS flag are new (D57). Commons block USB_C_GCT4105_USBLC6 checked, not used (USB-C and a 6-pin ESD part).\n\nJ31 JST BM04B-SRSS-TB(LF)(SN) as in bom_plan (vertical, bottom): 1 GND, 2 D- (USB_D_N), 3 D+ (USB_D_P), 4 VBUS, tabs 5/6 GND = BetaFPV 'USB(GND DM DP 5V)' order (bom_plan, IO-SET row 6, LIBRARY D57). Pin 1 = GND is inferred: continuity check with a BetaFPV Type-C to SH1.0 adapter on prototype 1. D72 moves J31 to the side-entry SM04B-SRSS-TB(LF)(SN) (lib:SM04B-SRSS-TB, same pins 1-6) once bom_plan carries it: a field swap.\n\nD7 TPD2EUSB30DRTR (TI SLVSAC2G): pin 1 D+, 2 D-, 3 GND (Table 5-1); VRWM 5.5 V, IO abs max 6 V, so a D+/D- short to VBUS survives; 8 V clamp at 1 A, 0.7 pF, IEC 61000-4-2 8 kV contact, -40..85 C. It sits at J31, ahead of the 27 R R42/R43 at the RP2354A (RP2350A sheet). Layout per DS 10.1: next to J31, protected traces straight with rounded corners, no unprotected trace beside the J31-D7 stretch, GND pin by via-in-pad into L2. USB pair 90 ohm, length-matched (D33); netclass USB from the directive on USB_D_P (_P/_N pair).\n\nVBUS is a hierarchical net (LINEUP A11) to POWER: U24 SGM40661 OVP IN + C131 100 nF take the hot-plug and over-voltage duty (D57). PWR_FLAG here: J31 is the only source of VBUS. A cable with pins 1/4 swapped puts -5 V on VBUS (unprotected, as on the Matrix)."
+	(text_box "Source: OpenFC-Lite hardware/pads.kicad_sch (JST SH SM04B plug in a frame; there it carries a UART). The USB pinout, D7 and the VBUS flag are new (D57). Commons block USB_C_GCT4105_USBLC6 checked, not used (USB-C and a 6-pin ESD part).\n\nJ31 JST BM04B-SRSS-TB(LF)(SN) as in bom_plan (vertical, bottom): 1 GND, 2 D- (USB_D_N), 3 D+ (USB_D_P), 4 VBUS, tabs 5/6 GND = BetaFPV 'USB(GND DM DP 5V)' order (bom_plan, IO-SET row 6, LIBRARY D57). Pin 1 = GND is inferred: continuity check with a BetaFPV Type-C to SH1.0 adapter on prototype 1. D76 (owner) keeps the vertical BM04B facing up next to a mounting hole (D72 side-entry SM04B withdrawn); its mating zone above the board stays clear of tall parts.\n\nD7 TPD2EUSB30DRTR (TI SLVSAC2G): pin 1 D+, 2 D-, 3 GND (Table 5-1); VRWM 5.5 V, IO abs max 6 V, so a D+/D- short to VBUS survives; 8 V clamp at 1 A, 0.7 pF, IEC 61000-4-2 8 kV contact, -40..85 C. It sits at J31, ahead of the 27 R R42/R43 at the RP2354A (RP2350A sheet). Layout per DS 10.1: next to J31, protected traces straight with rounded corners, no unprotected trace beside the J31-D7 stretch, GND pin by via-in-pad into L2. USB pair 90 ohm, length-matched (D33); netclass USB from the directive on USB_D_P (_P/_N pair).\n\nVBUS is a hierarchical net (LINEUP A11) to POWER: U24 SGM40661 OVP IN + C131 100 nF take the hot-plug and over-voltage duty (D57). PWR_FLAG here: J31 is the only source of VBUS. A cable with pins 1/4 swapped puts -5 V on VBUS (unprotected, as on the Matrix)."
 		(exclude_from_sim no)
 		(at 254 73.66 0)
 		(size 149.86 43.18)
@@ -3426,7 +3426,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "00aef79a-c6d3-558d-897c-f353e2f1a4db")
-		(property "Reference" "#PWR1407"
+		(property "Reference" "#PWR238"
 			(at 60.96 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -3486,7 +3486,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1407")
+					(reference "#PWR238")
 					(unit 1)
 				)
 			)
@@ -3503,7 +3503,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0309ac5f-af68-5554-aa6b-cec4b9491351")
-		(property "Reference" "#PWR1403"
+		(property "Reference" "#PWR234"
 			(at 367.03 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -3563,7 +3563,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1403")
+					(reference "#PWR234")
 					(unit 1)
 				)
 			)
@@ -4183,7 +4183,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "3c8ebcd5-3b67-586a-b4ff-fea35585feb1")
-		(property "Reference" "#PWR1409"
+		(property "Reference" "#PWR240"
 			(at 137.16 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4243,7 +4243,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1409")
+					(reference "#PWR240")
 					(unit 1)
 				)
 			)
@@ -4412,7 +4412,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "445f7115-8698-5d5b-9b39-79e0be644913")
-		(property "Reference" "#PWR1415"
+		(property "Reference" "#PWR245"
 			(at 325.12 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4472,7 +4472,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1415")
+					(reference "#PWR245")
 					(unit 1)
 				)
 			)
@@ -4687,7 +4687,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "537578aa-d5b8-5e29-9aff-9a963915c54b")
-		(property "Reference" "#PWR1410"
+		(property "Reference" "#PWR241"
 			(at 215.9 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -4747,7 +4747,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1410")
+					(reference "#PWR241")
 					(unit 1)
 				)
 			)
@@ -4840,7 +4840,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5977d0c5-eae4-5279-9d2b-fb69e61a010a")
-		(property "Reference" "#PWR1411"
+		(property "Reference" "#PWR242"
 			(at 226.06 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4900,7 +4900,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1411")
+					(reference "#PWR242")
 					(unit 1)
 				)
 			)
@@ -4917,7 +4917,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5c2f38a5-6dcb-53d2-916f-234e58ccbfad")
-		(property "Reference" "#PWR1406"
+		(property "Reference" "#PWR237"
 			(at 50.8 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4977,7 +4977,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1406")
+					(reference "#PWR237")
 					(unit 1)
 				)
 			)
@@ -5146,7 +5146,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "6fed3220-6f3d-5f49-b058-63689329f866")
-		(property "Reference" "#PWR1412"
+		(property "Reference" "#PWR243"
 			(at 254 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -5206,7 +5206,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1412")
+					(reference "#PWR243")
 					(unit 1)
 				)
 			)
@@ -5299,7 +5299,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "72ebfee4-0766-58bb-a59e-2e2e29955d3c")
-		(property "Reference" "#FLG1401"
+		(property "Reference" "#FLG08"
 			(at 382.27 56.515 0)
 			(hide yes)
 			(show_name no)
@@ -5359,7 +5359,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#FLG1401")
+					(reference "#FLG08")
 					(unit 1)
 				)
 			)
@@ -5501,7 +5501,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7cd24e49-aaac-57ca-8916-f774ff75d63e")
-		(property "Reference" "#PWR1405"
+		(property "Reference" "#PWR233"
 			(at 347.98 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -5561,7 +5561,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1405")
+					(reference "#PWR233")
 					(unit 1)
 				)
 			)
@@ -5695,7 +5695,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "882644fe-ab7b-5443-8afb-76ef0766cedb")
-		(property "Reference" "#PWR1414"
+		(property "Reference" "#PWR244"
 			(at 260.35 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -5755,7 +5755,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1414")
+					(reference "#PWR244")
 					(unit 1)
 				)
 			)
@@ -5964,7 +5964,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "9644be60-9de8-58a0-a34c-dc0e43bbdae0")
-		(property "Reference" "#PWR1416"
+		(property "Reference" "#PWR246"
 			(at 335.28 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -6024,7 +6024,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1416")
+					(reference "#PWR246")
 					(unit 1)
 				)
 			)
@@ -6269,7 +6269,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "bc8b87df-1979-5f70-beb0-7f3ebd13a4c1")
-		(property "Reference" "#PWR1401"
+		(property "Reference" "#PWR236"
 			(at 30.48 41.91 0)
 			(hide yes)
 			(show_name no)
@@ -6329,7 +6329,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1401")
+					(reference "#PWR236")
 					(unit 1)
 				)
 			)
@@ -6614,7 +6614,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "d391d508-d716-5071-a3de-5e347dc2bf57")
-		(property "Reference" "#PWR1404"
+		(property "Reference" "#PWR235"
 			(at 379.73 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -6674,7 +6674,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1404")
+					(reference "#PWR235")
 					(unit 1)
 				)
 			)
@@ -6691,7 +6691,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "df0bae61-5184-5549-beb2-74e983132e72")
-		(property "Reference" "#PWR1408"
+		(property "Reference" "#PWR239"
 			(at 116.84 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -6751,7 +6751,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1408")
+					(reference "#PWR239")
 					(unit 1)
 				)
 			)
@@ -6920,7 +6920,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f6aa28ac-761a-5f24-b090-c30fb90d6d9d")
-		(property "Reference" "#PWR1413"
+		(property "Reference" "#PWR247"
 			(at 256.54 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -6980,7 +6980,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1413")
+					(reference "#PWR247")
 					(unit 1)
 				)
 			)
@@ -6997,7 +6997,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "fe5ced1d-e0f9-53a2-950c-7bac5b4e2215")
-		(property "Reference" "#PWR1402"
+		(property "Reference" "#PWR232"
 			(at 53.34 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -7057,7 +7057,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR1402")
+					(reference "#PWR232")
 					(unit 1)
 				)
 			)
