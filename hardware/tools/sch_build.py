@@ -34,7 +34,9 @@ the key when renaming a part (`key="old ref"`).
 A sheet file may be placed several times (an ESC channel x4). Give each
 placement a `ref_offset`; the numeric part of every reference in that file is
 offset per placement (R1 -> R101, R201, ...), and offsets add up through
-nested sheets. Power and flag symbols are numbered automatically (#PWR01..,
+nested sheets. `ref_offset` may also be a {prefix: n} dict ("*" = every other
+prefix) when the instances follow a per-prefix stride, e.g. ESC2 =
+{"U": 1, "Q": 3, "R": 7, "C": 6, "TP": 2} (hardware/sch_contract.json). Power and flag symbols are numbered automatically (#PWR01..,
 #FLG01..). Multi-unit parts: place each unit with the same ref and `unit=n`.
 
 Readability helpers: connect_group() joins same-side pins (VDD/VDDA, VSS)
@@ -554,13 +556,24 @@ class Sheet:
         self.connect_point(x, y, a, net, kind, stub)
 
 
+def _add_offset(a, b):
+    """Reference offsets add up through nested sheets; an offset is an int (every
+    prefix) or a {prefix: int} dict with "*" for every prefix not listed."""
+    if isinstance(a, dict) or isinstance(b, dict):
+        da = a if isinstance(a, dict) else {"*": a}
+        db = b if isinstance(b, dict) else {"*": b}
+        return {k: da.get(k, da.get("*", 0)) + db.get(k, db.get("*", 0)) for k in set(da) | set(db)}
+    return a + b
+
+
 def _offset_ref(ref, off):
     if not off or ref.startswith("#"):
         return ref
     m = re.match(r"^(.*?)(\d+)$", ref)
     if not m:
         raise ValueError("cannot offset reference %r" % ref)
-    return "%s%d" % (m.group(1), int(m.group(2)) + off)
+    n = off.get(m.group(1), off.get("*", 0)) if isinstance(off, dict) else off
+    return "%s%d" % (m.group(1), int(m.group(2)) + n)
 
 
 class Project:
@@ -611,7 +624,7 @@ class Project:
         def walk(sheet, uuids, names, off):
             out.append((sheet, uuids, names, off, str(len(out) + 1)))
             for u in sheet.uses:
-                walk(u.child, uuids + [u.uuid], names + [u.name], off + u.ref_offset)
+                walk(u.child, uuids + [u.uuid], names + [u.name], _add_offset(off, u.ref_offset))
         walk(self.root, [], [], 0)
         return out
 
