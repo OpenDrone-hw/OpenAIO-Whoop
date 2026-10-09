@@ -5,20 +5,90 @@ merge pass that checked the 17 OpenDrone footprints the BOM used without staged 
 `p23/merge/work/make_report.py`; numbers below are from the runs listed under Verification.
 Updated the same day for the D52 BOM reduction (section "D52 BOM reduction" below, work in `p23/bomred_lib/`) and
 for the owner decisions D56-D58 plus the `bom_plan.json` rewrite for D52-D60 (section "D56-D58 merge" below, work in
-`p2v3/integ_work/`).
+`p2v3/integ_work/`), and for the D63/D64 IO set with the `bom_plan.json` regenerated for D52-D63 (section "D63 IO set"
+below, work in `p2v3/integ3_work/`).
 
 ## Summary
 
 | Item | Count |
 |---|---|
-| Symbols in `hardware/lib.kicad_sym` | 28 (19 from the merge, 3 for D52, 6 for D56-D58) |
-| Footprints in `hardware/lib.pretty` | 77 (70 from the merge, 1 for D52, 6 for D56-D58) |
-| 3D models in `hardware/lib.3dshapes` | 29 |
-| Land specs in `hardware/tools/land_specs` | 77 lib specs (+3 checker test specs) |
-| bom_plan entries (D52-D60 plan) | 274 = 226 fitted + 2 DNP + 46 pads / mechanics; 50 footprints (all `lib:`), 46 symbols (20 `lib:`) |
-| check_footprint, bom_plan footprints | 50 / 50 PASS |
-| check_footprint, all lib footprints | 77 / 77 PASS |
-| Entries resolving (symbol + footprint via lib tables, pins = pads) | 274 / 274; all 28 lib symbols resolve to their Footprint field, pins = pads, 3D files present |
+| Symbols in `hardware/lib.kicad_sym` | 30 (19 from the merge, 3 for D52, 6 for D56-D58, 2 for D63) |
+| Footprints in `hardware/lib.pretty` | 80 (70 from the merge, 1 for D52, 6 for D56-D58, 3 for D63) |
+| 3D models in `hardware/lib.3dshapes` | 30 |
+| Land specs in `hardware/tools/land_specs` | 80 lib specs (+3 checker test specs) |
+| bom_plan entries (D52-D63 plan) | 279 = 228 fitted + 2 DNP + 49 pads / mechanics; 81 BOM lines; 52 footprints (all `lib:`), 48 symbols (22 `lib:`) |
+| check_footprint, bom_plan footprints | 52 / 52 PASS |
+| check_footprint, all lib footprints | 80 / 80 PASS (6 with the intended 'lands without paste' WARN: solder, motor and test pads, the pogo footprint, the Wi-Fi edge strip) |
+| Entries resolving (symbol + footprint via lib tables, pins = pads) | 279 / 279; all 30 lib symbols resolve to their Footprint field, pins = pads, `${KIPRJMOD}` 3D files present |
+
+## D63 IO set and the D52-D63 bom_plan (2026-10-09)
+
+Owner decision D63 and its adoption D64: the IO set in `research/IO-SET.md` is part of the board, so every row of its
+§1 is now in `bom_plan.json` (index in `meta.io_set`). Library parts were built for the items that had no project or
+usable OpenDrone part, in `p2v3/integ3_work/stage/` (`work/run_all.sh` rebuilds specs, footprints, courtyards and
+checks; `work/build_sym.py` the symbols; renders in `work/render/`).
+
+### Parts added to the library (D63)
+
+| Item | MPN (maker, LCSC) | Symbol | Footprint | Check | Land source | Notes |
+|---|---|---|---|---|---|---|
+| Camera plug J32 (MUST) | SM03B-SURS-TF(LF)(SN) (JST, C265338) | `lib:SM03B-SURS-TF` **new** | `JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal` **new** | PASS, 0 WARN | JST eSUR p3 side-entry PC board layout: signal 0.5 x 1.0 at 0.8, tabs 1.2 x 1.7, 0.7 tab gap, 2.3 signal end to tab end | Frame and lands = KiCad stock footprint of that name (it matches eSUR exactly); tabs numbered 4/5 (house numbering, as EasyEDA C265338), pads rect; body 4.6 x 2.7 (stock F.Fab), courtyard 5.6 x 3.5. Mating face toward +y, mated length 3.9, height 1.75. 3D: EasyEDA C265338 STEP at offset (0.81, 1.43) (the STEP origin differs from the WRL; body bounding box checked against the F.Fab in a render, within 0.02 mm). IO-SET listed no LCSC number: C265338 is in the JLCPCB parts API with 34,331 stock (2026-10-09) |
+| Camera plug fallback (G1 = 1.0 mm) | SM03B-SRSS-TB(LF)(SN) (JST, C160403) | `OpenDrone:SM03B-SRSS-TB` (pins 1-5 = pads) | `CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W` **new** | PASS, 0 WARN | JST SH/SR catalogue p1 SMT side entry: signal 0.6 x 1.55 at 1.0, tabs 1.2 x 1.8, 0.7 tab gap | Corrected copy of the OpenDrone footprint: its tabs were 1.5 x 2.0 (EasyEDA land), now 1.2 x 1.8 per JST; F.Fab body 5.0 x 4.25 added, component silk removed, courtyard 6.0 x 5.76 (the OpenDrone courtyard covered the body only). OpenDrone SR1.00-WS-3P STEP at (-1.0, -0.17), the same alignment as the EasyEDA WRL. Not assigned (`meta.alternates`) |
+| RX boot/bind button SW1 (SHOULD) | TS2306A 240gf MSM 9 (SHOU HAN, C2976675) | `lib:TS2306A240GFMSM9` **new** | `SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W` **new** | PASS, 0 WARN | Shouhan specification p1: reference land 3.8 / 2.7 (0.55 wide) x 1.5, reference stencil 2 x 0.42 x 0.60 per side | Copper per the land drawing (one 0.55 x 1.5 land per terminal side, pads 1/2); paste as copper-less windows per the stencil (61 %). The OpenDrone footprint used the stencil windows as copper (four 0.42 x 0.60 pads) and had no courtyard. Body 3.0 x 2.0, courtyard 4.0 x 2.2. Symbol: KiCad SW_Push graphic, ref SW, passive pins 1/2 (the OpenDrone symbol has ref U and input pins). OpenDrone STEP, centred |
+
+Reused as-is: `lib:SolderPad_1.0x1.2mm_Dense` (J33 LED-row GND pad) and `lib:TestPoint_Pad_D0.8mm` (TP14/TP15 USB D-/D+).
+Library operations: the two symbol blocks were merged into `lib.kicad_sym` by the same block-copy script (no name
+clashes) and the file re-saved with `kicad-cli sym upgrade --force`; the 28 existing blocks are byte-identical after
+the re-save. Footprints, the SUR STEP and the three land specs were copied as built (no name clashes).
+
+### bom_plan.json (D52-D63)
+
+Regenerated from the 2026-10-07 plan (git 6cb7216): `bomplan_d52.py` (= `p23/bfp/work/bomplan.py`, D52 main case with
+the ESP32-PICO-V3, never the D0WD fallback) and `d56_d60.py` reproduce the D52-D60 plan byte for byte; `d63.py` then
+applies the IO set. Refs stay stable; J31 has been the USB connector since D57, so IO-SET's hints J31/J32 become J32
+(camera plug) and J33 (GND pad). New prefix SW in `meta.conventions.refs`.
+
+| IO-SET row | Change |
+|---|---|
+| 3 camera plug (MUST) | J32 SM03B-SURS-TF(LF)(SN), F, region `cam_plug` (new): pin 1 VIDEO_IN, 2 GND, 3 +5V_CAM, tabs GND; silk `CAM` + pin-1 mark; pin order provisional until G1. J23-J25 notes: in parallel with J32 |
+| 9 LED row GND LED 5V BZ- (SHOULD) | J33 GND pad (DNP, out of BOM, silk `GND`) in `pads_ledbz`; J21 value and silk BZ+ -> 5V (net +5V unchanged); J20 note: driven directly by GPIO8 (no 74LVC1T45); J18/J19 no longer shared with the strip |
+| 10 RX boot/bind button (SHOULD) | SW1 TS2306A, F, region `rx_button` (new), RX_BOOT to GND in parallel with TP11 (note added); no silk |
+| 13 USB D-/D+ pads (COULD) | TP14 D- (USB_D_N), TP15 D+ (USB_D_P), B, region `usb_jst`, out of BOM; first to drop (G2) |
+| Notes | J16/J17 (UART0 remap and I2C presets; SBUS text replaced), J28/J29 (second hardware UART in analog builds; yellow lead to RP0 only with EXT-USER-PADS), U10 (stepping A3 or later, RP2350-E9) |
+| Housekeeping | empty regions `rx_flash`, `rx_xtal` (D52 BR-01) and `vtx_match` (C119) deleted; `meta.alternates` lists the fallbacks (TI FET pair, SM04B, SH SM03B, the passive USB inlet); `meta.io_set` maps every IO-SET row to its refs |
+
+Result: 279 entries = 228 fitted placements (99 top / 129 bottom), 81 BOM lines (plus 2 DNP
+placements on one DNP-only line), 49 pads and mechanics. Manufacturer + exact MPN on every BOM entry.
+
+Package area (same method as above, `p2v3/integ3_work/area.py`; board outline 696.8 mm2):
+
+| Side | Parts (fitted + DNP) | Pads / mechanics | Total | D52-D60 plan |
+|---|---|---|---|---|
+| Top (F) | 291.3 mm2 (353.8), 99 parts | 115.7 mm2 (112.4) | 407.0 mm2, 58 % | 382.0 mm2 |
+| Bottom (B) | 361.4 mm2 (442.7), 131 parts | 14.1 mm2 (20.9) | 375.5 mm2, 54 % | 374.5 mm2 |
+
+The IO set adds 25.0 mm2 on top (J32 16.6, SW1 7.4, J33 1.0) and 1.0 mm2 on the bottom (TP14/TP15), extent method;
+the camera plug zone in front of J32 and the Wi-Fi keep-out (16 mm2 per side) come on top of this.
+
+### Verification (D63)
+
+- `check_footprint.py`: the three new footprints PASS with 0 WARN; all 52 bom_plan footprints PASS
+  (`p2v3/integ3_work/check_all.json`); all 80 lib footprints PASS.
+- `resolve_all.py`: 279 / 279 entries resolve through the project lib tables (then KiCad's default symbol
+  table), symbol pins = footprint pads (`p2v3/integ3_work/resolve.json`).
+- `symcheck.py`: 30 / 30 lib symbols resolve to their Footprint field, pins = pads, 3D files present.
+- `check_conventions.py`: 27 ok, 1 FAIL, 4 warn, 12 skip, unchanged. The FAIL is A5 (placeholder schematic, P4).
+
+### Integration items (D63)
+
+- G1 before the P3 footprint freeze and P4: camera pitch (SUR 0.8 or SH 1.0) and pin 1 from a C03 lead and the MX2
+  CAM IN. J32's pin map is provisional until then.
+- G2/G3 on the v3 board: place J32, then J33 + SW1, then TP14/TP15; J32 and SW1 are 85 °C parts (H1/H3 site or a
+  logged scoped exemption). The camera plug needs a `CAM_PLUG_ZONE` rule area in front of its +y face.
+- P4 schematic: J32 in parallel with J23-J25 on the pads sheet; SW1 on the rx sheet from RX_BOOT to GND; the LED row
+  labels GND LED 5V BZ-; TP14/TP15 on the connector side of D7.
+- `USB_Pogo_4x1.0mm_NPTH0.8_1.1` is still in the library (the v2 repo board places J30); delete it with its land spec
+  when the v3 board replaces the repo board.
 
 ## D56-D58 merge and the D52-D60 bom_plan (2026-10-09)
 
@@ -91,7 +161,7 @@ are counted on their placement side only.
 
 ### Integration items (floorplan v3 / P4)
 
-- D63 IO set: `research/IO-SET.md` does not exist yet, so the IO set is not in this bom_plan. Add it when it lands.
+- D63 IO set: done in the D52-D63 plan (section "D63 IO set" above).
 - The USB result named the TPS2116 VIN1 cap "C30". In this plan that cap is C128; C30 is the ESC3 EFM8 10 uF.
 - Wi-Fi: add the DRU rule `D21 wifi_antenna_edge_strip` after "parts: courtyards off the edge band". Occupancy and
   empty-map scripts must count the 16 mm2 keep-out on both sides. v2 has no free 5.4 mm straight edge.
@@ -303,7 +373,7 @@ Nothing was removed from the library.
 
 ## Parts
 
-Current plan (`bom_plan.json` for D52-D60, 2026-10-09), one row per MPN + symbol + footprint. Check = check_footprint result of the assigned footprint against its land spec. Source = staging group or merge.
+Current plan (`bom_plan.json` for D52-D63, 2026-10-09), one row per MPN + symbol + footprint. Check = check_footprint result of the assigned footprint against its land spec. Source = staging group or merge.
 
 | Refs | MPN | Symbol | Footprint | Check | Source | Notes |
 |---|---|---|---|---|---|---|
@@ -335,7 +405,7 @@ Current plan (`bom_plan.json` for D52-D60, 2026-10-09), one row per MPN + symbol
 | R61,R87 | RC0201FR-07510KL | `Device:R` | `R_0201_0603Metric_W` | PASS | Murata GR03 land; Yageo RC data sheet p4 dims (0.60 x 0.30), p5 points to "Chip resistors mounting" (not obtainable) | RC0201FR-0733KL: no LCSC listing found 2026-10-09 (order by MPN; AC0201FR-0733KL C226512 is the automotive twin) |
 | U6-U9 | EFM8BB51F16I-C-QFN20R | `lib:EFM8BB51F16I-C-QFN20R` | `QFN-20_3x3mm_P0.5mm_EFM8BB51` | PASS | esc | EFM8BB51 Table 7.2 land, all 20 pins, EP 4 vias 0.35/0.20 (Heatsink pads -> D21 DRU rule needed) |
 | Q29-Q40 | AGM210MAP | `lib:AGM210MAP` | `AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP` | PASS | agm (D56) | AGM DS VER2.73 p9 dual-pad drawing (no DS land): leads 0.35x0.65, EPs 1.87x1.125 merged with the drain-tab toes, two drain EPs '5'/'8' (joined only by the board's phase island), paste 71 % in 2 windows; courtyard 3.90x3.30 |
-| TP1-TP13 | - | `Connector:TestPoint` | `TestPoint_Pad_D0.8mm` | PASS (1 warn) | io_pads | 0.8 mm round test pad, no paste; single terminal (pin1 n/a); not in BOM |
+| TP1-TP15 | - | `Connector:TestPoint` | `TestPoint_Pad_D0.8mm` | PASS (1 warn) | io_pads | 0.8 mm round test pad, no paste; single terminal (pin1 n/a); not in BOM |
 | U10 | RP2354A | `OpenDrone:RP2354A` | `QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_Dense` | PASS | merge (OpenDrone fix) | RP2350 Fig 144 land, toe 3.875->3.70 (budget QFN60_7); EP paste 3x3 70 %; OpenDrone pads 0.14 outboard |
 | X1 | X252012MMB4SI-24 | `Device:Crystal_GND24` | `CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_Dense` | PASS | merge (OpenDrone fix) | YXC suggested layout trimmed to 2.6x2.1 (budget XTAL2520) |
 | C42-C43,C94-C95 | GRM0335C1H150JA01D | `Device:C` | `C_0201_0603Metric_W` | PASS | Murata spec C181047 p26 Table 2, GRM03 a 0.2-0.3, b 0.2-0.35, c 0.2-0.4 | land a 0.20 / b 0.35 / c 0.40 in range; replaces every GRM033R61E104KE14D |
@@ -390,9 +460,11 @@ Current plan (`bom_plan.json` for D52-D60, 2026-10-09), one row per MPN + symbol
 | J2-J3 | - | `Connector_Generic:Conn_01x01` | `BattPad_3.0x2.0mm_PTH1.1` | PASS | io_pads | battery pad 3.0x2.0, PTH 1.1 (spec 4.10); power vias board-level; not in BOM |
 | J4-J15 | - | `Connector_Generic:Conn_01x01` | `MotorPad_1.0x1.8mm_PTH0.5` | PASS (1 warn) | io_pads | motor pad 1.0x1.8 with 0.5 wire-anchor PTH; not in BOM |
 | J16-J19,J23-J29 | - | `Connector_Generic:Conn_01x01` | `SolderPad_1.0x1.2mm` | PASS (1 warn) | io_pads | user/HD/camera wire pad, no paste (hand-soldered); not in BOM |
-| J20-J22 | - | `Connector_Generic:Conn_01x01` | `SolderPad_1.0x1.2mm_Dense` | PASS (1 warn) | io_pads | 1.0x1.0 pad for LED BZ+ BZ- (spec 4.10, 1.3 pitch); J20-J22; not in BOM |
+| J20-J22,J33 | - | `Connector_Generic:Conn_01x01` | `SolderPad_1.0x1.2mm_Dense` | PASS (1 warn) | io_pads | 1.0x1.0 pad for the LED row GND LED 5V BZ- (D63; spec 4.10, 1.3 pitch); not in BOM |
+| J32 | SM03B-SURS-TF(LF)(SN) | `lib:SM03B-SURS-TF` | `JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal` | PASS | ioset (D63) | JST eSUR p3 side-entry land = KiCad stock frame: signal 0.5x1.0 at 0.8, tabs 4/5 1.2x1.7; body 4.6x2.7, courtyard 5.6x3.5; mating face +y; pin order provisional until G1 |
 | J31 | BM04B-SRSS-TB(LF)(SN) | `lib:BM04B-SRSS-TB` | `CONN-SMD_4P-P1.00_BM04B-SRSS-TB` | PASS | usb (D57) | JST eSH p1/p2 land: signal pads 0.6x1.55 at 1.0, tabs 1.2x1.8 at x+-2.8; body 6.0x2.9, 4.25 mm tall (6.3 mated); courtyard 7.0x4.41 |
 | D7 | TPD2EUSB30DRTR | `lib:TPD2EUSB30DRTR` | `TI_SOT-9X3-3_DRT` | PASS | usb (D57) | TI 4211172/A land 0.30x0.30; DRT 1.0x0.8; pin 3 GND via-in-pad |
+| SW1 | TS2306A 240gf MSM 9 | `lib:TS2306A240GFMSM9` | `SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W` | PASS | ioset (D63) | Shouhan reference land 0.55x1.5 per side at +-1.625, stencil windows 2x0.42x0.60 per land (61 %); body 3.0x2.0, courtyard 4.0x2.2 |
 | H1-H3 | - | `Mechanical:MountingHole` | `MountingHole_3.5mm_Ear_Flange5.2` | PASS | io_pads | NPTH 3.5 (P1 board also has Edge.Cuts cut-outs: keep one, P2); not in BOM |
 | LOGO1 | - | `-` | `incutec_logo_6.1x1.4mm` | PASS | io_pads | 8-polygon incutec artwork from OpenFC-Lite-Mini (LINEUP B3), board-only (artwork check); not in BOM |
 
@@ -400,5 +472,5 @@ Warnings are 'SMD lands without paste' on hand-soldered wire pads (no paste by d
 
 ## Alternates kept in lib.pretty (checked, not assigned)
 
-`CRYSTAL-SMD_4P-L1.6-W1.2-BL_W`, `CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W`, `CRYSTAL-SMD_4P-L3.2-W2.5-BL`, `IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W`, `LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W`, `OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_W`, `QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_W`, `QFN-40_6x6mm_P0.5mm_EP_RTC6705`, `QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_W`, `R_1206_Kelvin_4Pad_NetTie_HCS1206`, `SOD-123FL_L2.7-W1.8-LS3.7-RD_W`, `SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_W`, `SOT-363_SC-70-6_W`, `WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_W`, `X2SON-4_L0.8-W0.8-P0.48-TL-A_W`, `X2SON-4_L1.0-W1.0-P0.65-TL-EP_W`, `X2SON-6_L1.0-W0.8-BL_W`
+`CRYSTAL-SMD_4P-L1.6-W1.2-BL_W`, `CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W`, `CRYSTAL-SMD_4P-L3.2-W2.5-BL`, `IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W`, `LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W`, `OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_W`, `QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_W`, `QFN-40_6x6mm_P0.5mm_EP_RTC6705`, `QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_W`, `R_1206_Kelvin_4Pad_NetTie_HCS1206`, `SOD-123FL_L2.7-W1.8-LS3.7-RD_W`, `SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_W`, `SOT-363_SC-70-6_W`, `WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_W`, `X2SON-4_L0.8-W0.8-P0.48-TL-A_W`, `X2SON-4_L1.0-W1.0-P0.65-TL-EP_W`, `X2SON-6_L1.0-W0.8-BL_W`, `CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W` (D64 camera-plug fallback)
 

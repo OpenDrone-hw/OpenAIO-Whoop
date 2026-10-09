@@ -2,7 +2,7 @@
  "meta": {
   "board": "OpenAIO-Whoop rev1",
   "generated": "2026-10-09",
-  "generator": "scratchpad p2v3/integ_work: bomplan_d52.py (D52-D54 main case, ESP32-PICO-V3 per D55) + d56_d60.py (D56 AGM210MAP, D57 JST SH USB, D58 Wi-Fi antenna, D60 sourcing) on the 2026-10-07 plan",
+  "generator": "scratchpad p2v3/integ3_work: bomplan_d52.py (D52-D54 main case, ESP32-PICO-V3 per D55) + d56_d60.py (D56 AGM210MAP, D57 JST SH USB, D58 Wi-Fi antenna, D60 sourcing) + d63.py (D63/D64 IO set) on the 2026-10-07 plan (git 6cb7216)",
   "sources": [
    "research/DESIGN-SPEC.md (P0 freeze, D1-D23)",
    "research/PINMAP.md",
@@ -12,10 +12,11 @@
    "OpenOSD-X RTC6705 reference values (track 04)",
    "tinyPEPPER BEMF network (track 08)",
    "research/DECISIONS.md D52-D60; research/BOM-REDUCTION.md \u00a73",
-   "staging p2v3/staging/agm (AGM210MAP part + ESC cell), usb (JST BM04B, SGM40661, TPD2EUSB30), wifi (Johanson 2450AT07A0100001T), merged into hardware/lib.* on 2026-10-09"
+   "staging p2v3/staging/agm (AGM210MAP part + ESC cell), usb (JST BM04B, SGM40661, TPD2EUSB30), wifi (Johanson 2450AT07A0100001T), merged into hardware/lib.* on 2026-10-09",
+   "research/IO-SET.md \u00a71, \u00a73, \u00a74.2 (D63/D64)"
   ],
   "conventions": {
-   "refs": "project-wide sequential per prefix (LINEUP A15), sheet order power, ESC1..ESC4, rp2354a, imu, blackbox, osd, rx_esp32_sx1281, vtx, led, pads; prefixes C R L D U Q X J TP AE FL FB TH H LOGO; new parts take the next free number above every ref of any committed plan (C130 of the withdrawn \u00a75.1 fallback is skipped)",
+   "refs": "project-wide sequential per prefix (LINEUP A15), sheet order power, ESC1..ESC4, rp2354a, imu, blackbox, osd, rx_esp32_sx1281, vtx, led, pads; prefixes C R L D U Q X J SW TP AE FL FB TH H LOGO; new parts take the next free number above every ref of any committed plan (C130 of the withdrawn \u00a75.1 fallback is skipped)",
    "footprint": "OpenDrone:<name> = hardware/KiCad-Library footprint that passes check_footprint.py against its datasheet spec; lib:<name> = project library hardware/lib.pretty (P3 merge 2026-10-09; _W = corrected copy of an OpenDrone footprint, _Dense = area-budget variant); land specs in hardware/tools/land_specs/<name>.json",
    "symbol": "OpenDrone:<name> / KiCad stock (Device, Connector, Connector_Generic, Mechanical) / lib:<name> = hardware/lib.kicad_sym (P3 merge 2026-10-09)",
    "coordinates": "regions: KiCad top view, mm from the board-body centre (113.2, 113.2), +x right, +y down, front corner (+x,-y); side F/B",
@@ -25,9 +26,60 @@
    "values": "'start value' notes mark circuit values closed in the P4 critique loop (spec \u00a715.5, D22)"
   },
   "not_parts": "silk labels, product name OPEN/AIO/WHOOP, REV1, '1S', 'HD' frame are drawn by the generator, not footprints; the Wi-Fi keep-out is part of the AE2 footprint (rule area), not a separate item",
-  "library": "P3 merge 2026-10-09: staged libraries merged (research/LIBRARY.md); footprint ids switched to the checked _W/_Dense variants; the 17 OpenDrone footprints used without staged work failed check_footprint against their datasheet lands and were replaced by checked lib _W/_Dense copies in the same frame; D1 SMF5.0A (unidirectional) moved from the bidirectional Device:D_TVS (A1/A2) to Device:D_Zener (1 = K, 2 = A) so the cathode pad 1 is unambiguous | 2026-10-09 D56-D58 merge: AGM210MAP, BM04B-SRSS-TB, SM04B-SRSS-TB (alternate), SGM40661YG, TPD2EUSB30DRTR, 2450AT07A0100001T symbols + footprints + 3D + land specs added (research/LIBRARY.md); lib_work flags cleared after the full resolve + check_footprint run",
+  "library": "P3 merge 2026-10-09: staged libraries merged (research/LIBRARY.md); footprint ids switched to the checked _W/_Dense variants; the 17 OpenDrone footprints used without staged work failed check_footprint against their datasheet lands and were replaced by checked lib _W/_Dense copies in the same frame; D1 SMF5.0A (unidirectional) moved from the bidirectional Device:D_TVS (A1/A2) to Device:D_Zener (1 = K, 2 = A) so the cathode pad 1 is unambiguous | 2026-10-09 D56-D58 merge: AGM210MAP, BM04B-SRSS-TB, SM04B-SRSS-TB (alternate), SGM40661YG, TPD2EUSB30DRTR, 2450AT07A0100001T symbols + footprints + 3D + land specs added (research/LIBRARY.md); lib_work flags cleared after the full resolve + check_footprint run | 2026-10-09 D63 IO set: SM03B-SURS-TF (camera plug), TS2306A240GFMSM9 (button) symbols; JST SUR SM03B-SURS-TF, SH SM03B-SRSS-TB _W (camera fallback), TS2306A _W footprints + land specs + SUR 3D",
   "sourcing": "D60: NextPCB sources every part that exists and builds the prototypes; exact Manufacturer + MPN and genuine parts on every BOM line; JLCPCB = DFM target only; no consigned lines",
-  "dnp": "dnp = footprint placed, part not fitted in rev1 (C132 / C133 Wi-Fi tuning shunts, D58)"
+  "dnp": "dnp = footprint placed, part not fitted in rev1 (C132 / C133 Wi-Fi tuning shunts, D58)",
+  "alternates": [
+   {
+    "for": "Q29-Q40",
+    "decision": "D56 fallback",
+    "parts": "Texas Instruments CSD25310Q2 (P) + CSD13202Q2 (N) per phase",
+    "footprints": "lib:TI_SON-6_2x2mm_CSD25310Q2, lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
+    "symbols": "lib:CSD25310Q2, lib:CSD13202Q2"
+   },
+   {
+    "for": "J31",
+    "decision": "D57 owner choice",
+    "parts": "JST SM04B-SRSS-TB(LF)(SN) (LCSC C160404), side entry, needs a board edge",
+    "footprints": "lib:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN",
+    "symbols": "lib:SM04B-SRSS-TB"
+   },
+   {
+    "for": "J32",
+    "decision": "D64 gate G1 = 1.0 mm",
+    "parts": "JST SM03B-SRSS-TB(LF)(SN) (LCSC C160403)",
+    "footprints": "lib:CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W",
+    "symbols": "OpenDrone:SM03B-SRSS-TB"
+   },
+   {
+    "for": "U24",
+    "decision": "D57 sourcing fallback",
+    "parts": "no OVP: Murata GRM033C81A105ME05D 1 uF + Vishay CRCW040210R0FKED 10 R at VIN1 plus a VBUS TVS",
+    "footprints": "-",
+    "symbols": "-"
+   }
+  ],
+  "io_set": {
+   "source": "research/IO-SET.md \u00a71 (D63/D64); every row is in this plan",
+   "rows": {
+    "1 battery": "J2 J3",
+    "2 motor outputs": "J4-J15",
+    "3 camera plug (MUST, new)": "J32",
+    "4 camera pads": "J23 J24 J25",
+    "5 RF": "J1 AE1 AE2 (+ R88 C132 C133)",
+    "6 USB": "J31 U24 C131 D7 R42 R43",
+    "7 user UART": "J16-J19",
+    "8 HD pads / 2nd UART": "J26-J29",
+    "9 LED + buzzer row GND LED 5V BZ- (SHOULD)": "J33 J20 J21 J22",
+    "10 RX boot/bind button (SHOULD, new)": "SW1",
+    "11 status LEDs": "D5 D6 D4",
+    "12 test / programming pads": "TP1-TP13",
+    "13 USB D-/D+ pads (COULD, new)": "TP14 TP15"
+   },
+   "placement_priority": "camera plug J32 -> LED-row GND pad J33 + SW1 -> TP14/TP15 (G2); trade ladder IO-SET \u00a74.1",
+   "gates": "G1 camera pitch + pin 1 before the P3 footprint freeze and P4; G2 area on the v3 board; G3 H1/H3 sites for J32 and SW1 (or a logged scoped exemption + V8)",
+   "pin_changes": "none (RP2354A 30/30; ESP32 GPIO0 gains SW1; J21 BZ+ -> 5V same net)"
+  }
  },
  "regions": {
   "esc4_mcu": {
@@ -270,18 +322,6 @@
    ],
    "src": "spec \u00a710: PA + both 1.0 mm VCC rings"
   },
-  "vtx_match": {
-   "side": "F",
-   "x": [
-    7.72,
-    9.32
-   ],
-   "y": [
-    -12.3,
-    -10.8
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
   "vtx_dcblock": {
    "side": "F",
    "x": [
@@ -412,7 +452,7 @@
     10.4,
     12.9
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D63: row GND LED 5V BZ- (4 pads with J33), inboard near the HD column, >= 6 mm from AE1; floorplan v3 resizes and places it"
   },
   "ant_hole": {
    "side": "F",
@@ -497,30 +537,6 @@
     -7.2
    ],
    "src": "spec \u00a710: ESP32 land; passives pack around it (preview rx_b 1.2..8.1 / -12.95..-2.7)"
-  },
-  "rx_flash": {
-   "side": "B",
-   "x": [
-    -1.4,
-    2.0
-   ],
-   "y": [
-    -10.65,
-    -8.25
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
-  "rx_xtal": {
-   "side": "B",
-   "x": [
-    -0.6,
-    1.1
-   ],
-   "y": [
-    -7.9,
-    -6.6
-   ],
-   "src": "spec \u00a710 (sketch v4)"
   },
   "radio": {
    "side": "B",
@@ -702,7 +718,7 @@
     7.0,
     4.41
    ],
-   "src": "D57: J31 BM04B (top entry, mounted on the bottom) at the rear ear between the rear mount and the body, tails toward the edge; U24 + C131 within ~2 mm of J31 pin 4, D7 at pins 2/3; a 6.0 x 2.9 mm column below the board stays free for the plug (6.3 mm mated); floorplan v3 sets the position"
+   "src": "D57: J31 BM04B (top entry, mounted on the bottom) at the rear ear between the rear mount and the body, tails toward the edge; U24 + C131 within ~2 mm of J31 pin 4, D7 at pins 2/3; a 6.0 x 2.9 mm column below the board stays free for the plug (6.3 mm mated); floorplan v3 sets the position | D63: TP14 D- / TP15 D+ (COULD) beside J31 on the connector side of D7, near a GND contact"
   },
   "wifi_ant": {
    "side": "B",
@@ -714,6 +730,26 @@
    ],
    "keepout_both_sides_mm2": 16.0,
    "src": "D58: straight body edge with >= 5.4 mm free (not an ear arc or panel tab), keep-out 5.0 x 3.2 on all layers and both sides (footprint rule area), >= 10 mm from the RX antenna hole, >= 6 mm from the VTX U.FL / PA match / BPF, >= 2 mm from AGM cells, >= 3 mm from wire pads and the PA projection (land spec W1-W11); same side as U16; floorplan v3 sets the site (front edge centre preferred)"
+  },
+  "cam_plug": {
+   "side": "F",
+   "x": null,
+   "y": null,
+   "size_mm": [
+    5.6,
+    3.5
+   ],
+   "src": "D63/D64 IO-SET \u00a74.2: interior top site (front-right, between the ESC4 / ESC2 zones and the nose); H1/H3: >= 2 mm in 2D projection from every AGM package, phase island and motor pad on either side, no heat source under it (85 C part) or a logged scoped exemption (G3); >= 1 mm from the 5.8 GHz line, outside RF_VTX_UFL and the Wi-Fi keep-out, >= 6 mm from AE1; mating face (+y of the footprint) toward the nose with a CAM_PLUG_ZONE rule area in front of it (plug width x about 2 mm; SUR mated length 3.9 mm from the tail end) that bars every footprint except the CAM pads; silk 'CAM' + pin-1 mark inside the zone; floorplan v3 sets the position (placement priority 1 of the IO set, G2)"
+  },
+  "rx_button": {
+   "side": "F",
+   "x": null,
+   "y": null,
+   "size_mm": [
+    4.0,
+    2.2
+   ],
+   "src": "D63/D64 IO-SET \u00a74.2: top preferred (bottom is short), at an edge a toothpick reaches with the frame fitted; H1-clear (85 C part); >= 3 mm from LGA (SiP, gyro), WLCSP (SGM40661) and DSBGA parts (240 gf flex); outside RF_RX_EXIT and the Wi-Fi keep-out; no silk; trade ladder step 4 moves it to the other side or edge, drop only with owner approval; floorplan v3 sets the position"
   }
  },
  "parts": [
@@ -3248,7 +3284,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "[PU] FC MCU, 2 MB in-package flash; NextPCB turnkey sources it by MPN (D60); EP Type VII via-in-pad",
+   "notes": "[PU] FC MCU, 2 MB in-package flash; NextPCB turnkey sources it by MPN (D60); EP Type VII via-in-pad; order stepping A3 or later (RP2350-E9 pad leakage, fixed in A3: the boot-state table and the inverted-RX pull-down rely on it; IO-SET \u00a72.2)",
    "lib_work": []
   },
   {
@@ -6908,7 +6944,7 @@
    "nets": [
     "PIOUART0_TX"
    ],
-   "notes": "user UART TX (PIOUART0, GPIO2; D16); LINEUP A16: excluded from BOM, DNP",
+   "notes": "user UART TX (PIOUART0, GPIO2; D16): half duplex and inversion capable; hardware UART0 (EXT-USER-PADS) and I2C1 SDA (I2C-USER) via CLI presets (IO-SET \u00a72.3); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -6932,7 +6968,7 @@
    "nets": [
     "PIOUART0_RX"
    ],
-   "notes": "user UART RX (PIOUART0, GPIO3; SBUS-in inverted for a DJI remote); LINEUP A16: excluded from BOM, DNP",
+   "notes": "user UART RX (PIOUART0, GPIO3; D16): SBUS/CRSF receivers via the UART0 remap preset EXT-USER-PADS (8E2 needs a release with the uart_hw.c fix); I2C1 SCL via I2C-USER (IO-SET \u00a72.3); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -6956,7 +6992,7 @@
    "nets": [
     "+5V"
    ],
-   "notes": "user 5 V (also the LED-strip 5 V, D14 pad trimming); LINEUP A16: excluded from BOM, DNP",
+   "notes": "user 5 V for the UART device; LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -6980,7 +7016,7 @@
    "nets": [
     "GND"
    ],
-   "notes": "user GND (also the LED-strip GND); LINEUP A16: excluded from BOM, DNP",
+   "notes": "user GND for the UART device; LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7004,14 +7040,14 @@
    "nets": [
     "LED_STRIP"
    ],
-   "notes": "WS2812 strip data from the 74LVC1T45 (VCCB side); LINEUP A16: excluded from BOM, DNP",
+   "notes": "WS2812 strip data, driven directly by GPIO8 (PIO1, D52 BR-04: no 74LVC1T45); row GND LED 5V BZ- (D63); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
    "ref": "J21",
    "block": "io",
    "sheet": "pads",
-   "value": "BZ+",
+   "value": "5V",
    "rating": null,
    "manufacturer": null,
    "mpn": null,
@@ -7024,11 +7060,11 @@
    "dnp": true,
    "exclude_from_bom": true,
    "exclude_from_pos": true,
-   "silk": "BZ+",
+   "silk": "5V",
    "nets": [
     "+5V"
    ],
-   "notes": "buzzer + (+5V); LINEUP A16: excluded from BOM, DNP",
+   "notes": "LED-strip and buzzer 5 V (+5V; relabelled from BZ+, same net, D63/D64: row GND LED 5V BZ-); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7052,7 +7088,31 @@
    "nets": [
     "BUZZER-"
    ],
-   "notes": "buzzer - (AP1606 drain); LINEUP A16: excluded from BOM, DNP",
+   "notes": "buzzer - (AP1606 drain, gate on GPIO17); row GND LED 5V BZ- (D63); LINEUP A16: excluded from BOM, DNP",
+   "lib_work": []
+  },
+  {
+   "ref": "J33",
+   "block": "io",
+   "sheet": "pads",
+   "value": "GND",
+   "rating": null,
+   "manufacturer": null,
+   "mpn": null,
+   "lcsc": null,
+   "package": "pad",
+   "footprint": "lib:SolderPad_1.0x1.2mm_Dense",
+   "symbol": "Connector_Generic:Conn_01x01",
+   "side": "F",
+   "region": "pads_ledbz",
+   "dnp": true,
+   "exclude_from_bom": true,
+   "exclude_from_pos": true,
+   "silk": "GND",
+   "nets": [
+    "GND"
+   ],
+   "notes": "LED-strip GND pad: the LED row becomes GND LED 5V BZ- so the strip has its own GND/5V/data trio (D63/D64, IO-SET row 9, SHOULD; supersedes D27 sharing with the user row); placement priority 2 with SW1 (G2); trade-ladder step 3 drops it back to D27 sharing (saves about 5 mm2); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7076,7 +7136,7 @@
    "nets": [
     "VIDEO_IN"
    ],
-   "notes": "camera CVBS in; camera return enters L2 at the CAM GND pad (\u00a711); LINEUP A16: excluded from BOM, DNP",
+   "notes": "camera CVBS in; camera return enters L2 at the CAM GND pad (\u00a711); in parallel with the camera plug J32 (D63); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7100,7 +7160,7 @@
    "nets": [
     "+5V_CAM"
    ],
-   "notes": "camera 5 V after the ferrite; LINEUP A16: excluded from BOM, DNP",
+   "notes": "camera 5 V after the ferrite; in parallel with the camera plug J32 (D63); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7124,7 +7184,7 @@
    "nets": [
     "GND"
    ],
-   "notes": "camera GND (video return); LINEUP A16: excluded from BOM, DNP",
+   "notes": "camera GND (video return); in parallel with the camera plug J32 (D63); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7196,7 +7256,7 @@
    "nets": [
     "UART1_TX"
    ],
-   "notes": "UART1 TX -> O4 RX (white), MSP DisplayPort; LINEUP A16: excluded from BOM, DNP",
+   "notes": "UART1 TX -> O4 RX (white), MSP DisplayPort; analog builds: free hardware UART1 TX (second UART; I2C0 SDA via I2C-HD), no half duplex (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7220,7 +7280,33 @@
    "nets": [
     "UART1_RX"
    ],
-   "notes": "UART1 RX <- O4 TX (grey); yellow unconnected; LINEUP A16: excluded from BOM, DNP",
+   "notes": "UART1 RX <- O4 TX (grey); yellow -> RP0 only with the EXT-USER-PADS preset; analog builds: free hardware UART1 RX (second UART; I2C0 SCL via I2C-HD) (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
+   "lib_work": []
+  },
+  {
+   "ref": "J32",
+   "block": "io",
+   "sheet": "pads",
+   "value": "CAM",
+   "rating": "JST SUR 0.8 3P",
+   "manufacturer": "JST",
+   "mpn": "SM03B-SURS-TF(LF)(SN)",
+   "lcsc": "C265338",
+   "package": "SUR 0.8 mm 3-pin side entry SMD",
+   "footprint": "lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal",
+   "symbol": "lib:SM03B-SURS-TF",
+   "side": "F",
+   "region": "cam_plug",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": "CAM",
+   "nets": [
+    "VIDEO_IN",
+    "GND",
+    "+5V_CAM"
+   ],
+   "notes": "camera plug in parallel with the CAM pads J23-J25 (D63/D64, IO-SET row 3, MUST; BetaFPV C03 and the Matrix-recommended cameras use JST 0.8 mm). Pin 1 VIDEO_IN (-> TLV7031 + SN74LVC1G3157 OSD front end), 2 GND (video return into L2, spec \u00a711), 3 +5V_CAM (after FB1 + 10 uF), tabs 4/5 GND. Pin order is provisional until gate G1 (calipers + photo on a C03 lead and the MX2 CAM IN, before the P3 footprint freeze and P4): with GND in the middle a mirrored footprint puts 5 V on the camera video output. Side entry, mating face toward +y of the footprint; 85 C part: H1/H3 site or logged exemption (G3). Fallback if G1 measures 1.0 mm: JST SM03B-SRSS-TB(LF)(SN) (LCSC C160403) on lib:CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W with OpenDrone:SM03B-SRSS-TB (same pins 1-5), +17-21 mm2. LCSC C265338 (34,331 stock, JLCPCB parts API 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
    "lib_work": []
   },
   {
@@ -7248,6 +7334,54 @@
     "VBUS"
    ],
    "notes": "USB on the JST SH 1.0 mm 4-pin header (D57; Matrix 1S 5IN1 II / Crazy G473 part and spot: vertical, bottom side, rear ear; no board edge needed). Pin 1 GND, 2 D- (USB_D_N), 3 D+ (USB_D_P), 4 VBUS, tabs 5/6 GND: BetaFPV 'USB(GND DM DP 5V)' order, GND on JST circuit 1 inferred from the Matrix II photo (continuity check with a BetaFPV Type-C to SH1.0 adapter on prototype 1). A reversed cable puts -5 V on VBUS (unprotected, as on the Matrix). Silk: connector name 'USB' + pin-1 mark, no component silk. Staged alternate SM04B-SRSS-TB(LF)(SN) side entry (lib:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN, OpenFC-Lite part, needs a board edge): owner choice. NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
+  },
+  {
+   "ref": "TP14",
+   "block": "io",
+   "sheet": "pads",
+   "value": "D-",
+   "rating": null,
+   "manufacturer": null,
+   "mpn": null,
+   "lcsc": null,
+   "package": "pad D0.8",
+   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "symbol": "Connector:TestPoint",
+   "side": "B",
+   "region": "usb_jst",
+   "dnp": false,
+   "exclude_from_bom": true,
+   "exclude_from_pos": true,
+   "silk": "D-",
+   "nets": [
+    "USB_D_N"
+   ],
+   "notes": "USB D- repair/test pad on the connector side of the D7 ESD array, next to J31 and near a GND contact (D63/D64, IO-SET row 13, COULD: placed only if the v3 bottom has room, first item to drop, G2); copper only, may sit in an H1 zone; README: battery fitted, GND connected; LINEUP A16: out of the BOM",
+   "lib_work": []
+  },
+  {
+   "ref": "TP15",
+   "block": "io",
+   "sheet": "pads",
+   "value": "D+",
+   "rating": null,
+   "manufacturer": null,
+   "mpn": null,
+   "lcsc": null,
+   "package": "pad D0.8",
+   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "symbol": "Connector:TestPoint",
+   "side": "B",
+   "region": "usb_jst",
+   "dnp": false,
+   "exclude_from_bom": true,
+   "exclude_from_pos": true,
+   "silk": "D+",
+   "nets": [
+    "USB_D_P"
+   ],
+   "notes": "USB D+ repair/test pad on the connector side of the D7 ESD array, next to J31 and near a GND contact (D63/D64, IO-SET row 13, COULD: placed only if the v3 bottom has room, first item to drop, G2); copper only, may sit in an H1 zone; README: battery fitted, GND connected; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -7345,7 +7479,32 @@
    "nets": [
     "RX_BOOT"
    ],
-   "notes": "ESP32 GPIO0 download strap (internal pull-up); LINEUP A16: out of the BOM",
+   "notes": "ESP32 GPIO0 download strap (internal pull-up); in parallel with the RX boot/bind button SW1 (D63); LINEUP A16: out of the BOM",
+   "lib_work": []
+  },
+  {
+   "ref": "SW1",
+   "block": "rx",
+   "sheet": "rx_esp32_sx1281",
+   "value": "TS2306A",
+   "rating": "DC 15V 20mA 240gf",
+   "manufacturer": "SHOU HAN",
+   "mpn": "TS2306A 240gf MSM 9",
+   "lcsc": "C2976675",
+   "package": "SMD 3.0x2.0x0.6",
+   "footprint": "lib:SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W",
+   "symbol": "lib:TS2306A240GFMSM9",
+   "side": "F",
+   "region": "rx_button",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "RX_BOOT",
+    "GND"
+   ],
+   "notes": "RX boot / bind button (D63/D64, IO-SET row 10, SHOULD; OpenDrone lineup part, PARTS-USED.md:20): RX_BOOT (ESP32 GPIO0, pin 23) to GND, in parallel with TP11 RXB; ELRS layout key \"button\": 0: hold 1.5 s bind, 5 s Wi-Fi, 12 s reboot, held at power-up = download mode, ignored while linked (devButton.cpp:19-22, 92-95). Manufacturer Shenzhen Shouhan Technology (SHOU HAN); -40..85 C (85 C part: H1-clear site); no silk (owner rule; documented in the pinout). LCSC C2976675; NextPCB turnkey sources it by MPN (D60)",
    "lib_work": []
   },
   {
@@ -7568,7 +7727,7 @@
    "blocks": [
     "rx"
    ],
-   "description": "RX (D52/D55/D58): ESP32-PICO-V3 SiP (LGA-48 7x7, in-package flash, crystal and match), SX1281, 52 MHz TCXO, LPF to the wire-antenna hole; Wi-Fi: Johanson 2450AT07A0100001T chip antenna at a board edge with a 0201 pi network (0 R fitted, shunts DNP)",
+   "description": "RX (D52/D55/D58): ESP32-PICO-V3 SiP (LGA-48 7x7, in-package flash, crystal and match), SX1281, 52 MHz TCXO, LPF to the wire-antenna hole; Wi-Fi: Johanson 2450AT07A0100001T chip antenna at a board edge with a 0201 pi network (0 R fitted, shunts DNP); RX boot/bind tact switch TS2306A on GPIO0 (D63)",
    "lib_items": [
     "lib:2450AT07A0100001T",
     "lib:AE_WireHole_PTH0.5mm",
@@ -7582,7 +7741,9 @@
     "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense",
     "lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_Dense",
     "lib:R_0201_0603Metric_W",
-    "lib:SX1281IMLTRT"
+    "lib:SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W",
+    "lib:SX1281IMLTRT",
+    "lib:TS2306A240GFMSM9"
    ],
    "parts": [
     "ESP32-PICO-V3 [lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO + lib:ESP32-PICO-V3] refs U16",
@@ -7600,7 +7761,8 @@
     "GRM033R71A103KA01D [lib:C_0201_0603Metric_W] refs C86,C88",
     "GRM033R60J474KE90D [lib:C_0201_0603Metric_W] refs C87",
     "DEA102700LT-6307A2 [lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W] refs FL1",
-    "(no MPN) lib:AE_WireHole_PTH0.5mm [lib:AE_WireHole_PTH0.5mm] refs AE1"
+    "(no MPN) lib:AE_WireHole_PTH0.5mm [lib:AE_WireHole_PTH0.5mm] refs AE1",
+    "TS2306A 240gf MSM 9 [lib:SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W + lib:TS2306A240GFMSM9] refs SW1"
    ]
   },
   {
@@ -7741,13 +7903,15 @@
    "blocks": [
     "io"
    ],
-   "description": "Pads and mechanics: 1.0x1.2 solder pad, motor pad with D0.5 anchor PTH, battery pad with D1.1 PTH, JST SH 1.0 4-pin USB (BM04B, D57) with TPD2EUSB30 ESD, D0.8 test pad, 3.5 mm ear hole with flange keepout, AE wire-antenna hole, Hirose U.FL land, incutec logo",
+   "description": "Pads and mechanics: 1.0x1.2 solder pad, motor pad with D0.5 anchor PTH, battery pad with D1.1 PTH, JST SH 1.0 4-pin USB (BM04B, D57) with TPD2EUSB30 ESD, JST SUR 0.8 3-pin camera plug (D63), D0.8 test pad, 3.5 mm ear hole with flange keepout, AE wire-antenna hole, Hirose U.FL land, incutec logo",
    "lib_items": [
     "lib:BM04B-SRSS-TB",
     "lib:BattPad_3.0x2.0mm_PTH1.1",
     "lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB",
+    "lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal",
     "lib:MotorPad_1.0x1.8mm_PTH0.5",
     "lib:MountingHole_3.5mm_Ear_Flange5.2",
+    "lib:SM03B-SURS-TF",
     "lib:SolderPad_1.0x1.2mm",
     "lib:SolderPad_1.0x1.2mm_Dense",
     "lib:TI_SOT-9X3-3_DRT",
@@ -7759,21 +7923,22 @@
     "(no MPN) lib:BattPad_3.0x2.0mm_PTH1.1 [lib:BattPad_3.0x2.0mm_PTH1.1] refs J2,J3",
     "(no MPN) lib:MotorPad_1.0x1.8mm_PTH0.5 [lib:MotorPad_1.0x1.8mm_PTH0.5] refs J4,J5,J6,J7,J8,J9,J10,J11,J12,J13,J14,J15",
     "(no MPN) lib:SolderPad_1.0x1.2mm [lib:SolderPad_1.0x1.2mm] refs J16,J17,J18,J19,J23,J24,J25,J26,J27,J28,J29",
-    "(no MPN) lib:SolderPad_1.0x1.2mm_Dense [lib:SolderPad_1.0x1.2mm_Dense] refs J20,J21,J22",
+    "(no MPN) lib:SolderPad_1.0x1.2mm_Dense [lib:SolderPad_1.0x1.2mm_Dense] refs J20,J21,J22,J33",
+    "SM03B-SURS-TF(LF)(SN) [lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal + lib:SM03B-SURS-TF] refs J32",
     "BM04B-SRSS-TB(LF)(SN) [lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB + lib:BM04B-SRSS-TB] refs J31",
+    "(no MPN) lib:TestPoint_Pad_D0.8mm [lib:TestPoint_Pad_D0.8mm] refs TP14,TP15,TP9,TP10,TP11,TP12,TP13",
     "TPD2EUSB30DRTR [lib:TI_SOT-9X3-3_DRT + lib:TPD2EUSB30DRTR] refs D7",
-    "(no MPN) lib:TestPoint_Pad_D0.8mm [lib:TestPoint_Pad_D0.8mm] refs TP9,TP10,TP11,TP12,TP13",
     "(no MPN) lib:MountingHole_3.5mm_Ear_Flange5.2 [lib:MountingHole_3.5mm_Ear_Flange5.2] refs H1,H2,H3",
     "(no MPN) lib:incutec_logo_6.1x1.4mm [lib:incutec_logo_6.1x1.4mm] refs LOGO1"
    ]
   }
  ],
  "summary": {
-  "parts_total": 274,
-  "bom_parts": 226,
-  "bom_lines": 79,
+  "parts_total": 279,
+  "bom_parts": 228,
+  "bom_lines": 81,
   "passives": 174,
-  "pads_and_mechanical": 46,
+  "pads_and_mechanical": 49,
   "by_block": {
    "power": 39,
    "esc1": 15,
@@ -7784,23 +7949,23 @@
    "imu": 5,
    "blackbox": 3,
    "osd": 12,
-   "rx": 23,
+   "rx": 24,
    "vtx": 58,
    "led": 4,
-   "io": 39
+   "io": 43
   },
   "by_side": {
-   "B": 141,
-   "F": 133
+   "B": 143,
+   "F": 136
   },
   "by_package": {
    "0603": 11,
    "0201": 144,
    "0402": 17
   },
-  "lib_items": 70,
-  "lib_footprints": 50,
-  "lib_symbols": 20,
+  "lib_items": 74,
+  "lib_footprints": 52,
+  "lib_symbols": 22,
   "parts_needing_lib_work": 0,
   "no_lcsc": [
    "2450AT07A0100001T",
@@ -7835,9 +8000,9 @@
   ],
   "bom_parts_by_side": {
    "B": 129,
-   "F": 97
+   "F": 99
   },
   "bom_parts_note": "bom_parts / bom_lines = fitted placements and their MPNs (dnp and BOM-excluded pads not counted)",
-  "owner_decisions": "D56: 24 TI FETs and 12 leg caps out, 12x AGM210MAP Q29-Q40 in; D57: pogo J30 out, J31 BM04B, U24 SGM40661 + C131, D7 TPD2EUSB30 in; D58: R57 out, AE2 + R88 (0 R) + C132/C133 (DNP) in; D60: no consigned flags; refs kept stable, new parts take the next free number (P4 annotation closes gaps)"
+  "owner_decisions": "D56: 24 TI FETs and 12 leg caps out, 12x AGM210MAP Q29-Q40 in; D57: pogo J30 out, J31 BM04B, U24 SGM40661 + C131, D7 TPD2EUSB30 in; D58: R57 out, AE2 + R88 (0 R) + C132/C133 (DNP) in; D60: no consigned flags; refs kept stable, new parts take the next free number (P4 annotation closes gaps); D63/D64 IO set: J32 camera plug SM03B-SURS-TF, SW1 TS2306A RX boot/bind button, J33 LED-row GND pad (row GND LED 5V BZ-, J21 relabelled 5V), TP14/TP15 USB D-/D+ pads (COULD)"
  }
 }
