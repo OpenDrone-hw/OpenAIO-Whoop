@@ -1,0 +1,432 @@
+{
+ "footprint": "lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO",
+ "part": "Espressif ESP32-PICO-V3 SiP (LCSC C967022), U16 after D52 / BR-01; alternate ESP32-PICO-V3-02 (same land)",
+ "datasheet": "Espressif ESP32-PICO Series Datasheet v1.3 (esp32-pico_series_datasheet_en.pdf, covers ESP32-PICO-V3; LCSC C967022 links the same file): Fig 16 'ESP32-PICO PCB Land Pattern' p59 (pads 0.68 x 0.25 copper-defined, R0.05, pitch 0.50, pad centres 6.73 apart, mask opening 0.78 x 0.35; pin 49 thermal pad 4.50 x 4.50 with C0.5 at the pin-1 corner, solder-mask-defined; 21 GND vias 0.25 on a 1.05 / 2.00 grid), Fig 17 'PCB Stencil' p60 (EP 4 x 4 apertures 0.75 between 0.30 / 1.80 / 2.40 / 3.90; 80 um stencil), Fig 14 'ESP32-PICO-V3 Package' p56 (D = E 7.00, D1 = E1 4.95, b 0.25, e 0.50, L 0.40, L1 0.075, A 0.94 nom / 1.04 max), Fig 4 p17 pin layout (top view, pins anticlockwise from pin 1 top-left: 1-12 left, 13-24 bottom, 25-36 right, 37-48 top, 49 GND)",
+ "derivation": "Lands exactly as Fig 16: centres +-3.365 (6.73 / 2), 0.68 x 0.25, so the heel sits at 3.025 = the lead inner end (D/2 - L1 - L = 3.50 - 0.075 - 0.40) and the toe 0.205 past the body; EP copper 4.50 x 4.50 C0.5. Mask: pads 1-48 copper-defined, opening +0.05 per side (0.78 x 0.35 as Fig 16, web 0.15 >= 0.10 board minimum); EP mask margin 0 (opening = 4.50 copper; with the EP tied into the GND pour the opening defines the joint = Espressif's solder-mask-defined thermal pad). Paste: EP 16 apertures 0.75 x 0.75 at +-0.525 / +-1.575 exactly as Fig 17 (9.0 of 20.1 mm2 = 44.7 %, hence ratio_min 0.44, Espressif value); pads 1-48 paste 1:1 with the copper (Fig 17 extends them 0.15 outward past the copper to 7.71 overall for an 80 um stencil; not adopted at the 0.2 mm body spacing, a 0.10 mm stencil gives the same volume: 0.68 x 0.25 x 0.10 vs 0.83 x 0.25 x 0.08 mm3). NC pads 25, 35, 36, 44, 45, 47, 48 kept (LGA attachment; the courtyard is set by the other pads, trimming saves no area). EP vias (Fig 16: 21 x 0.25) are placed on the board as filled+capped 0.35/0.20 via-in-pad (P5, D34). Area: 7.41 x 7.41 land, inside the BR-01 study envelope 7.5 x 7.5 (bomred integrate.py)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -3.365,
+   "y": -2.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -3.365,
+   "y": -2.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -3.365,
+   "y": -1.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": -3.365,
+   "y": -1.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": -3.365,
+   "y": -0.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": -3.365,
+   "y": -0.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": -3.365,
+   "y": 0.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": -3.365,
+   "y": 0.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "9",
+   "x": -3.365,
+   "y": 1.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "10",
+   "x": -3.365,
+   "y": 1.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "11",
+   "x": -3.365,
+   "y": 2.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "12",
+   "x": -3.365,
+   "y": 2.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "13",
+   "x": -2.75,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "14",
+   "x": -2.25,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "15",
+   "x": -1.75,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "16",
+   "x": -1.25,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "17",
+   "x": -0.75,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "18",
+   "x": -0.25,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "19",
+   "x": 0.25,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "20",
+   "x": 0.75,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "21",
+   "x": 1.25,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "22",
+   "x": 1.75,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "23",
+   "x": 2.25,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "24",
+   "x": 2.75,
+   "y": 3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "25",
+   "x": 3.365,
+   "y": 2.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "26",
+   "x": 3.365,
+   "y": 2.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "27",
+   "x": 3.365,
+   "y": 1.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "28",
+   "x": 3.365,
+   "y": 1.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "29",
+   "x": 3.365,
+   "y": 0.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "30",
+   "x": 3.365,
+   "y": 0.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "31",
+   "x": 3.365,
+   "y": -0.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "32",
+   "x": 3.365,
+   "y": -0.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "33",
+   "x": 3.365,
+   "y": -1.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "34",
+   "x": 3.365,
+   "y": -1.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "35",
+   "x": 3.365,
+   "y": -2.25,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "36",
+   "x": 3.365,
+   "y": -2.75,
+   "w": 0.68,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "37",
+   "x": 2.75,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "38",
+   "x": 2.25,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "39",
+   "x": 1.75,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "40",
+   "x": 1.25,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "41",
+   "x": 0.75,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "42",
+   "x": 0.25,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "43",
+   "x": -0.25,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "44",
+   "x": -0.75,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "45",
+   "x": -1.25,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "46",
+   "x": -1.75,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "47",
+   "x": -2.25,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "48",
+   "x": -2.75,
+   "y": -3.365,
+   "w": 0.25,
+   "h": 0.68,
+   "shape": "roundrect"
+  },
+  {
+   "number": "49",
+   "shape": "custom",
+   "rects": [
+    {
+     "x": 0.25,
+     "y": 0.0,
+     "w": 4.0,
+     "h": 4.5
+    },
+    {
+     "x": -1.875,
+     "y": 0.125,
+     "w": 0.25,
+     "h": 4.25
+    },
+    {
+     "x": -2.125,
+     "y": 0.25,
+     "w": 0.25,
+     "h": 4.0
+    }
+   ]
+  }
+ ],
+ "exposed": [
+  "49"
+ ],
+ "paste": {
+  "ratio_min": 0.44,
+  "ratio_max": 0.8,
+  "min_windows": 16
+ },
+ "body": {
+  "w": 7.0,
+  "h": 7.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top"
+}

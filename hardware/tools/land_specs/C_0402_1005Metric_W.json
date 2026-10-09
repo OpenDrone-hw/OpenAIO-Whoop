@@ -34,5 +34,19 @@
   "radius_ratio": 0.25,
   "courtyard": "rect",
   "model_from_source": true
- }
+ },
+ "applies_to": [
+  {
+   "mpn": "Murata GRM155C80J106ME11D (10 uF 6.3 V X6S 0402, LCSC C237279)",
+   "d52": "BR-14 (C13 + C120 -> one shared LP5912 CIN), BR-20 (C30, D24 TPS2116 VIN1 cap); was already C12, C15, C82, C93, C108, C118",
+   "datasheet": "Murata spec GRM155C80J106ME11_ (LCSC C237279 PDF, p23/bomred_lib/dl/lcsc/C237279.pdf): chip 1.0+-0.05 x 0.5+-0.05 x 0.5+-0.05; p26 '2. Land Dimensions' Table 2 Reflow, GRM15 (within +-0.10): a 0.3-0.5, b 0.35-0.45, c 0.4-0.6",
+   "fit": "land a 0.40 / b 0.45 / c 0.55 inside every range"
+  },
+  {
+   "mpn": "Samsung CL05A475MP5NRNC (4.7 uF 10 V X5R 0402, LCSC C23733)",
+   "d52": "BR-26: C123 LP5907 COUT (0201 1 uF -> this part); was already C56-C58, C105, C107",
+   "datasheet": "Samsung Electro-Mechanics MLCC catalogue (LCSC C23733 PDF, p23/bomred_lib/dl/lcsc/C23733.pdf): p19 CL05A475M row (1.0 x 0.5, T 0.5 = code P); p76 'Application Manual for Surface Mounting / 2. Design of Solder Land Pattern': land width 2/3 W < b < W, toe 2/3 T < a < T (no gap value)",
+   "fit": "DEVIATION, accepted as in the P3 merge: the shared land follows Murata GRM15 Table 2 (same 1.0 x 0.5 chip): width 0.55 vs Samsung b < 0.50, toe 0.15 vs Samsung a 0.33-0.50. Samsung's rule limits fillet volume (crack risk) and asks for a long toe (1.7-2.0 mm overall); the dense Murata land is smaller in both, the part sits on it on 5 placements already. Review item, no footprint change"
+  }
+ ]
 }

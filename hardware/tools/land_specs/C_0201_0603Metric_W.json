@@ -34,5 +34,19 @@
   "radius_ratio": 0.25,
   "courtyard": "rect",
   "model_from_source": true
- }
+ },
+ "applies_to": [
+  {
+   "mpn": "Murata GRM033C81E104KE14D (100 nF 25 V X6S 0201, LCSC C181047)",
+   "d52": "BR-18: replaces every GRM033R61E104KE14D; D34 O4 EN 100 nF filter (baseline)",
+   "datasheet": "Murata spec GRM033C81E104KE14_ (LCSC C181047 PDF, p23/bomred_lib/dl/lcsc/C181047.pdf): p1 chip L 0.6+-0.03 W 0.3+-0.03 T 0.3+-0.03, g 0.2 min; p26 '2. Land Dimensions' Table 2 Reflow, GRM03: a 0.2-0.3, b 0.2-0.35, c 0.2-0.4",
+   "fit": "land a 0.20 / b 0.35 / c 0.40 inside every range"
+  },
+  {
+   "mpn": "Murata GRM033R71A103KA01D (10 nF 10 V X7R 0201, LCSC C76941)",
+   "d52": "BR-19: replaces GRM033R61A103KA01J and GRM033R71C103KA01D (C16, C86, C88, C109; CAP1 on the sec. 5.1 fallback)",
+   "datasheet": "Murata spec GRM033R71A103KA01-01A (LCSC C76941 PDF, p23/bomred_lib/dl/lcsc/C76941.pdf): chip 0.6 x 0.3 (GRM03); p25 '2. Land Dimensions' Table 2 Reflow, GRM03: a 0.2-0.25, b 0.25-0.35, c 0.3-0.4",
+   "fit": "land a 0.20 / b 0.35 / c 0.40 inside every range (a and b at the range limits)"
+  }
+ ]
 }
