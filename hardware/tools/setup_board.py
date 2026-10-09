@@ -62,7 +62,7 @@ FRONT = (1, -1)
 EAR_R = 2.4                                      # spec 7: ears = circles R 2.4 on the holes (ring OD 4.8)
 EAR_FILLET = 0.5                                 # spec 7: concave junctions filleted R 0.5
 HOLE_D = 3.5                                     # spec 7: non-plated Edge.Cuts cut-outs
-HOLE_HALF = 12.875                               # spec 7: 25.75 x 25.75 mm pattern
+HOLE_HALF = 12.75                                # D73: 25.5 x 25.5 mm pattern (Matrix measured 25.45 +- 0.05)
 HOLES = {"LEFT": (-1, -1), "REAR": (-1, 1), "RIGHT": (1, 1)}     # spec 7 / 10: hole sign (x, y)
 EDGE_LINE_W = 0.05                               # template board_outline_line_width
 FLANGE_D = 5.2                                   # spec 7: grommet flange part keepout, both sides
@@ -71,21 +71,28 @@ FRAME_PATTERNS = (25.5, 26.0)                    # spec 7: frame guides on User.
 
 # spec 10 / sketch v4: RF, corridor and tab areas. Positions follow spec/sketch_v4.py (spec 10); P2 moves them
 # with the real parts, so board_spec.json pins a bbox only for the RX antenna areas.
-RX_ANT_HOLE = (-12.3, 6.5)                       # spec 4.10 / 10: RX antenna wire hole, left edge, rear half
+RX_ANT_HOLE = (-12.3, 7.5)                       # P2 v3 floorplan: RX antenna wire hole AE1, left edge, rear half
 RX_ANT_KEEPOUT_R = 1.6                           # copper keepout L1-L5 (L6 admits the feed): 1.0 mm around a 1.2 mm pad
-RX_ANT_EXIT_R = 3.0                              # spec 10: no parts within 3 mm of the wire's exit (bottom)
+RX_ANT_EXIT_R = 1.4                              # v3 (D69 preference traded): 2.8 mm wide wire exit strip, hole to edge (ring 1.6 covers the hole)
 RX_ROOT_R = 3.0                                  # spec 4.9 / 11: NOR and SPI0 >= 3 mm from the antenna hole
-RX_FEED = ((-7.6, 6.9), RX_ANT_HOLE, 0.8)        # spec 10: 2.4 GHz feed LPF (FL1 pin 1, P2 floorplan) -> hole on L6; L5 solid under it
-UFL_VTX = (3.52, -10.6)                          # P2 floorplan: U.FL J1 rot 90, land 2.42..5.57 / -12.6..-8.6
-UFL_ZONE = ((2.27, -13.2), (5.87, -8.3))         # RF_VTX_UFL: U.FL land + 0.15 / 0.3 mm (only RF and GND on L1), P2
-RF_PAD_CUT = ((4.47, -11.15), (5.62, -10.05))    # RF_PAD_CUTOUT: under the U.FL signal pad, P2 (P5 adds the BPF/match pads)
+RX_FEED = ((-10.7, 8.825), RX_ANT_HOLE, 0.8)     # P2 v3: FL1 antenna-side pad -> hole on L6; L5 solid under it
+UFL_VTX = (4.5, -1.5)                            # P2 v3 floorplan: U.FL J1 top, rot 90 (mid-board, Matrix-informed)
+UFL_ZONE = ((3.25, -3.8), (6.7, 0.8))            # RF_VTX_UFL: U.FL land + 0.15 / 0.3 mm (only RF and GND on L1), P2 v3
+RF_PAD_CUT = ((5.4, -2.1), (6.65, -0.9))         # RF_PAD_CUTOUT: under the U.FL signal pad + 0.1, P2 v3
+# floorplan v3 (D58 / D75): Wi-Fi chip antenna AE2 maker keep-out, both sides, all copper layers: only the RF feed and
+# AE2 itself inside (x 2.05..7.05 keeps it 2 mm from the ESC4 cell Q38, D75).
+WIFI_KO = ((2.05, -13.4), (7.05, -10.0))
+# floorplan v3 (D72 / D76): vertical JST BM04B USB J31 on the bottom; mating zone = header body + 1.0 mm finger margin
+# (no TALL class part inside, DRU), drawn as a named rule area on B.Cu.
+USB_J31 = (-7.7, 8.6, 135.0)                     # centre x, y, rotation of J31 (P2 v3 floorplan)
+USB_BODY = (6.0, 4.25)                           # BM04B-SRSS-TB body (JST drawing), mating margin below
+USB_MARGIN = 1.0
 # 5.8 GHz chain (sketch v4): RTC6705 PAOUT1 (pin 35, right side) -> 45 deg CPWG -> PA RF IN (down) -> PA RF OUT (up)
 # -> match zone -> BPF -> U.FL; half-width 1.2 = line + CPWG gap + 1 mm (spec 10: L2 solid under the chain + 1 mm).
-VTX_CHAIN = ([(4.29, -4.9), (4.6, -6.4), (7.6, -6.45), (8.52, -7.35), (8.52, -11.05), (8.5, -11.85), (7.225, -12.05),
-              (6.115, -12.05), (5.045, -10.6)], 1.2)   # P2 floorplan pads: PAOUT1 -> C110 -> PA in / out -> C119 -> BPF -> U.FL
-SHUNT_CORRIDOR = ((-7.6, 8.0), (-3.4, 12.4))     # D10 / spec 10: B+ pad J2 -> shunt R1 on L6 (P2 floorplan box)
+VTX_CHAIN = ([(9.49, -5.35), (7.85, -1.5), (10.2, -2.1), (7.2, -1.8), (6.025, -1.5)], 1.2)   # P2 v3: PAOUT1 (U19 pin 35, bottom) -> C110 -> PA U20 (top) -> BPF FL2 -> U.FL pin 1
+SHUNT_CORRIDOR = ((-12.9, -3.5), (-8.6, 3.4))    # D10 / spec 10: B+ pad J2 -> shunt R1 on L6 (P2 v3 box)
 TAB_HALF, TAB_IN, TAB_OUT = 1.5, 1.3, 0.5        # spec 7: tab 1.2-1.5 wide + 1.0 mm part keepout beyond the 0.3 band
-TABS = {"T1": ((13.2, -6.6), (1, 0)), "T3": ((-13.2, -8.9), (-1, 0)), "T4": ((-9.3, 13.2), (0, 1))}   # point on edge, outward normal (spec 7 round 4: T1 on the right edge)
+TABS = {"T1": ((14.447, 14.447), (0.7071, 0.7071)), "T3": ((-14.447, -14.447), (-0.7071, -0.7071)), "T4": ((-14.447, 14.447), (-0.7071, 0.7071))}   # P2 v3 (concept D): tabs at the three ear tips, inside the MOUNT flange keep-outs (no extra area)
 
 # spec 8.1 / 8.4 + D6: board minimums (the .kicad_pro "rules" block).  Via 0.35 / 0.20 is the OpenDrone
 # standard via (D6, owner-confirmed buildable at NextPCB), so the annular minimum is 0.075 and the minimum through
@@ -142,7 +149,8 @@ NETCLASS_PATTERNS = [
                "+5V_*", "+3V3_*", "+1V8_*", "+1V1_*", "/VBUS"]),           # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
     ("GND", ["GND"]),
     ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", "*/CSA*",
-                "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*"]),    # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
+                "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*",      # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
+                "*/VT_MOD*", "*/RTC_*", "*/U19_XTAL*", "*/TCXO_OUT", "*/XTA"]),  # RTC6705 video input, PLL loop filter, 8/52 MHz refs (P4 critique)
     ("RF", ["*/RF_*", "*/ANT*", "*/RFIO*", "*/RFOUT*", "*/RFIN*"]),
     ("USB", ["*/USB_D_P", "*/USB_D_N"]),                                  # _P/_N: KiCad pairs them (spec 8.2)
 ]
@@ -155,6 +163,22 @@ COMPONENT_CLASSES = [
     ("SOLDER_PAD", ["*small_pad*", "*SolderPad*", "*MotorPad*", "*BattPad*", "*motor_pad*", "*battery_pad*", "*BT2*"]),
     ("MOTOR_PAD", ["*MotorPad*", "*motor_pad*"]),                                  # top pad, far side is a 0.9 ring
 ]
+def sheet_classes():
+    """D75 (board context): component class per schematic sheet (POWER, ESC1..ESC4, RP2354A, IMU, OSD, BLACKBOX, RX,
+    VTX, LED, PADS) from hardware/bom_plan.json, assigned by reference in the .kicad_pro (no board text edits)."""
+    path = os.path.join(HW, "bom_plan.json")
+    if not os.path.exists(path):
+        return []
+    out = {}
+    for prt in json.load(open(path))["parts"]:
+        sh = prt.get("sheet") or ""
+        m = re.match(r"esc_channel \((ESC\d)\)", sh)
+        cls = m.group(1) if m else {"rx_esp32_sx1281": "RX"}.get(sh, sh.upper())
+        if cls and not prt["ref"].startswith("H"):
+            out.setdefault(cls, []).append(prt["ref"])
+    return [(k, sorted(v)) for k, v in sorted(out.items())]
+
+
 SOLDER_PAD_FPIDS = ["*:small_pad*", "*:SolderPad*", "*:MotorPad*", "*:BattPad*", "*:motor_pad*", "*:battery_pad*",
                     "*:BT2*"]  # memberOfFootprint (P3 library names MotorPad_* / BattPad_*, spec 4.10)
 
@@ -174,7 +198,7 @@ SILK_COLOR = "White"
 AE_EXEMPT = ("  (severity ignore)\n  (constraint disallow footprint pad)\n"
              "  (condition \"((A.Type == 'Footprint' && A.Reference == 'AE*') || (A.Type == 'Pad' && "
              "A.memberOfFootprint('AE*'))) && (A.intersectsArea('RF_RX_ANT') || A.intersectsArea('RF_RX_ANT_L6') || "
-             "A.intersectsArea('RF_RX_EXIT'))\")")
+             "A.intersectsArea('RF_RX_EXIT') || A.intersectsArea('WIFI_ANT_KO'))\")")
 RULES = [
     ("header",
      ["OpenAIO-Whoop board rules (research/DESIGN-SPEC.md 7, 8.1, 8.4, 10, 11; D6, D7, D21). Generated by",
@@ -210,6 +234,14 @@ RULES = [
      "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.Pad_Type == 'Through-hole' && "
      "B.Pad_Type == 'Through-hole' && A.Net != B.Net && A.Fabrication_Property != 'Heatsink pad' && "
      "B.Fabrication_Property != 'Heatsink pad'\")"),
+
+    ("D65 plug-ready motor land: PicoBlade rings 0.35 apart",
+     ["D65 / D21: the Molex 53047 PicoBlade header fixes the 1.25 mm pitch; 0.90 rings (0.50 drill + 0.20 ring)",
+      "leave 0.35 mm copper between neighbouring holes (NextPCB 0.40 general value; the BetaFPV Matrix 1S 5IN1 II",
+      "ships the same 1.25 mm plated land). Scoped to MotorPad_PicoBlade pads (the four lands are far apart); NextPCB EQ item."],
+     "  (constraint clearance (min 0.30mm))\n"
+     "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('*:MotorPad_PicoBlade*') && "
+     "B.memberOfFootprint('*:MotorPad_PicoBlade*')\")"),
 
     ("PTH annular ring 0.20",
      ["Component holes: JLCPCB 0.15 absolute, 0.20 recommended; NextPCB 0.20. Vias keep the 0.075 of D6."],
@@ -266,14 +298,15 @@ RULES = [
 
     ("tall parts: 0.5 to 0201 and 0402",
      ["Spec 8.4: the U.FL and the 2520 inductor (and any SH1.0 part) shadow small passives for paste, AOI and",
-      "rework."],
-     "  (constraint courtyard_clearance (min 0.5mm))\n"
+      "rework. D69 (owner): a preference traded for density; the 0.2 mm body rule (check_spacing.py) remains."],
+     "  (constraint courtyard_clearance (min 0mm))\n"
      "  (condition \"A.hasComponentClass('TALL') && (B.hasComponentClass('PASSIVE_0201') || "
      "B.hasComponentClass('PASSIVE_0402'))\")"),
 
     ("solder pads: 0.5 to 0201 and 0402",
-     ["Spec 8.4: user, battery and motor pads take a 60-80 W iron; keep small passives 0.5 mm away."],
-     "  (constraint courtyard_clearance (min 0.5mm))\n"
+     ["Spec 8.4: user, battery and motor pads take a 60-80 W iron; keep small passives 0.5 mm away.",
+      "D69 / D70 (owner): the iron halo is the 0.2 mm body rule (check_spacing.py); courtyards may touch."],
+     "  (constraint courtyard_clearance (min 0mm))\n"
      "  (condition \"A.hasComponentClass('SOLDER_PAD') && (B.hasComponentClass('PASSIVE_0201') || "
      "B.hasComponentClass('PASSIVE_0402'))\")"),
 
@@ -283,6 +316,19 @@ RULES = [
       "side keeps the plain courtyard rule (no overlap). Battery pads are pads on both sides and keep the halo there."],
      "  (constraint courtyard_clearance (min 0mm))\n"
      "  (condition \"A.hasComponentClass('MOTOR_PAD') && A.Layer != B.Layer\")"),
+
+    ("D67 test vias are vias: hole spacing 0.20",
+     ["D67: TP1-TP9, TP12, TP13 are mask-open filled 0.35/0.20 vias drawn as footprints (TestPoint_Via_*); the via",
+      "hole spacing (0.20, pro minimum) applies, not the 0.45 component-hole value."],
+     "  (constraint hole_to_hole (min 0.20mm))\n"
+     "  (condition \"A.memberOfFootprint('*:TestPoint_Via*') && B.memberOfFootprint('*:TestPoint_Via*')\")"),
+
+    ("D65 DNP motor headers: courtyards may meet at the ear corner",
+     ["D65 / D21: the bottom-side courtyards of two neighbouring plug-ready motor lands (optional DNP PicoBlade",
+      "header envelopes) meet at the ear corner; the header bodies keep the 0.2 mm body rule (check_spacing.py), so",
+      "both headers can be fitted. Scoped to MOTOR_PAD pairs only."],
+     "  (severity ignore)\n  (constraint courtyard_clearance (min 0mm))\n"
+     "  (condition \"A.hasComponentClass('MOTOR_PAD') && B.hasComponentClass('MOTOR_PAD')\")"),
 
     ("D21 fet_solid_pads",
      ["D21 / spec 11: FET, battery, motor and user solder pads join their pours solid (no thermal relief): the",
@@ -392,6 +438,29 @@ RULES = [
       "RF_RX_ANT_L6 and RF_RX_EXIT, whose part keepouts are for every other footprint. Scoped to AE* inside",
       "those areas only."],
      AE_EXEMPT),
+
+    ("D76 USB J31 shroud corner at the RX wire ring",
+     ["D76 / D69: the vertical USB header J31 sits beside the rear mounting hole; its plastic shroud corner (courtyard,",
+      "no copper) reaches into the RX antenna-hole ring / exit strip on the bottom. The ring stays a copper keep-out",
+      "(RF_RX_ANT, L1-L5) and the wire exit runs away from J31 (toward the edge); scoped to J31 only."],
+     "  (severity ignore)\n  (constraint disallow footprint)\n"
+     "  (condition \"A.Type == 'Footprint' && A.Reference == 'J31' && (A.intersectsArea('RF_RX_EXIT') || "
+     "A.intersectsArea('RF_RX_ANT_L6'))\")"),
+
+    ("WIFI_ANT_KO: only the RF feed",
+     ["D58 / D75 / OpenAIO lesson (net-aware antenna keepout): inside the Wi-Fi chip antenna keep-out only the",
+      "RF-class feed track reaches AE2; no vias, no other tracks (pours and parts are kept out by the rule area,",
+      "AE2 itself by the AE* exemption above)."],
+     "  (constraint disallow track via)\n"
+     "  (condition \"A.intersectsArea('WIFI_ANT_KO') && (A.Type == 'Via' || A.NetClass != 'RF')\")"),
+
+    ("USB_MATING: no tall part next to J31",
+     ["D72 / D76: the vertical USB plug and the fingers that push it need the space around J31 free of other",
+      "connectors (TALL class J*: SH/SUR plugs, U.FL); parts <= 1.25 mm tall (2520 inductor, passives, ICs) sit far",
+      "below the 4.25 mm BM04B wall the plug is gripped above, so they keep only the body rule."],
+     "  (constraint courtyard_clearance (min 1.0mm))\n"
+     "  (condition \"(A.Reference == 'J31' && B.hasComponentClass('TALL') && B.Reference == 'J*' && B.Reference != 'J31') || "
+     "(B.Reference == 'J31' && A.hasComponentClass('TALL') && A.Reference == 'J*' && A.Reference != 'J31')\")"),
 
     ("USB: pair gap",
      ["Spec 8.2: USB FS pair 0.12 / 0.12. Inert until the nets end in _P/_N, P/N or +/- (KiCad 10.0.6 does",
@@ -810,13 +879,22 @@ def keepouts():
               "spec 10: L6 at the hole: only the 2.4 GHz feed track (DRU)"))
     edge_pt = (-BODY_HALF, RX_ANT_HOLE[1])
     K.append(("RF_RX_EXIT", ["B.Cu"], dict(footprints=True), ("poly", stadium(RX_ANT_HOLE, edge_pt, RX_ANT_EXIT_R)), True,
-              "spec 10: no parts within 3 mm of the antenna wire exit (bottom)"))
+              "spec 10 / v3 (D69, D75): no parts on the antenna wire exit path, hole to edge, r %.1f (bottom)" % RX_ANT_EXIT_R))
     K.append(("RF_RX_FEED", ["In4.Cu"], dict(tracks=True), ("path", [RX_FEED[0], RX_FEED[1]], RX_FEED[2]), True,
               "spec 10: L5 solid under the 2.4 GHz feed; GND vias only (DRU)"))
     K.append(("RF_RX_ROOT", CU, {}, ("poly", circle_pts(RX_ANT_HOLE, RX_ROOT_R)), True,
               "spec 4.9 / 11: SPI0 (blackbox) kept 3 mm from the antenna hole (DRU)"))
     K.append(("SHUNT_CORRIDOR", ["B.Cu"], {}, ("poly", rect(*SHUNT_CORRIDOR)), True,
               "D10 / spec 11: battery-to-shunt corridor, battery current only on L6 (DRU)"))
+    K.append(("WIFI_ANT_KO", CU, dict(pads=True, vias=True, zone_fills=True), ("poly", rect(*WIFI_KO)), True,
+              "D58 / D75: Wi-Fi chip antenna maker copper keep-out, all layers: no pads but AE2's, no vias, no pours;"
+              " tracks only the RF feed (DRU)"))
+    ux, uy, ur = USB_J31
+    hw, hh = USB_BODY[0] / 2 + USB_MARGIN, USB_BODY[1] / 2 + USB_MARGIN
+    ca, sa = math.cos(math.radians(-ur)), math.sin(math.radians(-ur))      # KiCad rotation is CCW on screen (+y down)
+    usb = [(ux + x * ca - y * sa, uy + x * sa + y * ca) for x, y in ((-hw, -hh), (hw, -hh), (hw, hh), (-hw, hh))]
+    K.append(("USB_MATING", ["B.Cu"], {}, ("poly", usb), True,
+              "D72 / D76: vertical USB J31 mating zone (body + %.1f mm), no TALL class part inside (DRU)" % USB_MARGIN))
     for t in sorted(TABS):
         K.append(("TAB_" + t, ["F.Cu", "B.Cu"], dict(footprints=True), ("poly", tab_rect(t)), True,
                   "spec 7: panel tab %s, %.1f mm part keepout beyond the edge band" % (t, TAB_IN - PART_EDGE_BAND)))
@@ -869,6 +947,9 @@ def write_pro(path, rf):
     asg = []
     for cls, pats in COMPONENT_CLASSES:
         cond = {("FOOTPRINT" if i == 0 else "FOOTPRINT-%d" % i): {"primary": pat} for i, pat in enumerate(pats)}
+        asg.append({"component_class": cls, "conditions_operator": "ANY", "conditions": cond})
+    for cls, refs in sheet_classes():                  # D75: one class per schematic sheet, by reference
+        cond = {("REFERENCE" if i == 0 else "REFERENCE-%d" % i): {"primary": r} for i, r in enumerate(refs)}
         asg.append({"component_class": cls, "conditions_operator": "ANY", "conditions": cond})
     p["component_class_settings"]["assignments"] = asg
     with open(path, "w") as f:
@@ -1231,7 +1312,7 @@ def verify_pro(path, rf):
     prof = p["tuning_profiles"]["tuning_profiles_impedance_geometric"]
     if not prof or prof[0]["layer_entries"][0]["width"] != int(round(rf["w"] * 1e6)):
         bad.append("tuning profile RF50")
-    if len(p["component_class_settings"]["assignments"]) != len(COMPONENT_CLASSES):
+    if len(p["component_class_settings"]["assignments"]) != len(COMPONENT_CLASSES) + len(sheet_classes()):
         bad.append("component classes")
     if len(p["net_settings"]["netclass_patterns"]) != sum(len(x[1]) for x in NETCLASS_PATTERNS):
         bad.append("netclass patterns")

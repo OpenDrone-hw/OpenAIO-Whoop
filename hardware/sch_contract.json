@@ -16,7 +16,8 @@
    "hardware/tools/setup_board.py NETCLASSES / NETCLASS_PATTERNS"
   ],
   "kicad": "10.0.6; files written by hardware/tools/sch_build.py and re-saved by kicad-cli sch upgrade",
-  "integrated": "2026-10-09 P4 integration (p2v3/p4/integrate): sheets merged, contract text fixed (J31 pinout, USB source, IMU NC pins, R84, C134, VTX label names, PWR_FLAG rule, A9)"
+  "integrated": "2026-10-09 P4 integration (p2v3/p4/integrate): sheets merged, contract text fixed (J31 pinout, USB source, IMU NC pins, R84, C134, VTX label names, PWR_FLAG rule, A9)",
+  "p4fix1": "2026-10-09 P4 critique round 1 (p2v3/p4/fix1): power table +5V / +5V_BST / +3V3_VTX rows, ESC per-cell hot-loop caps C20/C21 (D77), C17 / C30 deleted, VTX_AMP_PWM -> VTX_AMP_PWM, R84 note 1k"
  },
  "rules": [
   "Shard API: prj = sch_build.Project('hardware/OpenAIO-Whoop.kicad_sch'); sheets = sch_root.build_root(prj, sch_root.load_contract()) gives every Sheet already decorated (paper, title block, wordmark) and placed with the fixed uuids; fill your sheets, then sch_root.save_sheets(prj, [your files]) - never prj.save() from a shard (it would overwrite the other shards' files). sch_root.note() = borderless block-note text box, sch_root.netclass_flag() = directive label. Verified on a scratch copy: ESC1 R12/R13 become R19/R20 (ESC2), R26/R27, R33/R34; nets /ESC2/PHASE_A, /MOTOR2, /VBUS come out as specified.",
@@ -200,7 +201,7 @@
    "source": "after shunt R1 0.5 mOhm",
    "nominal": "cell",
    "budget": "per ESC as measured (V4); boost in 1.4-3.0 A",
-   "feeds": "ESC1-4 (EFM8 VDD, AGM210MAP P sources, C23 bulk), U2 boost, O4 EN divider R9 (POWER), R45 VBAT divider (RP2350A), R67 PA_VCC selector (VTX)",
+   "feeds": "ESC1-4 (EFM8 VDD, AGM210MAP P sources, per-cell hot-loop caps C20/C21/C23 (D77)), U2 boost, O4 EN divider R9 (POWER), R45 VBAT divider (RP2350A), R67 PA_VCC selector (VTX)",
    "class": "VBAT",
    "table": [
     "shunt R1 0.5 mOhm",
@@ -244,13 +245,13 @@
    "symbol": "power:+5V",
    "source": "U2 TPS61022 boost",
    "nominal": "5.148 V (4.93-5.37)",
-   "budget": "1.82 A at 3.0 V in (spec 5.3)",
+   "budget": "analog 0.70 A, HD 1.43-1.48 A (O4 Lite 1.20 A via U5); published BEC 1.5 A continuous (D79: TPS61022 DS 6.3 needs >= 20 uF effective COUT above 1.5 A); converter capability 1.82 A at 3.0 V in (spec 5.3)",
    "feeds": "U3 VIN2, U5 TPS22810 VIN (POWER)",
    "class": "Power",
    "table": [
     "U2 TPS61022 boost",
     "5.15 V",
-    "1.82 A at 3.0 V in",
+    "0.70 A analog / 1.48 A HD (BEC 1.5 A cont.)",
     "U3 VIN2, U5 O4 switch"
    ]
   },
@@ -259,13 +260,13 @@
    "symbol": "power:+5V",
    "source": "U3 TPS2116 mux OUT",
    "nominal": "5 V",
-   "budget": "analog 0.70 A, HD 1.43-1.48 A (spec 5.1)",
+   "budget": "analog 0.70 A; HD about 0.25 A (O4 Lite on +5V_BST through U5 since D53 BR-10; 3V3 LDOs + pads)",
    "feeds": "U4 + U21 LP5912 IN, FB1, user 5V pads J18/J21, R67 option",
    "class": "Power",
    "table": [
     "U3 TPS2116 mux",
     "5 V",
-    "0.70 A analog, 1.48 A HD",
+    "0.70 A analog, about 0.25 A HD",
     "3V3 LDOs, CAM filter, 5V pads"
    ]
   },
@@ -319,13 +320,13 @@
    "symbol": "power:+3V3",
    "source": "U21 LP5912-3.3, EN = VTX_PWR_EN (off in HD mode)",
    "nominal": "3.3 V",
-   "budget": "0.10 A",
+   "budget": "0.10 A typical (RTC6705 95 mA DS); about 0.17 A at the top PA step (+ PNP PAOUT1 feed 32-66 mA + U22 SE5004L VREF about 10 mA); LP5912 500 mA",
    "feeds": "RTC6705, PNP drive Q27, U22 PA reference (VTX)",
    "class": "Power",
    "table": [
     "U21 LP5912-3.3 (off in HD)",
     "3.3 V",
-    "0.10 A",
+    "0.10 A typ, about 0.17 A at max PA",
     "RTC6705, PA drive, PA ref"
    ]
   },
@@ -1119,18 +1120,18 @@
    "note": "-> R82 1k -> RTC6705 SPIDATA (3-wire); vtx_miso unset"
   },
   {
-   "net": "/PA_BIAS_PWM",
-   "root_label": "PA_BIAS_PWM",
+   "net": "/VTX_AMP_PWM",
+   "root_label": "VTX_AMP_PWM",
    "class": "Default",
    "pins": [
     {
      "sheet": "RX",
-     "pin": "PA_BIAS_PWM",
+     "pin": "VTX_AMP_PWM",
      "dir": "output"
     },
     {
      "sheet": "VTX",
-     "pin": "PA_BIAS_PWM",
+     "pin": "VTX_AMP_PWM",
      "dir": "input"
     }
    ],
@@ -1173,7 +1174,7 @@
     }
    ],
    "fw": "ESP32 GPIO21, ELRS patched ELRS VTX power",
-   "note": "-> R84 10k -> VTX_PWR_EN (U21 EN, R68 100k pull-up)"
+   "note": "-> R84 1k -> VTX_PWR_EN (U21 EN, R68 100k pull-up)"
   },
   {
    "net": "/PA_DET",
@@ -1570,7 +1571,6 @@
      "refs": [
       "U5",
       "C16",
-      "C17",
       "R9",
       "R10",
       "D2",
@@ -1583,17 +1583,6 @@
      "p4": [
       "P4-1",
       "P4-2"
-     ]
-    },
-    {
-     "name": "ESC3 EFM8 VDD bulk",
-     "refs": [
-      "C30"
-     ],
-     "source": "moved here from esc_channel (see sheet_moves)",
-     "notes": "10 uF X6S on +BATT/GND, placed at U8 (ESC3) VDD pin 4 (BR-05/BR-20); sheet note",
-     "p4": [
-      "P4-19"
      ]
     }
    ],
@@ -1653,16 +1642,14 @@
     "C15",
     "U5",
     "C16",
-    "C17",
     "R9",
     "R10",
     "D2",
     "R11",
     "R87",
-    "C129",
-    "C30"
+    "C129"
    ],
-   "ref_count": 40,
+   "ref_count": 38,
    "file_uuid": "667866cf-d10d-58b9-b634-4eb3d3146f81"
   },
   {
@@ -1688,7 +1675,9 @@
       "R15",
       "R16",
       "R17",
-      "R18"
+      "R18",
+      "C20",
+      "C21"
      ],
      "sheet_uuid": "d67c44eb-67d1-5da8-b7a8-40b16f9433cd",
      "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d67c44eb-67d1-5da8-b7a8-40b16f9433cd",
@@ -1719,7 +1708,9 @@
       "R22",
       "R23",
       "R24",
-      "R25"
+      "R25",
+      "C26",
+      "C27"
      ],
      "sheet_uuid": "0021bee0-9959-5c9e-86f0-21e49fa9ce8d",
      "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0021bee0-9959-5c9e-86f0-21e49fa9ce8d",
@@ -1750,7 +1741,9 @@
       "R29",
       "R30",
       "R31",
-      "R32"
+      "R32",
+      "C32",
+      "C33"
      ],
      "sheet_uuid": "a3c0517e-76c5-5fd7-8d0f-d7e948ad3995",
      "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/a3c0517e-76c5-5fd7-8d0f-d7e948ad3995",
@@ -1781,7 +1774,9 @@
       "R36",
       "R37",
       "R38",
-      "R39"
+      "R39",
+      "C38",
+      "C39"
      ],
      "sheet_uuid": "6d139bfe-ad39-5d26-964c-e430887c2538",
      "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/6d139bfe-ad39-5d26-964c-e430887c2538",
@@ -1819,10 +1814,12 @@
       "Q29",
       "Q30",
       "Q31",
-      "C23"
+      "C20",
+      "C23",
+      "C21"
      ],
      "source": "new (D56, Matrix II stage)",
-     "notes": "P gate = x_COM (active low), N gate = x_PWM (active high), no gate resistors; C23 22u is the ESC local bulk and the only commutation-loop cap (no leg caps); pin map from DS VER2.73 top view (D23)",
+     "notes": "P gate = x_COM (active low), N gate = x_PWM (active high), no gate resistors; one 10 uF hot-loop cap per AGM210MAP from pin 3 S2 (+BATT) to pin 1 S1 (GND): C20 phase A, C23 phase B (also the EFM8 VDD bulk, BR-05 4 mm), C21 phase C (D77, P4 critique); pin map from DS VER2.73 top view (D23)",
      "p4": []
     },
     {
@@ -1899,6 +1896,8 @@
     "Q29",
     "Q30",
     "Q31",
+    "C20",
+    "C21",
     "C23",
     "R13",
     "R14",
@@ -1907,7 +1906,7 @@
     "R17",
     "R18"
    ],
-   "ref_count": 15,
+   "ref_count": 17,
    "file_uuid": "aeb9e12c-f1b8-5a44-8f39-9526e37ed34a"
   },
   {
@@ -2717,10 +2716,10 @@
      "class": "Default"
     },
     {
-     "name": "PA_BIAS_PWM",
+     "name": "VTX_AMP_PWM",
      "dir": "output",
      "side": "right",
-     "net": "/PA_BIAS_PWM",
+     "net": "/VTX_AMP_PWM",
      "class": "Default"
     },
     {
@@ -2894,7 +2893,7 @@
       "R65"
      ],
      "source": "D52 BR-02",
-     "notes": "PA_BIAS_PWM -> R71 -> PA_RC1 -> R72 -> Q27_B (2-pole RC); emitter Q27_E -> R73 to +3V3_VTX; collector Q27_C -> R65 -> PAOUT1_SUP",
+     "notes": "VTX_AMP_PWM -> R71 -> PA_RC1 -> R72 -> Q27_B (2-pole RC); emitter Q27_E -> R73 to +3V3_VTX; collector Q27_C -> R65 -> PAOUT1_SUP",
      "p4": [
       "P4-5"
      ]
@@ -2995,10 +2994,10 @@
      "class": "Default"
     },
     {
-     "name": "PA_BIAS_PWM",
+     "name": "VTX_AMP_PWM",
      "dir": "input",
      "side": "left",
-     "net": "/PA_BIAS_PWM",
+     "net": "/VTX_AMP_PWM",
      "class": "Default"
     },
     {
@@ -3463,12 +3462,6 @@
  ],
  "sheet_moves": [
   {
-   "ref": "C30",
-   "bom_plan_sheet": "esc_channel (ESC3)",
-   "contract_sheet": "power.kicad_sch",
-   "why": "ESC3-only part: a shared esc_channel file has identical contents in all four instances, so the ESC3 EFM8 bulk (BR-05/BR-20) is drawn on POWER with a placement note (net +BATT/GND, unchanged)"
-  },
-  {
    "ref": "TP12",
    "bom_plan_sheet": "pads",
    "contract_sheet": "rp2350a.kicad_sch",
@@ -3506,7 +3499,7 @@
   "P4-16": "vtx",
   "P4-17": "sheet notes on power, rp2350a, imu, osd, vtx, esc_channel",
   "P4-18": "vtx",
-  "P4-19": "power (C30)"
+  "P4-19": "power (C30): closed, C30 deleted (P4 critique, D77); ESC3's slot-M hot-loop cap C35 carries BR-05"
  },
  "bom_reduction_s7": {
   "1 +3V3 output capacitance vs LP5912 10 uF max": "P4-12 (power + vtx)",

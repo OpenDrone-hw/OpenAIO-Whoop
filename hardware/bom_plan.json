@@ -2,7 +2,7 @@
  "meta": {
   "board": "OpenAIO-Whoop rev1",
   "generated": "2026-10-09",
-  "generator": "scratchpad p2v3/integ4_work: bomplan_d52.py (D52-D54 main case, ESP32-PICO-V3 per D55) + d56_d60.py (D56 AGM210MAP, D57 JST SH USB, D58 Wi-Fi antenna, D60 sourcing) + d63.py (D63/D64 IO set) + d65_d67.py (D65 plug-ready motor lands + shared boot button, D66 PY25Q128HA NOR, D67 test vias) on the 2026-10-07 plan (git 6cb7216) + p4 integration (p2v3/p4/integrate/scripts/bomplan_p4i.py: retyped lib symbols, R84 1k, C134, LCSC per MPN, nets synced to the netlist)",
+  "generator": "scratchpad p2v3/integ4_work: bomplan_d52.py (D52-D54 main case, ESP32-PICO-V3 per D55) + d56_d60.py (D56 AGM210MAP, D57 JST SH USB, D58 Wi-Fi antenna, D60 sourcing) + d63.py (D63/D64 IO set) + d65_d67.py (D65 plug-ready motor lands + shared boot button, D66 PY25Q128HA NOR, D67 test vias) on the 2026-10-07 plan (git 6cb7216) + p4 integration (p2v3/p4/integrate/scripts/bomplan_p4i.py: retyped lib symbols, R84 1k, C134, LCSC per MPN, nets synced to the netlist) + p4 critique round 1 (p2v3/p4/fix1/scripts/bom_fix.py)",
   "sources": [
    "research/DESIGN-SPEC.md (P0 freeze, D1-D23)",
    "research/PINMAP.md",
@@ -1045,7 +1045,7 @@
    "sheet": "power",
    "value": "0.68uH 6.5A",
    "rating": null,
-   "manufacturer": "cjiang",
+   "manufacturer": "Changjiang Microelectronics (CJiang)",
    "mpn": "FTC252012SR68MBCA",
    "lcsc": "C5832369",
    "package": "2520",
@@ -1108,7 +1108,7 @@
     "+5V_BST",
     "GND"
    ],
-   "notes": "boost Cout 1/4 (D15; >= 20 uF effective above 1.5 A); X6S -55..105 C",
+   "notes": "boost Cout 1/4 (D15; TPS61022 DS 6.3: >= 10 uF effective up to 1.5 A, >= 20 uF from 1.5 to 3 A; the four give about 20-28 uF typical at 5.15 V, so the published BEC is 1.5 A continuous (D79)); X6S -55..105 C",
    "lib_work": []
   },
   {
@@ -1133,7 +1133,7 @@
     "+5V_BST",
     "GND"
    ],
-   "notes": "boost Cout 2/4 (D15; >= 20 uF effective above 1.5 A); X6S -55..105 C",
+   "notes": "boost Cout 2/4 (D15; TPS61022 DS 6.3: >= 10 uF effective up to 1.5 A, >= 20 uF from 1.5 to 3 A; the four give about 20-28 uF typical at 5.15 V, so the published BEC is 1.5 A continuous (D79)); X6S -55..105 C",
    "lib_work": []
   },
   {
@@ -1158,7 +1158,7 @@
     "+5V_BST",
     "GND"
    ],
-   "notes": "boost Cout 3/4 (D15; >= 20 uF effective above 1.5 A); X6S -55..105 C",
+   "notes": "boost Cout 3/4 (D15; TPS61022 DS 6.3: >= 10 uF effective up to 1.5 A, >= 20 uF from 1.5 to 3 A; the four give about 20-28 uF typical at 5.15 V, so the published BEC is 1.5 A continuous (D79)); X6S -55..105 C",
    "lib_work": []
   },
   {
@@ -1183,7 +1183,7 @@
     "+5V_BST",
     "GND"
    ],
-   "notes": "boost Cout 4/4 (D15; >= 20 uF effective above 1.5 A); X6S -55..105 C",
+   "notes": "boost Cout 4/4 (D15; TPS61022 DS 6.3: >= 10 uF effective up to 1.5 A, >= 20 uF from 1.5 to 3 A; the four give about 20-28 uF typical at 5.15 V, so the published BEC is 1.5 A continuous (D79)); X6S -55..105 C",
    "lib_work": []
   },
   {
@@ -1381,7 +1381,7 @@
     "+5V_USB",
     "GND"
    ],
-   "notes": "VBUS hot-plug / over-voltage inlet switch (D57): IN = VBUS (A2/B2), OUT = +5V_USB (A1/B1) -> TPS2116 VIN1/MODE (U3) and the PR1 divider (R7); C1 GND, C2 OVLO tied to GND (internal threshold). REV.A: IN 28 V abs max (+40 V surge), trips at 5.75-6.12 V in 80 ns, 15 ms debounce then 2 ms soft turn-on, 27/45 mOhm, -40..85 C. Fixes the plug-in ring at VIN1 (7.25 V typical, 8.9-9.3 V worst case vs 6 V abs max). Within ~2 mm of J31 pin 4; OVLO ball tied to C1 directly; 0.4 mm WLCSP (NextPCB fine-pitch floor 0.38). Not on LCSC (SG Micro: Active); NextPCB turnkey sources it by MPN (D60); fallback (no OVP): 1 uF + 10 R at VIN1 plus a VBUS TVS",
+   "notes": "VBUS hot-plug / over-voltage inlet switch (D57): IN = VBUS (A2/B2), OUT = +5V_USB (A1/B1) -> TPS2116 VIN1/MODE (U3) and the PR1 divider (R7); C1 GND, C2 OVLO tied to GND (internal threshold). REV.A: IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), trips at 5.75-6.12 V in 80 ns, 15 ms debounce then 2 ms soft turn-on, 27/45 mOhm, -40..85 C. Fixes the plug-in ring at VIN1 (7.25 V typical, 8.9-9.3 V worst case vs 6 V abs max). Within ~2 mm of J31 pin 4; OVLO ball tied to C1 directly; 0.4 mm WLCSP (NextPCB fine-pitch floor 0.38). Not on LCSC (SG Micro: Active); NextPCB turnkey sources it by MPN (D60); fallback (no OVP): 1 uF + 10 R at VIN1 plus a VBUS TVS",
    "lib_work": []
   },
   {
@@ -1553,7 +1553,7 @@
     "/POWER/U5_EN",
     "GND"
    ],
-   "notes": "O4 Lite load switch +5V_BST -> +5V_HD (D53 BR-10: ahead of the TPS2116, USB cannot reach the O4 by topology); QOD tied to VOUT; EN = FC GPIO27 AND the cell threshold (R9/R10/R87/C129)",
+   "notes": "O4 Lite load switch +5V_BST -> +5V_HD (D53 BR-10: ahead of the TPS2116, USB cannot reach the O4 by topology); QOD tied to VOUT; EN = FC GPIO27 AND the cell threshold (R9/R10/R87/C129); CIN: C17 deleted (P4 critique): the boost output caps C8-C11 (20-28 uF effective) are the input capacitor (TPS22810 DS 10.3, CIN optional, 1 uF usually sufficient) under the P5 placement condition: U5 VIN within 3 mm of C8-C11 or U3 VIN2 on the +5V_BST copper",
    "lib_work": []
   },
   {
@@ -1576,31 +1576,6 @@
    "silk": null,
    "nets": [],
    "notes": "TPS22810 CT slew 10 nF (~4.7 V/ms); X7R per spec \u00a74.2 (CT); P3 confirms the MPN",
-   "lib_work": []
-  },
-  {
-   "ref": "C17",
-   "block": "power",
-   "sheet": "power",
-   "value": "1uF",
-   "rating": "10V X5R",
-   "manufacturer": "Murata",
-   "mpn": "GRM033R61A105ME44D",
-   "lcsc": "C76935",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "F",
-   "region": "o4_switch",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+5V_BST",
-    "GND"
-   ],
-   "notes": "TPS22810 CIN on +5V_BST (D53 BR-10; PE-2 refuted: CIN >= 1 uF)",
    "lib_work": []
   },
   {
@@ -1788,7 +1763,7 @@
     "/ESC1/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP1 C2D / TP2 C2CK for bench recovery only",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP1 C2D / TP2 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C23 within 4 mm of VDD pin 4 through the +BATT plane, C19 at the pin",
    "lib_work": []
   },
   {
@@ -1816,7 +1791,7 @@
     "A_PWM",
     "A_COM"
    ],
-   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C20 (D77).",
    "lib_work": []
   },
   {
@@ -1844,7 +1819,7 @@
     "B_PWM",
     "B_COM"
    ],
-   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C23 (D77).",
    "lib_work": []
   },
   {
@@ -1872,7 +1847,7 @@
     "C_PWM",
     "C_COM"
    ],
-   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C21 (D77).",
    "lib_work": []
   },
   {
@@ -2076,16 +2051,16 @@
    "lib_work": []
   },
   {
-   "ref": "C23",
+   "ref": "C20",
    "block": "esc1",
    "sheet": "esc_channel (ESC1)",
-   "value": "22uF",
+   "value": "10uF",
    "rating": "6.3V X6S",
    "manufacturer": "Murata",
-   "mpn": "GRM188C80J226ME15D",
-   "lcsc": "C393031",
-   "package": "0603",
-   "footprint": "lib:C_0603_1608Metric_W",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
    "symbol": "Device:C",
    "side": "F",
    "region": "esc1_cell",
@@ -2097,7 +2072,57 @@
     "+BATT",
     "GND"
    ],
-   "notes": "ESC local bulk (one per ESC) and the only commutation-loop capacitor (D56, no leg caps): on the pin-side via fields, GND pad on slot L's GND field, +BATT pad on slot M's +BATT field, centred on slot M's P-gate stub at cell (-0.975, -2.50), in-pad vias; 3.4-3.9 mm from EFM8 VDD pin 4 through the In3 plane (BR-05 asks <= 3 mm: critique to confirm); X6S -55..105 C",
+   "notes": "hot-loop capacitor of the phase A cell Q29 (slot R), ESC1: pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged)",
+   "lib_work": []
+  },
+  {
+   "ref": "C21",
+   "block": "esc1",
+   "sheet": "esc_channel (ESC1)",
+   "value": "10uF",
+   "rating": "6.3V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "symbol": "Device:C",
+   "side": "F",
+   "region": "esc1_cell",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+BATT",
+    "GND"
+   ],
+   "notes": "hot-loop capacitor of the phase C cell Q31 (slot L), ESC1: pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged)",
+   "lib_work": []
+  },
+  {
+   "ref": "C23",
+   "block": "esc1",
+   "sheet": "esc_channel (ESC1)",
+   "value": "10uF",
+   "rating": "6.3V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "symbol": "Device:C",
+   "side": "F",
+   "region": "esc1_cell",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+BATT",
+    "GND"
+   ],
+   "notes": "hot-loop capacitor of the phase B cell Q30 (slot M), ESC1, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C19 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U6 VDD pin 4 through the +BATT plane, 100 nF at the pin; the v3 cell site (3.4-3.9 mm) meets it",
    "lib_work": []
   },
   {
@@ -2183,7 +2208,7 @@
     "/ESC2/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP3 C2D / TP4 C2CK for bench recovery only",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP3 C2D / TP4 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C29 within 4 mm of VDD pin 4 through the +BATT plane, C25 at the pin",
    "lib_work": []
   },
   {
@@ -2211,7 +2236,7 @@
     "A_PWM",
     "A_COM"
    ],
-   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C26 (D77).",
    "lib_work": []
   },
   {
@@ -2239,7 +2264,7 @@
     "B_PWM",
     "B_COM"
    ],
-   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C29 (D77).",
    "lib_work": []
   },
   {
@@ -2267,7 +2292,7 @@
     "C_PWM",
     "C_COM"
    ],
-   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C27 (D77).",
    "lib_work": []
   },
   {
@@ -2471,16 +2496,16 @@
    "lib_work": []
   },
   {
-   "ref": "C29",
+   "ref": "C26",
    "block": "esc2",
    "sheet": "esc_channel (ESC2)",
-   "value": "22uF",
+   "value": "10uF",
    "rating": "6.3V X6S",
    "manufacturer": "Murata",
-   "mpn": "GRM188C80J226ME15D",
-   "lcsc": "C393031",
-   "package": "0603",
-   "footprint": "lib:C_0603_1608Metric_W",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
    "symbol": "Device:C",
    "side": "B",
    "region": "esc2_cell",
@@ -2492,7 +2517,57 @@
     "+BATT",
     "GND"
    ],
-   "notes": "ESC local bulk (one per ESC) and the only commutation-loop capacitor (D56, no leg caps): on the pin-side via fields, GND pad on slot L's GND field, +BATT pad on slot M's +BATT field, centred on slot M's P-gate stub at cell (-0.975, -2.50), in-pad vias; 3.4-3.9 mm from EFM8 VDD pin 4 through the In3 plane (BR-05 asks <= 3 mm: critique to confirm); X6S -55..105 C",
+   "notes": "hot-loop capacitor of the phase A cell Q32 (slot R), ESC2: pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged)",
+   "lib_work": []
+  },
+  {
+   "ref": "C27",
+   "block": "esc2",
+   "sheet": "esc_channel (ESC2)",
+   "value": "10uF",
+   "rating": "6.3V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "symbol": "Device:C",
+   "side": "B",
+   "region": "esc2_cell",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+BATT",
+    "GND"
+   ],
+   "notes": "hot-loop capacitor of the phase C cell Q34 (slot L), ESC2: pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged)",
+   "lib_work": []
+  },
+  {
+   "ref": "C29",
+   "block": "esc2",
+   "sheet": "esc_channel (ESC2)",
+   "value": "10uF",
+   "rating": "6.3V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "symbol": "Device:C",
+   "side": "B",
+   "region": "esc2_cell",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+BATT",
+    "GND"
+   ],
+   "notes": "hot-loop capacitor of the phase B cell Q33 (slot M), ESC2, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C25 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U7 VDD pin 4 through the +BATT plane, 100 nF at the pin; the v3 cell site (3.4-3.9 mm) meets it",
    "lib_work": []
   },
   {
@@ -2578,7 +2653,7 @@
     "/ESC3/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP5 C2D / TP6 C2CK for bench recovery only",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP5 C2D / TP6 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C35 within 4 mm of VDD pin 4 through the +BATT plane, C31 at the pin",
    "lib_work": []
   },
   {
@@ -2606,7 +2681,7 @@
     "A_PWM",
     "A_COM"
    ],
-   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C32 (D77).",
    "lib_work": []
   },
   {
@@ -2634,7 +2709,7 @@
     "B_PWM",
     "B_COM"
    ],
-   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C35 (D77).",
    "lib_work": []
   },
   {
@@ -2662,32 +2737,7 @@
     "C_PWM",
     "C_COM"
    ],
-   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
-   "lib_work": []
-  },
-  {
-   "ref": "C30",
-   "block": "esc3",
-   "sheet": "power",
-   "value": "10uF",
-   "rating": "6.3V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM155C80J106ME11D",
-   "lcsc": "C237279",
-   "package": "0402",
-   "footprint": "lib:C_0402_1005Metric_W",
-   "symbol": "Device:C",
-   "side": "F",
-   "region": "esc3_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "EFM8 VDD bulk at the pin, ESC3 (kept: gyro 5 mm bulk-MLCC rule, D52 BR-05); 10 uF X6S per BR-20 (conditional on the critique accepting 10 uF at ESC3); D56: stays with the ESC3 cell (top)",
+   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C33 (D77).",
    "lib_work": []
   },
   {
@@ -2891,16 +2941,16 @@
    "lib_work": []
   },
   {
-   "ref": "C35",
+   "ref": "C32",
    "block": "esc3",
    "sheet": "esc_channel (ESC3)",
-   "value": "22uF",
+   "value": "10uF",
    "rating": "6.3V X6S",
    "manufacturer": "Murata",
-   "mpn": "GRM188C80J226ME15D",
-   "lcsc": "C393031",
-   "package": "0603",
-   "footprint": "lib:C_0603_1608Metric_W",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
    "symbol": "Device:C",
    "side": "F",
    "region": "esc3_cell",
@@ -2912,7 +2962,57 @@
     "+BATT",
     "GND"
    ],
-   "notes": "ESC local bulk (one per ESC) and the only commutation-loop capacitor (D56, no leg caps): on the pin-side via fields, GND pad on slot L's GND field, +BATT pad on slot M's +BATT field, centred on slot M's P-gate stub at cell (-0.975, -2.50), in-pad vias; 3.4-3.9 mm from EFM8 VDD pin 4 through the In3 plane (BR-05 asks <= 3 mm: critique to confirm); X6S -55..105 C; ESC3: keep >= 5 mm from the gyro (spec \u00a711 bulk-MLCC rule)",
+   "notes": "hot-loop capacitor of the phase A cell Q35 (slot R), ESC3: pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged)",
+   "lib_work": []
+  },
+  {
+   "ref": "C33",
+   "block": "esc3",
+   "sheet": "esc_channel (ESC3)",
+   "value": "10uF",
+   "rating": "6.3V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "symbol": "Device:C",
+   "side": "F",
+   "region": "esc3_cell",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+BATT",
+    "GND"
+   ],
+   "notes": "hot-loop capacitor of the phase C cell Q37 (slot L), ESC3: pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged)",
+   "lib_work": []
+  },
+  {
+   "ref": "C35",
+   "block": "esc3",
+   "sheet": "esc_channel (ESC3)",
+   "value": "10uF",
+   "rating": "6.3V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "symbol": "Device:C",
+   "side": "F",
+   "region": "esc3_cell",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+BATT",
+    "GND"
+   ],
+   "notes": "hot-loop capacitor of the phase B cell Q36 (slot M), ESC3, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C31 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U8 VDD pin 4 through the +BATT plane, 100 nF at the pin; the v3 cell site (3.4-3.9 mm) meets it; replaces the separate EFM8 bulk C30 (deleted, D77; the gyro 5 mm bulk-MLCC rule is a D69 preference)",
    "lib_work": []
   },
   {
@@ -2998,7 +3098,7 @@
     "/ESC4/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP7 C2D / TP8 C2CK for bench recovery only",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP7 C2D / TP8 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C41 within 4 mm of VDD pin 4 through the +BATT plane, C37 at the pin",
    "lib_work": []
   },
   {
@@ -3026,7 +3126,7 @@
     "A_PWM",
     "A_COM"
    ],
-   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C38 (D77).",
    "lib_work": []
   },
   {
@@ -3054,7 +3154,7 @@
     "B_PWM",
     "B_COM"
    ],
-   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C41 (D77).",
    "lib_work": []
   },
   {
@@ -3082,7 +3182,7 @@
     "C_PWM",
     "C_COM"
    ],
-   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60) Hot-loop cap: C39 (D77).",
    "lib_work": []
   },
   {
@@ -3286,16 +3386,16 @@
    "lib_work": []
   },
   {
-   "ref": "C41",
+   "ref": "C38",
    "block": "esc4",
    "sheet": "esc_channel (ESC4)",
-   "value": "22uF",
+   "value": "10uF",
    "rating": "6.3V X6S",
    "manufacturer": "Murata",
-   "mpn": "GRM188C80J226ME15D",
-   "lcsc": "C393031",
-   "package": "0603",
-   "footprint": "lib:C_0603_1608Metric_W",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
    "symbol": "Device:C",
    "side": "B",
    "region": "esc4_cell",
@@ -3307,7 +3407,57 @@
     "+BATT",
     "GND"
    ],
-   "notes": "ESC local bulk (one per ESC) and the only commutation-loop capacitor (D56, no leg caps): on the pin-side via fields, GND pad on slot L's GND field, +BATT pad on slot M's +BATT field, centred on slot M's P-gate stub at cell (-0.975, -2.50), in-pad vias; 3.4-3.9 mm from EFM8 VDD pin 4 through the In3 plane (BR-05 asks <= 3 mm: critique to confirm); X6S -55..105 C",
+   "notes": "hot-loop capacitor of the phase A cell Q38 (slot R), ESC4: pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged)",
+   "lib_work": []
+  },
+  {
+   "ref": "C39",
+   "block": "esc4",
+   "sheet": "esc_channel (ESC4)",
+   "value": "10uF",
+   "rating": "6.3V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "symbol": "Device:C",
+   "side": "B",
+   "region": "esc4_cell",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+BATT",
+    "GND"
+   ],
+   "notes": "hot-loop capacitor of the phase C cell Q40 (slot L), ESC4: pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged)",
+   "lib_work": []
+  },
+  {
+   "ref": "C41",
+   "block": "esc4",
+   "sheet": "esc_channel (ESC4)",
+   "value": "10uF",
+   "rating": "6.3V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM155C80J106ME11D",
+   "lcsc": "C237279",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "symbol": "Device:C",
+   "side": "B",
+   "region": "esc4_cell",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+BATT",
+    "GND"
+   ],
+   "notes": "hot-loop capacitor of the phase B cell Q39 (slot M), ESC4, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C37 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U9 VDD pin 4 through the +BATT plane, 100 nF at the pin; the v3 cell site (3.4-3.9 mm) meets it",
    "lib_work": []
   },
   {
@@ -3384,13 +3534,13 @@
    "ref": "X1",
    "block": "fc",
    "sheet": "rp2354a",
-   "value": "12MHz 10pF",
+   "value": "12MHz",
    "rating": null,
-   "manufacturer": "YXC",
-   "mpn": "X252012MMB4SI-24",
-   "lcsc": "C2896601",
-   "package": "2520",
-   "footprint": "lib:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_Dense",
+   "manufacturer": "Abracon",
+   "mpn": "ABM8-272-T3",
+   "lcsc": "C20625731",
+   "package": "3225",
+   "footprint": "lib:CRYSTAL-SMD_4P-L3.2-W2.5-BL_Dense",
    "symbol": "Device:Crystal_GND24",
    "side": "B",
    "region": "fc_xtal",
@@ -3399,7 +3549,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "-40..85 C, +/-10 ppm, CL 10 pF (replaces the house TOGNJING -20..70 C part); fallback KYX K2C120001210 (CL 12 pF, 18 pF caps)",
+   "notes": "RP2350-qualified 12 MHz crystal (D78): RP2350 DS section 8.2.1.1 Table 629 'Key Crystal Specifications' asks ESR <= 50 Ohm, CL 10 pF, +-30 ppm, -40..85 C and names the Abracon ABM8-272-T3; ABM8-272-T3 = 12 MHz, CL 10 pF, ESR 50 Ohm max, +-30 ppm, -40..85 C, 3.2 x 2.5 x 0.8 (Abracon ABM8 DS p2: corner terminals 1.2 x 0.8, inside the Dense 3225 lands, pin 1/3 crystal, 2/4 GND). Keeps C42/C43 15 pF and R40 1k (RPi hardware guide values for this crystal). Replaces YXC X252012MMB4SI-24 2520 (LCSC 150 Ohm max ESR, 3x the limit: XOSC start-up margin); +3 mm2",
    "lib_work": []
   },
   {
@@ -5129,14 +5279,14 @@
    "ref": "FL1",
    "block": "rx",
    "sheet": "rx_esp32_sx1281",
-   "value": "LPF 2.4G",
+   "value": "2450FM07D0034T",
    "rating": null,
-   "manufacturer": "TDK",
-   "mpn": "DEA102700LT-6307A2",
-   "lcsc": "C574024",
+   "manufacturer": "Johanson Technology",
+   "mpn": "2450FM07D0034T",
+   "lcsc": "C2651081",
    "package": "1005",
-   "footprint": "lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W",
-   "symbol": "lib:DEA102700LT-6307A2",
+   "footprint": "lib:FILTER-SMD_4P-L1.0-W0.5-L_W",
+   "symbol": "lib:2450FM07D0034T",
    "side": "B",
    "region": "radio_lpf",
    "dnp": false,
@@ -5144,7 +5294,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "[PU] 2.4 GHz LPF RFIO -> L6 CPWG feed -> antenna hole (RF_RX_FEED rule area); fallback Johanson 2450FM07D0034T [PU]",
+   "notes": "[PU] SX1281 front-end filter, house part (OpenRX-Lite, OpenRX-Lite-UFL FL1, OpenAIO rx; PARTS-USED C2651081): input impedance-matched to the SX1280/SX1281 RFIO and internally DC blocked (Johanson 2450FM07D0034 detail spec p1), 50 Ohm out, IL 0.75 dB typ; pin 1 IN at U18 RFIO (pin 22, RF_RFIO), pin 3 OUT -> RF_RX_ANT -> L6 CPWG feed -> antenna hole (RF_RX_FEED rule area); no extra match or DC block (P4 critique: the TDK DEA102700LT 50 Ohm LPF had neither, about 1 dB each way)",
    "lib_work": []
   },
   {
@@ -6165,7 +6315,7 @@
     "+BATT",
     "+5V"
    ],
-   "notes": "PA VCC selector: one 0402 0 R between the centre (PA_VCC) and +BATT (default) or +5V; a single 0402 cannot bridge both sides (\u00a74.2)",
+   "notes": "PA VCC selector: one 0402 0 R between the centre (PA_VCC) and +BATT (default) or +5V; a single 0402 cannot bridge both sides (\u00a74.2); footprint anchor at the pad 1-2 midpoint (P4 critique): the KiCad CPL centres the 0402 across pads 1-2 (+BATT, default); fitting 2-3 (+5V) is a hand rework",
    "lib_work": []
   },
   {
@@ -6385,7 +6535,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "PA_BIAS_PWM",
+    "VTX_AMP_PWM",
     "PA_RC1"
    ],
    "notes": "drive RC pole 1 R from ESP32 GPIO13 (D52 BR-02; ~61 Hz dominant pole, P4 SPICE)",
@@ -7527,7 +7677,7 @@
     "esc3",
     "esc4"
    ],
-   "description": "ESC channel x4 (D56): EFM8BB51 (I grade) QFN-20 land with EP vias, three AGMSEMI AGM210MAP P+N half-bridges per motor (PDFN-8 3.3x3.3, two drain EPs joined by the phase island), single-sided cells (ESC1/ESC3 top, ESC2/ESC4 bottom), no leg caps; TI CSD25310Q2 + CSD13202Q2 library parts kept as the fallback; C2 contacts TP1-TP8 as 0.35/0.20 mask-open filled-via test points, EFM8 pre-programmed with Bluejay by NextPCB (D67)",
+   "description": "ESC channel x4 (D56): EFM8BB51 (I grade) QFN-20 land with EP vias, three AGMSEMI AGM210MAP P+N half-bridges per motor (PDFN-8 3.3x3.3, two drain EPs joined by the phase island), single-sided cells (ESC1/ESC3 top, ESC2/ESC4 bottom), one 10 uF hot-loop cap per AGM210MAP at its lead side (D77); TI CSD25310Q2 + CSD13202Q2 library parts kept as the fallback; C2 contacts TP1-TP8 as 0.35/0.20 mask-open filled-via test points, EFM8 pre-programmed with Bluejay by NextPCB (D67)",
    "lib_items": [
     "lib:AGM210MAP",
     "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
@@ -7546,9 +7696,8 @@
     "RTT012401FTH [lib:R_0201_0603Metric_W] refs R12,R19,R26,R33",
     "RC0201FR-0710KL [lib:R_0201_0603Metric_W] refs R13,R14,R15,R20,R21,R22,R27,R28,R29,R34,R35,R36",
     "RC0201FR-071KL [lib:R_0201_0603Metric_W] refs R16,R17,R18,R23,R24,R25,R30,R31,R32,R37,R38,R39",
-    "GRM188C80J226ME15D [lib:C_0603_1608Metric_W] refs C23,C29,C35,C41",
-    "(no MPN) lib:TestPoint_Via_D0.35mm_Drill0.2mm [lib:TestPoint_Via_D0.35mm_Drill0.2mm] refs TP1,TP2,TP3,TP4,TP5,TP6,TP7,TP8",
-    "GRM155C80J106ME11D [lib:C_0402_1005Metric_W] refs C30"
+    "GRM155C80J106ME11D [lib:C_0402_1005Metric_W] refs C20,C21,C23,C26,C27,C29,C32,C33,C35,C38,C39,C41",
+    "(no MPN) lib:TestPoint_Via_D0.35mm_Drill0.2mm [lib:TestPoint_Via_D0.35mm_Drill0.2mm] refs TP1,TP2,TP3,TP4,TP5,TP6,TP7,TP8"
    ]
   },
   {
@@ -7577,12 +7726,12 @@
    ],
    "parts": [
     "RP2354A [lib:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_Dense] refs U10",
-    "X252012MMB4SI-24 [lib:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_Dense] refs X1",
+    "ABM8-272-T3 [lib:CRYSTAL-SMD_4P-L3.2-W2.5-BL_Dense] refs X1",
     "GRM0335C1H150JA01D [lib:C_0201_0603Metric_W] refs C42,C43",
     "RC0201FR-071KL [lib:R_0201_0603Metric_W] refs R40,R44,R47",
     "AOTA-B201610S3R3-101-T [lib:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense] refs L2",
     "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C44,C45,C46,C47,C48,C49,C50,C51,C52,C54,C59,C60,C65",
-    "CL05A475MP5NRNC [lib:C_0402_1005Metric_W] refs C56,C57,C58",
+    "CL05A475MP5NRNC [lib:C_0402_1005Metric_W] refs C56,C134,C57,C58",
     "RC0201FR-0727RL [lib:R_0201_0603Metric_W] refs R41,R42,R43",
     "RC0201FR-0710KL [lib:R_0201_0603Metric_W] refs R45,R46,R49,R50",
     "AP1606 [lib:DFN-3L_L1.0-W0.6-P0.65-BR_W] refs Q26",
@@ -7636,7 +7785,7 @@
     "GRM033R71H102KA12D [lib:C_0201_0603Metric_W] refs C84",
     "GRM033R71A103KA01D [lib:C_0201_0603Metric_W] refs C86,C88",
     "GRM033R60J474KE90D [lib:C_0201_0603Metric_W] refs C87",
-    "DEA102700LT-6307A2 [lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W] refs FL1",
+    "2450FM07D0034T [lib:FILTER-SMD_4P-L1.0-W0.5-L_W + lib:2450FM07D0034T] refs FL1",
     "(no MPN) lib:AE_WireHole_PTH0.5mm [lib:AE_WireHole_PTH0.5mm] refs AE1",
     "SKUBAAE010 [lib:SW_Alps_SKUBAAE010_2.4x1.4mm + lib:SKUBAAE010] refs SW1",
     "SDM02M30CLP3-7B [lib:X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3 + lib:SDM02M30CLP3-7B] refs D8"
@@ -7707,14 +7856,14 @@
     "GRM0335C1H100JA01D [lib:C_0201_0603Metric_W] refs C110",
     "SE5004L-R [lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L + lib:SE5004L-R] refs U20",
     "GRM033R71H102KA12D [lib:C_0201_0603Metric_W] refs C112,C114,C116",
-    "RC0201FR-071KL [lib:R_0201_0603Metric_W] refs R66,R71,R72,R80,R81,R82",
+    "RC0201FR-071KL [lib:R_0201_0603Metric_W] refs R66,R71,R72,R80,R81,R82,R84",
     "NCP03XH103F05RL [lib:R_0201_0603Metric_W] refs TH1",
     "RFBPF1608060K98Q1C [lib:Walsin_RFBPF1608060K98Q1C + lib:RFBPF1608060K98Q1C] refs FL2",
     "U.FL-R-SMT-1(80) [lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical + lib:U.FL-R-SMT-1(80)] refs J1",
     "RC0402JR-070RL [lib:R_0402_Selector_3Pad + lib:R_Selector_3Pin] refs R67",
     "LP5912-3.3DRVR [lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense] refs U21",
     "LP5907SNX-2.85/NOPB [lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense + lib:LP5907SNX-2.85] refs U22",
-    "RC0201FR-0710KL [lib:R_0201_0603Metric_W] refs R70,R84",
+    "RC0201FR-0710KL [lib:R_0201_0603Metric_W] refs R70",
     "BC857BM,315 [lib:DFN-3L_L1.0-W0.6-P0.65-BR_W + lib:BC857BM] refs Q27",
     "AP1606 [lib:DFN-3L_L1.0-W0.6-P0.65-BR_W] refs Q28"
    ]
@@ -7752,7 +7901,7 @@
     "HCS1206FTL500 [lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_Dense] refs R1",
     "INA186A3IDCKR [lib:SOT-363_SC-70-6_Dense] refs U1",
     "RC0201FR-071KL [lib:R_0201_0603Metric_W] refs R2,R3",
-    "GRM033R61A105ME44D [lib:C_0201_0603Metric_W] refs C5,C14,C17",
+    "GRM033R61A105ME44D [lib:C_0201_0603Metric_W] refs C5,C14",
     "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C6,C131,C129",
     "TPS61022RWUR [lib:TI_VQFN-HR-7_2x2mm_RWU + lib:TPS61022RWUR] refs U2",
     "FTC252012SR68MBCA [lib:IND-SMD_L2.5-W2.0_FTC252012] refs L1",
@@ -7812,17 +7961,17 @@
   }
  ],
  "summary": {
-  "parts_total": 269,
-  "bom_parts": 230,
+  "parts_total": 275,
+  "bom_parts": 236,
   "bom_lines": 82,
-  "passives": 175,
+  "passives": 181,
   "pads_and_mechanical": 33,
   "by_block": {
-   "power": 39,
-   "esc1": 15,
-   "esc2": 15,
-   "esc3": 16,
-   "esc4": 15,
+   "power": 38,
+   "esc1": 17,
+   "esc2": 17,
+   "esc3": 17,
+   "esc4": 17,
    "fc": 31,
    "imu": 5,
    "blackbox": 3,
@@ -7833,16 +7982,16 @@
    "io": 31
   },
   "by_side": {
-   "B": 142,
-   "F": 127
+   "B": 146,
+   "F": 129
   },
   "by_package": {
-   "0603": 11,
-   "0201": 144,
-   "0402": 18
+   "0603": 7,
+   "0201": 145,
+   "0402": 29
   },
   "lib_items": 77,
-  "lib_footprints": 53,
+  "lib_footprints": 52,
   "lib_symbols": 36,
   "parts_needing_lib_work": 0,
   "no_lcsc": [
@@ -7879,13 +8028,14 @@
    "GRM0335C1H1R2BA01D"
   ],
   "bom_parts_by_side": {
-   "B": 130,
-   "F": 100
+   "B": 134,
+   "F": 102
   },
   "bom_parts_note": "bom_parts / bom_lines = fitted placements and their MPNs (dnp and BOM-excluded pads not counted)",
-  "owner_decisions": "D56: 24 TI FETs and 12 leg caps out, 12x AGM210MAP Q29-Q40 in; D57: pogo J30 out, J31 BM04B, U24 SGM40661 + C131, D7 TPD2EUSB30 in; D58: R57 out, AE2 + R88 (0 R) + C132/C133 (DNP) in; D60: no consigned flags; refs kept stable, new parts take the next free number (P4 annotation closes gaps); D63/D64 IO set: J32 camera plug SM03B-SURS-TF, SW1 TS2306A RX boot/bind button, J33 LED-row GND pad (row GND LED 5V BZ-, J21 relabelled 5V), TP14/TP15 USB D-/D+ pads (COULD); D65: 12 single motor pads -> 4 plug-ready lands J4/J7/J10/J13 (Molex 53047-0310 header DNP), SW1 -> Alps SKUBAAE010 shared FC BOOTSEL + RX boot through D8 SDM02M30CLP3-7B and R44 (FC_BOOT); D66: U13 -> Puya PY25Q128HA-DFH-IR USON-8 3x3; D67: TP1-TP9, TP12, TP13 -> 0.35/0.20 test vias, TP10/TP11/TP14/TP15 removed, EFM8 pre-programmed by NextPCB",
+  "owner_decisions": "D56: 24 TI FETs and their 12 leg caps out, 12x AGM210MAP Q29-Q40 in (D77: one hot-loop cap per AGM210MAP restored, C20/C21/C23 per ESC); D57: pogo J30 out, J31 BM04B, U24 SGM40661 + C131, D7 TPD2EUSB30 in; D58: R57 out, AE2 + R88 (0 R) + C132/C133 (DNP) in; D60: no consigned flags; refs kept stable, new parts take the next free number (P4 annotation closes gaps); D63/D64 IO set: J32 camera plug SM03B-SURS-TF, SW1 TS2306A RX boot/bind button, J33 LED-row GND pad (row GND LED 5V BZ-, J21 relabelled 5V), TP14/TP15 USB D-/D+ pads (COULD); D65: 12 single motor pads -> 4 plug-ready lands J4/J7/J10/J13 (Molex 53047-0310 header DNP), SW1 -> Alps SKUBAAE010 shared FC BOOTSEL + RX boot through D8 SDM02M30CLP3-7B and R44 (FC_BOOT); D66: U13 -> Puya PY25Q128HA-DFH-IR USON-8 3x3; D67: TP1-TP9, TP12, TP13 -> 0.35/0.20 test vias, TP10/TP11/TP14/TP15 removed, EFM8 pre-programmed by NextPCB",
   "p4i_added": [
    "C134"
-  ]
+  ],
+  "p4fix1": "P4 critique round-1 fixes 2026-10-09 (p2v3/p4/fix1/scripts/bom_fix.py): D77 per-cell 10 uF hot-loop caps C20/C21/C23, C26/C27/C29, C32/C33/C35, C38/C39/C41 (GRM155C80J106ME11D; 22 uF 0603 cell bulk out), C30 and C17 deleted; D78 X1 Abracon ABM8-272-T3; FL1 Johanson 2450FM07D0034T (house part); R67 selector anchor; L1 manufacturer name; U24 / C8-C11 / U5 notes; net PA_BIAS_PWM renamed VTX_AMP_PWM"
  }
 }

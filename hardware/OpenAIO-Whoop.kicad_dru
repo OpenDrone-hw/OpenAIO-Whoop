@@ -56,6 +56,13 @@
   (constraint clearance (min 0.40mm))
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Pad_Type == 'Through-hole' && A.Net != B.Net && A.Fabrication_Property != 'Heatsink pad' && B.Fabrication_Property != 'Heatsink pad'"))
 
+# D65 / D21: the Molex 53047 PicoBlade header fixes the 1.25 mm pitch; 0.90 rings (0.50 drill + 0.20 ring)
+# leave 0.35 mm copper between neighbouring holes (NextPCB 0.40 general value; the BetaFPV Matrix 1S 5IN1 II
+# ships the same 1.25 mm plated land). Scoped to MotorPad_PicoBlade pads (the four lands are far apart); NextPCB EQ item.
+(rule "D65 plug-ready motor land: PicoBlade rings 0.35 apart"
+  (constraint clearance (min 0.30mm))
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('*:MotorPad_PicoBlade*') && B.memberOfFootprint('*:MotorPad_PicoBlade*')"))
+
 # Component holes: JLCPCB 0.15 absolute, 0.20 recommended; NextPCB 0.20. Vias keep the 0.075 of D6.
 (rule "PTH annular ring 0.20"
   (constraint annular_width (min 0.20mm))
@@ -113,14 +120,15 @@
   (condition "A.hasComponentClass('PASSIVE_0402') && B.hasComponentClass('PASSIVE_0402')"))
 
 # Spec 8.4: the U.FL and the 2520 inductor (and any SH1.0 part) shadow small passives for paste, AOI and
-# rework.
+# rework. D69 (owner): a preference traded for density; the 0.2 mm body rule (check_spacing.py) remains.
 (rule "tall parts: 0.5 to 0201 and 0402"
-  (constraint courtyard_clearance (min 0.5mm))
+  (constraint courtyard_clearance (min 0mm))
   (condition "A.hasComponentClass('TALL') && (B.hasComponentClass('PASSIVE_0201') || B.hasComponentClass('PASSIVE_0402'))"))
 
 # Spec 8.4: user, battery and motor pads take a 60-80 W iron; keep small passives 0.5 mm away.
+# D69 / D70 (owner): the iron halo is the 0.2 mm body rule (check_spacing.py); courtyards may touch.
 (rule "solder pads: 0.5 to 0201 and 0402"
-  (constraint courtyard_clearance (min 0.5mm))
+  (constraint courtyard_clearance (min 0mm))
   (condition "A.hasComponentClass('SOLDER_PAD') && (B.hasComponentClass('PASSIVE_0201') || B.hasComponentClass('PASSIVE_0402'))"))
 
 # D21 / spec 10 (iron rework 'from every part on its side'): a motor pad is soldered on the top; its far side
@@ -129,6 +137,20 @@
 (rule "D21 motor_pad_ring_side"
   (constraint courtyard_clearance (min 0mm))
   (condition "A.hasComponentClass('MOTOR_PAD') && A.Layer != B.Layer"))
+
+# D67: TP1-TP9, TP12, TP13 are mask-open filled 0.35/0.20 vias drawn as footprints (TestPoint_Via_*); the via
+# hole spacing (0.20, pro minimum) applies, not the 0.45 component-hole value.
+(rule "D67 test vias are vias: hole spacing 0.20"
+  (constraint hole_to_hole (min 0.20mm))
+  (condition "A.memberOfFootprint('*:TestPoint_Via*') && B.memberOfFootprint('*:TestPoint_Via*')"))
+
+# D65 / D21: the bottom-side courtyards of two neighbouring plug-ready motor lands (optional DNP PicoBlade
+# header envelopes) meet at the ear corner; the header bodies keep the 0.2 mm body rule (check_spacing.py), so
+# both headers can be fitted. Scoped to MOTOR_PAD pairs only.
+(rule "D65 DNP motor headers: courtyards may meet at the ear corner"
+  (severity ignore)
+  (constraint courtyard_clearance (min 0mm))
+  (condition "A.hasComponentClass('MOTOR_PAD') && B.hasComponentClass('MOTOR_PAD')"))
 
 # D21 / spec 11: FET, battery, motor and user solder pads join their pours solid (no thermal relief): the
 # power path and the iron need the copper; reflow is profiled for it (NextPCB EQ).
@@ -241,7 +263,29 @@
 (rule "D21 rx_antenna_hole"
   (severity ignore)
   (constraint disallow footprint pad)
-  (condition "((A.Type == 'Footprint' && A.Reference == 'AE*') || (A.Type == 'Pad' && A.memberOfFootprint('AE*'))) && (A.intersectsArea('RF_RX_ANT') || A.intersectsArea('RF_RX_ANT_L6') || A.intersectsArea('RF_RX_EXIT'))"))
+  (condition "((A.Type == 'Footprint' && A.Reference == 'AE*') || (A.Type == 'Pad' && A.memberOfFootprint('AE*'))) && (A.intersectsArea('RF_RX_ANT') || A.intersectsArea('RF_RX_ANT_L6') || A.intersectsArea('RF_RX_EXIT') || A.intersectsArea('WIFI_ANT_KO'))"))
+
+# D76 / D69: the vertical USB header J31 sits beside the rear mounting hole; its plastic shroud corner (courtyard,
+# no copper) reaches into the RX antenna-hole ring / exit strip on the bottom. The ring stays a copper keep-out
+# (RF_RX_ANT, L1-L5) and the wire exit runs away from J31 (toward the edge); scoped to J31 only.
+(rule "D76 USB J31 shroud corner at the RX wire ring"
+  (severity ignore)
+  (constraint disallow footprint)
+  (condition "A.Type == 'Footprint' && A.Reference == 'J31' && (A.intersectsArea('RF_RX_EXIT') || A.intersectsArea('RF_RX_ANT_L6'))"))
+
+# D58 / D75 / OpenAIO lesson (net-aware antenna keepout): inside the Wi-Fi chip antenna keep-out only the
+# RF-class feed track reaches AE2; no vias, no other tracks (pours and parts are kept out by the rule area,
+# AE2 itself by the AE* exemption above).
+(rule "WIFI_ANT_KO: only the RF feed"
+  (constraint disallow track via)
+  (condition "A.intersectsArea('WIFI_ANT_KO') && (A.Type == 'Via' || A.NetClass != 'RF')"))
+
+# D72 / D76: the vertical USB plug and the fingers that push it need the space around J31 free of other
+# connectors (TALL class J*: SH/SUR plugs, U.FL); parts <= 1.25 mm tall (2520 inductor, passives, ICs) sit far
+# below the 4.25 mm BM04B wall the plug is gripped above, so they keep only the body rule.
+(rule "USB_MATING: no tall part next to J31"
+  (constraint courtyard_clearance (min 1.0mm))
+  (condition "(A.Reference == 'J31' && B.hasComponentClass('TALL') && B.Reference == 'J*' && B.Reference != 'J31') || (B.Reference == 'J31' && A.hasComponentClass('TALL') && A.Reference == 'J*' && A.Reference != 'J31')"))
 
 # Spec 8.2: USB FS pair 0.12 / 0.12. Inert until the nets end in _P/_N, P/N or +/- (KiCad 10.0.6 does
 # not pair USB_DP/USB_DM): name them USB_D+ / USB_D- or USB_DP / USB_DN in P4.

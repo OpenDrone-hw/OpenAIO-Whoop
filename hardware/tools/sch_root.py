@@ -142,6 +142,7 @@ for i, n in enumerate(("UART0_TX", "UART0_RX", "FC_BOOT")):
 for i, n in enumerate(("VTX_SPI_CS", "VTX_SPI_CLK", "VTX_SPI_DATA", "PA_BIAS_PWM", "PA_EN", "VTX_PWR_CTL", "PA_DET",
                        "PA_NTC")):
     ROW[n] = 35.56 + i * G
+ROW["VTX_AMP_PWM"] = ROW["PA_BIAS_PWM"]          # renamed net (P4 critique 2026-10-09), same row
 for i, n in enumerate(("OSD_W", "OSD_EN", "OSD_SYNC")):
     ROW[n] = 71.12 + i * G
 ROW["VIDEO_OUT"] = 71.12

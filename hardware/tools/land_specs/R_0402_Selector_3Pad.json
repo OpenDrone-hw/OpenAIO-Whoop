@@ -2,11 +2,11 @@
  "footprint": "lib:R_0402_Selector_3Pad",
  "part": "Yageo RC0402JR-070RL 0 R (LCSC C60485) on a 3-pad land, R67 (PA VCC selector, DESIGN-SPEC 4.2)",
  "datasheet": "Yageo spec sheet RC0402 (rx group copy /tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/rx/dl/yageo/rc.pdf; https://www.yageogroup.com/component-documentation/download/specsheet/RC0402JR-070RL) p1: L 1.00 +-0.05, W 0.50 +-0.05, B2 0.25 +-0.10",
- "derivation": "Two overlapping 0402 lands sharing the centre pad: the project's R_0402_1005Metric land (0.45 x 0.55 at +-0.425, IPC-7351B from the Yageo dimensions, rx group spec) repeated at 0.85 pitch: pads 1 (-0.85), 2 (centre, common), 3 (+0.85). One 0402 fits 1-2 or 2-3; it cannot bridge 1-3 (inner edges of 1 and 3 are 1.25 apart > 1.05 max part length). Body = envelope of the two part positions (1.85 x 0.50)",
+ "derivation": "Two overlapping 0402 lands sharing the centre pad: the project's R_0402_1005Metric land (0.45 x 0.55 at +-0.425, IPC-7351B from the Yageo dimensions, rx group spec) repeated at 0.85 pitch: pads 1 (-0.85), 2 (centre, common), 3 (+0.85). One 0402 fits 1-2 or 2-3; it cannot bridge 1-3 (inner edges of 1 and 3 are 1.25 apart > 1.05 max part length). Body = envelope of the two part positions (1.85 x 0.50). Anchor (origin) at the pad 1-2 midpoint = centre of the default 0402 fit (critique 2026-10-09: the CPL reports the anchor; at pad 2 the placed 0402 would bridge neither land): pads 1 -0.425, 2 +0.425, 3 +1.275; body envelope centred at +0.425",
  "pads": [
   {
    "number": "1",
-   "x": -0.85,
+   "x": -0.425,
    "y": 0.0,
    "w": 0.45,
    "h": 0.55,
@@ -14,7 +14,7 @@
   },
   {
    "number": "2",
-   "x": 0.0,
+   "x": 0.425,
    "y": 0.0,
    "w": 0.45,
    "h": 0.55,
@@ -22,7 +22,7 @@
   },
   {
    "number": "3",
-   "x": 0.85,
+   "x": 1.275,
    "y": 0.0,
    "w": 0.45,
    "h": 0.55,
@@ -32,7 +32,7 @@
  "body": {
   "w": 1.85,
   "h": 0.5,
-  "x": 0,
+  "x": 0.425,
   "y": 0
  },
  "courtyard_margin": 0.1,

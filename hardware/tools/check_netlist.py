@@ -261,6 +261,8 @@ RULES = [  # (net pattern, class) - first match wins; the role each class stands
     ("*CURR_SENSE*", "Analog"), ("*ADC_CURR*", "Analog"), ("*ADC_VBAT*", "Analog"), ("*SHUNT_SENSE*", "Analog"),
     ("*VIDEO*", "Analog"), ("*/VID_*", "Analog"), ("*/OSD_LVL", "Analog"), ("*/OSD_SYNC", "Analog"),
     ("*/PA_DET*", "Analog"),
+    ("*/VT_MOD*", "Analog"), ("*/RTC_*", "Analog"), ("*/U19_XTAL*", "Analog"), ("*/TCXO_OUT", "Analog"),
+    ("*/XTA", "Analog"),                     # RTC6705 video input, PLL loop filter, 8 / 52 MHz references (P4 critique)
 ]
 bad, by_cls = [], collections.Counter()
 for name in sorted(nets):

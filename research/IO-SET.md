@@ -74,7 +74,7 @@ The proposal's net swap was rejected: user row to GPIO4/5 (UART1), O4 pads to GP
 
 | Line | Old | New |
 |---|---|---|
-| PINMAP.md:35, :70, :286 | RP0 "also SBUS-in, inverted, for a DJI remote" | "RP0: SBUS/CRSF receivers through the UART0 remap preset (§5.4); 8E2 needs a release with the uart_hw.c fix" |
+| PINMAP.md:35, :70, :286 | RP0 "also SBUS-in, inverted, for a DJI remote" | "RP0: SBUS/CRSF receivers through the UART0 remap preset (§5.4); 8E2 needs a release with the uart_hw.c fix" (applied 2026-10-09, P4 critique: PINMAP §2 pin 5 row and the §5.1 config.h comment) |
 | §5.4 | - | add the presets of §2.3 |
 | §6, GPIO0 row | "pad RXB (+ GND)" | "pad RXB + SW1 (TS2306A) to GND; ELRS button: bind / Wi-Fi / reboot" |
 | §6, `led_rgb` row | `ledidx_rgb_vtx [0]` | no VTX indication: ELRS allocates `vtxStatusLEDs` but never writes them (V, devRGB.cpp:15, :356-360; only `statusLEDs` at :75-79) |

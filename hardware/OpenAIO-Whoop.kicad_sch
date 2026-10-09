@@ -2328,7 +2328,7 @@
 				)
 				(uuid "bb45798c-83cd-5ccf-9082-4b20bc08dea0")
 			)
-			(table_cell "1.82 A at 3.0 V in"
+			(table_cell "0.70 A analog / 1.48 A HD (BEC 1.5 A cont.)"
 				(exclude_from_sim no)
 				(at 119.38 231.14 0)
 				(size 50.8 3.81)
@@ -2413,7 +2413,7 @@
 				)
 				(uuid "d4731161-d0ba-5ef9-b146-5bcadfda2a18")
 			)
-			(table_cell "0.70 A analog, 1.48 A HD"
+			(table_cell "0.70 A analog, about 0.25 A HD"
 				(exclude_from_sim no)
 				(at 119.38 234.95 0)
 				(size 50.8 3.81)
@@ -2753,7 +2753,7 @@
 				)
 				(uuid "c65edf1e-ed6c-5afc-9372-e17a4b440572")
 			)
-			(table_cell "0.10 A"
+			(table_cell "0.10 A typ, about 0.17 A at max PA"
 				(exclude_from_sim no)
 				(at 119.38 250.19 0)
 				(size 50.8 3.81)
@@ -3289,7 +3289,7 @@
 		)
 		(uuid "6f5ec5ba-293f-5459-ac7b-aaa50958ac13")
 	)
-	(label "PA_BIAS_PWM"
+	(label "VTX_AMP_PWM"
 		(at 276.86 43.18 0)
 		(effects
 			(font
@@ -3950,9 +3950,9 @@
 				(justify left)
 			)
 		)
-		(pin "PA_BIAS_PWM" input
+		(pin "VTX_AMP_PWM" input
 			(at 297.18 43.18 180)
-			(uuid "222dfa09-9a9b-5945-987a-6deed4d0b659")
+			(uuid "a874e305-fe1a-5845-b8f5-6d29032fe187")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4278,9 +4278,9 @@
 				(justify right)
 			)
 		)
-		(pin "PA_BIAS_PWM" output
+		(pin "VTX_AMP_PWM" output
 			(at 274.32 43.18 0)
-			(uuid "bfecbe99-c84d-56a1-bf7c-276d1296a123")
+			(uuid "d00b129e-1d63-56bd-a19c-816c542ebb76")
 			(effects
 				(font
 					(size 1.27 1.27)

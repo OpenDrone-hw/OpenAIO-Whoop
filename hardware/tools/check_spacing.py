@@ -41,6 +41,7 @@ Exit 0 when clean, 1 on any finding, 2 if the board cannot be read.
 """
 import argparse
 import json
+import fnmatch
 import math
 import os
 import re
@@ -248,10 +249,22 @@ def shape_points(fp, layer):
     return pts
 
 
-def pad_polys(fp, cu):
+# --d70 (owner D70, 2026-10-09): filled+capped tented via pads (plated, drill <= VIA_DRILL_MAX: EP via fields,
+# test vias) may sit under the BODY of a part; only pads must clear them, which is copper clearance (DRC), not
+# the package body rule. With the flag they are left out of the package extents. Default off (unchanged).
+D70 = False
+VIA_DRILL_MAX = 0.25
+KEEPOUT_OWNERS = []          # --keepout-owner REF:AREA (fnmatch patterns): the part a keep-out is drawn around
+
+
+def via_like(p):
+    return p.GetAttribute() == P.PAD_ATTRIB_PTH and P.ToMM(p.GetDrillSizeX()) <= VIA_DRILL_MAX + 1e-6
+
+
+def pad_polys(fp, cu, skip_vias=False):
     out = []
     for p in fp.Pads():
-        if not p.IsOnLayer(cu):
+        if not p.IsOnLayer(cu) or (skip_vias and via_like(p)):
             continue
         ps = P.SHAPE_POLY_SET()
         p.TransformShapeToPolygon(ps, cu, 0, ERR, P.ERROR_OUTSIDE)
@@ -307,8 +320,13 @@ def body(fp, pads, margin):
 
 def extent(fp, side, margin=0.25):
     """Package extent of fp seen from side 'F' or 'B': (convex polygons, body source or None)."""
-    pads = pad_polys(fp, P.F_Cu if side == "F" else P.B_Cu)
-    if fp.IsFlipped() != (side == "B"):
+    far = fp.IsFlipped() != (side == "B")
+    if D70:
+        fpads = list(fp.Pads())
+        if fpads and all(via_like(p) for p in fpads):
+            return [], None                  # D70: a test-via footprint is a via, not a package
+    pads = pad_polys(fp, P.F_Cu if side == "F" else P.B_Cu, skip_vias=D70 and far)
+    if far:
         return pads, None                    # the other side's view: through-hole pads only
     b, src = body(fp, pads, margin)
     return ([b] if b else []) + pads, src
@@ -479,6 +497,9 @@ def analyse(b, min_gap=0.2, edge=0.2, near=1.0, margin=0.25, min_hole=1.0, hole_
             for prt in parts[side]:
                 if prt.ref == owner or (refs and prt.ref not in refs) or box_gap(prt.box, kb) > 0:
                     continue
+                if any(fnmatch.fnmatch(prt.ref, pat) and fnmatch.fnmatch(name, "rule area " + ar)
+                       for pat, ar in KEEPOUT_OWNERS):
+                    continue                 # the area's own part (as the scoped DRU exemption, e.g. AE* antennas)
                 if convex:
                     depth = max(penetration(q, poly) for q in prt.polys)
                     hit = depth > TOL
@@ -517,7 +538,13 @@ def main(argv=None):
     ap.add_argument("--min-hole", type=float, default=1.0)
     ap.add_argument("--hole-margin", type=float, default=0.5)
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--keepout-owner", action="append", default=[],
+                    help="REF:AREA fnmatch pair, e.g. 'AE*:RF_RX_*' (the part the rule area is drawn for)")
+    ap.add_argument("--d70", action="store_true", help="D70: tented filled via pads (drill <= 0.25) are copper, not package extent")
     a = ap.parse_args(argv)
+    global D70
+    D70 = D70 or a.d70
+    KEEPOUT_OWNERS.extend(tuple(x.split(":", 1)) for x in a.keepout_owner)
     try:
         if not os.path.isfile(a.board):
             raise IOError("no such file")
