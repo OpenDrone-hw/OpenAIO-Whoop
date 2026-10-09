@@ -2,7 +2,7 @@
  "meta": {
   "board": "OpenAIO-Whoop rev1",
   "generated": "2026-10-09",
-  "generator": "scratchpad p23/bfp/work/bomplan.py (D52-D54 on the 2026-10-07 plan)",
+  "generator": "scratchpad p2v3/integ_work: bomplan_d52.py (D52-D54 main case, ESP32-PICO-V3 per D55) + d56_d60.py (D56 AGM210MAP, D57 JST SH USB, D58 Wi-Fi antenna, D60 sourcing) on the 2026-10-07 plan",
   "sources": [
    "research/DESIGN-SPEC.md (P0 freeze, D1-D23)",
    "research/PINMAP.md",
@@ -10,120 +10,28 @@
    "research/LINEUP-CONVENTIONS.md A15/A16",
    "house sheets: OpenFC-Lite-Mini rp2350a/imu/osd/blackbox, OpenRX-Lite RF section, OpenAIO root current sense",
    "OpenOSD-X RTC6705 reference values (track 04)",
-   "tinyPEPPER BEMF network (track 08)"
+   "tinyPEPPER BEMF network (track 08)",
+   "research/DECISIONS.md D52-D60; research/BOM-REDUCTION.md \u00a73",
+   "staging p2v3/staging/agm (AGM210MAP part + ESC cell), usb (JST BM04B, SGM40661, TPD2EUSB30), wifi (Johanson 2450AT07A0100001T), merged into hardware/lib.* on 2026-10-09"
   ],
   "conventions": {
-   "refs": "project-wide sequential per prefix (LINEUP A15), sheet order power, ESC1..ESC4, rp2354a, imu, blackbox, osd, rx_esp32_sx1280, vtx, led, pads; prefixes C R L D U Q X J TP AE FL FB TH H LOGO",
+   "refs": "project-wide sequential per prefix (LINEUP A15), sheet order power, ESC1..ESC4, rp2354a, imu, blackbox, osd, rx_esp32_sx1281, vtx, led, pads; prefixes C R L D U Q X J TP AE FL FB TH H LOGO; new parts take the next free number above every ref of any committed plan (C130 of the withdrawn \u00a75.1 fallback is skipped)",
    "footprint": "OpenDrone:<name> = hardware/KiCad-Library footprint that passes check_footprint.py against its datasheet spec; lib:<name> = project library hardware/lib.pretty (P3 merge 2026-10-09; _W = corrected copy of an OpenDrone footprint, _Dense = area-budget variant); land specs in hardware/tools/land_specs/<name>.json",
    "symbol": "OpenDrone:<name> / KiCad stock (Device, Connector, Connector_Generic, Mechanical) / lib:<name> = hardware/lib.kicad_sym (P3 merge 2026-10-09)",
    "coordinates": "regions: KiCad top view, mm from the board-body centre (113.2, 113.2), +x right, +y down, front corner (+x,-y); side F/B",
    "pads": "solder pads Connector_Generic:Conn_01x01 ref J, dnp + exclude_from_bom (LINEUP A16); test points Connector:TestPoint ref TP, out of BOM; silk = the <=3-character pad code (0.8 mm Tokyo, D12) shared by schematic value, silk, pinout and docs",
    "passives": "0201 default (owner rule); 0402/0603 only where DC bias or power needs it (noted per line); X6S in ESC quarters and at the PA, X5R elsewhere (spec \u00a74 temperature grades)",
-   "lcsc": "null where no LCSC number was read in the spec/catalogue; fill at P3/O17, never guessed",
+   "lcsc": "LCSC number where one was read (informational); null where none was found. D60: NextPCB turnkey sources every part by Manufacturer + MPN, stock gates and consigned lines no longer apply",
    "values": "'start value' notes mark circuit values closed in the P4 critique loop (spec \u00a715.5, D22)"
   },
-  "not_parts": "silk labels, product name OPEN/AIO/WHOOP, REV1, '1S', 'HD' frame are drawn by the generator, not footprints; no Wi-Fi radiator (D18); no SH1.0 parts (D18); no USB ESD array (\u00a74.2)",
-  "library": "P3 merge 2026-10-09: staged libraries merged (research/LIBRARY.md); footprint ids switched to the checked _W/_Dense variants; the 17 OpenDrone footprints used without staged work failed check_footprint against their datasheet lands and were replaced by checked lib _W/_Dense copies in the same frame; D1 SMF5.0A (unidirectional) moved from the bidirectional Device:D_TVS (A1/A2) to Device:D_Zener (1 = K, 2 = A) so the cathode pad 1 is unambiguous"
+  "not_parts": "silk labels, product name OPEN/AIO/WHOOP, REV1, '1S', 'HD' frame are drawn by the generator, not footprints; the Wi-Fi keep-out is part of the AE2 footprint (rule area), not a separate item",
+  "library": "P3 merge 2026-10-09: staged libraries merged (research/LIBRARY.md); footprint ids switched to the checked _W/_Dense variants; the 17 OpenDrone footprints used without staged work failed check_footprint against their datasheet lands and were replaced by checked lib _W/_Dense copies in the same frame; D1 SMF5.0A (unidirectional) moved from the bidirectional Device:D_TVS (A1/A2) to Device:D_Zener (1 = K, 2 = A) so the cathode pad 1 is unambiguous | 2026-10-09 D56-D58 merge: AGM210MAP, BM04B-SRSS-TB, SM04B-SRSS-TB (alternate), SGM40661YG, TPD2EUSB30DRTR, 2450AT07A0100001T symbols + footprints + 3D + land specs added (research/LIBRARY.md); lib_work flags cleared after the full resolve + check_footprint run",
+  "sourcing": "D60: NextPCB sources every part that exists and builds the prototypes; exact Manufacturer + MPN and genuine parts on every BOM line; JLCPCB = DFM target only; no consigned lines",
+  "dnp": "dnp = footprint placed, part not fitted in rev1 (C132 / C133 Wi-Fi tuning shunts, D58)"
  },
  "regions": {
-  "esc4_p": {
-   "side": "F",
-   "x": [
-    -10.53,
-    -3.83
-   ],
-   "y": [
-    -9.35,
-    -7.15
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
-  "esc3_p": {
-   "side": "F",
-   "x": [
-    -9.35,
-    -7.15
-   ],
-   "y": [
-    -6.95,
-    -0.25
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
-  "esc1_p": {
-   "side": "F",
-   "x": [
-    2.25,
-    8.95
-   ],
-   "y": [
-    7.15,
-    9.35
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
-  "esc2_p": {
-   "side": "F",
-   "x": [
-    7.15,
-    9.35
-   ],
-   "y": [
-    0.25,
-    6.95
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
-  "esc4_n": {
-   "side": "B",
-   "x": [
-    -10.53,
-    -3.83
-   ],
-   "y": [
-    -11.75,
-    -9.55
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
-  "esc3_n": {
-   "side": "B",
-   "x": [
-    -11.75,
-    -9.55
-   ],
-   "y": [
-    -6.95,
-    -0.25
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
-  "esc1_n": {
-   "side": "B",
-   "x": [
-    2.25,
-    8.95
-   ],
-   "y": [
-    9.55,
-    11.75
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
-  "esc2_n": {
-   "side": "B",
-   "x": [
-    9.55,
-    11.75
-   ],
-   "y": [
-    0.25,
-    6.95
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
   "esc4_mcu": {
-   "side": "F",
+   "side": "B",
    "x": [
     -6.6,
     -2.6
@@ -132,7 +40,7 @@
     -6.95,
     -2.95
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc3_mcu": {
    "side": "F",
@@ -144,7 +52,7 @@
     -2.75,
     1.25
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc1_mcu": {
    "side": "F",
@@ -156,10 +64,10 @@
     2.95,
     6.95
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc2_mcu": {
-   "side": "F",
+   "side": "B",
    "x": [
     2.95,
     6.95
@@ -168,10 +76,10 @@
     -1.25,
     2.75
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc4_bemf": {
-   "side": "F",
+   "side": "B",
    "x": [
     -10.6,
     -1.6
@@ -180,7 +88,7 @@
     -12.95,
     -6.9
    ],
-   "src": "preview packing region (scratchpad preview/parts.py)"
+   "src": "preview packing region (scratchpad preview/parts.py) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc3_bemf": {
    "side": "F",
@@ -192,10 +100,10 @@
     -7.0,
     1.1
    ],
-   "src": "preview packing region (scratchpad preview/parts.py)"
+   "src": "preview packing region (scratchpad preview/parts.py) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc2_bemf": {
-   "side": "F",
+   "side": "B",
    "x": [
     6.4,
     11.0
@@ -204,7 +112,7 @@
     -0.1,
     7.0
    ],
-   "src": "preview packing region (scratchpad preview/parts.py)"
+   "src": "preview packing region (scratchpad preview/parts.py) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc1_bemf": {
    "side": "F",
@@ -216,7 +124,7 @@
     6.8,
     11.0
    ],
-   "src": "preview packing region (scratchpad preview/parts.py)"
+   "src": "preview packing region (scratchpad preview/parts.py) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc4_c2": {
    "side": "B",
@@ -228,10 +136,10 @@
     -6.95,
     -2.95
    ],
-   "src": "bottom projection of the EFM8 (P2 places, spec \u00a710 'at each EFM8')"
+   "src": "bottom projection of the EFM8 (P2 places, spec \u00a710 'at each EFM8') | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc3_c2": {
-   "side": "B",
+   "side": "F",
    "x": [
     -6.95,
     -2.95
@@ -240,10 +148,10 @@
     -2.75,
     1.25
    ],
-   "src": "bottom projection of the EFM8"
+   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc1_c2": {
-   "side": "B",
+   "side": "F",
    "x": [
     2.4,
     6.4
@@ -252,7 +160,7 @@
     2.95,
     6.95
    ],
-   "src": "bottom projection of the EFM8"
+   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc2_c2": {
    "side": "B",
@@ -264,7 +172,7 @@
     -1.25,
     2.75
    ],
-   "src": "bottom projection of the EFM8"
+   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "motor_M4": {
    "side": "F",
@@ -710,18 +618,6 @@
    ],
    "src": "spec \u00a710: TVS / pad bulk"
   },
-  "usb_pogo": {
-   "side": "B",
-   "x": [
-    -3.6,
-    0.6
-   ],
-   "y": [
-    -12.7,
-    -10.9
-   ],
-   "src": "spec \u00a710 (sketch v4)"
-  },
   "osd": {
    "side": "B",
    "x": [
@@ -757,6 +653,67 @@
     12.95
    ],
    "src": "P2: free patch, may cover tented vias"
+  },
+  "esc1_cell": {
+   "side": "F",
+   "x": null,
+   "y": null,
+   "size_mm": [
+    9.9,
+    6.7
+   ],
+   "src": "D56 AGM cell (p2v3/staging/agm/cell, F0): 3 packages inline at 3.30 pitch, motor pads at 2.0 pitch, package centre 4.15 mm from its board edge; ESC1 + ESC3 top, ESC2 + ESC4 bottom (default); position set by floorplan v3 (D61)"
+  },
+  "esc2_cell": {
+   "side": "B",
+   "x": null,
+   "y": null,
+   "size_mm": [
+    9.9,
+    6.7
+   ],
+   "src": "D56 AGM cell (p2v3/staging/agm/cell, F0): 3 packages inline at 3.30 pitch, motor pads at 2.0 pitch, package centre 4.15 mm from its board edge; ESC1 + ESC3 top, ESC2 + ESC4 bottom (default); position set by floorplan v3 (D61)"
+  },
+  "esc3_cell": {
+   "side": "F",
+   "x": null,
+   "y": null,
+   "size_mm": [
+    9.9,
+    6.7
+   ],
+   "src": "D56 AGM cell (p2v3/staging/agm/cell, F0): 3 packages inline at 3.30 pitch, motor pads at 2.0 pitch, package centre 4.15 mm from its board edge; ESC1 + ESC3 top, ESC2 + ESC4 bottom (default); position set by floorplan v3 (D61)"
+  },
+  "esc4_cell": {
+   "side": "B",
+   "x": null,
+   "y": null,
+   "size_mm": [
+    9.9,
+    6.7
+   ],
+   "src": "D56 AGM cell (p2v3/staging/agm/cell, F0): 3 packages inline at 3.30 pitch, motor pads at 2.0 pitch, package centre 4.15 mm from its board edge; ESC1 + ESC3 top, ESC2 + ESC4 bottom (default); position set by floorplan v3 (D61)"
+  },
+  "usb_jst": {
+   "side": "B",
+   "x": null,
+   "y": null,
+   "size_mm": [
+    7.0,
+    4.41
+   ],
+   "src": "D57: J31 BM04B (top entry, mounted on the bottom) at the rear ear between the rear mount and the body, tails toward the edge; U24 + C131 within ~2 mm of J31 pin 4, D7 at pins 2/3; a 6.0 x 2.9 mm column below the board stays free for the plug (6.3 mm mated); floorplan v3 sets the position"
+  },
+  "wifi_ant": {
+   "side": "B",
+   "x": null,
+   "y": null,
+   "size_mm": [
+    5.0,
+    3.2
+   ],
+   "keepout_both_sides_mm2": 16.0,
+   "src": "D58: straight body edge with >= 5.4 mm free (not an ear arc or panel tab), keep-out 5.0 x 3.2 on all layers and both sides (footprint rule area), >= 10 mm from the RX antenna hole, >= 6 mm from the VTX U.FL / PA match / BPF, >= 2 mm from AGM cells, >= 3 mm from wire pads and the PA projection (land spec W1-W11); same side as U16; floorplan v3 sets the site (front edge centre preferred)"
   }
  },
  "parts": [
@@ -860,9 +817,7 @@
     "SHUNT_SENSE_N"
    ],
    "notes": "battery shunt; four-pad Kelvin land with net-tie, sense taps at the inner pad edges (Stackpole HCS app note); SHUNT_CORRIDOR rule area; fallback Yezhan ASR-S-3-0.2F 2512 [PU] (scale 200)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "U1",
@@ -1007,10 +962,7 @@
     "GND"
    ],
    "notes": "5 V boost, 1 MHz forced PWM (MODE = VOUT), always enabled; +5V_BST 5.15 V; >= 2 mm from every FET group (H2); fallback TPS61023DRLR",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "L1",
@@ -1032,9 +984,7 @@
    "silk": null,
    "nets": [],
    "notes": "boost inductor Isat 6.5 A, 17 mOhm; tallest bottom part (second-side support EQ); fallback Coilcraft XGL4040-681 (+10 mm2)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "C7",
@@ -1230,11 +1180,8 @@
     "+5V_BST",
     "+5V"
    ],
-   "notes": "2:1 power mux, priority mode: MODE = VIN1 = +5V_USB, VIN2 = +5V_BST, OUT = +5V; ST open; no cap is planned on +5V_USB: P4-3 checks the datasheet input-capacitor recommendation for VIN1",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "2:1 power mux, priority mode: MODE = VIN1 = +5V_USB, VIN2 = +5V_BST, OUT = +5V; ST open; VIN1 cap C128 at the pin; +5V_USB comes from the SGM40661 OVP switch U24 (D57)",
+   "lib_work": []
   },
   {
    "ref": "R7",
@@ -1333,7 +1280,58 @@
     "+5V_USB",
     "GND"
    ],
-   "notes": "TPS2116 VIN1 (+5V_USB) input cap at the VIN1 pin (spec \u00a74.2, D24); 10 uF X6S 0402 per D52 BR-20 (U3 sits 1.6 mm from FET Q20: X6S)",
+   "notes": "TPS2116 VIN1 (+5V_USB) input cap at the VIN1 pin (spec \u00a74.2, D24); 10 uF X6S 0402 per D52 BR-20 (U3 sat 1.6 mm from an ESC4 FET on the v2 floorplan: X6S); D57: +5V_USB is now the SGM40661 (U24) output, so VIN1 only sees the 2 ms soft turn-on (cap stays at the VIN1 pin per TI \u00a710)",
+   "lib_work": []
+  },
+  {
+   "ref": "U24",
+   "block": "power",
+   "sheet": "power",
+   "value": "SGM40661",
+   "rating": "28V OVP 4A",
+   "manufacturer": "SG Micro",
+   "mpn": "SGM40661YG/TR",
+   "lcsc": null,
+   "package": "WLCSP-6 1.30x0.94 P0.40",
+   "footprint": "lib:WLCSP-6_L1.30-W0.94-P0.40_SGM40661",
+   "symbol": "lib:SGM40661YG",
+   "side": "B",
+   "region": "usb_jst",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "VBUS",
+    "+5V_USB",
+    "GND"
+   ],
+   "notes": "VBUS hot-plug / over-voltage inlet switch (D57): IN = VBUS (A2/B2), OUT = +5V_USB (A1/B1) -> TPS2116 VIN1/MODE (U3) and the PR1 divider (R7); C1 GND, C2 OVLO tied to GND (internal threshold). REV.A: IN 28 V abs max (+40 V surge), trips at 5.75-6.12 V in 80 ns, 15 ms debounce then 2 ms soft turn-on, 27/45 mOhm, -40..85 C. Fixes the plug-in ring at VIN1 (7.25 V typical, 8.9-9.3 V worst case vs 6 V abs max). Within ~2 mm of J31 pin 4; OVLO ball tied to C1 directly; 0.4 mm WLCSP (NextPCB fine-pitch floor 0.38). Not on LCSC (SG Micro: Active); NextPCB turnkey sources it by MPN (D60); fallback (no OVP): 1 uF + 10 R at VIN1 plus a VBUS TVS",
+   "lib_work": []
+  },
+  {
+   "ref": "C131",
+   "block": "power",
+   "sheet": "power",
+   "value": "100nF",
+   "rating": "25V X6S",
+   "manufacturer": "Murata",
+   "mpn": "GRM033C81E104KE14D",
+   "lcsc": "C181047",
+   "package": "0201",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "symbol": "Device:C",
+   "side": "B",
+   "region": "usb_jst",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "VBUS",
+    "GND"
+   ],
+   "notes": "SGM40661 IN cap 100 nF at the IN balls (D57; datasheet characterises the part with CIN = 0.1 uF); simulated hot-plug peak at IN <= 10.8 V (25 V part, 28 V IN rating); also takes ESD charge on VBUS",
    "lib_work": []
   },
   {
@@ -1479,9 +1477,7 @@
     "O4_EN"
    ],
    "notes": "O4 Lite load switch +5V_BST -> +5V_HD (D53 BR-10: ahead of the TPS2116, USB cannot reach the O4 by topology); QOD tied to VOUT; EN = FC GPIO27 AND the cell threshold (R9/R10/R87/C129)",
-   "lib_work": [
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "C16",
@@ -1603,9 +1599,7 @@
     "HD_EN"
    ],
    "notes": "PINIO1 term, anode on O4_EN, cathode on HD_EN (GPIO27): pull-down only; low-leakage PN, not a Schottky (\u00a74.2)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "R11",
@@ -1644,7 +1638,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "B",
+   "side": "F",
    "region": "o4_switch",
    "dnp": false,
    "exclude_from_bom": false,
@@ -1669,7 +1663,7 @@
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_W",
    "symbol": "Device:C",
-   "side": "B",
+   "side": "F",
    "region": "o4_switch",
    "dnp": false,
    "exclude_from_bom": false,
@@ -1704,98 +1698,92 @@
     "+BATT",
     "MOTOR1"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q2",
+   "ref": "Q29",
    "block": "esc1",
    "sheet": "esc_channel (ESC1)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
    "side": "F",
-   "region": "esc1_p",
+   "region": "esc1_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_A",
+    "A_PWM",
     "A_COM"
    ],
-   "notes": "phase A high side P-FET, gate A_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q3",
+   "ref": "Q30",
    "block": "esc1",
    "sheet": "esc_channel (ESC1)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
    "side": "F",
-   "region": "esc1_p",
+   "region": "esc1_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_B",
+    "B_PWM",
     "B_COM"
    ],
-   "notes": "phase B high side P-FET, gate B_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q4",
+   "ref": "Q31",
    "block": "esc1",
    "sheet": "esc_channel (ESC1)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
    "side": "F",
-   "region": "esc1_p",
+   "region": "esc1_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_C",
+    "C_PWM",
     "C_COM"
    ],
-   "notes": "phase C high side P-FET, gate C_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
    "ref": "C19",
@@ -1819,7 +1807,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
+   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
    "lib_work": []
   },
   {
@@ -1869,7 +1857,7 @@
     "PHASE_A",
     "BEMF_A"
    ],
-   "notes": "BEMF series phase A -> comparator input BEMF_A (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase A -> comparator input BEMF_A (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -1894,7 +1882,7 @@
     "PHASE_B",
     "BEMF_B"
    ],
-   "notes": "BEMF series phase B -> comparator input BEMF_B (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase B -> comparator input BEMF_B (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -1919,7 +1907,7 @@
     "PHASE_C",
     "BEMF_C"
    ],
-   "notes": "BEMF series phase C -> comparator input BEMF_C (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase C -> comparator input BEMF_C (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -1944,7 +1932,7 @@
     "PHASE_A",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase A -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
+   "notes": "virtual-neutral star phase A -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -1969,7 +1957,7 @@
     "PHASE_B",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase B -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
+   "notes": "virtual-neutral star phase B -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -1994,169 +1982,7 @@
     "PHASE_C",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase C -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
-   "lib_work": []
-  },
-  {
-   "ref": "Q5",
-   "block": "esc1",
-   "sheet": "esc_channel (ESC1)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc1_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_A",
-    "GND",
-    "A_PWM"
-   ],
-   "notes": "phase A low side N-FET, gate A_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "Q6",
-   "block": "esc1",
-   "sheet": "esc_channel (ESC1)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc1_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_B",
-    "GND",
-    "B_PWM"
-   ],
-   "notes": "phase B low side N-FET, gate B_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "Q7",
-   "block": "esc1",
-   "sheet": "esc_channel (ESC1)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc1_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_C",
-    "GND",
-    "C_PWM"
-   ],
-   "notes": "phase C low side N-FET, gate C_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "C20",
-   "block": "esc1",
-   "sheet": "esc_channel (ESC1)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc1_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge A between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
-   "lib_work": []
-  },
-  {
-   "ref": "C21",
-   "block": "esc1",
-   "sheet": "esc_channel (ESC1)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc1_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge B between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
-   "lib_work": []
-  },
-  {
-   "ref": "C22",
-   "block": "esc1",
-   "sheet": "esc_channel (ESC1)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc1_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge C between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
+   "notes": "virtual-neutral star phase C -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -2171,8 +1997,8 @@
    "package": "0603",
    "footprint": "lib:C_0603_1608Metric_W",
    "symbol": "Device:C",
-   "side": "B",
-   "region": "esc1_n",
+   "side": "F",
+   "region": "esc1_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
@@ -2181,7 +2007,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "ESC local bulk (one per ESC) and EFM8 VDD bulk: <= 3 mm from EFM8 VDD pin 4 (D52 BR-05); X6S -55..105 C",
+   "notes": "ESC local bulk (one per ESC) and the only commutation-loop capacitor (D56, no leg caps): on the pin-side via fields, GND pad on slot L's GND field, +BATT pad on slot M's +BATT field, centred on slot M's P-gate stub at cell (-0.975, -2.50), in-pad vias; 3.4-3.9 mm from EFM8 VDD pin 4 through the In3 plane (BR-05 asks <= 3 mm: critique to confirm); X6S -55..105 C",
    "lib_work": []
   },
   {
@@ -2196,7 +2022,7 @@
    "package": "pad D0.8",
    "footprint": "lib:TestPoint_Pad_D0.8mm",
    "symbol": "Connector:TestPoint",
-   "side": "B",
+   "side": "F",
    "region": "esc1_c2",
    "dnp": false,
    "exclude_from_bom": true,
@@ -2206,9 +2032,7 @@
     "C2D"
    ],
    "notes": "C2D programming / recovery contact; unlabelled (D12, LINEUP B7), documented in the pinout",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "TP2",
@@ -2222,7 +2046,7 @@
    "package": "pad D0.8",
    "footprint": "lib:TestPoint_Pad_D0.8mm",
    "symbol": "Connector:TestPoint",
-   "side": "B",
+   "side": "F",
    "region": "esc1_c2",
    "dnp": false,
    "exclude_from_bom": true,
@@ -2232,9 +2056,7 @@
     "C2CK"
    ],
    "notes": "C2CK (RSTb, internal pull-up only, F12) programming contact; unlabelled (D12)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "U7",
@@ -2248,7 +2070,7 @@
    "package": "QFN-20 3x3",
    "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51",
    "symbol": "lib:EFM8BB51F16I-C-QFN20R",
-   "side": "F",
+   "side": "B",
    "region": "esc2_mcu",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2258,98 +2080,92 @@
     "+BATT",
     "MOTOR2"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q8",
+   "ref": "Q32",
    "block": "esc2",
    "sheet": "esc_channel (ESC2)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
-   "side": "F",
-   "region": "esc2_p",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
+   "side": "B",
+   "region": "esc2_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_A",
+    "A_PWM",
     "A_COM"
    ],
-   "notes": "phase A high side P-FET, gate A_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q9",
+   "ref": "Q33",
    "block": "esc2",
    "sheet": "esc_channel (ESC2)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
-   "side": "F",
-   "region": "esc2_p",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
+   "side": "B",
+   "region": "esc2_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_B",
+    "B_PWM",
     "B_COM"
    ],
-   "notes": "phase B high side P-FET, gate B_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q10",
+   "ref": "Q34",
    "block": "esc2",
    "sheet": "esc_channel (ESC2)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
-   "side": "F",
-   "region": "esc2_p",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
+   "side": "B",
+   "region": "esc2_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_C",
+    "C_PWM",
     "C_COM"
    ],
-   "notes": "phase C high side P-FET, gate C_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
    "ref": "C25",
@@ -2363,7 +2179,7 @@
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_W",
    "symbol": "Device:C",
-   "side": "F",
+   "side": "B",
    "region": "esc2_mcu",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2373,7 +2189,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
+   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
    "lib_work": []
   },
   {
@@ -2388,7 +2204,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc2_mcu",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2413,7 +2229,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc2_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2423,7 +2239,7 @@
     "PHASE_A",
     "BEMF_A"
    ],
-   "notes": "BEMF series phase A -> comparator input BEMF_A (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase A -> comparator input BEMF_A (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -2438,7 +2254,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc2_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2448,7 +2264,7 @@
     "PHASE_B",
     "BEMF_B"
    ],
-   "notes": "BEMF series phase B -> comparator input BEMF_B (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase B -> comparator input BEMF_B (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -2463,7 +2279,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc2_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2473,7 +2289,7 @@
     "PHASE_C",
     "BEMF_C"
    ],
-   "notes": "BEMF series phase C -> comparator input BEMF_C (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase C -> comparator input BEMF_C (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -2488,7 +2304,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc2_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2498,7 +2314,7 @@
     "PHASE_A",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase A -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
+   "notes": "virtual-neutral star phase A -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -2513,7 +2329,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc2_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2523,7 +2339,7 @@
     "PHASE_B",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase B -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
+   "notes": "virtual-neutral star phase B -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -2538,7 +2354,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc2_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -2548,169 +2364,7 @@
     "PHASE_C",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase C -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
-   "lib_work": []
-  },
-  {
-   "ref": "Q11",
-   "block": "esc2",
-   "sheet": "esc_channel (ESC2)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc2_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_A",
-    "GND",
-    "A_PWM"
-   ],
-   "notes": "phase A low side N-FET, gate A_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "Q12",
-   "block": "esc2",
-   "sheet": "esc_channel (ESC2)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc2_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_B",
-    "GND",
-    "B_PWM"
-   ],
-   "notes": "phase B low side N-FET, gate B_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "Q13",
-   "block": "esc2",
-   "sheet": "esc_channel (ESC2)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc2_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_C",
-    "GND",
-    "C_PWM"
-   ],
-   "notes": "phase C low side N-FET, gate C_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "C26",
-   "block": "esc2",
-   "sheet": "esc_channel (ESC2)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc2_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge A between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
-   "lib_work": []
-  },
-  {
-   "ref": "C27",
-   "block": "esc2",
-   "sheet": "esc_channel (ESC2)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc2_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge B between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
-   "lib_work": []
-  },
-  {
-   "ref": "C28",
-   "block": "esc2",
-   "sheet": "esc_channel (ESC2)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc2_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge C between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
+   "notes": "virtual-neutral star phase C -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -2726,7 +2380,7 @@
    "footprint": "lib:C_0603_1608Metric_W",
    "symbol": "Device:C",
    "side": "B",
-   "region": "esc2_n",
+   "region": "esc2_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
@@ -2735,7 +2389,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "ESC local bulk (one per ESC) and EFM8 VDD bulk: <= 3 mm from EFM8 VDD pin 4 (D52 BR-05); X6S -55..105 C",
+   "notes": "ESC local bulk (one per ESC) and the only commutation-loop capacitor (D56, no leg caps): on the pin-side via fields, GND pad on slot L's GND field, +BATT pad on slot M's +BATT field, centred on slot M's P-gate stub at cell (-0.975, -2.50), in-pad vias; 3.4-3.9 mm from EFM8 VDD pin 4 through the In3 plane (BR-05 asks <= 3 mm: critique to confirm); X6S -55..105 C",
    "lib_work": []
   },
   {
@@ -2760,9 +2414,7 @@
     "C2D"
    ],
    "notes": "C2D programming / recovery contact; unlabelled (D12, LINEUP B7), documented in the pinout",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "TP4",
@@ -2786,9 +2438,7 @@
     "C2CK"
    ],
    "notes": "C2CK (RSTb, internal pull-up only, F12) programming contact; unlabelled (D12)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "U8",
@@ -2812,98 +2462,92 @@
     "+BATT",
     "MOTOR3"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q14",
+   "ref": "Q35",
    "block": "esc3",
    "sheet": "esc_channel (ESC3)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
    "side": "F",
-   "region": "esc3_p",
+   "region": "esc3_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_A",
+    "A_PWM",
     "A_COM"
    ],
-   "notes": "phase A high side P-FET, gate A_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q15",
+   "ref": "Q36",
    "block": "esc3",
    "sheet": "esc_channel (ESC3)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
    "side": "F",
-   "region": "esc3_p",
+   "region": "esc3_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_B",
+    "B_PWM",
     "B_COM"
    ],
-   "notes": "phase B high side P-FET, gate B_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q16",
+   "ref": "Q37",
    "block": "esc3",
    "sheet": "esc_channel (ESC3)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
    "side": "F",
-   "region": "esc3_p",
+   "region": "esc3_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_C",
+    "C_PWM",
     "C_COM"
    ],
-   "notes": "phase C high side P-FET, gate C_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
    "ref": "C30",
@@ -2927,7 +2571,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bulk at the pin, ESC3 (kept: gyro 5 mm bulk-MLCC rule, D52 BR-05); 10 uF X6S per BR-20 (conditional on the critique accepting 10 uF at ESC3)",
+   "notes": "EFM8 VDD bulk at the pin, ESC3 (kept: gyro 5 mm bulk-MLCC rule, D52 BR-05); 10 uF X6S per BR-20 (conditional on the critique accepting 10 uF at ESC3); D56: stays with the ESC3 cell (top)",
    "lib_work": []
   },
   {
@@ -2952,7 +2596,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
+   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
    "lib_work": []
   },
   {
@@ -3002,7 +2646,7 @@
     "PHASE_A",
     "BEMF_A"
    ],
-   "notes": "BEMF series phase A -> comparator input BEMF_A (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase A -> comparator input BEMF_A (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3027,7 +2671,7 @@
     "PHASE_B",
     "BEMF_B"
    ],
-   "notes": "BEMF series phase B -> comparator input BEMF_B (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase B -> comparator input BEMF_B (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3052,7 +2696,7 @@
     "PHASE_C",
     "BEMF_C"
    ],
-   "notes": "BEMF series phase C -> comparator input BEMF_C (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase C -> comparator input BEMF_C (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3077,7 +2721,7 @@
     "PHASE_A",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase A -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
+   "notes": "virtual-neutral star phase A -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3102,7 +2746,7 @@
     "PHASE_B",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase B -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
+   "notes": "virtual-neutral star phase B -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3127,169 +2771,7 @@
     "PHASE_C",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase C -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
-   "lib_work": []
-  },
-  {
-   "ref": "Q17",
-   "block": "esc3",
-   "sheet": "esc_channel (ESC3)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc3_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_A",
-    "GND",
-    "A_PWM"
-   ],
-   "notes": "phase A low side N-FET, gate A_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "Q18",
-   "block": "esc3",
-   "sheet": "esc_channel (ESC3)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc3_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_B",
-    "GND",
-    "B_PWM"
-   ],
-   "notes": "phase B low side N-FET, gate B_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "Q19",
-   "block": "esc3",
-   "sheet": "esc_channel (ESC3)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc3_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_C",
-    "GND",
-    "C_PWM"
-   ],
-   "notes": "phase C low side N-FET, gate C_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "C32",
-   "block": "esc3",
-   "sheet": "esc_channel (ESC3)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc3_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge A between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
-   "lib_work": []
-  },
-  {
-   "ref": "C33",
-   "block": "esc3",
-   "sheet": "esc_channel (ESC3)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc3_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge B between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
-   "lib_work": []
-  },
-  {
-   "ref": "C34",
-   "block": "esc3",
-   "sheet": "esc_channel (ESC3)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc3_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge C between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
+   "notes": "virtual-neutral star phase C -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3304,8 +2786,8 @@
    "package": "0603",
    "footprint": "lib:C_0603_1608Metric_W",
    "symbol": "Device:C",
-   "side": "B",
-   "region": "esc3_n",
+   "side": "F",
+   "region": "esc3_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
@@ -3314,7 +2796,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "ESC local bulk (one per ESC); X6S -55..105 C",
+   "notes": "ESC local bulk (one per ESC) and the only commutation-loop capacitor (D56, no leg caps): on the pin-side via fields, GND pad on slot L's GND field, +BATT pad on slot M's +BATT field, centred on slot M's P-gate stub at cell (-0.975, -2.50), in-pad vias; 3.4-3.9 mm from EFM8 VDD pin 4 through the In3 plane (BR-05 asks <= 3 mm: critique to confirm); X6S -55..105 C; ESC3: keep >= 5 mm from the gyro (spec \u00a711 bulk-MLCC rule)",
    "lib_work": []
   },
   {
@@ -3329,7 +2811,7 @@
    "package": "pad D0.8",
    "footprint": "lib:TestPoint_Pad_D0.8mm",
    "symbol": "Connector:TestPoint",
-   "side": "B",
+   "side": "F",
    "region": "esc3_c2",
    "dnp": false,
    "exclude_from_bom": true,
@@ -3339,9 +2821,7 @@
     "C2D"
    ],
    "notes": "C2D programming / recovery contact; unlabelled (D12, LINEUP B7), documented in the pinout",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "TP6",
@@ -3355,7 +2835,7 @@
    "package": "pad D0.8",
    "footprint": "lib:TestPoint_Pad_D0.8mm",
    "symbol": "Connector:TestPoint",
-   "side": "B",
+   "side": "F",
    "region": "esc3_c2",
    "dnp": false,
    "exclude_from_bom": true,
@@ -3365,9 +2845,7 @@
     "C2CK"
    ],
    "notes": "C2CK (RSTb, internal pull-up only, F12) programming contact; unlabelled (D12)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "U9",
@@ -3381,7 +2859,7 @@
    "package": "QFN-20 3x3",
    "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51",
    "symbol": "lib:EFM8BB51F16I-C-QFN20R",
-   "side": "F",
+   "side": "B",
    "region": "esc4_mcu",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3391,98 +2869,92 @@
     "+BATT",
     "MOTOR4"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q20",
+   "ref": "Q38",
    "block": "esc4",
    "sheet": "esc_channel (ESC4)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
-   "side": "F",
-   "region": "esc4_p",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
+   "side": "B",
+   "region": "esc4_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_A",
+    "A_PWM",
     "A_COM"
    ],
-   "notes": "phase A high side P-FET, gate A_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase A half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = A_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = A_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot R (Xc +3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 13/14 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q21",
+   "ref": "Q39",
    "block": "esc4",
    "sheet": "esc_channel (ESC4)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
-   "side": "F",
-   "region": "esc4_p",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
+   "side": "B",
+   "region": "esc4_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_B",
+    "B_PWM",
     "B_COM"
    ],
-   "notes": "phase B high side P-FET, gate B_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase B half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = B_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = B_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot M (Xc 0.00 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 10/11 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
-   "ref": "Q22",
+   "ref": "Q40",
    "block": "esc4",
    "sheet": "esc_channel (ESC4)",
-   "value": "CSD25310Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD25310Q2",
-   "lcsc": "C2871649",
-   "package": "SON-6 2x2",
-   "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
-   "symbol": "lib:CSD25310Q2",
-   "side": "F",
-   "region": "esc4_p",
+   "value": "AGM210MAP",
+   "rating": "20V N+P",
+   "manufacturer": "AGMSEMI",
+   "mpn": "AGM210MAP",
+   "lcsc": "C7431169",
+   "package": "PDFN-8 3.3x3.3 (2 EP)",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "symbol": "lib:AGM210MAP",
+   "side": "B",
+   "region": "esc4_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
     "+BATT",
+    "GND",
     "PHASE_C",
+    "C_PWM",
     "C_COM"
    ],
-   "notes": "phase C high side P-FET, gate C_COM direct from the EFM8 (no gate R). Pinout per datasheet top view (D23): S = pins 1,2,5,6 + exposed pad (+BATT), G = 3, D = 4 (phase); consigned line (\u00a715.3)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "phase C half-bridge, P+N in one package (D56, Matrix II stage; TI CSD25310Q2 + CSD13202Q2 = fallback). DS VER2.73 p1 top view: 1 S1 N-source = GND, 2 G1 N-gate = C_PWM, 3 S2 P-source = +BATT, 4 G2 P-gate = C_COM, 5/6 + EP '5' = P-drain, 7/8 + EP '8' = N-drain; the two drain pads are joined only by the package-side phase island to its motor pad (never split it). Cell slot L (Xc -3.30 mm), rot 270 for a bottom-edge cell, drains toward the motor pads; gates direct from EFM8 pins 8/9 on the package layer (no gate R); 2x2 +BATT and 2x2 GND Type VII vias on the pin side; N 10/14, P 13/20 mOhm typ/max at |VGS| 4.5 V; cell geometry p2v3/staging/agm/cell (F0). LCSC C7431169 (4,690 stock 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
    "ref": "C37",
@@ -3496,7 +2968,7 @@
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_W",
    "symbol": "Device:C",
-   "side": "F",
+   "side": "B",
    "region": "esc4_mcu",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3506,7 +2978,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
+   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
    "lib_work": []
   },
   {
@@ -3521,7 +2993,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc4_mcu",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3546,7 +3018,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc4_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3556,7 +3028,7 @@
     "PHASE_A",
     "BEMF_A"
    ],
-   "notes": "BEMF series phase A -> comparator input BEMF_A (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase A -> comparator input BEMF_A (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3571,7 +3043,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc4_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3581,7 +3053,7 @@
     "PHASE_B",
     "BEMF_B"
    ],
-   "notes": "BEMF series phase B -> comparator input BEMF_B (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase B -> comparator input BEMF_B (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3596,7 +3068,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc4_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3606,7 +3078,7 @@
     "PHASE_C",
     "BEMF_C"
    ],
-   "notes": "BEMF series phase C -> comparator input BEMF_C (tinyPEPPER network; P4-8 checks vs layout A); [PU]",
+   "notes": "BEMF series phase C -> comparator input BEMF_C (tinyPEPPER network; P4-8 checks vs layout A); [PU]; D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3621,7 +3093,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc4_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3631,7 +3103,7 @@
     "PHASE_A",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase A -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
+   "notes": "virtual-neutral star phase A -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3646,7 +3118,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc4_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3656,7 +3128,7 @@
     "PHASE_B",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase B -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
+   "notes": "virtual-neutral star phase B -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3671,7 +3143,7 @@
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_W",
    "symbol": "Device:R",
-   "side": "F",
+   "side": "B",
    "region": "esc4_bemf",
    "dnp": false,
    "exclude_from_bom": false,
@@ -3681,169 +3153,7 @@
     "PHASE_C",
     "NEUTRAL"
    ],
-   "notes": "virtual-neutral star phase C -> NEUTRAL (V_Mux P0.4; tinyPEPPER)",
-   "lib_work": []
-  },
-  {
-   "ref": "Q23",
-   "block": "esc4",
-   "sheet": "esc_channel (ESC4)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc4_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_A",
-    "GND",
-    "A_PWM"
-   ],
-   "notes": "phase A low side N-FET, gate A_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "Q24",
-   "block": "esc4",
-   "sheet": "esc_channel (ESC4)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc4_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_B",
-    "GND",
-    "B_PWM"
-   ],
-   "notes": "phase B low side N-FET, gate B_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "Q25",
-   "block": "esc4",
-   "sheet": "esc_channel (ESC4)",
-   "value": "CSD13202Q2",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "CSD13202Q2",
-   "lcsc": "C187839",
-   "package": "SON-6 2x2 (DQK)",
-   "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
-   "symbol": "lib:CSD13202Q2",
-   "side": "B",
-   "region": "esc4_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PHASE_C",
-    "GND",
-    "C_PWM"
-   ],
-   "notes": "phase C low side N-FET, gate C_PWM. Pinout (SLPS313A): D = pins 1,2,5,6 + pad 8, G = 3, S = 4 + strip; merged-drain land with capped vias in the 0.3 mm pin pads (EQ, \u00a74.3); offset outward from the P (no EP over EP)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "C38",
-   "block": "esc4",
-   "sheet": "esc_channel (ESC4)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc4_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge A between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
-   "lib_work": []
-  },
-  {
-   "ref": "C39",
-   "block": "esc4",
-   "sheet": "esc_channel (ESC4)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc4_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge B between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
-   "lib_work": []
-  },
-  {
-   "ref": "C40",
-   "block": "esc4",
-   "sheet": "esc_channel (ESC4)",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "esc4_n",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "GND"
-   ],
-   "notes": "leg cap half-bridge C between N source (GND) and a P-source +BATT via, loop <= 4 mm2 (\u00a711); X6S -55..105 C (ESC quarters, PA); spec \u00a74.3",
+   "notes": "virtual-neutral star phase C -> NEUTRAL (V_Mux P0.4; tinyPEPPER); D56 cell: BEMF tap from a Type VII via in the AGM D1 EP land, far side through the N-gate channel to the tap vias at cell y -9.4 (layout-A mux interleaves)",
    "lib_work": []
   },
   {
@@ -3859,7 +3169,7 @@
    "footprint": "lib:C_0603_1608Metric_W",
    "symbol": "Device:C",
    "side": "B",
-   "region": "esc4_n",
+   "region": "esc4_cell",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
@@ -3868,7 +3178,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "ESC local bulk (one per ESC) and EFM8 VDD bulk: <= 3 mm from EFM8 VDD pin 4 (D52 BR-05); X6S -55..105 C",
+   "notes": "ESC local bulk (one per ESC) and the only commutation-loop capacitor (D56, no leg caps): on the pin-side via fields, GND pad on slot L's GND field, +BATT pad on slot M's +BATT field, centred on slot M's P-gate stub at cell (-0.975, -2.50), in-pad vias; 3.4-3.9 mm from EFM8 VDD pin 4 through the In3 plane (BR-05 asks <= 3 mm: critique to confirm); X6S -55..105 C",
    "lib_work": []
   },
   {
@@ -3893,9 +3203,7 @@
     "C2D"
    ],
    "notes": "C2D programming / recovery contact; unlabelled (D12, LINEUP B7), documented in the pinout",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "TP8",
@@ -3919,9 +3227,7 @@
     "C2CK"
    ],
    "notes": "C2CK (RSTb, internal pull-up only, F12) programming contact; unlabelled (D12)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "U10",
@@ -3942,7 +3248,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "[PU] FC MCU, 2 MB in-package flash; consigned (not on HQ Online, \u00a715.3); EP Type VII via-in-pad",
+   "notes": "[PU] FC MCU, 2 MB in-package flash; NextPCB turnkey sources it by MPN (D60); EP Type VII via-in-pad",
    "lib_work": []
   },
   {
@@ -4435,7 +3741,7 @@
    "nets": [
     "USB_D_P"
    ],
-   "notes": "USB_DP series near pin 52 -> pogo D+ (net USB_D_P)",
+   "notes": "USB_DP series near pin 52 -> J31 pin 3 D+ through the D7 ESD array (net USB_D_P); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design \u00a75.1), 90 Ohm diff pair over unbroken ground, length-matched (D33)",
    "lib_work": []
   },
   {
@@ -4459,7 +3765,7 @@
    "nets": [
     "USB_D_N"
    ],
-   "notes": "USB_DM series near pin 51 -> pogo D- (net USB_D_N)",
+   "notes": "USB_DM series near pin 51 -> J31 pin 2 D- through the D7 ESD array (net USB_D_N); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design \u00a75.1), 90 Ohm diff pair over unbroken ground, length-matched (D33)",
    "lib_work": []
   },
   {
@@ -4707,9 +4013,7 @@
     "+1V8"
    ],
    "notes": "+1V8 gyro LDO from +3V3 (EN = +3V3); same side as the gyro; fallback LP5912-1.8DRVR [PU]",
-   "lib_work": [
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "C61",
@@ -4803,10 +4107,7 @@
     "FLASH_CS"
    ],
    "notes": "16 MB blackbox NOR on SPI0; exposed metal pad not connected internally -> footprint without centre copper/paste, vias under the body tented (\u00a74.9); 105 C 'JVPIQ'/'J' grade if the O17 quote stocks it; >= 3 mm from the RX antenna hole",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "C65",
@@ -5153,14 +4454,14 @@
    "ref": "U16",
    "block": "rx",
    "sheet": "rx_esp32_sx1281",
-   "value": "ESP32-D0WD-V3",
+   "value": "ESP32-PICO-V3",
    "rating": null,
    "manufacturer": "Espressif",
-   "mpn": "ESP32-D0WD-V3",
-   "lcsc": "C967021",
-   "package": "QFN-48 5x5 P0.35",
-   "footprint": "lib:QFN-48_5x5mm_P0.35mm_EP_ESP32-D0WD",
-   "symbol": "lib:ESP32-D0WD-V3",
+   "mpn": "ESP32-PICO-V3",
+   "lcsc": "C967022",
+   "package": "LGA-48 7x7",
+   "footprint": "lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO",
+   "symbol": "lib:ESP32-PICO-V3",
    "side": "B",
    "region": "rx_mcu",
    "dnp": false,
@@ -5168,107 +4469,107 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "ELRS RX MCU + VTX control (devVTXSPI/MSPVTX); 0.35 mm pitch outside NextPCB 0.38 mm: EQ O15 before P2; 0.18 mm pads, ganged mask per side, D21 rule esp32_ganged_mask; consigned/quote (\u00a715.3); fallback ESP32-PICO-V3 (+13-17 mm2, 85 C) | BR-01 P2 trial failed (FLOORPLAN.md, BOM reduction): no ESP32-PICO-V3 site >= 2 mm from the FET groups and outside the PA keep-out on either side; D52 fallback \u00a75.1 keeps this part (fine-pitch EQ and ganged mask stay for it, D53), with CAP1 C130 X7R",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "U17",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "GD25Q32EEIGR",
-   "rating": null,
-   "manufacturer": "GigaDevice",
-   "mpn": "GD25Q32EEIGR",
-   "lcsc": "C2973794",
-   "package": "USON-8 3x2 P0.5",
-   "footprint": "lib:USON-8_3x2mm_P0.5mm_EP_GD25Q32E",
-   "symbol": "lib:GD25Q32EEIGR",
-   "side": "B",
-   "region": "rx_flash",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [],
-   "notes": "ESP32 program flash 32 Mbit, I grade (85 C): placed outside the PA keep-out (x 4.32..12.72, y -13.4..-5.0) and >= 2 mm from every FET group (D52 \u00a75.1 RV-0b); on VDD_SDIO (3.3 V eFuse at first flash)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
-  },
-  {
-   "ref": "X2",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "40MHz",
-   "rating": null,
-   "manufacturer": "JSCJ",
-   "mpn": "CJ17-400001010B20",
-   "lcsc": "C2875272",
-   "package": "1612",
-   "footprint": "lib:CRYSTAL-SMD_4P-L1.6-W1.2-BL_Dense",
-   "symbol": "OpenDrone:CJ17-400001010B20",
-   "side": "B",
-   "region": "rx_xtal",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [],
-   "notes": "[PU] ESP32 crystal; operating range not listed (P3 reads the datasheet, swap if < 85 C)",
+   "notes": "ELRS RX MCU + VTX control (devVTXSPI/MSPVTX); SiP with 4 MB flash, 40 MHz crystal and CAP network inside (D52 BR-01); -40..85 C, so >= 2 mm outside the PA projection and >= 2 mm from every FET group (H1/H3, P2 trial); alternate ESP32-PICO-V3-02; pins per PINMAP \u00a76 (vtx_mosi GPIO14, vtx_amp_pwm GPIO13, D53); 0.5 mm pitch, no fine-pitch EQ; D58: LNA_IN (pin 2) -> RF_WIFI 50 Ohm CPW (<= 8 mm) -> pi network C133 / R88 / C132 -> AE2 chip antenna; stock ELRS auto Wi-Fi (D25 --no-auto-wifi reversed); Wi-Fi TX peak 370 mA (DS Table 19) vs the shared LP5912 budget: P4 decides",
    "lib_work": []
   },
   {
-   "ref": "C71",
+   "ref": "C133",
    "block": "rx",
    "sheet": "rx_esp32_sx1281",
-   "value": "15pF",
+   "value": "1.2pF",
    "rating": "50V C0G",
    "manufacturer": "Murata",
-   "mpn": "GRM0335C1H150JA01D",
-   "lcsc": "C85891",
+   "mpn": "GRM0335C1H1R2BA01D",
+   "lcsc": "C85895",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_W",
    "symbol": "Device:C",
    "side": "B",
-   "region": "rx_xtal",
+   "region": "wifi_ant",
+   "dnp": true,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "RF_WIFI",
+    "GND"
+   ],
+   "notes": "Wi-Fi pi network shunt, PICO side (D58): DNP in rev1; value from tuning on the first boards (VNA at the feed tongue or Johanson's tuning service), house GRM0335C1H C0G family; 1.2 pF = OpenRX-Lite placeholder. The PICO matches LNA_IN to 50 Ohm inside (DS Fig. 8), so the network only tunes the antenna",
+   "lib_work": []
+  },
+  {
+   "ref": "R88",
+   "block": "rx",
+   "sheet": "rx_esp32_sx1281",
+   "value": "0R",
+   "rating": "jumper",
+   "manufacturer": "Yageo",
+   "mpn": "RC0201JR-070RL",
+   "lcsc": null,
+   "package": "0201",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "symbol": "Device:R",
+   "side": "B",
+   "region": "wifi_ant",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "XTAL_P",
-    "GND"
+    "RF_WIFI",
+    "RF_WIFI_ANT"
    ],
-   "notes": "XTAL_P load (house value; P4 from CL); [PU]",
+   "notes": "Wi-Fi pi network series element (D58): 0 R fitted in rev1, within 1 mm of the antenna keep-out; after tuning (V7) a Murata LQP03TN*02D 0201 inductor (OpenRX-Lite: LQP03TN2N5C02D) or keep 0 R",
    "lib_work": []
   },
   {
-   "ref": "C72",
+   "ref": "C132",
    "block": "rx",
    "sheet": "rx_esp32_sx1281",
-   "value": "15pF",
+   "value": "1.2pF",
    "rating": "50V C0G",
    "manufacturer": "Murata",
-   "mpn": "GRM0335C1H150JA01D",
-   "lcsc": "C85891",
+   "mpn": "GRM0335C1H1R2BA01D",
+   "lcsc": "C85895",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_W",
    "symbol": "Device:C",
    "side": "B",
-   "region": "rx_xtal",
+   "region": "wifi_ant",
+   "dnp": true,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "RF_WIFI_ANT",
+    "GND"
+   ],
+   "notes": "Wi-Fi pi network shunt, antenna side (D58): DNP in rev1; value from tuning (see C133)",
+   "lib_work": []
+  },
+  {
+   "ref": "AE2",
+   "block": "rx",
+   "sheet": "rx_esp32_sx1281",
+   "value": "2450AT07A0100001T",
+   "rating": "2.4 GHz chip antenna",
+   "manufacturer": "Johanson Technology",
+   "mpn": "2450AT07A0100001T",
+   "lcsc": null,
+   "package": "1.0x0.5x0.37 (0402) 4-term",
+   "footprint": "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2",
+   "symbol": "lib:2450AT07A0100001T",
+   "side": "B",
+   "region": "wifi_ant",
    "dnp": false,
    "exclude_from_bom": false,
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "XTAL_N",
+    "RF_WIFI_ANT",
     "GND"
    ],
-   "notes": "XTAL_N load; [PU]",
+   "notes": "ELRS Wi-Fi chip antenna (D58; legacy PN 2450AT07A0100T): pins 1/4 FEED = RF_WIFI_ANT, 2/3 GND; mid-edge mount, body perpendicular to the edge, GND pads toward it; footprint carries the 5.0 x 3.2 mm keep-out (all copper layers, both sides: 16 mm2 per side) and needs DRU rule 'D21 wifi_antenna_edge_strip' (land spec JSON); Johanson Rev 4.0: 58 % on 40x20 mm, expect 20-35 % here (-8 to -12 dBi in the frame); rated -40..85 C (part page). Not on LCSC; Johanson Active, 17-week lead; NextPCB turnkey sources it by MPN (D60)",
    "lib_work": []
   },
   {
@@ -5293,7 +4594,7 @@
     "RX_EN",
     "+3V3"
    ],
-   "notes": "CHIP_PU pull-up (never floating); [PU]",
+   "notes": "CHIP_PU (EN, pin 9) pull-up (never floating)",
    "lib_work": []
   },
   {
@@ -5318,57 +4619,7 @@
     "RX_EN",
     "GND"
    ],
-   "notes": "CHIP_PU delay cap; [PU]",
-   "lib_work": []
-  },
-  {
-   "ref": "C74",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": "C181047",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "rx_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+3V3",
-    "GND"
-   ],
-   "notes": "VDDA pin 1; [PU]",
-   "lib_work": []
-  },
-  {
-   "ref": "C75",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": "C181047",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "rx_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+3V3",
-    "GND"
-   ],
-   "notes": "VDDA pins 43/46; [PU]",
+   "notes": "CHIP_PU (EN, pin 9) delay cap",
    "lib_work": []
   },
   {
@@ -5393,107 +4644,7 @@
     "+3V3",
     "GND"
    ],
-   "notes": "VDD3P3 pins 3/4 (RF analog); [PU]",
-   "lib_work": []
-  },
-  {
-   "ref": "C78",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": "C181047",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "rx_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+3V3",
-    "GND"
-   ],
-   "notes": "VDD3P3_RTC pin 19; [PU]",
-   "lib_work": []
-  },
-  {
-   "ref": "C79",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": "C181047",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "rx_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+3V3",
-    "GND"
-   ],
-   "notes": "VDD3P3_CPU pin 37; [PU]",
-   "lib_work": []
-  },
-  {
-   "ref": "C80",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "1uF",
-   "rating": "10V X5R",
-   "manufacturer": "Murata",
-   "mpn": "GRM033R61A105ME44D",
-   "lcsc": "C76935",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "rx_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "VDD_SDIO",
-    "GND"
-   ],
-   "notes": "VDD_SDIO pin 26 (powers the flash at 3.3 V); [PU]",
-   "lib_work": []
-  },
-  {
-   "ref": "C81",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": "C181047",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "rx_flash",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "VDD_SDIO",
-    "GND"
-   ],
-   "notes": "GD25Q32 VCC; [PU]",
+   "notes": "VDDA3P3 pins 3/4 (RF analog) 100 nF, Espressif PICO Fig. 11 (D52 BR-01 keeps it)",
    "lib_work": []
   },
   {
@@ -5518,60 +4669,8 @@
     "+3V3",
     "GND"
    ],
-   "notes": "+3V3 bulk at the ESP32 (sits partly under the PA: X6S); X6S -55..105 C, one 10 uF line for the whole board (spec \u00a74.8)",
+   "notes": "+3V3 bulk 10 uF at the ESP32-PICO VDDA3P3 pins 3/4 (Espressif PICO Fig. 11; D52 BR-01 keeps it); X6S, one 10 uF line for the whole board",
    "lib_work": []
-  },
-  {
-   "ref": "C130",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "10nF",
-   "rating": "10V X7R",
-   "manufacturer": "Murata",
-   "mpn": "GRM033R71A103KA01D",
-   "lcsc": "C76941",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "rx_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "ESP_CAP1",
-    "GND"
-   ],
-   "notes": "ESP32 CAP1 pin 48 to GND, X7R (Espressif: required for proper operation; U16 in the PA projection)",
-   "lib_work": []
-  },
-  {
-   "ref": "R57",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "51R",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0402FR-0751RL",
-   "lcsc": null,
-   "package": "0402",
-   "footprint": "lib:R_0402_1005Metric",
-   "symbol": "Device:R",
-   "side": "B",
-   "region": "rx_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "RF_WIFI",
-    "GND"
-   ],
-   "notes": "LNA_IN 51 R dummy load to GND: no Wi-Fi radiator (D18 lever 2, F9); ELRS flashed --no-auto-wifi; 0402 for 63 mW",
-   "lib_work": [
-    "footprint"
-   ]
   },
   {
    "ref": "D4",
@@ -5643,9 +4742,7 @@
    "silk": null,
    "nets": [],
    "notes": "2.4 GHz radio, LDO mode (no DC-DC inductor); SX1281 per D52 BR-25 (SX1280IMLTRT drop-in alternate, ELRS uses no ranging); pin 5 = GND per the spec fix",
-   "lib_work": [
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "X3",
@@ -5913,9 +5010,7 @@
     "RF_RX_ANT"
    ],
    "notes": "RX antenna: insulated lambda/4 wire (~28-29 mm, trimmed to resonance in V7) in a plated D0.5 hole at (-12.3, +6.5); copper keepout r 1.6 mm on L1-L5 (L6 admits the feed), part keepout r 3.0 at the bottom exit; named AE* for the D21 rule rx_antenna_hole",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "U19",
@@ -5938,11 +5033,8 @@
    "nets": [
     "+3V3_VTX"
    ],
-   "notes": "5.8 GHz FM synthesiser (or RTC6705A); 0 authorised stock: consigned traceable broker line with incoming test (reg 0x00 = 0x0190, \u00a715.3); copy land/symbol from OpenVTX lib (QFN-40_L6.0-W6.0-P0.50-BL-EP); NC pads 1-4,12-16,18,34,36,37 may be trimmed (pin 17 stays), EP never; PAOUT1 (pin 35) faces the PA; on +3V3_VTX",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "5.8 GHz FM synthesiser (or RTC6705A); NextPCB turnkey sources it by MPN (D60), genuine part with an incoming test (reg 0x00 = 0x0190); copy land/symbol from OpenVTX lib (QFN-40_L6.0-W6.0-P0.50-BL-EP); NC pads 1-4,12-16,18,34,36,37 may be trimmed (pin 17 stays), EP never; PAOUT1 (pin 35) faces the PA; on +3V3_VTX",
+   "lib_work": []
   },
   {
    "ref": "X4",
@@ -5964,9 +5056,7 @@
    "silk": null,
    "nets": [],
    "notes": "exactly 8 MHz (ELRS R = 400 fixed); -40..85 C; no 2520 8 MHz found (P3 searches); copy fp from OpenVTX lib; fallback YXC X322508MSB4SI; >= 3 mm from ESC4 copper (N1)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "C94",
@@ -6592,11 +5682,8 @@
     "RF_PA_IN",
     "RF_PA_OUT"
    ],
-   "notes": "5 GHz PA on the cell (VCC 3.0-5.5 V), integrated input/output match and detector; rotated: VCC sides left/right, RFin down, RFout to the top edge; SP1/SP2 open; consigned (\u00a715.3); fallback QPA9501TR13 same footprint",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "notes": "5 GHz PA on the cell (VCC 3.0-5.5 V), integrated input/output match and detector; rotated: VCC sides left/right, RFin down, RFout to the top edge; SP1/SP2 open; NextPCB turnkey sources it by MPN (D60); fallback QPA9501TR13 same footprint",
+   "lib_work": []
   },
   {
    "ref": "C111",
@@ -6868,10 +5955,7 @@
    "silk": null,
    "nets": [],
    "notes": "harmonic BPF, -40..85 C, on the PA side away from the PA body; power handling at 0.71 W asked (O7); fallback TDK DEA165538BT-2263A1-H",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J1",
@@ -6896,9 +5980,7 @@
     "GND"
    ],
    "notes": "[PU] VTX antenna connector, -40..90 C; L2 cut out under the signal pad (RF_PAD_CUTOUT), >= 4 GND vias on the tabs; the OpenDrone symbol defaults to RF-SMD_FRF05002-JSS103M, which is not the Hirose land",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "R67",
@@ -6924,10 +6006,7 @@
     "+5V"
    ],
    "notes": "PA VCC selector: one 0402 0 R between the centre (PA_VCC) and +BATT (default) or +5V; a single 0402 cannot bridge both sides (\u00a74.2)",
-   "lib_work": [
-    "footprint",
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "U21",
@@ -7026,9 +6105,7 @@
     "PA_EN"
    ],
    "notes": "switched 2.85 V +/-2 % PA reference -> SE5004L VREF/EN, input +3V3_VTX (D53 BR-03), EN = PA_EN straight from GPIO2 (internal 1 M pull-down, BR-12), active discharge; V5 qualifies",
-   "lib_work": [
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "C122",
@@ -7126,9 +6203,7 @@
     "PA_DRV_C"
    ],
    "notes": "PA drive stage, one PNP in current mode (D52 BR-02, spec \u00a74.8): base from the 2-pole RC, emitter through Re (R73) to +3V3_VTX, collector -> R65 -> L3 -> PAOUT1; SOT883 on the shared DFN-3L land (pin 1 B, 2 E, 3 C)",
-   "lib_work": [
-    "symbol"
-   ]
+   "lib_work": []
   },
   {
    "ref": "R71",
@@ -7350,7 +6425,7 @@
    "nets": [
     "VTX_SPI.DATA"
    ],
-   "notes": "VTX_SPI.DATA series at ESP32 GPIO18: no back-power of the unpowered RTC6705 (F21, P4-4)",
+   "notes": "VTX_SPI.DATA series at ESP32 GPIO14 (pin 17, D53): no back-power of the unpowered RTC6705 (F21, P4-4)",
    "lib_work": []
   },
   {
@@ -7401,9 +6476,7 @@
     "+3V3"
    ],
    "notes": "[PU] status LED0 (GPIO7, sink from +3V3); house colour kept at 0402 (\u00a74.5)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "D6",
@@ -7428,9 +6501,7 @@
     "+3V3"
    ],
    "notes": "[PU] status LED1 (GPIO26, sink from +3V3)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "R85",
@@ -7502,9 +6573,7 @@
     "+BATT_IN"
    ],
    "notes": "battery + (BT2.0 pigtail, 22 AWG, user-fitted); plated D1.1 in a 3.0 x 2.0 pad, >= 12 power vias (0.40/0.20); silk '+' 2.0 mm high and '1S' beside (\u00a713); docs alias B+; LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J3",
@@ -7528,9 +6597,7 @@
     "GND"
    ],
    "notes": "battery - ; silk '-' 2.0 mm, ASCII hyphen-minus; docs alias B-; LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J4",
@@ -7554,9 +6621,7 @@
     "/ESC1/PHASE_A"
    ],
    "notes": "motor M1 phase A solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M1' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J5",
@@ -7580,9 +6645,7 @@
     "/ESC1/PHASE_B"
    ],
    "notes": "motor M1 phase B solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M1' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J6",
@@ -7606,9 +6669,7 @@
     "/ESC1/PHASE_C"
    ],
    "notes": "motor M1 phase C solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M1' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J7",
@@ -7632,9 +6693,7 @@
     "/ESC2/PHASE_A"
    ],
    "notes": "motor M2 phase A solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M2' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J8",
@@ -7658,9 +6717,7 @@
     "/ESC2/PHASE_B"
    ],
    "notes": "motor M2 phase B solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M2' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J9",
@@ -7684,9 +6741,7 @@
     "/ESC2/PHASE_C"
    ],
    "notes": "motor M2 phase C solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M2' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J10",
@@ -7710,9 +6765,7 @@
     "/ESC3/PHASE_A"
    ],
    "notes": "motor M3 phase A solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M3' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J11",
@@ -7736,9 +6789,7 @@
     "/ESC3/PHASE_B"
    ],
    "notes": "motor M3 phase B solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M3' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J12",
@@ -7762,9 +6813,7 @@
     "/ESC3/PHASE_C"
    ],
    "notes": "motor M3 phase C solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M3' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J13",
@@ -7788,9 +6837,7 @@
     "/ESC4/PHASE_A"
    ],
    "notes": "motor M4 phase A solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M4' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J14",
@@ -7814,9 +6861,7 @@
     "/ESC4/PHASE_B"
    ],
    "notes": "motor M4 phase B solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M4' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J15",
@@ -7840,9 +6885,7 @@
     "/ESC4/PHASE_C"
    ],
    "notes": "motor M4 phase C solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M4' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J16",
@@ -7866,9 +6909,7 @@
     "PIOUART0_TX"
    ],
    "notes": "user UART TX (PIOUART0, GPIO2; D16); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J17",
@@ -7892,9 +6933,7 @@
     "PIOUART0_RX"
    ],
    "notes": "user UART RX (PIOUART0, GPIO3; SBUS-in inverted for a DJI remote); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J18",
@@ -7918,9 +6957,7 @@
     "+5V"
    ],
    "notes": "user 5 V (also the LED-strip 5 V, D14 pad trimming); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J19",
@@ -7944,9 +6981,7 @@
     "GND"
    ],
    "notes": "user GND (also the LED-strip GND); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J20",
@@ -7970,9 +7005,7 @@
     "LED_STRIP"
    ],
    "notes": "WS2812 strip data from the 74LVC1T45 (VCCB side); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J21",
@@ -7996,9 +7029,7 @@
     "+5V"
    ],
    "notes": "buzzer + (+5V); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J22",
@@ -8022,9 +7053,7 @@
     "BUZZER-"
    ],
    "notes": "buzzer - (AP1606 drain); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J23",
@@ -8048,9 +7077,7 @@
     "VIDEO_IN"
    ],
    "notes": "camera CVBS in; camera return enters L2 at the CAM GND pad (\u00a711); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J24",
@@ -8074,9 +7101,7 @@
     "+5V_CAM"
    ],
    "notes": "camera 5 V after the ferrite; LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J25",
@@ -8100,9 +7125,7 @@
     "GND"
    ],
    "notes": "camera GND (video return); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J26",
@@ -8126,9 +7149,7 @@
     "+5V_HD"
    ],
    "notes": "DJI O4 Lite supply (red) from the TPS22810; LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J27",
@@ -8152,9 +7173,7 @@
     "GND"
    ],
    "notes": "O4 GND (black + brown); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J28",
@@ -8178,9 +7197,7 @@
     "UART1_TX"
    ],
    "notes": "UART1 TX -> O4 RX (white), MSP DisplayPort; LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "J29",
@@ -8204,38 +7221,60 @@
     "UART1_RX"
    ],
    "notes": "UART1 RX <- O4 TX (grey); yellow unconnected; LINEUP A16: excluded from BOM, DNP",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
-   "ref": "J30",
+   "ref": "J31",
    "block": "io",
    "sheet": "pads",
-   "value": "USB pogo",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "4 pads 1.0x1.0 + NPTH D0.8/D1.1",
-   "footprint": "lib:USB_Pogo_4x1.0mm_NPTH0.8_1.1",
-   "symbol": "Connector_Generic:Conn_01x04",
+   "value": "USB",
+   "rating": "JST SH 1.0 4P",
+   "manufacturer": "JST",
+   "mpn": "BM04B-SRSS-TB(LF)(SN)",
+   "lcsc": "C160390",
+   "package": "SH 1.0 mm 4-pin top entry SMD",
+   "footprint": "lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB",
+   "symbol": "lib:BM04B-SRSS-TB",
    "side": "B",
-   "region": "usb_pogo",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
+   "region": "usb_jst",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
    "silk": "USB",
+   "nets": [
+    "GND",
+    "USB_D_N",
+    "USB_D_P",
+    "VBUS"
+   ],
+   "notes": "USB on the JST SH 1.0 mm 4-pin header (D57; Matrix 1S 5IN1 II / Crazy G473 part and spot: vertical, bottom side, rear ear; no board edge needed). Pin 1 GND, 2 D- (USB_D_N), 3 D+ (USB_D_P), 4 VBUS, tabs 5/6 GND: BetaFPV 'USB(GND DM DP 5V)' order, GND on JST circuit 1 inferred from the Matrix II photo (continuity check with a BetaFPV Type-C to SH1.0 adapter on prototype 1). A reversed cable puts -5 V on VBUS (unprotected, as on the Matrix). Silk: connector name 'USB' + pin-1 mark, no component silk. Staged alternate SM04B-SRSS-TB(LF)(SN) side entry (lib:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN, OpenFC-Lite part, needs a board edge): owner choice. NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
+  },
+  {
+   "ref": "D7",
+   "block": "io",
+   "sheet": "pads",
+   "value": "TPD2EUSB30",
+   "rating": "5.5V 0.7pF",
+   "manufacturer": "Texas Instruments",
+   "mpn": "TPD2EUSB30DRTR",
+   "lcsc": "C97502",
+   "package": "SOT-9X3-3 (DRT) 1.0x0.8",
+   "footprint": "lib:TI_SOT-9X3-3_DRT",
+   "symbol": "lib:TPD2EUSB30DRTR",
+   "side": "B",
+   "region": "usb_jst",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
    "nets": [
     "USB_D_P",
     "USB_D_N",
-    "+5V_USB",
     "GND"
    ],
-   "notes": "USB on 4 ENIG pogo pads (D+, D-, +5V_USB, GND) + NPTH D0.8 at (-3.2,-11.8) and D1.1 at (-1.7,-11.8) for a one-way clip-on adapter (D18, O3); silk 'USB' with a pin-1 mark; same contacts as the production fixture",
-   "lib_work": [
-    "footprint"
-   ]
+   "notes": "USB D+/D- ESD at J31 pins 2/3, ahead of R42/R43 (D57): pin 1 USB_D_P, 2 USB_D_N, 3 GND via-in-pad; SLVSAC2G: 5.5 V standoff (survives D+/D- at 5 V), 8 V clamp at 1 A, 0.7 pF, IEC 61000-4-2 +-8 kV contact; first part to cut under the lean rule if v3 is short of area; NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
   },
   {
    "ref": "TP9",
@@ -8259,9 +7298,7 @@
     "BOOT"
    ],
    "notes": "RP2354A boot (QSPI_SS via 1 k), next to the GND pad; LINEUP A16: out of the BOM",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "TP10",
@@ -8285,9 +7322,7 @@
     "GND"
    ],
    "notes": "GND for FCB/RXB and the fixture; LINEUP A16: out of the BOM",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "TP11",
@@ -8311,9 +7346,7 @@
     "RX_BOOT"
    ],
    "notes": "ESP32 GPIO0 download strap (internal pull-up); LINEUP A16: out of the BOM",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "TP12",
@@ -8337,9 +7370,7 @@
     "SWCLK"
    ],
    "notes": "RP2354A SWD clock; LINEUP A16: out of the BOM",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "TP13",
@@ -8363,9 +7394,7 @@
     "SWDIO"
    ],
    "notes": "RP2354A SWD data; LINEUP A16: out of the BOM",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "H1",
@@ -8387,9 +7416,7 @@
    "silk": null,
    "nets": [],
    "notes": "ear hole at (-12.875, -12.875): Edge.Cuts circle D3.5 (non-plated) in P1 with a D5.2 grommet-flange part keepout both sides (MOUNT_* rule areas); plated with a GND annulus is the P2 candidate (O16)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "H2",
@@ -8411,9 +7438,7 @@
    "silk": null,
    "nets": [],
    "notes": "ear hole at (-12.875, 12.875): Edge.Cuts circle D3.5 (non-plated) in P1 with a D5.2 grommet-flange part keepout both sides (MOUNT_* rule areas); plated with a GND annulus is the P2 candidate (O16)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "H3",
@@ -8435,9 +7460,7 @@
    "silk": null,
    "nets": [],
    "notes": "ear hole at (12.875, 12.875): Edge.Cuts circle D3.5 (non-plated) in P1 with a D5.2 grommet-flange part keepout both sides (MOUNT_* rule areas); plated with a GND annulus is the P2 candidate (O16)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   },
   {
    "ref": "LOGO1",
@@ -8459,9 +7482,7 @@
    "silk": null,
    "nets": [],
    "notes": "incutec logo on B.Silkscreen from the shipped 8-polygon artwork (LINEUP B3); product name OPEN/AIO/WHOOP (2.0 mm rows) and REV1 are Tokyo silk text, not footprints; board-only footprint (no symbol, KiCad 'board only' attribute so schematic parity ignores it)",
-   "lib_work": [
-    "footprint"
-   ]
+   "lib_work": []
   }
  ],
  "groups": [
@@ -8473,28 +7494,25 @@
     "esc3",
     "esc4"
    ],
-   "description": "ESC channel x4: EFM8BB51 (I grade) QFN-20 land with EP vias and optional trimmed unused pins, TI CSD25310Q2 P-FET and CSD13202Q2 N-FET SON 2x2 lands from the datasheets (merged-drain DQK land, pinouts per D23)",
+   "description": "ESC channel x4 (D56): EFM8BB51 (I grade) QFN-20 land with EP vias, three AGMSEMI AGM210MAP P+N half-bridges per motor (PDFN-8 3.3x3.3, two drain EPs joined by the phase island), single-sided cells (ESC1/ESC3 top, ESC2/ESC4 bottom), no leg caps; TI CSD25310Q2 + CSD13202Q2 library parts kept as the fallback",
    "lib_items": [
-    "lib:CSD13202Q2",
-    "lib:CSD25310Q2",
+    "lib:AGM210MAP",
+    "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
     "lib:C_0201_0603Metric_W",
     "lib:C_0402_1005Metric_W",
     "lib:C_0603_1608Metric_W",
     "lib:EFM8BB51F16I-C-QFN20R",
     "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51",
     "lib:R_0201_0603Metric_W",
-    "lib:TI_SON-6_2x2mm_CSD25310Q2",
-    "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
     "lib:TestPoint_Pad_D0.8mm"
    ],
    "parts": [
     "EFM8BB51F16I-C-QFN20R [lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 + lib:EFM8BB51F16I-C-QFN20R] refs U6,U7,U8,U9",
-    "CSD25310Q2 [lib:TI_SON-6_2x2mm_CSD25310Q2 + lib:CSD25310Q2] refs Q2,Q3,Q4,Q8,Q9,Q10,Q14,Q15,Q16,Q20,Q21,Q22",
-    "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C19,C20,C21,C22,C25,C26,C27,C28,C31,C32,C33,C34,C37,C38,C39,C40",
+    "AGM210MAP [lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP + lib:AGM210MAP] refs Q29,Q30,Q31,Q32,Q33,Q34,Q35,Q36,Q37,Q38,Q39,Q40",
+    "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C19,C25,C31,C37",
     "RTT012401FTH [lib:R_0201_0603Metric_W] refs R12,R19,R26,R33",
     "RC0201FR-0710KL [lib:R_0201_0603Metric_W] refs R13,R14,R15,R20,R21,R22,R27,R28,R29,R34,R35,R36",
     "RC0201FR-071KL [lib:R_0201_0603Metric_W] refs R16,R17,R18,R23,R24,R25,R30,R31,R32,R37,R38,R39",
-    "CSD13202Q2 [lib:TI_SON-6_2x2mm_DQK_CSD13202Q2 + lib:CSD13202Q2] refs Q5,Q6,Q7,Q11,Q12,Q13,Q17,Q18,Q19,Q23,Q24,Q25",
     "GRM188C80J226ME15D [lib:C_0603_1608Metric_W] refs C23,C29,C35,C41",
     "(no MPN) lib:TestPoint_Pad_D0.8mm [lib:TestPoint_Pad_D0.8mm] refs TP1,TP2,TP3,TP4,TP5,TP6,TP7,TP8",
     "GRM155C80J106ME11D [lib:C_0402_1005Metric_W] refs C30"
@@ -8550,39 +7568,36 @@
    "blocks": [
     "rx"
    ],
-   "description": "RX: ESP32-D0WD-V3 symbol + QFN-48 0.35 mm land (ganged mask), GD25Q32EEIGR symbol + USON-8 land, SX1280 symbol (from SX1281, pin 5 GND), 0402 resistor land (TCXO, LPF, 40 MHz crystal, RGB LED already in OpenDrone)",
+   "description": "RX (D52/D55/D58): ESP32-PICO-V3 SiP (LGA-48 7x7, in-package flash, crystal and match), SX1281, 52 MHz TCXO, LPF to the wire-antenna hole; Wi-Fi: Johanson 2450AT07A0100001T chip antenna at a board edge with a 0201 pi network (0 R fitted, shunts DNP)",
    "lib_items": [
+    "lib:2450AT07A0100001T",
     "lib:AE_WireHole_PTH0.5mm",
-    "lib:CRYSTAL-SMD_4P-L1.6-W1.2-BL_Dense",
+    "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2",
     "lib:C_0201_0603Metric_W",
     "lib:C_0402_1005Metric_W",
-    "lib:ESP32-D0WD-V3",
+    "lib:ESP32-PICO-V3",
     "lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W",
-    "lib:GD25Q32EEIGR",
     "lib:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_Dense",
+    "lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO",
     "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense",
     "lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_Dense",
-    "lib:QFN-48_5x5mm_P0.35mm_EP_ESP32-D0WD",
     "lib:R_0201_0603Metric_W",
-    "lib:R_0402_1005Metric",
-    "lib:SX1281IMLTRT",
-    "lib:USON-8_3x2mm_P0.5mm_EP_GD25Q32E"
+    "lib:SX1281IMLTRT"
    ],
    "parts": [
-    "ESP32-D0WD-V3 [lib:QFN-48_5x5mm_P0.35mm_EP_ESP32-D0WD + lib:ESP32-D0WD-V3] refs U16",
-    "GD25Q32EEIGR [lib:USON-8_3x2mm_P0.5mm_EP_GD25Q32E + lib:GD25Q32EEIGR] refs U17",
-    "CJ17-400001010B20 [lib:CRYSTAL-SMD_4P-L1.6-W1.2-BL_Dense] refs X2",
-    "GRM0335C1H150JA01D [lib:C_0201_0603Metric_W] refs C71,C72",
+    "ESP32-PICO-V3 [lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO + lib:ESP32-PICO-V3] refs U16",
+    "GRM0335C1H1R2BA01D [lib:C_0201_0603Metric_W] refs C133,C132",
+    "RC0201JR-070RL [lib:R_0201_0603Metric_W] refs R88",
+    "2450AT07A0100001T [lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2 + lib:2450AT07A0100001T] refs AE2",
     "RC0201FR-0710KL [lib:R_0201_0603Metric_W] refs R56",
-    "GRM033R61A105ME44D [lib:C_0201_0603Metric_W] refs C73,C80,C92",
-    "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C74,C75,C76,C78,C79,C81,C83,C85,C89,C91",
+    "GRM033R61A105ME44D [lib:C_0201_0603Metric_W] refs C73,C92",
+    "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C76,C83,C85,C89,C91",
     "GRM155C80J106ME11D [lib:C_0402_1005Metric_W] refs C82",
-    "GRM033R71A103KA01D [lib:C_0201_0603Metric_W] refs C130,C86,C88",
-    "RC0402FR-0751RL [lib:R_0402_1005Metric] refs R57",
     "XL-1010RGBC-2812B [lib:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_Dense] refs D4",
     "SX1281IMLTRT [lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_Dense + lib:SX1281IMLTRT] refs U18",
     "OW7EL89CENUNFAYLC-52M [lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense] refs X3",
     "GRM033R71H102KA12D [lib:C_0201_0603Metric_W] refs C84",
+    "GRM033R71A103KA01D [lib:C_0201_0603Metric_W] refs C86,C88",
     "GRM033R60J474KE90D [lib:C_0201_0603Metric_W] refs C87",
     "DEA102700LT-6307A2 [lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W] refs FL1",
     "(no MPN) lib:AE_WireHole_PTH0.5mm [lib:AE_WireHole_PTH0.5mm] refs AE1"
@@ -8670,7 +7685,7 @@
    "blocks": [
     "power"
    ],
-   "description": "Power: TPS61022 VQFN-HR-7, 2520 inductor land, TPS2116 SOT-583, TPS22810 symbol, BAS16LD SOD882D land, HCS1206 four-pad Kelvin net-tie shunt land (INA186, LP5912, AP1606, SMF5.0A, 0201/0402/0603 already in OpenDrone/Device)",
+   "description": "Power: TPS61022 VQFN-HR-7, 2520 inductor land, TPS2116 SOT-583, TPS22810 symbol, BAS16LD SOD882D land, HCS1206 four-pad Kelvin net-tie shunt land (INA186, LP5912, AP1606, SMF5.0A, 0201/0402/0603 already in OpenDrone/Device); D57 VBUS inlet: SGM40661 WLCSP-6 OVP switch + 100 nF",
    "lib_items": [
     "lib:C_0201_0603Metric_W",
     "lib:C_0402_1005Metric_W",
@@ -8680,6 +7695,7 @@
     "lib:Nexperia_SOD882D",
     "lib:R_0201_0603Metric_W",
     "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_Dense",
+    "lib:SGM40661YG",
     "lib:SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense",
     "lib:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_Dense",
     "lib:SOT-363_SC-70-6_Dense",
@@ -8688,6 +7704,7 @@
     "lib:TPS2116DRLR",
     "lib:TPS22810DBVR",
     "lib:TPS61022RWUR",
+    "lib:WLCSP-6_L1.30-W0.94-P0.40_SGM40661",
     "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense"
    ],
    "parts": [
@@ -8697,7 +7714,7 @@
     "INA186A3IDCKR [lib:SOT-363_SC-70-6_Dense] refs U1",
     "RC0201FR-071KL [lib:R_0201_0603Metric_W] refs R2,R3",
     "GRM033R61A105ME44D [lib:C_0201_0603Metric_W] refs C5,C14,C17",
-    "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C6,C129",
+    "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C6,C131,C129",
     "TPS61022RWUR [lib:TI_VQFN-HR-7_2x2mm_RWU + lib:TPS61022RWUR] refs U2",
     "FTC252012SR68MBCA [lib:IND-SMD_L2.5-W2.0_FTC252012] refs L1",
     "GRM188C80J226ME15D [lib:C_0603_1608Metric_W] refs C7,C8,C9,C10,C11",
@@ -8707,6 +7724,7 @@
     "RC0201FR-0727K4L [lib:R_0201_0603Metric_W] refs R7",
     "RC0201FR-0710KL [lib:R_0201_0603Metric_W] refs R8",
     "GRM155C80J106ME11D [lib:C_0402_1005Metric_W] refs C12,C128,C13,C15",
+    "SGM40661YG/TR [lib:WLCSP-6_L1.30-W0.94-P0.40_SGM40661 + lib:SGM40661YG] refs U24",
     "LP5912-3.3DRVR [lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense] refs U4",
     "BLM03PX121SN1D [lib:L_0201_0603Metric_W] refs FB1",
     "TPS22810DBVR [lib:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_Dense + lib:TPS22810DBVR] refs U5",
@@ -8723,15 +7741,18 @@
    "blocks": [
     "io"
    ],
-   "description": "Pads and mechanics: 1.0x1.2 solder pad, motor pad with D0.5 anchor PTH, battery pad with D1.1 PTH, USB pogo 4-pad + 2 NPTH, D0.8 test pad, 3.5 mm ear hole with flange keepout, AE wire-antenna hole, Hirose U.FL land (RF pad cut-out), incutec logo",
+   "description": "Pads and mechanics: 1.0x1.2 solder pad, motor pad with D0.5 anchor PTH, battery pad with D1.1 PTH, JST SH 1.0 4-pin USB (BM04B, D57) with TPD2EUSB30 ESD, D0.8 test pad, 3.5 mm ear hole with flange keepout, AE wire-antenna hole, Hirose U.FL land, incutec logo",
    "lib_items": [
+    "lib:BM04B-SRSS-TB",
     "lib:BattPad_3.0x2.0mm_PTH1.1",
+    "lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB",
     "lib:MotorPad_1.0x1.8mm_PTH0.5",
     "lib:MountingHole_3.5mm_Ear_Flange5.2",
     "lib:SolderPad_1.0x1.2mm",
     "lib:SolderPad_1.0x1.2mm_Dense",
+    "lib:TI_SOT-9X3-3_DRT",
+    "lib:TPD2EUSB30DRTR",
     "lib:TestPoint_Pad_D0.8mm",
-    "lib:USB_Pogo_4x1.0mm_NPTH0.8_1.1",
     "lib:incutec_logo_6.1x1.4mm"
    ],
    "parts": [
@@ -8739,7 +7760,8 @@
     "(no MPN) lib:MotorPad_1.0x1.8mm_PTH0.5 [lib:MotorPad_1.0x1.8mm_PTH0.5] refs J4,J5,J6,J7,J8,J9,J10,J11,J12,J13,J14,J15",
     "(no MPN) lib:SolderPad_1.0x1.2mm [lib:SolderPad_1.0x1.2mm] refs J16,J17,J18,J19,J23,J24,J25,J26,J27,J28,J29",
     "(no MPN) lib:SolderPad_1.0x1.2mm_Dense [lib:SolderPad_1.0x1.2mm_Dense] refs J20,J21,J22",
-    "(no MPN) lib:USB_Pogo_4x1.0mm_NPTH0.8_1.1 [lib:USB_Pogo_4x1.0mm_NPTH0.8_1.1] refs J30",
+    "BM04B-SRSS-TB(LF)(SN) [lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB + lib:BM04B-SRSS-TB] refs J31",
+    "TPD2EUSB30DRTR [lib:TI_SOT-9X3-3_DRT + lib:TPD2EUSB30DRTR] refs D7",
     "(no MPN) lib:TestPoint_Pad_D0.8mm [lib:TestPoint_Pad_D0.8mm] refs TP9,TP10,TP11,TP12,TP13",
     "(no MPN) lib:MountingHole_3.5mm_Ear_Flange5.2 [lib:MountingHole_3.5mm_Ear_Flange5.2] refs H1,H2,H3",
     "(no MPN) lib:incutec_logo_6.1x1.4mm [lib:incutec_logo_6.1x1.4mm] refs LOGO1"
@@ -8747,40 +7769,41 @@
   }
  ],
  "summary": {
-  "parts_total": 303,
-  "bom_parts": 256,
-  "bom_lines": 78,
-  "passives": 194,
-  "pads_and_mechanical": 47,
+  "parts_total": 274,
+  "bom_parts": 226,
+  "bom_lines": 79,
+  "passives": 174,
+  "pads_and_mechanical": 46,
   "by_block": {
-   "power": 37,
-   "esc1": 21,
-   "esc2": 21,
-   "esc3": 22,
-   "esc4": 21,
+   "power": 39,
+   "esc1": 15,
+   "esc2": 15,
+   "esc3": 16,
+   "esc4": 15,
    "fc": 30,
    "imu": 5,
    "blackbox": 3,
    "osd": 12,
-   "rx": 31,
+   "rx": 23,
    "vtx": 58,
    "led": 4,
-   "io": 38
+   "io": 39
   },
   "by_side": {
-   "B": 154,
-   "F": 149
+   "B": 141,
+   "F": 133
   },
   "by_package": {
    "0603": 11,
-   "0201": 163,
-   "0402": 18
+   "0201": 144,
+   "0402": 17
   },
-  "lib_items": 69,
-  "lib_footprints": 51,
-  "lib_symbols": 18,
-  "parts_needing_lib_work": 97,
+  "lib_items": 70,
+  "lib_footprints": 50,
+  "lib_symbols": 20,
+  "parts_needing_lib_work": 0,
   "no_lcsc": [
+   "2450AT07A0100001T",
    "BLM03PX121SN1D",
    "EFM8BB51F16I-C-QFN20R",
    "GRM0335C1H101JA01D",
@@ -8802,8 +7825,19 @@
    "RC0201FR-07560KL",
    "RC0201FR-076K2L",
    "RC0201FR-07820RL",
-   "RC0402FR-0751RL"
+   "RC0201JR-070RL",
+   "SGM40661YG/TR"
   ],
-  "bom_reduction": "D52-D54 applied 2026-10-09 with the BR-01 \u00a75.1 fallback: BOM-REDUCTION \u00a72 baseline additions C128 (D24 VIN1), R87 / C129 (D34) and \u00a73 BR-01..BR-26; refs kept stable, new parts take the next free number (P4 annotation closes gaps)"
+  "bom_reduction": "D52-D54 applied 2026-10-09 (main case, ESP32-PICO-V3 per D55; the \u00a75.1 D0WD-V3 fallback is withdrawn): BOM-REDUCTION \u00a72 baseline additions C128 (D24 VIN1), R87 / C129 (D34) and \u00a73 BR-01..BR-26",
+  "dnp_parts": 2,
+  "dnp_only_lines": [
+   "GRM0335C1H1R2BA01D"
+  ],
+  "bom_parts_by_side": {
+   "B": 129,
+   "F": 97
+  },
+  "bom_parts_note": "bom_parts / bom_lines = fitted placements and their MPNs (dnp and BOM-excluded pads not counted)",
+  "owner_decisions": "D56: 24 TI FETs and 12 leg caps out, 12x AGM210MAP Q29-Q40 in; D57: pogo J30 out, J31 BM04B, U24 SGM40661 + C131, D7 TPD2EUSB30 in; D58: R57 out, AE2 + R88 (0 R) + C132/C133 (DNP) in; D60: no consigned flags; refs kept stable, new parts take the next free number (P4 annotation closes gaps)"
  }
 }

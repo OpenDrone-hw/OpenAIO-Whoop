@@ -47,6 +47,12 @@
    "d52": "BR-24: R11 HD_EN pull-down 4.7k -> this part; was already R12, R19, R26, R33, R53",
    "datasheet": "Ralec RTT series spec IE-SP-007 2024/06/21 (LCSC C166281 PDF, p23/bomred_lib/dl/lcsc/C166281.pdf): p3 RTT01 L 0.60+-0.03 W 0.30+-0.03 T 0.23+-0.03, top/bottom electrode 0.10 / 0.15+-0.05; p10 sec. 9.2 'Land Pattern Design (For Reflow Soldering)': RTT01 A 0.3 (gap), B 1.0 (overall), C 0.4 (width) = lands 0.35 x 0.40 at +-0.325",
    "fit": "same land size 0.35 x 0.40; the shared land sits 0.05 mm further in (gap 0.20, overall 0.90, Murata GR03 a-min). The bottom electrodes (+-0.15 .. +-0.30 nominal) lie fully on the lands (+-0.10 .. +-0.45) with a 0.15 toe; accepted for one standard 0201 land (owner rule: standardise packages)"
+  },
+  {
+   "mpn": "Yageo RC0201JR-070RL (0 R jumper, 0201)",
+   "d58": "Wi-Fi pi-network series element R88 (0 R fitted in rev1)",
+   "datasheet": "Yageo RC_L series, RC0201 size (the RC0201FR-07 entry's dimensions; datasheet not re-read for the jumper code in this pass)",
+   "fit": "inferred: same RC0201 0.6 x 0.3 chip as the RC0201FR-07 lines"
   }
  ]
 }
