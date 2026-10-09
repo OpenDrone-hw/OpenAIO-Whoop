@@ -2,7 +2,7 @@
  "meta": {
   "board": "OpenAIO-Whoop rev1",
   "generated": "2026-10-09",
-  "generator": "scratchpad p2v3/integ3_work: bomplan_d52.py (D52-D54 main case, ESP32-PICO-V3 per D55) + d56_d60.py (D56 AGM210MAP, D57 JST SH USB, D58 Wi-Fi antenna, D60 sourcing) + d63.py (D63/D64 IO set) on the 2026-10-07 plan (git 6cb7216)",
+  "generator": "scratchpad p2v3/integ4_work: bomplan_d52.py (D52-D54 main case, ESP32-PICO-V3 per D55) + d56_d60.py (D56 AGM210MAP, D57 JST SH USB, D58 Wi-Fi antenna, D60 sourcing) + d63.py (D63/D64 IO set) + d65_d67.py (D65 plug-ready motor lands + shared boot button, D66 PY25Q128HA NOR, D67 test vias) on the 2026-10-07 plan (git 6cb7216)",
   "sources": [
    "research/DESIGN-SPEC.md (P0 freeze, D1-D23)",
    "research/PINMAP.md",
@@ -13,7 +13,8 @@
    "tinyPEPPER BEMF network (track 08)",
    "research/DECISIONS.md D52-D60; research/BOM-REDUCTION.md \u00a73",
    "staging p2v3/staging/agm (AGM210MAP part + ESC cell), usb (JST BM04B, SGM40661, TPD2EUSB30), wifi (Johanson 2450AT07A0100001T), merged into hardware/lib.* on 2026-10-09",
-   "research/IO-SET.md \u00a71, \u00a73, \u00a74.2 (D63/D64)"
+   "research/IO-SET.md \u00a71, \u00a73, \u00a74.2 (D63/D64)",
+   "research/DECISIONS.md D65-D67; staging p2v3/staging/io2 (Molex 53047-0310 plug-ready land, Alps SKUBAAE010, Diodes SDM02M30CLP3-7B), p2v3/staging/flash (Puya PY25Q128HA-DFH-IR), test via built in p2v3/integ4_work"
   ],
   "conventions": {
    "refs": "project-wide sequential per prefix (LINEUP A15), sheet order power, ESC1..ESC4, rp2354a, imu, blackbox, osd, rx_esp32_sx1281, vtx, led, pads; prefixes C R L D U Q X J SW TP AE FL FB TH H LOGO; new parts take the next free number above every ref of any committed plan (C130 of the withdrawn \u00a75.1 fallback is skipped)",
@@ -26,9 +27,9 @@
    "values": "'start value' notes mark circuit values closed in the P4 critique loop (spec \u00a715.5, D22)"
   },
   "not_parts": "silk labels, product name OPEN/AIO/WHOOP, REV1, '1S', 'HD' frame are drawn by the generator, not footprints; the Wi-Fi keep-out is part of the AE2 footprint (rule area), not a separate item",
-  "library": "P3 merge 2026-10-09: staged libraries merged (research/LIBRARY.md); footprint ids switched to the checked _W/_Dense variants; the 17 OpenDrone footprints used without staged work failed check_footprint against their datasheet lands and were replaced by checked lib _W/_Dense copies in the same frame; D1 SMF5.0A (unidirectional) moved from the bidirectional Device:D_TVS (A1/A2) to Device:D_Zener (1 = K, 2 = A) so the cathode pad 1 is unambiguous | 2026-10-09 D56-D58 merge: AGM210MAP, BM04B-SRSS-TB, SM04B-SRSS-TB (alternate), SGM40661YG, TPD2EUSB30DRTR, 2450AT07A0100001T symbols + footprints + 3D + land specs added (research/LIBRARY.md); lib_work flags cleared after the full resolve + check_footprint run | 2026-10-09 D63 IO set: SM03B-SURS-TF (camera plug), TS2306A240GFMSM9 (button) symbols; JST SUR SM03B-SURS-TF, SH SM03B-SRSS-TB _W (camera fallback), TS2306A _W footprints + land specs + SUR 3D",
+  "library": "P3 merge 2026-10-09: staged libraries merged (research/LIBRARY.md); footprint ids switched to the checked _W/_Dense variants; the 17 OpenDrone footprints used without staged work failed check_footprint against their datasheet lands and were replaced by checked lib _W/_Dense copies in the same frame; D1 SMF5.0A (unidirectional) moved from the bidirectional Device:D_TVS (A1/A2) to Device:D_Zener (1 = K, 2 = A) so the cathode pad 1 is unambiguous | 2026-10-09 D56-D58 merge: AGM210MAP, BM04B-SRSS-TB, SM04B-SRSS-TB (alternate), SGM40661YG, TPD2EUSB30DRTR, 2450AT07A0100001T symbols + footprints + 3D + land specs added (research/LIBRARY.md); lib_work flags cleared after the full resolve + check_footprint run | 2026-10-09 D63 IO set: SM03B-SURS-TF (camera plug), TS2306A240GFMSM9 (button) symbols; JST SUR SM03B-SURS-TF, SH SM03B-SRSS-TB _W (camera fallback), TS2306A _W footprints + land specs + SUR 3D | 2026-10-09 D65-D67: PY25Q128HA-DFH-IR, Molex_53047-0310, SKUBAAE010, SDM02M30CLP3-7B symbols; USON-8 3x3 PY25Q128HA, MotorPad_PicoBlade_1x03, SW_Alps_SKUBAAE010, X2-DFN1006-3 SDM02M30CLP3, TestPoint_Via_D0.35mm_Drill0.2mm footprints + land specs + 4 STEP",
   "sourcing": "D60: NextPCB sources every part that exists and builds the prototypes; exact Manufacturer + MPN and genuine parts on every BOM line; JLCPCB = DFM target only; no consigned lines",
-  "dnp": "dnp = footprint placed, part not fitted in rev1 (C132 / C133 Wi-Fi tuning shunts, D58)",
+  "dnp": "dnp = footprint placed, part not fitted in rev1 (C132 / C133 Wi-Fi tuning shunts, D58; J4 / J7 / J10 / J13 Molex 53047-0310 motor headers, D65: the land takes soldered wires, the header is hand-fitted on request)",
   "alternates": [
    {
     "for": "Q29-Q40",
@@ -57,13 +58,34 @@
     "parts": "no OVP: Murata GRM033C81A105ME05D 1 uF + Vishay CRCW040210R0FKED 10 R at VIN1 plus a VBUS TVS",
     "footprints": "-",
     "symbols": "-"
+   },
+   {
+    "for": "U13",
+    "decision": "D66 sourcing fallback",
+    "parts": "Puya PY25Q128HA-QVH-IR (USON-8 4x4, same die, JEDEC 0x852018), then GigaDevice GD25Q128EQIGR (USON-8 4x4, 0xC84018, BF 104/80 MHz); same pinout",
+    "footprints": "not staged (USON-8 4x4 land needed)",
+    "symbols": "lib:PY25Q128HA-DFH-IR (pin-compatible)"
+   },
+   {
+    "for": "SW1 + D8",
+    "decision": "D65 fallback (RX boot only)",
+    "parts": "SW1 on RX_BOOT to GND, D8 deleted, R44 back to the FCB test via only",
+    "footprints": "lib:SW_Alps_SKUBAAE010_2.4x1.4mm",
+    "symbols": "lib:SKUBAAE010"
+   },
+   {
+    "for": "J4 J7 J10 J13",
+    "decision": "D65 fallback (no plug option)",
+    "parts": "three single motor pads per motor at 2.0 mm pitch (D56 cell), no header",
+    "footprints": "lib:MotorPad_1.0x1.8mm_PTH0.5",
+    "symbols": "Connector_Generic:Conn_01x01"
    }
   ],
   "io_set": {
-   "source": "research/IO-SET.md \u00a71 (D63/D64); every row is in this plan",
+   "source": "research/IO-SET.md \u00a71 (D63/D64) as amended by D65-D67; every row is in this plan",
    "rows": {
     "1 battery": "J2 J3",
-    "2 motor outputs": "J4-J15",
+    "2 motor outputs": "J4 J7 J10 J13 (D65 plug-ready lands, Molex 53047-0310 header DNP)",
     "3 camera plug (MUST, new)": "J32",
     "4 camera pads": "J23 J24 J25",
     "5 RF": "J1 AE1 AE2 (+ R88 C132 C133)",
@@ -71,14 +93,14 @@
     "7 user UART": "J16-J19",
     "8 HD pads / 2nd UART": "J26-J29",
     "9 LED + buzzer row GND LED 5V BZ- (SHOULD)": "J33 J20 J21 J22",
-    "10 RX boot/bind button (SHOULD, new)": "SW1",
+    "10 boot/bind button (D65: shared FC BOOTSEL + RX boot)": "SW1 D8 R44",
     "11 status LEDs": "D5 D6 D4",
-    "12 test / programming pads": "TP1-TP13",
-    "13 USB D-/D+ pads (COULD, new)": "TP14 TP15"
+    "12 test / programming pads": "TP1-TP9 TP12 TP13 (D67 via test points; TP10 TP11 removed)",
+    "13 USB D-/D+ pads": "none (dropped, D67)"
    },
-   "placement_priority": "camera plug J32 -> LED-row GND pad J33 + SW1 -> TP14/TP15 (G2); trade ladder IO-SET \u00a74.1",
-   "gates": "G1 camera pitch + pin 1 before the P3 footprint freeze and P4; G2 area on the v3 board; G3 H1/H3 sites for J32 and SW1 (or a logged scoped exemption + V8)",
-   "pin_changes": "none (RP2354A 30/30; ESP32 GPIO0 gains SW1; J21 BZ+ -> 5V same net)"
+   "placement_priority": "camera plug J32 -> LED-row GND pad J33 + SW1/D8 (G2); motor lands per ESC cell (D65); trade ladder IO-SET \u00a74.1",
+   "gates": "G1 camera pitch + pin 1 before the P3 footprint freeze and P4; G2 area on the v3 board; G3 H1/H3 sites for J32 and SW1 (or a logged scoped exemption + V8); D65: motor header H1 exemption + V4 thermocouple, DRU 'D21 motor_plug_1p25_pth', hole 0.50 vs 0.60 from Molex SD-53047",
+   "pin_changes": "none on the MCUs (RP2354A 30/30): QSPI_SS -> R44 -> FC_BOOT -> D8.A1, ESP32 GPIO0 RX_BOOT -> D8.A2, D8.K BOOT_SW -> SW1 -> GND (D65); J21 BZ+ -> 5V same net"
   }
  },
  "regions": {
@@ -188,7 +210,7 @@
     -6.95,
     -2.95
    ],
-   "src": "bottom projection of the EFM8 (P2 places, spec \u00a710 'at each EFM8') | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
+   "src": "bottom projection of the EFM8 (P2 places, spec \u00a710 'at each EFM8') | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans | D67: C2D / C2CK as 0.35/0.20 test vias at the EFM8 (bench recovery only)"
   },
   "esc3_c2": {
    "side": "F",
@@ -200,7 +222,7 @@
     -2.75,
     1.25
    ],
-   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
+   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans | D67: C2D / C2CK as 0.35/0.20 test vias at the EFM8 (bench recovery only)"
   },
   "esc1_c2": {
    "side": "F",
@@ -212,7 +234,7 @@
     2.95,
     6.95
    ],
-   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
+   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans | D67: C2D / C2CK as 0.35/0.20 test vias at the EFM8 (bench recovery only)"
   },
   "esc2_c2": {
    "side": "B",
@@ -224,10 +246,10 @@
     -1.25,
     2.75
    ],
-   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
+   "src": "bottom projection of the EFM8 | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans | D67: C2D / C2CK as 0.35/0.20 test vias at the EFM8 (bench recovery only)"
   },
   "motor_M4": {
-   "side": "F",
+   "side": "B",
    "x": [
     -8.58,
     -4.58
@@ -236,7 +258,11 @@
     -12.9,
     -11.1
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D65: one plug-ready land J13 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC4 FET side (B), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
+   "size_mm": [
+    5.1,
+    1.7
+   ]
   },
   "motor_M3": {
    "side": "F",
@@ -248,7 +274,11 @@
     -7.0,
     -3.0
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D65: one plug-ready land J10 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC3 FET side (F), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
+   "size_mm": [
+    5.1,
+    1.7
+   ]
   },
   "motor_M1": {
    "side": "F",
@@ -260,10 +290,14 @@
     11.1,
     12.9
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D65: one plug-ready land J4 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC1 FET side (F), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
+   "size_mm": [
+    5.1,
+    1.7
+   ]
   },
   "motor_M2": {
-   "side": "F",
+   "side": "B",
    "x": [
     11.1,
     12.9
@@ -272,7 +306,11 @@
     4.5,
     8.5
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D65: one plug-ready land J7 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC2 FET side (B), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
+   "size_mm": [
+    5.1,
+    1.7
+   ]
   },
   "batt_pads": {
    "side": "F",
@@ -380,7 +418,7 @@
     4.7,
     10.1
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec \u00a710 (sketch v4) | D66: U13 PY25Q128HA-DFH-IR USON-8 3x3 (courtyard 3.70 x 3.20) + C65 at pin 8 + R50; on SPI0 next to the RP2354A, >= 3 mm from the RX antenna hole; floorplan v3 re-plans"
   },
   "imu": {
    "side": "F",
@@ -656,7 +694,7 @@
     -9.05,
     9.05
    ],
-   "src": "P2: near the MCU / ESP32 (spec \u00a710); preview packing region (scratchpad preview/parts.py)"
+   "src": "P2: near the MCU / ESP32 (spec \u00a710); preview packing region (scratchpad preview/parts.py) | D67: TP9 FCB, TP12 CLK, TP13 DIO as 0.35/0.20 test vias (courtyard 0.56), no silk; TP10 GND and TP11 RXB removed"
   },
   "art": {
    "side": "B",
@@ -718,7 +756,7 @@
     7.0,
     4.41
    ],
-   "src": "D57: J31 BM04B (top entry, mounted on the bottom) at the rear ear between the rear mount and the body, tails toward the edge; U24 + C131 within ~2 mm of J31 pin 4, D7 at pins 2/3; a 6.0 x 2.9 mm column below the board stays free for the plug (6.3 mm mated); floorplan v3 sets the position | D63: TP14 D- / TP15 D+ (COULD) beside J31 on the connector side of D7, near a GND contact"
+   "src": "D57: J31 BM04B (top entry, mounted on the bottom) at the rear ear between the rear mount and the body, tails toward the edge; U24 + C131 within ~2 mm of J31 pin 4, D7 at pins 2/3; a 6.0 x 2.9 mm column below the board stays free for the plug (6.3 mm mated); floorplan v3 sets the position | D67: the TP14 / TP15 D-/D+ pads (D63 COULD) are dropped"
   },
   "wifi_ant": {
    "side": "B",
@@ -746,10 +784,10 @@
    "x": null,
    "y": null,
    "size_mm": [
-    4.0,
-    2.2
+    4.2,
+    1.6
    ],
-   "src": "D63/D64 IO-SET \u00a74.2: top preferred (bottom is short), at an edge a toothpick reaches with the frame fitted; H1-clear (85 C part); >= 3 mm from LGA (SiP, gyro), WLCSP (SGM40661) and DSBGA parts (240 gf flex); outside RF_RX_EXIT and the Wi-Fi keep-out; no silk; trade ladder step 4 moves it to the other side or edge, drop only with owner approval; floorplan v3 sets the position"
+   "src": "D65: SW1 Alps SKUBAAE010 (courtyard 3.0 x 1.6) + D8 SDM02M30CLP3-7B within 3 mm (BOOT_SW <= 3 mm); F preferred (actuator up), B acceptable; at an edge a toothpick reaches with the frame fitted; H1-clear (85 C part): >= 2 mm in 2D projection from FET groups, phase pours and motor lands on both sides; >= 3 mm from LGA/WLCSP/DSBGA parts (SiP, gyro, SGM40661, INA186) against press flex (1.6 N); outside RF_RX_EXIT and the Wi-Fi keep-out; courtyard outside the 0.30 edge band; no silk; floorplan v3 sets the position"
   }
  },
  "parts": [
@@ -1734,7 +1772,7 @@
     "+BATT",
     "MOTOR1"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP1 C2D / TP2 C2CK for bench recovery only",
    "lib_work": []
   },
   {
@@ -2055,8 +2093,8 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "F",
    "region": "esc1_c2",
@@ -2067,7 +2105,7 @@
    "nets": [
     "C2D"
    ],
-   "notes": "C2D programming / recovery contact; unlabelled (D12, LINEUP B7), documented in the pinout",
+   "notes": "ESC1 EFM8 C2D (C2 data) bench-recovery contact only: NextPCB pre-programs Bluejay before reflow and Bluejay's protected bootloader reflashes through passthrough; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -2079,8 +2117,8 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "F",
    "region": "esc1_c2",
@@ -2091,7 +2129,7 @@
    "nets": [
     "C2CK"
    ],
-   "notes": "C2CK (RSTb, internal pull-up only, F12) programming contact; unlabelled (D12)",
+   "notes": "ESC1 EFM8 C2CK (RSTb, internal pull-up only, F12) bench-recovery contact only: NextPCB pre-programs Bluejay before reflow and Bluejay's protected bootloader reflashes through passthrough; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -2116,7 +2154,7 @@
     "+BATT",
     "MOTOR2"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP3 C2D / TP4 C2CK for bench recovery only",
    "lib_work": []
   },
   {
@@ -2437,8 +2475,8 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "B",
    "region": "esc2_c2",
@@ -2449,7 +2487,7 @@
    "nets": [
     "C2D"
    ],
-   "notes": "C2D programming / recovery contact; unlabelled (D12, LINEUP B7), documented in the pinout",
+   "notes": "ESC2 EFM8 C2D (C2 data) bench-recovery contact only: NextPCB pre-programs Bluejay before reflow and Bluejay's protected bootloader reflashes through passthrough; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -2461,8 +2499,8 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "B",
    "region": "esc2_c2",
@@ -2473,7 +2511,7 @@
    "nets": [
     "C2CK"
    ],
-   "notes": "C2CK (RSTb, internal pull-up only, F12) programming contact; unlabelled (D12)",
+   "notes": "ESC2 EFM8 C2CK (RSTb, internal pull-up only, F12) bench-recovery contact only: NextPCB pre-programs Bluejay before reflow and Bluejay's protected bootloader reflashes through passthrough; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -2498,7 +2536,7 @@
     "+BATT",
     "MOTOR3"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP5 C2D / TP6 C2CK for bench recovery only",
    "lib_work": []
   },
   {
@@ -2844,8 +2882,8 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "F",
    "region": "esc3_c2",
@@ -2856,7 +2894,7 @@
    "nets": [
     "C2D"
    ],
-   "notes": "C2D programming / recovery contact; unlabelled (D12, LINEUP B7), documented in the pinout",
+   "notes": "ESC3 EFM8 C2D (C2 data) bench-recovery contact only: NextPCB pre-programs Bluejay before reflow and Bluejay's protected bootloader reflashes through passthrough; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -2868,8 +2906,8 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "F",
    "region": "esc3_c2",
@@ -2880,7 +2918,7 @@
    "nets": [
     "C2CK"
    ],
-   "notes": "C2CK (RSTb, internal pull-up only, F12) programming contact; unlabelled (D12)",
+   "notes": "ESC3 EFM8 C2CK (RSTb, internal pull-up only, F12) bench-recovery contact only: NextPCB pre-programs Bluejay before reflow and Bluejay's protected bootloader reflashes through passthrough; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -2905,7 +2943,7 @@
     "+BATT",
     "MOTOR4"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP7 C2D / TP8 C2CK for bench recovery only",
    "lib_work": []
   },
   {
@@ -3226,8 +3264,8 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "B",
    "region": "esc4_c2",
@@ -3238,7 +3276,7 @@
    "nets": [
     "C2D"
    ],
-   "notes": "C2D programming / recovery contact; unlabelled (D12, LINEUP B7), documented in the pinout",
+   "notes": "ESC4 EFM8 C2D (C2 data) bench-recovery contact only: NextPCB pre-programs Bluejay before reflow and Bluejay's protected bootloader reflashes through passthrough; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -3250,8 +3288,8 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "B",
    "region": "esc4_c2",
@@ -3262,7 +3300,7 @@
    "nets": [
     "C2CK"
    ],
-   "notes": "C2CK (RSTb, internal pull-up only, F12) programming contact; unlabelled (D12)",
+   "notes": "ESC4 EFM8 C2CK (RSTb, internal pull-up only, F12) bench-recovery contact only: NextPCB pre-programs Bluejay before reflow and Bluejay's protected bootloader reflashes through passthrough; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -3823,9 +3861,10 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "BOOT"
+    "QSPI_SS",
+    "FC_BOOT"
    ],
-   "notes": "QSPI_SS (pin 60) -> FCB boot pad, short stub (RPi guide R6)",
+   "notes": "QSPI_SS (BOOT, pin 60) -> 1k -> FC_BOOT: D8.A1 (shared boot button, D65) and the FCB test via TP9; keep the QSPI_SS-to-R44 stub <= 1 mm (in-package flash CS, RPi guide R6), any length beyond R44 (the 1k isolates the diode capacitance). 1k, not the 4.7k of the RP2350 guide, so the diode drop keeps margin (CSn <= 0.51 V pressed)",
    "lib_work": []
   },
   {
@@ -4124,14 +4163,14 @@
    "ref": "U13",
    "block": "blackbox",
    "sheet": "blackbox",
-   "value": "W25Q128JVPIM",
-   "rating": null,
-   "manufacturer": "Winbond",
-   "mpn": "W25Q128JVPIM",
-   "lcsc": "C2441427",
-   "package": "WSON-8 6x5 P1.27",
-   "footprint": "lib:WSON-8_6x5mm_P1.27mm_NoEP",
-   "symbol": "lib:W25Q128JVPIM",
+   "value": "PY25Q128HA-DFH-IR",
+   "rating": "2.7-3.6 V, fC 133 MHz (READ 80 MHz), -40..85 C",
+   "manufacturer": "Puya",
+   "mpn": "PY25Q128HA-DFH-IR",
+   "lcsc": null,
+   "package": "USON-8 3x3x0.55 P0.8",
+   "footprint": "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA",
+   "symbol": "lib:PY25Q128HA-DFH-IR",
    "side": "F",
    "region": "nor",
    "dnp": false,
@@ -4142,7 +4181,7 @@
     "SPI0",
     "FLASH_CS"
    ],
-   "notes": "16 MB blackbox NOR on SPI0; exposed metal pad not connected internally -> footprint without centre copper/paste, vias under the body tented (\u00a74.9); 105 C 'JVPIQ'/'J' grade if the O17 quote stocks it; >= 3 mm from the RX antenna hole",
+   "notes": "16 MB blackbox NOR on SPI0 (D66: smallest 16 MB SPI NOR with a published package drawing; replaces the W25Q128JVPIM WSON-8 6x5, courtyard 35.98 -> 11.84 mm2, body 30 -> 9 mm2). PY25Q128HA DS Rev 2.0 (2024-05-07): 2.7-3.6 V, fC 133 MHz / READ 03h 80 MHz, JEDEC ID 85 20 18 (Betaflight m25p16 table on master and 2026.6-maintenance: {133, 80 MHz}; USE_FLASH_M25P16 unchanged, PINMAP comment W25Q128JV -> PY25Q128HA 0x852018), package DF = USON8 3x3x0.55, drawing QRPD-0077. Pins as the WSON: 1 CS#, 2 SO, 3 WP#, 4 GND, 5 SI, 6 SCLK, 7 HOLD#/RESET#, 8 VCC; WP# and HOLD#/RESET# tied to +3V3 (pin 7 must not float, DS p4). Pad 9 = two exposed tie-bar tabs: no net, no-connect flag in the schematic, no vias in the tabs; the 0.71 mm channel between a lead column and the tabs takes one 0.09 track or one via under the body; a filled+capped 0.35/0.20 via fits in each 0.94 x 0.29 lead land. >= 3 mm from the RX antenna hole, on SPI0 next to the RP2354A; either side works. No LCSC or distributor listing found 2026-10-09: NextPCB turnkey sources it by MPN (D60), the NextPCB quote must confirm it; fallbacks with the same pinout and BF support (footprints not staged): PY25Q128HA-QVH-IR (USON-8 4x4, same die/ID), GD25Q128EQIGR (USON-8 4x4, C84018). Blackbox 2 kHz estimate 90-130 KB/s (2-3 min in 16 MB), bench V9",
    "lib_work": []
   },
   {
@@ -4167,7 +4206,7 @@
     "+3V3",
     "GND"
    ],
-   "notes": "NOR VCC; [PU]",
+   "notes": "NOR VCC 100 nF on U13 pin 8 (VCC, right column top) with its GND return to pin 4 (left column bottom) (D66); [PU]",
    "lib_work": []
   },
   {
@@ -4192,7 +4231,7 @@
     "FLASH_CS",
     "+3V3"
    ],
-   "notes": "FLASH_CS pull-up; /WP and /HOLD tied to +3V3; [PU]",
+   "notes": "FLASH_CS pull-up; WP# (pin 3) and HOLD#/RESET# (pin 7, must not float, PY25Q128HA DS p4) tied to +3V3; [PU]",
    "lib_work": []
   },
   {
@@ -6640,71 +6679,25 @@
    "block": "io",
    "sheet": "pads",
    "value": "M1",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
+   "rating": "1.0 A/contact, 85 C (header); land = phase copper",
+   "manufacturer": "Molex",
+   "mpn": "53047-0310",
    "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
+   "package": "Molex PicoBlade 1.25 mm 3-pin vertical THT header (DNP) on a plug-ready motor land",
+   "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+   "symbol": "lib:Molex_53047-0310",
    "side": "F",
    "region": "motor_M1",
    "dnp": true,
-   "exclude_from_bom": true,
+   "exclude_from_bom": false,
    "exclude_from_pos": true,
    "silk": "M1",
    "nets": [
+    "/ESC1/PHASE_C",
+    "/ESC1/PHASE_B",
     "/ESC1/PHASE_A"
    ],
-   "notes": "motor M1 phase A solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M1' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J5",
-   "block": "io",
-   "sheet": "pads",
-   "value": "M1",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
-   "region": "motor_M1",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "M1",
-   "nets": [
-    "/ESC1/PHASE_B"
-   ],
-   "notes": "motor M1 phase B solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M1' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J6",
-   "block": "io",
-   "sheet": "pads",
-   "value": "M1",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
-   "region": "motor_M1",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "M1",
-   "nets": [
-    "/ESC1/PHASE_C"
-   ],
-   "notes": "motor M1 phase C solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M1' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
+   "notes": "motor M1 plug-ready land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): one land per motor replaces the three single pads; pads 1/2/3 = PHASE_C/B/A (phase order free, Bluejay sets the direction). Motor wires solder to the land (pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50, wire pitch about 1.6 mm) or through the 0.50 mm plated holes; the optional Molex 53047-0310 PicoBlade header (the board side of the hobby 'JST1.25' motor plug, wire side 51021-0300) is DNP by default, hand-fitted from the far side and its pins trimmed on the land side (1.3 mm protrusion). Land on the ESC cell's FET side (F, ESC1), centred on the middle package at cell (0, +2.80), rot 0; far side keeps a header reservation (B.CrtYd cell X +-2.90, Y 0.60..4.10, 20.3 mm2) free of parts, F1 islands and phase vias; iron halo 0.50 from the FET lands (0.70 to 0201/0402, D29); solder areas 0.30 and phase copper 0.20 from the edge (SOLDER_PAD class). Molex rates 1.0 A per contact, -40..+85 C: soldered wires stay the recommended default (README), the header is an option with a V4 thermocouple (scoped H1 exemption to log: passive, rating includes own rise, DNP). DRU 'D21 motor_plug_1p25_pth' (0.35 mm between PTH rings, NextPCB EQ) needed; hole 0.50 per KiCad stock (LCSC/EasyEDA 0.60) to confirm against Molex SD-53047 before the P3 freeze. No LCSC number for the 3-pin part; NextPCB turnkey sources it by MPN (D60); LINEUP A16: the land is the solder pad, the header is a DNP BOM line",
    "lib_work": []
   },
   {
@@ -6712,71 +6705,25 @@
    "block": "io",
    "sheet": "pads",
    "value": "M2",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
+   "rating": "1.0 A/contact, 85 C (header); land = phase copper",
+   "manufacturer": "Molex",
+   "mpn": "53047-0310",
    "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
+   "package": "Molex PicoBlade 1.25 mm 3-pin vertical THT header (DNP) on a plug-ready motor land",
+   "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+   "symbol": "lib:Molex_53047-0310",
+   "side": "B",
    "region": "motor_M2",
    "dnp": true,
-   "exclude_from_bom": true,
+   "exclude_from_bom": false,
    "exclude_from_pos": true,
    "silk": "M2",
    "nets": [
+    "/ESC2/PHASE_C",
+    "/ESC2/PHASE_B",
     "/ESC2/PHASE_A"
    ],
-   "notes": "motor M2 phase A solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M2' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J8",
-   "block": "io",
-   "sheet": "pads",
-   "value": "M2",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
-   "region": "motor_M2",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "M2",
-   "nets": [
-    "/ESC2/PHASE_B"
-   ],
-   "notes": "motor M2 phase B solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M2' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J9",
-   "block": "io",
-   "sheet": "pads",
-   "value": "M2",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
-   "region": "motor_M2",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "M2",
-   "nets": [
-    "/ESC2/PHASE_C"
-   ],
-   "notes": "motor M2 phase C solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M2' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
+   "notes": "motor M2 plug-ready land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): one land per motor replaces the three single pads; pads 1/2/3 = PHASE_C/B/A (phase order free, Bluejay sets the direction). Motor wires solder to the land (pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50, wire pitch about 1.6 mm) or through the 0.50 mm plated holes; the optional Molex 53047-0310 PicoBlade header (the board side of the hobby 'JST1.25' motor plug, wire side 51021-0300) is DNP by default, hand-fitted from the far side and its pins trimmed on the land side (1.3 mm protrusion). Land on the ESC cell's FET side (B, ESC2), centred on the middle package at cell (0, +2.80), rot 0; far side keeps a header reservation (B.CrtYd cell X +-2.90, Y 0.60..4.10, 20.3 mm2) free of parts, F1 islands and phase vias; iron halo 0.50 from the FET lands (0.70 to 0201/0402, D29); solder areas 0.30 and phase copper 0.20 from the edge (SOLDER_PAD class). Molex rates 1.0 A per contact, -40..+85 C: soldered wires stay the recommended default (README), the header is an option with a V4 thermocouple (scoped H1 exemption to log: passive, rating includes own rise, DNP). DRU 'D21 motor_plug_1p25_pth' (0.35 mm between PTH rings, NextPCB EQ) needed; hole 0.50 per KiCad stock (LCSC/EasyEDA 0.60) to confirm against Molex SD-53047 before the P3 freeze. No LCSC number for the 3-pin part; NextPCB turnkey sources it by MPN (D60); LINEUP A16: the land is the solder pad, the header is a DNP BOM line",
    "lib_work": []
   },
   {
@@ -6784,71 +6731,25 @@
    "block": "io",
    "sheet": "pads",
    "value": "M3",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
+   "rating": "1.0 A/contact, 85 C (header); land = phase copper",
+   "manufacturer": "Molex",
+   "mpn": "53047-0310",
    "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
+   "package": "Molex PicoBlade 1.25 mm 3-pin vertical THT header (DNP) on a plug-ready motor land",
+   "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+   "symbol": "lib:Molex_53047-0310",
    "side": "F",
    "region": "motor_M3",
    "dnp": true,
-   "exclude_from_bom": true,
+   "exclude_from_bom": false,
    "exclude_from_pos": true,
    "silk": "M3",
    "nets": [
+    "/ESC3/PHASE_C",
+    "/ESC3/PHASE_B",
     "/ESC3/PHASE_A"
    ],
-   "notes": "motor M3 phase A solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M3' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J11",
-   "block": "io",
-   "sheet": "pads",
-   "value": "M3",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
-   "region": "motor_M3",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "M3",
-   "nets": [
-    "/ESC3/PHASE_B"
-   ],
-   "notes": "motor M3 phase B solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M3' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J12",
-   "block": "io",
-   "sheet": "pads",
-   "value": "M3",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
-   "region": "motor_M3",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "M3",
-   "nets": [
-    "/ESC3/PHASE_C"
-   ],
-   "notes": "motor M3 phase C solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M3' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
+   "notes": "motor M3 plug-ready land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): one land per motor replaces the three single pads; pads 1/2/3 = PHASE_C/B/A (phase order free, Bluejay sets the direction). Motor wires solder to the land (pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50, wire pitch about 1.6 mm) or through the 0.50 mm plated holes; the optional Molex 53047-0310 PicoBlade header (the board side of the hobby 'JST1.25' motor plug, wire side 51021-0300) is DNP by default, hand-fitted from the far side and its pins trimmed on the land side (1.3 mm protrusion). Land on the ESC cell's FET side (F, ESC3), centred on the middle package at cell (0, +2.80), rot 0; far side keeps a header reservation (B.CrtYd cell X +-2.90, Y 0.60..4.10, 20.3 mm2) free of parts, F1 islands and phase vias; iron halo 0.50 from the FET lands (0.70 to 0201/0402, D29); solder areas 0.30 and phase copper 0.20 from the edge (SOLDER_PAD class). Molex rates 1.0 A per contact, -40..+85 C: soldered wires stay the recommended default (README), the header is an option with a V4 thermocouple (scoped H1 exemption to log: passive, rating includes own rise, DNP). DRU 'D21 motor_plug_1p25_pth' (0.35 mm between PTH rings, NextPCB EQ) needed; hole 0.50 per KiCad stock (LCSC/EasyEDA 0.60) to confirm against Molex SD-53047 before the P3 freeze. No LCSC number for the 3-pin part; NextPCB turnkey sources it by MPN (D60); LINEUP A16: the land is the solder pad, the header is a DNP BOM line",
    "lib_work": []
   },
   {
@@ -6856,71 +6757,25 @@
    "block": "io",
    "sheet": "pads",
    "value": "M4",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
+   "rating": "1.0 A/contact, 85 C (header); land = phase copper",
+   "manufacturer": "Molex",
+   "mpn": "53047-0310",
    "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
+   "package": "Molex PicoBlade 1.25 mm 3-pin vertical THT header (DNP) on a plug-ready motor land",
+   "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+   "symbol": "lib:Molex_53047-0310",
+   "side": "B",
    "region": "motor_M4",
    "dnp": true,
-   "exclude_from_bom": true,
+   "exclude_from_bom": false,
    "exclude_from_pos": true,
    "silk": "M4",
    "nets": [
+    "/ESC4/PHASE_C",
+    "/ESC4/PHASE_B",
     "/ESC4/PHASE_A"
    ],
-   "notes": "motor M4 phase A solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M4' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J14",
-   "block": "io",
-   "sheet": "pads",
-   "value": "M4",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
-   "region": "motor_M4",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "M4",
-   "nets": [
-    "/ESC4/PHASE_B"
-   ],
-   "notes": "motor M4 phase B solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M4' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J15",
-   "block": "io",
-   "sheet": "pads",
-   "value": "M4",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:MotorPad_1.0x1.8mm_PTH0.5",
-   "symbol": "Connector_Generic:Conn_01x01",
-   "side": "F",
-   "region": "motor_M4",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "M4",
-   "nets": [
-    "/ESC4/PHASE_C"
-   ],
-   "notes": "motor M4 phase C solder pad 1.0 x 1.8, plated D0.5 wire-anchor hole, pitch 1.5 mm; one silk label 'M4' per 3-pad group (Bluejay sets direction, order free); LINEUP A16: excluded from BOM, DNP",
+   "notes": "motor M4 plug-ready land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): one land per motor replaces the three single pads; pads 1/2/3 = PHASE_C/B/A (phase order free, Bluejay sets the direction). Motor wires solder to the land (pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50, wire pitch about 1.6 mm) or through the 0.50 mm plated holes; the optional Molex 53047-0310 PicoBlade header (the board side of the hobby 'JST1.25' motor plug, wire side 51021-0300) is DNP by default, hand-fitted from the far side and its pins trimmed on the land side (1.3 mm protrusion). Land on the ESC cell's FET side (B, ESC4), centred on the middle package at cell (0, +2.80), rot 0; far side keeps a header reservation (B.CrtYd cell X +-2.90, Y 0.60..4.10, 20.3 mm2) free of parts, F1 islands and phase vias; iron halo 0.50 from the FET lands (0.70 to 0201/0402, D29); solder areas 0.30 and phase copper 0.20 from the edge (SOLDER_PAD class). Molex rates 1.0 A per contact, -40..+85 C: soldered wires stay the recommended default (README), the header is an option with a V4 thermocouple (scoped H1 exemption to log: passive, rating includes own rise, DNP). DRU 'D21 motor_plug_1p25_pth' (0.35 mm between PTH rings, NextPCB EQ) needed; hole 0.50 per KiCad stock (LCSC/EasyEDA 0.60) to confirm against Molex SD-53047 before the P3 freeze. No LCSC number for the 3-pin part; NextPCB turnkey sources it by MPN (D60); LINEUP A16: the land is the solder pad, the header is a DNP BOM line",
    "lib_work": []
   },
   {
@@ -7337,54 +7192,6 @@
    "lib_work": []
   },
   {
-   "ref": "TP14",
-   "block": "io",
-   "sheet": "pads",
-   "value": "D-",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
-   "symbol": "Connector:TestPoint",
-   "side": "B",
-   "region": "usb_jst",
-   "dnp": false,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "D-",
-   "nets": [
-    "USB_D_N"
-   ],
-   "notes": "USB D- repair/test pad on the connector side of the D7 ESD array, next to J31 and near a GND contact (D63/D64, IO-SET row 13, COULD: placed only if the v3 bottom has room, first item to drop, G2); copper only, may sit in an H1 zone; README: battery fitted, GND connected; LINEUP A16: out of the BOM",
-   "lib_work": []
-  },
-  {
-   "ref": "TP15",
-   "block": "io",
-   "sheet": "pads",
-   "value": "D+",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
-   "symbol": "Connector:TestPoint",
-   "side": "B",
-   "region": "usb_jst",
-   "dnp": false,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "D+",
-   "nets": [
-    "USB_D_P"
-   ],
-   "notes": "USB D+ repair/test pad on the connector side of the D7 ESD array, next to J31 and near a GND contact (D63/D64, IO-SET row 13, COULD: placed only if the v3 bottom has room, first item to drop, G2); copper only, may sit in an H1 zone; README: battery fitted, GND connected; LINEUP A16: out of the BOM",
-   "lib_work": []
-  },
-  {
    "ref": "D7",
    "block": "io",
    "sheet": "pads",
@@ -7419,81 +7226,33 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "B",
    "region": "test_fc",
    "dnp": false,
    "exclude_from_bom": true,
    "exclude_from_pos": true,
-   "silk": "FCB",
+   "silk": null,
    "nets": [
-    "BOOT"
+    "FC_BOOT"
    ],
-   "notes": "RP2354A boot (QSPI_SS via 1 k), next to the GND pad; LINEUP A16: out of the BOM",
-   "lib_work": []
-  },
-  {
-   "ref": "TP10",
-   "block": "io",
-   "sheet": "pads",
-   "value": "GND",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
-   "symbol": "Connector:TestPoint",
-   "side": "B",
-   "region": "test_fc",
-   "dnp": false,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "GND",
-   "nets": [
-    "GND"
-   ],
-   "notes": "GND for FCB/RXB and the fixture; LINEUP A16: out of the BOM",
-   "lib_work": []
-  },
-  {
-   "ref": "TP11",
-   "block": "io",
-   "sheet": "pads",
-   "value": "RXB",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
-   "symbol": "Connector:TestPoint",
-   "side": "B",
-   "region": "test_fc",
-   "dnp": false,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "RXB",
-   "nets": [
-    "RX_BOOT"
-   ],
-   "notes": "ESP32 GPIO0 download strap (internal pull-up); in parallel with the RX boot/bind button SW1 (D63); LINEUP A16: out of the BOM",
+   "notes": "RP2354A boot (FC_BOOT, QSPI_SS via R44 1k), in parallel with the shared button SW1 through D8; the button covers FC boot, so dropping TP9 is an open owner question; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
    "ref": "SW1",
    "block": "rx",
    "sheet": "rx_esp32_sx1281",
-   "value": "TS2306A",
-   "rating": "DC 15V 20mA 240gf",
-   "manufacturer": "SHOU HAN",
-   "mpn": "TS2306A 240gf MSM 9",
-   "lcsc": "C2976675",
-   "package": "SMD 3.0x2.0x0.6",
-   "footprint": "lib:SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W",
-   "symbol": "lib:TS2306A240GFMSM9",
+   "value": "SKUBAAE010",
+   "rating": "12 V DC 50 mA, 1.6 N, 500k cycles",
+   "manufacturer": "Alps Alpine",
+   "mpn": "SKUBAAE010",
+   "lcsc": null,
+   "package": "SMD 2.4x1.4x0.55 (2 terminals)",
+   "footprint": "lib:SW_Alps_SKUBAAE010_2.4x1.4mm",
+   "symbol": "lib:SKUBAAE010",
    "side": "F",
    "region": "rx_button",
    "dnp": false,
@@ -7501,10 +7260,36 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "RX_BOOT",
+    "BOOT_SW",
     "GND"
    ],
-   "notes": "RX boot / bind button (D63/D64, IO-SET row 10, SHOULD; OpenDrone lineup part, PARTS-USED.md:20): RX_BOOT (ESP32 GPIO0, pin 23) to GND, in parallel with TP11 RXB; ELRS layout key \"button\": 0: hold 1.5 s bind, 5 s Wi-Fi, 12 s reboot, held at power-up = download mode, ignored while linked (devButton.cpp:19-22, 92-95). Manufacturer Shenzhen Shouhan Technology (SHOU HAN); -40..85 C (85 C part: H1-clear site); no silk (owner rule; documented in the pinout). LCSC C2976675; NextPCB turnkey sources it by MPN (D60)",
+   "notes": "shared boot / bind button (D65: smallest tact switch, replaces the TS2306A of D63/D64): Alps Alpine SKUB, 2.4 x 1.4 x 0.55 mm, 1.6 N, 0.11 mm travel, 500k cycles, IP6X/IPX8, -30..+85 C, 12 V 50 mA; land 2 pads 0.45 x 1.10, span 2.8, courtyard 3.0 x 1.6 (4.8 mm2, was about 7.3). Circuit: QSPI_SS (BOOT, RP2354A pin 60) -> R44 1k -> FC_BOOT -> D8.A1; RX_BOOT (ESP32 GPIO0, pin 23) -> D8.A2; D8.K = BOOT_SW -> SW1.1; SW1.2 -> GND by via-in-pad. Pressed: CSn <= 0.51 V (VIL 0.8 V), GPIO0 <= 0.42 V (VIL 0.825 V); pressed while running: 2.9 mA load, CS stays >= 2.62 V, the FC keeps running. Held at power-up = FC BOOTSEL + ESP32 download (production and recovery flow, D67); press = ELRS bind 1.5 s / Wi-Fi 5 s / reboot 12 s (devButton.cpp). Site: F preferred (B acceptable), at an edge a toothpick reaches with the frame fitted; H1: >= 2 mm in 2D projection from FET groups, phase pours and motor lands on both sides; >= 3 mm from the LGA/WLCSP/DSBGA parts (SiP, gyro, SGM40661, INA186) against press flex; outside RF_RX_EXIT and the Wi-Fi keep-out; courtyard outside the 0.30 edge band; no silk (pinout: 'BOOT: hold at plug-in = FC BOOTSEL + RX download; press = ELRS bind/Wi-Fi'). Bench V-btn: BOOTSEL + ESP32 download at 25 C and cold, press under XIP load, GPIO0 dips (100 pF 0201 on BOOT_SW if < 2.5 V), GPIO0 at 85 C released. No LCSC number found (datasheet hosted only); NextPCB turnkey sources it by MPN (D60)",
+   "lib_work": []
+  },
+  {
+   "ref": "D8",
+   "block": "rx",
+   "sheet": "rx_esp32_sx1281",
+   "value": "SDM02M30CLP3",
+   "rating": "30 V 0.2 A",
+   "manufacturer": "Diodes Incorporated",
+   "mpn": "SDM02M30CLP3-7B",
+   "lcsc": null,
+   "package": "X2-DFN1006-3",
+   "footprint": "lib:X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3",
+   "symbol": "lib:SDM02M30CLP3-7B",
+   "side": "F",
+   "region": "rx_button",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "FC_BOOT",
+    "RX_BOOT",
+    "BOOT_SW"
+   ],
+   "notes": "boot-button isolation (D65, Matrix II style shared FC BOOTSEL + RX boot): dual Schottky, common cathode; pad 1 = A1 FC_BOOT (from R44), pad 2 = A2 RX_BOOT (ESP32 GPIO0, any length, away from the 2.4 GHz feed and the TCXO), pad 3 = K BOOT_SW to SW1 (BOOT_SW <= 3 mm). DS41598 Rev 2-2: VF 0.28 V typ / 0.34 V max at 0.1 mA, IR 0.15 uA max at 10 V (25 C; 7.5 uA at 85 C inferred: GPIO0 drop <= 0.34 V released), CT 3.3 pF; X2-DFN1006-3 1.0 x 0.6 x 0.40. Same side as SW1, within 3 mm. Distributor listing active (secondary), no LCSC number found; NextPCB turnkey sources it by MPN (D60)",
    "lib_work": []
   },
   {
@@ -7516,19 +7301,19 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "B",
    "region": "test_fc",
    "dnp": false,
    "exclude_from_bom": true,
    "exclude_from_pos": true,
-   "silk": "CLK",
+   "silk": null,
    "nets": [
     "SWCLK"
    ],
-   "notes": "RP2354A SWD clock; LINEUP A16: out of the BOM",
+   "notes": "RP2354A SWD clock; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -7540,19 +7325,19 @@
    "manufacturer": null,
    "mpn": null,
    "lcsc": null,
-   "package": "pad D0.8",
-   "footprint": "lib:TestPoint_Pad_D0.8mm",
+   "package": "test via 0.35/0.20",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
    "symbol": "Connector:TestPoint",
    "side": "B",
    "region": "test_fc",
    "dnp": false,
    "exclude_from_bom": true,
    "exclude_from_pos": true,
-   "silk": "DIO",
+   "silk": null,
    "nets": [
     "SWDIO"
    ],
-   "notes": "RP2354A SWD data; LINEUP A16: out of the BOM",
+   "notes": "RP2354A SWD data; mask-open filled-via test point (D67): the 0.35/0.20 Type VII via, probed on its cap (mask opening on the placement side only), no silk, no halo beyond the 0.2 mm body rule; listed in the pinout doc; LINEUP A16: out of the BOM",
    "lib_work": []
   },
   {
@@ -7653,7 +7438,7 @@
     "esc3",
     "esc4"
    ],
-   "description": "ESC channel x4 (D56): EFM8BB51 (I grade) QFN-20 land with EP vias, three AGMSEMI AGM210MAP P+N half-bridges per motor (PDFN-8 3.3x3.3, two drain EPs joined by the phase island), single-sided cells (ESC1/ESC3 top, ESC2/ESC4 bottom), no leg caps; TI CSD25310Q2 + CSD13202Q2 library parts kept as the fallback",
+   "description": "ESC channel x4 (D56): EFM8BB51 (I grade) QFN-20 land with EP vias, three AGMSEMI AGM210MAP P+N half-bridges per motor (PDFN-8 3.3x3.3, two drain EPs joined by the phase island), single-sided cells (ESC1/ESC3 top, ESC2/ESC4 bottom), no leg caps; TI CSD25310Q2 + CSD13202Q2 library parts kept as the fallback; C2 contacts TP1-TP8 as 0.35/0.20 mask-open filled-via test points, EFM8 pre-programmed with Bluejay by NextPCB (D67)",
    "lib_items": [
     "lib:AGM210MAP",
     "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
@@ -7663,7 +7448,7 @@
     "lib:EFM8BB51F16I-C-QFN20R",
     "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51",
     "lib:R_0201_0603Metric_W",
-    "lib:TestPoint_Pad_D0.8mm"
+    "lib:TestPoint_Via_D0.35mm_Drill0.2mm"
    ],
    "parts": [
     "EFM8BB51F16I-C-QFN20R [lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 + lib:EFM8BB51F16I-C-QFN20R] refs U6,U7,U8,U9",
@@ -7673,7 +7458,7 @@
     "RC0201FR-0710KL [lib:R_0201_0603Metric_W] refs R13,R14,R15,R20,R21,R22,R27,R28,R29,R34,R35,R36",
     "RC0201FR-071KL [lib:R_0201_0603Metric_W] refs R16,R17,R18,R23,R24,R25,R30,R31,R32,R37,R38,R39",
     "GRM188C80J226ME15D [lib:C_0603_1608Metric_W] refs C23,C29,C35,C41",
-    "(no MPN) lib:TestPoint_Pad_D0.8mm [lib:TestPoint_Pad_D0.8mm] refs TP1,TP2,TP3,TP4,TP5,TP6,TP7,TP8",
+    "(no MPN) lib:TestPoint_Via_D0.35mm_Drill0.2mm [lib:TestPoint_Via_D0.35mm_Drill0.2mm] refs TP1,TP2,TP3,TP4,TP5,TP6,TP7,TP8",
     "GRM155C80J106ME11D [lib:C_0402_1005Metric_W] refs C30"
    ]
   },
@@ -7685,7 +7470,7 @@
     "imu",
     "led"
    ],
-   "description": "FC + gyro LDO + blackbox + LEDs: TPS7A2018 symbol, W25Q128JVPIM symbol + WSON-8 6x5 land without EP, 74LVC1T45GS symbol + XSON6 SOT1202 land, 0402 LED land (RP2354A, BMI270, crystal, AOTA, AP1606 already in OpenDrone)",
+   "description": "FC + gyro LDO + blackbox + LEDs: TPS7A2018 symbol, PY25Q128HA-DFH-IR symbol + USON-8 3x3 P0.8 land (D66; pad 9 tie-bar tabs unconnected), 74LVC1T45GS symbol + XSON6 SOT1202 land, 0402 LED land (RP2354A, BMI270, crystal, AOTA, AP1606 already in OpenDrone)",
    "lib_items": [
     "lib:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_Dense",
     "lib:C_0201_0603Metric_W",
@@ -7694,11 +7479,11 @@
     "lib:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense",
     "lib:LED_0402_1005Metric",
     "lib:LGA-14_L3.0-W2.5-P0.50-BR_W",
+    "lib:PY25Q128HA-DFH-IR",
     "lib:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_Dense",
     "lib:R_0201_0603Metric_W",
     "lib:TPS7A2018PDQN",
-    "lib:W25Q128JVPIM",
-    "lib:WSON-8_6x5mm_P1.27mm_NoEP",
+    "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA",
     "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense"
    ],
    "parts": [
@@ -7716,7 +7501,7 @@
     "BMI270 [lib:LGA-14_L3.0-W2.5-P0.50-BR_W] refs U11",
     "TPS7A2018PDQNRM3 [lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense + lib:TPS7A2018PDQN] refs U12",
     "GRM033R61A105ME44D [lib:C_0201_0603Metric_W] refs C61,C62",
-    "W25Q128JVPIM [lib:WSON-8_6x5mm_P1.27mm_NoEP + lib:W25Q128JVPIM] refs U13",
+    "PY25Q128HA-DFH-IR [lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA + lib:PY25Q128HA-DFH-IR] refs U13",
     "XL-1005UGC [lib:LED_0402_1005Metric] refs D5",
     "XL-1005UBC [lib:LED_0402_1005Metric] refs D6",
     "RC0201FR-07150RL [lib:R_0201_0603Metric_W] refs R85,R86"
@@ -7727,7 +7512,7 @@
    "blocks": [
     "rx"
    ],
-   "description": "RX (D52/D55/D58): ESP32-PICO-V3 SiP (LGA-48 7x7, in-package flash, crystal and match), SX1281, 52 MHz TCXO, LPF to the wire-antenna hole; Wi-Fi: Johanson 2450AT07A0100001T chip antenna at a board edge with a 0201 pi network (0 R fitted, shunts DNP); RX boot/bind tact switch TS2306A on GPIO0 (D63)",
+   "description": "RX (D52/D55/D58): ESP32-PICO-V3 SiP (LGA-48 7x7, in-package flash, crystal and match), SX1281, 52 MHz TCXO, LPF to the wire-antenna hole; Wi-Fi: Johanson 2450AT07A0100001T chip antenna at a board edge with a 0201 pi network (0 R fitted, shunts DNP); shared boot/bind button Alps SKUBAAE010 + Diodes SDM02M30CLP3-7B dual Schottky (FC BOOTSEL via R44 + RX GPIO0, D65)",
    "lib_items": [
     "lib:2450AT07A0100001T",
     "lib:AE_WireHole_PTH0.5mm",
@@ -7741,9 +7526,11 @@
     "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense",
     "lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_Dense",
     "lib:R_0201_0603Metric_W",
-    "lib:SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W",
+    "lib:SDM02M30CLP3-7B",
+    "lib:SKUBAAE010",
+    "lib:SW_Alps_SKUBAAE010_2.4x1.4mm",
     "lib:SX1281IMLTRT",
-    "lib:TS2306A240GFMSM9"
+    "lib:X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3"
    ],
    "parts": [
     "ESP32-PICO-V3 [lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO + lib:ESP32-PICO-V3] refs U16",
@@ -7762,7 +7549,8 @@
     "GRM033R60J474KE90D [lib:C_0201_0603Metric_W] refs C87",
     "DEA102700LT-6307A2 [lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W] refs FL1",
     "(no MPN) lib:AE_WireHole_PTH0.5mm [lib:AE_WireHole_PTH0.5mm] refs AE1",
-    "TS2306A 240gf MSM 9 [lib:SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W + lib:TS2306A240GFMSM9] refs SW1"
+    "SKUBAAE010 [lib:SW_Alps_SKUBAAE010_2.4x1.4mm + lib:SKUBAAE010] refs SW1",
+    "SDM02M30CLP3-7B [lib:X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3 + lib:SDM02M30CLP3-7B] refs D8"
    ]
   },
   {
@@ -7903,42 +7691,43 @@
    "blocks": [
     "io"
    ],
-   "description": "Pads and mechanics: 1.0x1.2 solder pad, motor pad with D0.5 anchor PTH, battery pad with D1.1 PTH, JST SH 1.0 4-pin USB (BM04B, D57) with TPD2EUSB30 ESD, JST SUR 0.8 3-pin camera plug (D63), D0.8 test pad, 3.5 mm ear hole with flange keepout, AE wire-antenna hole, Hirose U.FL land, incutec logo",
+   "description": "Pads and mechanics: 1.0x1.2 solder pad, plug-ready motor land (3x D0.5 PTH at 1.25 mm, Molex 53047-0310 header DNP, D65), battery pad with D1.1 PTH, JST SH 1.0 4-pin USB (BM04B, D57) with TPD2EUSB30 ESD, JST SUR 0.8 3-pin camera plug (D63), 0.35/0.20 test via (D67), 3.5 mm ear hole with flange keepout, AE wire-antenna hole, Hirose U.FL land, incutec logo",
    "lib_items": [
     "lib:BM04B-SRSS-TB",
     "lib:BattPad_3.0x2.0mm_PTH1.1",
     "lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB",
     "lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal",
-    "lib:MotorPad_1.0x1.8mm_PTH0.5",
+    "lib:Molex_53047-0310",
+    "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
     "lib:MountingHole_3.5mm_Ear_Flange5.2",
     "lib:SM03B-SURS-TF",
     "lib:SolderPad_1.0x1.2mm",
     "lib:SolderPad_1.0x1.2mm_Dense",
     "lib:TI_SOT-9X3-3_DRT",
     "lib:TPD2EUSB30DRTR",
-    "lib:TestPoint_Pad_D0.8mm",
+    "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
     "lib:incutec_logo_6.1x1.4mm"
    ],
    "parts": [
     "(no MPN) lib:BattPad_3.0x2.0mm_PTH1.1 [lib:BattPad_3.0x2.0mm_PTH1.1] refs J2,J3",
-    "(no MPN) lib:MotorPad_1.0x1.8mm_PTH0.5 [lib:MotorPad_1.0x1.8mm_PTH0.5] refs J4,J5,J6,J7,J8,J9,J10,J11,J12,J13,J14,J15",
+    "53047-0310 [lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5 + lib:Molex_53047-0310] refs J4,J7,J10,J13",
     "(no MPN) lib:SolderPad_1.0x1.2mm [lib:SolderPad_1.0x1.2mm] refs J16,J17,J18,J19,J23,J24,J25,J26,J27,J28,J29",
     "(no MPN) lib:SolderPad_1.0x1.2mm_Dense [lib:SolderPad_1.0x1.2mm_Dense] refs J20,J21,J22,J33",
     "SM03B-SURS-TF(LF)(SN) [lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal + lib:SM03B-SURS-TF] refs J32",
     "BM04B-SRSS-TB(LF)(SN) [lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB + lib:BM04B-SRSS-TB] refs J31",
-    "(no MPN) lib:TestPoint_Pad_D0.8mm [lib:TestPoint_Pad_D0.8mm] refs TP14,TP15,TP9,TP10,TP11,TP12,TP13",
     "TPD2EUSB30DRTR [lib:TI_SOT-9X3-3_DRT + lib:TPD2EUSB30DRTR] refs D7",
+    "(no MPN) lib:TestPoint_Via_D0.35mm_Drill0.2mm [lib:TestPoint_Via_D0.35mm_Drill0.2mm] refs TP9,TP12,TP13",
     "(no MPN) lib:MountingHole_3.5mm_Ear_Flange5.2 [lib:MountingHole_3.5mm_Ear_Flange5.2] refs H1,H2,H3",
     "(no MPN) lib:incutec_logo_6.1x1.4mm [lib:incutec_logo_6.1x1.4mm] refs LOGO1"
    ]
   }
  ],
  "summary": {
-  "parts_total": 279,
-  "bom_parts": 228,
-  "bom_lines": 81,
+  "parts_total": 268,
+  "bom_parts": 229,
+  "bom_lines": 82,
   "passives": 174,
-  "pads_and_mechanical": 49,
+  "pads_and_mechanical": 33,
   "by_block": {
    "power": 39,
    "esc1": 15,
@@ -7949,26 +7738,27 @@
    "imu": 5,
    "blackbox": 3,
    "osd": 12,
-   "rx": 24,
+   "rx": 25,
    "vtx": 58,
    "led": 4,
-   "io": 43
+   "io": 31
   },
   "by_side": {
-   "B": 143,
-   "F": 136
+   "B": 141,
+   "F": 127
   },
   "by_package": {
    "0603": 11,
    "0201": 144,
    "0402": 17
   },
-  "lib_items": 74,
-  "lib_footprints": 52,
-  "lib_symbols": 22,
+  "lib_items": 77,
+  "lib_footprints": 53,
+  "lib_symbols": 24,
   "parts_needing_lib_work": 0,
   "no_lcsc": [
    "2450AT07A0100001T",
+   "53047-0310",
    "BLM03PX121SN1D",
    "EFM8BB51F16I-C-QFN20R",
    "GRM0335C1H101JA01D",
@@ -7976,6 +7766,7 @@
    "GRM033C81E104KE14D",
    "GRM155C80J106ME11D",
    "LP5907SNX-2.85/NOPB",
+   "PY25Q128HA-DFH-IR",
    "RC0201FR-07150RL",
    "RC0201FR-0718KL",
    "RC0201FR-071K2L",
@@ -7991,18 +7782,21 @@
    "RC0201FR-076K2L",
    "RC0201FR-07820RL",
    "RC0201JR-070RL",
-   "SGM40661YG/TR"
+   "SDM02M30CLP3-7B",
+   "SGM40661YG/TR",
+   "SKUBAAE010"
   ],
   "bom_reduction": "D52-D54 applied 2026-10-09 (main case, ESP32-PICO-V3 per D55; the \u00a75.1 D0WD-V3 fallback is withdrawn): BOM-REDUCTION \u00a72 baseline additions C128 (D24 VIN1), R87 / C129 (D34) and \u00a73 BR-01..BR-26",
-  "dnp_parts": 2,
+  "dnp_parts": 6,
   "dnp_only_lines": [
+   "53047-0310",
    "GRM0335C1H1R2BA01D"
   ],
   "bom_parts_by_side": {
    "B": 129,
-   "F": 99
+   "F": 100
   },
   "bom_parts_note": "bom_parts / bom_lines = fitted placements and their MPNs (dnp and BOM-excluded pads not counted)",
-  "owner_decisions": "D56: 24 TI FETs and 12 leg caps out, 12x AGM210MAP Q29-Q40 in; D57: pogo J30 out, J31 BM04B, U24 SGM40661 + C131, D7 TPD2EUSB30 in; D58: R57 out, AE2 + R88 (0 R) + C132/C133 (DNP) in; D60: no consigned flags; refs kept stable, new parts take the next free number (P4 annotation closes gaps); D63/D64 IO set: J32 camera plug SM03B-SURS-TF, SW1 TS2306A RX boot/bind button, J33 LED-row GND pad (row GND LED 5V BZ-, J21 relabelled 5V), TP14/TP15 USB D-/D+ pads (COULD)"
+  "owner_decisions": "D56: 24 TI FETs and 12 leg caps out, 12x AGM210MAP Q29-Q40 in; D57: pogo J30 out, J31 BM04B, U24 SGM40661 + C131, D7 TPD2EUSB30 in; D58: R57 out, AE2 + R88 (0 R) + C132/C133 (DNP) in; D60: no consigned flags; refs kept stable, new parts take the next free number (P4 annotation closes gaps); D63/D64 IO set: J32 camera plug SM03B-SURS-TF, SW1 TS2306A RX boot/bind button, J33 LED-row GND pad (row GND LED 5V BZ-, J21 relabelled 5V), TP14/TP15 USB D-/D+ pads (COULD); D65: 12 single motor pads -> 4 plug-ready lands J4/J7/J10/J13 (Molex 53047-0310 header DNP), SW1 -> Alps SKUBAAE010 shared FC BOOTSEL + RX boot through D8 SDM02M30CLP3-7B and R44 (FC_BOOT); D66: U13 -> Puya PY25Q128HA-DFH-IR USON-8 3x3; D67: TP1-TP9, TP12, TP13 -> 0.35/0.20 test vias, TP10/TP11/TP14/TP15 removed, EFM8 pre-programmed by NextPCB"
  }
 }

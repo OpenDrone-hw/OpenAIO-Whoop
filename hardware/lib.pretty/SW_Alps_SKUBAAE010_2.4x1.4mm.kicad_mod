@@ -1,0 +1,142 @@
+(footprint "SW_Alps_SKUBAAE010_2.4x1.4mm"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Alps Alpine SKUBAAE010 TACT switch, SKUB series, 2.4 x 1.4 x 0.55 mm (2.6 over the terminals), 2 terminals, top push, 1.6 N, travel 0.11 mm, 500,000 cycles, IP6X/IPX8, -30..+85 C, 12 V DC 50 mA max. Land from the Alps product page 'solder joint dimensions' (viewed from the mounting side): 2 pads 0.45 x 1.10, outer span 2.8, inner gap 1.9. https://tech.alpsalpine.com/e/products/detail/SKUBAAE010/")
+	(tags "tact switch Alps SKUB SKUBAAE010 2.4x1.4 smallest")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "2d84b563-2912-459b-b1c2-b1c03e87a9aa")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Value" "SW_Alps_SKUBAAE010_2.4x1.4mm"
+		(at 0 1.1 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4025376c-724d-4d13-95a0-7bee6e636018")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e111953d-19a4-4654-930e-9e9008a261fb")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1f4a4019-c394-4e99-be7b-1d1ec80a8c5c")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.5 -0.8)
+		(end 1.5 0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "cd88aec6-6a1c-427d-b6aa-321e65b9e6f4")
+	)
+	(fp_line
+		(start -1.2 -0.45)
+		(end -0.95 -0.7)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3ef506fe-318c-4c0d-a6b4-0b22730b157c")
+	)
+	(fp_line
+		(start -1.2 0.7)
+		(end -1.2 -0.45)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "971f15eb-7a2a-43f6-80ae-45b9ce1b7fd0")
+	)
+	(fp_line
+		(start -0.95 -0.7)
+		(end 1.2 -0.7)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "e9e3307c-df7a-406d-afbb-882960db110b")
+	)
+	(fp_line
+		(start 1.2 -0.7)
+		(end 1.2 0.7)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "cdbc37e0-8fd7-419f-882f-fab013b2b80c")
+	)
+	(fp_line
+		(start 1.2 0.7)
+		(end -1.2 0.7)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "cda206e2-a867-49e3-9f30-8db89114fea2")
+	)
+	(pad "1" smd rect
+		(at -1.175 0)
+		(size 0.45 1.1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "0da02700-6c80-4ca6-8a1c-4a236c4091e3")
+	)
+	(pad "2" smd rect
+		(at 1.175 0)
+		(size 0.45 1.1)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "f85b2d22-ff95-436f-9b1b-1b7e07c99c2e")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/SW_Alps_SKUBAAE010_2.4x1.4mm.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

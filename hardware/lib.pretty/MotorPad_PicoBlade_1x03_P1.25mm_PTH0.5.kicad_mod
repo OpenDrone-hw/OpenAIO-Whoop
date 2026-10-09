@@ -1,0 +1,237 @@
+(footprint "MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = simplified header envelope under a 1.0 mm board. Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
+	(tags "motor solder pad PicoBlade 53047 1.25mm plug-ready whoop JST1.25")
+	(property "Reference" "REF**"
+		(at 0 0.3 0)
+		(layer "F.Fab")
+		(uuid "2ea8a266-1ef3-4d33-b93e-90407c8bf822")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Value" "MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5"
+		(at 0 1.7 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "77db1830-8c0b-44ec-93ad-92313e9bd26b")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0ef8f645-b3ec-40b0-9106-141c4a553463")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2488d0c5-09bd-41e4-96e9-23cf3c113d7d")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -2.9 -2.2)
+		(end 2.9 1.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "B.CrtYd")
+		(uuid "5b6b8d7c-20c9-4f12-b0d1-33e27289fd8e")
+	)
+	(fp_rect
+		(start -2.55 -0.55)
+		(end 2.55 1.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "fbb5b13e-d053-47a9-99df-581bc0b0d356")
+	)
+	(fp_line
+		(start -2.8 -1.6)
+		(end -2.3 -2.1)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "B.Fab")
+		(uuid "27f8679d-08c4-4dbe-800f-268007812fa1")
+	)
+	(fp_line
+		(start -2.8 1.2)
+		(end -2.8 -1.6)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "B.Fab")
+		(uuid "4c1b6fac-b720-4ec6-ab39-12fc7d41a3aa")
+	)
+	(fp_line
+		(start -2.3 -2.1)
+		(end 2.8 -2.1)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "B.Fab")
+		(uuid "64746d8f-1393-4f4f-b331-95258603f8e2")
+	)
+	(fp_line
+		(start 2.8 -2.1)
+		(end 2.8 1.2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "B.Fab")
+		(uuid "576a1463-f8d7-4501-a057-1edd7cd69d8a")
+	)
+	(fp_line
+		(start 2.8 1.2)
+		(end -2.8 1.2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "B.Fab")
+		(uuid "b56ece28-3ef6-4e65-8f1f-cca1c6c1cdce")
+	)
+	(fp_line
+		(start -2.45 -0.15)
+		(end -2.15 -0.45)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "d0f60ea8-c560-4f7b-95b6-c4eee188bf6e")
+	)
+	(fp_line
+		(start -2.45 1.05)
+		(end -2.45 -0.15)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "0d0beddc-f361-408c-9a1b-918eeeafd812")
+	)
+	(fp_line
+		(start -2.15 -0.45)
+		(end 2.45 -0.45)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "176a0c9e-0485-4859-a15f-2c9f27da87d4")
+	)
+	(fp_line
+		(start 2.45 -0.45)
+		(end 2.45 1.05)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "d48bb047-b6d6-43ac-be90-6e8d338d96e4")
+	)
+	(fp_line
+		(start 2.45 1.05)
+		(end -2.45 1.05)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "e69f0fad-bf6e-436d-ad48-a9ca6d2fd123")
+	)
+	(pad "1" smd rect
+		(at -1.625 0.3)
+		(size 1.65 1.5)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "24e2fff4-b5b6-49c4-9cd1-01d1f2d247cc")
+	)
+	(pad "1" thru_hole circle
+		(at -1.25 0)
+		(size 0.9 0.9)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers yes)
+		(keep_end_layers yes)
+		(uuid "a9e5aff1-ad6e-43ed-8df5-353b4114abf9")
+	)
+	(pad "2" thru_hole circle
+		(at 0 0)
+		(size 0.9 0.9)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers yes)
+		(keep_end_layers yes)
+		(uuid "633125eb-cdb3-486d-850e-673d087562fa")
+	)
+	(pad "2" smd rect
+		(at 0 0.3)
+		(size 0.9 1.5)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "4e13d568-7d96-4800-9c65-e9edaa762d2d")
+	)
+	(pad "3" thru_hole circle
+		(at 1.25 0)
+		(size 0.9 0.9)
+		(drill 0.5)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers yes)
+		(keep_end_layers yes)
+		(uuid "87e8e052-2b40-4a6f-bac1-8cd6041cbd91")
+	)
+	(pad "3" smd rect
+		(at 1.625 0.3)
+		(size 1.65 1.5)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "15c13cb0-1dc5-434b-a361-c4caa6d92e2f")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

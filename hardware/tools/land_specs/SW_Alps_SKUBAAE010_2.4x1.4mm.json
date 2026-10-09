@@ -1,0 +1,39 @@
+{
+ "part": "SW1 shared FC BOOTSEL + RX boot/bind button (D65), Alps Alpine SKUBAAE010",
+ "datasheet": "Alps Alpine SKUBAAE010 product page (https://tech.alpsalpine.com/e/products/detail/SKUBAAE010/), copy printed 2025-05-26 hosted by LCSC: https://atta.szlcsc.com/upload/public/pdf/source/20250526/CA80DC2E3D3223DEED73BFD487CB41E9.pdf p1 (specs: 1.6 N, travel 0.11, height 0.55, 500,000 cycles, 500 mOhm, IP6X/IPX8, -30..+85 C, 50 mA 12 V DC; outline drawing 2.4 +-0.1 x 1.4 +-0.1 without the film, 2.6 over the terminals, terminal width 0.7), p2 ('solder joint dimensions, viewed from the switch mounting side': outer 2.8, inner 1.9, pad height 1.1; circuit diagram 1-2 SPST-NO). Launch note (2024-10-11): https://www.electronicspecifier.com/?p=34890",
+ "derivation": "pads 0.45 x 1.10 = (2.8 - 1.9) / 2 by 1.1, centres +-(1.9/2 + 0.225) = +-1.175; body = 2.4 x 1.4 (film-less); courtyard max(body, land 2.8 x 1.1) + 0.10 = 3.0 x 1.6",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.175,
+   "y": 0.0,
+   "w": 0.45,
+   "h": 1.1,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 1.175,
+   "y": 0.0,
+   "w": 0.45,
+   "h": 1.1,
+   "shape": "rect"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 2.4,
+  "h": 1.4,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": "1",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "footprint": "lib:SW_Alps_SKUBAAE010_2.4x1.4mm",
+ "staged_from": "p2v3/staging/io2/landspecs/SW_Alps_SKUBAAE010_2.4x1.4mm.json"
+}

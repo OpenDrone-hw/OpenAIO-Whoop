@@ -1,0 +1,105 @@
+{
+ "part": "plug-ready motor land, 4x (M1-M4, D65); optional header Molex 53047-0310 (DNP default)",
+ "datasheet": "Molex PicoBlade 53047 vertical THT header, sales drawing SD-53047-xxx (https://www.molex.com/pdm_docs/sd/530470310_sd.pdf; molex.com and its mirrors returned 503 / empty replies from this sandbox, so the numbers are screened from two independent footprints built from it plus distributor attributes): pitch 1.25 mm; KiCad 10 stock Connector_Molex:Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical (descr cites SD-530470610) drill 0.50, pad 0.80 x 1.30, housing 5.60 x 3.30 with the pin row 1.20 from one long wall and 2.10 from the other; LCSC C471412 (Molex 530470510, 5-pin sibling, EasyEDA footprint) drill 0.60, housing 3.20 deep, pin row 1.15 / 2.05 from the walls; DigiKey 0530470x10: post 2.30 mm, insulation height 4.20 mm, tin; element14/LCSC: 1.0 A per contact, 125 V, -40..+85 C. Wire-side mate: Molex 51021-0300 housing + 50058/50079 crimps (hobby name 'JST1.25'; BetaFPV Matrix 1S 5IN1 II spec 'Motor connector: JST1.25', https://betafpv.com/products/matrix-1s-5in1-ii-brushless-flight-controller). Fab rules: hardware/OpenAIO-Whoop.kicad_dru 'PTH annular ring 0.20', 'PTH pad holes 0.45 apart', 'PTH hole to copper 0.28', 'PTH pads, copper 0.40 apart' (broken by 0.05: D21 rule proposed).",
+ "derivation": "Holes D0.50 finished (KiCad stock = Molex recommended hole; also passes a stripped 28-30 AWG motor wire as the old anchor hole did) at x -1.25 / 0 / +1.25, y 0; rings D0.90 = 0.50 + 2 x 0.20 (DRU annular), unused inner rings removed. Front (land side, phase copper side): solder areas without paste (hand soldering, like MotorPad_1.0x1.8mm_PTH0.5) as second pads of the same numbers: pads 1/3 x +-0.80..+-2.45, pad 2 x -0.45..0.45, all y -0.45..1.05 (ring bottom = area bottom, so the 0.50 mm iron halo to the FET drains is measured from y -0.45). Ring-to-ring copper 0.35 (needs the D21 exception, NextPCB asks 0.40 for THT bridging; the land is hand-soldered), holes 0.75 edge to edge (>= 0.45), hole to other-net copper 0.55 (>= 0.28), solder-area gap 0.35 (>= 0.15 SMD). Back (header side): B.Fab housing x -2.80..2.80, y -2.10..1.20 (+y = edge-side wall), B.CrtYd = housing U rings + 0.10. body = land extents (as MotorPad_1.0x1.8mm_PTH0.5); F.CrtYd = land + 0.10.",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.625,
+   "y": 0.3,
+   "w": 1.65,
+   "h": 1.5,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.0,
+   "y": 0.3,
+   "w": 0.9,
+   "h": 1.5,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 1.625,
+   "y": 0.3,
+   "w": 1.65,
+   "h": 1.5,
+   "shape": "rect"
+  },
+  {
+   "number": "1",
+   "x": -1.25,
+   "y": 0.0,
+   "w": 0.9,
+   "h": 0.9,
+   "shape": "circle"
+  },
+  {
+   "number": "2",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 0.9,
+   "h": 0.9,
+   "shape": "circle"
+  },
+  {
+   "number": "3",
+   "x": 1.25,
+   "y": 0.0,
+   "w": 0.9,
+   "h": 0.9,
+   "shape": "circle"
+  }
+ ],
+ "holes": [
+  {
+   "number": "1",
+   "x": -1.25,
+   "y": 0.0,
+   "drill": 0.5,
+   "plated": true
+  },
+  {
+   "number": "2",
+   "x": 0.0,
+   "y": 0.0,
+   "drill": 0.5,
+   "plated": true
+  },
+  {
+   "number": "3",
+   "x": 1.25,
+   "y": 0.0,
+   "drill": 0.5,
+   "plated": true
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 4.9,
+  "h": 1.5,
+  "x": 0.0,
+  "y": 0.3
+ },
+ "header_body_back": {
+  "w": 5.6,
+  "h": 3.3,
+  "x": 0.0,
+  "y": -0.45,
+  "height": 4.2
+ },
+ "b_courtyard": "header housing U rings + 0.10 (x -2.90..2.90, y -2.20..1.30)",
+ "pin1": "1",
+ "attrs": [
+  "through_hole"
+ ],
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+ "staged_from": "p2v3/staging/io2/landspecs/MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5.json"
+}

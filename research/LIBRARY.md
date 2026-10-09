@@ -6,20 +6,121 @@ merge pass that checked the 17 OpenDrone footprints the BOM used without staged 
 Updated the same day for the D52 BOM reduction (section "D52 BOM reduction" below, work in `p23/bomred_lib/`) and
 for the owner decisions D56-D58 plus the `bom_plan.json` rewrite for D52-D60 (section "D56-D58 merge" below, work in
 `p2v3/integ_work/`), and for the D63/D64 IO set with the `bom_plan.json` regenerated for D52-D63 (section "D63 IO set"
-below, work in `p2v3/integ3_work/`).
+below, work in `p2v3/integ3_work/`), and for D65-D67 (plug-ready motor lands, shared boot button, PY25Q128HA
+blackbox NOR, debug pads cut to test vias) with the `bom_plan.json` regenerated for D52-D67 (section "D65-D67" below,
+work in `p2v3/integ4_work/`).
 
 ## Summary
 
 | Item | Count |
 |---|---|
-| Symbols in `hardware/lib.kicad_sym` | 30 (19 from the merge, 3 for D52, 6 for D56-D58, 2 for D63) |
-| Footprints in `hardware/lib.pretty` | 80 (70 from the merge, 1 for D52, 6 for D56-D58, 3 for D63) |
-| 3D models in `hardware/lib.3dshapes` | 30 |
-| Land specs in `hardware/tools/land_specs` | 80 lib specs (+3 checker test specs) |
-| bom_plan entries (D52-D63 plan) | 279 = 228 fitted + 2 DNP + 49 pads / mechanics; 81 BOM lines; 52 footprints (all `lib:`), 48 symbols (22 `lib:`) |
-| check_footprint, bom_plan footprints | 52 / 52 PASS |
-| check_footprint, all lib footprints | 80 / 80 PASS (6 with the intended 'lands without paste' WARN: solder, motor and test pads, the pogo footprint, the Wi-Fi edge strip) |
-| Entries resolving (symbol + footprint via lib tables, pins = pads) | 279 / 279; all 30 lib symbols resolve to their Footprint field, pins = pads, `${KIPRJMOD}` 3D files present |
+| Symbols in `hardware/lib.kicad_sym` | 34 (19 from the merge, 3 for D52, 6 for D56-D58, 2 for D63, 4 for D65-D66) |
+| Footprints in `hardware/lib.pretty` | 85 (70 from the merge, 1 for D52, 6 for D56-D58, 3 for D63, 5 for D65-D67) |
+| 3D models in `hardware/lib.3dshapes` | 34 |
+| Land specs in `hardware/tools/land_specs` | 85 lib specs (+3 checker test specs) |
+| bom_plan entries (D52-D67 plan) | 268 = 229 fitted + 6 DNP + 33 pads / mechanics; 82 BOM lines (+ 2 DNP-only); 53 footprints (all `lib:`), 50 symbols (24 `lib:`) |
+| check_footprint, bom_plan footprints | 53 / 53 PASS |
+| check_footprint, all lib footprints | 85 / 85 PASS (8 with the intended 'lands without paste' WARN: solder, motor and test pads, the plug-ready motor land, the test via, the pogo footprint, the Wi-Fi edge strip) |
+| Entries resolving (symbol + footprint via lib tables, pins = pads) | 268 / 268; all 34 lib symbols resolve to their Footprint field, pins = pads, `${KIPRJMOD}` 3D files present |
+
+## D65-D67 and the D52-D67 bom_plan (2026-10-09)
+
+Owner decisions D65 (plug-ready motor lands with an optional DNP header; one smallest button shared by FC BOOTSEL and
+RX boot through a dual diode), D66 (smallest blackbox NOR) and D67 (debug pads cut: C2, SWD and FCB become test vias,
+four pads go, NextPCB pre-programs the EFM8s). Parts were staged and checked in `p2v3/staging/io2` (D65) and
+`p2v3/staging/flash` (D66), with build scripts, datasheets and work logs there; the D67 test via was built in this pass
+(`p2v3/integ4_work/stage/work/build_tv.py`). This pass merged them and regenerated `bom_plan.json`.
+
+### Parts added to the library (D65-D67)
+
+| Decision | MPN (maker, LCSC) | Symbol | Footprint | Check | Land source | Notes |
+|---|---|---|---|---|---|---|
+| D65 | 53047-0310 (Molex, none found) | `lib:Molex_53047-0310` | `MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5` | PASS, 1 WARN | Molex PicoBlade 1.25 mm pitch (KiCad stock Molex_PicoBlade_53047-0310: drill 0.50; LCSC 5-pin sibling C471412: 0.60), DRU ring 0.20 -> ring 0.90 | Plug-ready land (BetaFPV Matrix II arrangement): 3 plated holes at 1.25, solder areas 1.65 x 1.50 / 0.90 x 1.50 / 1.65 x 1.50 on the land side for wires (no paste: the WARN), header body on B.Fab + B.CrtYd (5.8 x 3.5, 20.2 mm2) on the far side. Pads 1/2/3 = PHASE_C/B/A. Hole size screened, not verified (molex.com unreachable): confirm 0.50 vs 0.60 from SD-53047 before the P3 freeze. STEP = header envelope |
+| D65 | SKUBAAE010 (Alps Alpine, none found) | `lib:SKUBAAE010` | `SW_Alps_SKUBAAE010_2.4x1.4mm` | PASS, 0 WARN | Alps product page 'solder joint dimensions': 2 pads 0.45 x 1.10, span 2.8 | Smallest tact switch found (SKUB, 2.4 x 1.4 x 0.55, 1.6 N, -30..+85 C, 12 V 50 mA). Courtyard 3.0 x 1.6 (4.8 mm2; TS2306A was about 7.3). STEP = envelope |
+| D65 | SDM02M30CLP3-7B (Diodes Inc., none found) | `lib:SDM02M30CLP3-7B` | `X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3` | PASS, 0 WARN | DS41598 Rev 2-2 p4 suggested pad layout (C 0.40 x 0.70, A 0.40 x 0.25) | Dual Schottky, common cathode: pad 1 A1, 2 A2, 3 K (stock BAT54C pin order). OpenDrone has only the single SDM02U30LP3-7B. STEP = envelope |
+| D66 | PY25Q128HA-DFH-IR (Puya, none found) | `lib:PY25Q128HA-DFH-IR` | `USON-8_3x3mm_P0.8mm_EP_PY25Q128HA` | PASS, 0 WARN | DS Rev 2.0 drawing QRPD-0077 (no DS land pattern): IPC-7351B least, lead lands 0.94 x 0.29 at x +-1.28 (Z 3.50, G 1.62), as the house GD25Q32E toe rule | Pins = the WSON's (1 CS#, 2 SO, 3 WP#, 4 GND, 5 SI, 6 SCLK, 7 HOLD#/RESET#, 8 VCC); pad 9 = two 0.20 x 0.80 tie-bar tab lands, no net (no-connect flag, no vias). Courtyard 3.70 x 3.20 = 11.84 mm2 (WSON 6x5: 35.98). JEDEC 0x852018 is in Betaflight's m25p16 table (133 / 80 MHz). STEP = box envelope |
+| D67 | - (board via) | `Connector:TestPoint` (stock) | `TestPoint_Via_D0.35mm_Drill0.2mm` **new** | PASS, 1 WARN | the board's 0.35 / 0.20 Type VII via (D6, `.kicad_pro`); DECISIONS D67 | Mask-open filled-via test point: SMD land D0.36 with the test-point property and F.Mask (opening D0.44, placement side only) + PTH pad D0.35 / 0.20 with the Heatsink property, so the existing `D21 footprint_via_pads` rules apply (ring 0.075, hole clearance 0.20). The land is 0.36, not 0.35: a coincident 0.35 land makes KiCad 10.0.6 read the ring as 0.074999 (scratch DRC, `integ4_work/drctv/`). No paste (the WARN), no silk, no 3D. Courtyard 0.56 x 0.56 |
+
+Library operations: the four staged symbol blocks were copied into `lib.kicad_sym` (no name clashes with `lib` or
+`OpenDrone`) and the file re-saved with `kicad-cli sym upgrade --force`; the 30 existing blocks are byte-identical
+after the re-save (only lines added). Footprints, STEP files and land specs were copied as staged; the three io2 land
+specs pointed at their staging `.kicad_mod` and now name `lib:<footprint>`. No part was drawn where the project or
+OpenDrone library had one: the OpenDrone catalogue has no PY25Q, SKUB, PicoBlade 53047, dual common-cathode DFN1006 or
+test-via part. The camera plug (J32), the LED-row GND pad (J33) and the USB parts were already in the library (D57,
+D63).
+
+Retired by D65-D67 and kept in the library (harmless, unassigned): `W25Q128JVPIM` + `WSON-8_6x5mm_P1.27mm_NoEP` (D66),
+`TS2306A240GFMSM9` + `SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W` (D65), `MotorPad_1.0x1.8mm_PTH0.5` (D65 fallback: three single
+pads per motor), `TestPoint_Pad_D0.8mm` (D67).
+
+### bom_plan.json (D52-D67)
+
+Regenerated from the 2026-10-07 plan (git 6cb7216): `bomplan_d52.py` (= `p23/bfp/work/bomplan.py`, D52 main case with
+the ESP32-PICO-V3, never the D0WD fallback), `d56_d60.py` and `d63.py` reproduce the D52-D63 plan byte for byte;
+`d65_d67.py` then applies D65-D67. Refs stay stable: each motor keeps its first pad ref, SW1 and U13 keep theirs, and
+the dual diode takes the next free D above every committed plan (D8).
+
+| Decision | Out | In / changed |
+|---|---|---|
+| D65 motor lands | J5, J6, J8, J9, J11, J12, J14, J15 (single pads `MotorPad_1.0x1.8mm_PTH0.5`) | J4 (M1, F), J7 (M2, B), J10 (M3, F), J13 (M4, B): Molex 53047-0310 on `MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5`, **DNP** BOM line (exclude_from_pos: hand-fitted THT), pads 1/2/3 = /ESCn/PHASE_C/B/A, silk M1-M4. The land sits on its ESC cell's FET side (supersedes the D56 note "bottom cells keep the motor-wire land on F.Cu"); regions `motor_M*` carry side and size 5.1 x 1.7 plus the far-side header reservation 5.8 x 3.5 |
+| D65 button | SW1 TS2306A 240gf MSM 9 (SHOU HAN) | SW1 SKUBAAE010 (Alps Alpine), nets BOOT_SW / GND; D8 SDM02M30CLP3-7B (Diodes Inc.), nets FC_BOOT (A1) / RX_BOOT (A2) / BOOT_SW (K), both F in region `rx_button` (4.2 x 1.6); R44 nets QSPI_SS -> FC_BOOT (was BOOT) |
+| D66 | U13 W25Q128JVPIM (Winbond, WSON-8 6x5) | U13 PY25Q128HA-DFH-IR (Puya, USON-8 3x3, LCSC none); C65 note: on pin 8 with the GND return to pin 4; R50 note: HOLD#/RESET# must not float |
+| D67 | TP10 GND, TP11 RXB, TP14 D-, TP15 D+ | TP1-TP8 (C2D / C2CK), TP9 FCB (net BOOT -> FC_BOOT), TP12 CLK, TP13 DIO on `TestPoint_Via_D0.35mm_Drill0.2mm`, silk removed; U6-U9 notes: NextPCB pre-programs Bluejay before reflow, C2 for bench recovery only |
+| Meta | - | `meta.alternates` + U13 (PY25Q128HA-QVH-IR, GD25Q128EQIGR; 4x4 footprints not staged), SW1 + D8 (RX boot only), J4/J7/J10/J13 (single pads); `meta.io_set` rows 2, 10, 12, 13 updated; `meta.dnp` lists the four motor headers |
+
+Result: 268 entries = 229 fitted placements (100 top / 129 bottom), 82 BOM lines,
+6 DNP placements on 2 DNP-only lines (Wi-Fi shunts, motor headers), 33 pads and mechanics. Manufacturer +
+exact MPN on every BOM entry (fitted and DNP). Against D52-D63: -11 placements in total (-12 refs, +1 D8), +1 fitted, +1 BOM line.
+
+Package area (check_spacing extent = body + pads, convex hull, courtyard in brackets; `p2v3/integ4_work/area.py` +
+`area2.py`; board outline 696.8 mm2; through-hole lands counted on their placement side, far-side courtyards listed
+separately):
+
+| Side | Fitted parts | DNP (motor lands, Wi-Fi shunts) | Pads / mechanics | Total | D52-D63 plan |
+|---|---|---|---|---|---|
+| Top (F) | 265.6 mm2 (326.9), 100 | 14.7 mm2 (17.2), 2 | 92.5 mm2 (81.3), 25 | 372.8 mm2, 54 % | 407.0 mm2 |
+| Bottom (B) | 360.7 mm2 (441.4), 129 | 15.4 mm2 (18.5), 4 | 9.3 mm2 (12.3), 8 | 385.4 mm2, 55 % | 375.5 mm2 |
+
+On top of that: the DNP motor-header reservation on the far side of each land (B.CrtYd 20.2 mm2, so 40.4 mm2 on
+each side with the 2 + 2 cell split), the Wi-Fi keep-out (16 mm2 per side) and the mounting-flange, battery-hole and
+RX-hole far-side courtyards (unchanged). D66 saves 24.1 mm2 of courtyard on U13's side; D67 removes 4 pads of 0.8 mm
+and shrinks 11 to 0.56 mm courtyards (15 x 1.00 -> 11 x 0.31 mm2: -11.5 mm2 of courtyard, plus the FCB/CLK/DIO/
+RXB/GND/D-/D+ labels and their halo).
+
+### Verification (D65-D67)
+
+- `check_footprint.py`: the five new footprints PASS (the motor land and the test via with the intended no-paste
+  WARN); all 53 bom_plan footprints PASS (`p2v3/integ4_work/check_all.json`); all 85 lib footprints PASS
+  (`check_alllib.json`).
+- `resolve_all.py`: 268 / 268 entries resolve through the project lib tables (then KiCad's default symbol
+  table), symbol pins = footprint pads (`p2v3/integ4_work/resolve.json`).
+- `symcheck.py`: 34 / 34 lib symbols resolve to their Footprint field, pins = pads, 3D files present.
+- `check_conventions.py`: 27 ok, 1 FAIL, 4 warn, 12 skip, unchanged. The FAIL is A5 (placeholder schematic, P4).
+- Test via scratch DRC with the project `.kicad_pro` / `.kicad_dru` (`integ4_work/drctv/`): no annular, clearance or
+  mask error on either side; two different-net test vias at 0.56 mm pitch trip 'PTH pad holes 0.45 apart' (hole gap
+  0.36), see the integration items.
+
+### Integration items (D65-D67)
+
+- DRU (setup_board.py, v3 board step), none of them in the DRU yet:
+  - `D21 motor_plug_1p25_pth`: 0.35 mm between different-net PTH rings in `*:MotorPad_PicoBlade*` footprints
+    (NextPCB asks 0.40; a 1.25 mm-pitch land cannot meet 0.20 ring and 0.40 spacing at once). NextPCB EQ item.
+  - Test vias: different-net Heatsink-pad holes at the via value 0.30 (the 'hole to hole, different nets 0.30' rule)
+    instead of 'PTH pad holes 0.45 apart', or place different-net test vias >= 0.65 mm apart.
+  - `D21 wifi_antenna_edge_strip` (D58, still open).
+- H1: log a scoped exemption for the DNP motor header (passive, 85 °C rating includes its own rise) and add a header
+  thermocouple to V4. SW1 and D8 are 85 °C parts: H1-clear site (G3).
+- The motor-land far-side reservation (5.8 x 3.5 per motor) must stay free of parts, F1 islands and phase vias; the
+  occupancy and empty-map scripts should count it as occupied.
+- Molex SD-53047: confirm the PCB hole (0.50 staged, LCSC/EasyEDA 0.60) before the P3 freeze.
+- Sourcing by MPN (D60), no LCSC number found: PY25Q128HA-DFH-IR (no distributor listing either; NextPCB quote must
+  confirm, fallback PY25Q128HA-QVH-IR / GD25Q128EQIGR need a USON-8 4x4 footprint), SKUBAAE010, SDM02M30CLP3-7B,
+  53047-0310.
+- P4 schematic: U13 pad 9 no-connect; HOLD#/RESET# and WP# to +3V3; QSPI_SS -> R44 -> FC_BOOT (D8.A1, TP9), RX_BOOT ->
+  D8.A2, D8.K BOOT_SW -> SW1 -> GND; motor lands as one 3-pin J per motor (DNP).
+- Text to update elsewhere: PINMAP config comment W25Q128JV -> PY25Q128HA (0x852018), log D68 for the flash part
+  (the flash result asks for it); IO-SET.md rows 2, 10, 12, 13 and §3 (TS2306A, TP11, TP14/TP15) predate D65-D67.
+- Owner question (io2 result): TP9 FCB is redundant with the shared button; drop it too?
 
 ## D63 IO set and the D52-D63 bom_plan (2026-10-09)
 
@@ -373,7 +474,7 @@ Nothing was removed from the library.
 
 ## Parts
 
-Current plan (`bom_plan.json` for D52-D63, 2026-10-09), one row per MPN + symbol + footprint. Check = check_footprint result of the assigned footprint against its land spec. Source = staging group or merge.
+Current plan (`bom_plan.json` for D52-D67, 2026-10-09), one row per MPN + symbol + footprint. Check = check_footprint result of the assigned footprint against its land spec. Source = staging group or merge.
 
 | Refs | MPN | Symbol | Footprint | Check | Source | Notes |
 |---|---|---|---|---|---|---|
@@ -405,7 +506,7 @@ Current plan (`bom_plan.json` for D52-D63, 2026-10-09), one row per MPN + symbol
 | R61,R87 | RC0201FR-07510KL | `Device:R` | `R_0201_0603Metric_W` | PASS | Murata GR03 land; Yageo RC data sheet p4 dims (0.60 x 0.30), p5 points to "Chip resistors mounting" (not obtainable) | RC0201FR-0733KL: no LCSC listing found 2026-10-09 (order by MPN; AC0201FR-0733KL C226512 is the automotive twin) |
 | U6-U9 | EFM8BB51F16I-C-QFN20R | `lib:EFM8BB51F16I-C-QFN20R` | `QFN-20_3x3mm_P0.5mm_EFM8BB51` | PASS | esc | EFM8BB51 Table 7.2 land, all 20 pins, EP 4 vias 0.35/0.20 (Heatsink pads -> D21 DRU rule needed) |
 | Q29-Q40 | AGM210MAP | `lib:AGM210MAP` | `AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP` | PASS | agm (D56) | AGM DS VER2.73 p9 dual-pad drawing (no DS land): leads 0.35x0.65, EPs 1.87x1.125 merged with the drain-tab toes, two drain EPs '5'/'8' (joined only by the board's phase island), paste 71 % in 2 windows; courtyard 3.90x3.30 |
-| TP1-TP15 | - | `Connector:TestPoint` | `TestPoint_Pad_D0.8mm` | PASS (1 warn) | io_pads | 0.8 mm round test pad, no paste; single terminal (pin1 n/a); not in BOM |
+| TP1-TP9,TP12-TP13 | - | `Connector:TestPoint` | `TestPoint_Via_D0.35mm_Drill0.2mm` | PASS (1 warn) | integ4 (D67) | mask-open filled-via test point: SMD land D0.36 (testpoint, F.Mask) + PTH 0.35/0.20 Heatsink pad; courtyard 0.56; no silk; not in BOM |
 | U10 | RP2354A | `OpenDrone:RP2354A` | `QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_Dense` | PASS | merge (OpenDrone fix) | RP2350 Fig 144 land, toe 3.875->3.70 (budget QFN60_7); EP paste 3x3 70 %; OpenDrone pads 0.14 outboard |
 | X1 | X252012MMB4SI-24 | `Device:Crystal_GND24` | `CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_Dense` | PASS | merge (OpenDrone fix) | YXC suggested layout trimmed to 2.6x2.1 (budget XTAL2520) |
 | C42-C43,C94-C95 | GRM0335C1H150JA01D | `Device:C` | `C_0201_0603Metric_W` | PASS | Murata spec C181047 p26 Table 2, GRM03 a 0.2-0.3, b 0.2-0.35, c 0.2-0.4 | land a 0.20 / b 0.35 / c 0.40 in range; replaces every GRM033R61E104KE14D |
@@ -416,7 +517,7 @@ Current plan (`bom_plan.json` for D52-D63, 2026-10-09), one row per MPN + symbol
 | R48,R63,R68 | RC0201FR-07100KL | `Device:R` | `R_0201_0603Metric_W` | PASS | Murata GR03 land; Yageo RC data sheet p4 dims (0.60 x 0.30), p5 points to "Chip resistors mounting" (not obtainable) | RC0201FR-0733KL: no LCSC listing found 2026-10-09 (order by MPN; AC0201FR-0733KL C226512 is the automotive twin) |
 | U11 | BMI270 | `OpenDrone:BMI270` | `LGA-14_L3.0-W2.5-P0.50-BR_W` | PASS | merge (OpenDrone fix) | Bosch s8.3 land 0.475x0.25 (OpenDrone 0.60x0.27), BR frame kept, stock model copied in and turned 180 |
 | U12 | TPS7A2018PDQNRM3 | `lib:TPS7A2018PDQN` | `X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense` | PASS | vtx_osd | TI DQN0004A land, toe 0.61->0.55 (budget X2SON1 1.1); U12 moved to Dense with U22 (same drawing, same budget) |
-| U13 | W25Q128JVPIM | `lib:W25Q128JVPIM` | `WSON-8_6x5mm_P1.27mm_NoEP` | PASS | fc_imu_blackbox_led | W25Q128JV WSON 6x5, centre pad not soldered (floating), IPC nominal 1.02x0.41 |
+| U13 | PY25Q128HA-DFH-IR | `lib:PY25Q128HA-DFH-IR` | `USON-8_3x3mm_P0.8mm_EP_PY25Q128HA` | PASS | flash (D66) | IPC-7351B least land 0.94 x 0.29 at x +-1.28, P0.8; pad 9 = 2 tie-bar tabs 0.20 x 0.80, no net; courtyard 3.70 x 3.20 |
 | U14 | SN74LVC1G3157DTBR | `OpenDrone:SN74LVC1G3157DTBR` | `X2SON-6_L1.0-W0.8-BL_Dense` | PASS | vtx_osd | TI DTB land, toe 0.60->0.45; OpenDrone pads 0.1 off, no courtyard/body |
 | U15 | TLV7031DPWR | `OpenDrone:TLV7031DPWR` | `X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense` | PASS | vtx_osd | TI DPW land in TI numbering (OpenDrone footprint swapped pads 3/5 vs TI: miswire fixed), toe 0.60->0.45 |
 | D3 | SDM02U30LP3-7B | `OpenDrone:SDM02U30LP3-7B` | `X3-DFN0603-2_L0.6-W0.3-RD_W` | PASS | vtx_osd | SDM02U30LP3 land 0.23x0.30 @+-0.19 (OpenDrone 0.20 @+-0.20) |
@@ -458,19 +559,20 @@ Current plan (`bom_plan.json` for D52-D63, 2026-10-09), one row per MPN + symbol
 | D6 | XL-1005UBC | `Device:LED` | `LED_0402_1005Metric` | PASS | fc_imu_blackbox_led | XINGLIGHT XL-1005 land 0.30x0.55 @+-0.40, pad 1 = cathode |
 | R85-R86 | RC0201FR-07150RL | `Device:R` | `R_0201_0603Metric_W` | PASS | Murata GR03 land; Yageo RC data sheet p4 dims (0.60 x 0.30), p5 points to "Chip resistors mounting" (not obtainable) | RC0201FR-0733KL: no LCSC listing found 2026-10-09 (order by MPN; AC0201FR-0733KL C226512 is the automotive twin) |
 | J2-J3 | - | `Connector_Generic:Conn_01x01` | `BattPad_3.0x2.0mm_PTH1.1` | PASS | io_pads | battery pad 3.0x2.0, PTH 1.1 (spec 4.10); power vias board-level; not in BOM |
-| J4-J15 | - | `Connector_Generic:Conn_01x01` | `MotorPad_1.0x1.8mm_PTH0.5` | PASS (1 warn) | io_pads | motor pad 1.0x1.8 with 0.5 wire-anchor PTH; not in BOM |
+| J4,J7,J10,J13 | 53047-0310 | `lib:Molex_53047-0310` | `MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5` | PASS (1 warn) | io2 (D65) | plug-ready motor land: 3 PTH D0.50 (ring 0.90) at 1.25 mm, land-side solder areas 1.65/0.90/1.65 x 1.50 (no paste), far-side DNP header courtyard 5.8 x 3.5; pads 1/2/3 = PHASE_C/B/A; land on the cell's FET side; DNP in rev1 |
 | J16-J19,J23-J29 | - | `Connector_Generic:Conn_01x01` | `SolderPad_1.0x1.2mm` | PASS (1 warn) | io_pads | user/HD/camera wire pad, no paste (hand-soldered); not in BOM |
 | J20-J22,J33 | - | `Connector_Generic:Conn_01x01` | `SolderPad_1.0x1.2mm_Dense` | PASS (1 warn) | io_pads | 1.0x1.0 pad for the LED row GND LED 5V BZ- (D63; spec 4.10, 1.3 pitch); not in BOM |
 | J32 | SM03B-SURS-TF(LF)(SN) | `lib:SM03B-SURS-TF` | `JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal` | PASS | ioset (D63) | JST eSUR p3 side-entry land = KiCad stock frame: signal 0.5x1.0 at 0.8, tabs 4/5 1.2x1.7; body 4.6x2.7, courtyard 5.6x3.5; mating face +y; pin order provisional until G1 |
 | J31 | BM04B-SRSS-TB(LF)(SN) | `lib:BM04B-SRSS-TB` | `CONN-SMD_4P-P1.00_BM04B-SRSS-TB` | PASS | usb (D57) | JST eSH p1/p2 land: signal pads 0.6x1.55 at 1.0, tabs 1.2x1.8 at x+-2.8; body 6.0x2.9, 4.25 mm tall (6.3 mated); courtyard 7.0x4.41 |
 | D7 | TPD2EUSB30DRTR | `lib:TPD2EUSB30DRTR` | `TI_SOT-9X3-3_DRT` | PASS | usb (D57) | TI 4211172/A land 0.30x0.30; DRT 1.0x0.8; pin 3 GND via-in-pad |
-| SW1 | TS2306A 240gf MSM 9 | `lib:TS2306A240GFMSM9` | `SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W` | PASS | ioset (D63) | Shouhan reference land 0.55x1.5 per side at +-1.625, stencil windows 2x0.42x0.60 per land (61 %); body 3.0x2.0, courtyard 4.0x2.2 |
+| SW1 | SKUBAAE010 | `lib:SKUBAAE010` | `SW_Alps_SKUBAAE010_2.4x1.4mm` | PASS | io2 (D65) | Alps solder-joint land 2 x 0.45 x 1.10, span 2.8; body 2.4 x 1.4, courtyard 3.0 x 1.6; shared FC BOOTSEL + RX boot |
+| D8 | SDM02M30CLP3-7B | `lib:SDM02M30CLP3-7B` | `X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3` | PASS | io2 (D65) | DS41598 p4 land: K 0.40 x 0.70, A1/A2 0.40 x 0.25; pad 1 A1 FC_BOOT, 2 A2 RX_BOOT, 3 K BOOT_SW |
 | H1-H3 | - | `Mechanical:MountingHole` | `MountingHole_3.5mm_Ear_Flange5.2` | PASS | io_pads | NPTH 3.5 (P1 board also has Edge.Cuts cut-outs: keep one, P2); not in BOM |
 | LOGO1 | - | `-` | `incutec_logo_6.1x1.4mm` | PASS | io_pads | 8-polygon incutec artwork from OpenFC-Lite-Mini (LINEUP B3), board-only (artwork check); not in BOM |
 
-Warnings are 'SMD lands without paste' on hand-soldered wire pads (no paste by design).
+Warnings are 'SMD lands without paste' on hand-soldered wire pads, the plug-ready motor lands and the test vias (no paste by design).
 
 ## Alternates kept in lib.pretty (checked, not assigned)
 
-`CRYSTAL-SMD_4P-L1.6-W1.2-BL_W`, `CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W`, `CRYSTAL-SMD_4P-L3.2-W2.5-BL`, `IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W`, `LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W`, `OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_W`, `QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_W`, `QFN-40_6x6mm_P0.5mm_EP_RTC6705`, `QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_W`, `R_1206_Kelvin_4Pad_NetTie_HCS1206`, `SOD-123FL_L2.7-W1.8-LS3.7-RD_W`, `SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_W`, `SOT-363_SC-70-6_W`, `WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_W`, `X2SON-4_L0.8-W0.8-P0.48-TL-A_W`, `X2SON-4_L1.0-W1.0-P0.65-TL-EP_W`, `X2SON-6_L1.0-W0.8-BL_W`, `CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W` (D64 camera-plug fallback)
+`CRYSTAL-SMD_4P-L1.6-W1.2-BL_W`, `CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W`, `CRYSTAL-SMD_4P-L3.2-W2.5-BL`, `IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W`, `LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W`, `OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_W`, `QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_W`, `QFN-40_6x6mm_P0.5mm_EP_RTC6705`, `QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_W`, `R_1206_Kelvin_4Pad_NetTie_HCS1206`, `SOD-123FL_L2.7-W1.8-LS3.7-RD_W`, `SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_W`, `SOT-363_SC-70-6_W`, `WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_W`, `X2SON-4_L0.8-W0.8-P0.48-TL-A_W`, `X2SON-4_L1.0-W1.0-P0.65-TL-EP_W`, `X2SON-6_L1.0-W0.8-BL_W`, `CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W` (D64 camera-plug fallback), `MotorPad_1.0x1.8mm_PTH0.5` (D65 fallback: three single pads per motor); retired by D65-D67: `WSON-8_6x5mm_P1.27mm_NoEP` (W25Q128JVPIM), `SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W` (TS2306A), `TestPoint_Pad_D0.8mm`
 

@@ -1,0 +1,105 @@
+(footprint "TestPoint_Via_D0.35mm_Drill0.2mm"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Mask-open filled-via test point (D67): the board's 0.35/0.20 through via (D6), filled and capped (IPC-4761 Type VII), probed on its cap. SMD land D0.36 (0.005 past the via ring) with the test-point property and the mask opening on the placement side only (far side tented); PTH pad D0.35/0.20 with the Heatsink property so the D21 footprint_via_pads rules apply (via ring 0.075, via hole clearance 0.20). For bench recovery (EFM8 C2, SWD, FCB): needle probe <= 0.3 mm. No paste, no silk; listed in the pinout doc.")
+	(tags "test point via probe filled capped POFV C2 SWD")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "c9ded126-f268-48a3-a532-cd09272cef22")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Value" "TestPoint_Via_D0.35mm_Drill0.2mm"
+		(at 0 0.45 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "70919c3d-0d92-48f8-83c0-a31f1b97e81f")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a44e6363-e867-4d64-af86-142fdb56d8b0")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4633dbd6-a140-460b-9b78-2206212e4689")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.28 -0.28)
+		(end 0.28 0.28)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "71e39e34-bc42-4a88-8f1e-f84053a7351c")
+	)
+	(fp_arc
+		(start -0.18 0)
+		(mid 0 -0.18)
+		(end 0.18 0)
+		(stroke
+			(width 0.02)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "8922fc77-1861-433b-9cc7-a8e7ee2dba3b")
+	)
+	(fp_arc
+		(start 0.18 0)
+		(mid 0 0.18)
+		(end -0.18 0)
+		(stroke
+			(width 0.02)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "26cf4526-3dd4-424d-962d-cbd5f2333aa8")
+	)
+	(pad "1" thru_hole circle
+		(at 0 0)
+		(size 0.35 0.35)
+		(drill 0.2)
+		(property pad_prop_heatsink)
+		(layers "*.Cu")
+		(remove_unused_layers no)
+		(uuid "96a79dab-a04c-41d6-bae8-d8f0a2545809")
+	)
+	(pad "1" smd circle
+		(at 0 0)
+		(size 0.36 0.36)
+		(property pad_prop_testpoint)
+		(layers "F.Cu" "F.Mask")
+		(uuid "10b8d030-b6f9-4523-a1f3-4410c32a0e13")
+	)
+	(embedded_fonts no)
+)
