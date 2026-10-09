@@ -1,0 +1,194 @@
+(footprint "TI_SOT-583_DRL"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "TI DRL0008A SOT-5X3 (SOT-583) 8 pins, 2.1 x 1.2 mm body, P0.5 (TPS2116): lands 0.67 x 0.30 R0.05 at +-0.74 per SLVSFG1A p23, paste 1:1 (p24); F.Fab body, no silk")
+	(tags "SOT-583 SOT-5X3 DRL0008A TPS2116")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "9c4de028-93d3-4dc1-9622-479760bea1fb")
+		(effects
+			(font
+				(size 0.84 0.84)
+				(thickness 0.126)
+			)
+		)
+	)
+	(property "Value" "TI_SOT-583_DRL"
+		(at 0 1.89 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7e9282bd-f505-42e9-b851-9fbdcf3b711f")
+		(effects
+			(font
+				(size 0.84 0.84)
+				(thickness 0.126)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "426212eb-092b-4666-af4d-d460ca8ff1c3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f897c3b2-2ba0-4502-ba42-81e69c06caaf")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_poly
+		(pts
+			(xy 0.7 -1) (xy 1.18 -1) (xy 1.18 1) (xy 0.7 1) (xy 0.7 1.15) (xy -0.7 1.15) (xy -0.7 1) (xy -1.18 1)
+			(xy -1.18 -1) (xy -0.7 -1) (xy -0.7 -1.15) (xy 0.7 -1.15)
+		)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "77de4f84-01e3-4370-bde0-130a8f6514b7")
+	)
+	(fp_line
+		(start -0.6 -0.8)
+		(end -0.35 -1.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "c5468537-d1db-41f5-a413-41079bfc8582")
+	)
+	(fp_line
+		(start -0.6 1.05)
+		(end -0.6 -0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "b8398860-5201-43c1-9af5-15cc2f22ea21")
+	)
+	(fp_line
+		(start -0.35 -1.05)
+		(end 0.6 -1.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "cff8684b-0ee9-416c-b92d-08fd02c2d40e")
+	)
+	(fp_line
+		(start 0.6 -1.05)
+		(end 0.6 1.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "fd0bbcda-673a-48ed-99d3-cd14890f7a32")
+	)
+	(fp_line
+		(start 0.6 1.05)
+		(end -0.6 1.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "6c5f21d7-8faf-4aa4-8fb7-e43cfec510b8")
+	)
+	(pad "1" smd roundrect
+		(at -0.74 -0.75)
+		(size 0.67 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "079b5cdf-bdc1-4271-b2c1-080dd478dd94")
+	)
+	(pad "2" smd roundrect
+		(at -0.74 -0.25)
+		(size 0.67 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "837d0b90-41ce-49b0-bd87-95b070f0a4b8")
+	)
+	(pad "3" smd roundrect
+		(at -0.74 0.25)
+		(size 0.67 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "2c7956ce-4000-4248-981a-fa8b1be60bf6")
+	)
+	(pad "4" smd roundrect
+		(at -0.74 0.75)
+		(size 0.67 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "aec50f90-db1f-49fe-899d-bb7913a736b4")
+	)
+	(pad "5" smd roundrect
+		(at 0.74 0.75)
+		(size 0.67 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "06a9ae45-99f2-4079-ba65-f63a81a1f979")
+	)
+	(pad "6" smd roundrect
+		(at 0.74 0.25)
+		(size 0.67 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "b149f5a0-f46f-464d-96d4-4fe7b143ee72")
+	)
+	(pad "7" smd roundrect
+		(at 0.74 -0.25)
+		(size 0.67 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "248817b2-2329-4aa4-b13a-19b6029edd96")
+	)
+	(pad "8" smd roundrect
+		(at 0.74 -0.75)
+		(size 0.67 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "05659d5c-dae9-412e-afa6-b14c30631df1")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/TI_SOT-583_DRL.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 90)
+		)
+	)
+)

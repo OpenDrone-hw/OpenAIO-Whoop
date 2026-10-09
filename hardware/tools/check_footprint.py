@@ -29,7 +29,10 @@ Spec: JSON, millimetres, TOP view, origin at the package centre, KiCad axes
     "paste": {"ratio_min": 0.50, "ratio_max": 0.80, "min_windows": 2},
     "body": {"w": 3.0, "h": 3.0, "x": 0, "y": 0},
     "courtyard_margin": 0.10,
-    "pin1": "1",
+    "pin1": "1",                                   null on a single-terminal footprint (pin1 n/a)
+    "artwork": {"layer": "F.SilkS", "polygons": 8}  optional, with "pads": [] for a copper-less art
+                                                   footprint (logo): no pads allowed, polygon count and
+                                                   artwork bbox vs spec body, courtyard vs body
     "y_axis": "down", "view": "top", "frame_rot": 0   optional: spec y up / bottom view (mirror x) /
                                                    rotation (deg, KiCad sense) into the footprint frame
   }
@@ -58,7 +61,8 @@ Checks (FAIL unless noted):
   pin1        a pin-1 marker on F.Fab (dot/circle, chamfer or small filled shape
               in pin 1's quadrant); a silkscreen-only marker is a FAIL because
               component silk is stripped (owner rule) unless --silk-pin1-ok
-  silk        component silkscreen present: WARN (owner rule: no component silk)
+  silk        component silkscreen present: WARN (owner rule: no component silk;
+              not checked on artwork footprints)
 
 Exit 0 when every check passes, 1 on any FAIL, 2 if spec or footprint cannot be read.
 """
@@ -440,7 +444,7 @@ def courtyard_poly(fp, layer):
 def load_spec(path):
     with open(path, encoding="utf-8") as f:
         spec = json.load(f)
-    if not isinstance(spec.get("pads"), list) or not spec["pads"]:
+    if not isinstance(spec.get("pads"), list) or (not spec["pads"] and not spec.get("artwork")):
         raise ValueError("spec has no pads")
     return spec
 
@@ -860,6 +864,17 @@ def _markers(fp, layer, p1, body):
 
 def check_pin1(spec, fp, lands, body, rep, silk_ok):
     P = import_pcbnew()
+    if "pin1" in spec and spec["pin1"] is None:
+        # single terminal on the body centre: no orientation to mark (a marker can never be nearer
+        # pin 1 than its mirror through the centre)
+        nums = {l["number"] for l in lands}
+        holes = [p for p in fp.Pads() if p.GetAttribute() == P.PAD_ATTRIB_NPTH]
+        if len(nums) == 1 or (not lands and holes):
+            what = repr(next(iter(nums))) if nums else "NPTH only"
+            rep.add("ok", f"pin1: n/a (single-terminal footprint, {len(lands)} land(s) {what}; spec pin1 null)")
+        else:
+            rep.add("FAIL", f"pin1: spec pin1 null but the footprint has {len(nums)} terminals")
+        return
     n = str(spec.get("pin1", "1"))
     p1s = [l for l in lands if l["number"] == n]
     if not p1s:
@@ -893,6 +908,33 @@ def check_silk(fp, rep):
                         "(owner rule: components carry no silkscreen)")
 
 
+def check_artwork(spec, fp, tol, rep):
+    """Copper-less art footprint (logo): no pads, polygon count and artwork bbox vs the spec body."""
+    P = import_pcbnew()
+    art = spec["artwork"]
+    layer = P.F_SilkS if art.get("layer", "F.SilkS") == "F.SilkS" else P.B_SilkS
+    npads = len(list(fp.Pads()))
+    rep.add("FAIL" if npads else "ok", f"artwork: {npads} pads (an art footprint carries no pads)")
+    polys = [g for g in graphics(fp, layer) if g.GetShape() == P.SHAPE_T_POLY]
+    want = art.get("polygons")
+    if want is not None:
+        rep.add("ok" if len(polys) == want else "FAIL", f"artwork: {len(polys)} polygons on "
+                f"{art.get('layer', 'F.SilkS')} (spec {want})")
+    pts = []
+    for g in graphics(fp, layer):
+        pts += shape_points(g)
+    sb = spec_body(spec)
+    if not pts or sb is None:
+        rep.add("FAIL", "artwork: no artwork graphics or no spec body")
+        return sb
+    ab = pts_bbox(pts)
+    mag = max(abs(v) for v in edge_dev(ab, sb))
+    rep.add("FAIL" if mag > tol + 1e-9 else "ok",
+            f"artwork: bbox {ab[2]-ab[0]:.3f} x {ab[3]-ab[1]:.3f} vs spec body {sb[2]-sb[0]:.3f} x "
+            f"{sb[3]-sb[1]:.3f} (edge dev max {mag:.3f})")
+    return sb
+
+
 def run(spec_path, fp_arg=None, project=DEFAULT_PROJECT, tol=0.02, ctol=0.01, silk_ok=False, verbose=False):
     rep = Report()
     spec = load_spec(spec_path)
@@ -909,6 +951,10 @@ def run(spec_path, fp_arg=None, project=DEFAULT_PROJECT, tol=0.02, ctol=0.01, si
     if sname and fp_arg and sname.split(":")[-1].replace(".kicad_mod", "") != name and ":" in sname:
         rep.add("WARN", f"spec names footprint {sname}, checking {name}")
     lands, apertures = pad_records(fp)
+    if spec.get("artwork"):
+        body = check_artwork(spec, fp, tol, rep)
+        check_courtyard(spec, fp, lands, body, ctol, rep)
+        return rep, name
     check_pads(spec, lands, tol, rep, verbose)
     body = check_body(spec, fp, tol, rep)
     check_courtyard(spec, fp, lands, body, ctol, rep)

@@ -1,0 +1,33 @@
+{
+ "footprint": "lib:LED_0402_1005Metric",
+ "part": "XL-1005UGC (C965793) D5, XL-1005UBC (C22355736) D6",
+ "datasheet": "XINGLIGHT XL-1005UGC / XL-1005UBC technical data sheets p7 'Outline Dimension' [https://www.lcsc.com/datasheet/C965793.pdf, https://www.lcsc.com/datasheet/C22355736.pdf]: body 1.0 x 0.5 x 0.40; Recommended Soldering Pattern 0.3 x 0.55 lands, 0.5 gap, 0.8 between centres; polarity: pad 1 = cathode (-), pad 2 = anode (+); both data sheets identical",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.4,
+   "y": 0.0,
+   "w": 0.3,
+   "h": 0.55,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.4,
+   "y": 0.0,
+   "w": 0.3,
+   "h": 0.55,
+   "shape": "rect"
+  }
+ ],
+ "removed_nc": [],
+ "body": {
+  "w": 1.0,
+  "h": 0.5,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/fc_imu_blackbox_led/landspecs/LED_0402_1005Metric.json"
+}

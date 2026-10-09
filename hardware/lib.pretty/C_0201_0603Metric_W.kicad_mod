@@ -1,0 +1,144 @@
+(footprint "C_0201_0603Metric_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).. Corrected copy of OpenDrone:C_0201_0603Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0201_0603Metric_W.json")
+	(tags "0201 (0603 metric 0.6 x 0.3")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "3bc04bc7-e813-4890-9341-b56fb8ddd8e9")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Value" "C_0201_0603Metric_W"
+		(at 0 0.35 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4eca102b-be03-4a74-b9da-40348477c301")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "73667ce9-38c3-4f63-9dd4-2ccbed6bcb89")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cd744d68-92ba-4706-a279-eca7bad181ae")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.55 -0.3)
+		(end 0.55 0.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "f9413c29-c991-4396-a7f9-e5a91267726f")
+	)
+	(fp_line
+		(start -0.3 -0.075)
+		(end -0.225 -0.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "a1576597-8b69-4183-b4f9-2844d6ea6c7a")
+	)
+	(fp_line
+		(start -0.3 0.15)
+		(end -0.3 -0.075)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "04360fb5-94ea-4873-bdac-0cbd83656318")
+	)
+	(fp_line
+		(start -0.225 -0.15)
+		(end 0.3 -0.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "b61336b1-c8d3-4690-8532-186ddbc6b89c")
+	)
+	(fp_line
+		(start 0.3 -0.15)
+		(end 0.3 0.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "2abe287a-623e-4095-b1a6-3a775b23210e")
+	)
+	(fp_line
+		(start 0.3 0.15)
+		(end -0.3 0.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "19a57cf4-45da-4f56-a6c6-3a17a3281e59")
+	)
+	(pad "1" smd roundrect
+		(at -0.275 0)
+		(size 0.35 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "e5795b05-f32a-422d-9773-8ddeb0bfedd3")
+	)
+	(pad "2" smd roundrect
+		(at 0.275 0)
+		(size 0.35 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "b7b53b8b-7b1c-4334-84fe-eae534394c89")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/C_0201_0603Metric.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

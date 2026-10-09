@@ -1,0 +1,50 @@
+{
+ "footprint": "lib:CRYSTAL-SMD_4P-L3.2-W2.5-BL",
+ "part": "Yajingxin TAXM8M4RDBCCT2T 8 MHz (LCSC C400090), X4",
+ "datasheet": "Yajingxin TAXM8M4RDBCCT2T data sheet [/tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/vtx_osd/dl/C400090_ds.pdf; https://www.lcsc.com/datasheet/C400090.pdf] p1: SEAM 3.2 x 2.5, outline 3.20 +-0.1 x 2.50 +-0.1 x 0.70 +-0.1; connection (top view) 1 bottom-left and 3 top-right = crystal, 2 bottom-right and 4 top-left = GND; bottom view terminals 1.2 wide, 0.7 apart (-> 1.2 x 0.9 corner terminals); 'Suggested Layout': lands 1.4 x 1.2, gaps 0.8 (x) and 0.5 (y)",
+ "derivation": "Suggested layout 1:1: lands 1.40 x 1.20 at (+-1.10, +-0.85) (= OpenVTX / EasyEDA C400090 CRYSTAL-SMD_4P-L3.2-W2.5-BL); pin 1 bottom-left as in the data sheet",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.1,
+   "y": 0.85,
+   "w": 1.4,
+   "h": 1.2,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 1.1,
+   "y": 0.85,
+   "w": 1.4,
+   "h": 1.2,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 1.1,
+   "y": -0.85,
+   "w": 1.4,
+   "h": 1.2,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -1.1,
+   "y": -0.85,
+   "w": 1.4,
+   "h": 1.2,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 3.2,
+  "h": 2.5,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "removed_nc": [],
+ "staged_from": "p23/staging/vtx_osd/landspecs/CRYSTAL-SMD_4P-L3.2-W2.5-BL.json"
+}

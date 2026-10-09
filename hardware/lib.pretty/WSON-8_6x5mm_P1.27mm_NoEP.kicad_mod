@@ -1,0 +1,195 @@
+(footprint "WSON-8_6x5mm_P1.27mm_NoEP"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Winbond WSON-8 6x5 mm package code P, P1.27, centre metal pad NOT soldered (floating per W25Q128JV Rev F p69; DESIGN-SPEC 4.9): no centre copper/paste, keep vias under the body tented; lands IPC-7351B nominal 1.02 x 0.41")
+	(tags "WSON-8 6x5 W25Q128JVPIM SPI NOR no-EP")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "c5f77140-4078-4140-82f6-4c66d92b1428")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "WSON-8_6x5mm_P1.27mm_NoEP"
+		(at 0 3.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b639aca8-3afa-4891-85ea-1ecf45f85bad")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "80f2a65c-d579-49ef-a564-470db033173f")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2358b6c8-4811-4c8d-82c9-c61fd962a9f9")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.7 -2.15)
+		(end 1.7 2.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "Cmts.User")
+		(uuid "ac50397f-2a79-461a-8b83-d4fd4b3b6c02")
+	)
+	(fp_rect
+		(start -3.46 -2.6)
+		(end 3.46 2.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "66b06108-6f07-4ccd-b32a-fb6671e465f7")
+	)
+	(fp_line
+		(start -3 -2.25)
+		(end -2.75 -2.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "81548a91-9e62-4ee8-9cec-eaafe33665e9")
+	)
+	(fp_line
+		(start -3 2.5)
+		(end -3 -2.25)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "027eb3ab-a2ea-454a-97d3-fa02b4792e95")
+	)
+	(fp_line
+		(start -2.75 -2.5)
+		(end 3 -2.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ce31e919-d080-4b60-a116-79f48f70bcf8")
+	)
+	(fp_line
+		(start 3 -2.5)
+		(end 3 2.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "cc11d8f3-580f-4488-a8de-d44b826f65c3")
+	)
+	(fp_line
+		(start 3 2.5)
+		(end -3 2.5)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "1c394600-f8ef-46dc-855a-44d349e1f76b")
+	)
+	(pad "1" smd rect
+		(at -2.845 -1.905)
+		(size 1.02 0.41)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "338a86f1-d960-42c1-8824-173276c694a6")
+	)
+	(pad "2" smd rect
+		(at -2.845 -0.635)
+		(size 1.02 0.41)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "9962eda7-05f3-406f-b7de-2cba85a02279")
+	)
+	(pad "3" smd rect
+		(at -2.845 0.635)
+		(size 1.02 0.41)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "98c9b4b5-604c-4b2e-a4df-a73bce98d9f3")
+	)
+	(pad "4" smd rect
+		(at -2.845 1.905)
+		(size 1.02 0.41)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "b5a333eb-9480-497d-8848-8390808e5014")
+	)
+	(pad "5" smd rect
+		(at 2.845 1.905)
+		(size 1.02 0.41)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "92644d3c-8d43-41aa-8424-4f01a72e29ac")
+	)
+	(pad "6" smd rect
+		(at 2.845 0.635)
+		(size 1.02 0.41)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "0cb82f78-a761-43f3-ab34-1d1cca7f975e")
+	)
+	(pad "7" smd rect
+		(at 2.845 -0.635)
+		(size 1.02 0.41)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "d4d29fda-deb3-43b6-b6c8-b3a51c249cc0")
+	)
+	(pad "8" smd rect
+		(at 2.845 -1.905)
+		(size 1.02 0.41)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "c28c35d9-03ab-4ccd-b818-916d96601e87")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/WSON-8_6x5mm_P1.27mm.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

@@ -1,0 +1,88 @@
+{
+ "footprint": "lib:TI_SON-6_2x2mm_CSD25310Q2",
+ "part": "CSD25310Q2 (Q2-Q4, Q8-Q10, Q14-Q16, Q20-Q22), LCSC C2871649",
+ "datasheet": "TI CSD25310Q2 SLPS459C (Feb 2025, https://www.ti.com/lit/ds/symlink/csd25310q2.pdf; local scratchpad/dl/esc03/csd25310q2.pdf): pinout p1 'Top View' (S = 1, 2, 5, 6 + large pad, G = 3, D = 4 + strip; D23), package DQK (S-PWSON-N6) p12-13 (4210192/B: body 1.90-2.10, 6X lead 0.25-0.35 wide, 0.20-0.30 long, pitch 0.65), exposed pads p14 (4210857/A: large 0.95 x 1.00, strip 0.30 x 0.75). SLPS459C has NO land pattern, so the lands come from TI CSD13202Q2 SLPS313A (Jan 2018, https://www.ti.com/lit/ds/symlink/csd13202q2.pdf; local scratchpad/study-1-2s/dl/ds/csd13202q2.pdf) 7.1.1 Recommended PCB Pattern p9 and 7.1.2 stencil p10, the same TI DQK (Q2) package",
+ "derivation": "Pad numbers 7 (strip) / 8 (large pad) as SLPS313A and the KiCad stock CSD25302Q2 symbol; the SLPS459C exposed-pad drawing (0.95 x 1.00 large pad offset to pins 1/6, 0.30 x 0.75 strip at the pin-4 column) matches the SLPS313A pads 8/7 within its +-0.10 tolerance. Paste: TI stencil pad 8 0.90 x 0.86 (82 % of the land), pad 7 0.70 x 0.29, pins 1:1.",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.975,
+   "y": -0.65,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -0.975,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -0.975,
+   "y": 0.65,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": 0.975,
+   "y": 0.65,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 0.975,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 0.975,
+   "y": -0.65,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": 0.095,
+   "y": 0.65,
+   "w": 0.75,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": 0,
+   "y": -0.325,
+   "w": 1.0,
+   "h": 0.95,
+   "shape": "roundrect"
+  }
+ ],
+ "removed_nc": [],
+ "exposed": [
+  "8"
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.82,
+  "min_windows": 1
+ },
+ "body": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/esc/landspecs/TI_SON-6_2x2mm_CSD25310Q2.json"
+}

@@ -1,0 +1,38 @@
+{
+ "footprint": "lib:C_0603_1608Metric_W",
+ "source": "OpenDrone:C_0603_1608Metric",
+ "part": "0603 (1608 metric, 1.6 x 0.8 mm) MLCC GRM188 / CL10",
+ "datasheet": "Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.7,
+   "y": 0,
+   "w": 0.7,
+   "h": 0.8,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": 0.7,
+   "y": 0,
+   "w": 0.7,
+   "h": 0.8,
+   "shape": "roundrect"
+  }
+ ],
+ "body": {
+  "w": 1.6,
+  "h": 0.8
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "GR*18 row: a 0.6-0.8, b 0.6-0.7, c 0.6-0.8. Chosen a 0.70, b 0.70, c 0.80: lands 0.70 x 0.80 at +-0.70 (2.10 x 0.80, inside the budget envelope '0603' 2.1 x 0.9).",
+ "build": {
+  "radius_ratio": 0.25,
+  "courtyard": "rect",
+  "model_from_source": true
+ }
+}

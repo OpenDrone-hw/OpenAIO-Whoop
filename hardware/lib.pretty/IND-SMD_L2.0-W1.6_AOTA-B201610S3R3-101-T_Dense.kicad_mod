@@ -1,0 +1,142 @@
+(footprint "IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Abracon AOTA-B201610S3R3-101-T 3.3 uH 2016. Land per ${OPENDRONE_LIB}/datasheet/AOTA-B201610S3R3-101-T.pdf (rev A 9/13/2024) p4 'Mechanical Specifications' (2.00 x 1.60, electrodes 0.60+-0.20) and 'Recommended Land Pattern' (1.00 x 1.60 lands, 1.00 gap). lands x 0.30..1.10 cover the 0.40..1.00 (0.60 nominal, 0.80 max -> 0.20..1.00) end electrodes. DENSE: budget envelope L2016 2.2 x 1.8 vs recommended 3.0 x 1.6: lands 0.80 x 1.60 at +-0.70 (2.20 overall, toe 0.10 past the body, inner gap 0.60 under the insulated body centre). Corrected copy of OpenDrone:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense.json")
+	(tags "Abracon AOTA-B201610S3R3-101-T 3.3 uH 2016")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "6693580b-cfa0-4c2a-be32-339b36b8f07b")
+		(effects
+			(font
+				(size 0.64 0.64)
+				(thickness 0.096)
+			)
+		)
+	)
+	(property "Value" "IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense"
+		(at 0 1.44 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c1c469fb-ee66-4b12-bd73-13b411a94ae5")
+		(effects
+			(font
+				(size 0.64 0.64)
+				(thickness 0.096)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9c23ea16-cb83-473a-8715-2364daeb4b61")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bddcfd42-90d3-4d74-bc7a-c3fb79b237a5")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.2 -0.9)
+		(end 1.2 0.9)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "643d6f05-1e8f-40fd-9dea-06619351fa74")
+	)
+	(fp_line
+		(start -1 -0.55)
+		(end -0.75 -0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "9f2f21af-2bea-46c8-8cff-0fd6e44f9718")
+	)
+	(fp_line
+		(start -1 0.8)
+		(end -1 -0.55)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "254f13ff-b0ad-4c01-b809-b81730901e7f")
+	)
+	(fp_line
+		(start -0.75 -0.8)
+		(end 1 -0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "67ce94af-d3d1-456b-96d2-a7b3bca9d596")
+	)
+	(fp_line
+		(start 1 -0.8)
+		(end 1 0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "159d860f-f97c-4385-98d9-2fd14af12540")
+	)
+	(fp_line
+		(start 1 0.8)
+		(end -1 0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "abf1b808-44d0-4940-aa5d-8551a6fdeede")
+	)
+	(pad "1" smd rect
+		(at -0.7 0)
+		(size 0.8 1.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "075bc076-7c46-412c-a557-671316d97d49")
+	)
+	(pad "2" smd rect
+		(at 0.7 0)
+		(size 0.8 1.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "7693a4db-fcb9-4865-8730-e6d8e8a7d05c")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/L_Murata_DFE201610P.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

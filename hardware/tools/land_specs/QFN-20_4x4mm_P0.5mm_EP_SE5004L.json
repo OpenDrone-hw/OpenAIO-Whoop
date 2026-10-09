@@ -1,0 +1,247 @@
+{
+ "footprint": "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L",
+ "part": "Skyworks SE5004L-R (LCSC C210263), U20",
+ "datasheet": "Skyworks SE5004L data sheet 202393B (Oct 23, 2012) [/tmp/claude-0/-home-user-OpenAIO-Whoop/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/verify04/ds/se5004l.pdf; https://www.lcsc.com/datasheet/C210263.pdf]: p2 pin out (top view) + pin table (1 NU open in the package, 2/4/11/12/14-17 GND, 3 RFin, 5 VREF, 6 SP1, 7 SP2, 8/19 VCC2, 9/18 VCC3, 10 DET, 13 RFout, 20 VCC1); p6 Fig. 4 package 4.00 x 4.00, e 0.50, b 0.25, EP 2.50 with C0.30 at pin 1; p7 Fig. 5 recommended land: board metal 4.40, pins 0.25 x 0.70 (outer edge 2.20), ground metal = centre 2.60 joined to the GND pins and corner blocks (0.20 / 0.25 from the signal pins, bottom-left block on a 0.10 neck), 25 x 0.25 vias on 0.5 pitch (note 4: filled, tented on the back); solder mask: centre opening 2.40 (mask defined), pin openings 0.35 x 0.80; stencil: pins 0.25 x 0.70, centre 2 x 2 windows 0.95, 0.20 apart",
+ "derivation": "Board metal per Fig. 5, edges read off the vector drawing (pdftocairo, 195.8 px/mm, +-0.005) and snapped to the dimensioned 0.20 / 0.25 gaps. Pad 21 = the whole ground metal as one custom pad (F.Cu only, union of 9 rectangles + the 0.10 neck polygon; the neck, 0.01 mm2, is not in the spec rects), overlapped by the GND pin pads 2, 4, 11, 12, 14-17 and the NU pin pad 1 (pin 1 must be tied to GND in the schematic, it sits in the ground metal as in Fig. 5). Mask: centre aperture 2.40 (copper-less F.Mask pad), pins by the board expansion (0.04, Fig. 5: 0.05). Paste: 4 windows 0.95 at +-0.575 (3.61 mm2 = 53 % of the 2.60 centre metal) + pins 1:1; the ratio below is taken against the whole 13.5 mm2 ground land, hence 0.30-0.45. No vias in the footprint (P5 places the EP via array; DS: 25 x 0.25)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.85,
+   "y": -1.0,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -1.85,
+   "y": -0.5,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -1.85,
+   "y": 0.0,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -1.85,
+   "y": 0.5,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "5",
+   "x": -1.85,
+   "y": 1.0,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "6",
+   "x": -1.0,
+   "y": 1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "7",
+   "x": -0.5,
+   "y": 1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "8",
+   "x": 0.0,
+   "y": 1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "9",
+   "x": 0.5,
+   "y": 1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "10",
+   "x": 1.0,
+   "y": 1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "11",
+   "x": 1.85,
+   "y": 1.0,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "12",
+   "x": 1.85,
+   "y": 0.5,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "13",
+   "x": 1.85,
+   "y": 0.0,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "14",
+   "x": 1.85,
+   "y": -0.5,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "15",
+   "x": 1.85,
+   "y": -1.0,
+   "w": 0.7,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "16",
+   "x": 1.0,
+   "y": -1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "17",
+   "x": 0.5,
+   "y": -1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "18",
+   "x": 0.0,
+   "y": -1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "19",
+   "x": -0.5,
+   "y": -1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "20",
+   "x": -1.0,
+   "y": -1.85,
+   "w": 0.25,
+   "h": 0.7,
+   "shape": "rect"
+  },
+  {
+   "number": "21",
+   "shape": "custom",
+   "rects": [
+    {
+     "x": 0.0,
+     "y": 0.0,
+     "w": 2.6,
+     "h": 2.6
+    },
+    {
+     "x": -1.7625,
+     "y": -1.75,
+     "w": 0.875,
+     "h": 0.9
+    },
+    {
+     "x": -1.75,
+     "y": -0.8375,
+     "w": 0.9,
+     "h": 0.925
+    },
+    {
+     "x": -1.75,
+     "y": 0.5,
+     "w": 0.9,
+     "h": 0.25
+    },
+    {
+     "x": 1.2875,
+     "y": -1.75,
+     "w": 1.825,
+     "h": 0.9
+    },
+    {
+     "x": 1.75,
+     "y": -0.8375,
+     "w": 0.9,
+     "h": 0.925
+    },
+    {
+     "x": 1.75,
+     "y": 0.8375,
+     "w": 0.9,
+     "h": 0.925
+    },
+    {
+     "x": 1.7625,
+     "y": 1.75,
+     "w": 0.875,
+     "h": 0.9
+    },
+    {
+     "x": -1.7625,
+     "y": 1.7625,
+     "w": 0.875,
+     "h": 0.875
+    }
+   ]
+  }
+ ],
+ "exposed": [
+  "21"
+ ],
+ "paste": {
+  "ratio_min": 0.3,
+  "ratio_max": 0.45,
+  "min_windows": 4,
+  "note": "DS stencil 2x2 x 0.95 on the centre + 9 GND/NU pin apertures inside the ground land"
+ },
+ "body": {
+  "w": 4.0,
+  "h": 4.0,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "removed_nc": [],
+ "staged_from": "p23/staging/vtx_osd/landspecs/QFN-20_4x4mm_P0.5mm_EP_SE5004L.json"
+}

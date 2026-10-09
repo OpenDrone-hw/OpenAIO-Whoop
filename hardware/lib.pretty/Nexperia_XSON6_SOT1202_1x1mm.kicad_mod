@@ -1,0 +1,170 @@
+(footprint "Nexperia_XSON6_SOT1202_1x1mm"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Nexperia XSON6 SOT1202 1.0 x 1.0 x 0.35 mm, P0.35, lands 0.15 x 0.5 per SOT1202 package information Fig. 2 (rotated, pin 1 top-left). 0.35 mm pitch: below the NextPCB published 0.38 mm fine-pitch floor, needs the same EQ as O15")
+	(tags "XSON6 SOT1202 74LVC1T45GS")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "20dbf6e1-fbc6-4bd7-ab7c-233e5e7a41b2")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Value" "Nexperia_XSON6_SOT1202_1x1mm"
+		(at 0 0.9 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5a7b6152-e695-4317-955e-91420b8baf98")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c91770b5-4f17-4289-8997-5deab16a6e36")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "62a3efa0-a1df-43a3-baad-126f51c8a4e4")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.7 -0.6)
+		(end 0.7 0.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "d1be3ce5-78f5-41c7-884f-4c164d1918c7")
+	)
+	(fp_line
+		(start -0.5 -0.25)
+		(end -0.25 -0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "b157ce57-38ee-4481-881e-638dfc99a6fb")
+	)
+	(fp_line
+		(start -0.5 0.5)
+		(end -0.5 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "b412d0a2-75d5-41f4-8176-d9a8b6dd2462")
+	)
+	(fp_line
+		(start -0.25 -0.5)
+		(end 0.5 -0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ae166286-56ae-45db-ac4c-085e0e55dfd4")
+	)
+	(fp_line
+		(start 0.5 -0.5)
+		(end 0.5 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "5c8a7f07-5880-4be6-90ae-df7347dcc564")
+	)
+	(fp_line
+		(start 0.5 0.5)
+		(end -0.5 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "17b09ec2-c2fa-49e7-9157-56482882c5b4")
+	)
+	(pad "1" smd rect
+		(at -0.35 -0.35)
+		(size 0.5 0.15)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "2935fdf7-d0a5-462d-9bae-e8147b7d2157")
+	)
+	(pad "2" smd rect
+		(at -0.35 0)
+		(size 0.5 0.15)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "ebe3f1e0-5687-4e6b-bfb3-4870c48e9233")
+	)
+	(pad "3" smd rect
+		(at -0.35 0.35)
+		(size 0.5 0.15)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "30b5ffb2-2601-46c5-8a9b-e9878a7fedcf")
+	)
+	(pad "4" smd rect
+		(at 0.35 0.35)
+		(size 0.5 0.15)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "d580d4b6-4748-4eec-8256-7390d2410b60")
+	)
+	(pad "5" smd rect
+		(at 0.35 0)
+		(size 0.5 0.15)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "342fef5c-1bd1-4184-92f7-8de8cf9b1699")
+	)
+	(pad "6" smd rect
+		(at 0.35 -0.35)
+		(size 0.5 0.15)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "35cafe1f-9aa8-4799-9528-51cfaeaac91f")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/Nexperia_XSON6_SOT1202_1x1mm.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 90)
+		)
+	)
+)

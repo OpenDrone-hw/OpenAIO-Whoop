@@ -1,0 +1,37 @@
+{
+ "footprint": "lib:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W",
+ "source": "OpenDrone:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T",
+ "part": "Abracon AOTA-B201610S3R3-101-T 3.3 uH 2016",
+ "datasheet": "${OPENDRONE_LIB}/datasheet/AOTA-B201610S3R3-101-T.pdf (rev A 9/13/2024) p4 'Mechanical Specifications' (2.00 x 1.60, electrodes 0.60+-0.20) and 'Recommended Land Pattern' (1.00 x 1.60 lands, 1.00 gap)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.0,
+   "y": 0,
+   "w": 1.0,
+   "h": 1.6,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 1.0,
+   "y": 0,
+   "w": 1.0,
+   "h": 1.6,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 2.0,
+  "h": 1.6
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true,
+  "model_local": true
+ }
+}

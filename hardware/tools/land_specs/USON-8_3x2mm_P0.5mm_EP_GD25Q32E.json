@@ -1,0 +1,96 @@
+{
+ "footprint": "lib:USON-8_3x2mm_P0.5mm_EP_GD25Q32E",
+ "part": "GigaDevice GD25Q32EEIGR (LCSC C2973794), U17",
+ "datasheet": "GigaDevice GD25Q32E Rev1.3 May 2022 (dl/gd/gd25q32e.pdf; https://www.lcsc.com/datasheet/C2973794.pdf): 10.3 Package USON8 (3x2mm, 0.45mm thickness) p54: D 3.00 (2.90-3.10, horizontal in the top view), E 2.00 (1.90-2.10), b 0.25 (0.20-0.30), L 0.35 (0.30-0.40), L1 0.10 (lead pull-back from the body edge), e 0.50, D1 0.20 (0.15-0.25) x E1 1.60 (1.55-1.65) exposed pad, note 2 'exposed metal pad ... is floating'; pins Fig 2 / Table 2 p5 (top view: 1-4 down the left side, 5-8 up the right side); package code E = USON8 3x2 p49; the data sheet gives NO land pattern",
+ "derivation": "pull-back lead from x 1.05 to 1.40 (nominal; heel 1.00 at L max); land x 1.00..1.70: heel edge at the L-max heel, toe 0.30 past the lead tip = 0.20 past the body edge, so Z = 3.40 = the area budget USON23 3.4 x 2.4 (DESIGN-SPEC 9.2, budget_v6, sketch_v5 'GD25Q32 RX flash' 3.4 x 2.4); width 0.28 (IPC side goal -0.04 with tolerances = 0.27, rounded to the OpenDrone DFN-8 0.28; gap 0.22); EP land = D1 x E1 nominal 0.20 x 1.60, 1:1 paste (floating metal, kept for attachment, no net function); orientation = data-sheet top view (pin 1 top-left). OpenDrone:DFN-8_L3.0-W2.0-P0.50-BL-EP-3 checked against the same spec (frame_rot 90, see OpenDrone_DFN-8...json): not reused",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.35,
+   "y": -0.75,
+   "w": 0.7,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -1.35,
+   "y": -0.25,
+   "w": 0.7,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -1.35,
+   "y": 0.25,
+   "w": 0.7,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": -1.35,
+   "y": 0.75,
+   "w": 0.7,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 1.35,
+   "y": 0.75,
+   "w": 0.7,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 1.35,
+   "y": 0.25,
+   "w": 0.7,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": 1.35,
+   "y": -0.25,
+   "w": 0.7,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": 1.35,
+   "y": -0.75,
+   "w": 0.7,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "9",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 0.2,
+   "h": 1.6,
+   "shape": "roundrect"
+  }
+ ],
+ "exposed": [],
+ "removed_nc": [],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 1.0,
+  "min_windows": 1
+ },
+ "body": {
+  "w": 3.0,
+  "h": 2.0,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/rx/landspecs/USON-8_3x2mm_P0.5mm_EP_GD25Q32E.json"
+}

@@ -1,0 +1,38 @@
+{
+ "footprint": "lib:C_0402_1005Metric_W",
+ "source": "OpenDrone:C_0402_1005Metric",
+ "part": "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05",
+ "datasheet": "Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.425,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.55,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": 0.425,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.55,
+   "shape": "roundrect"
+  }
+ ],
+ "body": {
+  "w": 1.0,
+  "h": 0.5
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "GR*15 row: a 0.30-0.50, b 0.35-0.45, c 0.40-0.60. Chosen a 0.40, b 0.45, c 0.55: lands 0.45 x 0.55 at +-0.425 (1.30 x 0.55 = budget envelope '0402'; same land as lib:R_0402_1005Metric). Samsung CL05 parts share the EIA 0402 chip format.",
+ "build": {
+  "radius_ratio": 0.25,
+  "courtyard": "rect",
+  "model_from_source": true
+ }
+}

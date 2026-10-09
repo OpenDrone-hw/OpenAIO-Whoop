@@ -1,0 +1,53 @@
+{
+ "footprint": "lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W",
+ "source": "OpenDrone:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX",
+ "part": "TDK DEA102700LT-6307A2 2.4 GHz LPF 1005",
+ "datasheet": "${OPENDRONE_LIB}/datasheet/DEA102700LT-6307A2.pdf (20150601) p2 'SHAPES AND DIMENSIONS' (1.00 x 0.50, top view 1 IN left, 2 GND bottom, 3 OUT right, 4 GND top) and 'RECOMMENDED LAND PATTERN' (ends 0.45 x 0.30 with 0.70 gap, sides 0.30 x 0.45 with 0.20 gap)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.575,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0,
+   "y": 0.325,
+   "w": 0.3,
+   "h": 0.45,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.575,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": 0,
+   "y": -0.325,
+   "w": 0.3,
+   "h": 0.45,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 1.0,
+  "h": 0.5
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "end pads x +-(0.35 + 0.225) = +-0.575, side pads y +-(0.10 + 0.225) = +-0.325. No _Dense: the terminals wrap the body ends with only 0.12 on the bottom, the land is the fillet (budget FLT1005 1.1 x 0.6 not reducible safely)",
+ "build": {
+  "courtyard": "polygon",
+  "model_from_source": true
+ }
+}

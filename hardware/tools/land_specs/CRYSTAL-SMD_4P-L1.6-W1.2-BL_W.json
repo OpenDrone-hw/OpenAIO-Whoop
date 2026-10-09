@@ -1,0 +1,54 @@
+{
+ "footprint": "lib:CRYSTAL-SMD_4P-L1.6-W1.2-BL_W",
+ "source": "OpenDrone:CRYSTAL-SMD_4P-L1.6-W1.2-BL",
+ "part": "JSCJ CJ17-400001010B20 40 MHz 1612",
+ "datasheet": "${OPENDRONE_LIB}/datasheet/CJ17-400001010B20.pdf rev1.0 p4 'Package Outline Dimensions' (1.65 x 1.25) and 'Suggested Pad Layout' (pads 0.7 x 0.6, gaps 0.4 x / 0.2 y); pin 1 bottom-left in the top view",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.55,
+   "y": 0.4,
+   "w": 0.7,
+   "h": 0.6,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.55,
+   "y": 0.4,
+   "w": 0.7,
+   "h": 0.6,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.55,
+   "y": -0.4,
+   "w": 0.7,
+   "h": 0.6,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -0.55,
+   "y": -0.4,
+   "w": 0.7,
+   "h": 0.6,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 1.65,
+  "h": 1.25
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "pad centres x +-(0.2 + 0.35) = +-0.55, y +-(0.1 + 0.3) = +-0.40",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true,
+  "model_local": true
+ }
+}

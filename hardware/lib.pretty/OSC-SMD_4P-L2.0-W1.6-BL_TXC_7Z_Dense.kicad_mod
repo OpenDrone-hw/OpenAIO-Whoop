@@ -1,0 +1,156 @@
+(footprint "OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "YXC OW7EL89CENUNFAYLC-52M TCXO 2016. Land per YXC YSO510TP TCXO spec (LCSC C22434896, p23/merge/od/dl/lcsc/C22434896.pdf) p2 'Dimensions and Recommended Land Pattern', 2.0*1.6 mm: body 2.05 x 1.65, land 0.6 x 0.8, gaps 1.1 x / 0.4 y, pin 1 bottom-left (1 OE/NC, 2 GND, 3 OUT, 4 VDD). recommended land with the outer edges trimmed to the budget envelope (inner gaps 1.1 / 0.4 kept). DENSE: budget envelope TCXO2016 2.1 x 1.7 vs recommended 2.3 x 2.0: outer edges 1.15/1.00 -> 1.05/0.85 (0.025 past the body); lands 0.5 x 0.65 cover the 0.4 x 0.625 bottom terminals (p2 bottom view). Corrected copy of OpenDrone:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense.json")
+	(tags "YXC OW7EL89CENUNFAYLC-52M TCXO 2016")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "920f5ac7-3bf1-4e0d-aba3-e97f4385ba45")
+		(effects
+			(font
+				(size 0.66 0.66)
+				(thickness 0.099)
+			)
+		)
+	)
+	(property "Value" "OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense"
+		(at 0 1.485 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e8e29677-7238-4942-950e-1ae8a61b5969")
+		(effects
+			(font
+				(size 0.66 0.66)
+				(thickness 0.099)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0913811c-676e-4f65-97a2-006f32648d1d")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d750006b-1787-45ee-b121-1cca3b2f4c98")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.15 -0.95)
+		(end 1.15 0.95)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "874375c4-e967-4f8e-8465-b9d1421afb24")
+	)
+	(fp_line
+		(start -1.025 -0.825)
+		(end 1.025 -0.825)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "830886a6-5d5c-4b75-a158-b06c41fa490d")
+	)
+	(fp_line
+		(start -1.025 0.575)
+		(end -1.025 -0.825)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "5981b5db-7be8-46e7-8fe3-169a95d478c5")
+	)
+	(fp_line
+		(start -0.775 0.825)
+		(end -1.025 0.575)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "9aff1f86-4390-424e-bc2d-7f3346eb2667")
+	)
+	(fp_line
+		(start 1.025 -0.825)
+		(end 1.025 0.825)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "8986fb2a-7c2f-4d6e-88ba-6e9e501f21e0")
+	)
+	(fp_line
+		(start 1.025 0.825)
+		(end -0.775 0.825)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "7049b30c-bcde-4ca1-96df-9d904f77cc93")
+	)
+	(pad "1" smd rect
+		(at -0.8 0.525)
+		(size 0.5 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "da65c5a8-2072-4917-bbf9-39f42984a498")
+	)
+	(pad "2" smd rect
+		(at 0.8 0.525)
+		(size 0.5 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "1683a563-b9ff-447c-b4c0-57c0facc6920")
+	)
+	(pad "3" smd rect
+		(at 0.8 -0.525)
+		(size 0.5 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "12fb8be7-fe28-44ff-b562-75e5b902e705")
+	)
+	(pad "4" smd rect
+		(at -0.8 -0.525)
+		(size 0.5 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "247306bd-d7db-4075-bc4a-a0ce167e95dc")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z.wrl"
+		(offset
+			(xyz 0 -0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

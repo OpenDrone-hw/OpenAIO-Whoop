@@ -1,0 +1,38 @@
+{
+ "datasheet": "/home/user/OpenAIO-Whoop/research/DESIGN-SPEC.md \u00a74.10 'User and HD pads' row: TP0 RP0 5V GND (1.0 x 1.2), CAM 5V GND and VHD GND TX1 RX1 (1.2 x 1.0 = the same land rotated 90 deg at placement); sketch_v5 GROUPS (pad sizes and pitches); D12 (0.8 mm labels beside the pad, not part of the footprint)",
+ "derivation": "rounded-rectangle SMD land (corner ratio 0.25 like OpenDrone SolderPad_1.2x2.0mm / small_pad), no paste (hand-soldered ENIG wire pad, OpenDrone small_pad convention; no solder dome on the second reflow), pad property test point; body = land; single terminal (pin1 null)",
+ "pads": [
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1.0,
+   "h": 1.2,
+   "shape": "roundrect"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 1.0,
+  "h": 1.2,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": null,
+ "attrs": [
+  "smd",
+  "exclude_from_pos_files",
+  "exclude_from_bom"
+ ],
+ "pad_property": "testpoint",
+ "roundrect_ratio": 0.25,
+ "variant_of": null,
+ "footprint": "lib:SolderPad_1.0x1.2mm",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "staged_from": "p23/staging/io_pads/landspecs/SolderPad_1.0x1.2mm.json"
+}

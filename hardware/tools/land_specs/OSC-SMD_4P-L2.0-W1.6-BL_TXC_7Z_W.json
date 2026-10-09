@@ -1,0 +1,53 @@
+{
+ "footprint": "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_W",
+ "source": "OpenDrone:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z",
+ "part": "YXC OW7EL89CENUNFAYLC-52M TCXO 2016",
+ "datasheet": "YXC YSO510TP TCXO spec (LCSC C22434896, p23/merge/od/dl/lcsc/C22434896.pdf) p2 'Dimensions and Recommended Land Pattern', 2.0*1.6 mm: body 2.05 x 1.65, land 0.6 x 0.8, gaps 1.1 x / 0.4 y, pin 1 bottom-left (1 OE/NC, 2 GND, 3 OUT, 4 VDD)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.85,
+   "y": 0.6,
+   "w": 0.6,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.85,
+   "y": 0.6,
+   "w": 0.6,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.85,
+   "y": -0.6,
+   "w": 0.6,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -0.85,
+   "y": -0.6,
+   "w": 0.6,
+   "h": 0.8,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 2.05,
+  "h": 1.65
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "pad centres x +-(0.55 + 0.3) = +-0.85, y +-(0.2 + 0.4) = +-0.60",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true
+ }
+}
