@@ -50,10 +50,11 @@
   (constraint hole_to_hole (min 0.45mm))
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.isPlated() && B.isPlated()"))
 
-# NextPCB 0.40 copper between pads with holes, different nets.
+# NextPCB 0.40 copper between pads with holes, different nets. Footprint vias (Heatsink pads, D21 below) are
+# vias, not component holes, and keep the via clearances.
 (rule "PTH pads, copper 0.40 apart"
   (constraint clearance (min 0.40mm))
-  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Pad_Type == 'Through-hole' && A.Net != B.Net"))
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Pad_Type == 'Through-hole' && A.Net != B.Net && A.Fabrication_Property != 'Heatsink pad' && B.Fabrication_Property != 'Heatsink pad'"))
 
 # Component holes: JLCPCB 0.15 absolute, 0.20 recommended; NextPCB 0.20. Vias keep the 0.075 of D6.
 (rule "PTH annular ring 0.20"
@@ -93,7 +94,7 @@
 # keep the 0.20 copper-to-edge minimum (D7: exceptions as named, scoped rules).
 (rule "parts: pads 0.30 from the edge"
   (constraint edge_clearance (min 0.30mm))
-  (condition "A.Type == 'Pad' && !(A.memberOfFootprint('*:small_pad*') || A.memberOfFootprint('*:SolderPad*') || A.memberOfFootprint('*:motor_pad*') || A.memberOfFootprint('*:battery_pad*') || A.memberOfFootprint('*:BT2*'))"))
+  (condition "A.Type == 'Pad' && !(A.memberOfFootprint('*:small_pad*') || A.memberOfFootprint('*:SolderPad*') || A.memberOfFootprint('*:MotorPad*') || A.memberOfFootprint('*:BattPad*') || A.memberOfFootprint('*:motor_pad*') || A.memberOfFootprint('*:battery_pad*') || A.memberOfFootprint('*:BT2*'))"))
 
 # Spec 7 part keepout band (rule area PART_EDGE_BAND, 0.30 mm inside the outline), tested on courtyards;
 # solder-pad footprints (component class SOLDER_PAD) are exempt like above.
@@ -122,6 +123,13 @@
   (constraint courtyard_clearance (min 0.5mm))
   (condition "A.hasComponentClass('SOLDER_PAD') && (B.hasComponentClass('PASSIVE_0201') || B.hasComponentClass('PASSIVE_0402'))"))
 
+# D21 / spec 10 (iron rework 'from every part on its side'): a motor pad is soldered on the top; its far side
+# is only the 0.9 mm anchor-hole ring, so the 0.5 mm small-passive halo applies on the pad's side, and the far
+# side keeps the plain courtyard rule (no overlap). Battery pads are pads on both sides and keep the halo there.
+(rule "D21 motor_pad_ring_side"
+  (constraint courtyard_clearance (min 0mm))
+  (condition "A.hasComponentClass('MOTOR_PAD') && A.Layer != B.Layer"))
+
 # D21 / spec 11: FET, battery, motor and user solder pads join their pours solid (no thermal relief): the
 # power path and the iron need the copper; reflow is profiled for it (NextPCB EQ).
 (rule "D21 fet_solid_pads"
@@ -137,6 +145,23 @@
 # Spec 4.8 / 4.9: footprints with NC pads removed (RTC6705) or the NOR exposed pad removed are saved as
 # their own footprints in the project library (P3), so lib_footprint_mismatch stays an error and never
 # fires for them; no rule is needed and none is relaxed.
+
+# D21 / spec 8.3: through vias drawn inside a footprint land as PTH pads with the Heatsink fabrication property
+# (EFM8BB51 EP array, CSD13202Q2 merged-drain phase field) are 0.35/0.20 Type VII vias (D6), not component
+# holes: the via annular ring 0.075 applies instead of the 0.20 PTH component-hole ring (LIBRARY.md item).
+(rule "D21 footprint_via_pads annular"
+  (constraint annular_width (min 0.075mm))
+  (condition "A.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad'"))
+
+# D21: the same footprint vias keep the 0.20 via hole clearance, not the 0.28 / 0.30 component-hole values.
+(rule "D21 footprint_via_pads hole_clearance"
+  (constraint hole_clearance (min 0.20mm))
+  (condition "A.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad'"))
+
+# D21 / D39: same-net footprint vias keep the 0.20 hole spacing of a via array, not the 0.45 PTH pad value.
+(rule "D21 footprint_via_pads same_net_holes"
+  (constraint hole_to_hole (min 0.20mm))
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad' && B.Fabrication_Property == 'Heatsink pad' && A.Net == B.Net"))
 
 # Spec 4.7 / 8.1, only if the NextPCB EQ (O15) accepts 0.35 mm pitch: one ganged mask opening per side of
 # the ESP32-D0WD-V3 land, set as the footprint attribute 'allow soldermask bridges' on that footprint only

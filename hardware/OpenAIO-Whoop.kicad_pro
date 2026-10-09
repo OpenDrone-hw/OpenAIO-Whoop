@@ -316,7 +316,7 @@
             "primary": "*SRSS*"
           },
           "FOOTPRINT-4": {
-            "primary": "*L2.5-W2.0*"
+            "primary": "*IND-SMD_L2.5-W2.0*"
           },
           "FOOTPRINT-5": {
             "primary": "*_2520*"
@@ -352,13 +352,31 @@
             "primary": "*SolderPad*"
           },
           "FOOTPRINT-2": {
-            "primary": "*motor_pad*"
+            "primary": "*MotorPad*"
           },
           "FOOTPRINT-3": {
-            "primary": "*battery_pad*"
+            "primary": "*BattPad*"
           },
           "FOOTPRINT-4": {
+            "primary": "*motor_pad*"
+          },
+          "FOOTPRINT-5": {
+            "primary": "*battery_pad*"
+          },
+          "FOOTPRINT-6": {
             "primary": "*BT2*"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "MOTOR_PAD",
+        "conditions": {
+          "FOOTPRINT": {
+            "primary": "*MotorPad*"
+          },
+          "FOOTPRINT-1": {
+            "primary": "*motor_pad*"
           }
         },
         "conditions_operator": "ANY"

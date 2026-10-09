@@ -75,14 +75,15 @@ RX_ANT_HOLE = (-12.3, 6.5)                       # spec 4.10 / 10: RX antenna wi
 RX_ANT_KEEPOUT_R = 1.6                           # copper keepout L1-L5 (L6 admits the feed): 1.0 mm around a 1.2 mm pad
 RX_ANT_EXIT_R = 3.0                              # spec 10: no parts within 3 mm of the wire's exit (bottom)
 RX_ROOT_R = 3.0                                  # spec 4.9 / 11: NOR and SPI0 >= 3 mm from the antenna hole
-RX_FEED = ((-9.6, 4.05), RX_ANT_HOLE, 0.8)       # spec 10: 2.4 GHz feed LPF -> hole on L6; L5 solid under it
-UFL_VTX = (3.545, -10.5)                         # sketch v4: U.FL 1.97..5.12 / -12.5..-8.5, top edge left of the arc
-UFL_ZONE = ((1.82, -13.2), (5.42, -8.2))         # RF_VTX_UFL: U.FL land + 0.15 / 0.3 mm (only RF and GND on L1)
-RF_PAD_CUT = ((2.945, -11.1), (4.145, -9.9))     # RF_PAD_CUTOUT: under the U.FL signal pad (P5 adds the BPF/match pads)
+RX_FEED = ((-7.6, 6.9), RX_ANT_HOLE, 0.8)        # spec 10: 2.4 GHz feed LPF (FL1 pin 1, P2 floorplan) -> hole on L6; L5 solid under it
+UFL_VTX = (3.52, -10.6)                          # P2 floorplan: U.FL J1 rot 90, land 2.42..5.57 / -12.6..-8.6
+UFL_ZONE = ((2.27, -13.2), (5.87, -8.3))         # RF_VTX_UFL: U.FL land + 0.15 / 0.3 mm (only RF and GND on L1), P2
+RF_PAD_CUT = ((4.47, -11.15), (5.62, -10.05))    # RF_PAD_CUTOUT: under the U.FL signal pad, P2 (P5 adds the BPF/match pads)
 # 5.8 GHz chain (sketch v4): RTC6705 PAOUT1 (pin 35, right side) -> 45 deg CPWG -> PA RF IN (down) -> PA RF OUT (up)
 # -> match zone -> BPF -> U.FL; half-width 1.2 = line + CPWG gap + 1 mm (spec 10: L2 solid under the chain + 1 mm).
-VTX_CHAIN = ([(5.0, -4.65), (8.52, -6.4), (8.52, -11.55), (6.67, -12.05), (3.545, -10.5)], 1.2)
-SHUNT_CORRIDOR = ((-8.0, 8.1), (-4.2, 12.6))     # D10 / spec 10: B+ pad -> shunt on L6 (P2 sets the final box)
+VTX_CHAIN = ([(4.29, -4.9), (4.6, -6.4), (7.6, -6.45), (8.52, -7.35), (8.52, -11.05), (8.5, -11.85), (7.225, -12.05),
+              (6.115, -12.05), (5.045, -10.6)], 1.2)   # P2 floorplan pads: PAOUT1 -> C110 -> PA in / out -> C119 -> BPF -> U.FL
+SHUNT_CORRIDOR = ((-7.6, 8.0), (-3.4, 12.4))     # D10 / spec 10: B+ pad J2 -> shunt R1 on L6 (P2 floorplan box)
 TAB_HALF, TAB_IN, TAB_OUT = 1.5, 1.3, 0.5        # spec 7: tab 1.2-1.5 wide + 1.0 mm part keepout beyond the 0.3 band
 TABS = {"T1": ((13.2, -6.6), (1, 0)), "T3": ((-13.2, -8.9), (-1, 0)), "T4": ((-9.3, 13.2), (0, 1))}   # point on edge, outward normal (spec 7 round 4: T1 on the right edge)
 
@@ -152,6 +153,7 @@ COMPONENT_CLASSES = [
     ("TALL", ["*U.FL*", "*U_FL*", "*UFL*", "*SRSS*", "*IND-SMD_L2.5-W2.0*", "*_2520*"]),  # U.FL, 2520 L (spec 8.4; not the 2520 crystal)
     ("POWER_FET", ["*CSD25310Q2*", "*CSD13202Q2*", "*DQK*", "*AGM210*"]),            # D12 stage (P3 names), D21
     ("SOLDER_PAD", ["*small_pad*", "*SolderPad*", "*MotorPad*", "*BattPad*", "*motor_pad*", "*battery_pad*", "*BT2*"]),
+    ("MOTOR_PAD", ["*MotorPad*", "*motor_pad*"]),                                  # top pad, far side is a 0.9 ring
 ]
 SOLDER_PAD_FPIDS = ["*:small_pad*", "*:SolderPad*", "*:MotorPad*", "*:BattPad*", "*:motor_pad*", "*:battery_pad*",
                     "*:BT2*"]  # memberOfFootprint (P3 library names MotorPad_* / BattPad_*, spec 4.10)
@@ -274,6 +276,13 @@ RULES = [
      "  (constraint courtyard_clearance (min 0.5mm))\n"
      "  (condition \"A.hasComponentClass('SOLDER_PAD') && (B.hasComponentClass('PASSIVE_0201') || "
      "B.hasComponentClass('PASSIVE_0402'))\")"),
+
+    ("D21 motor_pad_ring_side",
+     ["D21 / spec 10 (iron rework 'from every part on its side'): a motor pad is soldered on the top; its far side",
+      "is only the 0.9 mm anchor-hole ring, so the 0.5 mm small-passive halo applies on the pad's side, and the far",
+      "side keeps the plain courtyard rule (no overlap). Battery pads are pads on both sides and keep the halo there."],
+     "  (constraint courtyard_clearance (min 0mm))\n"
+     "  (condition \"A.hasComponentClass('MOTOR_PAD') && A.Layer != B.Layer\")"),
 
     ("D21 fet_solid_pads",
      ["D21 / spec 11: FET, battery, motor and user solder pads join their pours solid (no thermal relief): the",
@@ -1244,6 +1253,11 @@ def selftest(P, rf):
     os.symlink(os.path.join(HW, "KiCad-Library"), os.path.join(tmp, "KiCad-Library"))
     pcb = os.path.join(tmp, os.path.basename(PCB))
     b = P.LoadBoard(pcb)
+    for fp in list(b.GetFootprints()):          # the synthetic cases need an empty board (P2 placed parts)
+        b.Delete(fp)
+    for d in list(b.GetDrawings()):
+        if d.GetLayer() in (P.F_SilkS, P.B_SilkS) and not d.m_Uuid.AsString().startswith(UUID_PREFIX + "-"):
+            b.Delete(d)
     cx, cy = CENTRE
     V = lambda x, y: P.VECTOR2I(mm(cx + x), mm(cy + y))
     nets, cases = {}, []
@@ -1353,7 +1367,7 @@ def selftest(P, rf):
     ux, uy = UFL_VTX
     trk(ux - 0.5, uy, ux + 0.5, uy, 0.1, "/T/SIG1"); case("signal track in RF_VTX_UFL", "RF_VTX_UFL", (ux, uy))
     trk(ux - 0.5, uy + 1, ux + 0.5, uy + 1, 0.2, "GND"); case("GND track in RF_VTX_UFL", None, (ux, uy + 1), r=0.3)
-    c0, c1 = VTX_CHAIN[0][1], VTX_CHAIN[0][2]
+    c0, c1 = max(zip(VTX_CHAIN[0], VTX_CHAIN[0][1:]), key=lambda pq: math.dist(*pq))   # longest chain segment
     trk(c0[0] - 0.4, c0[1] - 1.5, c0[0] + 0.4, c0[1] - 1.5, 0.1, "/T/SIG2", "In1.Cu")
     case("In1 track under the VTX chain (keepout RF_VTX_CHAIN)", KEEPOUT_HIT, (c0[0], c0[1] - 1.5), r=0.8)
     via(c0[0], c0[1] - 3.0, 0.35, 0.20, "/T/V8"); case("signal via in RF_VTX_CHAIN", "RF_VTX_CHAIN: GND vias only", (c0[0], c0[1] - 3.0), r=0.4)
