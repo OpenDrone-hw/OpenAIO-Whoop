@@ -1,0 +1,3644 @@
+{
+ "meta": {
+  "board": "OpenAIO-Whoop",
+  "rev": "rev1",
+  "date": "2026-10-09",
+  "phase": "P4 schematic interface contract",
+  "generator": "p2v3/p4/contract/build_contract.py; uuids and root sheet by hardware/tools/sch_root.py",
+  "inputs": [
+   "hardware/bom_plan.json (refs binding)",
+   "research/PINMAP.md §2/§3/§6/§7",
+   "research/DESIGN-SPEC.md §4, §5, §15.5",
+   "research/BOM-REDUCTION.md §7",
+   "research/IO-SET.md",
+   "research/LINEUP-CONVENTIONS.md",
+   "research/DECISIONS.md D1-D70",
+   "hardware/tools/setup_board.py NETCLASSES / NETCLASS_PATTERNS"
+  ],
+  "kicad": "10.0.6; files written by hardware/tools/sch_build.py and re-saved by kicad-cli sch upgrade"
+ },
+ "rules": [
+  "Shard API: prj = sch_build.Project('hardware/OpenAIO-Whoop.kicad_sch'); sheets = sch_root.build_root(prj, sch_root.load_contract()) gives every Sheet already decorated (paper, title block, wordmark) and placed with the fixed uuids; fill your sheets, then sch_root.save_sheets(prj, [your files]) - never prj.save() from a shard (it would overwrite the other shards' files). sch_root.note() = borderless block-note text box, sch_root.netclass_flag() = directive label. Verified on a scratch copy: ESC1 R12/R13 become R19/R20 (ESC2), R26/R27, R33/R34; nets /ESC2/PHASE_A, /MOTOR2, /VBUS come out as specified.",
+  "Root sheet hardware/OpenAIO-Whoop.kicad_sch holds only sheet symbols, root wires, root labels, directive flags, the power table and notes; it is regenerated from this file by hardware/tools/sch_root.py (never by hand).",
+  "Sheet files are lower-case snake_case, one per function; esc_channel.kicad_sch is one file placed 4x (ESC1-ESC4).",
+  "Every signal between sheets is a real root wire between sheet pins; every hierarchical label in a sub-sheet has exactly the name, direction (= label shape) and count of the pins listed here; no global labels.",
+  "Root net names: each root wire carries a root local label with the net name (net '/<NAME>'), except the motor phases: the ESC sheet puts a LOCAL label PHASE_x (plus the hierarchical label) on the phase net, and the root wire has no label, so the net is '/ESCn/PHASE_x' (verified with kicad-cli 10.0.6: a sub-sheet local label beats root sheet pins; a root local label beats sub-sheet hierarchical labels).",
+  "Sub-sheets must not put a local label on a net that leaves through a hierarchical label (except ESC PHASE_x): the root label names it.",
+  "Rails are power symbols from the stock 'power' library; the Value is the rail name (net = Value, verified): +BATT_IN uses power:+BATT, +5V_BST/+5V_USB/+5V_CAM/+5V_HD use power:+5V, +3V3_VTX uses power:+3V3. VBUS is a hierarchical net (LINEUP A11: power symbols must be + rails).",
+  "PWR_FLAG on every rail whose only source is passive or a connector: +BATT_IN and GND (POWER), +BATT (after the shunt), +5V_CAM (after FB1), VBUS (PADS, at J31); add others only where ERC asks.",
+  "Multi-pin nets inside a sheet get a local label named after the driving pin (U2_SW, U5_EN, Q27_C), except the fixed names listed per sheet (local_nets_fixed / spec names such as RF_*, PA_DET_RAW, SHUNT_SENSE_P/N, which the netclass patterns match).",
+  "Never rotate a ground symbol; block notes go in borderless text boxes (stroke width -0.0001); sheet title block fields title/date/rev filled, company empty, wordmark polylines from hardware/tools/opendrone_wordmark.json (shipped art, black + #c89d2e) via sch_root.decorate().",
+  "Deterministic uuids: sch_build uuid5(root uuid, file|kind|key); symbol key = the ESC1 / single-instance reference. Sheet symbol, sheet file and instance-path uuids are fixed in this file.",
+  "ESC refs: draw the ESC1 references in esc_channel.kicad_sch; the other instances use the per-prefix ref_offset below (sch_build accepts {prefix: n} dicts). The four ref lists are checked against bom_plan.",
+  "Netclass directive flags: one per class group per sheet on the topmost label of the group (list below); the project netclass patterns (setup_board.py) assign every member. Add pattern '/VBUS' to Power.",
+  "Symbols: OpenDrone / lib / KiCad stock only (bom_plan 'symbol'), Footprint = bom_plan footprint, fields MPN and Manufacturer from bom_plan, LCSC = bom_plan lcsc where known (see open_items A9), Value = bom_plan value, dnp / exclude_from_bom / exclude_from_pos per bom_plan; solder pads Connector_Generic:Conn_01x01 with Value = the <= 3-character pad code; test points Connector:TestPoint out of the BOM.",
+  "Sheet notes carry the P4 items and the BOM-REDUCTION §7 placement conditions owned by the sheet (p4 lists per block); the critique loop closes them (D22)."
+ ],
+ "open_items": [
+  {
+   "id": "A9-LCSC",
+   "for": "orchestrator",
+   "text": "check_conventions A9 requires a non-empty LCSC field on every BOM symbol, but 75 BOM parts have no LCSC number (D60: NextPCB sources by MPN; CONTRIBUTING says 'LCSC when available'). Proposed: A9 checks MPN + Manufacturer and LCSC only where bom_plan has one; until decided, sheets write LCSC = '' and A9 FAILs on those parts. Do not fill placeholders."
+  },
+  {
+   "id": "VBUS-pattern",
+   "for": "integrator (after floorplan v3 releases .kicad_pro)",
+   "text": "add NETCLASS_PATTERNS ('Power', '/VBUS') in setup_board.py and re-apply; until then the root directive flag assigns it"
+  },
+  {
+   "id": "kicad_pro-sheets",
+   "for": "integrator",
+   "text": ".kicad_pro 'sheets' still lists only Root (cosmetic page list, KiCad refreshes it on a GUI save); top_level_sheets already holds the root uuid"
+  }
+ ],
+ "environment": {
+  "erc_stock_libs": "kicad-cli ERC flags lib_symbol_issues for power:/Device: symbols unless the global sym-lib-table exists: ~/.config/kicad/10.0/sym-lib-table was seeded from /usr/share/kicad/template/sym-lib-table (2026-10-09), as on a normal KiCad install; the project table stays lib + OpenDrone (LINEUP C4)",
+  "python": "/usr/bin/python3.12 for sch_build/sch_root/check_conventions; /opt/kicad-agent-venv/bin/python -I for pcb-agent-commons tools/schematic/sch_visual_check.py"
+ },
+ "baseline_with_stub_sheets": {
+  "erc": {
+   "hier_label_mismatch": 35,
+   "label_dangling": 43,
+   "other": 0,
+   "note": "all from the empty sub-sheets (no hierarchical labels yet); must reach 0 errors once filled"
+  },
+  "sch_visual_check": 0,
+  "check_conventions": "0 FAIL (A5 warn: shipped gold, deliberate per D4)"
+ },
+ "netclasses": {
+  "defined_in": "hardware/tools/setup_board.py NETCLASSES (RF USB VBAT Phase Gate Analog Power GND, Default)",
+  "patterns_to_add": [
+   {
+    "class": "Power",
+    "pattern": "/VBUS"
+   }
+  ],
+  "directive_labels": [
+   {
+    "sheet": "root",
+    "class": "Phase",
+    "on": "/ESC1/PHASE_A root wire"
+   },
+   {
+    "sheet": "root",
+    "class": "Analog",
+    "on": "CURR_SENSE root wire"
+   },
+   {
+    "sheet": "root",
+    "class": "Power",
+    "on": "VBUS root wire"
+   },
+   {
+    "sheet": "power.kicad_sch",
+    "class": "VBAT",
+    "on": "+BATT_IN (topmost battery wire)"
+   },
+   {
+    "sheet": "power.kicad_sch",
+    "class": "Power",
+    "on": "+5V_BST (U2 VOUT)"
+   },
+   {
+    "sheet": "power.kicad_sch",
+    "class": "Analog",
+    "on": "SHUNT_SENSE_P"
+   },
+   {
+    "sheet": "esc_channel.kicad_sch",
+    "class": "Phase",
+    "on": "PHASE_A hierarchical label"
+   },
+   {
+    "sheet": "esc_channel.kicad_sch",
+    "class": "Gate",
+    "on": "A_COM"
+   },
+   {
+    "sheet": "esc_channel.kicad_sch",
+    "class": "VBAT",
+    "on": "+BATT at the half-bridges"
+   },
+   {
+    "sheet": "rp2350a.kicad_sch",
+    "class": "USB",
+    "on": "USB_D_P hierarchical label"
+   },
+   {
+    "sheet": "rp2350a.kicad_sch",
+    "class": "Analog",
+    "on": "CURR_SENSE hierarchical label"
+   },
+   {
+    "sheet": "osd.kicad_sch",
+    "class": "Analog",
+    "on": "VIDEO_IN hierarchical label"
+   },
+   {
+    "sheet": "rx_esp32_sx1281.kicad_sch",
+    "class": "RF",
+    "on": "RF_RFIO"
+   },
+   {
+    "sheet": "vtx.kicad_sch",
+    "class": "RF",
+    "on": "RF_PAOUT1"
+   },
+   {
+    "sheet": "vtx.kicad_sch",
+    "class": "Power",
+    "on": "PA_VCC (this flag assigns the class: no pattern covers it)"
+   },
+   {
+    "sheet": "vtx.kicad_sch",
+    "class": "Analog",
+    "on": "PA_DET hierarchical label"
+   },
+   {
+    "sheet": "pads.kicad_sch",
+    "class": "Phase",
+    "on": "M1_A hierarchical label"
+   },
+   {
+    "sheet": "pads.kicad_sch",
+    "class": "USB",
+    "on": "USB_D_P hierarchical label"
+   },
+   {
+    "sheet": "pads.kicad_sch",
+    "class": "VBAT",
+    "on": "+BATT_IN at J2"
+   }
+  ]
+ },
+ "power_rails": [
+  {
+   "rail": "+BATT_IN",
+   "symbol": "power:+BATT",
+   "source": "battery pads J2 (+) / J3 (-), 1S LiPo/LiHV",
+   "nominal": "3.0-4.35 V",
+   "budget": "motors 4x ESC + board (2.0 A at VTX max)",
+   "feeds": "D1 TVS, C1/C2, shunt R1 (POWER); J2 (PADS)",
+   "class": "VBAT",
+   "table": [
+    "battery pads J2 / J3 (1S)",
+    "3.0-4.35 V",
+    "4x ESC + 2.0 A board",
+    "TVS, pad bulk, shunt R1"
+   ]
+  },
+  {
+   "rail": "+BATT",
+   "symbol": "power:+BATT",
+   "source": "after shunt R1 0.5 mOhm",
+   "nominal": "cell",
+   "budget": "per ESC as measured (V4); boost in 1.4-3.0 A",
+   "feeds": "ESC1-4 (EFM8 VDD, AGM210MAP P sources, C23 bulk), U2 boost, O4 EN divider R9 (POWER), R45 VBAT divider (RP2350A), R67 PA_VCC selector (VTX)",
+   "class": "VBAT",
+   "table": [
+    "shunt R1 0.5 mOhm",
+    "cell",
+    "ESC + boost in 1.4-3.0 A",
+    "ESC1-4, boost, O4 EN, VBAT ADC, PA_VCC"
+   ]
+  },
+  {
+   "rail": "/VBUS",
+   "symbol": "hierarchical (PADS -> POWER)",
+   "source": "USB J31 pin 1",
+   "nominal": "5 V",
+   "budget": "0.42 A USB only (O4 off)",
+   "feeds": "U24 SGM40661 IN",
+   "class": "Power",
+   "table": [
+    "USB J31 pin 1 (hier. net)",
+    "5 V",
+    "0.42 A, USB only",
+    "U24 OVP"
+   ]
+  },
+  {
+   "rail": "+5V_USB",
+   "symbol": "power:+5V",
+   "source": "U24 SGM40661 OVP OUT",
+   "nominal": "5 V",
+   "budget": "as /VBUS",
+   "feeds": "U3 VIN1 + MODE, R7 PR1 divider (POWER)",
+   "class": "Power",
+   "table": [
+    "U24 SGM40661 OVP",
+    "5 V",
+    "as VBUS",
+    "U3 VIN1, PR1 divider"
+   ]
+  },
+  {
+   "rail": "+5V_BST",
+   "symbol": "power:+5V",
+   "source": "U2 TPS61022 boost",
+   "nominal": "5.148 V (4.93-5.37)",
+   "budget": "1.82 A at 3.0 V in (spec 5.3)",
+   "feeds": "U3 VIN2, U5 TPS22810 VIN (POWER)",
+   "class": "Power",
+   "table": [
+    "U2 TPS61022 boost",
+    "5.15 V",
+    "1.82 A at 3.0 V in",
+    "U3 VIN2, U5 O4 switch"
+   ]
+  },
+  {
+   "rail": "+5V",
+   "symbol": "power:+5V",
+   "source": "U3 TPS2116 mux OUT",
+   "nominal": "5 V",
+   "budget": "analog 0.70 A, HD 1.43-1.48 A (spec 5.1)",
+   "feeds": "U4 + U21 LP5912 IN, FB1, user 5V pads J18/J21, R67 option",
+   "class": "Power",
+   "table": [
+    "U3 TPS2116 mux",
+    "5 V",
+    "0.70 A analog, 1.48 A HD",
+    "3V3 LDOs, CAM filter, 5V pads"
+   ]
+  },
+  {
+   "rail": "+5V_CAM",
+   "symbol": "power:+5V",
+   "source": "FB1 from +5V",
+   "nominal": "5 V",
+   "budget": "0.12 A camera",
+   "feeds": "J24 pad + J32 plug (PADS)",
+   "class": "Power",
+   "table": [
+    "FB1 ferrite from +5V",
+    "5 V",
+    "0.12 A",
+    "camera pad + plug"
+   ]
+  },
+  {
+   "rail": "+5V_HD",
+   "symbol": "power:+5V",
+   "source": "U5 TPS22810 from +5V_BST (HD_EN AND cell > 2.8-3.1 V)",
+   "nominal": "5 V",
+   "budget": "1.20 A O4 Lite",
+   "feeds": "J26 VHD pad (PADS), R87 hysteresis (POWER)",
+   "class": "Power",
+   "table": [
+    "U5 TPS22810 (HD_EN, cell)",
+    "5 V",
+    "1.20 A O4 Lite",
+    "VHD pad"
+   ]
+  },
+  {
+   "rail": "+3V3",
+   "symbol": "power:+3V3",
+   "source": "U4 LP5912-3.3",
+   "nominal": "3.3 V",
+   "budget": "0.20 A (FC 0.09 + RX 0.11, 0.16 peak)",
+   "feeds": "RP2350A, IMU (U12 IN), BLACKBOX, OSD, RX, LED, INA186, VTX pull-ups R68/R70",
+   "class": "Power",
+   "table": [
+    "U4 LP5912-3.3",
+    "3.3 V",
+    "0.20 A",
+    "FC, IMU, NOR, OSD, RX, LEDs, INA186"
+   ]
+  },
+  {
+   "rail": "+3V3_VTX",
+   "symbol": "power:+3V3",
+   "source": "U21 LP5912-3.3, EN = VTX_PWR_EN (off in HD mode)",
+   "nominal": "3.3 V",
+   "budget": "0.10 A",
+   "feeds": "RTC6705, PNP drive Q27, U22 PA reference (VTX)",
+   "class": "Power",
+   "table": [
+    "U21 LP5912-3.3 (off in HD)",
+    "3.3 V",
+    "0.10 A",
+    "RTC6705, PA drive, PA ref"
+   ]
+  },
+  {
+   "rail": "+1V8",
+   "symbol": "power:+1V8",
+   "source": "U12 TPS7A2018 from +3V3",
+   "nominal": "1.8 V",
+   "budget": "< 1 mA",
+   "feeds": "BMI270 VDD (IMU)",
+   "class": "Power",
+   "table": [
+    "U12 TPS7A2018",
+    "1.8 V",
+    "< 1 mA",
+    "BMI270"
+   ]
+  },
+  {
+   "rail": "+1V1",
+   "symbol": "power:+1V1",
+   "source": "RP2354A core SMPS (VREG_LX + L2)",
+   "nominal": "1.1 V",
+   "budget": "internal",
+   "feeds": "RP2354A DVDD (RP2350A)",
+   "class": "Power",
+   "table": [
+    "RP2354A core SMPS",
+    "1.1 V",
+    "internal",
+    "RP2354A DVDD"
+   ]
+  },
+  {
+   "rail": "PA_VCC",
+   "symbol": "local net /VTX/PA_VCC (directive Power)",
+   "source": "R67 0R selector: +BATT (default) or +5V",
+   "nominal": "cell",
+   "budget": "0.65 A at the 27 dBm ceiling",
+   "feeds": "SE5004L VCC1-3 (VTX)",
+   "class": "Power",
+   "table": [
+    "R67 selector, +BATT default",
+    "cell",
+    "0.65 A at 27 dBm",
+    "SE5004L PA (local, VTX)"
+   ]
+  },
+  {
+   "rail": "GND",
+   "symbol": "power:GND",
+   "source": "battery -, J3",
+   "nominal": "0 V",
+   "budget": "-",
+   "feeds": "every sheet",
+   "class": "GND",
+   "table": [
+    "battery -",
+    "0 V",
+    "-",
+    "all sheets"
+   ]
+  }
+ ],
+ "nets": [
+  {
+   "net": "/HD_EN",
+   "root_label": "HD_EN",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "HD_EN",
+     "dir": "output"
+    },
+    {
+     "sheet": "POWER",
+     "pin": "HD_EN",
+     "dir": "input"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "HD_EN",
+     "dir": "input"
+    }
+   ],
+   "fw": "PINIO1_PIN PA27 (GPIO27, pin 41)",
+   "note": "high = HD mode: O4 switch EN via D2 BAS16LD (cathode), AP1606 HD gate Q28 holds +3V3_VTX off; R11 2.4k pull-down on the POWER sheet keeps analog mode at reset (P4-1, P4-4)"
+  },
+  {
+   "net": "/CURR_SENSE",
+   "root_label": "CURR_SENSE",
+   "class": "Analog",
+   "pins": [
+    {
+     "sheet": "POWER",
+     "pin": "CURR_SENSE",
+     "dir": "output"
+    },
+    {
+     "sheet": "RP2350A",
+     "pin": "CURR_SENSE",
+     "dir": "input"
+    }
+   ],
+   "fw": "ADC_CURR_PIN PA28 (GPIO28) after R47/C60",
+   "note": "INA186A3 OUT, 50 mV/A, ibata_scale 500"
+  },
+  {
+   "net": "/VBUS",
+   "root_label": "VBUS",
+   "class": "Power",
+   "pins": [
+    {
+     "sheet": "PADS",
+     "pin": "VBUS",
+     "dir": "output"
+    },
+    {
+     "sheet": "POWER",
+     "pin": "VBUS",
+     "dir": "input"
+    }
+   ],
+   "fw": null,
+   "note": "raw USB 5 V from J31 pin 1 to the SGM40661 OVP IN (U24); hierarchical net, not a power symbol (LINEUP A11 wants + rails for power symbols); needs PWR_FLAG (ERC) and the pattern '/VBUS' in the Power class"
+  },
+  {
+   "net": "/LED0",
+   "root_label": "LED0",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "LED0",
+     "dir": "output"
+    },
+    {
+     "sheet": "LED",
+     "pin": "LED0",
+     "dir": "input"
+    }
+   ],
+   "fw": "LED0_PIN PA7 (GPIO7, pin 10)",
+   "note": "status LED sink (low = on)"
+  },
+  {
+   "net": "/LED1",
+   "root_label": "LED1",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "LED1",
+     "dir": "output"
+    },
+    {
+     "sheet": "LED",
+     "pin": "LED1",
+     "dir": "input"
+    }
+   ],
+   "fw": "LED1_PIN PA26 (GPIO26, pin 40)",
+   "note": "status LED sink (low = on)"
+  },
+  {
+   "net": "/SPI1_SCK",
+   "root_label": "SPI1_SCK",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "SPI1_SCK",
+     "dir": "output"
+    },
+    {
+     "sheet": "IMU",
+     "pin": "SPI1_SCK",
+     "dir": "input"
+    }
+   ],
+   "fw": "SPI1_SCK_PIN PA10 (GPIO10)",
+   "note": ""
+  },
+  {
+   "net": "/SPI1_MOSI",
+   "root_label": "SPI1_MOSI",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "SPI1_MOSI",
+     "dir": "output"
+    },
+    {
+     "sheet": "IMU",
+     "pin": "SPI1_MOSI",
+     "dir": "input"
+    }
+   ],
+   "fw": "SPI1_SDO_PIN PA11 (GPIO11)",
+   "note": ""
+  },
+  {
+   "net": "/SPI1_MISO",
+   "root_label": "SPI1_MISO",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "SPI1_MISO",
+     "dir": "input"
+    },
+    {
+     "sheet": "IMU",
+     "pin": "SPI1_MISO",
+     "dir": "output"
+    }
+   ],
+   "fw": "SPI1_SDI_PIN PA12 (GPIO12)",
+   "note": ""
+  },
+  {
+   "net": "/GYRO_CS",
+   "root_label": "GYRO_CS",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "GYRO_CS",
+     "dir": "output"
+    },
+    {
+     "sheet": "IMU",
+     "pin": "GYRO_CS",
+     "dir": "input"
+    }
+   ],
+   "fw": "GYRO_1_CS_PIN PA13 (GPIO13)",
+   "note": "R49 10k pull-up on the IMU sheet"
+  },
+  {
+   "net": "/GYRO_INT",
+   "root_label": "GYRO_INT",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "GYRO_INT",
+     "dir": "input"
+    },
+    {
+     "sheet": "IMU",
+     "pin": "GYRO_INT",
+     "dir": "output"
+    }
+   ],
+   "fw": "GYRO_1_EXTI_PIN PA9 (GPIO9)",
+   "note": ""
+  },
+  {
+   "net": "/GYRO_CLKIN",
+   "root_label": "GYRO_CLKIN",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "GYRO_CLKIN",
+     "dir": "output"
+    },
+    {
+     "sheet": "IMU",
+     "pin": "GYRO_CLKIN",
+     "dir": "input"
+    }
+   ],
+   "fw": "GYRO_1_CLKIN_PIN PA6 (GPIO6)",
+   "note": "IMU LGA pin 9 (CLKIN on ICM-42688-P, INT2 on BMI270, unused)"
+  },
+  {
+   "net": "/SPI0_SCK",
+   "root_label": "SPI0_SCK",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "SPI0_SCK",
+     "dir": "output"
+    },
+    {
+     "sheet": "BLACKBOX",
+     "pin": "SPI0_SCK",
+     "dir": "input"
+    }
+   ],
+   "fw": "SPI0_SCK_PIN PA18 (GPIO18)",
+   "note": ""
+  },
+  {
+   "net": "/SPI0_MOSI",
+   "root_label": "SPI0_MOSI",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "SPI0_MOSI",
+     "dir": "output"
+    },
+    {
+     "sheet": "BLACKBOX",
+     "pin": "SPI0_MOSI",
+     "dir": "input"
+    }
+   ],
+   "fw": "SPI0_SDO_PIN PA19 (GPIO19)",
+   "note": ""
+  },
+  {
+   "net": "/SPI0_MISO",
+   "root_label": "SPI0_MISO",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "SPI0_MISO",
+     "dir": "input"
+    },
+    {
+     "sheet": "BLACKBOX",
+     "pin": "SPI0_MISO",
+     "dir": "output"
+    }
+   ],
+   "fw": "SPI0_SDI_PIN PA20 (GPIO20)",
+   "note": ""
+  },
+  {
+   "net": "/FLASH_CS",
+   "root_label": "FLASH_CS",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "FLASH_CS",
+     "dir": "output"
+    },
+    {
+     "sheet": "BLACKBOX",
+     "pin": "FLASH_CS",
+     "dir": "input"
+    }
+   ],
+   "fw": "FLASH_CS_PIN PA21 (GPIO21)",
+   "note": "R50 10k pull-up on the BLACKBOX sheet"
+  },
+  {
+   "net": "/UART0_TX",
+   "root_label": "UART0_TX",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "UART0_TX",
+     "dir": "output"
+    },
+    {
+     "sheet": "RX",
+     "pin": "UART0_TX",
+     "dir": "input"
+    }
+   ],
+   "fw": "UART0_TX_PIN PA0 (GPIO0); SERIALRX_UART UART0, CRSF",
+   "note": "-> ESP32-PICO GPIO3 U0RXD (pin 40), ELRS serial_rx"
+  },
+  {
+   "net": "/UART0_RX",
+   "root_label": "UART0_RX",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "UART0_RX",
+     "dir": "output"
+    },
+    {
+     "sheet": "RP2350A",
+     "pin": "UART0_RX",
+     "dir": "input"
+    }
+   ],
+   "fw": "UART0_RX_PIN PA1 (GPIO1)",
+   "note": "<- ESP32-PICO GPIO1 U0TXD (pin 41), ELRS serial_tx"
+  },
+  {
+   "net": "/FC_BOOT",
+   "root_label": "FC_BOOT",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "FC_BOOT",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "RX",
+     "pin": "FC_BOOT",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "RP2354A QSPI_SS (pin 60) -> R44 1k -> FC_BOOT; TP9 'FCB' test via on the RP2350A sheet; D8 SDM02M30CLP3 A1 on the RX sheet (shared boot button SW1, D65)"
+  },
+  {
+   "net": "/OSD_W",
+   "root_label": "OSD_W",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "OSD_W",
+     "dir": "output"
+    },
+    {
+     "sheet": "OSD",
+     "pin": "OSD_W",
+     "dir": "input"
+    }
+   ],
+   "fw": "OSD_W_PIN PA14 (GPIO14, PIO2 FB OSD)",
+   "note": ""
+  },
+  {
+   "net": "/OSD_EN",
+   "root_label": "OSD_EN",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "OSD_EN",
+     "dir": "output"
+    },
+    {
+     "sheet": "OSD",
+     "pin": "OSD_EN",
+     "dir": "input"
+    }
+   ],
+   "fw": "OSD_EN_PIN PA15 (GPIO15, PIO2 FB OSD)",
+   "note": ""
+  },
+  {
+   "net": "/OSD_SYNC",
+   "root_label": "OSD_SYNC",
+   "class": "Analog",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "OSD_SYNC",
+     "dir": "input"
+    },
+    {
+     "sheet": "OSD",
+     "pin": "OSD_SYNC",
+     "dir": "output"
+    }
+   ],
+   "fw": "OSD_SYNC_PIN PA16 (GPIO16, PIO2 FB OSD)",
+   "note": ""
+  },
+  {
+   "net": "/VIDEO_IN",
+   "root_label": "VIDEO_IN",
+   "class": "Analog",
+   "pins": [
+    {
+     "sheet": "PADS",
+     "pin": "VIDEO_IN",
+     "dir": "output"
+    },
+    {
+     "sheet": "OSD",
+     "pin": "VIDEO_IN",
+     "dir": "input"
+    }
+   ],
+   "fw": null,
+   "note": "camera CVBS: CAM pad J23 + camera plug J32 pin -> 75R R51 / 100p C66 at the OSD entry"
+  },
+  {
+   "net": "/VIDEO_OUT",
+   "root_label": "VIDEO_OUT",
+   "class": "Analog",
+   "pins": [
+    {
+     "sheet": "OSD",
+     "pin": "VIDEO_OUT",
+     "dir": "output"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "VIDEO_OUT",
+     "dir": "input"
+    }
+   ],
+   "fw": null,
+   "note": "SN74LVC1G3157 output (camera or OSD level) -> RTC6705 video network R58/C104 (bom_plan local name VID_SW)"
+  },
+  {
+   "net": "/MOTOR1",
+   "root_label": "MOTOR1",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "MOTOR1",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "ESC1",
+     "pin": "DSHOT",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": "MOTOR1_PIN PA25 (GPIO25, PIO0 bidirectional DShot)",
+   "note": "R12 2.4k at the EFM8 RTX pin (ESC sheet)"
+  },
+  {
+   "net": "/MOTOR2",
+   "root_label": "MOTOR2",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "MOTOR2",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "ESC2",
+     "pin": "DSHOT",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": "MOTOR2_PIN PA24 (GPIO24, PIO0 bidirectional DShot)",
+   "note": "R19 2.4k at the EFM8 RTX pin (ESC sheet)"
+  },
+  {
+   "net": "/MOTOR3",
+   "root_label": "MOTOR3",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "MOTOR3",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "ESC3",
+     "pin": "DSHOT",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": "MOTOR3_PIN PA23 (GPIO23, PIO0 bidirectional DShot)",
+   "note": "R26 2.4k at the EFM8 RTX pin (ESC sheet)"
+  },
+  {
+   "net": "/MOTOR4",
+   "root_label": "MOTOR4",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "MOTOR4",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "ESC4",
+     "pin": "DSHOT",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": "MOTOR4_PIN PA22 (GPIO22, PIO0 bidirectional DShot)",
+   "note": "R33 2.4k at the EFM8 RTX pin (ESC sheet)"
+  },
+  {
+   "net": "/PIOUART0_TX",
+   "root_label": "PIOUART0_TX",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "PIOUART0_TX",
+     "dir": "output"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "PIOUART0_TX",
+     "dir": "input"
+    }
+   ],
+   "fw": "PIOUART0_TX_PIN PA2 (GPIO2)",
+   "note": "pad J16 TP0"
+  },
+  {
+   "net": "/PIOUART0_RX",
+   "root_label": "PIOUART0_RX",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "PIOUART0_RX",
+     "dir": "input"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "PIOUART0_RX",
+     "dir": "output"
+    }
+   ],
+   "fw": "PIOUART0_RX_PIN PA3 (GPIO3)",
+   "note": "pad J17 RP0"
+  },
+  {
+   "net": "/UART1_TX",
+   "root_label": "UART1_TX",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "UART1_TX",
+     "dir": "output"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "UART1_TX",
+     "dir": "input"
+    }
+   ],
+   "fw": "UART1_TX_PIN PA4 (GPIO4)",
+   "note": "pad J28 TX1"
+  },
+  {
+   "net": "/UART1_RX",
+   "root_label": "UART1_RX",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "UART1_RX",
+     "dir": "input"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "UART1_RX",
+     "dir": "output"
+    }
+   ],
+   "fw": "UART1_RX_PIN PA5 (GPIO5)",
+   "note": "pad J29 RX1"
+  },
+  {
+   "net": "/LED_STRIP",
+   "root_label": "LED_STRIP",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "LED_STRIP",
+     "dir": "output"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "LED_STRIP",
+     "dir": "input"
+    }
+   ],
+   "fw": "LED_STRIP_PIN PA8 (GPIO8, PIO1)",
+   "note": "pad J20 LED, driven directly (D52 BR-04); PINMAP net LED_STRIP_IO"
+  },
+  {
+   "net": "/BUZZER-",
+   "root_label": "BUZZER-",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "BUZZER-",
+     "dir": "output"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "BUZZER-",
+     "dir": "input"
+    }
+   ],
+   "fw": "BEEPER_PIN PA17 + BEEPER_INVERTED (gate of Q26)",
+   "note": "Q26 AP1606 drain -> pad J22 BZ-; BZ+ = +5V pad J21"
+  },
+  {
+   "net": "/USB_D_P",
+   "root_label": "USB_D_P",
+   "class": "USB",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "USB_D_P",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "USB_D_P",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "RP2354A pin 52 -> 27R (R42, RP2350A sheet) -> USB_D_P -> D7 TPD2EUSB30 -> J31 pin 3; _P/_N pair"
+  },
+  {
+   "net": "/USB_D_N",
+   "root_label": "USB_D_N",
+   "class": "USB",
+   "pins": [
+    {
+     "sheet": "RP2350A",
+     "pin": "USB_D_N",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "USB_D_N",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "RP2354A pin 51 -> 27R (R43, RP2350A sheet) -> USB_D_N -> D7 TPD2EUSB30 -> J31 pin 2; _P/_N pair"
+  },
+  {
+   "net": "/VTX_SPI_CS",
+   "root_label": "VTX_SPI_CS",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "VTX_SPI_CS",
+     "dir": "output"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "VTX_SPI_CS",
+     "dir": "input"
+    }
+   ],
+   "fw": "ESP32 GPIO19, ELRS vtx_nss",
+   "note": "-> R80 1k -> RTC6705 SPILE (VTX sheet)"
+  },
+  {
+   "net": "/VTX_SPI_CLK",
+   "root_label": "VTX_SPI_CLK",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "VTX_SPI_CLK",
+     "dir": "output"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "VTX_SPI_CLK",
+     "dir": "input"
+    }
+   ],
+   "fw": "ESP32 GPIO5, ELRS vtx_sck",
+   "note": "-> R81 1k -> RTC6705 SPICLK"
+  },
+  {
+   "net": "/VTX_SPI_DATA",
+   "root_label": "VTX_SPI_DATA",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "VTX_SPI_DATA",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "VTX_SPI_DATA",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": "ESP32 GPIO14, ELRS vtx_mosi",
+   "note": "-> R82 1k -> RTC6705 SPIDATA (3-wire); vtx_miso unset"
+  },
+  {
+   "net": "/PA_BIAS_PWM",
+   "root_label": "PA_BIAS_PWM",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "PA_BIAS_PWM",
+     "dir": "output"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "PA_BIAS_PWM",
+     "dir": "input"
+    }
+   ],
+   "fw": "ESP32 GPIO13, ELRS vtx_amp_pwm",
+   "note": "-> R71/C124/R72/C125 2-pole RC -> Q27 BC857BM base (inverting)"
+  },
+  {
+   "net": "/PA_EN",
+   "root_label": "PA_EN",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "PA_EN",
+     "dir": "output"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "PA_EN",
+     "dir": "input"
+    }
+   ],
+   "fw": "ESP32 GPIO2, ELRS vtx_amp_vref",
+   "note": "-> U22 LP5907-2.85 EN directly (strap: internal pull-downs only)"
+  },
+  {
+   "net": "/VTX_PWR_CTL",
+   "root_label": "VTX_PWR_CTL",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "VTX_PWR_CTL",
+     "dir": "output"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "VTX_PWR_CTL",
+     "dir": "input"
+    }
+   ],
+   "fw": "ESP32 GPIO21, ELRS patched ELRS VTX power",
+   "note": "-> R84 10k -> VTX_PWR_EN (U21 EN, R68 100k pull-up)"
+  },
+  {
+   "net": "/PA_DET",
+   "root_label": "PA_DET",
+   "class": "Analog",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "PA_DET",
+     "dir": "input"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "PA_DET",
+     "dir": "output"
+    }
+   ],
+   "fw": "ESP32 GPIO4, ELRS vtx_amp_vpd",
+   "note": "<- R66 1k / C117 100p from the SE5004L DET"
+  },
+  {
+   "net": "/PA_NTC",
+   "root_label": "PA_NTC",
+   "class": "Default",
+   "pins": [
+    {
+     "sheet": "RX",
+     "pin": "PA_NTC",
+     "dir": "input"
+    },
+    {
+     "sheet": "VTX",
+     "pin": "PA_NTC",
+     "dir": "output"
+    }
+   ],
+   "fw": "ESP32 GPIO34, ELRS patched ELRS PA temperature",
+   "note": "<- TH1 NCP03XH103 / R70 10k divider"
+  },
+  {
+   "net": "/ESC1/PHASE_A",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC1",
+     "pin": "PHASE_A",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M1_A",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_A (beats the root sheet pins); motor land J4 pad 3"
+  },
+  {
+   "net": "/ESC1/PHASE_B",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC1",
+     "pin": "PHASE_B",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M1_B",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_B (beats the root sheet pins); motor land J4 pad 2"
+  },
+  {
+   "net": "/ESC1/PHASE_C",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC1",
+     "pin": "PHASE_C",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M1_C",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_C (beats the root sheet pins); motor land J4 pad 1"
+  },
+  {
+   "net": "/ESC2/PHASE_A",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC2",
+     "pin": "PHASE_A",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M2_A",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_A (beats the root sheet pins); motor land J7 pad 3"
+  },
+  {
+   "net": "/ESC2/PHASE_B",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC2",
+     "pin": "PHASE_B",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M2_B",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_B (beats the root sheet pins); motor land J7 pad 2"
+  },
+  {
+   "net": "/ESC2/PHASE_C",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC2",
+     "pin": "PHASE_C",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M2_C",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_C (beats the root sheet pins); motor land J7 pad 1"
+  },
+  {
+   "net": "/ESC3/PHASE_A",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC3",
+     "pin": "PHASE_A",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M3_A",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_A (beats the root sheet pins); motor land J10 pad 3"
+  },
+  {
+   "net": "/ESC3/PHASE_B",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC3",
+     "pin": "PHASE_B",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M3_B",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_B (beats the root sheet pins); motor land J10 pad 2"
+  },
+  {
+   "net": "/ESC3/PHASE_C",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC3",
+     "pin": "PHASE_C",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M3_C",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_C (beats the root sheet pins); motor land J10 pad 1"
+  },
+  {
+   "net": "/ESC4/PHASE_A",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC4",
+     "pin": "PHASE_A",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M4_A",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_A (beats the root sheet pins); motor land J13 pad 3"
+  },
+  {
+   "net": "/ESC4/PHASE_B",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC4",
+     "pin": "PHASE_B",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M4_B",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_B (beats the root sheet pins); motor land J13 pad 2"
+  },
+  {
+   "net": "/ESC4/PHASE_C",
+   "root_label": null,
+   "class": "Phase",
+   "pins": [
+    {
+     "sheet": "ESC4",
+     "pin": "PHASE_C",
+     "dir": "bidirectional"
+    },
+    {
+     "sheet": "PADS",
+     "pin": "M4_C",
+     "dir": "bidirectional"
+    }
+   ],
+   "fw": null,
+   "note": "named by the ESC sheet's local label PHASE_C (beats the root sheet pins); motor land J13 pad 1"
+  }
+ ],
+ "sheets": [
+  {
+   "file": "power.kicad_sch",
+   "instances": [
+    {
+     "name": "POWER",
+     "sheet_uuid": "41417550-e292-5308-8e83-617f301e47b8",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8",
+     "page": "2"
+    }
+   ],
+   "paper": "A3",
+   "title": "Power: input, current sense, 5 V, 3.3 V, O4",
+   "description": "Battery input, current sense, 5 V boost, USB inlet and mux, 3.3 V, O4 switch",
+   "content": [
+    "TVS + SHUNT",
+    "INA186 CURRENT",
+    "5V BOOST",
+    "USB OVP",
+    "5V MUX",
+    "3V3 LDO",
+    "CAM 5V FILTER",
+    "O4 HD SWITCH",
+    "ESC3 BULK"
+   ],
+   "source": "OpenFC-Lite-Mini/hardware/power.kicad_sch (sheet frame, LP5912 LDO block); OpenAIO/hardware/OpenAIO.kicad_sch (battery shunt + INA186A3 current sense on its root); new blocks from the TI/SGMICRO datasheets",
+   "blocks": [
+    {
+     "name": "Battery input and TVS",
+     "refs": [
+      "D1",
+      "C1",
+      "C2"
+     ],
+     "source": "OpenAIO/hardware/OpenAIO.kicad_sch (battery entry)",
+     "notes": "+BATT_IN from the battery pad J2 (PADS); PWR_FLAG on +BATT_IN",
+     "p4": []
+    },
+    {
+     "name": "Battery current sense",
+     "refs": [
+      "R1",
+      "U1",
+      "R2",
+      "R3",
+      "C5",
+      "C6"
+     ],
+     "source": "OpenAIO/hardware/OpenAIO.kicad_sch (INA186A3 + shunt; input RC moved to 0201, BR-07)",
+     "notes": "Kelvin net-tie land: SHUNT_SENSE_P/N only on the sense pads, the RC and U1 (P4-9); REF to GND; netclass flag Analog on SHUNT_SENSE_P",
+     "p4": [
+      "P4-9"
+     ]
+    },
+    {
+     "name": "5 V boost TPS61022",
+     "refs": [
+      "U2",
+      "L1",
+      "C7",
+      "C8",
+      "C9",
+      "C10",
+      "C11",
+      "R4",
+      "R5"
+     ],
+     "source": "new: TI SLVSDX7D typical application (no sibling uses it)",
+     "notes": "+BATT -> +5V_BST 5.148 V (47k/6.2k), MODE = VOUT, EN tied to VIN (BR-11); local labels U2_SW, U2_FB",
+     "p4": [
+      "P4-7"
+     ]
+    },
+    {
+     "name": "USB inlet OVP SGM40661",
+     "refs": [
+      "U24",
+      "C131"
+     ],
+     "source": "new: SGMICRO SGM40661 datasheet (D57)",
+     "notes": "IN = VBUS (hierarchical pin from PADS), OUT = +5V_USB",
+     "p4": []
+    },
+    {
+     "name": "5 V power mux TPS2116",
+     "refs": [
+      "U3",
+      "R7",
+      "R8",
+      "C12",
+      "C128"
+     ],
+     "source": "new: TI SLVSFG1A priority mode (D24)",
+     "notes": "VIN1 = +5V_USB (MODE = VIN1, PR1 27.4k/10k), VIN2 = +5V_BST, OUT = +5V, ST open",
+     "p4": [
+      "P4-2",
+      "P4-3"
+     ]
+    },
+    {
+     "name": "3.3 V LDO for FC + RX",
+     "refs": [
+      "U4",
+      "C13",
+      "C14"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/power.kicad_sch (LP5912-3.3 block)",
+     "notes": "+5V -> +3V3, EN tied to +5V; C13 is the shared CIN between the U4 and U21 (VTX sheet) IN pins (BR-14, sheet note)",
+     "p4": [
+      "P4-12",
+      "P4-17"
+     ]
+    },
+    {
+     "name": "Camera 5 V filter",
+     "refs": [
+      "FB1",
+      "C15"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/power.kicad_sch (5V MUX / camera feed)",
+     "notes": "+5V -> FB1 -> +5V_CAM",
+     "p4": []
+    },
+    {
+     "name": "O4 Lite HD supply switch",
+     "refs": [
+      "U5",
+      "C16",
+      "C17",
+      "R9",
+      "R10",
+      "D2",
+      "R11",
+      "R87",
+      "C129"
+     ],
+     "source": "new: TI SLVSDH0C (D15, D34, D53 BR-10/22/24)",
+     "notes": "+5V_BST -> +5V_HD; EN/UVLO net U5_EN (bom_plan O4_EN): 33k/18k from +BATT, 510k from +5V_HD, 100n, D2 anode; D2 cathode and R11 on HD_EN (hierarchical pin)",
+     "p4": [
+      "P4-1",
+      "P4-2"
+     ]
+    },
+    {
+     "name": "ESC3 EFM8 VDD bulk",
+     "refs": [
+      "C30"
+     ],
+     "source": "moved here from esc_channel (see sheet_moves)",
+     "notes": "10 uF X6S on +BATT/GND, placed at U8 (ESC3) VDD pin 4 (BR-05/BR-20); sheet note",
+     "p4": [
+      "P4-19"
+     ]
+    }
+   ],
+   "pins": [
+    {
+     "name": "HD_EN",
+     "dir": "input",
+     "side": "top",
+     "net": "/HD_EN",
+     "class": "Default"
+    },
+    {
+     "name": "CURR_SENSE",
+     "dir": "output",
+     "side": "right",
+     "net": "/CURR_SENSE",
+     "class": "Analog"
+    },
+    {
+     "name": "VBUS",
+     "dir": "input",
+     "side": "bottom",
+     "net": "/VBUS",
+     "class": "Power"
+    }
+   ],
+   "refs": [
+    "D1",
+    "C1",
+    "C2",
+    "R1",
+    "U1",
+    "R2",
+    "R3",
+    "C5",
+    "C6",
+    "U2",
+    "L1",
+    "C7",
+    "C8",
+    "C9",
+    "C10",
+    "C11",
+    "R4",
+    "R5",
+    "U24",
+    "C131",
+    "U3",
+    "R7",
+    "R8",
+    "C12",
+    "C128",
+    "U4",
+    "C13",
+    "C14",
+    "FB1",
+    "C15",
+    "U5",
+    "C16",
+    "C17",
+    "R9",
+    "R10",
+    "D2",
+    "R11",
+    "R87",
+    "C129",
+    "C30"
+   ],
+   "ref_count": 40,
+   "file_uuid": "667866cf-d10d-58b9-b634-4eb3d3146f81"
+  },
+  {
+   "file": "esc_channel.kicad_sch",
+   "paper": "A4",
+   "instances": [
+    {
+     "name": "ESC1",
+     "motor": "M1 rear right",
+     "ref_offset": {},
+     "refs": [
+      "U6",
+      "C19",
+      "R12",
+      "TP1",
+      "TP2",
+      "Q29",
+      "Q30",
+      "Q31",
+      "C23",
+      "R13",
+      "R14",
+      "R15",
+      "R16",
+      "R17",
+      "R18"
+     ],
+     "sheet_uuid": "d67c44eb-67d1-5da8-b7a8-40b16f9433cd",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d67c44eb-67d1-5da8-b7a8-40b16f9433cd",
+     "page": "3"
+    },
+    {
+     "name": "ESC2",
+     "motor": "M2 front right",
+     "ref_offset": {
+      "U": 1,
+      "Q": 3,
+      "R": 7,
+      "C": 6,
+      "TP": 2
+     },
+     "refs": [
+      "U7",
+      "C25",
+      "R19",
+      "TP3",
+      "TP4",
+      "Q32",
+      "Q33",
+      "Q34",
+      "C29",
+      "R20",
+      "R21",
+      "R22",
+      "R23",
+      "R24",
+      "R25"
+     ],
+     "sheet_uuid": "0021bee0-9959-5c9e-86f0-21e49fa9ce8d",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0021bee0-9959-5c9e-86f0-21e49fa9ce8d",
+     "page": "4"
+    },
+    {
+     "name": "ESC3",
+     "motor": "M3 rear left",
+     "ref_offset": {
+      "U": 2,
+      "Q": 6,
+      "R": 14,
+      "C": 12,
+      "TP": 4
+     },
+     "refs": [
+      "U8",
+      "C31",
+      "R26",
+      "TP5",
+      "TP6",
+      "Q35",
+      "Q36",
+      "Q37",
+      "C35",
+      "R27",
+      "R28",
+      "R29",
+      "R30",
+      "R31",
+      "R32"
+     ],
+     "sheet_uuid": "a3c0517e-76c5-5fd7-8d0f-d7e948ad3995",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/a3c0517e-76c5-5fd7-8d0f-d7e948ad3995",
+     "page": "5"
+    },
+    {
+     "name": "ESC4",
+     "motor": "M4 front left",
+     "ref_offset": {
+      "U": 3,
+      "Q": 9,
+      "R": 21,
+      "C": 18,
+      "TP": 6
+     },
+     "refs": [
+      "U9",
+      "C37",
+      "R33",
+      "TP7",
+      "TP8",
+      "Q38",
+      "Q39",
+      "Q40",
+      "C41",
+      "R34",
+      "R35",
+      "R36",
+      "R37",
+      "R38",
+      "R39"
+     ],
+     "sheet_uuid": "6d139bfe-ad39-5d26-964c-e430887c2538",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/6d139bfe-ad39-5d26-964c-e430887c2538",
+     "page": "6"
+    }
+   ],
+   "title": "ESC channel: EFM8BB51 + 3x AGM210MAP",
+   "description": "ESC channel: EFM8BB51 Bluejay BB51 layout A + 3x AGM210MAP half-bridge (one file, 4 instances)",
+   "content": [
+    "EFM8BB51",
+    "BLUEJAY BB51 A",
+    "3x AGM210MAP"
+   ],
+   "source": "OpenAIO/hardware/esc_channel.kicad_sch (one file x4, ESCn instances, BEMF network + C2 test points, labels upper-cased per LINEUP); MCU + stage new (EFM8BB51 + AGM210MAP, tinyPEPPER topology, Bluejay Layouts/BB51/A.inc); OpenESC-20x20 ESC.kicad_sch is AT32/NSG2065Q (needs VCC >= 8 V) and does not apply",
+   "blocks": [
+    {
+     "name": "ESC MCU EFM8BB51 (Bluejay BB51 layout A)",
+     "refs": [
+      "U6",
+      "C19",
+      "R12",
+      "TP1",
+      "TP2"
+     ],
+     "source": "OpenAIO esc_channel (MCU block frame)",
+     "notes": "VDD pin 4 straight on +BATT, 100n X6S at the pin; RTX P0.5 -> R12 2.4k -> DSHOT (hierarchical pin); RSTb/C2CK TP2 (internal pull-up only), C2D TP1; unused P0.0 P0.6 P0.7 P1.6 no-connect (PINMAP 7.1)",
+     "p4": [
+      "P4-8",
+      "P4-11"
+     ]
+    },
+    {
+     "name": "Half-bridges A/B/C (AGM210MAP P+N)",
+     "refs": [
+      "Q29",
+      "Q30",
+      "Q31",
+      "C23"
+     ],
+     "source": "new (D56, Matrix II stage)",
+     "notes": "P gate = x_COM (active low), N gate = x_PWM (active high), no gate resistors; C23 22u is the ESC local bulk and the only commutation-loop cap (no leg caps); pin map from DS VER2.73 top view (D23)",
+     "p4": []
+    },
+    {
+     "name": "BEMF dividers and virtual neutral",
+     "refs": [
+      "R13",
+      "R14",
+      "R15",
+      "R16",
+      "R17",
+      "R18"
+     ],
+     "source": "tinyPEPPER network, OpenAIO esc_channel",
+     "notes": "10k series PHASE_x -> BEMF_x; 1k star PHASE_x -> NEUTRAL (V_Mux P0.4)",
+     "p4": [
+      "P4-8"
+     ]
+    }
+   ],
+   "local_nets_fixed": [
+    "PHASE_A",
+    "PHASE_B",
+    "PHASE_C",
+    "A_COM",
+    "B_COM",
+    "C_COM",
+    "A_PWM",
+    "B_PWM",
+    "C_PWM",
+    "BEMF_A",
+    "BEMF_B",
+    "BEMF_C",
+    "NEUTRAL",
+    "RTX",
+    "C2D",
+    "C2CK"
+   ],
+   "pins": [
+    {
+     "name": "DSHOT",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/MOTOR<n>",
+     "class": "Default"
+    },
+    {
+     "name": "PHASE_A",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/ESC<n>/PHASE_A",
+     "class": "Phase"
+    },
+    {
+     "name": "PHASE_B",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/ESC<n>/PHASE_B",
+     "class": "Phase"
+    },
+    {
+     "name": "PHASE_C",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/ESC<n>/PHASE_C",
+     "class": "Phase"
+    }
+   ],
+   "refs": [
+    "U6",
+    "C19",
+    "R12",
+    "TP1",
+    "TP2",
+    "Q29",
+    "Q30",
+    "Q31",
+    "C23",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18"
+   ],
+   "ref_count": 15,
+   "file_uuid": "aeb9e12c-f1b8-5a44-8f39-9526e37ed34a"
+  },
+  {
+   "file": "rp2350a.kicad_sch",
+   "instances": [
+    {
+     "name": "RP2350A",
+     "sheet_uuid": "df951d63-8e6a-5171-a7c4-15005f1245fb",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/df951d63-8e6a-5171-a7c4-15005f1245fb",
+     "page": "7"
+    }
+   ],
+   "paper": "A2",
+   "title": "RP2354A flight controller MCU",
+   "description": "RP2354A flight controller MCU (2 MB in-package flash)",
+   "content": [
+    "RP2354A",
+    "CORE SMPS 1V1",
+    "12 MHz XTAL",
+    "USB 27R",
+    "VBAT + CURR ADC",
+    "BEEPER FET",
+    "BOOT + SWD VIAS"
+   ],
+   "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (RP2354A core, crystal, SMPS, USB series, VBAT divider, beeper FET; its LED-strip level stage is NOT copied: it inverts, F1/BR-04)",
+   "blocks": [
+    {
+     "name": "RP2354A + supply decoupling",
+     "refs": [
+      "U10",
+      "C44",
+      "C45",
+      "C46",
+      "C47",
+      "C48",
+      "C49",
+      "C50",
+      "C51",
+      "C52",
+      "C54",
+      "C58"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
+     "notes": "pin plan PINMAP §2/§3; QSPI SD0-SD3/SCLK no-connect (in-package flash); RUN tied to +3V3; C49 at ADC_AVDD pin 44, C54 <= 1 mm from pin 54 (BR-08 sheet notes)",
+     "p4": [
+      "P4-11",
+      "P4-17"
+     ]
+    },
+    {
+     "name": "Core SMPS +1V1 and VREG_AVDD",
+     "refs": [
+      "L2",
+      "C56",
+      "C57",
+      "R41"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
+     "notes": "VREG_LX -> L2 -> +1V1; 27R + 4.7u RC",
+     "p4": []
+    },
+    {
+     "name": "12 MHz crystal",
+     "refs": [
+      "X1",
+      "C42",
+      "C43",
+      "R40"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
+     "notes": "XIN, XOUT -> R40 1k -> XOUT_X",
+     "p4": []
+    },
+    {
+     "name": "USB series resistors",
+     "refs": [
+      "R42",
+      "R43"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
+     "notes": "27R within 1-2 mm of pins 52/51; pin-side nets named after the pin (U10_USB_DP / U10_USB_DM), connector side USB_D_P / USB_D_N (hierarchical)",
+     "p4": []
+    },
+    {
+     "name": "Boot strap and debug test vias",
+     "refs": [
+      "R44",
+      "TP9",
+      "TP12",
+      "TP13"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (BOOTSEL strap); D67 test vias",
+     "notes": "QSPI_SS -> R44 1k -> FC_BOOT (hierarchical) + TP9 'FCB'; SWCLK -> TP12, SWDIO -> TP13 (moved from PADS, see sheet_moves)",
+     "p4": []
+    },
+    {
+     "name": "Battery voltage and current ADC",
+     "refs": [
+      "R45",
+      "R46",
+      "C59",
+      "R47",
+      "C60"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
+     "notes": "+BATT -> 10k/10k -> ADC_VBAT (GPIO29) + 100n; CURR_SENSE -> 1k -> ADC_CURR (GPIO28) + 100n",
+     "p4": []
+    },
+    {
+     "name": "Beeper low-side FET",
+     "refs": [
+      "Q26",
+      "R48"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (DMN1150UFB there, AP1606 here)",
+     "notes": "GPIO17 BEEPER -> gate, 100k pull-down; drain -> BUZZER- (hierarchical)",
+     "p4": []
+    }
+   ],
+   "pins": [
+    {
+     "name": "HD_EN",
+     "dir": "output",
+     "side": "top",
+     "net": "/HD_EN",
+     "class": "Default"
+    },
+    {
+     "name": "SPI1_SCK",
+     "dir": "output",
+     "side": "left",
+     "net": "/SPI1_SCK",
+     "class": "Default"
+    },
+    {
+     "name": "SPI1_MOSI",
+     "dir": "output",
+     "side": "left",
+     "net": "/SPI1_MOSI",
+     "class": "Default"
+    },
+    {
+     "name": "SPI1_MISO",
+     "dir": "input",
+     "side": "left",
+     "net": "/SPI1_MISO",
+     "class": "Default"
+    },
+    {
+     "name": "GYRO_CS",
+     "dir": "output",
+     "side": "left",
+     "net": "/GYRO_CS",
+     "class": "Default"
+    },
+    {
+     "name": "GYRO_INT",
+     "dir": "input",
+     "side": "left",
+     "net": "/GYRO_INT",
+     "class": "Default"
+    },
+    {
+     "name": "GYRO_CLKIN",
+     "dir": "output",
+     "side": "left",
+     "net": "/GYRO_CLKIN",
+     "class": "Default"
+    },
+    {
+     "name": "SPI0_SCK",
+     "dir": "output",
+     "side": "left",
+     "net": "/SPI0_SCK",
+     "class": "Default"
+    },
+    {
+     "name": "SPI0_MOSI",
+     "dir": "output",
+     "side": "left",
+     "net": "/SPI0_MOSI",
+     "class": "Default"
+    },
+    {
+     "name": "SPI0_MISO",
+     "dir": "input",
+     "side": "left",
+     "net": "/SPI0_MISO",
+     "class": "Default"
+    },
+    {
+     "name": "FLASH_CS",
+     "dir": "output",
+     "side": "left",
+     "net": "/FLASH_CS",
+     "class": "Default"
+    },
+    {
+     "name": "LED0",
+     "dir": "output",
+     "side": "left",
+     "net": "/LED0",
+     "class": "Default"
+    },
+    {
+     "name": "LED1",
+     "dir": "output",
+     "side": "left",
+     "net": "/LED1",
+     "class": "Default"
+    },
+    {
+     "name": "CURR_SENSE",
+     "dir": "input",
+     "side": "left",
+     "net": "/CURR_SENSE",
+     "class": "Analog"
+    },
+    {
+     "name": "UART0_TX",
+     "dir": "output",
+     "side": "right",
+     "net": "/UART0_TX",
+     "class": "Default"
+    },
+    {
+     "name": "UART0_RX",
+     "dir": "input",
+     "side": "right",
+     "net": "/UART0_RX",
+     "class": "Default"
+    },
+    {
+     "name": "FC_BOOT",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/FC_BOOT",
+     "class": "Default"
+    },
+    {
+     "name": "OSD_W",
+     "dir": "output",
+     "side": "right",
+     "net": "/OSD_W",
+     "class": "Default"
+    },
+    {
+     "name": "OSD_EN",
+     "dir": "output",
+     "side": "right",
+     "net": "/OSD_EN",
+     "class": "Default"
+    },
+    {
+     "name": "OSD_SYNC",
+     "dir": "input",
+     "side": "right",
+     "net": "/OSD_SYNC",
+     "class": "Analog"
+    },
+    {
+     "name": "MOTOR1",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/MOTOR1",
+     "class": "Default"
+    },
+    {
+     "name": "MOTOR2",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/MOTOR2",
+     "class": "Default"
+    },
+    {
+     "name": "MOTOR3",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/MOTOR3",
+     "class": "Default"
+    },
+    {
+     "name": "MOTOR4",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/MOTOR4",
+     "class": "Default"
+    },
+    {
+     "name": "PIOUART0_TX",
+     "dir": "output",
+     "side": "right",
+     "net": "/PIOUART0_TX",
+     "class": "Default"
+    },
+    {
+     "name": "PIOUART0_RX",
+     "dir": "input",
+     "side": "right",
+     "net": "/PIOUART0_RX",
+     "class": "Default"
+    },
+    {
+     "name": "UART1_TX",
+     "dir": "output",
+     "side": "right",
+     "net": "/UART1_TX",
+     "class": "Default"
+    },
+    {
+     "name": "UART1_RX",
+     "dir": "input",
+     "side": "right",
+     "net": "/UART1_RX",
+     "class": "Default"
+    },
+    {
+     "name": "LED_STRIP",
+     "dir": "output",
+     "side": "right",
+     "net": "/LED_STRIP",
+     "class": "Default"
+    },
+    {
+     "name": "BUZZER-",
+     "dir": "output",
+     "side": "right",
+     "net": "/BUZZER-",
+     "class": "Default"
+    },
+    {
+     "name": "USB_D_P",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/USB_D_P",
+     "class": "USB"
+    },
+    {
+     "name": "USB_D_N",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/USB_D_N",
+     "class": "USB"
+    }
+   ],
+   "refs": [
+    "U10",
+    "C44",
+    "C45",
+    "C46",
+    "C47",
+    "C48",
+    "C49",
+    "C50",
+    "C51",
+    "C52",
+    "C54",
+    "C58",
+    "L2",
+    "C56",
+    "C57",
+    "R41",
+    "X1",
+    "C42",
+    "C43",
+    "R40",
+    "R42",
+    "R43",
+    "R44",
+    "TP9",
+    "TP12",
+    "TP13",
+    "R45",
+    "R46",
+    "C59",
+    "R47",
+    "C60",
+    "Q26",
+    "R48"
+   ],
+   "ref_count": 33,
+   "file_uuid": "c4f624fc-57b8-50ab-a6ff-1ad252940f3e"
+  },
+  {
+   "file": "imu.kicad_sch",
+   "instances": [
+    {
+     "name": "IMU",
+     "sheet_uuid": "f446158c-b285-51eb-bc17-5ec1fb190fc1",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1",
+     "page": "8"
+    }
+   ],
+   "paper": "A5",
+   "title": "Gyro BMI270 + 1.8 V LDO",
+   "description": "Gyro BMI270 on the universal LGA-14 land, 1.8 V LDO",
+   "content": [
+    "BMI270",
+    "1V8 LDO"
+   ],
+   "source": "OpenFC-Lite-Mini/hardware/imu.kicad_sch (sheet frame, SPI1 interface); LDO-at-gyro pattern from pcb-agent-commons blocks/LDO_IMU_TPS7A2033 + IMU_ICM42688P_SPI (ICM-42688-P is the qualified alternate on this land)",
+   "blocks": [
+    {
+     "name": "Gyro BMI270",
+     "refs": [
+      "U11",
+      "R49"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/imu.kicad_sch",
+     "notes": "pins 2/3 GND, 10/11 NC, pin 9 = GYRO_CLKIN; R49 GYRO_CS pull-up",
+     "p4": []
+    },
+    {
+     "name": "+1V8 gyro LDO TPS7A2018",
+     "refs": [
+      "U12",
+      "C61",
+      "C62"
+     ],
+     "source": "commons blocks/LDO_IMU_TPS7A2033 (topology)",
+     "notes": "+3V3 -> +1V8, EN = +3V3; C61 between U12 IN and VDDIO pin 5, C62 at VDD pin 8 (BR-09 sheet note)",
+     "p4": [
+      "P4-17"
+     ]
+    }
+   ],
+   "pins": [
+    {
+     "name": "SPI1_SCK",
+     "dir": "input",
+     "side": "right",
+     "net": "/SPI1_SCK",
+     "class": "Default"
+    },
+    {
+     "name": "SPI1_MOSI",
+     "dir": "input",
+     "side": "right",
+     "net": "/SPI1_MOSI",
+     "class": "Default"
+    },
+    {
+     "name": "SPI1_MISO",
+     "dir": "output",
+     "side": "right",
+     "net": "/SPI1_MISO",
+     "class": "Default"
+    },
+    {
+     "name": "GYRO_CS",
+     "dir": "input",
+     "side": "right",
+     "net": "/GYRO_CS",
+     "class": "Default"
+    },
+    {
+     "name": "GYRO_INT",
+     "dir": "output",
+     "side": "right",
+     "net": "/GYRO_INT",
+     "class": "Default"
+    },
+    {
+     "name": "GYRO_CLKIN",
+     "dir": "input",
+     "side": "right",
+     "net": "/GYRO_CLKIN",
+     "class": "Default"
+    }
+   ],
+   "refs": [
+    "U11",
+    "R49",
+    "U12",
+    "C61",
+    "C62"
+   ],
+   "ref_count": 5,
+   "file_uuid": "bac0cdb2-32ca-5cdf-8aab-4009c329172c"
+  },
+  {
+   "file": "blackbox.kicad_sch",
+   "instances": [
+    {
+     "name": "BLACKBOX",
+     "sheet_uuid": "04f14c5a-8e46-5d66-be84-2bb8762684a3",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3",
+     "page": "9"
+    }
+   ],
+   "paper": "A5",
+   "title": "Blackbox 16 MB SPI NOR PY25Q128HA",
+   "description": "Blackbox 16 MB SPI NOR (Puya PY25Q128HA, USON-8 3x3)",
+   "content": [
+    "16 MB NOR",
+    "PY25Q128HA"
+   ],
+   "source": "OpenFC-Lite-Mini/hardware/blackbox.kicad_sch (sheet frame and FLASH_CS/SPI0 interface; its microSD is replaced by NOR, D66)",
+   "blocks": [
+    {
+     "name": "SPI NOR PY25Q128HA",
+     "refs": [
+      "U13",
+      "C65",
+      "R50"
+     ],
+     "source": "new part (D66), Betaflight USE_FLASH_M25P16 JEDEC list",
+     "notes": "WP# pin 3 and HOLD#/RESET# pin 7 to +3V3; R50 FLASH_CS pull-up; C65 at pin 8",
+     "p4": []
+    }
+   ],
+   "pins": [
+    {
+     "name": "SPI0_SCK",
+     "dir": "input",
+     "side": "right",
+     "net": "/SPI0_SCK",
+     "class": "Default"
+    },
+    {
+     "name": "SPI0_MOSI",
+     "dir": "input",
+     "side": "right",
+     "net": "/SPI0_MOSI",
+     "class": "Default"
+    },
+    {
+     "name": "SPI0_MISO",
+     "dir": "output",
+     "side": "right",
+     "net": "/SPI0_MISO",
+     "class": "Default"
+    },
+    {
+     "name": "FLASH_CS",
+     "dir": "input",
+     "side": "right",
+     "net": "/FLASH_CS",
+     "class": "Default"
+    }
+   ],
+   "refs": [
+    "U13",
+    "C65",
+    "R50"
+   ],
+   "ref_count": 3,
+   "file_uuid": "24fab2fc-1365-5368-bd1e-78d0c6fa70a5"
+  },
+  {
+   "file": "osd.kicad_sch",
+   "instances": [
+    {
+     "name": "OSD",
+     "sheet_uuid": "d622c956-8c4e-5ac1-b8c4-8a8024f124d6",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6",
+     "page": "10"
+    }
+   ],
+   "paper": "A4",
+   "title": "PIO analog OSD front end",
+   "description": "PIO framebuffer OSD front end (camera clamp, sync comparator, level switch)",
+   "content": [
+    "PIO OSD",
+    "SYNC + CLAMP",
+    "LEVEL SWITCH"
+   ],
+   "source": "OpenFC-Lite-Mini/hardware/osd.kicad_sch (same SN74LVC1G3157 + TLV7031 + SDM02U30LP3 topology; level divider scaled ~5x down, P4-10)",
+   "blocks": [
+    {
+     "name": "Camera input and clamp",
+     "refs": [
+      "R51",
+      "C66",
+      "D3",
+      "C68"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/osd.kicad_sch",
+     "notes": "VIDEO_IN 75R + 100p at the entry",
+     "p4": []
+    },
+    {
+     "name": "Sync comparator",
+     "refs": [
+      "U15",
+      "R55",
+      "C67"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/osd.kicad_sch",
+     "notes": "VID_FILT -> TLV7031 -> OSD_SYNC",
+     "p4": []
+    },
+    {
+     "name": "OSD level switch",
+     "refs": [
+      "U14",
+      "R52",
+      "R53",
+      "R54",
+      "C70"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/osd.kicad_sch",
+     "notes": "OSD_W -> 820R -> OSD_LVL (2.4k/287R); S = OSD_EN; output = VIDEO_OUT; C70 shared between U14 and U15 (BR-13 sheet note)",
+     "p4": [
+      "P4-10",
+      "P4-17"
+     ]
+    }
+   ],
+   "pins": [
+    {
+     "name": "OSD_W",
+     "dir": "input",
+     "side": "left",
+     "net": "/OSD_W",
+     "class": "Default"
+    },
+    {
+     "name": "OSD_EN",
+     "dir": "input",
+     "side": "left",
+     "net": "/OSD_EN",
+     "class": "Default"
+    },
+    {
+     "name": "OSD_SYNC",
+     "dir": "output",
+     "side": "left",
+     "net": "/OSD_SYNC",
+     "class": "Analog"
+    },
+    {
+     "name": "VIDEO_OUT",
+     "dir": "output",
+     "side": "right",
+     "net": "/VIDEO_OUT",
+     "class": "Analog"
+    },
+    {
+     "name": "VIDEO_IN",
+     "dir": "input",
+     "side": "bottom",
+     "net": "/VIDEO_IN",
+     "class": "Analog"
+    }
+   ],
+   "refs": [
+    "R51",
+    "C66",
+    "D3",
+    "C68",
+    "U15",
+    "R55",
+    "C67",
+    "U14",
+    "R52",
+    "R53",
+    "R54",
+    "C70"
+   ],
+   "ref_count": 12,
+   "file_uuid": "8d3a7b75-b3b0-54c2-b183-6fd5d7a4c4c9"
+  },
+  {
+   "file": "rx_esp32_sx1281.kicad_sch",
+   "instances": [
+    {
+     "name": "RX",
+     "sheet_uuid": "73d8a02c-e770-5e7b-9535-3e34b447ded8",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8",
+     "page": "11"
+    }
+   ],
+   "paper": "A3",
+   "title": "ELRS 2.4 GHz RX: ESP32-PICO-V3 + SX1281",
+   "description": "ExpressLRS 2.4 GHz receiver: ESP32-PICO-V3 + SX1281, Wi-Fi chip antenna, shared boot button",
+   "content": [
+    "ESP32-PICO-V3",
+    "SX1281 + TCXO",
+    "LPF + WIRE ANT",
+    "WIFI CHIP ANT",
+    "BOOT BUTTON"
+   ],
+   "source": "OpenRX-Lite-UFL/hardware/esp32c3_sx1281_lite.kicad_sch (SX1281 LDO-mode supply, 52 MHz TCXO, Wi-Fi chip-antenna pi match, WS2812 LED) + OpenAIO/hardware/rx_esp32c3_sx1281.kicad_sch (AIO integration); ESP32-PICO-V3 block new from Espressif PICO-V3 datasheet Fig. 11 (D52 BR-01, D55)",
+   "blocks": [
+    {
+     "name": "ESP32-PICO-V3 (ELRS MCU)",
+     "refs": [
+      "U16",
+      "R56",
+      "C73",
+      "C76",
+      "C82"
+     ],
+     "source": "Espressif ESP32-PICO-V3 datasheet Fig. 11",
+     "notes": "pin plan PINMAP §6; GPIO12 no-connect, GPIO2 = PA_EN straight to the LP5907 EN, NC pins 25 30 31 35 36 44 45 47 48 open; EN (RX_EN) 10k + 1u",
+     "p4": [
+      "P4-6"
+     ]
+    },
+    {
+     "name": "SX1281 radio + 52 MHz TCXO",
+     "refs": [
+      "U18",
+      "X3",
+      "C84",
+      "C85",
+      "C86",
+      "C87",
+      "C88",
+      "C89",
+      "C91",
+      "C92"
+     ],
+     "source": "OpenRX-Lite-UFL esp32c3_sx1281_lite.kicad_sch",
+     "notes": "LDO mode, pin 5 = GND; radio nets RADIO_SCK RADIO_MOSI RADIO_MISO RADIO_NSS RADIO_RST RADIO_BUSY RADIO_DIO1 (PINMAP §6)",
+     "p4": []
+    },
+    {
+     "name": "2.4 GHz RF: LPF + wire antenna",
+     "refs": [
+      "FL1",
+      "AE1"
+     ],
+     "source": "OpenRX-Lite-UFL (LPF); AE1 = lambda/4 wire in a plated hole",
+     "notes": "SX1281 RFIO -> RF_RFIO -> FL1 -> RF_RX_ANT -> AE1; netclass flag RF on RF_RFIO",
+     "p4": []
+    },
+    {
+     "name": "Wi-Fi chip antenna + pi match",
+     "refs": [
+      "AE2",
+      "R88",
+      "C132",
+      "C133"
+     ],
+     "source": "OpenRX-Lite-UFL esp32c3_sx1281_lite.kicad_sch (D58)",
+     "notes": "LNA_IN pin 2 -> RF_WIFI -> R88 0R -> RF_WIFI_ANT -> AE2; C132/C133 DNP shunts",
+     "p4": []
+    },
+    {
+     "name": "ELRS RGB LED",
+     "refs": [
+      "D4",
+      "C83"
+     ],
+     "source": "OpenRX-Lite-UFL (XL-1010RGBC WS2812)",
+     "notes": "GPIO22 RX_LED; supply decision P4-15",
+     "p4": [
+      "P4-15"
+     ]
+    },
+    {
+     "name": "Shared boot / bind button",
+     "refs": [
+      "SW1",
+      "D8"
+     ],
+     "source": "Matrix II style (D65); new",
+     "notes": "SW1 to GND on BOOT_SW; D8 common cathode BOOT_SW, A1 = FC_BOOT (hierarchical), A2 = RX_BOOT (ESP32 GPIO0)",
+     "p4": []
+    }
+   ],
+   "pins": [
+    {
+     "name": "UART0_TX",
+     "dir": "input",
+     "side": "left",
+     "net": "/UART0_TX",
+     "class": "Default"
+    },
+    {
+     "name": "UART0_RX",
+     "dir": "output",
+     "side": "left",
+     "net": "/UART0_RX",
+     "class": "Default"
+    },
+    {
+     "name": "FC_BOOT",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/FC_BOOT",
+     "class": "Default"
+    },
+    {
+     "name": "VTX_SPI_CS",
+     "dir": "output",
+     "side": "right",
+     "net": "/VTX_SPI_CS",
+     "class": "Default"
+    },
+    {
+     "name": "VTX_SPI_CLK",
+     "dir": "output",
+     "side": "right",
+     "net": "/VTX_SPI_CLK",
+     "class": "Default"
+    },
+    {
+     "name": "VTX_SPI_DATA",
+     "dir": "bidirectional",
+     "side": "right",
+     "net": "/VTX_SPI_DATA",
+     "class": "Default"
+    },
+    {
+     "name": "PA_BIAS_PWM",
+     "dir": "output",
+     "side": "right",
+     "net": "/PA_BIAS_PWM",
+     "class": "Default"
+    },
+    {
+     "name": "PA_EN",
+     "dir": "output",
+     "side": "right",
+     "net": "/PA_EN",
+     "class": "Default"
+    },
+    {
+     "name": "VTX_PWR_CTL",
+     "dir": "output",
+     "side": "right",
+     "net": "/VTX_PWR_CTL",
+     "class": "Default"
+    },
+    {
+     "name": "PA_DET",
+     "dir": "input",
+     "side": "right",
+     "net": "/PA_DET",
+     "class": "Analog"
+    },
+    {
+     "name": "PA_NTC",
+     "dir": "input",
+     "side": "right",
+     "net": "/PA_NTC",
+     "class": "Default"
+    }
+   ],
+   "refs": [
+    "U16",
+    "R56",
+    "C73",
+    "C76",
+    "C82",
+    "U18",
+    "X3",
+    "C84",
+    "C85",
+    "C86",
+    "C87",
+    "C88",
+    "C89",
+    "C91",
+    "C92",
+    "FL1",
+    "AE1",
+    "AE2",
+    "R88",
+    "C132",
+    "C133",
+    "D4",
+    "C83",
+    "SW1",
+    "D8"
+   ],
+   "ref_count": 25,
+   "file_uuid": "f54f538e-3a01-552b-b168-501bee091759"
+  },
+  {
+   "file": "vtx.kicad_sch",
+   "instances": [
+    {
+     "name": "VTX",
+     "sheet_uuid": "11edd549-3d5f-5e16-86ba-6970b46b0a92",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92",
+     "page": "12"
+    }
+   ],
+   "paper": "A2",
+   "title": "5.8 GHz VTX: RTC6705 + SE5004L PA",
+   "description": "5.8 GHz analog VTX: RTC6705 synthesiser, PNP PA drive, SE5004L PA, BPF, U.FL",
+   "content": [
+    "RTC6705",
+    "SE5004L PA",
+    "PNP DRIVE",
+    "3V3_VTX LDO",
+    "HD GATE"
+   ],
+   "source": "OpenOSD-X v1.01 reference (video network, loop filter, PAOUT1 feed; cited in spec §4.8) + Skyworks SE5004L EK1 layout; no sibling KiCad sheet (the OpenVTX clone has no hardware/ folder)",
+   "blocks": [
+    {
+     "name": "RTC6705 + 8 MHz crystal",
+     "refs": [
+      "U19",
+      "X4",
+      "C94",
+      "C95",
+      "C96",
+      "C98",
+      "C100",
+      "C101",
+      "C102",
+      "C103"
+     ],
+     "source": "OpenOSD-X v1.01",
+     "notes": "pins 17/23/26/31/32/40 per BR-15/BR-16 (P4-16); C103 at PAVDD/BUFVDD 31/32",
+     "p4": [
+      "P4-16"
+     ]
+    },
+    {
+     "name": "PLL loop filter",
+     "refs": [
+      "R63",
+      "C106",
+      "R64",
+      "C107"
+     ],
+     "source": "OpenOSD-X v1.01 (R32 C18 R26 C19)",
+     "notes": "RTC_CP / RTC_VT / RTC_LF",
+     "p4": []
+    },
+    {
+     "name": "Video modulation network",
+     "refs": [
+      "R58",
+      "C104",
+      "R59",
+      "C105",
+      "R60",
+      "R61",
+      "R62"
+     ],
+     "source": "OpenOSD-X v1.01 (R24 C17 R25 C21 R29 R30 R31)",
+     "notes": "VIDEO_OUT (hierarchical) -> VT_MOD",
+     "p4": []
+    },
+    {
+     "name": "+3V3_VTX LDO and HD gate",
+     "refs": [
+      "U21",
+      "C121",
+      "R68",
+      "R84",
+      "Q28",
+      "C108"
+     ],
+     "source": "D12 / D53 BR-03",
+     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 100k to +3V3, R84 10k from VTX_PWR_CTL, Q28 AP1606 drain; gate HD_EN)",
+     "p4": [
+      "P4-4",
+      "P4-12"
+     ]
+    },
+    {
+     "name": "PA reference LP5907-2.85",
+     "refs": [
+      "U22",
+      "C122",
+      "C123"
+     ],
+     "source": "D53 BR-03",
+     "notes": "IN = +3V3_VTX, EN = PA_EN (hierarchical), OUT = PA_VREF; C108 -> U22 path note (BR-03)",
+     "p4": [
+      "P4-4",
+      "P4-17"
+     ]
+    },
+    {
+     "name": "PA drive stage (PNP, current mode)",
+     "refs": [
+      "Q27",
+      "R71",
+      "C124",
+      "R72",
+      "C125",
+      "R73",
+      "R65"
+     ],
+     "source": "D52 BR-02",
+     "notes": "PA_BIAS_PWM -> 2-pole RC -> PA_DRV_B; emitter R73 to +3V3_VTX; collector PA_DRV_C -> R65 -> PAOUT1_SUP",
+     "p4": [
+      "P4-5"
+     ]
+    },
+    {
+     "name": "PAOUT1 feed + DC block",
+     "refs": [
+      "L3",
+      "C109",
+      "C110"
+     ],
+     "source": "OpenOSD-X v1.01 (L4 C40 C43)",
+     "notes": "RF_PAOUT1 (pin 35) -> C110 -> RF_PA_IN; netclass flag RF on RF_PAOUT1",
+     "p4": []
+    },
+    {
+     "name": "SE5004L PA + supply",
+     "refs": [
+      "U20",
+      "C111",
+      "C112",
+      "C113",
+      "C114",
+      "C115",
+      "C116",
+      "C118",
+      "R67"
+     ],
+     "source": "Skyworks SE5004L EK1",
+     "notes": "PA_VCC from R67 selector (+BATT default, +5V option): netclass directive Power on PA_VCC; C119 output DC block deleted (P4-18 confirms)",
+     "p4": [
+      "P4-18"
+     ]
+    },
+    {
+     "name": "PA detector + temperature",
+     "refs": [
+      "R66",
+      "C117",
+      "TH1",
+      "R70"
+     ],
+     "source": "spec §4.8",
+     "notes": "PA_DET_RAW -> R66 -> PA_DET (hierarchical); TH1 + R70 -> PA_NTC (hierarchical)",
+     "p4": []
+    },
+    {
+     "name": "Harmonic BPF + U.FL",
+     "refs": [
+      "FL2",
+      "J1"
+     ],
+     "source": "spec §4.8",
+     "notes": "RF_PA_OUT -> FL2 -> RF_UFL -> J1",
+     "p4": []
+    },
+    {
+     "name": "VTX SPI series resistors",
+     "refs": [
+      "R80",
+      "R81",
+      "R82"
+     ],
+     "source": "F21 / P4-4",
+     "notes": "1k each: VTX_SPI_CS/CLK/DATA (hierarchical) -> RTC6705 SPILE/SPICLK/SPIDATA",
+     "p4": [
+      "P4-4"
+     ]
+    }
+   ],
+   "pins": [
+    {
+     "name": "HD_EN",
+     "dir": "input",
+     "side": "top",
+     "net": "/HD_EN",
+     "class": "Default"
+    },
+    {
+     "name": "VTX_SPI_CS",
+     "dir": "input",
+     "side": "left",
+     "net": "/VTX_SPI_CS",
+     "class": "Default"
+    },
+    {
+     "name": "VTX_SPI_CLK",
+     "dir": "input",
+     "side": "left",
+     "net": "/VTX_SPI_CLK",
+     "class": "Default"
+    },
+    {
+     "name": "VTX_SPI_DATA",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/VTX_SPI_DATA",
+     "class": "Default"
+    },
+    {
+     "name": "PA_BIAS_PWM",
+     "dir": "input",
+     "side": "left",
+     "net": "/PA_BIAS_PWM",
+     "class": "Default"
+    },
+    {
+     "name": "PA_EN",
+     "dir": "input",
+     "side": "left",
+     "net": "/PA_EN",
+     "class": "Default"
+    },
+    {
+     "name": "VTX_PWR_CTL",
+     "dir": "input",
+     "side": "left",
+     "net": "/VTX_PWR_CTL",
+     "class": "Default"
+    },
+    {
+     "name": "PA_DET",
+     "dir": "output",
+     "side": "left",
+     "net": "/PA_DET",
+     "class": "Analog"
+    },
+    {
+     "name": "PA_NTC",
+     "dir": "output",
+     "side": "left",
+     "net": "/PA_NTC",
+     "class": "Default"
+    },
+    {
+     "name": "VIDEO_OUT",
+     "dir": "input",
+     "side": "left",
+     "net": "/VIDEO_OUT",
+     "class": "Analog"
+    }
+   ],
+   "refs": [
+    "U19",
+    "X4",
+    "C94",
+    "C95",
+    "C96",
+    "C98",
+    "C100",
+    "C101",
+    "C102",
+    "C103",
+    "R63",
+    "C106",
+    "R64",
+    "C107",
+    "R58",
+    "C104",
+    "R59",
+    "C105",
+    "R60",
+    "R61",
+    "R62",
+    "U21",
+    "C121",
+    "R68",
+    "R84",
+    "Q28",
+    "C108",
+    "U22",
+    "C122",
+    "C123",
+    "Q27",
+    "R71",
+    "C124",
+    "R72",
+    "C125",
+    "R73",
+    "R65",
+    "L3",
+    "C109",
+    "C110",
+    "U20",
+    "C111",
+    "C112",
+    "C113",
+    "C114",
+    "C115",
+    "C116",
+    "C118",
+    "R67",
+    "R66",
+    "C117",
+    "TH1",
+    "R70",
+    "FL2",
+    "J1",
+    "R80",
+    "R81",
+    "R82"
+   ],
+   "ref_count": 58,
+   "file_uuid": "eda6d0be-b403-5606-a409-d13d2e16962e"
+  },
+  {
+   "file": "led.kicad_sch",
+   "instances": [
+    {
+     "name": "LED",
+     "sheet_uuid": "0a9dca22-7345-53f8-9367-07faa3e8899c",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0a9dca22-7345-53f8-9367-07faa3e8899c",
+     "page": "13"
+    }
+   ],
+   "paper": "A5",
+   "title": "Status LEDs",
+   "description": "Status LEDs (green LED0, blue LED1)",
+   "content": [
+    "STATUS LEDS"
+   ],
+   "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (status LED block: LED + series R from +3V3, GPIO sinks)",
+   "blocks": [
+    {
+     "name": "Status LEDs",
+     "refs": [
+      "D5",
+      "D6",
+      "R85",
+      "R86"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
+     "notes": "+3V3 -> LED -> 150R -> LEDn (sink)",
+     "p4": []
+    }
+   ],
+   "pins": [
+    {
+     "name": "LED0",
+     "dir": "input",
+     "side": "right",
+     "net": "/LED0",
+     "class": "Default"
+    },
+    {
+     "name": "LED1",
+     "dir": "input",
+     "side": "right",
+     "net": "/LED1",
+     "class": "Default"
+    }
+   ],
+   "refs": [
+    "D5",
+    "D6",
+    "R85",
+    "R86"
+   ],
+   "ref_count": 4,
+   "file_uuid": "2b6cc856-b49c-5add-9442-eca8ba6938c6"
+  },
+  {
+   "file": "pads.kicad_sch",
+   "instances": [
+    {
+     "name": "PADS",
+     "sheet_uuid": "8d214749-72cf-5803-99b7-260f0c3f1838",
+     "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838",
+     "page": "14"
+    }
+   ],
+   "paper": "A3",
+   "title": "Pads, motor lands, camera, HD, USB",
+   "description": "Solder pads, motor lands, camera, HD and USB connectors, mounting",
+   "content": [
+    "BATTERY",
+    "MOTOR LANDS",
+    "USER UART",
+    "LED / BUZZER",
+    "CAMERA",
+    "HD (O4)",
+    "USB JST SH"
+   ],
+   "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch (Conn_01x01 pad groups under blue headings) + OpenFC-Lite/hardware/pads.kicad_sch (JST SH SM04B USB plug); camera plug, motor lands and the ESD array new (D57, D63-D65)",
+   "blocks": [
+    {
+     "name": "Battery pads",
+     "refs": [
+      "J2",
+      "J3"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch",
+     "notes": "J2 '+' on +BATT_IN, J3 '-' on GND (+ PWR_FLAGs on POWER)",
+     "p4": []
+    },
+    {
+     "name": "Motor lands M1-M4 (plug-ready, header DNP)",
+     "refs": [
+      "J4",
+      "J7",
+      "J10",
+      "J13"
+     ],
+     "source": "new (D65, Molex 53047-0310 land)",
+     "notes": "pads 1/2/3 = Mn_C/Mn_B/Mn_A (hierarchical) = /ESCn/PHASE_C/B/A",
+     "p4": []
+    },
+    {
+     "name": "User UART pads (PIOUART0)",
+     "refs": [
+      "J16",
+      "J17",
+      "J18",
+      "J19"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch",
+     "notes": "TP0 RP0 5V GND",
+     "p4": []
+    },
+    {
+     "name": "LED strip and buzzer row",
+     "refs": [
+      "J33",
+      "J20",
+      "J21",
+      "J22"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch",
+     "notes": "GND LED 5V BZ-",
+     "p4": []
+    },
+    {
+     "name": "Camera pads and plug",
+     "refs": [
+      "J23",
+      "J24",
+      "J25",
+      "J32"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch + new JST SM03B-SURS-TF",
+     "notes": "VIDEO_IN (hierarchical), +5V_CAM, GND",
+     "p4": []
+    },
+    {
+     "name": "HD (DJI O4 Lite) pads",
+     "refs": [
+      "J26",
+      "J27",
+      "J28",
+      "J29"
+     ],
+     "source": "new (D16)",
+     "notes": "VHD (+5V_HD) GND TX1 RX1",
+     "p4": []
+    },
+    {
+     "name": "USB JST SH 4-pin + ESD",
+     "refs": [
+      "J31",
+      "D7"
+     ],
+     "source": "OpenFC-Lite/hardware/pads.kicad_sch (SH 4-pin USB); D7 TPD2EUSB30 new (D57)",
+     "notes": "J31: 1 VBUS (hierarchical), 2 D-, 3 D+, 4 GND (pinout per D57 adapters); D7 at J31 ahead of R42/R43",
+     "p4": []
+    },
+    {
+     "name": "Mounting holes",
+     "refs": [
+      "H1",
+      "H2",
+      "H3"
+     ],
+     "source": "LINEUP B15",
+     "notes": "Mechanical:MountingHole, on_board = no (the outline carries the Edge.Cuts circles; FLOORPLAN 'For P4'); LOGO1 is a board-only footprint, no symbol",
+     "p4": []
+    }
+   ],
+   "pins": [
+    {
+     "name": "VIDEO_IN",
+     "dir": "output",
+     "side": "left",
+     "net": "/VIDEO_IN",
+     "class": "Analog"
+    },
+    {
+     "name": "M1_A",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC1/PHASE_A",
+     "class": "Phase"
+    },
+    {
+     "name": "M1_B",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC1/PHASE_B",
+     "class": "Phase"
+    },
+    {
+     "name": "M1_C",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC1/PHASE_C",
+     "class": "Phase"
+    },
+    {
+     "name": "M2_A",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC2/PHASE_A",
+     "class": "Phase"
+    },
+    {
+     "name": "M2_B",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC2/PHASE_B",
+     "class": "Phase"
+    },
+    {
+     "name": "M2_C",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC2/PHASE_C",
+     "class": "Phase"
+    },
+    {
+     "name": "M3_A",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC3/PHASE_A",
+     "class": "Phase"
+    },
+    {
+     "name": "M3_B",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC3/PHASE_B",
+     "class": "Phase"
+    },
+    {
+     "name": "M3_C",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC3/PHASE_C",
+     "class": "Phase"
+    },
+    {
+     "name": "M4_A",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC4/PHASE_A",
+     "class": "Phase"
+    },
+    {
+     "name": "M4_B",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC4/PHASE_B",
+     "class": "Phase"
+    },
+    {
+     "name": "M4_C",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/ESC4/PHASE_C",
+     "class": "Phase"
+    },
+    {
+     "name": "PIOUART0_TX",
+     "dir": "input",
+     "side": "left",
+     "net": "/PIOUART0_TX",
+     "class": "Default"
+    },
+    {
+     "name": "PIOUART0_RX",
+     "dir": "output",
+     "side": "left",
+     "net": "/PIOUART0_RX",
+     "class": "Default"
+    },
+    {
+     "name": "UART1_TX",
+     "dir": "input",
+     "side": "left",
+     "net": "/UART1_TX",
+     "class": "Default"
+    },
+    {
+     "name": "UART1_RX",
+     "dir": "output",
+     "side": "left",
+     "net": "/UART1_RX",
+     "class": "Default"
+    },
+    {
+     "name": "LED_STRIP",
+     "dir": "input",
+     "side": "left",
+     "net": "/LED_STRIP",
+     "class": "Default"
+    },
+    {
+     "name": "BUZZER-",
+     "dir": "input",
+     "side": "left",
+     "net": "/BUZZER-",
+     "class": "Default"
+    },
+    {
+     "name": "USB_D_P",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/USB_D_P",
+     "class": "USB"
+    },
+    {
+     "name": "USB_D_N",
+     "dir": "bidirectional",
+     "side": "left",
+     "net": "/USB_D_N",
+     "class": "USB"
+    },
+    {
+     "name": "VBUS",
+     "dir": "output",
+     "side": "left",
+     "net": "/VBUS",
+     "class": "Power"
+    }
+   ],
+   "refs": [
+    "J2",
+    "J3",
+    "J4",
+    "J7",
+    "J10",
+    "J13",
+    "J16",
+    "J17",
+    "J18",
+    "J19",
+    "J33",
+    "J20",
+    "J21",
+    "J22",
+    "J23",
+    "J24",
+    "J25",
+    "J32",
+    "J26",
+    "J27",
+    "J28",
+    "J29",
+    "J31",
+    "D7",
+    "H1",
+    "H2",
+    "H3"
+   ],
+   "ref_count": 27,
+   "file_uuid": "0f1cbcec-adb2-5bb7-80e8-5279a10ff51c"
+  }
+ ],
+ "sheet_moves": [
+  {
+   "ref": "C30",
+   "bom_plan_sheet": "esc_channel (ESC3)",
+   "contract_sheet": "power.kicad_sch",
+   "why": "ESC3-only part: a shared esc_channel file has identical contents in all four instances, so the ESC3 EFM8 bulk (BR-05/BR-20) is drawn on POWER with a placement note (net +BATT/GND, unchanged)"
+  },
+  {
+   "ref": "TP12",
+   "bom_plan_sheet": "pads",
+   "contract_sheet": "rp2350a.kicad_sch",
+   "why": "SWD test via, drawn at the MCU (D67); SWCLK stays sheet-local"
+  },
+  {
+   "ref": "TP13",
+   "bom_plan_sheet": "pads",
+   "contract_sheet": "rp2350a.kicad_sch",
+   "why": "SWD test via (D67); SWDIO local"
+  },
+  {
+   "ref": "TP9",
+   "bom_plan_sheet": "pads",
+   "contract_sheet": "rp2350a.kicad_sch",
+   "why": "test via of the RP2354A boot strap: drawn next to R44 like the ESC C2 test points sit in esc_channel (D67 made it an unlabelled via, not a user pad); removes a root net"
+  }
+ ],
+ "p4_items": {
+  "P4-1": "power",
+  "P4-2": "power",
+  "P4-3": "power",
+  "P4-4": "vtx (+ power R11, rp2350a HD_EN)",
+  "P4-5": "vtx",
+  "P4-6": "rx_esp32_sx1281",
+  "P4-7": "power",
+  "P4-8": "esc_channel",
+  "P4-9": "power",
+  "P4-10": "osd",
+  "P4-11": "esc_channel + rp2350a (sheet notes)",
+  "P4-12": "power + vtx",
+  "P4-13": "closed by D69 (no 85 C / X5R zone rule; dielectric follows DC bias only)",
+  "P4-14": "BOM freeze (all sheets; fields only)",
+  "P4-15": "rx_esp32_sx1281",
+  "P4-16": "vtx",
+  "P4-17": "sheet notes on power, rp2350a, imu, osd, vtx, esc_channel",
+  "P4-18": "vtx",
+  "P4-19": "power (C30)"
+ },
+ "bom_reduction_s7": {
+  "1 +3V3 output capacitance vs LP5912 10 uF max": "P4-12 (power + vtx)",
+  "2 X5R parts in H1/H3 zones": "void under D69 (owner: no 85 C rule); keep DC-bias check only",
+  "3 orderability": "P4-14 at BOM freeze (D60: NextPCB sources; MPN + genuine still required)",
+  "4 D4 WS2812 on 3.3 V": "P4-15 (rx_esp32_sx1281 sheet note)",
+  "5 RTC6705 pin 40 filter and C103": "P4-16 (vtx)",
+  "6 decision log": "closed (D52-D54)",
+  "7 BR-02 model pnp_fix.py": "P4-5 (vtx)",
+  "8 placement conditions": "P4-17 sheet notes"
+ },
+ "shards_suggested": [
+  {
+   "shard": "A power+io",
+   "sheets": [
+    "power.kicad_sch",
+    "pads.kicad_sch",
+    "led.kicad_sch"
+   ]
+  },
+  {
+   "shard": "B fc+esc",
+   "sheets": [
+    "esc_channel.kicad_sch",
+    "rp2350a.kicad_sch",
+    "imu.kicad_sch",
+    "blackbox.kicad_sch"
+   ]
+  },
+  {
+   "shard": "C rf+video",
+   "sheets": [
+    "rx_esp32_sx1281.kicad_sch",
+    "vtx.kicad_sch",
+    "osd.kicad_sch"
+   ]
+  }
+ ],
+ "root": {
+  "file": "OpenAIO-Whoop.kicad_sch",
+  "paper": "A3",
+  "title": "OpenAIO-Whoop overview (1S whoop AIO)",
+  "description": "OpenAIO-Whoop: 1S whoop AIO (FC, 4x ESC, ELRS RX, analog VTX + OSD), overview",
+  "layout": "signal flow left to right: POWER | IMU, BLACKBOX, LED | RP2350A | RX, OSD, ESC1-ESC4 | VTX | PADS; HD_EN on a top channel, VBUS on a bottom channel, power table bottom left",
+  "uuid": "2c3a7206-1e66-4d43-a02f-491225e20dd6"
+ },
+ "uuids": {
+  "root_file": "2c3a7206-1e66-4d43-a02f-491225e20dd6",
+  "namespace": "uuid5(root file uuid, '<file>|<kind>|<key>') (sch_build.Project.uid)",
+  "files": {
+   "OpenAIO-Whoop.kicad_sch": "2c3a7206-1e66-4d43-a02f-491225e20dd6",
+   "power.kicad_sch": "667866cf-d10d-58b9-b634-4eb3d3146f81",
+   "esc_channel.kicad_sch": "aeb9e12c-f1b8-5a44-8f39-9526e37ed34a",
+   "rp2350a.kicad_sch": "c4f624fc-57b8-50ab-a6ff-1ad252940f3e",
+   "imu.kicad_sch": "bac0cdb2-32ca-5cdf-8aab-4009c329172c",
+   "blackbox.kicad_sch": "24fab2fc-1365-5368-bd1e-78d0c6fa70a5",
+   "osd.kicad_sch": "8d3a7b75-b3b0-54c2-b183-6fd5d7a4c4c9",
+   "rx_esp32_sx1281.kicad_sch": "f54f538e-3a01-552b-b168-501bee091759",
+   "vtx.kicad_sch": "eda6d0be-b403-5606-a409-d13d2e16962e",
+   "led.kicad_sch": "2b6cc856-b49c-5add-9442-eca8ba6938c6",
+   "pads.kicad_sch": "0f1cbcec-adb2-5bb7-80e8-5279a10ff51c"
+  },
+  "sheet_symbols": {
+   "POWER": {
+    "uuid": "41417550-e292-5308-8e83-617f301e47b8",
+    "file": "power.kicad_sch",
+    "page": "2",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+   },
+   "ESC1": {
+    "uuid": "d67c44eb-67d1-5da8-b7a8-40b16f9433cd",
+    "file": "esc_channel.kicad_sch",
+    "page": "3",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d67c44eb-67d1-5da8-b7a8-40b16f9433cd"
+   },
+   "ESC2": {
+    "uuid": "0021bee0-9959-5c9e-86f0-21e49fa9ce8d",
+    "file": "esc_channel.kicad_sch",
+    "page": "4",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0021bee0-9959-5c9e-86f0-21e49fa9ce8d"
+   },
+   "ESC3": {
+    "uuid": "a3c0517e-76c5-5fd7-8d0f-d7e948ad3995",
+    "file": "esc_channel.kicad_sch",
+    "page": "5",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/a3c0517e-76c5-5fd7-8d0f-d7e948ad3995"
+   },
+   "ESC4": {
+    "uuid": "6d139bfe-ad39-5d26-964c-e430887c2538",
+    "file": "esc_channel.kicad_sch",
+    "page": "6",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/6d139bfe-ad39-5d26-964c-e430887c2538"
+   },
+   "RP2350A": {
+    "uuid": "df951d63-8e6a-5171-a7c4-15005f1245fb",
+    "file": "rp2350a.kicad_sch",
+    "page": "7",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/df951d63-8e6a-5171-a7c4-15005f1245fb"
+   },
+   "IMU": {
+    "uuid": "f446158c-b285-51eb-bc17-5ec1fb190fc1",
+    "file": "imu.kicad_sch",
+    "page": "8",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
+   },
+   "BLACKBOX": {
+    "uuid": "04f14c5a-8e46-5d66-be84-2bb8762684a3",
+    "file": "blackbox.kicad_sch",
+    "page": "9",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3"
+   },
+   "OSD": {
+    "uuid": "d622c956-8c4e-5ac1-b8c4-8a8024f124d6",
+    "file": "osd.kicad_sch",
+    "page": "10",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
+   },
+   "RX": {
+    "uuid": "73d8a02c-e770-5e7b-9535-3e34b447ded8",
+    "file": "rx_esp32_sx1281.kicad_sch",
+    "page": "11",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
+   },
+   "VTX": {
+    "uuid": "11edd549-3d5f-5e16-86ba-6970b46b0a92",
+    "file": "vtx.kicad_sch",
+    "page": "12",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
+   },
+   "LED": {
+    "uuid": "0a9dca22-7345-53f8-9367-07faa3e8899c",
+    "file": "led.kicad_sch",
+    "page": "13",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0a9dca22-7345-53f8-9367-07faa3e8899c"
+   },
+   "PADS": {
+    "uuid": "8d214749-72cf-5803-99b7-260f0c3f1838",
+    "file": "pads.kicad_sch",
+    "page": "14",
+    "instance_path": "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
+   }
+  }
+ }
+}
