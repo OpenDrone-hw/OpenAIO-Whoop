@@ -84,7 +84,7 @@ RF_PAD_CUT = ((2.945, -11.1), (4.145, -9.9))     # RF_PAD_CUTOUT: under the U.FL
 VTX_CHAIN = ([(5.0, -4.65), (8.52, -6.4), (8.52, -11.55), (6.67, -12.05), (3.545, -10.5)], 1.2)
 SHUNT_CORRIDOR = ((-8.0, 8.1), (-4.2, 12.6))     # D10 / spec 10: B+ pad -> shunt on L6 (P2 sets the final box)
 TAB_HALF, TAB_IN, TAB_OUT = 1.5, 1.3, 0.5        # spec 7: tab 1.2-1.5 wide + 1.0 mm part keepout beyond the 0.3 band
-TABS = {"T1": "front_arc_45", "T3": ((-13.2, -8.9), (-1, 0)), "T4": ((-9.3, 13.2), (0, 1))}   # point on edge, outward normal
+TABS = {"T1": ((13.2, -6.6), (1, 0)), "T3": ((-13.2, -8.9), (-1, 0)), "T4": ((-9.3, 13.2), (0, 1))}   # point on edge, outward normal (spec 7 round 4: T1 on the right edge)
 
 # spec 8.1 / 8.4 + D6: board minimums (the .kicad_pro "rules" block).  Via 0.35 / 0.20 is the OpenDrone
 # standard via (D6, owner-confirmed buildable at NextPCB), so the annular minimum is 0.075 and the minimum through
@@ -149,11 +149,12 @@ NETCLASS_PATTERNS = [
 COMPONENT_CLASSES = [
     ("PASSIVE_0201", ["*0201*"]),
     ("PASSIVE_0402", ["*0402*"]),
-    ("TALL", ["*U.FL*", "*U_FL*", "*UFL*", "*SRSS*", "*L2.5-W2.0*", "*_2520*"]),      # U.FL, 2520 L (SH1.0 if any)
+    ("TALL", ["*U.FL*", "*U_FL*", "*UFL*", "*SRSS*", "*IND-SMD_L2.5-W2.0*", "*_2520*"]),  # U.FL, 2520 L (spec 8.4; not the 2520 crystal)
     ("POWER_FET", ["*CSD25310Q2*", "*CSD13202Q2*", "*DQK*", "*AGM210*"]),            # D12 stage (P3 names), D21
-    ("SOLDER_PAD", ["*small_pad*", "*SolderPad*", "*motor_pad*", "*battery_pad*", "*BT2*"]),
+    ("SOLDER_PAD", ["*small_pad*", "*SolderPad*", "*MotorPad*", "*BattPad*", "*motor_pad*", "*battery_pad*", "*BT2*"]),
 ]
-SOLDER_PAD_FPIDS = ["*:small_pad*", "*:SolderPad*", "*:motor_pad*", "*:battery_pad*", "*:BT2*"]  # memberOfFootprint
+SOLDER_PAD_FPIDS = ["*:small_pad*", "*:SolderPad*", "*:MotorPad*", "*:BattPad*", "*:motor_pad*", "*:battery_pad*",
+                    "*:BT2*"]  # memberOfFootprint (P3 library names MotorPad_* / BattPad_*, spec 4.10)
 
 # Impedance (spec 8.2): CPWG on L1 over L2 (and L6 over L5, same geometry), gap 0.15, target 50 ohm +- 10 %.
 RF_GAP = 0.15
@@ -201,10 +202,12 @@ RULES = [
      "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.isPlated() && B.isPlated()\")"),
 
     ("PTH pads, copper 0.40 apart",
-     ["NextPCB 0.40 copper between pads with holes, different nets."],
+     ["NextPCB 0.40 copper between pads with holes, different nets. Footprint vias (Heatsink pads, D21 below) are",
+      "vias, not component holes, and keep the via clearances."],
      "  (constraint clearance (min 0.40mm))\n"
      "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.Pad_Type == 'Through-hole' && "
-     "B.Pad_Type == 'Through-hole' && A.Net != B.Net\")"),
+     "B.Pad_Type == 'Through-hole' && A.Net != B.Net && A.Fabrication_Property != 'Heatsink pad' && "
+     "B.Fabrication_Property != 'Heatsink pad'\")"),
 
     ("PTH annular ring 0.20",
      ["Component holes: JLCPCB 0.15 absolute, 0.20 recommended; NextPCB 0.20. Vias keep the 0.075 of D6."],
@@ -289,6 +292,22 @@ RULES = [
      ["Spec 4.8 / 4.9: footprints with NC pads removed (RTC6705) or the NOR exposed pad removed are saved as",
       "their own footprints in the project library (P3), so lib_footprint_mismatch stays an error and never",
       "fires for them; no rule is needed and none is relaxed."], None),
+
+    ("D21 footprint_via_pads annular",
+     ["D21 / spec 8.3: through vias drawn inside a footprint land as PTH pads with the Heatsink fabrication property",
+      "(EFM8BB51 EP array, CSD13202Q2 merged-drain phase field) are 0.35/0.20 Type VII vias (D6), not component",
+      "holes: the via annular ring 0.075 applies instead of the 0.20 PTH component-hole ring (LIBRARY.md item)."],
+     "  (constraint annular_width (min 0.075mm))\n  (condition \"A.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad'\")"),
+
+    ("D21 footprint_via_pads hole_clearance",
+     ["D21: the same footprint vias keep the 0.20 via hole clearance, not the 0.28 / 0.30 component-hole values."],
+     "  (constraint hole_clearance (min 0.20mm))\n  (condition \"A.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad'\")"),
+
+    ("D21 footprint_via_pads same_net_holes",
+     ["D21 / D39: same-net footprint vias keep the 0.20 hole spacing of a via array, not the 0.45 PTH pad value."],
+     "  (constraint hole_to_hole (min 0.20mm))\n"
+     "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad' && "
+     "B.Fabrication_Property == 'Heatsink pad' && A.Net == B.Net\")"),
 
     ("D21 esp32_ganged_mask",
      ["Spec 4.7 / 8.1, only if the NextPCB EQ (O15) accepts 0.35 mm pitch: one ganged mask opening per side of",
