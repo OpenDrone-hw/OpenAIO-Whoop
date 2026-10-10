@@ -1,0 +1,36 @@
+{
+ "footprint": "lib:IND-SMD_L2.5-W2.0_FTC252012_L",
+ "part": "FTC252012SR68MBCA (LCSC C5832369), L1",
+ "datasheet": "cjiang FTC series Specification for Approval (LCSC C5832369 PDF, 61 p.) [/tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/power/dl/ftc252012.pdf; https://datasheet.lcsc.com/datasheet/pdf/77df80da131e4870f452feed30b2f415.pdf?productCode=C5832369]: p5 section 3 Shape and Dimensions drawing (L, G, W, E, T; land A overall, B gap, C height), p6 table row FTC252012S: L 2.5+-0.2, G 0.8 typ, W 2.0+-0.2, E 0.85+-0.2, T 1.20 max, land A 2.60, B 0.70, C 2.10 (typ)",
+ "derivation": "cjiang FTC252012SR68MBCA 0.68 uH 2520 (L1, TPS61022 boost). Spec for Approval p5-p6 row FTC252012S: L 2.5+-0.2, W 2.0+-0.2, E 0.85+-0.2, land A 2.60 overall, B 0.70 gap, C 2.10. IPC-7351C least density (D109): the maker land length is already below IPC L at the toe (outer edge 1.30 = nominal end + 0.05), kept (A 2.60, B 0.70); land height C 2.10 -> 2.00 (= W nominal, side 0) so the courtyard is set by the body: 2.80 x 2.20 (was 2.80 x 2.30).",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.825,
+   "y": 0,
+   "w": 0.95,
+   "h": 2.0,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.825,
+   "y": 0,
+   "w": 0.95,
+   "h": 2.0,
+   "shape": "rect"
+  }
+ ],
+ "removed_nc": [],
+ "body": {
+  "w": 2.5,
+  "h": 2.0,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "derived_from": "lib:IND-SMD_L2.5-W2.0_FTC252012 (spec hardware/tools/land_specs/IND-SMD_L2.5-W2.0_FTC252012.json)",
+ "density": "IPC-7351C least (L), D109",
+ "staged_from": "p2v3/v4/fpL/passives/land_specs/IND-SMD_L2.5-W2.0_FTC252012_L.json"
+}

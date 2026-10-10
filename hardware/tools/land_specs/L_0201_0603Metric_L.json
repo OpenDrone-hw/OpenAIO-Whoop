@@ -1,0 +1,35 @@
+{
+ "footprint": "lib:L_0201_0603Metric_L",
+ "part": "0201 (0603 metric, 0.6 x 0.3 mm) BLM03 ferrite bead / LQP03 inductor",
+ "datasheet": "Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.24,
+   "y": 0,
+   "w": 0.26,
+   "h": 0.28,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": 0.24,
+   "y": 0,
+   "w": 0.26,
+   "h": 0.28,
+   "shape": "roundrect"
+  }
+ ],
+ "body": {
+  "w": 0.6,
+  "h": 0.3
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "0201 (0603 metric, 0.6 x 0.3 mm) BLM03 ferrite bead / LQP03 inductor. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50.",
+ "derived_from": "lib:L_0201_0603Metric_W (spec hardware/tools/land_specs/L_0201_0603Metric_W.json)",
+ "density": "IPC-7351C least (L), D109",
+ "staged_from": "p2v3/v4/fpL/passives/land_specs/L_0201_0603Metric_L.json"
+}
