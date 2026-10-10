@@ -390,6 +390,21 @@
    ]
   },
   {
+   "rail": "PA_VREF",
+   "symbol": "local net /VTX/PA_VREF",
+   "source": "U22 LP5907SNX-2.85 from +3V3_VTX, EN = PA_EN (ESP32 GPIO2); off in HD mode with +3V3_VTX",
+   "nominal": "2.85 V +-2 % (V5 gate: SE5004L VREF H 2.80-2.90 V)",
+   "budget": "about 10 mA (SE5004L IEN typ, incl. its internal 2 kOhm pull-down)",
+   "feeds": "SE5004L VREF/EN pin 5 (VTX)",
+   "class": "Default",
+   "table": [
+    "U22 LP5907-2.85 (EN = PA_EN, off in HD)",
+    "2.85 V",
+    "about 10 mA",
+    "SE5004L VREF/EN (local, VTX)"
+   ]
+  },
+  {
    "rail": "GND",
    "symbol": "power:GND",
    "source": "battery -, J3",

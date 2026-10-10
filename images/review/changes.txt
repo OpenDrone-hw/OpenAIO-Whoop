@@ -1,16 +1,3 @@
-footprints: changed 13, same 259
+footprints: same 272
 counts old {'tracks': 0, 'vias': 0, 'zones': 19, 'footprints': 272}
-counts new {'tracks': 0, 'vias': 0, 'zones': 19, 'footprints': 272}
-C103     changed F moved 0.05 mm
-C104     changed F moved 0.05 mm
-C23      changed F footprint lib:C_0603_1608Metric_W -> lib:C_0402_1005Metric_W
-C29      changed F footprint lib:C_0603_1608Metric_W -> lib:C_0402_1005Metric_W
-C35      changed F footprint lib:C_0603_1608Metric_W -> lib:C_0402_1005Metric_W
-C41      changed F footprint lib:C_0603_1608Metric_W -> lib:C_0402_1005Metric_W
-C42      changed F moved 1.07 mm
-C43      changed F moved 2.00 mm, rot 90 -> 0
-FL1      changed F footprint lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W -> lib:FILTER-SMD_4P-L1.0-W0.5-L_W
-J3       changed F moved 0.08 mm
-LOGO1    changed F moved 0.02 mm
-R40      changed F moved 1.07 mm, rot 0 -> 180
-X1       changed F footprint lib:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_Dense -> lib:CRYSTAL-SMD_4P-L3.2-W2.5-BL_Dense, moved 0.35 mm
+counts new {'tracks': 140, 'vias': 298, 'zones': 72, 'footprints': 272}

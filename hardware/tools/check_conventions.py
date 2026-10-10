@@ -24,7 +24,7 @@ B17b is skipped.
 
 Exit 0 when no MUST rule fails, 1 on any FAIL, 2 if the project cannot be read.
 """
-import argparse, glob, json, os, re, sys
+import argparse, glob, json, math, os, re, sys
 
 from check_board_setup import TOKEN, child, load_pcbnew_board, sexp_block, stackup
 
@@ -480,14 +480,16 @@ def check_board(prj, model_fixes):
     user_pads = [fp for fp in fps if re.search(r"small_pad|SolderPad", fid(fp))]
     bad = []
     for fp in user_pads:
-        side = labels[pcbnew.B_Cu if fp.GetLayer() == pcbnew.B_Cu else pcbnew.F_Cu]
-        near = min((gap(mm, p.GetBoundingBox(), t.GetBoundingBox()) for p in fp.Pads() for t in side
-                    if t.GetClass() != "PCB_FIELD"), default=99)
-        if near > 1.0:
-            bad.append(f"{fp.GetReference()} ({near:.1f} mm)")
+        side = [t for t in labels[pcbnew.B_Cu if fp.GetLayer() == pcbnew.B_Cu else pcbnew.F_Cu]
+                if t.GetClass() != "PCB_FIELD"]
+        code, label = fp.GetValue().strip(), aligned_label(pcbnew, fp, side)
+        if label is None:
+            bad.append(f"{fp.GetReference()} {code}: no aligned label within 1 mm")
+        elif shown(label) != code:
+            bad.append(f"{fp.GetReference()} {code}: nearest aligned label is {shown(label)!r}")
     if user_pads:
-        verdict("B7", "every solder pad has a silkscreen label within 1 mm", bad,
-                ok_detail=f"{len(user_pads)} pad(s)")
+        verdict("B7", "every solder pad has its own code (pad Value) as the nearest aligned silk label, within 1 mm",
+                bad, ok_detail=f"{len(user_pads)} pad(s)")
     else:
         report("skip", "B7", "no small_pad or SolderPad footprints")
 
@@ -523,6 +525,41 @@ def check_board(prj, model_fixes):
     verdict("B13", "back silkscreen mirrored, front not",
             [f"{b.GetLayerName(t.GetLayer())} {shown(t)!r}" for t in silk_texts
              if t.IsMirrored() != (t.GetLayer() == pcbnew.B_SilkS)])
+
+
+def ink_box(t):
+    """Drawn extent of a silk text (glyph strokes), not KiCad's padded text bounding box."""
+    try:
+        bb = t.GetEffectiveTextShape().BBox()
+        return bb.GetLeft(), bb.GetTop(), bb.GetRight(), bb.GetBottom()
+    except Exception:                                                # text boxes, older bindings
+        bb = t.GetBoundingBox()
+        return bb.GetLeft(), bb.GetTop(), bb.GetRight(), bb.GetBottom()
+
+
+def aligned_label(pcbnew, fp, texts, limit=1.0):
+    """B7: the label a reader assigns to a solder pad. Candidates are silk texts whose drawn centre lies inside the
+    pad's x span (label above / below) or y span (label beside it), within `limit` mm of the pad copper; the best has
+    the smallest gap + perpendicular centre offset. A label shifted by one pad in a row is then the neighbour's."""
+    boxes = [p.GetBoundingBox() for p in fp.Pads()]
+    px0, py0 = min(b.GetLeft() for b in boxes), min(b.GetTop() for b in boxes)
+    px1, py1 = max(b.GetRight() for b in boxes), max(b.GetBottom() for b in boxes)
+    pcx, pcy = (px0 + px1) / 2, (py0 + py1) / 2
+    best = None
+    for t in texts:
+        x0, y0, x1, y1 = ink_box(t)
+        cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+        dx, dy = max(0, max(px0, x0) - min(px1, x1)), max(0, max(py0, y0) - min(py1, y1))
+        g = pcbnew.ToMM(math.hypot(dx, dy))
+        if g > limit:
+            continue
+        offs = [abs(cx - pcx) for _ in [0] if px0 <= cx <= px1] + [abs(cy - pcy) for _ in [0] if py0 <= cy <= py1]
+        if not offs:
+            continue
+        score = g + pcbnew.ToMM(min(offs))
+        if best is None or score < best[0]:
+            best = (score, t)
+    return best[1] if best else None
 
 
 def gap(mm, a, b):

@@ -4748,7 +4748,7 @@
 	)
 	(rectangle
 		(start 137.16 27.94)
-		(end 302.26 268.74)
+		(end 302.26 274.92)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -5065,7 +5065,7 @@
 	)
 	(rectangle
 		(start 15.24 113.03)
-		(end 134.62 176.48)
+		(end 134.62 180.6)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -5595,10 +5595,10 @@
 		)
 		(uuid "fa8cf270-c9c1-54b3-a251-bfcda8e015a1")
 	)
-	(text_box "U22 LP5907-2.85 from +3V3_VTX (TI SNVS798): HD mode removes PA_VREF with the rail. EN = PA_EN straight from ESP32 GPIO2 (strap: internal 45k pull-down + the LP5907 1 MOhm EN pull-down). C123 4.7 uF 0402 (> 0.7 uF effective); C122 1 uF (about 0.5 uF effective) only with the direct C108 -> U22 route.\nDEVIATIONS, bench-gated: (a) VREF window: 2.85 V +-2 % = 2.79-2.91 V vs SE5004L VREF H 2.80-2.90 V, and the +-2 % is specified only for VIN >= VOUT + 1 V (VIN here 3.3 V): V5 measures PA_VREF on several units, cold and hot. (b) HD switch-on with ELRS holding PA_EN high: +3V3_VTX collapses before C123 discharges, so VOUT exceeds VIN + 0.3 V (LP5907 abs max, DS 5.1) by up to one body-diode drop (<= 0.7 V, < 1 ms, <= 10 uJ from C123): V9 scopes PA_VREF and +3V3_VTX (< 0.5 V). Fallbacks: C123 down to 1 uF, or the patched ELRS drops PA_EN on HD_EN."
+	(text_box "U22 LP5907-2.85 from +3V3_VTX (TI SNVS798): HD mode removes PA_VREF with the rail. EN = PA_EN straight from ESP32 GPIO2 (strap: internal 45k pull-down + the LP5907 1 MOhm EN pull-down). C123 4.7 uF 0402 (> 0.7 uF effective). CIN = C122 4.7 uF 0402 X5R at U22 IN (about 2.6 uF at 3.3 V, >= 2 uF at -20 % and hot): LP5907 DS 5.6 / 7.2.2.4 needs > 0.7 uF effective over all conditions within 1 cm; the 1 uF 0201 (about 0.45 uF) alone missed it (P4 critique r3).\nDEVIATIONS, bench-gated: (a) VREF window: 2.85 V +-2 % = 2.79-2.91 V vs SE5004L VREF H 2.80-2.90 V, and the +-2 % is specified only for VIN >= VOUT + 1 V (VIN here 3.3 V): V5 measures PA_VREF on several units, cold and hot. (b) HD switch-on with ELRS holding PA_EN high: +3V3_VTX collapses before C123 discharges, so VOUT exceeds VIN + 0.3 V (LP5907 abs max, DS 5.1) by up to one body-diode drop (<= 0.7 V, < 1 ms, <= 10 uJ from C123): V9 scopes PA_VREF and +3V3_VTX (< 0.5 V). Fallbacks: C123 down to 1 uF, or the patched ELRS drops PA_EN on HD_EN."
 		(exclude_from_sim no)
 		(at 20.32 152.4 0)
-		(size 111.76 21.54)
+		(size 111.76 25.66)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -5615,7 +5615,7 @@
 		)
 		(uuid "13f3de22-71bb-5e9f-bd38-b143648a6555")
 	)
-	(text_box "U21 LP5912-3.3 on +5V; CIN = the shared 10 uF C13 on POWER (BR-14) only if P5 puts C13 within 1 cm of the U21 IN pin (LP5912 DS 9.2.2.2; tools/check_p5_conditions.py), else U21 gets its own 10 uF 0402 CIN (GRM155C80J106ME11D). EN = VTX_PWR_EN: R68 100k to +3V3 (stock ELRS runs the VTX); R84 1k from ESP32 GPIO21 (patched-ELRS power-down hook): GPIO21 low gives VEN 0.03-0.04 V < VEN(OFF) 0.3 V; Q28 AP1606 drain = HD gate (HD_EN high: <= 220 mOhm at VGS 2.5 V sinks 3.3 mA, VEN < 1 mV; HD_EN before Betaflight drives PINIO1: <= 0.2 V vs VGS(th) 0.4 V min). COUT on +3V3_VTX: C108 10u + C121 1u + C122 1u + 3x 100n + 2x 100p = 12.3 uF nominal, 3.7-7.0 uF effective at 3.3 V (I), inside the LP5912 0.7-10 uF window. Place C108 at the RTC6705 VCO pins 39/40 (VCO bulk) and route +3V3_VTX C108 -> U22 directly, else C122 becomes a 4.7 uF CL05A475MP5NRNC. Load 0.10 A typical, about 0.17 A at the top PA step (root power table)."
+	(text_box "U21 LP5912-3.3 on +5V; CIN = the shared 10 uF C13 on POWER (BR-14) only if P5 puts C13 within 1 cm of the U21 IN pin (LP5912 DS 9.2.2.2; tools/check_p5_conditions.py), else U21 gets its own 10 uF 0402 CIN (GRM155C80J106ME11D). EN = VTX_PWR_EN: R68 100k to +3V3 (stock ELRS runs the VTX); R84 1k from ESP32 GPIO21 (patched-ELRS power-down hook): GPIO21 low gives VEN 0.03-0.04 V < VEN(OFF) 0.3 V; Q28 AP1606 drain = HD gate (HD_EN high: <= 220 mOhm at VGS 2.5 V sinks 3.3 mA, VEN < 1 mV; HD_EN before Betaflight drives PINIO1: <= 0.2 V vs VGS(th) 0.4 V min). COUT on +3V3_VTX: C108 10u + C121 1u + C122 4.7u + 3x 100n + 2x 100p = 16.0 uF nominal, about 6.8 uF effective at 3.3 V typical (5.4-8.2 uF at -/+20 %; POWER-sheet DC-bias figures), inside the LP5912 0.7-10 uF window. C108 sits at the RTC6705 VCO pins 39/40 (VCO bulk). Load 0.10 A typical, about 0.17 A at the top PA step (root power table)."
 		(exclude_from_sim no)
 		(at 20.32 86.36 0)
 		(size 111.76 21.54)
@@ -5695,10 +5695,10 @@
 		)
 		(uuid "6be002d0-840e-5af6-befc-ebe1955347e1")
 	)
-	(text_box "PNP PA DRIVE. ESP32 GPIO13 VTX_AMP_PWM (ELRS vtx_amp_pwm, 10 kHz) -> two RC poles (R71 / C124, R72 / C125, 1k / 1u each) -> BC857BM base; emitter R73 (Re) to +3V3_VTX; collector Q27_C -> R65 10R -> PAOUT1_SUP -> L3 -> RTC6705 PAOUT1: it sets the RTC6705 output-stage current, not the SE5004L bias. Inverting, current mode. ngspice (Nexperia BC857BM model, PAOUT1 sink model): Re 10R gives 32-59 mA at the top step over hFE 220-475 and -20..85 C, Q27 <= 114 mW (Ptot 130 mW at 85 C), base ripple 2.1 mV p-p, settles in 8 ms (ELRS 20 ms loop). GPIO13 floating at reset: 0 mA; HD mode: both junctions reverse-biased 3.3 V (VEBO 5 V). Steps per 6 dB at Re 10R: 11-13 at 1 mA, 16-19 at 2 mA, 25-32 at 4 mA; V8 measures the PAOUT1 current at 25 mW and V5 sets Re (27R gives >= 20 steps from 1.5 mA). Start value R73 = 10R.\nRATINGS AT THE TOP STEP (Re 10R, hFE 475, 85 C: 58.5 mA): R73 and R65 dissipate about 34 mW each, against the RC0201 derating (50 mW to 70 C, zero at 125 C: 36 mW at 85 C, 27 mW at 95 C) beside a 2 W PA; Q27 <= 114 mW against 130 mW at 85 C (12 % margin). V8 pass: top-step current and the board temperature at R73 / R65 / Q27 keep each part inside its derated rating; levers: cap the ELRS power-table top count so Ic <= 45 mA (P <= 20 mW), or Re 27R (26 mW in R73, 10 mW in R65) if V5 accepts the steps; 0402s only if V8 shows the top step is needed."
+	(text_box "PNP PA DRIVE. ESP32 GPIO13 VTX_AMP_PWM (ELRS vtx_amp_pwm, 10 kHz) -> two RC poles (R71 / C124, R72 / C125, 1k / 1u each) -> BC857BM base; emitter R73 (Re) to +3V3_VTX; collector Q27_C -> R65 10R -> PAOUT1_SUP -> L3 -> RTC6705 PAOUT1: it sets the RTC6705 output-stage current, not the SE5004L bias. Inverting, current mode. ngspice (Nexperia BC857BM model, PAOUT1 sink model): Re 10R gives 32-59 mA at the top step over hFE 220-475 and -20..85 C, Q27 <= 114 mW (Ptot 130 mW at 85 C), base ripple 2.1 mV p-p, settles in 8 ms (ELRS 20 ms loop). GPIO13 after reset is an input with the internal pull-down (ESP32 DS IO_MUX: oe=0, ie=1, wpd; about 45 kOhm): ngspice case 4 gives 10-19 mA (Re 10R) from reset until ELRS initialize() sets the pit count (stock vtxSPIPWM = MAX_PWM), and for as long as the ESP32 stays in ROM download mode (SW1 held, recovery): Q27 about 50 mW, the PA off (GPIO2 wpd), V5 measures that boot leakage at the U.FL. HD mode: both junctions reverse-biased 3.3 V (VEBO 5 V). Steps per 6 dB at Re 10R: 11-13 at 1 mA, 16-19 at 2 mA, 25-32 at 4 mA; V8 measures the PAOUT1 current at 25 mW and V5 sets Re (27R gives >= 20 steps from 1.5 mA). Start value R73 = 10R.\nRATINGS AT THE TOP STEP (Re 10R, hFE 475, 85 C: 58.5 mA): R73 and R65 dissipate about 34 mW each, against the RC0201 derating (50 mW to 70 C, zero at 125 C: 36 mW at 85 C, 27 mW at 95 C) beside a 2 W PA; Q27 <= 114 mW against 130 mW at 85 C (12 % margin). V8 pass: top-step current and the board temperature at R73 / R65 / Q27 keep each part inside its derated rating; levers: cap the ELRS power-table top count so Ic <= 45 mA (P <= 20 mW), or Re 27R (26 mW in R73, 10 mW in R65) if V5 accepts the steps; 0402s only if V8 shows the top step is needed."
 		(exclude_from_sim no)
 		(at 139.7 232.15 0)
-		(size 160.02 23.6)
+		(size 160.02 29.78)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -5737,7 +5737,7 @@
 	)
 	(text_box "PAOUT1 FEED + DC BLOCK (OpenOSD-X L4 C40 C43 R34, fed by the PNP stage instead of its NPN follower). PAOUT1 (pin 35, +2 dBm) -> L3 4.7 nH choke to PAOUT1_SUP (C109 10 nF X7R) <- R65 10R <- Q27_C; C110 10 pF DC block into RF_PA_IN (SE5004L pin 3 'DC block required'). Only L3, C109 and C110 sit in the 5.8 GHz part-free band between pin 35 and the PA (50 Ohm CPWG < 5 mm, 45 degree). RF class on RF_PAOUT1 / RF_PA_IN / RF_PA_OUT / RF_UFL (pattern */RF_*)."
 		(exclude_from_sim no)
-		(at 139.7 257.02 0)
+		(at 139.7 263.2 0)
 		(size 160.02 9.18)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -17796,7 +17796,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "4.7uF"
 			(at 59.968 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17807,7 +17807,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_W"
 			(at 63.5 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -17840,7 +17840,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C76935"
+		(property "LCSC" "C23733"
 			(at 63.5 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -17851,7 +17851,7 @@
 				)
 			)
 		)
-		(property "MPN" "GRM033R61A105ME44D"
+		(property "MPN" "CL05A475MP5NRNC"
 			(at 63.5 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -17862,7 +17862,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Murata"
+		(property "Manufacturer" "Samsung Electro-Mechanics"
 			(at 63.5 129.54 0)
 			(hide yes)
 			(show_name no)

@@ -4127,7 +4127,7 @@
 		)
 		(uuid "d984666e-30d4-5581-9f61-599362eca66d")
 	)
-	(text_box "RP2350 1.1V DC-DC SMPS: follow the datasheet placement. RP2350 DS 6.3.8 (binding): C58 = CIN at VREG_VIN, C56 = COUT on +1V1 with VREG_FB taken from the C56 pad (not under L2); C58, L2 and C56 on the U10 side, smallest hot loops; CIN/COUT GND to VREG_PGND at one point with 2 vias; no copper under L2 / VREG_LX on the next layer. L2 AOTA-B201610S3R3 is polarity-marked: orientation as DS Fig. 23/25 (pin 2 = VREG_LX as on the flown house board). R41 27R + C57 4.7 uF filter VREG_AVDD (1.25 kHz, BR-21; 3.135-3.63 V); C57 gets its own GND via to the EP. DS: CIN >= 4.7 uF, COUT 4.7 uF +/-20 %; C134 = the 2nd 4.7 uF on +1V1 that DS 6.3.8 recommends at DVDD pin 23 (fitted per the 2026-10-09 ruling, house board fits two): place it at pin 23."
+	(text_box "RP2350 1.1V DC-DC SMPS: follow the datasheet placement. RP2350 DS 6.3.8 (binding): C58 = CIN at VREG_VIN, C56 = COUT on +1V1 with VREG_FB taken from the C56 pad (not under L2); C58, L2 and C56 on the U10 side, smallest hot loops; CIN/COUT GND to VREG_PGND at one point with 2 vias; no copper under L2 / VREG_LX on the next layer. L2 AOTA-B201610S3R3 is polarity-marked: orientation as DS Fig. 26 / 28 (pin 2 = VREG_LX as on the flown house board). P5 condition (tools/check_p5_conditions.py SMPS): C58, L2, C56 and C57 on U10's side within 3 mm of pins 49 / 48 / 50 / 46. R41 27R + C57 4.7 uF filter VREG_AVDD (1.25 kHz, BR-21; 3.135-3.63 V); C57 gets its own GND via to the EP. DS: CIN >= 4.7 uF, COUT 4.7 uF +/-20 %; C134 = the 2nd 4.7 uF on +1V1 that DS 6.3.8 recommends at DVDD pin 23 (fitted per the 2026-10-09 ruling, house board fits two): place it at pin 23."
 		(exclude_from_sim no)
 		(at 223.52 292.1 0)
 		(size 86.36 22.86)

@@ -90,7 +90,7 @@ The proposal's net swap was rejected: user row to GPIO4/5 (UART1), O4 pads to GP
 | Line | Old | New |
 |---|---|---|
 | PINMAP.md:35, :70, :286 | RP0 "also SBUS-in, inverted, for a DJI remote" | "RP0: SBUS/CRSF receivers through the UART0 remap preset (§5.4); 8E2 needs a release with the uart_hw.c fix" (applied 2026-10-09, P4 critique: PINMAP §2 pin 5 row and the §5.1 config.h comment) |
-| §5.4 | - | add the presets of §2.3 |
+| §5.4 | - | add the presets of §2.3 (applied 2026-10-10, P4 critique round 3) |
 | §6, GPIO0 row | "pad RXB (+ GND)" | "pad RXB + SW1 (TS2306A) to GND; ELRS button: bind / Wi-Fi / reboot" |
 | §6, `led_rgb` row | `ledidx_rgb_vtx [0]` | no VTX indication: ELRS allocates `vtxStatusLEDs` but never writes them (V, devRGB.cpp:15, :356-360; only `statusLEDs` at :75-79) |
 | §4.5 or §2 | - | "U10 stepping A3 or later": RP2350-E9 (pad leakage holds a floating input near 2.2 V against the pull-down) affects A2 only, fixed in A3 (V, DS D.5.1, C.2.1). The boot-state table and the inverted-RX pull-down (uart_hw.c:261-263) rely on it |

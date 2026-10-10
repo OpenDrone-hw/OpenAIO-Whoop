@@ -1883,7 +1883,7 @@
 	)
 	(rectangle
 		(start 17.78 127)
-		(end 177.8 196.85)
+		(end 175.26 196.85)
 		(stroke
 			(width 0)
 			(type default)
@@ -2492,7 +2492,7 @@
 	(text_box "AGM210MAP (AGMSEMI, DS VER2.73 p1 top view; D23 rule, P3 symbol/footprint check): 1 S1 N source = GND, 2 G1 N gate = x_PWM, 3 S2 P source = +BATT, 4 G2 P gate = x_COM, 5/6 + EP D2 (P drain) and 7/8 + EP D1 (N drain) = PHASE_x; the two drain pads are joined only by the phase island on the board (never split it). Gates straight from the EFM8: no gate resistors and no 0R options (tinyPEPPER / Matrix II field record; bom_plan v3 has none); the about 0.15 A gate-edge current for tens of ns is a transient above the EFM8's 50 mA per-pin abs max, accepted as on the Matrix II (spec 4.4). VGS +-12 V, VDS 20 V abs max vs VDD <= 5.25 V regen peak. Hot loop (D77, P4 critique): one cap per AGM210MAP, C20 / C23 / C21 10 uF X6S 0402 from pin 3 S2 (+BATT) to pin 1 S1 (GND) at the cell's lead side, both pads via-in-pad, so the commutation loop closes at the pins (Matrix II: one cap per FET); the three are also the ESC +BATT bulk. Bluejay: first power-up A_X_10_96 (about 200 ns; DS td(off) + tf = 58 ns N at RGEN 3.3 Ohm, 84 ns P at 1 Ohm, longer on EFM8 port drive), then A_X_5_96 (Matrix II) after the V2 shoot-through check (PINMAP 7.3); the DS Qg of 23 / 33 nC disagrees 3-5x with Ciss 950 pF, so V2 measures the gate edges."
 		(exclude_from_sim no)
 		(at 19.05 176.53 0)
-		(size 157.48 19.05)
+		(size 154.94 19.05)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2549,7 +2549,7 @@
 		)
 		(uuid "6ebdb997-59d5-5f1c-9369-59619f208b43")
 	)
-	(text_box "Pin use = Bluejay src/Layouts/BB51/A.inc (0368d11): P0.1 B_Mux, P0.2 C_Mux, P0.3 A_Mux, P0.4 V_Mux (neutral), P0.5 RTX; P1.0/P1.1 A_Pwm/A_Com, P1.2/P1.3 B, P1.4/P1.5 C (PWM active high = N gate, COM active low = P gate, all push-pull); P2.0 DebugPin = C2D. Pin numbers: EFM8BB51 data sheet Rev 1.0 Table 6.1. P0.0, P0.6, P0.7, P1.6 unused: no-connect (PINMAP 7.1).\nVDD pin 4 straight on +BATT, no series R (it must track the P sources); C19 100 nF X6S at pin 4 / GND pin 3. The data sheet's 1 uF (Fig. 5.1) is the phase B hot-loop cap C23 10 uF X6S (about 3-4 uF effective at 4.2 V); BR-05 as amended (P4 critique): within 4 mm of pin 4 through the +BATT plane, 100 nF at the pin (v3 cell site 3.4-3.9 mm). ESC3 has no extra cap (C30 deleted, D77). VDD abs max 5.5 V vs 4.35 V cell + ripple + regen 4.7-5.25 V (V3c).\nDShot (P4-8): R12 2.4k at RTX. At a 2.5 V cell the 3.3 V DShot high sits up to 0.53 V over P0.5's VDD + 0.3 V abs max; R12 holds the clamp current to <= 0.35 mA ((3.33 - 2.5) V / 2.4k; about 0.1-0.2 mA after the clamp drop) against 50 mA per pin. RSTb/C2CK: internal pull-up only (PINMAP F12).\nC2D / C2CK: TP1 / TP2, mask-open filled test vias (D67), bench recovery only: NextPCB pre-programs Bluejay before reflow, later updates go through Betaflight passthrough on DSHOT."
+	(text_box "Pin use = Bluejay src/Layouts/BB51/A.inc (0368d11): P0.1 B_Mux, P0.2 C_Mux, P0.3 A_Mux, P0.4 V_Mux (neutral), P0.5 RTX; P1.0/P1.1 A_Pwm/A_Com, P1.2/P1.3 B, P1.4/P1.5 C (PWM active high = N gate, COM active low = P gate, all push-pull); P2.0 DebugPin = C2D. Pin numbers: EFM8BB51 data sheet Rev 1.0 Table 6.1. P0.0, P0.6, P0.7, P1.6 unused: no-connect (PINMAP 7.1).\nVDD pin 4 straight on +BATT, no series R (it must track the P sources); C19 100 nF X6S at pin 4 / GND pin 3. The data sheet's 1 uF (Fig. 5.1) is the phase B hot-loop cap C23 10 uF X6S (about 2.6-2.8 uF effective at 4.2 V, Murata DC-bias curve); BR-05 as amended (P4 critique): within 4 mm of pin 4 through the +BATT plane, 100 nF at the pin (v3 cell site 3.4-3.9 mm). ESC3 has no extra cap (C30 deleted, D77). VDD abs max 5.5 V vs 4.35 V cell + ripple + regen 4.7-5.25 V (V3c).\nDShot (P4-8): R12 2.4k at RTX. At a 2.5 V cell the 3.3 V DShot high sits up to 0.53 V over P0.5's VDD + 0.3 V abs max; R12 holds the clamp current to <= 0.35 mA ((3.33 - 2.5) V / 2.4k; about 0.1-0.2 mA after the clamp drop) against 50 mA per pin. RSTb/C2CK: internal pull-up only (PINMAP F12).\nC2D / C2CK: TP1 / TP2, mask-open filled test vias (D67), bench recovery only: NextPCB pre-programs Bluejay before reflow, later updates go through Betaflight passthrough on DSHOT."
 		(exclude_from_sim no)
 		(at 19.05 88.9 0)
 		(size 105.41 31.75)

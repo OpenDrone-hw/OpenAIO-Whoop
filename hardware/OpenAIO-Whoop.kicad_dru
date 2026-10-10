@@ -210,9 +210,11 @@
   (condition "(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SPI1.*' || A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*' || A.NetName == '*SHUNT_SENSE_*')"))
 
 # Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.
+# D21 / FLOORPLAN Open: the RTC6705 (bottom) feeds the PA (top), so RF_PA_IN carries the one RF via,
+# fenced by GND vias at <= 1 mm (route/prep); every other RF net stays via-free.
 (rule "RF: no vias"
   (constraint disallow via)
-  (condition "A.NetClass == 'RF'"))
+  (condition "A.NetClass == 'RF' && A.NetName != '/VTX/RF_PA_IN'"))
 
 # Spec 8.2: CPWG, gap 0.15 mm (the RF clearance), L1 over L2 and L6 over L5, 50 ohm +- 10 %.
 # Width 0.105 mm from the 2-D field solver with solder mask (setup_board.py, impedance.json):

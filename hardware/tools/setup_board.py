@@ -126,16 +126,17 @@ DIFF_PAIR_PRESETS = [(0.12, 0.12, 0.25)]                   # spec 8.2 USB FS pai
 TEXT_DEFAULTS = {"silk_line_width": 0.13, "silk_text_size_h": 0.8, "silk_text_size_v": 0.8,
                  "silk_text_thickness": 0.13}             # spec 8.4 / 13, D12: new silk items start at 0.8 / 0.13
 
-# spec 8.4 net classes (names after OpenAIO, LINEUP C8) + GND (orchestrator, spec 8.3 power-via arrays).
+# spec 8.4 net classes (names and colours after OpenAIO, LINEUP C8; Gate violet because OpenAIO's green sits on the
+# default wire colour, P4 critique r3) + GND (orchestrator, spec 8.3 power-via arrays).
 # (name, track, clearance, via dia, via drill, colour, priority, extra)  track None = computed RF width
 NETCLASSES = [
-    ("RF", None, 0.15, 0.35, 0.20, "rgb(0, 170, 60)", 0, {"tuning_profile": "RF50"}),
+    ("RF", None, 0.15, 0.35, 0.20, "rgb(200, 160, 0)", 0, {"tuning_profile": "RF50"}),
     ("USB", 0.12, 0.12, 0.35, 0.20, "rgb(30, 110, 255)", 1, {"diff_pair_width": 0.12, "diff_pair_gap": 0.12}),
-    ("VBAT", 0.50, 0.15, 0.40, 0.20, "rgb(220, 30, 30)", 2, {}),
-    ("Phase", 0.50, 0.15, 0.40, 0.20, "rgb(255, 140, 0)", 3, {}),
-    ("Gate", 0.15, 0.10, 0.35, 0.20, "rgb(230, 200, 0)", 4, {}),
-    ("Analog", 0.10, 0.15, 0.35, 0.20, "rgb(0, 170, 190)", 5, {}),
-    ("Power", 0.25, 0.09, 0.35, 0.20, "rgb(200, 0, 200)", 6, {}),
+    ("VBAT", 0.50, 0.15, 0.40, 0.20, "rgb(220, 40, 40)", 2, {}),
+    ("Phase", 0.50, 0.15, 0.40, 0.20, "rgb(200, 0, 200)", 3, {}),
+    ("Gate", 0.15, 0.10, 0.35, 0.20, "rgb(120, 60, 220)", 4, {}),
+    ("Analog", 0.10, 0.15, 0.35, 0.20, "rgb(0, 160, 160)", 5, {}),
+    ("Power", 0.25, 0.09, 0.35, 0.20, "rgb(255, 140, 0)", 6, {}),
     ("GND", 0.20, 0.09, 0.40, 0.20, "rgb(130, 130, 130)", 7, {}),
 ]
 DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "via_drill": 0.20,
@@ -168,7 +169,7 @@ COMPONENT_CLASSES = [
     ("MOTOR_PAD", ["*MotorPad*", "*motor_pad*"]),                                  # top pad, far side is a 0.9 ring
 ]
 def sheet_classes():
-    """D75 (board context): component class per schematic sheet (POWER, ESC1..ESC4, RP2354A, IMU, OSD, BLACKBOX, RX,
+    """D75 (board context): component class per schematic sheet (POWER, ESC1..ESC4, RP2350A, IMU, OSD, BLACKBOX, RX,
     VTX, LED, PADS) from hardware/bom_plan.json, assigned by reference in the .kicad_pro (no board text edits)."""
     path = os.path.join(HW, "bom_plan.json")
     if not os.path.exists(path):

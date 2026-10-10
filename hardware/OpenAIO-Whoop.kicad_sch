@@ -1843,7 +1843,7 @@
 		)
 		(column_widths 22.86 55.88 22.86 50.8 116.84)
 		(row_heights 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81 3.81
-			3.81 3.81 3.81
+			3.81 3.81 3.81 3.81
 		)
 		(uuid "47cbc619-2bdc-5efd-9fa4-666c03a3b6ac")
 		(cells
@@ -3042,7 +3042,7 @@
 				)
 				(uuid "5fc563fb-f6d2-5ca5-af40-54ae3ae8d12a")
 			)
-			(table_cell "GND"
+			(table_cell "PA_VREF"
 				(exclude_from_sim no)
 				(at 17.78 265.43 0)
 				(size 22.86 3.81)
@@ -3059,7 +3059,7 @@
 				)
 				(uuid "f179b2e3-7b69-56e0-97fd-7626a7286b49")
 			)
-			(table_cell "battery -"
+			(table_cell "U22 LP5907-2.85 (EN = PA_EN, off in HD)"
 				(exclude_from_sim no)
 				(at 40.64 265.43 0)
 				(size 55.88 3.81)
@@ -3076,7 +3076,7 @@
 				)
 				(uuid "622c487d-fd75-574b-8fcc-6d7f71d9d461")
 			)
-			(table_cell "0 V"
+			(table_cell "2.85 V"
 				(exclude_from_sim no)
 				(at 96.52 265.43 0)
 				(size 22.86 3.81)
@@ -3093,7 +3093,7 @@
 				)
 				(uuid "0d08208b-cc6f-5a48-bc33-52073dfe0b81")
 			)
-			(table_cell "-"
+			(table_cell "about 10 mA"
 				(exclude_from_sim no)
 				(at 119.38 265.43 0)
 				(size 50.8 3.81)
@@ -3110,7 +3110,7 @@
 				)
 				(uuid "10a05ccb-40a9-54d0-b2c0-827635b87497")
 			)
-			(table_cell "all sheets"
+			(table_cell "SE5004L VREF/EN (local, VTX)"
 				(exclude_from_sim no)
 				(at 170.18 265.43 0)
 				(size 116.84 3.81)
@@ -3126,6 +3126,91 @@
 					(justify left top)
 				)
 				(uuid "03a41039-1273-5b2a-bcea-ce30a0a796d5")
+			)
+			(table_cell "GND"
+				(exclude_from_sim no)
+				(at 17.78 269.24 0)
+				(size 22.86 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "c69d1f97-90fe-5060-a301-5af95f1cf4dd")
+			)
+			(table_cell "battery -"
+				(exclude_from_sim no)
+				(at 40.64 269.24 0)
+				(size 55.88 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "473927e2-a5f8-5216-9a89-96281dc1a1e6")
+			)
+			(table_cell "0 V"
+				(exclude_from_sim no)
+				(at 96.52 269.24 0)
+				(size 22.86 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "ffddef44-d2c0-5b8e-9e82-fbcd6f5001e3")
+			)
+			(table_cell "-"
+				(exclude_from_sim no)
+				(at 119.38 269.24 0)
+				(size 50.8 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "57fbf78c-faa0-52b2-986f-8f158aa50321")
+			)
+			(table_cell "all sheets"
+				(exclude_from_sim no)
+				(at 170.18 269.24 0)
+				(size 116.84 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "e1e1249c-7153-5ef3-a279-5d29586990a8")
 			)
 		)
 	)

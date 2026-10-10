@@ -348,7 +348,7 @@ The renders are in `images/`, plus `p2v3/renders/corner_before.png` and `corner_
 5. **BR-14/BR-09 preconditions broken (layout-dfm-power).** U21 is 12.3 mm from U4, and C13 is next to U4, so U21 IN has
    no input cap. U12 OUT is 6.1 mm from C62 and IN 4.4-4.7 mm from C61. Put U21 beside U4, or give it a local 1 µF on IN.
    Move U12 to the BMI270. Check decoupling per pin.
-6. **Binding labels not proven (layout-dfm-power).** Missing: the M4 (J13) and BZ- (J22) labels, and the pin-1 dots for
+6. **Binding labels not proven (layout-dfm-power).** *Labels fixed 2026-10-10 (P4 critique round 3): the LED / buzzer row labels sat one pad off (the column was reversed in step 5, the labels were not), so the BZ- pad read '5V'; the board now has one label per pad aligned with it (BZ- 5V LED GND) and M4 at J13 (`p2v3/p4/fix3/scripts/silk_fix3.py`, idempotent: re-run it on any routing checkpoint older than this); check_conventions B7 now requires each solder pad's nearest aligned silk label to equal its pad code (a shifted label FAILs). J33 GND sits 0.148 mm from U6's tented, filled+capped EP via ring (KiCad 'silkscreen over pad' 0.15: one silk_overlap warning, accepted, nothing to clip on a tented via). Still open below: the pin-1 dots and the name size.* Missing: the M4 (J13) and BZ- (J22) labels, and the pin-1 dots for
    J32 and J1. The product name fits only at 0.8 mm, against 1.4 mm in D59. Free the silk space, or log an owner decision
    for 0.8 mm.
 7. **5.8 GHz interstage (rf-firmware).** U20 RFin (pin 3) faces the edge, while the RTC6705 and C110 sit on the inner side.
@@ -368,3 +368,16 @@ The renders are in `images/`, plus `p2v3/renders/corner_before.png` and `corner_
     the AE2 feed across the no-ground area, and X4 is 0.23 mm from AE2's pads. Put the whole pi on the bottom at the feed
     and run an L3 stripline with GND fences on User.2. Then either log a scoped D75 exemption (bench-only Wi-Fi, VTX off
     under F9) or re-site AE2/U16.
+11. **RP2354A core SMPS on the far side (P4 critique round 3, digital-firmware MAJOR).** RP2350 DS 6.3.8.1: "Don't place
+    any of CIN/LX/COUT on the opposite side of the PCB". U10 is on F at (112.0, 106.9); C58 (CIN, pin 49), L2 (pad 2 = LX,
+    2.7 mm from pin 48), C56 (COUT, under the EP) and C57 (VREG_AVDD filter, pin 46) are on B. Move all four to F beside
+    pins 46-50 (C58 across 49 / 47, L2 with pad 2 at pin 48 in the DS Fig. 26 / 28 orientation, C56 at pin 50, C57 at 46
+    with its own GND via to the EP); SW1, now at (113.6, 102.3) F, moves together with D8. Routing: VREG_FB from the C56 pad,
+    not under L2; CIN / COUT GND to VREG_PGND at one point with 2 vias; no copper under L2 / VREG_LX on In1. Scripted:
+    `check_p5_conditions.py` SMPS (5 lines). If F cannot close: a scoped deviation in DECISIONS.md and a V9 bench item (DVDD
+    ripple and load step at the Betaflight clock).
+12. **More placement conditions scripted (P4 critique round 3, `check_p5_conditions.py` BOOT / USB / NOR / VTX):** R44 pad 1
+    within 1.5 mm of U10 pin 60 on U10's side (now 7.4 mm, B; the 1k isolates the stub, low impact); D8 on SW1's side with
+    BOOT_SW <= 3 mm (now B vs F, 3.3 mm); R43 <= 2 mm from pin 51 (2.3); C65 <= 1.5 mm from U13 pin 8 (2.1); C122 <= 1.5 mm
+    from U22 IN, same side (meets it; C122 becomes a 4.7 uF 0402 in the schematic, LP5907 CIN > 0.7 uF effective: the next
+    `sync_pcb.py` swaps the 0201 land for an 0402). Current board: 15 ok / 28 FAIL.

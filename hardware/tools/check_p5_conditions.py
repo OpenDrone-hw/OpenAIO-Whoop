@@ -5,7 +5,11 @@
 
 check_netlist N2 sees only that a supply pin shares a net with a capacitor; it cannot see distance. Several P4
 decisions removed or shared a capacitor on the condition that P5 places a part next to a pin (D77 hot-loop caps,
-D79 C17 deleted, BR-05 EFM8 VDD bulk, BR-14 shared LP5912 CIN, BR-08, the USB inlet parts, the boost COUT).
+D79 C17 deleted, BR-05 EFM8 VDD bulk, BR-14 shared LP5912 CIN, BR-08, the USB inlet parts, the boost COUT), and the
+sheet notes / bom_plan carry datasheet placement rules (P4 critique round 3): the RP2354A core SMPS on U10's side
+(RP2350 DS 6.3.8.1), the BOOTSEL strap R44 + D8 / SW1, the USB series resistors, the NOR VCC cap and the LP5907 CIN.
+Routing-stage conditions that need copper (VREG_FB taken from the C56 pad and not under L2, one CIN/COUT GND point
+with 2 vias, no copper under L2 / VREG_LX on In1) are listed in research/FLOORPLAN.md, not checked here.
 This script turns each condition into a pass/fail number on the board: distances are centre to centre in mm
 (part centre to pad centre where a pin is named), sides from the footprint layer.
 
@@ -148,6 +152,51 @@ if need("BOOST", ["U2", "C8", "C9", "C10", "C11"]):
     ok = ds[0][0] <= 2.0 and ds[-1][0] <= 5.0
     report("ok" if ok else "FAIL", "BOOST", "C8-C11 to U2 VOUT pin 3: " + ", ".join("%s %.1f" % (c, d) for d, c in ds)
            + " mm (nearest <= 2.0, all <= 5.0)")
+
+# SMPS (RP2350 DS 6.3.8.1, binding: "Don't place any of CIN/LX/COUT on the opposite side of the PCB"; sheet note RP2350A):
+# C58 CIN at VREG_VIN pin 49, L2 LX pad (2) at VREG_LX pin 48, C56 COUT at VREG_FB pin 50, C57 CFILT at VREG_AVDD
+# pin 46, all on U10's side within 3 mm. L2 pad 2 = VREG_LX and pad 1 = +1V1 as on the flown house board (DS Fig. 26 /
+# 28 orientation; a part on the far side mirrors the field direction, which the side check catches).
+for ref, pin, lim in (("C58", 49, 3.0), ("L2", 48, 3.0), ("C56", 50, 3.0), ("C57", 46, 3.0)):
+    if need("SMPS", [ref, "U10"]):
+        a = pad(ref, 2) if ref == "L2" else centre(ref)
+        d = dist(a, pad("U10", pin))
+        ok = side(ref) == side("U10") and d <= lim
+        report("ok" if ok else "FAIL", "SMPS", "%s%s to U10 pin %d: %.1f mm, %s vs U10 %s (<= %.1f, same side)"
+               % (ref, " LX pad" if ref == "L2" else "", pin, d, side(ref), side("U10"), lim))
+if need("SMPS", ["L2"]):
+    nets = {p.GetNumber(): p.GetNetname() for p in FP["L2"].Pads()}
+    ok = nets.get("2", "").endswith("VREG_LX") and nets.get("1", "").endswith("+1V1")
+    report("ok" if ok else "FAIL", "SMPS", "L2 pad 1 %s, pad 2 %s (pad 2 = VREG_LX, pad 1 = +1V1)" % (nets.get("1"), nets.get("2")))
+
+# BOOT (sheet notes RP2350A / RX, bom_plan R44 / D8): R44 pad 1 at QSPI_SS pin 60 (stub <= 1 mm, RPi guide R6 'close to
+# the flash' = the RP2354A package), D8 on SW1's side with BOOT_SW <= 3 mm
+if need("BOOT", ["R44", "U10"]):
+    d = dist(pad("R44", 1), pad("U10", 60))
+    ok = side("R44") == side("U10") and d <= 1.5
+    report("ok" if ok else "FAIL", "BOOT", "R44 pad 1 to U10 pin 60: %.1f mm, %s vs U10 %s (<= 1.5, same side)" % (d, side("R44"), side("U10")))
+if need("BOOT", ["D8", "SW1"]):
+    d = dist(pad("D8", 3), pad("SW1", 1))
+    ok = side("D8") == side("SW1") and d <= 3.0
+    report("ok" if ok else "FAIL", "BOOT", "D8 K (BOOT_SW) to SW1 pin 1: %.1f mm, %s vs SW1 %s (<= 3.0, same side)" % (d, side("D8"), side("SW1")))
+
+# USB series resistors (RPi hardware design 5.1: 27R within 1-2 mm of the pins; sheet note RP2350A)
+for r, pin in (("R42", 52), ("R43", 51)):
+    if need("USB", [r, "U10"]):
+        d = dist(centre(r), pad("U10", pin))
+        report("ok" if d <= 2.0 else "FAIL", "USB", "%s to U10 pin %d: %.1f mm (<= 2.0)" % (r, pin, d))
+
+# NOR (blackbox sheet, bom_plan C65): VCC 100 nF at U13 pin 8, same side
+if need("NOR", ["C65", "U13"]):
+    d = dist(centre("C65"), pad("U13", 8))
+    ok = side("C65") == side("U13") and d <= 1.5
+    report("ok" if ok else "FAIL", "NOR", "C65 to U13 VCC pin 8: %.1f mm, %s vs U13 %s (<= 1.5, same side)" % (d, side("C65"), side("U13")))
+
+# LP5907 CIN (DS SNVS798Q 7.2.2.4 / 9.1: > 0.7 uF effective within 1 cm, same side best): C122 4.7 uF at U22 IN pin 4
+if need("VTX", ["C122", "U22"]):
+    d = dist(centre("C122"), pad("U22", 4))
+    ok = side("C122") == side("U22") and d <= 1.5
+    report("ok" if ok else "FAIL", "VTX", "C122 to U22 IN pin 4: %.1f mm, %s vs U22 %s (<= 1.5, same side)" % (d, side("C122"), side("U22")))
 
 n = {s: results.count(s) for s in ("ok", "FAIL", "n/a")}
 print("%d ok, %d FAIL, %d n/a" % (n["ok"], n["FAIL"], n["n/a"]))

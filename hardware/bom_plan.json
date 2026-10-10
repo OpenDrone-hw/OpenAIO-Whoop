@@ -802,7 +802,7 @@
    "lcsc": "C151296",
    "package": "SOD-123FL",
    "footprint": "lib:SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense",
-   "symbol": "Device:D_Zener",
+   "symbol": "lib:SMF5.0A",
    "side": "F",
    "region": "power_entry_bulk",
    "dnp": false,
@@ -3511,7 +3511,7 @@
   {
    "ref": "U10",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "RP2354A",
    "rating": null,
    "manufacturer": "Raspberry Pi",
@@ -3533,7 +3533,7 @@
   {
    "ref": "X1",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "12MHz",
    "rating": null,
    "manufacturer": "Abracon",
@@ -3555,7 +3555,7 @@
   {
    "ref": "C42",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "15pF",
    "rating": "50V C0G",
    "manufacturer": "Murata",
@@ -3580,7 +3580,7 @@
   {
    "ref": "C43",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "15pF",
    "rating": "50V C0G",
    "manufacturer": "Murata",
@@ -3605,7 +3605,7 @@
   {
    "ref": "R40",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "1k",
    "rating": null,
    "manufacturer": "Yageo",
@@ -3630,7 +3630,7 @@
   {
    "ref": "L2",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "3.3uH",
    "rating": null,
    "manufacturer": "Abracon",
@@ -3646,13 +3646,13 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "[PU] RP2354A core SMPS inductor (VREG_LX -> +1V1), polarity-marked",
+   "notes": "[PU] RP2354A core SMPS inductor (VREG_LX -> +1V1), polarity-marked; P5 condition (RP2350 DS 6.3.8.1 'Don't place any of CIN/LX/COUT on the opposite side'): on U10's side within 3 mm of its pin (C58 49, L2 48, C56 50, C57 46), checked by tools/check_p5_conditions.py SMPS (floorplan v3 has them on B: placement stage moves them to F with SW1 / D8)",
    "lib_work": []
   },
   {
    "ref": "C44",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3677,7 +3677,7 @@
   {
    "ref": "C45",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3702,7 +3702,7 @@
   {
    "ref": "C46",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3727,7 +3727,7 @@
   {
    "ref": "C47",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3752,7 +3752,7 @@
   {
    "ref": "C48",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3777,7 +3777,7 @@
   {
    "ref": "C49",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3802,7 +3802,7 @@
   {
    "ref": "C50",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3827,7 +3827,7 @@
   {
    "ref": "C51",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3852,7 +3852,7 @@
   {
    "ref": "C52",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3877,7 +3877,7 @@
   {
    "ref": "C54",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -3902,7 +3902,7 @@
   {
    "ref": "C56",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "4.7uF",
    "rating": "10V X5R",
    "manufacturer": "Samsung Electro-Mechanics",
@@ -3921,13 +3921,13 @@
     "+1V1",
     "GND"
    ],
-   "notes": "+1V1 rail at VREG_FB (PINMAP \u00a73; house sheet has two); [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V)",
+   "notes": "+1V1 rail at VREG_FB (PINMAP \u00a73; house sheet has two); [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V); P5 condition (RP2350 DS 6.3.8.1 'Don't place any of CIN/LX/COUT on the opposite side'): on U10's side within 3 mm of its pin (C58 49, L2 48, C56 50, C57 46), checked by tools/check_p5_conditions.py SMPS (floorplan v3 has them on B: placement stage moves them to F with SW1 / D8)",
    "lib_work": []
   },
   {
    "ref": "C134",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "4.7uF",
    "rating": "10V X5R",
    "manufacturer": "Samsung Electro-Mechanics",
@@ -3952,7 +3952,7 @@
   {
    "ref": "C57",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "4.7uF",
    "rating": "10V X5R",
    "manufacturer": "Samsung Electro-Mechanics",
@@ -3971,13 +3971,13 @@
     "VREG_AVDD",
     "GND"
    ],
-   "notes": "VREG_AVDD pin 46 RC; [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V)",
+   "notes": "VREG_AVDD pin 46 RC; [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V); P5 condition (RP2350 DS 6.3.8.1 'Don't place any of CIN/LX/COUT on the opposite side'): on U10's side within 3 mm of its pin (C58 49, L2 48, C56 50, C57 46), checked by tools/check_p5_conditions.py SMPS (floorplan v3 has them on B: placement stage moves them to F with SW1 / D8)",
    "lib_work": []
   },
   {
    "ref": "C58",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "4.7uF",
    "rating": "10V X5R",
    "manufacturer": "Samsung Electro-Mechanics",
@@ -3996,13 +3996,13 @@
     "+3V3",
     "GND"
    ],
-   "notes": "VREG_VIN pin 49; [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V)",
+   "notes": "VREG_VIN pin 49; [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V); P5 condition (RP2350 DS 6.3.8.1 'Don't place any of CIN/LX/COUT on the opposite side'): on U10's side within 3 mm of its pin (C58 49, L2 48, C56 50, C57 46), checked by tools/check_p5_conditions.py SMPS (floorplan v3 has them on B: placement stage moves them to F with SW1 / D8)",
    "lib_work": []
   },
   {
    "ref": "R41",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "27R",
    "rating": null,
    "manufacturer": "Yageo",
@@ -4027,7 +4027,7 @@
   {
    "ref": "R42",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "27R",
    "rating": null,
    "manufacturer": "Yageo",
@@ -4045,13 +4045,13 @@
    "nets": [
     "USB_D_P"
    ],
-   "notes": "USB_DP series near pin 52 -> J31 pin 3 D+ through the D7 ESD array (net USB_D_P); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design \u00a75.1), 90 Ohm diff pair over unbroken ground, length-matched (D33)",
+   "notes": "USB_DP series near pin 52 -> J31 pin 3 D+ through the D7 ESD array (net USB_D_P); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design \u00a75.1), 90 Ohm diff pair over unbroken ground, length-matched (D33); P5 condition scripted (tools/check_p5_conditions.py USB: R42 / R43 within 2 mm of pins 52 / 51)",
    "lib_work": []
   },
   {
    "ref": "R43",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "27R",
    "rating": null,
    "manufacturer": "Yageo",
@@ -4069,13 +4069,13 @@
    "nets": [
     "USB_D_N"
    ],
-   "notes": "USB_DM series near pin 51 -> J31 pin 2 D- through the D7 ESD array (net USB_D_N); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design \u00a75.1), 90 Ohm diff pair over unbroken ground, length-matched (D33)",
+   "notes": "USB_DM series near pin 51 -> J31 pin 2 D- through the D7 ESD array (net USB_D_N); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design \u00a75.1), 90 Ohm diff pair over unbroken ground, length-matched (D33); P5 condition scripted (tools/check_p5_conditions.py USB: R42 / R43 within 2 mm of pins 52 / 51)",
    "lib_work": []
   },
   {
    "ref": "R44",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "1k",
    "rating": null,
    "manufacturer": "Yageo",
@@ -4094,13 +4094,13 @@
     "QSPI_SS",
     "FC_BOOT"
    ],
-   "notes": "QSPI_SS (BOOT, pin 60) -> 1k -> FC_BOOT: D8.A1 (shared boot button, D65) and the FCB test via TP9; keep the QSPI_SS-to-R44 stub <= 1 mm (in-package flash CS, RPi guide R6), any length beyond R44 (the 1k isolates the diode capacitance). 1k = the RPi guide's R6 (Hardware design with RP2350, BOOTSEL circuit); with the D8 drop CSn <= 0.51 V pressed",
+   "notes": "QSPI_SS (BOOT, pin 60) -> 1k -> FC_BOOT: D8.A1 (shared boot button, D65) and the FCB test via TP9; keep the QSPI_SS-to-R44 stub <= 1 mm (in-package flash CS, RPi guide R6), any length beyond R44 (the 1k isolates the diode capacitance). 1k = the RPi guide's R6 (Hardware design with RP2350, BOOTSEL circuit); with the D8 drop CSn <= 0.51 V pressed; P5 condition scripted (tools/check_p5_conditions.py BOOT: pad 1 within 1.5 mm of U10 pin 60, same side)",
    "lib_work": []
   },
   {
    "ref": "R45",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "10k",
    "rating": null,
    "manufacturer": "Yageo",
@@ -4125,7 +4125,7 @@
   {
    "ref": "R46",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "10k",
    "rating": null,
    "manufacturer": "Yageo",
@@ -4150,7 +4150,7 @@
   {
    "ref": "C59",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -4175,7 +4175,7 @@
   {
    "ref": "R47",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "1k",
    "rating": null,
    "manufacturer": "Yageo",
@@ -4200,7 +4200,7 @@
   {
    "ref": "C60",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100nF",
    "rating": "25V X6S",
    "manufacturer": "Murata",
@@ -4225,7 +4225,7 @@
   {
    "ref": "Q26",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "AP1606",
    "rating": null,
    "manufacturer": "ALLPOWER",
@@ -4251,7 +4251,7 @@
   {
    "ref": "R48",
    "block": "fc",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "100k",
    "rating": null,
    "manufacturer": "Yageo",
@@ -4415,7 +4415,7 @@
     "SPI0_MOSI",
     "SPI0_SCK"
    ],
-   "notes": "16 MB blackbox NOR on SPI0 (D66: smallest 16 MB SPI NOR with a published package drawing; replaces the W25Q128JVPIM WSON-8 6x5, courtyard 35.98 -> 11.84 mm2, body 30 -> 9 mm2). PY25Q128HA DS Rev 2.0 (2024-05-07): 2.7-3.6 V, fC 133 MHz / READ 03h 80 MHz, JEDEC ID 85 20 18 (Betaflight m25p16 table on master and 2026.6-maintenance: {133, 80 MHz}; USE_FLASH_M25P16 unchanged, PINMAP comment W25Q128JV -> PY25Q128HA 0x852018), package DF = USON8 3x3x0.55, drawing QRPD-0077. Pins as the WSON: 1 CS#, 2 SO, 3 WP#, 4 GND, 5 SI, 6 SCLK, 7 HOLD#/RESET#, 8 VCC; WP# and HOLD#/RESET# tied to +3V3 (pin 7 must not float, DS p4). Pad 9 = two exposed tie-bar tabs: no net, no-connect flag in the schematic, no vias in the tabs; the 0.71 mm channel between a lead column and the tabs takes one 0.09 track or one via under the body; a filled+capped 0.35/0.20 via fits in each 0.94 x 0.29 lead land. >= 3 mm from the RX antenna hole, on SPI0 next to the RP2354A; either side works. No LCSC or distributor listing found 2026-10-09: NextPCB turnkey sources it by MPN (D60), the NextPCB quote must confirm it; fallbacks with the same pinout and BF support (footprints not staged): PY25Q128HA-QVH-IR (USON-8 4x4, same die/ID), GD25Q128EQIGR (USON-8 4x4, C84018). Blackbox 2 kHz estimate 90-130 KB/s (2-3 min in 16 MB), bench V9",
+   "notes": "16 MB blackbox NOR on SPI0 (D66: smallest 16 MB SPI NOR with a published package drawing; replaces the W25Q128JVPIM WSON-8 6x5, courtyard 35.98 -> 11.84 mm2, body 30 -> 9 mm2). PY25Q128HA DS Rev 2.0 (2024-05-07): 2.7-3.6 V, fC 133 MHz / READ 03h 80 MHz, JEDEC ID 85 20 18 (Betaflight m25p16 table on master and 2026.6-maintenance: {133, 80 MHz}; USE_FLASH_M25P16 unchanged, PINMAP comment W25Q128JV -> PY25Q128HA 0x852018), package DF = USON8 3x3x0.55, drawing QRPD-0077. Pins as the WSON: 1 CS#, 2 SO, 3 WP#, 4 GND, 5 SI, 6 SCLK, 7 HOLD#/RESET#, 8 VCC; WP# and HOLD#/RESET# tied to +3V3 (pin 7 must not float, DS p4). Pad 9 = two exposed tie-bar tabs: no net, no-connect flag in the schematic, no vias in the tabs; the 0.71 mm channel between a lead column and the tabs takes one 0.09 track or one via under the body; a filled+capped 0.35/0.20 via fits in each 0.94 x 0.29 lead land. >= 3 mm from the RX antenna hole, on SPI0 next to the RP2354A; either side works. No LCSC or distributor listing found 2026-10-09: NextPCB turnkey sources it by MPN (D60), the NextPCB quote must confirm it; fallbacks with the same pinout and BF support (footprints not staged): PY25Q128HA-QVH-IR (USON-8 4x4, same die/ID), GD25Q128EQIGR (USON-8 4x4, C84018). Blackbox 2 kHz estimate 90-130 KB/s (2-3 min in 16 MB), bench V9; OPEN ITEM (P4 critique r3, SCHEMATIC.md open items): the NextPCB quote must confirm PY25Q128HA-DFH-IR (Puya DS Rev 2.0 ordering table lists -DFH-IR / -DFH-KR; no distributor listing found 2026-10-10) before the board is frozen; both fallbacks need a USON-8 4x4 land that does not fit the 3x3 site, i.e. a fallback land plus a placement change",
    "lib_work": []
   },
   {
@@ -4440,7 +4440,7 @@
     "+3V3",
     "GND"
    ],
-   "notes": "NOR VCC 100 nF on U13 pin 8 (VCC, right column top) with its GND return to pin 4 (left column bottom) (D66); [PU]",
+   "notes": "NOR VCC 100 nF on U13 pin 8 (VCC, right column top) with its GND return to pin 4 (left column bottom) (D66); [PU]; P5 condition scripted (tools/check_p5_conditions.py NOR: within 1.5 mm of U13 pin 8, same side)",
    "lib_work": []
   },
   {
@@ -6422,13 +6422,13 @@
    "ref": "C122",
    "block": "vtx",
    "sheet": "vtx",
-   "value": "1uF",
+   "value": "4.7uF",
    "rating": "10V X5R",
-   "manufacturer": "Murata",
-   "mpn": "GRM033R61A105ME44D",
-   "lcsc": "C76935",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_W",
+   "manufacturer": "Samsung Electro-Mechanics",
+   "mpn": "CL05A475MP5NRNC",
+   "lcsc": "C23733",
+   "package": "0402",
+   "footprint": "lib:C_0402_1005Metric_W",
    "symbol": "Device:C",
    "side": "F",
    "region": "vtx_pwr",
@@ -6440,7 +6440,7 @@
     "+3V3_VTX",
     "GND"
    ],
-   "notes": "LP5907 input on +3V3_VTX (D53 BR-03); C108 10 uF is the bulk if +3V3_VTX routes C108 -> U22 directly (\u00a76 item 9), else CL05A475MP5NRNC",
+   "notes": "LP5907 (U22) CIN on +3V3_VTX at U22 IN (D53 BR-03): 4.7 uF 0402 X5R, about 2.6 uF effective at 3.3 V (>= 2 uF at -20 % and hot) against LP5907 DS SNVS798Q 5.6 / 7.2.2.4 (> 0.7 uF effective over all conditions, <= 1 cm from IN, same side best); the 1 uF 0201 (about 0.45 uF) failed it and C108 serves the RTC6705 (P4 critique r3, the bom_plan fallback applied); +3V3_VTX then 16.0 uF nominal / about 6.8 uF effective, inside the LP5912 10 uF max",
    "lib_work": []
   },
   {
@@ -7459,7 +7459,7 @@
   {
    "ref": "TP9",
    "block": "io",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "FCB",
    "rating": null,
    "manufacturer": null,
@@ -7528,13 +7528,13 @@
     "RX_BOOT",
     "BOOT_SW"
    ],
-   "notes": "boot-button isolation (D65, Matrix II style shared FC BOOTSEL + RX boot): dual Schottky, common cathode; pad 1 = A1 FC_BOOT (from R44), pad 2 = A2 RX_BOOT (ESP32 GPIO0, any length, away from the 2.4 GHz feed and the TCXO), pad 3 = K BOOT_SW to SW1 (BOOT_SW <= 3 mm). DS41598 Rev 2-2: VF 0.28 V typ / 0.34 V max at 0.1 mA, IR 0.15 uA max at 10 V (25 C; 7.5 uA at 85 C inferred: GPIO0 drop <= 0.34 V released), CT 3.3 pF; X2-DFN1006-3 1.0 x 0.6 x 0.40. Same side as SW1, within 3 mm. Distributor listing active (secondary), no LCSC number found; NextPCB turnkey sources it by MPN (D60)",
+   "notes": "boot-button isolation (D65, Matrix II style shared FC BOOTSEL + RX boot): dual Schottky, common cathode; pad 1 = A1 FC_BOOT (from R44), pad 2 = A2 RX_BOOT (ESP32 GPIO0, any length, away from the 2.4 GHz feed and the TCXO), pad 3 = K BOOT_SW to SW1 (BOOT_SW <= 3 mm). DS41598 Rev 2-2: VF 0.28 V typ / 0.34 V max at 0.1 mA, IR 0.15 uA max at 10 V (25 C; 7.5 uA at 85 C inferred: GPIO0 drop <= 0.34 V released), CT 3.3 pF; X2-DFN1006-3 1.0 x 0.6 x 0.40. Same side as SW1, within 3 mm. Distributor listing active (secondary), no LCSC number found; NextPCB turnkey sources it by MPN (D60); P5 condition scripted (tools/check_p5_conditions.py BOOT)",
    "lib_work": []
   },
   {
    "ref": "TP12",
    "block": "io",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "CLK",
    "rating": null,
    "manufacturer": null,
@@ -7558,7 +7558,7 @@
   {
    "ref": "TP13",
    "block": "io",
-   "sheet": "rp2354a",
+   "sheet": "rp2350a",
    "value": "DIO",
    "rating": null,
    "manufacturer": null,
@@ -7753,12 +7753,13 @@
    "description": "RX (D52/D55/D58): ESP32-PICO-V3 SiP (LGA-48 7x7, in-package flash, crystal and match), SX1281, 52 MHz TCXO, LPF to the wire-antenna hole; Wi-Fi: Johanson 2450AT07A0100001T chip antenna at a board edge with a 0201 pi network (0 R fitted, shunts DNP); shared boot/bind button Alps SKUBAAE010 + Diodes SDM02M30CLP3-7B dual Schottky (FC BOOTSEL via R44 + RX GPIO0, D65)",
    "lib_items": [
     "lib:2450AT07A0100001T",
+    "lib:2450FM07D0034T",
     "lib:AE_WireHole_PTH0.5mm",
     "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2",
     "lib:C_0201_0603Metric_W",
     "lib:C_0402_1005Metric_W",
     "lib:ESP32-PICO-V3",
-    "lib:FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W",
+    "lib:FILTER-SMD_4P-L1.0-W0.5-L_W",
     "lib:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_Dense",
     "lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO",
     "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense",
@@ -7834,7 +7835,7 @@
     "RC0201FR-07287RL [lib:R_0201_0603Metric_W] refs R54",
     "RC0201FR-07680RL [lib:R_0201_0603Metric_W] refs R55",
     "CC0201JRX7R9BB471 [lib:C_0201_0603Metric_W] refs C67",
-    "GRM033R61A105ME44D [lib:C_0201_0603Metric_W] refs C68,C121,C122,C124,C125",
+    "GRM033R61A105ME44D [lib:C_0201_0603Metric_W] refs C68,C121,C124,C125",
     "GRM033C81E104KE14D [lib:C_0201_0603Metric_W] refs C70,C98,C100,C101",
     "RTC6705 [lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_Dense + lib:RTC6705] refs U19",
     "TAXM8M4RDBCCT2T [lib:CRYSTAL-SMD_4P-L3.2-W2.5-BL_Dense] refs X4",
@@ -7843,7 +7844,7 @@
     "RC0201FR-071K2L [lib:R_0201_0603Metric_W] refs R58,R60",
     "GRM0335C1H330JA01D [lib:C_0201_0603Metric_W] refs C104",
     "RC0201FR-07270RL [lib:R_0201_0603Metric_W] refs R59",
-    "CL05A475MP5NRNC [lib:C_0402_1005Metric_W] refs C105,C107,C123",
+    "CL05A475MP5NRNC [lib:C_0402_1005Metric_W] refs C105,C107,C123,C122",
     "RC0201FR-07510KL [lib:R_0201_0603Metric_W] refs R61",
     "RC0201FR-07560KL [lib:R_0201_0603Metric_W] refs R62",
     "RC0201FR-07100KL [lib:R_0201_0603Metric_W] refs R63,R68",
@@ -7884,6 +7885,7 @@
     "lib:R_0201_0603Metric_W",
     "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_Dense",
     "lib:SGM40661YG",
+    "lib:SMF5.0A",
     "lib:SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense",
     "lib:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_Dense",
     "lib:SOT-363_SC-70-6_Dense",
@@ -7896,7 +7898,7 @@
     "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense"
    ],
    "parts": [
-    "SMF5.0A [lib:SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense] refs D1",
+    "SMF5.0A [lib:SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense + lib:SMF5.0A] refs D1",
     "CL10A226MO7JZNC [lib:C_0603_1608Metric_W] refs C1,C2",
     "HCS1206FTL500 [lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_Dense] refs R1",
     "INA186A3IDCKR [lib:SOT-363_SC-70-6_Dense] refs U1",
@@ -7987,8 +7989,8 @@
   },
   "by_package": {
    "0603": 7,
-   "0201": 145,
-   "0402": 29
+   "0201": 144,
+   "0402": 30
   },
   "lib_items": 77,
   "lib_footprints": 52,
