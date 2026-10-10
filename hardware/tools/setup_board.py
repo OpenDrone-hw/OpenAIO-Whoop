@@ -95,6 +95,24 @@ SHUNT_CORRIDOR = ((-12.9, -3.5), (-8.6, 3.4))    # D10 / spec 10: B+ pad J2 -> s
 TAB_HALF, TAB_IN, TAB_OUT = 1.5, 1.3, 0.5        # spec 7: tab 1.2-1.5 wide + 1.0 mm part keepout beyond the 0.3 band
 TABS = {"T1": ((14.447, 14.447), (0.7071, 0.7071)), "T3": ((-14.447, -14.447), (-0.7071, -0.7071)), "T4": ((-14.447, 14.447), (-0.7071, 0.7071))}   # P2 v3 (concept D): tabs at the three ear tips, inside the MOUNT flange keep-outs (no extra area)
 
+# Floorplan v4 (research/FLOORPLAN-V4.md 3, 4, 7; D89-D96). None = the v3 board above. configure_v4(spec) switches the
+# outline (outline_v4.prims), the rule areas (keepouts_v4) and the DRU (v4_rules). The spec is placement data (JSON):
+# S, webs, AE1 position, the D90 / D92 / USB polygons and the K3 / K5 / K6 / shunt anchors re-measured after placement.
+V4 = None
+V4_FLANGE_PAD_D = 4.6                            # v4 (Matrix measured): no pad copper within r 2.30 of a hole centre
+V4_RX_HOLE_R = 1.0                               # K2: circle D2.0 at AE1, all layers (only the L1 feed reaches the pad)
+V4_RX_FEED_HW = 0.6                              # K3: RF_RX_FEED half width, U18-22 -> FL1 -> AE1
+V4_VTX_STRIP_HW = 0.5                            # K5: RF_VTX_STRIP half width around the 5.8 GHz chain pads
+# Hand-off (D111/D112): the repo board IS floorplan v4 (placement B4, front chamfer c = 3.0). Its outline (outline_v4.py,
+# then the D112 chamfer) and its rule areas (keepouts_v4, re-anchored by the placement stages) are placement data carried
+# by the board. With V4_BOARD (and no configure_v4 spec) this script keeps both, checks the board's rule-area set against
+# V4_AREAS and writes the v4 DRU; configure_v4(spec) still redraws them from a placement spec (comparison copies).
+V4_BOARD = True
+V4_AREAS = ("MOUNT_LEFT", "MOUNT_REAR", "MOUNT_RIGHT", "MOUNT_PAD_LEFT", "MOUNT_PAD_REAR", "MOUNT_PAD_RIGHT",
+            "PART_EDGE_BAND", "RF_RX_HOLE", "RF_RX_FEED", "RF_RX_ROOT", "RF_VTX_STRIP", "RF_PAD_CUTOUT",
+            "RF_PAD_CUTOUT_L3", "SHUNT_CORRIDOR", "WIFI_VOID_V1", "WIFI_VOID_V2_L2", "WIFI_VOID_V2_L3", "WIFI_FAR_F",
+            "WIFI_GND_LINK", "BOOST_GND_L5", "USB_MATING", "TAB_T1", "TAB_T3", "TAB_T4")
+
 # spec 8.1 / 8.4 + D6: board minimums (the .kicad_pro "rules" block).  Via 0.35 / 0.20 is the OpenDrone
 # standard via (D6, owner-confirmed buildable at NextPCB), so the annular minimum is 0.075 and the minimum through
 # hole is 0.20 (spec 8.4): DRC then enforces the standard via, although both fabs drill 0.15.
@@ -797,6 +815,8 @@ def impedance_report(rec):
 # ==============================================================================================================
 def outline_primitives():
     """Edge.Cuts primitives relative to the centre: ("line", a, b), ("arc", start, mid, end), ("circle", c, r)."""
+    if V4:                                                  # floorplan v4: outline_v4.prims (configure_v4)
+        return V4["prims"]
     B, P, RE, RF = BODY_HALF, HOLE_HALF, EAR_R, EAR_FILLET
     dxf = math.sqrt((RE + RF) ** 2 - (B - P + RF) ** 2)    # fillet centre offset along the edge from the hole
 
@@ -915,8 +935,10 @@ def tab_rect(name):
 
 
 # (name, layers, keepout flags (footprints, tracks, vias, pads, zone fills), shape, clip to board, spec note)
-# shape: ("poly", points) | ("path", points, half width) | ("band", width)
+# shape: ("poly", points) | ("path", points, half width) | ("segs", [(a, b), ...], half width) | ("band", width)
 def keepouts():
+    if V4:
+        return keepouts_v4()
     K = []
     for name, (sx, sy) in HOLES.items():
         K.append(("MOUNT_" + name, ["F.Cu", "B.Cu"], dict(footprints=True),
@@ -959,6 +981,146 @@ def keepouts():
         K.append(("TAB_" + t, ["F.Cu", "B.Cu"], dict(footprints=True), ("poly", tab_rect(t)), True,
                   "spec 7: panel tab %s, %.1f mm part keepout beyond the edge band" % (t, TAB_IN - PART_EDGE_BAND)))
     return K
+
+
+def keepouts_v4():
+    """FLOORPLAN-V4 section 7 rule areas. Kept: MOUNT_* / MOUNT_PAD_*, PART_EDGE_BAND, TAB_*, RF_RX_ROOT (K4), USB_MATING,
+    BOOST_GND_L5, WIFI_VOID_V1 / _V2_L2 / _V2_L3 / WIFI_FAR_F / WIFI_GND_LINK (K1), RF_PAD_CUTOUT(_L3) (K6), SHUNT_CORRIDOR.
+    Deleted: WIFI_ANT_KO, RF_RX_ANT, RF_RX_ANT_L6, RF_RX_EXIT, RF_VTX_CHAIN, RF_VTX_UFL (K7 is a height check now).
+    Added: RF_RX_HOLE (K2), RF_RX_FEED re-drawn U18-22 -> FL1 -> AE1 (K3), RF_VTX_STRIP (K5)."""
+    s = V4
+    pl = s["polys"]
+    ae1 = tuple(s["ae1"])
+    K = []
+    for name, (sx, sy) in HOLES.items():
+        c = (sx * HOLE_HALF, sy * HOLE_HALF)
+        K.append(("MOUNT_" + name, ["F.Cu", "B.Cu"], {}, ("poly", circle_pts(c, FLANGE_D / 2)), True,
+                  "spec 7 / v4: grommet flange D %.1f, no part bodies (DRU 'v4 MOUNT flange'; edge solder pads exempt)" % FLANGE_D))
+        K.append(("MOUNT_PAD_" + name, ["F.Cu", "B.Cu"], dict(pads=True), ("poly", circle_pts(c, V4_FLANGE_PAD_D / 2)), True,
+                  "v4 (Matrix measured): no pad copper within r %.2f of the hole centre" % (V4_FLANGE_PAD_D / 2)))
+    K.append(("PART_EDGE_BAND", ["F.Cu", "B.Cu"], {}, ("band", PART_EDGE_BAND), False,
+              "spec 7: %.2f mm part keepout band (DRU 'parts: courtyards off the edge band')" % PART_EDGE_BAND))
+    K.append(("RF_RX_HOLE", CU, dict(zone_fills=True), ("poly", circle_pts(ae1, V4_RX_HOLE_R)), True,
+              "v4 K2: circle D%.1f at the RX wire hole AE1, all layers: no pours; tracks / vias / pads net-aware (DRU: only "
+              "the L1 feed, no via, no pad but AE1's)" % (2 * V4_RX_HOLE_R)))
+    K.append(("RF_RX_FEED", ["In1.Cu"], dict(tracks=True), ("path", [tuple(p) for p in s["rx_feed"]], V4_RX_FEED_HW), True,
+              "v4 K3: L2 solid under the 2.4 GHz feed U18-22 -> FL1 -> AE1 (half width %.1f); GND vias only (DRU)" % V4_RX_FEED_HW))
+    K.append(("RF_RX_ROOT", CU, {}, ("poly", circle_pts(ae1, RX_ROOT_R)), True,
+              "spec 4.9 / 11 (v4 K4): SPI0 (blackbox) kept 3 mm from the antenna hole (DRU)"))
+    K.append(("RF_VTX_STRIP", ["In1.Cu"], dict(tracks=True), ("segs", s["vtx_strip"], V4_VTX_STRIP_HW), True,
+              "v4 K5: L2 solid under RF_PAOUT1 / RF_PA_IN / RF_PA_OUT / RF_UFL and their pads (half width %.1f); GND vias "
+              "only, plus the one RF_PA_IN via (DRU)" % V4_VTX_STRIP_HW))
+    K.append(("RF_PAD_CUTOUT", ["In1.Cu"], dict(zone_fills=True), ("poly", rect(*s["rf_pad_cut"])), True,
+              "spec 4.8 (v4 K6): L2 cut under the U.FL signal pad"))
+    K.append(("RF_PAD_CUTOUT_L3", ["In2.Cu"], dict(tracks=True), ("poly", rect(*s["rf_pad_cut"])), True,
+              "spec 4.8 (v4 K6): no L3 track where L3 GND is the local RF reference"))
+    K.append(("SHUNT_CORRIDOR", [SHUNT_LAYER], {}, ("poly", rect(*s["shunt_corridor"])), True,
+              "D10 / spec 11: battery-to-shunt corridor on the shunt's layer (re-anchored after placement) (DRU)"))
+    for name, layers, flags, note in (
+            ("WIFI_VOID_V1", ["B.Cu", "In4.Cu", "In3.Cu"], dict(zone_fills=True),
+             "D90 (K1): antenna void, no pours; tracks/vias/pads net-aware (DRU: only the RF_WIFI feed, AE2 and the pi parts)"),
+            ("WIFI_VOID_V2_L2", ["In1.Cu"], dict(zone_fills=True), "D90 (K1): In1 GND cut back under the antenna body"),
+            ("WIFI_VOID_V2_L3", ["In2.Cu"], dict(tracks=True), "D90 (K1): no In2 track under the antenna body"),
+            ("WIFI_FAR_F", ["F.Cu"], dict(zone_fills=True), "D90 (K1): far side parts allowed, no pour / EP in the body projection (DRU)"),
+            ("WIFI_GND_LINK", ["B.Cu"], {}, "D90 / ANTENNA-WIFI 9: AE2 pins 2/3 GND link (B.Cu, <= 0.3 mm) to the V1 edge (DRU scope)"),
+            ("BOOST_GND_L5", ["In4.Cu"], dict(tracks=True), "D92: boost site on B, In4 GND unbroken under the hot loop (DRU: foreign vias)"),
+            ("USB_MATING", ["B.Cu"], {}, "D72 / D76 / D91: vertical USB J31 mating zone (body + %.1f mm), no TALL class part inside (DRU)" % USB_MARGIN)):
+        K.append((name, layers, flags, ("poly", [tuple(p) for p in pl[name]]), True, note))
+    for t in sorted(TABS):
+        K.append(("TAB_" + t, ["F.Cu", "B.Cu"], dict(footprints=True), ("poly", tab_rect(t)), True,
+                  "spec 7: panel tab %s, %.1f mm part keepout beyond the edge band" % (t, TAB_IN - PART_EDGE_BAND)))
+    return K
+
+
+V4_DROP_RULES = ("WIFI_ANT_KO: only the RF feed", "RF_RX_ANT: only the RF feed on L1", "RF_RX_ANT_L6: only the RF feed",
+                 "D21 rx_antenna_hole", "D76 USB J31 shroud corner at the RX wire ring",
+                 "RF_VTX_UFL: only RF and GND copper on F.Cu", "RF_VTX_CHAIN: GND vias only")
+V4_RF_RULES = [
+    ("RF_VTX_STRIP: GND vias only (K5)",
+     ["v4 K5 (replaces RF_VTX_CHAIN): no non-GND via inside the 0.5 mm strip around the 5.8 GHz chain, so L2 stays solid",
+      "under the line. The one RF_PA_IN via of 'RF: no vias' (M3: RTC6705 and PA on opposite sides) is the exception."],
+     "  (constraint disallow via)\n"
+     "  (condition \"A.intersectsArea('RF_VTX_STRIP') && A.NetName != 'GND' && A.NetName != '/VTX/RF_PA_IN'\")"),
+    ("RF_RX_HOLE: only the RF feed on L1 (K2)",
+     ["v4 K2 (replaces RF_RX_ANT / _L6 / RF_RX_EXIT): inside the D2.0 circle at the RX wire hole AE1 (all layers; pours",
+      "kept out by the rule area) the only copper is the 2.4 GHz feed /RX/RF_RX_ANT on L1 into the AE1 pad; no vias."],
+     "  (constraint disallow track via)\n"
+     "  (condition \"A.intersectsArea('RF_RX_HOLE') && (A.Type == 'Via' || A.NetName != '/RX/RF_RX_ANT' || A.Layer != 'F.Cu')\")"),
+    ("RF_RX_HOLE: no pad but AE1's (K2)",
+     ["v4 K2: no other part's pad inside the D2.0 circle at the RX wire hole."],
+     "  (constraint disallow pad)\n"
+     "  (condition \"A.Type == 'Pad' && A.intersectsArea('RF_RX_HOLE') && !A.memberOfFootprint('AE1')\")"),
+]
+V4_EDGE_RULES = [
+    ("v4 MOUNT flange: no part bodies",
+     ["v4 / spec 7: grommet flange D5.2 bars part bodies; edge solder pads may enter (their copper stays out of D4.6,",
+      "rule areas MOUNT_PAD_*). Motor headers (MOTOR_PAD) are not exempt: their DNP PicoBlade body is a part."],
+     "  (constraint disallow footprint)\n"
+     "  (condition \"A.Type == 'Footprint' && (A.intersectsArea('MOUNT_LEFT') || A.intersectsArea('MOUNT_REAR') || "
+     "A.intersectsArea('MOUNT_RIGHT')) && !(A.hasComponentClass('SOLDER_PAD') && !A.hasComponentClass('MOTOR_PAD'))\")"),
+    ("D90 wifi_antenna_void: only the feed",
+     ["D90 (replaces WIFI_ANT_KO): net-aware antenna void on B / In4 / In3. Only the RF feed nets; no via. D21 scoped",
+      "exception: the AE2 pins 2/3 GND link on B.Cu inside WIFI_GND_LINK (<= 0.3 mm to the void edge, GND vias just",
+      "outside V1; ANTENNA-WIFI.md 9, Johanson test-board orientation)."],
+     "  (constraint disallow track via)\n"
+     "  (condition \"A.intersectsArea('WIFI_VOID_V1') && (A.Type == 'Via' || (A.NetName != '/RX/RF_WIFI' && "
+     "A.NetName != '/RX/RF_WIFI_ANT' && !(A.NetName == 'GND' && A.Layer == 'B.Cu' && "
+     "A.enclosedByArea('WIFI_GND_LINK'))))\")"),
+    ("D90 wifi_antenna_void: only AE2 and its pi parts",
+     ["D90: no other part's pad inside the antenna void."],
+     "  (constraint disallow pad)\n"
+     "  (condition \"A.Type == 'Pad' && A.intersectsArea('WIFI_VOID_V1') && !(A.memberOfFootprint('AE2') || "
+     "A.memberOfFootprint('C132') || A.memberOfFootprint('C133') || A.memberOfFootprint('R88'))\")"),
+    ("D90 wifi far side: no exposed GND pad over the antenna body",
+     ["D90 / ANTENNA-WIFI.md 6.4: parts allowed on F over the antenna; small signal / passive pads are fine, but no",
+      "exposed pad or large GND land (>= 0.8 x 0.8 mm) in the body projection (WIFI_FAR_F)."],
+     "  (constraint disallow pad)\n"
+     "  (condition \"A.Type == 'Pad' && A.intersectsArea('WIFI_FAR_F') && A.NetName == 'GND' && A.Pad_Type == 'SMD' && "
+     "A.Size_X >= 0.8mm && A.Size_Y >= 0.8mm\")"),
+    ("D92 boost ground under the hot loop",
+     ["D92: In4 GND unbroken under the boost site: only GND and the boost's own supply vias."],
+     "  (constraint disallow via)\n"
+     "  (condition \"A.Type == 'Via' && A.intersectsArea('BOOST_GND_L5') && A.NetName != 'GND' && "
+     "A.NetName != '+BATT' && A.NetName != '+5V_BST'\")"),
+]
+
+
+def v4_rules(rules):
+    """RULES for floorplan v4: drop the v3 antenna / chain rules, add K2 / K5 after RF_RX_FEED, append the edge patch
+    (outline_verify/v2 gen_dru.py: MOUNT flange, D90 x3, D92). Idempotent (V4_BOARD applies it at import)."""
+    if any(r[0] == V4_RF_RULES[0][0] for r in rules):
+        return rules
+    out = []
+    for r in rules:
+        if r[0] in V4_DROP_RULES:
+            continue
+        out.append(r)
+        if r[0] == "RF_RX_FEED: GND vias only":
+            out += V4_RF_RULES
+    missing = [r[0] for r in V4_RF_RULES if r not in out]
+    if missing:
+        raise SystemExit("v4_rules: anchor rule 'RF_RX_FEED: GND vias only' not found")
+    return out + V4_EDGE_RULES
+
+
+def configure_v4(spec):
+    """Switch this module to floorplan v4 (outline, rule areas, DRU) for one placement spec (dict or JSON path)."""
+    global V4, RULES, BODY_HALF
+    import json as _json
+    import outline_v4 as O
+    if isinstance(spec, str):
+        spec = _json.load(open(spec))
+    webs = {tuple(k.split("/")): v for k, v in spec["webs"].items()}
+    first = V4 is None
+    V4 = dict(spec, prims=O.prims(float(spec["S"]), O.FRONT_CHAMFER, webs))
+    BODY_HALF = float(spec["S"]) / 2.0
+    if first:
+        RULES = v4_rules(RULES)
+    return V4
+
+
+if V4_BOARD:                                                # the repo board is v4: the DRU carries the v4 rules
+    RULES = v4_rules(RULES)
 
 
 def owned_uuid(key):
@@ -1184,10 +1346,13 @@ def build_board(path, P):
     tb.SetRevision(TITLE_REV)
     b.SetTitleBlock(tb)
 
-    # remove everything this script owns, and any stray board-level outline
+    # remove everything this script owns, and any stray board-level outline (v4 board: outline and zones are kept)
+    keep_board = V4_BOARD and V4 is None
     removed = 0
     for item in list(b.GetDrawings()) + list(b.Zones()):
         own = item.m_Uuid.AsString().startswith(UUID_PREFIX + "-")
+        if keep_board and (item.GetClass() == "ZONE" or item.GetLayer() == P.Edge_Cuts):
+            continue
         if own or (item.GetClass() == "PCB_SHAPE" and item.GetLayer() == P.Edge_Cuts):
             if not own:
                 print("  note: removing a board-level Edge.Cuts item the script did not draw")
@@ -1223,7 +1388,7 @@ def build_board(path, P):
         t.SetUuid(P.KIID(owned_uuid(key)))
         b.Add(t)
 
-    for i, (kind, *geo) in enumerate(outline_primitives()):
+    for i, (kind, *geo) in enumerate([] if keep_board else outline_primitives()):
         add_shape(kind, P.Edge_Cuts, "edge/%d" % i, *geo)
 
     # guides (not fabricated): frame patterns, front marker, grommet flanges, layer roles
@@ -1270,17 +1435,36 @@ def build_board(path, P):
         return s
 
     zones = []
-    for name, layers, flags, shape, clip, note in keepouts():
+    if keep_board:                                          # v4: the board's own rule areas, checked by name
+        flagset = (("footprints", "GetDoNotAllowFootprints"), ("tracks", "GetDoNotAllowTracks"),
+                   ("vias", "GetDoNotAllowVias"), ("pads", "GetDoNotAllowPads"), ("zone_fills", "GetDoNotAllowZoneFills"))
+        have = {}
+        for z in b.Zones():
+            if z.GetIsRuleArea():
+                have[z.GetZoneName()] = z
+        if sorted(have) != sorted(V4_AREAS):
+            raise SystemExit("v4 board rule areas differ from V4_AREAS: missing %s, extra %s"
+                             % (sorted(set(V4_AREAS) - set(have)), sorted(set(have) - set(V4_AREAS))))
+        for name in V4_AREAS:
+            z = have[name]
+            zones.append((name, [P.LayerName(l) for l in z.GetLayerSet().Seq()],
+                          sorted(k for k, g in flagset if getattr(z, g)()), round(z.Outline().Area() / 1e12, 2),
+                          "v4 placement data (kept)"))
+    for name, layers, flags, shape, clip, note in ([] if keep_board else keepouts()):
         if shape[0] == "band":
             outer = P.SHAPE_POLY_SET(poly.COutline(0))       # outer contour only; holes have MOUNT_* areas
             inner = P.SHAPE_POLY_SET(outer)
             inner.Deflate(mm(shape[1]), P.CORNER_STRATEGY_ROUND_ALL_CORNERS, mm(0.002))
             area = P.SHAPE_POLY_SET()
             area.BooleanSubtract(outer, inner)
-        elif shape[0] == "path":
-            pts, hw = shape[1], shape[2]
+        elif shape[0] in ("path", "segs"):
+            # "path": one polyline; "segs" (v4 K5): a list of (a, b) segments, unioned (pad-to-pad strip)
+            segs = list(zip(shape[1], shape[1][1:])) if shape[0] == "path" else [tuple(s) for s in shape[1]]
+            hw = shape[2]
             area = P.SHAPE_POLY_SET()
-            for seg in [rect_along(p, q, hw) for p, q in zip(pts, pts[1:])] + [circle_pts(p, hw, 48) for p in pts]:
+            ends = sorted({tuple(p) for s in segs for p in s})
+            for seg in [rect_along(p, q, hw) for p, q in segs if math.hypot(q[0] - p[0], q[1] - p[1]) > 1e-6] + \
+                    [circle_pts(p, hw, 48) for p in ends]:
                 area.BooleanAdd(to_poly(seg))
             area.Simplify()
             if clip:
@@ -1650,6 +1834,7 @@ def run(check=False, recompute_fd=False, do_selftest=False):
         for s, d in ((PCB, t_pcb), (PRO, t_pro), (DRU, t_dru)):
             shutil.copy(s, d)
         ignored_before = write_pro(t_pro, rf)
+        pro_text = open(t_pro).read()                           # pcbnew SaveBoard rewrites the .kicad_pro beside the
         open(t_dru, "w").write(dru_text(rf, open(DRU).read()))
         summary = build_board(t_pcb, P)
         total = splice_stackup(t_pcb)
@@ -1660,6 +1845,7 @@ def run(check=False, recompute_fd=False, do_selftest=False):
         b = P.LoadBoard(t_pcb)                                  # final normalising round trip
         if not P.SaveBoard(t_pcb, b):
             raise SystemExit("pcbnew could not re-save the board")
+        open(t_pro, "w").write(pro_text)                        # board (empty text_variables): restore the intended one
         rep = verify_board(t_pcb, P)
         verify_pro(t_pro, rf)
         print("re-enabled DRC checks (%d): %s" % (len(SEVERITIES), ", ".join("%s=%s" % kv for kv in sorted(SEVERITIES.items()))))

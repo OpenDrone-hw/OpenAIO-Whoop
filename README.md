@@ -1,10 +1,15 @@
 # OpenAIO-Whoop
 
-An all-in-one board for 1S whoops, 65 to 85 mm class: flight controller, four
-brushless ESC channels, an ExpressLRS receiver and an onboard analog VTX on a
-25.5 x 25.5 mm board. The 1S sibling of
+An all-in-one board for 1S whoops, 65 to 85 mm class: flight controller,
+four brushless ESC channels, an ExpressLRS receiver and an onboard analog VTX
+on the 25.5 x 25.5 mm whoop mounting pattern. The 1S sibling of
 [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO), which covers 2S to 6S on
 the same mounting pattern.
+
+<p>
+<img src="images/front.png" width="400" alt="OpenAIO-Whoop top" />
+<img src="images/back.png" width="400" alt="OpenAIO-Whoop bottom" />
+</p>
 
 [![Status](https://img.shields.io/endpoint?url=https://opendrone.be/api/status/OpenAIO-Whoop.json)](https://github.com/OpenDrone-hw/.github/blob/main/CONTRIBUTING.md#the-life-of-a-project)
 [![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.gg/v3sWmTcx3R)
@@ -22,64 +27,55 @@ is the last class still flying analog in volume, and an onboard VTX is what
 makes the board worth building instead of pointing people at a digital AIO
 with an HD port.
 
-## VTX dependency
-
-RTC6705 is listed on LCSC (C913074) with no stock (checked 2026-10-02), so an
-onboard analog VTX cannot be assembled from LCSC-sourced parts today; see
-[OpenVTX](https://github.com/OpenDrone-hw/OpenVTX) for the same constraint. This board waits on that part becoming
-orderable, or on a sourceable equivalent. Nothing else about it is hard, and
-nothing has been drawn.
-
 ## Specifications
 
-Targets. The board does not exist yet.
+From the design files: the schematic and an initial placement. Not routed or
+manufactured yet.
 
 | | |
 |---|---|
 | Target class | 1S whoops, 65 to 85 mm |
-| Mounting | 25.5 x 25.5 mm |
-| Input | 1S LiPo |
-| Flight controller | RP2354A class, Betaflight target |
-| ESC | 4 channels |
-| Receiver | ExpressLRS 2.4 GHz, serial |
-| Video | Onboard analog VTX and OSD |
-| Blackbox | SPI NOR flash |
-| Assembly | Chosen per release. LCSC basic parts preferred |
+| Mounting | 25.5 x 25.5 mm, three ear holes |
+| Board | 26.4 mm body, 6-layer HDI 1+4+1, 1.0 mm |
+| Input | 1S LiPo (3.0-4.35 V), solder pads |
+| Firmware | Betaflight, Bluejay, ExpressLRS |
+| MCU | RP2354A |
+| IMU | BMI270 |
+| Blackbox | 16 MB SPI NOR flash |
+| ESC | 4 channels, EFM8BB51 + AGM210MAP half-bridges, DShot |
+| Receiver | Onboard ExpressLRS 2.4 GHz, ESP32-PICO-V3 + SX1281, wire antenna |
+| Video | Onboard analog VTX, RTC6705 + SE5004L PA, U.FL |
+| OSD | Analog, PIO framebuffer |
+| Digital video | DJI O4 Lite pads, switched 5 V and UART |
+| Motors | Molex PicoBlade 1.25 mm 3-pin lands, plug or solder |
+| USB | JST SH 1.0 mm 4-pin |
+| Camera | JST SUR 0.8 mm 3-pin plug and solder pads |
+
+Technical write-up, part list and layout constraints: [AGENTS.md](AGENTS.md).
 
 ## Constraints
 
 - 25.5 x 25.5 mm mounting pattern, shared with OpenAIO.
 - 1S only. 2S and above is OpenAIO, and covering both here would mean a wider
   front end for a range another board already serves.
+- Motor plugs, USB, battery pads and camera plug sit where the BetaFPV Matrix
+  1S 5IN1 II has them: motor plugs paired at the two side holes, USB at the
+  rear hole.
 - FC section reuses the [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; Betaflight target derived from its target.
-- Receiver is serial ELRS 2.4 GHz, reusing the [OpenRX Lite](https://github.com/OpenDrone-hw/OpenRX-Lite) design.
-- Assembly from LCSC parts, basic parts preferred; assembly house chosen per
-  release. Fab-ready manufacturing files are kept in a private Incutec production repository and are not published.
+- Receiver reuses the [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL)
+  SX1281 design on an ESP32-PICO-V3 and talks CRSF to the FC; the same ESP32
+  controls the VTX.
+- Passives 0201 and up, no 01005, so the board stays hand-reworkable.
+- Assembly house chosen per release. Fab-ready manufacturing files are kept in
+  a private Incutec production repository and are not published.
 
 ## Prior art
 
-- [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX Lite](https://github.com/OpenDrone-hw/OpenRX-Lite): the FC and RX stages this board reuses.
+- [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL): the FC and RX stages this board reuses.
 - [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO): the 2-6S board, and the source of the ESC and power sheets that do not survive the drop to one cell.
+- [OpenVTX](https://github.com/OpenDrone-hw/OpenVTX): the line's RTC6705 analog VTX.
 - The class reference is the BetaFPV Matrix 1S 5IN1 II.
 - An earlier stitched design was reset in August 2026 (see the git history before #9); reference for the thinking, not a design to continue from.
-
-## Design questions
-
-Open questions for the design:
-
-- **VTX part.** Is there an RTC6705 equivalent in stock on LCSC, or a
-  different route to 25 mW to 200 mW on the 5.8 GHz band that JLCPCB can place?
-- **Power stage.** At 1S the pack is 3.0 to 4.35 V. Driven half-bridge needs a
-  boosted gate rail; direct-drive P+N needs no driver but costs dead time,
-  which AM32's `USE_INVERTED_HIGH` F421 targets run at 120-140 against 22-75
-  for driver-based targets. Which one, and what does it do to the copper?
-- **Electronics rail.** Everything from +5V down has to come from a boost or
-  buck-boost off one cell, and it has to hold up with the cell sagging under
-  full throttle. That is the part existing 1S-2S AIOs get wrong.
-- **Motor connection.** Solder pads or connectors, given the class usually
-  means replaceable motors.
-- **Antenna.** Where the RX antenna and the VTX antenna go on a board this
-  size with a duct around it, without desensitising the receiver.
 
 ## In the line
 
@@ -107,6 +103,8 @@ the submodule, or KiCad 10's stock `Device`, `power`, `Connector` and
 `Mechanical` libraries, which a default KiCad install provides (lineup rule A8). Catalogue 3D models resolve through the
 project text variable `OPENDRONE_LIB` (`${KIPRJMOD}/KiCad-Library`), so
 without the submodule the 3D view shows bare pads.
+
+A repository holds design files only. Sourcing (suppliers, prices, quotes, RFQs, contacts) is handled by Incutec and never lives in OpenDrone repositories.
 
 ## License
 

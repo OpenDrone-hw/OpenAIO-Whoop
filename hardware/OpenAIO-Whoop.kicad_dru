@@ -257,35 +257,27 @@
   (constraint track_width (min 0.100mm) (opt 0.105mm) (max 0.110mm))
   (condition "A.NetClass == 'RF'"))
 
-# Spec 10: no other copper or parts next to the 5.8 GHz line and the U.FL (rule area RF_VTX_UFL).
-(rule "RF_VTX_UFL: only RF and GND copper on F.Cu"
-  (layer "F.Cu")
-  (constraint disallow track via zone)
-  (condition "A.intersectsArea('RF_VTX_UFL') && A.NetClass != 'RF' && A.NetName != 'GND'"))
-
-# Spec 8.4 / 10: no non-GND via inside the 5.8 GHz chain area, so L2 stays solid under the line.
-(rule "RF_VTX_CHAIN: GND vias only"
-  (constraint disallow via)
-  (condition "A.intersectsArea('RF_VTX_CHAIN') && A.NetName != 'GND'"))
-
 # Spec 8.4 / 10: no non-GND via under the 2.4 GHz feed (L1, FL1 OUT to the hole), so L2 stays solid under it.
 (rule "RF_RX_FEED: GND vias only"
   (constraint disallow via)
   (condition "A.intersectsArea('RF_RX_FEED') && A.NetName != 'GND'"))
 
-# rxfix BLOCKER / OpenAIO lesson (net-aware antenna keepout): inside the RX antenna-hole ring (L1-L5; pours,
-# pads and parts are kept out by the rule area) the only track is the 2.4 GHz feed /RX/RF_RX_ANT on L1, from
-# FL1 OUT straight into the AE1 hole pad; no vias, no other tracks, no other layers.
-(rule "RF_RX_ANT: only the RF feed on L1"
-  (constraint disallow track via)
-  (condition "A.intersectsArea('RF_RX_ANT') && (A.Type == 'Via' || A.NetName != '/RX/RF_RX_ANT' || A.Layer != 'F.Cu')"))
+# v4 K5 (replaces RF_VTX_CHAIN): no non-GND via inside the 0.5 mm strip around the 5.8 GHz chain, so L2 stays solid
+# under the line. The one RF_PA_IN via of 'RF: no vias' (M3: RTC6705 and PA on opposite sides) is the exception.
+(rule "RF_VTX_STRIP: GND vias only (K5)"
+  (constraint disallow via)
+  (condition "A.intersectsArea('RF_VTX_STRIP') && A.NetName != 'GND' && A.NetName != '/VTX/RF_PA_IN'"))
 
-# Spec 10: on L6 the antenna-hole keepout admits only an RF-class track (vias, parts and pours are
-# kept out by the rule area; L1-L5 by RF_RX_ANT and the rule above). rxfix: the feed now runs on L1.
-(rule "RF_RX_ANT_L6: only the RF feed"
-  (layer "B.Cu")
-  (constraint disallow track)
-  (condition "A.intersectsArea('RF_RX_ANT_L6') && A.NetClass != 'RF'"))
+# v4 K2 (replaces RF_RX_ANT / _L6 / RF_RX_EXIT): inside the D2.0 circle at the RX wire hole AE1 (all layers; pours
+# kept out by the rule area) the only copper is the 2.4 GHz feed /RX/RF_RX_ANT on L1 into the AE1 pad; no vias.
+(rule "RF_RX_HOLE: only the RF feed on L1 (K2)"
+  (constraint disallow track via)
+  (condition "A.intersectsArea('RF_RX_HOLE') && (A.Type == 'Via' || A.NetName != '/RX/RF_RX_ANT' || A.Layer != 'F.Cu')"))
+
+# v4 K2: no other part's pad inside the D2.0 circle at the RX wire hole.
+(rule "RF_RX_HOLE: no pad but AE1's (K2)"
+  (constraint disallow pad)
+  (condition "A.Type == 'Pad' && A.intersectsArea('RF_RX_HOLE') && !A.memberOfFootprint('AE1')"))
 
 # Spec 4.9 / 11: the blackbox bus (75 MHz writes, 50 MHz reads) has harmonics in the ELRS band; SPI0 and
 # the NOR chip select stay outside RF_RX_ROOT (r 3.0 around the hole) on every layer. Route sync 2026-10-10
@@ -300,29 +292,6 @@
   (layer "F.Cu")
   (constraint disallow track via)
   (condition "A.intersectsArea('SHUNT_CORRIDOR') && A.NetClass != 'VBAT' && A.NetName != 'GND' && A.NetName != '*SHUNT_SENSE_*'"))
-
-# D21 / spec 10: the antenna wire hole's own footprint (reference AE*) sits at the centre of RF_RX_ANT,
-# RF_RX_ANT_L6 and RF_RX_EXIT, whose part keepouts are for every other footprint. Scoped to AE* inside
-# those areas only.
-(rule "D21 rx_antenna_hole"
-  (severity ignore)
-  (constraint disallow footprint pad)
-  (condition "((A.Type == 'Footprint' && A.Reference == 'AE*') || (A.Type == 'Pad' && A.memberOfFootprint('AE*'))) && (A.intersectsArea('RF_RX_ANT') || A.intersectsArea('RF_RX_ANT_L6') || A.intersectsArea('RF_RX_EXIT') || A.intersectsArea('WIFI_ANT_KO'))"))
-
-# D76 / D69: the vertical USB header J31 sits beside the rear mounting hole; its plastic shroud corner (courtyard,
-# no copper) reaches into the RX antenna-hole ring / exit strip on the bottom. The ring stays a copper keep-out
-# (RF_RX_ANT, L1-L5) and the wire exit runs away from J31 (toward the edge); scoped to J31 only.
-(rule "D76 USB J31 shroud corner at the RX wire ring"
-  (severity ignore)
-  (constraint disallow footprint)
-  (condition "A.Type == 'Footprint' && A.Reference == 'J31' && (A.intersectsArea('RF_RX_EXIT') || A.intersectsArea('RF_RX_ANT_L6'))"))
-
-# D58 / D75 / OpenAIO lesson (net-aware antenna keepout): inside the Wi-Fi chip antenna keep-out only the
-# RF-class feed track reaches AE2; no vias, no other tracks (pours and parts are kept out by the rule area,
-# AE2 itself by the AE* exemption above).
-(rule "WIFI_ANT_KO: only the RF feed"
-  (constraint disallow track via)
-  (condition "A.intersectsArea('WIFI_ANT_KO') && (A.Type == 'Via' || A.NetClass != 'RF')"))
 
 # D72 / D76: the vertical USB plug and the fingers that push it need the space around J31 free of other
 # connectors (TALL class J*: SH/SUR plugs, U.FL); parts <= 1.25 mm tall (2520 inductor, passives, ICs) sit far
@@ -348,3 +317,32 @@
 (rule "D21 Analog X2SON land gaps (U14, U15)"
   (constraint clearance (min 0.09mm))
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && ((A.memberOfFootprint('lib:X2SON-6_L1.0-W0.8-BL_Dense') && B.memberOfFootprint('lib:X2SON-6_L1.0-W0.8-BL_Dense')) || (A.memberOfFootprint('lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense') && B.memberOfFootprint('lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense')))"))
+
+# v4 / spec 7: grommet flange D5.2 bars part bodies; edge solder pads may enter (their copper stays out of D4.6,
+# rule areas MOUNT_PAD_*). Motor headers (MOTOR_PAD) are not exempt: their DNP PicoBlade body is a part.
+(rule "v4 MOUNT flange: no part bodies"
+  (constraint disallow footprint)
+  (condition "A.Type == 'Footprint' && (A.intersectsArea('MOUNT_LEFT') || A.intersectsArea('MOUNT_REAR') || A.intersectsArea('MOUNT_RIGHT')) && !(A.hasComponentClass('SOLDER_PAD') && !A.hasComponentClass('MOTOR_PAD'))"))
+
+# D90 (replaces WIFI_ANT_KO): net-aware antenna void on B / In4 / In3. Only the RF feed nets; no via. D21 scoped
+# exception: the AE2 pins 2/3 GND link on B.Cu inside WIFI_GND_LINK (<= 0.3 mm to the void edge, GND vias just
+# outside V1; ANTENNA-WIFI.md 9, Johanson test-board orientation).
+(rule "D90 wifi_antenna_void: only the feed"
+  (constraint disallow track via)
+  (condition "A.intersectsArea('WIFI_VOID_V1') && (A.Type == 'Via' || (A.NetName != '/RX/RF_WIFI' && A.NetName != '/RX/RF_WIFI_ANT' && !(A.NetName == 'GND' && A.Layer == 'B.Cu' && A.enclosedByArea('WIFI_GND_LINK'))))"))
+
+# D90: no other part's pad inside the antenna void.
+(rule "D90 wifi_antenna_void: only AE2 and its pi parts"
+  (constraint disallow pad)
+  (condition "A.Type == 'Pad' && A.intersectsArea('WIFI_VOID_V1') && !(A.memberOfFootprint('AE2') || A.memberOfFootprint('C132') || A.memberOfFootprint('C133') || A.memberOfFootprint('R88'))"))
+
+# D90 / ANTENNA-WIFI.md 6.4: parts allowed on F over the antenna; small signal / passive pads are fine, but no
+# exposed pad or large GND land (>= 0.8 x 0.8 mm) in the body projection (WIFI_FAR_F).
+(rule "D90 wifi far side: no exposed GND pad over the antenna body"
+  (constraint disallow pad)
+  (condition "A.Type == 'Pad' && A.intersectsArea('WIFI_FAR_F') && A.NetName == 'GND' && A.Pad_Type == 'SMD' && A.Size_X >= 0.8mm && A.Size_Y >= 0.8mm"))
+
+# D92: In4 GND unbroken under the boost site: only GND and the boost's own supply vias.
+(rule "D92 boost ground under the hot loop"
+  (constraint disallow via)
+  (condition "A.Type == 'Via' && A.intersectsArea('BOOST_GND_L5') && A.NetName != 'GND' && A.NetName != '+BATT' && A.NetName != '+5V_BST'"))
