@@ -23,6 +23,36 @@ work in `p2v3/integ4_work/`).
 | check_footprint, all lib footprints | 85 / 85 PASS (8 with the intended 'lands without paste' WARN: solder, motor and test pads, the plug-ready motor land, the test via, the pogo footprint, the Wi-Fi edge strip) |
 | Entries resolving (symbol + footprint via lib tables, pins = pads) | 268 / 268; all 34 lib symbols resolve to their Footprint field, pins = pads, `${KIPRJMOD}` 3D files present |
 
+## D113 complete library from a recursive clone (2026-10-10)
+
+Goal (D113): `git clone --recursive` gives every symbol, footprint and 3D model of the final design. Work in
+`p2v3/v4/lineup/library/` (rename map `fp_rename.json`, unused list `unused.json`, proof runs in `out/`).
+
+- **Sources.** Footprints come from `lib` only (49 FPIDs on the winning v4 placement). The 3D models come from
+  `${KIPRJMOD}/lib.3dshapes/` (46 references, 27 files) or `${OPENDRONE_LIB}/3dmodel/` (196 references, 17 files) in the
+  pinned submodule (fdf8319). Symbols come from `lib` (41 placed) plus KiCad stock `power`, `Device`, `Connector` and
+  `Mechanical`, as on the sibling boards (LINEUP-CONVENTIONS A8). `OPENDRONE_LIB` is a project text variable, so
+  nothing has to be exported.
+- **Lineup names.** Three footprints of the final design carried project-history suffixes. Each was written under a
+  plain name with KiCad's footprint IO; the lands are unchanged.
+
+  | Old FPID | New FPID | Source of the new file |
+  |---|---|---|
+  | `lib:BattPad_D1.7mm_PTH1.1_V4` | `lib:BattPad_D1.7mm_PTH1.1` | courtyard-fixed copy (rectangular courtyard and F.Fab), the same as the placed copy |
+  | `lib:SolderPad_0.8x1.0mm_V4` | `lib:SolderPad_0.8x1.0mm` | library copy |
+  | `lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_D90Void` | `lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100` | placed D90 copy, plus an F.Fab pin-1 chamfer |
+
+  The old-name files stay until the schematic and board carry the new names; then they are removed with the other
+  unused library content.
+- **Library copy versus placed copy.**
+  - J31 (`CONN-SMD_4P-P1.00_BM04B-SRSS-TB`): the library copy is final. The copy placed on the v4 board has a
+    16-point courtyard that leaves the signal pads uncovered, and check_footprint fails it.
+  - J33: the lands are identical. The mismatch comes only from the pad angle (359.99999996 against 0), which the
+    non-orthogonal footprint rotation produces.
+- **Checks.** check_footprint passes on all three new footprints (SolderPad: the intended "no paste" WARN). In a
+  clean clone (empty HOME, no exported variables, offline submodule init) the v4 board has 0 unresolved FPIDs and 0
+  missing or untracked models. ERC on a default KiCad 10 symbol table shows 0 lib_symbol issues and 0 mismatches.
+
 ## D65-D67 and the D52-D67 bom_plan (2026-10-09)
 
 Owner decisions D65 (plug-ready motor lands with an optional DNP header; one smallest button shared by FC BOOTSEL and
