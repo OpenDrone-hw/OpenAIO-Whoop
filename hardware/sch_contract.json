@@ -275,7 +275,7 @@
    "source": "U3 TPS2116 mux OUT",
    "nominal": "5 V",
    "budget": "analog 0.70 A; HD about 0.25 A (O4 Lite on +5V_BST through U5 since D53 BR-10; 3V3 LDOs + pads)",
-   "feeds": "U4 + U21 LP5912 IN, FB1, user 5V pads J18/J21, R67 option",
+   "feeds": "U4 + U21 LP5912 IN, FB1, LED-row 5V pad J21, R67 option",
    "class": "Power",
    "table": [
     "U3 TPS2116 mux",
@@ -938,44 +938,6 @@
    ],
    "fw": "MOTOR4_PIN PA22 (GPIO22, PIO0 bidirectional DShot)",
    "note": "R33 2.4k at the EFM8 RTX pin (ESC sheet)"
-  },
-  {
-   "net": "/PIOUART0_TX",
-   "root_label": "PIOUART0_TX",
-   "class": "Default",
-   "pins": [
-    {
-     "sheet": "RP2350A",
-     "pin": "PIOUART0_TX",
-     "dir": "output"
-    },
-    {
-     "sheet": "PADS",
-     "pin": "PIOUART0_TX",
-     "dir": "input"
-    }
-   ],
-   "fw": "PIOUART0_TX_PIN PA2 (GPIO2)",
-   "note": "pad J16 TP0"
-  },
-  {
-   "net": "/PIOUART0_RX",
-   "root_label": "PIOUART0_RX",
-   "class": "Default",
-   "pins": [
-    {
-     "sheet": "RP2350A",
-     "pin": "PIOUART0_RX",
-     "dir": "input"
-    },
-    {
-     "sheet": "PADS",
-     "pin": "PIOUART0_RX",
-     "dir": "output"
-    }
-   ],
-   "fw": "PIOUART0_RX_PIN PA3 (GPIO3)",
-   "note": "pad J17 RP0"
   },
   {
    "net": "/UART1_TX",
@@ -2225,20 +2187,6 @@
      "class": "Default"
     },
     {
-     "name": "PIOUART0_TX",
-     "dir": "output",
-     "side": "right",
-     "net": "/PIOUART0_TX",
-     "class": "Default"
-    },
-    {
-     "name": "PIOUART0_RX",
-     "dir": "input",
-     "side": "right",
-     "net": "/PIOUART0_RX",
-     "class": "Default"
-    },
-    {
      "name": "UART1_TX",
      "dir": "output",
      "side": "right",
@@ -3199,7 +3147,6 @@
    "content": [
     "BATTERY",
     "MOTOR LANDS",
-    "USER UART",
     "LED / BUZZER",
     "CAMERA",
     "HD (O4)",
@@ -3227,18 +3174,6 @@
      ],
      "source": "new (D65, Molex 53047-0310 land)",
      "notes": "pads 1/2/3 = Mn_C/Mn_B/Mn_A (hierarchical) = /ESCn/PHASE_C/B/A",
-     "p4": []
-    },
-    {
-     "name": "User UART pads (PIOUART0)",
-     "refs": [
-      "J16",
-      "J17",
-      "J18",
-      "J19"
-     ],
-     "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch",
-     "notes": "TP0 RP0 5V GND",
      "p4": []
     },
     {
@@ -3392,20 +3327,6 @@
      "class": "Phase"
     },
     {
-     "name": "PIOUART0_TX",
-     "dir": "input",
-     "side": "left",
-     "net": "/PIOUART0_TX",
-     "class": "Default"
-    },
-    {
-     "name": "PIOUART0_RX",
-     "dir": "output",
-     "side": "left",
-     "net": "/PIOUART0_RX",
-     "class": "Default"
-    },
-    {
      "name": "UART1_TX",
      "dir": "input",
      "side": "left",
@@ -3462,10 +3383,6 @@
     "J7",
     "J10",
     "J13",
-    "J16",
-    "J17",
-    "J18",
-    "J19",
     "J33",
     "J20",
     "J21",

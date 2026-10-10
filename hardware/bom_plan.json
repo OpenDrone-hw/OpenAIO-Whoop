@@ -90,7 +90,7 @@
     "4 camera pads": "J23 J24 J25",
     "5 RF": "J1 AE1 AE2 (+ R88 C132 C133)",
     "6 USB": "J31 U24 C131 D7 R42 R43",
-    "7 user UART": "J16-J19",
+    "7 user UART": "removed (D89: J16-J19 and the PIOUART0 nets gone, GPIO2/3 no-connect; the HD pads J26-J29 are the one free UART)",
     "8 HD pads / 2nd UART": "J26-J29",
     "9 LED + buzzer row GND LED 5V BZ- (SHOULD)": "J33 J20 J21 J22",
     "10 boot/bind button (D65: shared FC BOOTSEL + RX boot)": "SW1 D8 R44",
@@ -100,7 +100,7 @@
    },
    "placement_priority": "camera plug J32 -> LED-row GND pad J33 + SW1/D8 (G2); motor lands per ESC cell (D65); trade ladder IO-SET \u00a74.1",
    "gates": "G1 camera pitch + pin 1 before the P3 footprint freeze and P4; G2 area on the v3 board; G3 H1/H3 sites for J32 and SW1 (or a logged scoped exemption + V8); D65: motor header H1 exemption + V4 thermocouple, DRU 'D21 motor_plug_1p25_pth', hole 0.50 vs 0.60 from Molex SD-53047",
-   "pin_changes": "none on the MCUs (RP2354A 30/30): QSPI_SS -> R44 -> FC_BOOT -> D8.A1, ESP32 GPIO0 RX_BOOT -> D8.A2, D8.K BOOT_SW -> SW1 -> GND (D65); J21 BZ+ -> 5V same net"
+   "pin_changes": "none on the MCUs (RP2354A 30/30): QSPI_SS -> R44 -> FC_BOOT -> D8.A1, ESP32 GPIO0 RX_BOOT -> D8.A2, D8.K BOOT_SW -> SW1 -> GND (D65); J21 BZ+ -> 5V same net; D89: GPIO2/3 (PIOUART0) freed, no-connect (RP2354A 28/30 used)"
   }
  },
  "regions": {
@@ -7018,102 +7018,6 @@
    "lib_work": []
   },
   {
-   "ref": "J16",
-   "block": "io",
-   "sheet": "pads",
-   "value": "TP0",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:SolderPad_1.0x1.2mm",
-   "symbol": "lib:SolderPad_01x01",
-   "side": "F",
-   "region": "pads_user",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "TP0",
-   "nets": [
-    "PIOUART0_TX"
-   ],
-   "notes": "user UART TX (PIOUART0, GPIO2; D16): half duplex and inversion capable; hardware UART0 (EXT-USER-PADS) and I2C1 SDA (I2C-USER) via CLI presets (IO-SET \u00a72.3); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J17",
-   "block": "io",
-   "sheet": "pads",
-   "value": "RP0",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:SolderPad_1.0x1.2mm",
-   "symbol": "lib:SolderPad_01x01",
-   "side": "F",
-   "region": "pads_user",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "RP0",
-   "nets": [
-    "PIOUART0_RX"
-   ],
-   "notes": "user UART RX (PIOUART0, GPIO3; D16): SBUS/CRSF receivers via the UART0 remap preset EXT-USER-PADS (8E2 needs a release with the uart_hw.c fix); I2C1 SCL via I2C-USER (IO-SET \u00a72.3); LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J18",
-   "block": "io",
-   "sheet": "pads",
-   "value": "5V",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:SolderPad_1.0x1.2mm",
-   "symbol": "lib:SolderPad_01x01",
-   "side": "F",
-   "region": "pads_user",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "5V",
-   "nets": [
-    "+5V"
-   ],
-   "notes": "user 5 V for the UART device; LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
-   "ref": "J19",
-   "block": "io",
-   "sheet": "pads",
-   "value": "GND",
-   "rating": null,
-   "manufacturer": null,
-   "mpn": null,
-   "lcsc": null,
-   "package": "pad",
-   "footprint": "lib:SolderPad_1.0x1.2mm",
-   "symbol": "lib:SolderPad_01x01",
-   "side": "F",
-   "region": "pads_user",
-   "dnp": true,
-   "exclude_from_bom": true,
-   "exclude_from_pos": true,
-   "silk": "GND",
-   "nets": [
-    "GND"
-   ],
-   "notes": "user GND for the UART device; LINEUP A16: excluded from BOM, DNP",
-   "lib_work": []
-  },
-  {
    "ref": "J20",
    "block": "io",
    "sheet": "pads",
@@ -7206,7 +7110,7 @@
    "nets": [
     "GND"
    ],
-   "notes": "LED-strip GND pad: the LED row becomes GND LED 5V BZ- so the strip has its own GND/5V/data trio (D63/D64, IO-SET row 9, SHOULD; supersedes D27 sharing with the user row); placement priority 2 with SW1 (G2); trade-ladder step 3 drops it back to D27 sharing (saves about 5 mm2); LINEUP A16: excluded from BOM, DNP",
+   "notes": "LED-strip GND pad: the LED row becomes GND LED 5V BZ- so the strip has its own GND/5V/data trio (D63/D64, IO-SET row 9, SHOULD; supersedes D27 sharing with the user row); placement priority 2 with SW1 (G2); D89 removed the user row, so the D27 sharing fallback (trade-ladder step 3) no longer exists; LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7350,7 +7254,7 @@
    "nets": [
     "UART1_TX"
    ],
-   "notes": "UART1 TX -> O4 RX (white), MSP DisplayPort; analog builds: free hardware UART1 TX (second UART; I2C0 SDA via I2C-HD), no half duplex (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
+   "notes": "UART1 TX -> O4 RX (white), MSP DisplayPort; analog builds: free hardware UART1 TX (the one free UART since D89; I2C0 SDA via I2C-HD), no half duplex (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7374,7 +7278,7 @@
    "nets": [
     "UART1_RX"
    ],
-   "notes": "UART1 RX <- O4 TX (grey); yellow -> RP0 only with the EXT-USER-PADS preset; analog builds: free hardware UART1 RX (second UART; I2C0 SCL via I2C-HD) (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
+   "notes": "UART1 RX <- O4 TX (grey); yellow open (no SBUS input since D89); analog builds: free hardware UART1 RX (the one free UART since D89; I2C0 SCL via I2C-HD) (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7954,7 +7858,7 @@
    "parts": [
     "(no MPN) lib:BattPad_3.0x2.0mm_PTH1.1 [lib:BattPad_3.0x2.0mm_PTH1.1 + lib:SolderPad_01x01] refs J2,J3",
     "53047-0310 [lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5 + lib:Molex_53047-0310] refs J4,J7,J10,J13",
-    "(no MPN) lib:SolderPad_1.0x1.2mm [lib:SolderPad_1.0x1.2mm + lib:SolderPad_01x01] refs J16,J17,J18,J19,J23,J24,J25,J26,J27,J28,J29",
+    "(no MPN) lib:SolderPad_1.0x1.2mm [lib:SolderPad_1.0x1.2mm + lib:SolderPad_01x01] refs J23,J24,J25,J26,J27,J28,J29",
     "(no MPN) lib:SolderPad_1.0x1.2mm_Dense [lib:SolderPad_1.0x1.2mm_Dense + lib:SolderPad_01x01] refs J20,J21,J22,J33",
     "SM03B-SURS-TF(LF)(SN) [lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal + lib:SM03B-SURS-TF] refs J32",
     "BM04B-SRSS-TB(LF)(SN) [lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB + lib:BM04B-SRSS-TB] refs J31",
@@ -7966,11 +7870,11 @@
   }
  ],
  "summary": {
-  "parts_total": 275,
+  "parts_total": 271,
   "bom_parts": 236,
   "bom_lines": 82,
   "passives": 181,
-  "pads_and_mechanical": 33,
+  "pads_and_mechanical": 29,
   "by_block": {
    "power": 38,
    "esc1": 17,
@@ -7984,11 +7888,11 @@
    "rx": 25,
    "vtx": 58,
    "led": 4,
-   "io": 31
+   "io": 27
   },
   "by_side": {
    "B": 146,
-   "F": 129
+   "F": 125
   },
   "by_package": {
    "0603": 7,

@@ -8,7 +8,7 @@
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "413d44bc-888b-4f76-9c5d-7cbb8f1b2e93")
+		(uuid "856c324c-49e9-4486-9a6d-ec7bbb50a332")
 		(effects
 			(font
 				(size 1 1)
@@ -20,7 +20,7 @@
 		(at 0 2.35 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "0debbdb6-1074-442e-8858-5635c713f322")
+		(uuid "33d88eb0-2b2b-440d-a41f-94d88d480883")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "aba61850-205a-4214-a9be-eea9fb7e0a08")
+		(uuid "2afa10e3-ba5d-475c-a617-52d7478ff983")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "bbae71f7-a2ad-442a-9896-e8d63a1930af")
+		(uuid "c477c63e-cc26-4e61-a7c6-75ff6201e536")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -151,7 +151,7 @@
 	(embedded_fonts no)
 	(model "${KIPRJMOD}/lib.3dshapes/JST_SUR_SM03B-SURS-TF.step"
 		(offset
-			(xyz 0.81 1.43 0)
+			(xyz 0.81 1.43 1.335)
 		)
 		(scale
 			(xyz 1 1 1)

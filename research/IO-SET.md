@@ -15,6 +15,13 @@ Anyone who regenerates `hardware/bom_plan.json` takes these, then bom_plan and t
 - **D69:** H1 / H3 (85 °C halos) and gate G3 do not exist; §4.2 site rules and the H1/H3 wording are void.
 - **D76 / final refs:** **J31 = USB**, vertical JST BM04B-SRSS-TB(LF)(SN) facing up next to a mounting hole;
   **J32 = camera plug** SM03B-SURS-TF(LF)(SN) (§3 calls it J31); **J33 = LED-strip GND pad** (§3 calls it J32).
+- **D89 user UART removed (2026-10-10):** row 7 (J16 TP0, J17 RP0, J18 5V, J19 GND; PIOUART0 on GPIO2/3) is
+  gone from bom_plan, schematic and PINMAP; GPIO2/3 are no-connect spares. The HD pads J26-J29 VHD / GND / TX1 /
+  RX1 (hardware UART1) are the one free UART (analog builds; the O4 in HD builds), so analog builds have 1 free
+  UART, HD builds none. Void: the EXT-USER-PADS and I2C-USER presets (§2.3; SBUS needs a hardware UART: UART1 on
+  RX1 in analog builds, none with the O4), the user-row 5V/GND (an EXT-HD-PADS device takes 5V/GND from the LED
+  row), 'yellow -> RP0', the D27 sharing fallback of J33 and the README half-duplex note on TP0/RP0. The LED row
+  and the CAM pads are unchanged (placement merges follow in floorplan v4, D91).
 
 Original status line: final for rev1, gated (G1-G3 in §5); no other repo file was edited in that pass.
 

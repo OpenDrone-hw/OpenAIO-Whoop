@@ -2691,7 +2691,7 @@
 		(layer "F.Cu")
 		(uuid "106ed4c7-c0be-447a-88f2-e95e81f2d4c2")
 		(at 125 120.17 90)
-		(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = simplified header envelope under a 1.0 mm board. Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
+		(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.027). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
 		(tags "motor solder pad PicoBlade 53047 1.25mm plug-ready whoop JST1.25")
 		(property "Reference" "J7"
 			(at 0 0.3 90)
@@ -2983,15 +2983,15 @@
 			(uuid "89170e9e-02f8-4811-9462-67241c4d14e9")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/lib.3dshapes/MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5.step"
+		(model "${KIPRJMOD}/lib.3dshapes/Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 -1.027)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 180 0 0)
 			)
 		)
 	)
@@ -5571,7 +5571,7 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/lib.3dshapes/JST_SUR_SM03B-SURS-TF.step"
 			(offset
-				(xyz 0.81 1.43 0)
+				(xyz 0.81 1.43 1.335)
 			)
 			(scale
 				(xyz 1 1 1)
@@ -8356,7 +8356,7 @@
 		(embedded_fonts no)
 		(model "${OPENDRONE_LIB}/3dmodel/RP2354A_QFN-60.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 0.05)
 			)
 			(scale
 				(xyz 1 1 1)
@@ -10496,7 +10496,7 @@
 		(layer "F.Cu")
 		(uuid "481681ce-a56b-43d6-ac03-dd3659e2728e")
 		(at 101.4 106.33 -90)
-		(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = simplified header envelope under a 1.0 mm board. Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
+		(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.027). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
 		(tags "motor solder pad PicoBlade 53047 1.25mm plug-ready whoop JST1.25")
 		(property "Reference" "J10"
 			(at 0 0.3 270)
@@ -10788,15 +10788,15 @@
 			(uuid "d5013048-500b-417d-8a9d-9c7a076f9ebb")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/lib.3dshapes/MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5.step"
+		(model "${KIPRJMOD}/lib.3dshapes/Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 -1.027)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 180 0 0)
 			)
 		)
 	)
@@ -15427,7 +15427,7 @@
 		(layer "F.Cu")
 		(uuid "7b9bf4f3-01e4-4ff6-a755-291b160430ce")
 		(at 106.29 101.43 180)
-		(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = simplified header envelope under a 1.0 mm board. Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
+		(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.027). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
 		(tags "motor solder pad PicoBlade 53047 1.25mm plug-ready whoop JST1.25")
 		(property "Reference" "J13"
 			(at 0 0.3 180)
@@ -15719,15 +15719,15 @@
 			(uuid "25f5feee-412a-46ef-b563-50a57163deee")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/lib.3dshapes/MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5.step"
+		(model "${KIPRJMOD}/lib.3dshapes/Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 -1.027)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 180 0 0)
 			)
 		)
 	)
@@ -26979,7 +26979,7 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/lib.3dshapes/TI_SOT-583_DRL.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 0.135)
 			)
 			(scale
 				(xyz 1 1 1)
@@ -28572,7 +28572,7 @@
 		(layer "F.Cu")
 		(uuid "f31e2aed-00fc-4e4b-b36d-cacf6d09430b")
 		(at 120.09 125.04)
-		(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = simplified header envelope under a 1.0 mm board. Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
+		(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.027). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
 		(tags "motor solder pad PicoBlade 53047 1.25mm plug-ready whoop JST1.25")
 		(property "Reference" "J4"
 			(at 0 0.3 0)
@@ -28864,15 +28864,15 @@
 			(uuid "47b46789-6f30-47a4-9f7d-128d534873fc")
 		)
 		(embedded_fonts no)
-		(model "${KIPRJMOD}/lib.3dshapes/MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5.step"
+		(model "${KIPRJMOD}/lib.3dshapes/Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 -1.027)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 180 0 0)
 			)
 		)
 	)
@@ -32423,7 +32423,7 @@
 		(embedded_fonts no)
 		(model "${OPENDRONE_LIB}/3dmodel/X2SON-6_L1.0-W0.8-H0.4-BL.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 0 -0.03)
 			)
 			(scale
 				(xyz 1 1 1)
@@ -40974,7 +40974,7 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/lib.3dshapes/WLCSP-6_L1.30-W0.94-P0.40.step"
 			(offset
-				(xyz 0 0.11 0)
+				(xyz 0 0.11 0.475)
 			)
 			(scale
 				(xyz 1 1 1)
@@ -59288,7 +59288,7 @@
 				(xyz 0 0 0)
 			)
 			(scale
-				(xyz 1 1 0.7833)
+				(xyz 1 1 0.8545)
 			)
 			(rotate
 				(xyz 0 0 0)

@@ -8,7 +8,7 @@
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "6fe1e77b-1002-4aad-8c6c-bfb3a004e0cf")
+		(uuid "0f25d5e3-f9a9-449f-9216-e4f0a35cf77f")
 		(effects
 			(font
 				(size 1 1)
@@ -20,7 +20,7 @@
 		(at 0 4.5 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "d79b5259-c1cd-4200-8048-74e99a3bd2e6")
+		(uuid "31e94248-5d08-4754-b508-7e286c3f25b5")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "f460872e-818f-481d-b2de-46f79a260171")
+		(uuid "967b7075-0ae8-42a3-bfd7-66c831987c5d")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "c511f17e-352c-4f4a-8b42-666eeccde57e")
+		(uuid "bdb2d654-b74c-43f8-bbba-bb176698ae33")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -606,7 +606,7 @@
 	(embedded_fonts no)
 	(model "${OPENDRONE_LIB}/3dmodel/RP2354A_QFN-60.step"
 		(offset
-			(xyz 0 0 0)
+			(xyz 0 0 0.05)
 		)
 		(scale
 			(xyz 1 1 1)

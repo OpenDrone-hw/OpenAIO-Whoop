@@ -8,7 +8,7 @@
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "9c4de028-93d3-4dc1-9622-479760bea1fb")
+		(uuid "b3ac2dc2-dc4f-4865-8d6b-be1223b7a04a")
 		(effects
 			(font
 				(size 0.84 0.84)
@@ -20,7 +20,7 @@
 		(at 0 1.89 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "7e9282bd-f505-42e9-b851-9fbdcf3b711f")
+		(uuid "6d2a22ad-6f7e-440c-8066-8feabcb28aae")
 		(effects
 			(font
 				(size 0.84 0.84)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "426212eb-092b-4666-af4d-d460ca8ff1c3")
+		(uuid "682f5cfb-df03-435e-baae-ab22b3c542e8")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "f897c3b2-2ba0-4502-ba42-81e69c06caaf")
+		(uuid "b04de6e9-6505-4d5b-a808-7394d2195222")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -182,7 +182,7 @@
 	(embedded_fonts no)
 	(model "${KIPRJMOD}/lib.3dshapes/TI_SOT-583_DRL.step"
 		(offset
-			(xyz 0 0 0)
+			(xyz 0 0 0.135)
 		)
 		(scale
 			(xyz 1 1 1)

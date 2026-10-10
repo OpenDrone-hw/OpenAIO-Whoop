@@ -1631,18 +1631,6 @@
 		(fill
 			(type none)
 		)
-		(uuid "277fb400-3c5a-5286-a53c-8900e3c2d503")
-	)
-	(rectangle
-		(start 101.6 124.46)
-		(end 182.88 236.22)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
 		(uuid "2bd53c64-894a-5ebb-9e94-a018cb3e5578")
 	)
 	(polyline
@@ -1802,8 +1790,8 @@
 		(uuid "4ce9664d-a9ec-5b4d-984d-c659a6cfe555")
 	)
 	(rectangle
-		(start 307.34 124.46)
-		(end 406.4 236.22)
+		(start 220.98 124.46)
+		(end 320.04 236.22)
 		(stroke
 			(width 0)
 			(type default)
@@ -1945,8 +1933,8 @@
 		(uuid "9e2b0309-028d-514f-b0fb-23621cbabdb0")
 	)
 	(rectangle
-		(start 187.96 124.46)
-		(end 302.26 236.22)
+		(start 101.6 124.46)
+		(end 215.9 236.22)
 		(stroke
 			(width 0)
 			(type default)
@@ -2348,7 +2336,7 @@
 	)
 	(text "LED strip + buzzer row"
 		(exclude_from_sim no)
-		(at 142.24 128.27 0)
+		(at 55.88 128.27 0)
 		(effects
 			(font
 				(size 1.778 1.778)
@@ -2361,7 +2349,7 @@
 	)
 	(text "Camera pads + JST SUR 0.8 mm plug"
 		(exclude_from_sim no)
-		(at 245.11 128.27 0)
+		(at 158.75 128.27 0)
 		(effects
 			(font
 				(size 1.778 1.778)
@@ -2374,7 +2362,7 @@
 	)
 	(text "HD pads (DJI O4 Lite)"
 		(exclude_from_sim no)
-		(at 356.87 128.27 0)
+		(at 270.51 128.27 0)
 		(effects
 			(font
 				(size 1.778 1.778)
@@ -2385,22 +2373,9 @@
 		)
 		(uuid "d97c04ad-13c5-5dce-b2ff-2e19ae07060e")
 	)
-	(text "User UART pads (PIOUART0)"
-		(exclude_from_sim no)
-		(at 55.88 128.27 0)
-		(effects
-			(font
-				(size 1.778 1.778)
-				(thickness 0.3556)
-				(bold yes)
-				(color 0 0 0 1)
-			)
-		)
-		(uuid "efadaa02-9f84-5f54-ac48-84ab7955bc10")
-	)
 	(text_box "Source: OpenFC-Lite hardware/pads.kicad_sch (CAM frame: pads + SH1.0 SM03B plug), adapted to the JST SUR 0.8 mm SM03B-SURS-TF(LF)(SN) (D63/D64, IO-SET row 3: BetaFPV C03 and the Matrix-recommended cameras).\n\nPlug and pads in parallel: J32 pin 1 VIDEO_IN, 2 GND, 3 +5V_CAM, tabs 4/5 GND; pads CAM / GND / 5V (J23 J25 J24). On the board the plug faces inward and the pads sit in front of its mouth: plug OR solder in one mating zone (D72).\n\nVIDEO_IN -> OSD front end (TLV7031 sync + SN74LVC1G3157, OSD sheet), netclass Analog (OSD directive). +5V_CAM = +5V after FB1 120 R + C15 10 uF (POWER), 0.12 A. Video return: CAM GND pad and plug pin 2 enter L2 at the CAM pad (spec 11).\n\nGate G1 still open: pin order provisional until calipers + photo on a C03 lead and the MX2 CAM IN. With GND in the middle a mirrored footprint puts 5 V on the camera's video output. G1 = 1.0 mm pitch -> SM03B-SRSS-TB(LF)(SN), same pins."
 		(exclude_from_sim no)
-		(at 190.5 172.72 0)
+		(at 104.14 172.72 0)
 		(size 109.22 60.96)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2458,9 +2433,9 @@
 		)
 		(uuid "69a05841-5488-576d-9dc8-e8ff87250b46")
 	)
-	(text_box "Source: OpenFC-Lite-Mini hardware/pads.kicad_sch (digital video pads), new pad set (D13/D16).\n\nVHD = +5V_HD from U5 TPS22810 (on with HD_EN and cell >= 3.23-3.82 V, held down to 2.74-3.14 V; POWER P4-1, 1 % resistors), 1.20 A budget; O4 Lite input 3.7-13.2 V. TX1 = UART1_TX (GPIO4) -> O4 RX, RX1 = UART1_RX (GPIO5) <- O4 TX: MSP DisplayPort; no SBUS pad (D16). Cut DJI cable: red -> VHD, black + brown -> GND, white -> TX1, grey -> RX1, yellow open (RP0 only with the EXT-USER-PADS preset).\n\nAnalog builds: TX1/RX1 are a free hardware UART, or I2C0 via the I2C-HD preset (IO-SET row 8).\n\nP4-11: the O4 stays unpowered until HD_EN, so its TX cannot drive RX1 before IOVDD (FT pads limited to 3.63 V unpowered, PINMAP F16). A device on TX1/RX1 in an analog build runs from the 5V pads, which come up before +3V3: 3.3 V logic only (a 5 V TX on RX1 can exceed 3.63 V during the ramp, as on RP0).\n\nCopper only (DNP, out of BOM and CPL, LINEUP A16)."
+	(text_box "Source: OpenFC-Lite-Mini hardware/pads.kicad_sch (digital video pads), new pad set (D13/D16).\n\nVHD = +5V_HD from U5 TPS22810 (on with HD_EN and cell >= 3.23-3.82 V, held down to 2.74-3.14 V; POWER P4-1, 1 % resistors), 1.20 A budget; O4 Lite input 3.7-13.2 V. TX1 = UART1_TX (GPIO4) -> O4 RX, RX1 = UART1_RX (GPIO5) <- O4 TX: MSP DisplayPort; no SBUS pad (D16). Cut DJI cable: red -> VHD, black + brown -> GND, white -> TX1, grey -> RX1, yellow open (no SBUS input since D89).\n\nAnalog builds: TX1/RX1 are the free hardware UART (the only one since D89, no user UART pads), or I2C0 via the I2C-HD preset (IO-SET row 8).\n\nP4-11: the O4 stays unpowered until HD_EN, so its TX cannot drive RX1 before IOVDD (FT pads limited to 3.63 V unpowered, PINMAP F16). A device on TX1/RX1 in an analog build runs from a 5V pad (LED row), which comes up before +3V3: 3.3 V logic only (a 5 V TX on RX1 can exceed 3.63 V during the ramp).\n\nCopper only (DNP, out of BOM and CPL, LINEUP A16)."
 		(exclude_from_sim no)
-		(at 309.88 172.72 0)
+		(at 223.52 172.72 0)
 		(size 93.98 60.96)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2478,29 +2453,9 @@
 		)
 		(uuid "6faaff37-4c41-503d-a2e5-8c533365b63a")
 	)
-	(text_box "Source: OpenFC-Lite-Mini hardware/pads.kicad_sch ('Free UART (GPS)' group).\n\nTP0 = PIOUART0_TX (GPIO2), RP0 = PIOUART0_RX (GPIO3), PIO1 shared with the LED strip (PINMAP F5), half duplex and inversion capable. 8N1 only: Betaflight's RP2350 PIO UART rejects even parity, so SBUS / 8E2 receivers use the EXT-USER-PADS preset (hardware UART0 on these pads; 8E2 needs a Betaflight release with the uart_hw.c fix); I2C1 via I2C-USER (IO-SET 2.3).\n\n5V = +5V (TPS2116 output, 0.05 A allowance, spec 5.1) and GND for the device.\n\nP4-11 (pads, power-up): GPIO2/3 are FT pads, 5.5 V tolerant with IOVDD up but limited to 3.63 V while IOVDD is still 0 (PINMAP F16). The 5V pad comes up before +3V3 (LDO start after the mux): use 3.3 V-logic devices (GPS, receivers); a 5 V-logic TX on RP0 can exceed that limit during the ramp.\n\nSilk TP0 RP0 5V GND; copper only (DNP, out of BOM and CPL, LINEUP A16)."
-		(exclude_from_sim no)
-		(at 17.78 172.72 0)
-		(size 76.2 60.96)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width -0.0001)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "77916f28-e410-5829-94d0-64091162b188")
-	)
 	(text_box "Source: OpenFC-Lite-Mini hardware/pads.kicad_sch (LED-strip and buzzer pads).\n\nRow GND LED 5V BZ- (D63/D64): the strip gets its own GND pad J33 (supersedes D27).\n\nLED = LED_STRIP driven straight from GPIO8 (PIO1 ws2812; D52 BR-04: no translator, no series resistor, Matrix II parity). A WS2812B on 5 V asks VIH 0.7 VDD = 3.5 V; the 3.3 V drive works on the common whoop strips, a level problem shows as a dead first LED (bench check, V9).\n\n5V = +5V for the strip (0.20 A allowance, analog mode, spec 5.1) and the buzzer +. BZ- = BUZZER-: drain of the AP1606 low-side switch Q26, gate on GPIO17 (BEEPER_INVERTED, RP2350A sheet); the buzzer sits between 5V and BZ-.\n\nCopper only (DNP, out of BOM and CPL, LINEUP A16)."
 		(exclude_from_sim no)
-		(at 104.14 172.72 0)
+		(at 17.78 172.72 0)
 		(size 76.2 60.96)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2558,7 +2513,7 @@
 		)
 		(uuid "ead189ca-2578-5179-a006-3d957446b2af")
 	)
-	(text_box "PADS: every off-board connection. Style from the OpenFC-Lite-Mini and OpenFC-Lite pads sheets (pads pin down, a rail symbol or a hierarchical label at the wire end, plug blocks in frames); the source of each block is in its note. References, values (pad codes = silk codes), footprints, MPN / Manufacturer / LCSC and the DNP / BOM / CPL attributes are hardware/bom_plan.json; solder pads are DNP and out of BOM and CPL (LINEUP A16), the motor header is a DNP BOM line.\n22 hierarchical labels = the PADS sheet pins (sch_contract.json): VIDEO_IN, M1_A..M4_C, PIOUART0_TX/RX, UART1_TX/RX, LED_STRIP, BUZZER-, USB_D_P/N, VBUS. Rails by power symbol (+BATT_IN, +5V, +5V_CAM, +5V_HD, GND; sources on POWER); VBUS carries its PWR_FLAG here. Netclass directives: VBAT (+BATT_IN at J2), Phase (M1_A), USB (USB_D_P).\nOwed: J31 pin 1 = GND (gate V0-USB before the P5 freeze), J32 pin order (gate G1), motor-header temperature (V4)."
+	(text_box "PADS: every off-board connection. Style from the OpenFC-Lite-Mini and OpenFC-Lite pads sheets (pads pin down, a rail symbol or a hierarchical label at the wire end, plug blocks in frames); the source of each block is in its note. References, values (pad codes = silk codes), footprints, MPN / Manufacturer / LCSC and the DNP / BOM / CPL attributes are hardware/bom_plan.json; solder pads are DNP and out of BOM and CPL (LINEUP A16), the motor header is a DNP BOM line.\n20 hierarchical labels = the PADS sheet pins (sch_contract.json): VIDEO_IN, M1_A..M4_C, UART1_TX/RX, LED_STRIP, BUZZER-, USB_D_P/N, VBUS. Rails by power symbol (+BATT_IN, +5V, +5V_CAM, +5V_HD, GND; sources on POWER); VBUS carries its PWR_FLAG here. Netclass directives: VBAT (+BATT_IN at J2), Phase (M1_A), USB (USB_D_P). No user UART group (D89): the free UART is the HD group TX1/RX1 (UART1).\nOwed: J31 pin 1 = GND (gate V0-USB before the P5 freeze), J32 pin order (gate G1), motor-header temperature (V4)."
 		(exclude_from_sim no)
 		(at 101.6 241.3 0)
 		(size 193.04 43.18)
@@ -2579,6 +2534,12 @@
 		(uuid "fc7ab748-ed36-566f-a145-50a38c7fde80")
 	)
 	(junction
+		(at 119.38 160.02)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "004394a5-71b3-5a55-95c5-8acc8294cf4d")
+	)
+	(junction
 		(at 335.28 63.5)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2589,12 +2550,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "692b6b7e-2a30-56ce-96da-8f50e16205a5")
-	)
-	(junction
-		(at 205.74 160.02)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "cc3a2f5c-cae6-561c-aa37-eb8c7052bbd5")
 	)
 	(junction
 		(at 30.48 40.64)
@@ -2620,7 +2575,7 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 147.32) (xy 147.32 152.4)
+			(xy 111.76 160.02) (xy 119.38 160.02)
 		)
 		(stroke
 			(width 0)
@@ -2637,6 +2592,16 @@
 			(type default)
 		)
 		(uuid "04685b81-5ac8-582c-a666-054e2dd6a2ff")
+	)
+	(wire
+		(pts
+			(xy 165.1 147.32) (xy 165.1 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d99c173-13ad-5a40-bc83-dfa8007a3e57")
 	)
 	(wire
 		(pts
@@ -2670,16 +2635,6 @@
 	)
 	(wire
 		(pts
-			(xy 251.46 147.32) (xy 251.46 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1d8f5fe8-3272-5369-b2b8-9a9453e75f8d")
-	)
-	(wire
-		(pts
 			(xy 374.65 58.42) (xy 382.27 58.42)
 		)
 		(stroke
@@ -2690,6 +2645,16 @@
 	)
 	(wire
 		(pts
+			(xy 238.76 147.32) (xy 238.76 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1e17fd61-8e0f-5aa4-91eb-dfd170f7212d")
+	)
+	(wire
+		(pts
 			(xy 379.73 40.64) (xy 379.73 43.18)
 		)
 		(stroke
@@ -2697,16 +2662,6 @@
 			(type default)
 		)
 		(uuid "23bfa506-64ba-5781-a7a3-5196f88096b5")
-	)
-	(wire
-		(pts
-			(xy 205.74 160.02) (xy 251.46 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2812b827-3f33-542e-abd8-5de55764551d")
 	)
 	(wire
 		(pts
@@ -2730,16 +2685,6 @@
 	)
 	(wire
 		(pts
-			(xy 325.12 147.32) (xy 325.12 152.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "43d71839-66ed-548d-9f9c-9912ff901b52")
-	)
-	(wire
-		(pts
 			(xy 40.64 147.32) (xy 40.64 152.4)
 		)
 		(stroke
@@ -2750,7 +2695,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 147.32) (xy 226.06 152.4)
+			(xy 167.64 147.32) (xy 167.64 152.4)
 		)
 		(stroke
 			(width 0)
@@ -2770,7 +2715,7 @@
 	)
 	(wire
 		(pts
-			(xy 260.35 147.32) (xy 260.35 152.4)
+			(xy 269.24 147.32) (xy 269.24 152.4)
 		)
 		(stroke
 			(width 0)
@@ -2800,16 +2745,6 @@
 	)
 	(wire
 		(pts
-			(xy 345.44 147.32) (xy 345.44 152.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "600ea014-ce5e-562f-935d-a1bea1685cc6")
-	)
-	(wire
-		(pts
 			(xy 177.8 43.18) (xy 167.64 43.18)
 		)
 		(stroke
@@ -2820,7 +2755,7 @@
 	)
 	(wire
 		(pts
-			(xy 205.74 147.32) (xy 205.74 160.02)
+			(xy 170.18 147.32) (xy 170.18 157.48)
 		)
 		(stroke
 			(width 0)
@@ -2850,7 +2785,7 @@
 	)
 	(wire
 		(pts
-			(xy 254 147.32) (xy 254 152.4)
+			(xy 248.92 147.32) (xy 248.92 152.4)
 		)
 		(stroke
 			(width 0)
@@ -2890,16 +2825,6 @@
 	)
 	(wire
 		(pts
-			(xy 335.28 147.32) (xy 335.28 152.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8a735e35-25dd-5bdf-8023-db428148b7c0")
-	)
-	(wire
-		(pts
 			(xy 215.9 40.64) (xy 205.74 40.64)
 		)
 		(stroke
@@ -2930,7 +2855,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 147.32) (xy 137.16 152.4)
+			(xy 119.38 147.32) (xy 119.38 160.02)
 		)
 		(stroke
 			(width 0)
@@ -2960,7 +2885,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 160.02) (xy 205.74 160.02)
+			(xy 173.99 147.32) (xy 173.99 152.4)
 		)
 		(stroke
 			(width 0)
@@ -2977,6 +2902,16 @@
 			(type default)
 		)
 		(uuid "be9f43c0-402c-51eb-93d8-6c7743958c3f")
+	)
+	(wire
+		(pts
+			(xy 119.38 160.02) (xy 165.1 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2848e4a-5e72-5df4-a77d-6a60da3070a9")
 	)
 	(wire
 		(pts
@@ -3000,17 +2935,7 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 147.32) (xy 215.9 152.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d0b23276-af82-5ccc-b3b9-0c8a931c539d")
-	)
-	(wire
-		(pts
-			(xy 127 147.32) (xy 127 152.4)
+			(xy 139.7 147.32) (xy 139.7 152.4)
 		)
 		(stroke
 			(width 0)
@@ -3020,7 +2945,7 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 147.32) (xy 116.84 152.4)
+			(xy 129.54 147.32) (xy 129.54 152.4)
 		)
 		(stroke
 			(width 0)
@@ -3040,7 +2965,7 @@
 	)
 	(wire
 		(pts
-			(xy 256.54 147.32) (xy 256.54 157.48)
+			(xy 259.08 147.32) (xy 259.08 152.4)
 		)
 		(stroke
 			(width 0)
@@ -3070,16 +2995,6 @@
 	)
 	(wire
 		(pts
-			(xy 355.6 147.32) (xy 355.6 152.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ea8ecd1e-f404-5cd5-85c5-141770481823")
-	)
-	(wire
-		(pts
 			(xy 340.36 48.26) (xy 340.36 55.88)
 		)
 		(stroke
@@ -3097,6 +3012,17 @@
 			(type default)
 		)
 		(uuid "f6d7dd9c-d8f5-5ba2-a151-cfa6af4a7c96")
+	)
+	(hierarchical_label "VIDEO_IN"
+		(shape output)
+		(at 111.76 160.02 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "273464bf-8f0c-5652-8f19-b977085d30e9")
 	)
 	(hierarchical_label "M3_A"
 		(shape bidirectional)
@@ -3153,6 +3079,28 @@
 		)
 		(uuid "583610fb-e5e0-504a-9ddf-d38bf29d75d1")
 	)
+	(hierarchical_label "UART1_RX"
+		(shape output)
+		(at 269.24 152.4 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "636ba845-8a43-5a41-89ee-f7bb4c72fd36")
+	)
+	(hierarchical_label "BUZZER-"
+		(shape input)
+		(at 60.96 152.4 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "69d5c7f9-eb5b-5672-8f86-e4f20d7f926f")
+	)
 	(hierarchical_label "VBUS"
 		(shape output)
 		(at 266.7 68.58 180)
@@ -3163,17 +3111,6 @@
 			(justify right)
 		)
 		(uuid "808145db-c195-5036-98ca-a166e7d5f626")
-	)
-	(hierarchical_label "BUZZER-"
-		(shape input)
-		(at 147.32 152.4 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "8e830230-3ab3-577a-ad16-7ff511bfbdc0")
 	)
 	(hierarchical_label "M4_A"
 		(shape bidirectional)
@@ -3208,17 +3145,6 @@
 		)
 		(uuid "aeffbb9b-68ab-5eb9-9951-d6310c72d884")
 	)
-	(hierarchical_label "UART1_TX"
-		(shape input)
-		(at 345.44 152.4 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "baa7ce04-216b-5a85-beb8-36c097cf0771")
-	)
 	(hierarchical_label "M1_A"
 		(shape bidirectional)
 		(at 91.44 38.1 180)
@@ -3230,8 +3156,8 @@
 		)
 		(uuid "bd250592-1809-5b49-ba3a-6d2947eab1e7")
 	)
-	(hierarchical_label "PIOUART0_RX"
-		(shape output)
+	(hierarchical_label "LED_STRIP"
+		(shape input)
 		(at 40.64 152.4 270)
 		(effects
 			(font
@@ -3274,27 +3200,16 @@
 		)
 		(uuid "d074367b-cd05-59e4-a22c-bb64cc2ea4de")
 	)
-	(hierarchical_label "PIOUART0_TX"
+	(hierarchical_label "UART1_TX"
 		(shape input)
-		(at 30.48 152.4 270)
+		(at 259.08 152.4 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "d7fdf346-ed7d-5c36-b368-54708ab3ff4b")
-	)
-	(hierarchical_label "UART1_RX"
-		(shape output)
-		(at 355.6 152.4 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "dc14554e-47ce-5b63-b58f-a52dcc0d9d93")
+		(uuid "ef29a8d2-06ec-5a5e-8dff-cb0cef970cbd")
 	)
 	(hierarchical_label "M2_A"
 		(shape bidirectional)
@@ -3307,17 +3222,6 @@
 		)
 		(uuid "f058212a-b333-5bc8-875c-27fcd4bdca60")
 	)
-	(hierarchical_label "LED_STRIP"
-		(shape input)
-		(at 127 152.4 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "f201537a-01db-5431-a7d7-0657ef1c97ae")
-	)
 	(hierarchical_label "USB_D_P"
 		(shape bidirectional)
 		(at 266.7 63.5 180)
@@ -3328,17 +3232,6 @@
 			(justify right)
 		)
 		(uuid "f5228137-ea7c-5a51-bae3-a1b702927d8b")
-	)
-	(hierarchical_label "VIDEO_IN"
-		(shape output)
-		(at 198.12 160.02 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "f807194d-bf32-5f5b-8959-f44f9786e1a8")
 	)
 	(netclass_flag ""
 		(length 2.54)
@@ -3412,83 +3305,6 @@
 					(italic yes)
 				)
 				(justify left)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 60.96 152.4 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "00aef79a-c6d3-558d-897c-f353e2f1a4db")
-		(property "Reference" "#PWR244"
-			(at 60.96 158.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 60.96 156.21 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 60.96 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 60.96 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 60.96 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "a37dd9f5-ffd9-598f-afae-ee7adba02863")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR244")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -3637,6 +3453,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
 					(reference "H3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 139.7 152.4 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "0c803258-1207-538f-bfa1-9d5d43ac7656")
+		(property "Reference" "#PWR246"
+			(at 139.7 148.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_CAM"
+			(at 139.7 155.956 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 139.7 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 139.7 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 139.7 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c1b4f220-9887-5ee7-bfff-9c6a08d5625c")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
+					(reference "#PWR246")
 					(unit 1)
 				)
 			)
@@ -4022,7 +3915,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 127 142.24 90)
+		(at 40.64 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4032,7 +3925,7 @@
 		(dnp yes)
 		(uuid "2cd038c2-1706-5ce6-83c8-726bdc0e4866")
 		(property "Reference" "J20"
-			(at 127 136.906 90)
+			(at 40.64 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4042,7 +3935,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 127 138.938 90)
+			(at 40.64 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4052,7 +3945,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm_Dense"
-			(at 127 142.24 0)
+			(at 40.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4063,7 +3956,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 127 142.24 0)
+			(at 40.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4074,7 +3967,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 127 142.24 0)
+			(at 40.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4098,7 +3991,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 325.12 142.24 90)
+		(at 238.76 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4108,7 +4001,7 @@
 		(dnp yes)
 		(uuid "2d79e408-ba64-5e11-ace5-b25b8a913a7f")
 		(property "Reference" "J26"
-			(at 325.12 136.906 90)
+			(at 238.76 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4118,7 +4011,7 @@
 			)
 		)
 		(property "Value" "VHD"
-			(at 325.12 138.938 90)
+			(at 238.76 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4128,7 +4021,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 325.12 142.24 0)
+			(at 238.76 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4139,7 +4032,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 325.12 142.24 0)
+			(at 238.76 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4150,7 +4043,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 325.12 142.24 0)
+			(at 238.76 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4173,161 +4066,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 137.16 152.4 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "3c8ebcd5-3b67-586a-b4ff-fea35585feb1")
-		(property "Reference" "#PWR246"
-			(at 137.16 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 137.16 155.956 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 137.16 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 137.16 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 137.16 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d0c2b294-0aad-5d88-9c33-2ea443fe86df")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR246")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 60.96 142.24 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp yes)
-		(uuid "3f51f20e-02de-5895-bd58-5bc08ff2d7a0")
-		(property "Reference" "J19"
-			(at 60.96 136.906 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 60.96 138.938 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 60.96 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 60.96 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 60.96 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "62f99c9f-01f6-52bc-b31b-9cd33a0c75f5")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "J19")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "lib:SolderPad_01x01")
-		(at 345.44 142.24 90)
+		(at 259.08 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4337,7 +4077,7 @@
 		(dnp yes)
 		(uuid "41075a6b-9b8e-5559-a8a4-27be2e1c168d")
 		(property "Reference" "J28"
-			(at 345.44 136.906 90)
+			(at 259.08 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4347,7 +4087,7 @@
 			)
 		)
 		(property "Value" "TX1"
-			(at 345.44 138.938 90)
+			(at 259.08 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4357,7 +4097,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 345.44 142.24 0)
+			(at 259.08 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4368,7 +4108,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 345.44 142.24 0)
+			(at 259.08 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4379,7 +4119,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 345.44 142.24 0)
+			(at 259.08 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4402,85 +4142,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 325.12 152.4 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "445f7115-8698-5d5b-9b39-79e0be644913")
-		(property "Reference" "#PWR251"
-			(at 325.12 148.59 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_HD"
-			(at 325.12 155.956 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 325.12 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 325.12 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 325.12 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "afe5f2d8-c6c2-55fb-b64a-43360514d8bc")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR251")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "lib:SM03B-SURS-TF")
-		(at 254 142.24 0)
+		(at 167.64 142.24 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -4491,7 +4154,7 @@
 		(dnp no)
 		(uuid "45ccbc6e-e5e0-5d52-9a57-85629a36b331")
 		(property "Reference" "J32"
-			(at 251.46 138.43 0)
+			(at 165.1 138.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4501,7 +4164,7 @@
 			)
 		)
 		(property "Value" "CAM"
-			(at 259.08 138.43 0)
+			(at 172.72 138.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4511,7 +4174,7 @@
 			)
 		)
 		(property "Footprint" "lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal"
-			(at 254 142.24 0)
+			(at 167.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4522,7 +4185,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.jst-mfg.com/product/pdf/eng/eSUR.pdf"
-			(at 254 142.24 0)
+			(at 167.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4533,7 +4196,7 @@
 			)
 		)
 		(property "Description" "JST SUR 0.8 mm pitch 3-circuit shrouded header, side entry SMT, 0.5 A (AWG32), 50 V, -25..+85 C; solder tabs 4/5 stacked as MP; mated length 3.9 mm, height 1.75 mm"
-			(at 254 142.24 0)
+			(at 167.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4544,7 +4207,7 @@
 			)
 		)
 		(property "LCSC" "C265338"
-			(at 254 142.24 0)
+			(at 167.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4555,7 +4218,7 @@
 			)
 		)
 		(property "MPN" "SM03B-SURS-TF(LF)(SN)"
-			(at 254 142.24 0)
+			(at 167.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4566,7 +4229,7 @@
 			)
 		)
 		(property "Manufacturer" "JST"
-			(at 254 142.24 0)
+			(at 167.64 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4602,160 +4265,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 30.48 142.24 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp yes)
-		(uuid "47085d91-0329-5225-8e27-b181ce7f16d3")
-		(property "Reference" "J16"
-			(at 30.48 136.906 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "TP0"
-			(at 30.48 138.938 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 30.48 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 30.48 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 30.48 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "7a4d9492-28f2-57d4-a58d-83a8c2fbb23e")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "J16")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 215.9 152.4 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "537578aa-d5b8-5e29-9aff-9a963915c54b")
-		(property "Reference" "#PWR247"
-			(at 215.9 158.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 215.9 156.21 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 215.9 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 215.9 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 215.9 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "94433a25-d418-513d-b4c6-f2305176a838")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR247")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "lib:SolderPad_01x01")
-		(at 215.9 142.24 90)
+		(at 129.54 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4765,7 +4275,7 @@
 		(dnp yes)
 		(uuid "53e54fe3-1319-5297-ae52-fb3e048dc0fd")
 		(property "Reference" "J25"
-			(at 215.9 136.906 90)
+			(at 129.54 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4775,7 +4285,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 215.9 138.938 90)
+			(at 129.54 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4785,7 +4295,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 215.9 142.24 0)
+			(at 129.54 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4796,7 +4306,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 215.9 142.24 0)
+			(at 129.54 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4807,7 +4317,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 215.9 142.24 0)
+			(at 129.54 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4830,8 +4340,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 226.06 152.4 180)
+		(lib_id "power:GND")
+		(at 167.64 152.4 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4840,8 +4350,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5977d0c5-eae4-5279-9d2b-fb69e61a010a")
-		(property "Reference" "#PWR248"
-			(at 226.06 148.59 0)
+		(property "Reference" "#PWR247"
+			(at 167.64 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4851,8 +4361,8 @@
 				)
 			)
 		)
-		(property "Value" "+5V_CAM"
-			(at 226.06 155.956 0)
+		(property "Value" "GND"
+			(at 167.64 156.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4862,7 +4372,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 226.06 152.4 0)
+			(at 167.64 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4873,7 +4383,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 226.06 152.4 0)
+			(at 167.64 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4883,8 +4393,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 226.06 152.4 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 167.64 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4900,7 +4410,84 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR248")
+					(reference "#PWR247")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 238.76 152.4 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "59d7d1f1-20c5-549a-810a-b42eed829453")
+		(property "Reference" "#PWR249"
+			(at 238.76 148.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_HD"
+			(at 238.76 155.956 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 238.76 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 238.76 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 238.76 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6c1c1c72-caf0-5fed-90bd-1bcb7b28a00d")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
+					(reference "#PWR249")
 					(unit 1)
 				)
 			)
@@ -4917,7 +4504,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5c2f38a5-6dcb-53d2-916f-234e58ccbfad")
-		(property "Reference" "#PWR243"
+		(property "Reference" "#PWR244"
 			(at 50.8 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4977,7 +4564,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR243")
+					(reference "#PWR244")
 					(unit 1)
 				)
 			)
@@ -4985,7 +4572,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 116.84 142.24 90)
+		(at 30.48 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4995,7 +4582,7 @@
 		(dnp yes)
 		(uuid "61e2fab3-98ec-54c8-9a36-d256820681d1")
 		(property "Reference" "J33"
-			(at 116.84 136.906 90)
+			(at 30.48 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5005,7 +4592,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 116.84 138.938 90)
+			(at 30.48 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5015,7 +4602,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm_Dense"
-			(at 116.84 142.24 0)
+			(at 30.48 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5026,7 +4613,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 116.84 142.24 0)
+			(at 30.48 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5037,7 +4624,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 116.84 142.24 0)
+			(at 30.48 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5137,7 +4724,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 254 152.4 0)
+		(at 248.92 152.4 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5146,8 +4733,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "6fed3220-6f3d-5f49-b058-63689329f866")
-		(property "Reference" "#PWR249"
-			(at 254 158.75 0)
+		(property "Reference" "#PWR250"
+			(at 248.92 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5158,7 +4745,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 254 156.21 0)
+			(at 248.92 156.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5168,7 +4755,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 254 152.4 0)
+			(at 248.92 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5179,7 +4766,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 254 152.4 0)
+			(at 248.92 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5190,7 +4777,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 254 152.4 0)
+			(at 248.92 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5206,83 +4793,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR249")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "lib:SolderPad_01x01")
-		(at 50.8 142.24 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp yes)
-		(uuid "72725a51-3dda-570c-a93f-3e05084cef28")
-		(property "Reference" "J18"
-			(at 50.8 136.906 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "5V"
-			(at 50.8 138.938 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 50.8 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 50.8 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 50.8 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b40881b5-f5be-5481-8fd1-f3597fb36382")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "J18")
+					(reference "#PWR250")
 					(unit 1)
 				)
 			)
@@ -5360,6 +4871,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
 					(reference "#FLG08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 173.99 152.4 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "79747108-9108-5219-bd9d-7833e4819acc")
+		(property "Reference" "#PWR248"
+			(at 173.99 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 173.99 156.21 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 173.99 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 173.99 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 173.99 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "66107850-d9f2-5983-a676-3e712303f847")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
+					(reference "#PWR248")
 					(unit 1)
 				)
 			)
@@ -5685,83 +5273,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 260.35 152.4 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "882644fe-ab7b-5443-8afb-76ef0766cedb")
-		(property "Reference" "#PWR250"
-			(at 260.35 158.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 260.35 156.21 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 260.35 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 260.35 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 260.35 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "133a06e7-e66b-5dfe-b40e-959496b881a2")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR250")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "lib:Molex_53047-0310")
 		(at 220.98 40.64 0)
 		(mirror x)
@@ -5879,7 +5390,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 335.28 142.24 90)
+		(at 248.92 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5889,7 +5400,7 @@
 		(dnp yes)
 		(uuid "940f14ae-d9ea-5c44-853e-b45a6f221cab")
 		(property "Reference" "J27"
-			(at 335.28 136.906 90)
+			(at 248.92 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5899,7 +5410,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 335.28 138.938 90)
+			(at 248.92 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5909,7 +5420,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 335.28 142.24 0)
+			(at 248.92 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5920,7 +5431,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 335.28 142.24 0)
+			(at 248.92 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5931,7 +5442,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 335.28 142.24 0)
+			(at 248.92 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5948,83 +5459,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
 					(reference "J27")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 335.28 152.4 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "9644be60-9de8-58a0-a34c-dc0e43bbdae0")
-		(property "Reference" "#PWR252"
-			(at 335.28 158.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 335.28 156.21 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 335.28 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 335.28 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 335.28 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "040a2324-9959-564b-8fe7-eea6053a2325")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR252")
 					(unit 1)
 				)
 			)
@@ -6108,7 +5542,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 147.32 142.24 90)
+		(at 60.96 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6118,7 +5552,7 @@
 		(dnp yes)
 		(uuid "b6a74047-0d16-5113-adbf-b1dd8ecc914a")
 		(property "Reference" "J22"
-			(at 147.32 136.906 90)
+			(at 60.96 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6128,7 +5562,7 @@
 			)
 		)
 		(property "Value" "BZ-"
-			(at 147.32 138.938 90)
+			(at 60.96 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6138,7 +5572,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm_Dense"
-			(at 147.32 142.24 0)
+			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6149,7 +5583,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 147.32 142.24 0)
+			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6160,7 +5594,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 147.32 142.24 0)
+			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6177,82 +5611,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
 					(reference "J22")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "lib:SolderPad_01x01")
-		(at 40.64 142.24 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp yes)
-		(uuid "bb142bdd-261b-5169-9d1a-b0d83f359f30")
-		(property "Reference" "J17"
-			(at 40.64 136.906 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "RP0"
-			(at 40.64 138.938 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 40.64 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 40.64 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 40.64 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4f1b631d-739a-50b5-a91d-a7a7020815f5")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "J17")
 					(unit 1)
 				)
 			)
@@ -6337,7 +5695,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 137.16 142.24 90)
+		(at 50.8 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6347,7 +5705,7 @@
 		(dnp yes)
 		(uuid "bef9c950-8339-5548-9577-93f88c5a1b52")
 		(property "Reference" "J21"
-			(at 137.16 136.906 90)
+			(at 50.8 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6357,7 +5715,7 @@
 			)
 		)
 		(property "Value" "5V"
-			(at 137.16 138.938 90)
+			(at 50.8 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6367,7 +5725,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm_Dense"
-			(at 137.16 142.24 0)
+			(at 50.8 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6378,7 +5736,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 137.16 142.24 0)
+			(at 50.8 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6389,7 +5747,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 137.16 142.24 0)
+			(at 50.8 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6413,7 +5771,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 355.6 142.24 90)
+		(at 269.24 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6423,7 +5781,7 @@
 		(dnp yes)
 		(uuid "c8157f66-0725-5039-aab7-c7c9c1e4e148")
 		(property "Reference" "J29"
-			(at 355.6 136.906 90)
+			(at 269.24 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6433,7 +5791,7 @@
 			)
 		)
 		(property "Value" "RX1"
-			(at 355.6 138.938 90)
+			(at 269.24 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6443,7 +5801,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 355.6 142.24 0)
+			(at 269.24 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6454,7 +5812,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 355.6 142.24 0)
+			(at 269.24 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6465,7 +5823,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 355.6 142.24 0)
+			(at 269.24 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6482,6 +5840,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
 					(reference "J29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 30.48 152.4 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "cff898ae-b622-5f47-84b6-144fd9a2bae3")
+		(property "Reference" "#PWR243"
+			(at 30.48 158.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 30.48 156.21 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 30.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 30.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 30.48 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c469a081-162b-53a1-9774-b7fbb1bc4788")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
+					(reference "#PWR243")
 					(unit 1)
 				)
 			)
@@ -6682,7 +6117,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 116.84 152.4 0)
+		(at 129.54 152.4 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6692,7 +6127,7 @@
 		(dnp no)
 		(uuid "df0bae61-5184-5549-beb2-74e983132e72")
 		(property "Reference" "#PWR245"
-			(at 116.84 158.75 0)
+			(at 129.54 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6703,7 +6138,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 116.84 156.21 0)
+			(at 129.54 156.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6713,7 +6148,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 116.84 152.4 0)
+			(at 129.54 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6724,7 +6159,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 116.84 152.4 0)
+			(at 129.54 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6735,7 +6170,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 116.84 152.4 0)
+			(at 129.54 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6759,7 +6194,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 205.74 142.24 90)
+		(at 119.38 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6769,7 +6204,7 @@
 		(dnp yes)
 		(uuid "e7ca1599-1445-579d-bb8f-be54ea67a035")
 		(property "Reference" "J23"
-			(at 205.74 136.906 90)
+			(at 119.38 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6779,7 +6214,7 @@
 			)
 		)
 		(property "Value" "CAM"
-			(at 205.74 138.938 90)
+			(at 119.38 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6789,7 +6224,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 205.74 142.24 0)
+			(at 119.38 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6800,7 +6235,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 205.74 142.24 0)
+			(at 119.38 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6811,7 +6246,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 205.74 142.24 0)
+			(at 119.38 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6835,7 +6270,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 226.06 142.24 90)
+		(at 139.7 142.24 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6845,7 +6280,7 @@
 		(dnp yes)
 		(uuid "efc16aa8-dc88-51ea-8e5c-e043351cc599")
 		(property "Reference" "J24"
-			(at 226.06 136.906 90)
+			(at 139.7 136.906 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6855,7 +6290,7 @@
 			)
 		)
 		(property "Value" "5V"
-			(at 226.06 138.938 90)
+			(at 139.7 138.938 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6865,7 +6300,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
-			(at 226.06 142.24 0)
+			(at 139.7 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6876,7 +6311,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 226.06 142.24 0)
+			(at 139.7 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6887,7 +6322,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 226.06 142.24 0)
+			(at 139.7 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6911,7 +6346,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 256.54 157.48 180)
+		(at 170.18 157.48 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6919,9 +6354,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "f6aa28ac-761a-5f24-b090-c30fb90d6d9d")
-		(property "Reference" "#PWR253"
-			(at 256.54 153.67 0)
+		(uuid "f53d7a8e-7d04-5d01-bd35-74e157a3940e")
+		(property "Reference" "#PWR251"
+			(at 170.18 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6932,7 +6367,7 @@
 			)
 		)
 		(property "Value" "+5V_CAM"
-			(at 256.54 161.036 0)
+			(at 170.18 161.036 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6942,7 +6377,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 256.54 157.48 0)
+			(at 170.18 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6953,7 +6388,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 256.54 157.48 0)
+			(at 170.18 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6964,7 +6399,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 256.54 157.48 0)
+			(at 170.18 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6975,12 +6410,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b8ec14be-699e-57bd-b988-5e295bc7e313")
+			(uuid "e8989ed3-e9cd-56af-a6dd-63ce5cf98edc")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR253")
+					(reference "#PWR251")
 					(unit 1)
 				)
 			)

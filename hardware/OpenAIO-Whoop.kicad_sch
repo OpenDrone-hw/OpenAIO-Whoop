@@ -695,7 +695,7 @@
 		)
 		(uuid "5fbe6456-f39b-547a-a74e-f9373bad65f1")
 	)
-	(text "BATTERY\nMOTOR LANDS\nUSER UART\nLED / BUZZER\nCAMERA\nHD (O4)\nUSB JST SH"
+	(text "BATTERY\nMOTOR LANDS\nLED / BUZZER\nCAMERA\nHD (O4)\nUSB JST SH"
 		(exclude_from_sim no)
 		(at 378.46 34.29 0)
 		(effects
@@ -805,7 +805,7 @@
 	)
 	(wire
 		(pts
-			(xy 358.14 182.88) (xy 360.68 182.88)
+			(xy 200.66 187.96) (xy 360.68 187.96)
 		)
 		(stroke
 			(width 0)
@@ -855,7 +855,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 48.26) (xy 276.86 48.26)
+			(xy 274.32 53.34) (xy 294.64 53.34)
 		)
 		(stroke
 			(width 0)
@@ -872,16 +872,6 @@
 			(type default)
 		)
 		(uuid "24ce6587-e7c1-5aee-910e-89a5ed459a3b")
-	)
-	(wire
-		(pts
-			(xy 274.32 157.48) (xy 360.68 157.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "24e13015-ae2a-5f43-8eeb-3596386cbd46")
 	)
 	(wire
 		(pts
@@ -905,23 +895,13 @@
 	)
 	(wire
 		(pts
-			(xy 276.86 35.56) (xy 297.18 35.56)
+			(xy 276.86 40.64) (xy 297.18 40.64)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "2838e853-5217-5ccd-8225-67ed6662dfed")
-	)
-	(wire
-		(pts
-			(xy 274.32 137.16) (xy 360.68 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "29588c9a-713e-5d9a-a5f9-1e31b25dbbae")
 	)
 	(wire
 		(pts
@@ -945,7 +925,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 175.26) (xy 200.66 175.26)
+			(xy 198.12 180.34) (xy 200.66 180.34)
 		)
 		(stroke
 			(width 0)
@@ -995,7 +975,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 187.96) (xy 200.66 187.96)
+			(xy 198.12 193.04) (xy 200.66 193.04)
 		)
 		(stroke
 			(width 0)
@@ -1035,7 +1015,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 96.52) (xy 360.68 96.52)
+			(xy 274.32 137.16) (xy 360.68 137.16)
 		)
 		(stroke
 			(width 0)
@@ -1055,7 +1035,17 @@
 	)
 	(wire
 		(pts
-			(xy 358.14 177.8) (xy 360.68 177.8)
+			(xy 274.32 101.6) (xy 360.68 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4e7602ce-bb4f-5bd2-b002-9386a073e36b")
+	)
+	(wire
+		(pts
+			(xy 358.14 182.88) (xy 360.68 182.88)
 		)
 		(stroke
 			(width 0)
@@ -1065,7 +1055,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 116.84) (xy 360.68 116.84)
+			(xy 274.32 157.48) (xy 360.68 157.48)
 		)
 		(stroke
 			(width 0)
@@ -1085,23 +1075,13 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 38.1) (xy 276.86 38.1)
+			(xy 274.32 43.18) (xy 276.86 43.18)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "57ca6a93-4b61-5240-84f2-7c53a6575956")
-	)
-	(wire
-		(pts
-			(xy 274.32 160.02) (xy 360.68 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "595edda5-db53-50ef-8189-2b224be8e70c")
 	)
 	(wire
 		(pts
@@ -1125,23 +1105,13 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 182.88) (xy 358.14 182.88)
+			(xy 198.12 187.96) (xy 200.66 187.96)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "606fd0bc-8551-547d-9067-d7eacac926f9")
-	)
-	(wire
-		(pts
-			(xy 274.32 162.56) (xy 360.68 162.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "61c4a768-6e25-5b4f-8392-5c7b299f80b1")
 	)
 	(wire
 		(pts
@@ -1155,7 +1125,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 99.06) (xy 360.68 99.06)
+			(xy 274.32 139.7) (xy 360.68 139.7)
 		)
 		(stroke
 			(width 0)
@@ -1185,7 +1155,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 190.5) (xy 360.68 190.5)
+			(xy 276.86 35.56) (xy 297.18 35.56)
 		)
 		(stroke
 			(width 0)
@@ -1205,7 +1175,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 50.8) (xy 297.18 50.8)
+			(xy 274.32 99.06) (xy 360.68 99.06)
 		)
 		(stroke
 			(width 0)
@@ -1225,7 +1195,17 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 187.96) (xy 360.68 187.96)
+			(xy 274.32 121.92) (xy 360.68 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a84a446-8c0b-52f5-874a-d532e248107e")
+	)
+	(wire
+		(pts
+			(xy 200.66 193.04) (xy 360.68 193.04)
 		)
 		(stroke
 			(width 0)
@@ -1235,7 +1215,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 53.34) (xy 294.64 53.34)
+			(xy 274.32 116.84) (xy 360.68 116.84)
 		)
 		(stroke
 			(width 0)
@@ -1245,7 +1225,7 @@
 	)
 	(wire
 		(pts
-			(xy 276.86 48.26) (xy 297.18 48.26)
+			(xy 294.64 53.34) (xy 297.18 53.34)
 		)
 		(stroke
 			(width 0)
@@ -1275,7 +1255,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 45.72) (xy 276.86 45.72)
+			(xy 274.32 50.8) (xy 294.64 50.8)
 		)
 		(stroke
 			(width 0)
@@ -1295,7 +1275,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 180.34) (xy 200.66 180.34)
+			(xy 198.12 185.42) (xy 200.66 185.42)
 		)
 		(stroke
 			(width 0)
@@ -1305,7 +1285,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 190.5) (xy 200.66 190.5)
+			(xy 274.32 35.56) (xy 276.86 35.56)
 		)
 		(stroke
 			(width 0)
@@ -1335,7 +1315,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 119.38) (xy 360.68 119.38)
+			(xy 274.32 160.02) (xy 360.68 160.02)
 		)
 		(stroke
 			(width 0)
@@ -1365,7 +1345,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 53.34) (xy 297.18 53.34)
+			(xy 274.32 119.38) (xy 360.68 119.38)
 		)
 		(stroke
 			(width 0)
@@ -1385,7 +1365,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 121.92) (xy 360.68 121.92)
+			(xy 274.32 162.56) (xy 360.68 162.56)
 		)
 		(stroke
 			(width 0)
@@ -1415,7 +1395,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 35.56) (xy 276.86 35.56)
+			(xy 274.32 40.64) (xy 276.86 40.64)
 		)
 		(stroke
 			(width 0)
@@ -1435,7 +1415,7 @@
 	)
 	(wire
 		(pts
-			(xy 276.86 45.72) (xy 297.18 45.72)
+			(xy 294.64 50.8) (xy 297.18 50.8)
 		)
 		(stroke
 			(width 0)
@@ -1445,7 +1425,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 40.64) (xy 276.86 40.64)
+			(xy 274.32 45.72) (xy 276.86 45.72)
 		)
 		(stroke
 			(width 0)
@@ -1455,7 +1435,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 50.8) (xy 294.64 50.8)
+			(xy 274.32 96.52) (xy 360.68 96.52)
 		)
 		(stroke
 			(width 0)
@@ -1475,7 +1455,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 101.6) (xy 360.68 101.6)
+			(xy 274.32 142.24) (xy 360.68 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1485,7 +1465,7 @@
 	)
 	(wire
 		(pts
-			(xy 276.86 40.64) (xy 297.18 40.64)
+			(xy 276.86 45.72) (xy 297.18 45.72)
 		)
 		(stroke
 			(width 0)
@@ -1495,17 +1475,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 142.24) (xy 360.68 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b7d3e0df-97cd-51b2-be30-a7741ffc5e4e")
-	)
-	(wire
-		(pts
-			(xy 274.32 43.18) (xy 276.86 43.18)
+			(xy 274.32 48.26) (xy 276.86 48.26)
 		)
 		(stroke
 			(width 0)
@@ -1525,7 +1495,7 @@
 	)
 	(wire
 		(pts
-			(xy 276.86 38.1) (xy 297.18 38.1)
+			(xy 276.86 43.18) (xy 297.18 43.18)
 		)
 		(stroke
 			(width 0)
@@ -1535,7 +1505,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 193.04) (xy 200.66 193.04)
+			(xy 274.32 38.1) (xy 276.86 38.1)
 		)
 		(stroke
 			(width 0)
@@ -1555,7 +1525,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 180.34) (xy 360.68 180.34)
+			(xy 200.66 185.42) (xy 360.68 185.42)
 		)
 		(stroke
 			(width 0)
@@ -1585,7 +1555,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 185.42) (xy 360.68 185.42)
+			(xy 200.66 190.5) (xy 360.68 190.5)
 		)
 		(stroke
 			(width 0)
@@ -1615,7 +1585,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 175.26) (xy 360.68 175.26)
+			(xy 200.66 180.34) (xy 360.68 180.34)
 		)
 		(stroke
 			(width 0)
@@ -1625,7 +1595,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 177.8) (xy 358.14 177.8)
+			(xy 198.12 182.88) (xy 358.14 182.88)
 		)
 		(stroke
 			(width 0)
@@ -1645,7 +1615,7 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 193.04) (xy 360.68 193.04)
+			(xy 276.86 38.1) (xy 297.18 38.1)
 		)
 		(stroke
 			(width 0)
@@ -1685,7 +1655,7 @@
 	)
 	(wire
 		(pts
-			(xy 198.12 185.42) (xy 200.66 185.42)
+			(xy 198.12 190.5) (xy 200.66 190.5)
 		)
 		(stroke
 			(width 0)
@@ -1705,23 +1675,13 @@
 	)
 	(wire
 		(pts
-			(xy 276.86 43.18) (xy 297.18 43.18)
+			(xy 276.86 48.26) (xy 297.18 48.26)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "dd6efca8-fba4-56de-bb0a-31452d99c658")
-	)
-	(wire
-		(pts
-			(xy 274.32 139.7) (xy 360.68 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e2840019-df37-5c76-a48d-e31eb1b43359")
 	)
 	(wire
 		(pts
@@ -3224,8 +3184,8 @@
 		)
 		(uuid "0b916551-63c1-5ab7-be5a-825ee1c7c6d8")
 	)
-	(label "USB_D_P"
-		(at 200.66 190.5 0)
+	(label "VTX_SPI_CS"
+		(at 276.86 35.56 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3243,16 +3203,6 @@
 			(justify right bottom)
 		)
 		(uuid "12f901ea-8ff8-5f04-b3bb-c2c6e4c287f2")
-	)
-	(label "PA_NTC"
-		(at 294.64 53.34 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "1ab3f60e-dabf-5dd5-81b0-59b1612f7a41")
 	)
 	(label "OSD_EN"
 		(at 200.66 73.66 0)
@@ -3274,8 +3224,8 @@
 		)
 		(uuid "21edb72e-dddb-5372-a2cb-69ccf9f6a218")
 	)
-	(label "VTX_SPI_CLK"
-		(at 276.86 38.1 0)
+	(label "VTX_AMP_PWM"
+		(at 276.86 43.18 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3294,13 +3244,13 @@
 		)
 		(uuid "3c7730e1-85e3-541b-b703-7e114dcd1003")
 	)
-	(label "UART1_RX"
-		(at 358.14 182.88 180)
+	(label "BUZZER-"
+		(at 200.66 187.96 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "409551c4-847e-5d69-8da7-68343358d108")
 	)
@@ -3364,8 +3314,8 @@
 		)
 		(uuid "6c23fd28-c052-5576-b3b2-9b21f8dfe815")
 	)
-	(label "USB_D_N"
-		(at 200.66 193.04 0)
+	(label "VTX_SPI_CLK"
+		(at 276.86 38.1 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3374,8 +3324,8 @@
 		)
 		(uuid "6f5ec5ba-293f-5459-ac7b-aaa50958ac13")
 	)
-	(label "VTX_AMP_PWM"
-		(at 276.86 43.18 0)
+	(label "VTX_PWR_CTL"
+		(at 276.86 48.26 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3384,8 +3334,8 @@
 		)
 		(uuid "702db581-5ee2-58eb-a4a0-502e534954c7")
 	)
-	(label "VTX_SPI_CS"
-		(at 276.86 35.56 0)
+	(label "VTX_SPI_DATA"
+		(at 276.86 40.64 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3393,16 +3343,6 @@
 			(justify left bottom)
 		)
 		(uuid "72eecd7b-c386-5d81-9244-b3f8f630b87e")
-	)
-	(label "PA_DET"
-		(at 294.64 50.8 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "77953ca7-df55-591f-ae94-4b641fb46fbf")
 	)
 	(label "LED0"
 		(at 139.7 91.44 180)
@@ -3434,13 +3374,13 @@
 		)
 		(uuid "88af163a-d589-5461-a871-9e90d805747a")
 	)
-	(label "PA_EN"
-		(at 276.86 45.72 0)
+	(label "PA_DET"
+		(at 294.64 50.8 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "8d65f30e-6637-5601-b26d-7bb92317f637")
 	)
@@ -3454,8 +3394,8 @@
 		)
 		(uuid "90cec005-9d68-527b-b54f-ee9dde835f80")
 	)
-	(label "UART1_TX"
-		(at 200.66 180.34 0)
+	(label "LED_STRIP"
+		(at 200.66 185.42 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3464,8 +3404,8 @@
 		)
 		(uuid "993b8185-579c-5556-90f6-c79f80e7c0b8")
 	)
-	(label "PIOUART0_RX"
-		(at 358.14 177.8 180)
+	(label "UART1_RX"
+		(at 358.14 182.88 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3474,8 +3414,8 @@
 		)
 		(uuid "9ca7f360-620c-5a11-9516-18a034b9895b")
 	)
-	(label "PIOUART0_TX"
-		(at 200.66 175.26 0)
+	(label "UART1_TX"
+		(at 200.66 180.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3484,8 +3424,8 @@
 		)
 		(uuid "a9de6873-818f-50a8-ba1d-c941cb252067")
 	)
-	(label "BUZZER-"
-		(at 200.66 187.96 0)
+	(label "USB_D_N"
+		(at 200.66 193.04 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3514,13 +3454,13 @@
 		)
 		(uuid "b12f9719-2345-5276-831b-cf771e196631")
 	)
-	(label "VTX_PWR_CTL"
-		(at 276.86 48.26 0)
+	(label "PA_NTC"
+		(at 294.64 53.34 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "b44cc5c6-2b06-5dea-afb7-f6bc10281d58")
 	)
@@ -3604,8 +3544,8 @@
 		)
 		(uuid "ebbc13a8-7532-5f47-83d0-cab3a4438791")
 	)
-	(label "LED_STRIP"
-		(at 200.66 185.42 0)
+	(label "USB_D_P"
+		(at 200.66 190.5 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3614,8 +3554,8 @@
 		)
 		(uuid "f034ce3c-d683-5d46-8557-831b967c4a35")
 	)
-	(label "VTX_SPI_DATA"
-		(at 276.86 40.64 0)
+	(label "PA_EN"
+		(at 276.86 45.72 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4589,26 +4529,6 @@
 				(justify left)
 			)
 		)
-		(pin "PIOUART0_TX" input
-			(at 360.68 175.26 180)
-			(uuid "bf7c28d5-9eeb-5ea8-8334-fd56cc69084c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "PIOUART0_RX" output
-			(at 360.68 177.8 180)
-			(uuid "a55c0e9d-ae89-557d-85f8-c0b8b63fe427")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "UART1_TX" input
 			(at 360.68 180.34 180)
 			(uuid "580661e1-187f-5578-ad13-f3e891cc5ab0")
@@ -5226,26 +5146,6 @@
 		(pin "MOTOR4" bidirectional
 			(at 198.12 157.48 0)
 			(uuid "01beea97-f2c3-5df3-a9f1-8f3f961861f7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "PIOUART0_TX" output
-			(at 198.12 175.26 0)
-			(uuid "90c5158a-acf4-5dc0-b1aa-c0ada7fd3f63")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "PIOUART0_RX" input
-			(at 198.12 177.8 0)
-			(uuid "117ebe2d-52e7-52e1-b6f0-24383b7babbd")
 			(effects
 				(font
 					(size 1.27 1.27)

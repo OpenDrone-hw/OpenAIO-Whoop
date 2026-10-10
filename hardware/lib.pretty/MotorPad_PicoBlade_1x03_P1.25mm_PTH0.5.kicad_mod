@@ -3,12 +3,12 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = simplified header envelope under a 1.0 mm board. Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
+	(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.027). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
 	(tags "motor solder pad PicoBlade 53047 1.25mm plug-ready whoop JST1.25")
 	(property "Reference" "REF**"
 		(at 0 0.3 0)
 		(layer "F.Fab")
-		(uuid "2ea8a266-1ef3-4d33-b93e-90407c8bf822")
+		(uuid "448efa03-8c28-4ce5-aeaa-5665a300e875")
 		(effects
 			(font
 				(size 0.4 0.4)
@@ -20,7 +20,7 @@
 		(at 0 1.7 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "77db1830-8c0b-44ec-93ad-92313e9bd26b")
+		(uuid "0578ddd1-5c01-4aa0-b2d9-350460a1a1b1")
 		(effects
 			(font
 				(size 0.4 0.4)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "0ef8f645-b3ec-40b0-9106-141c4a553463")
+		(uuid "8cf28150-bc02-4218-afda-b8676f4b379e")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "2488d0c5-09bd-41e4-96e9-23cf3c113d7d")
+		(uuid "6312590a-0510-4da0-bd5a-66bbeb81742a")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -223,15 +223,15 @@
 		(uuid "15c13cb0-1dc5-434b-a361-c4caa6d92e2f")
 	)
 	(embedded_fonts no)
-	(model "${KIPRJMOD}/lib.3dshapes/MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5.step"
+	(model "${KIPRJMOD}/lib.3dshapes/Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical.step"
 		(offset
-			(xyz 0 0 0)
+			(xyz 0 0 -1.027)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 0)
+			(xyz 180 0 0)
 		)
 	)
 )

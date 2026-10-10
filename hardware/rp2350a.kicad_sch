@@ -3815,19 +3815,6 @@
 		)
 		(uuid "591478ec-231c-5abe-b0c7-9e368792314c")
 	)
-	(text "for external: user pads TP0/RP0 (PIO1, 8N1)"
-		(exclude_from_sim no)
-		(at 353.06 227.33 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(thickness 0.254)
-				(bold yes)
-			)
-			(justify left)
-		)
-		(uuid "7445b9cc-92a2-5f82-ab2f-64d9f1930e46")
-	)
 	(text "for CRSF receiver (ESP32 ELRS, UART0)"
 		(exclude_from_sim no)
 		(at 353.06 214.63 0)
@@ -3929,6 +3916,19 @@
 			)
 		)
 		(uuid "bff585e7-b150-5919-87d7-993afe4353cb")
+	)
+	(text "GPIO2/3 spare, no-connect (D89)"
+		(exclude_from_sim no)
+		(at 353.06 227.33 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "c78c181c-456d-5983-89d2-031d5888c4ff")
 	)
 	(text "buzzer with N-MOS \nlow side switch"
 		(exclude_from_sim no)
@@ -4147,7 +4147,7 @@
 		)
 		(uuid "de618c95-3f80-5156-ba0a-a58045ed86a1")
 	)
-	(text_box "P4-11 power-up and 5 V-tolerant pads (PINMAP 4.5, F16; RP2350 DS Table 1433): an FT pad takes <= 3.63 V while IOVDD is 0-1.8 V (4.2 V at 2.5 V, 5.5 V at 3.3 V); the ADC pads GPIO26-29 take <= IOVDD + 0.5 V.\n- MOTOR1-4 (GPIO25-22, FT), battery first: each EFM8 weak pull-up (70-220 kOhm to VDD = cell) reaches the pad through its 2.4k before +3V3 is up (boost soft start + LP5912 ramp, about 1-2 ms). Worst case 4.35 V open circuit = 0.72 V over 3.63 V, from >= 72 kOhm (<= 60 uA). Matrix parity (G473 FT pins ~4 V at VDD 0). V9 scopes it; fallback (F16): 3.3 V-domain clamp or DShot-path enable.\n- ADC_VBAT (GPIO29): R45/R46 put up to 2.18 V on the pad from 5 kOhm while IOVDD < 1.7 V, so the pad clamp to IOVDD conducts <= 0.3 mA during the ramp. House + Matrix parity; V9 scope.\n- HD_EN (GPIO27): R11 2.4k + the BAS16LD from O4_EN (<= 90 uA) hold it at <= 0.22 V before and during reset: inside IOVDD + 0.5 V and below the AP1606 HD-gate Vgs(th) min 0.4 V at 25 C (P4-4; about 0.25 V at 85 C, -2.5 mV/K: a hot low-Vth part may hold the analog VTX off until PINIO1 is driven low, R68 47k, V9 hot-soak boot check); driven high it is >= 2.62 V (VOH, 1.4 mA into R11) over Vgs(th) max 1.2 V.\n- UART0, SPI0/1, gyro, OSD, CURR_SENSE: every driver is on +3V3 = IOVDD, no excursion. UART1 TX1/RX1: the O4 is fed only through U5 (needs HD_EN high), none. USB D+/D-: the host drives only after the device pull-up.\n- PIOUART0 pads TP0/RP0, and TX1/RX1 used as the second hardware UART in analog builds (IO-SET row 8): a peripheral on the 5V pads is up before IOVDD: 3.3 V logic only (README); a 5 V TX on RP0 or RX1 (GPIO5) would exceed 3.63 V at power-up."
+	(text_box "P4-11 power-up and 5 V-tolerant pads (PINMAP 4.5, F16; RP2350 DS Table 1433): an FT pad takes <= 3.63 V while IOVDD is 0-1.8 V (4.2 V at 2.5 V, 5.5 V at 3.3 V); the ADC pads GPIO26-29 take <= IOVDD + 0.5 V.\n- MOTOR1-4 (GPIO25-22, FT), battery first: each EFM8 weak pull-up (70-220 kOhm to VDD = cell) reaches the pad through its 2.4k before +3V3 is up (boost soft start + LP5912 ramp, about 1-2 ms). Worst case 4.35 V open circuit = 0.72 V over 3.63 V, from >= 72 kOhm (<= 60 uA). Matrix parity (G473 FT pins ~4 V at VDD 0). V9 scopes it; fallback (F16): 3.3 V-domain clamp or DShot-path enable.\n- ADC_VBAT (GPIO29): R45/R46 put up to 2.18 V on the pad from 5 kOhm while IOVDD < 1.7 V, so the pad clamp to IOVDD conducts <= 0.3 mA during the ramp. House + Matrix parity; V9 scope.\n- HD_EN (GPIO27): R11 2.4k + the BAS16LD from O4_EN (<= 90 uA) hold it at <= 0.22 V before and during reset: inside IOVDD + 0.5 V and below the AP1606 HD-gate Vgs(th) min 0.4 V at 25 C (P4-4; about 0.25 V at 85 C, -2.5 mV/K: a hot low-Vth part may hold the analog VTX off until PINIO1 is driven low, R68 47k, V9 hot-soak boot check); driven high it is >= 2.62 V (VOH, 1.4 mA into R11) over Vgs(th) max 1.2 V.\n- UART0, SPI0/1, gyro, OSD, CURR_SENSE: every driver is on +3V3 = IOVDD, no excursion. UART1 TX1/RX1: the O4 is fed only through U5 (needs HD_EN high), none. USB D+/D-: the host drives only after the device pull-up.\n- TX1/RX1 used as the free hardware UART in analog builds (IO-SET row 8; the only free UART since D89): a peripheral on a 5V pad is up before IOVDD: 3.3 V logic only (README); a 5 V TX on RX1 (GPIO5) would exceed 3.63 V at power-up.\n- GPIO2/3 (pins 4/5): no-connect since D89 (no user UART pads)."
 		(exclude_from_sim no)
 		(at 424.18 208.28 0)
 		(size 81.28 76.2)
@@ -4326,12 +4326,20 @@
 		(uuid "895fe5fd-b6cb-5872-9738-53c8f0d9d738")
 	)
 	(no_connect
+		(at 321.31 226.06)
+		(uuid "8f372803-0836-51d0-8303-7d6c935c683a")
+	)
+	(no_connect
 		(at 270.51 217.17)
 		(uuid "dda2148a-8dc9-5129-924e-c0d9dd550d93")
 	)
 	(no_connect
 		(at 270.51 209.55)
 		(uuid "f722fd50-49fd-550f-9ade-b8487e0bab65")
+	)
+	(no_connect
+		(at 321.31 228.6)
+		(uuid "fbf162a8-545d-5a8f-98cd-604091b9a136")
 	)
 	(wire
 		(pts
@@ -5493,9 +5501,9 @@
 		)
 		(uuid "f6607543-5897-53cc-869f-ecc3af4e118a")
 	)
-	(hierarchical_label "LED1"
+	(hierarchical_label "OSD_W"
 		(shape output)
-		(at 321.31 247.65 0)
+		(at 321.31 264.16 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5504,9 +5512,9 @@
 		)
 		(uuid "00db4950-111d-525b-ad1a-36449384192f")
 	)
-	(hierarchical_label "PIOUART0_RX"
-		(shape input)
-		(at 321.31 228.6 0)
+	(hierarchical_label "UART1_TX"
+		(shape output)
+		(at 321.31 234.95 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5515,9 +5523,9 @@
 		)
 		(uuid "0dbf09e8-fd01-5b93-b63f-8949eba7cf57")
 	)
-	(hierarchical_label "PIOUART0_TX"
-		(shape output)
-		(at 321.31 226.06 0)
+	(hierarchical_label "UART1_RX"
+		(shape input)
+		(at 321.31 232.41 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5526,9 +5534,9 @@
 		)
 		(uuid "16c62fb3-cd2f-5192-b5b0-05a53dc6daac")
 	)
-	(hierarchical_label "OSD_W"
-		(shape output)
-		(at 321.31 264.16 0)
+	(hierarchical_label "OSD_SYNC"
+		(shape input)
+		(at 321.31 269.24 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5592,17 +5600,6 @@
 		)
 		(uuid "2baaf091-d390-5f9a-9a26-7065839c5f61")
 	)
-	(hierarchical_label "OSD_EN"
-		(shape output)
-		(at 321.31 266.7 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "2f0aac18-f9f6-5220-8484-3b5cda863558")
-	)
 	(hierarchical_label "SPI0_SCK"
 		(shape output)
 		(at 321.31 182.88 0)
@@ -5658,9 +5655,9 @@
 		)
 		(uuid "65b210b9-25af-589b-91a3-5cceead9b480")
 	)
-	(hierarchical_label "UART1_RX"
-		(shape input)
-		(at 321.31 232.41 0)
+	(hierarchical_label "GYRO_CLKIN"
+		(shape output)
+		(at 321.31 238.76 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5702,9 +5699,9 @@
 		)
 		(uuid "956b5a8a-037c-5b26-9d8a-ee0abb20e711")
 	)
-	(hierarchical_label "GYRO_CLKIN"
+	(hierarchical_label "LED1"
 		(shape output)
-		(at 321.31 238.76 0)
+		(at 321.31 247.65 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5713,9 +5710,9 @@
 		)
 		(uuid "99dbcc5c-85fa-5507-916c-daef3547d9f1")
 	)
-	(hierarchical_label "LED0"
+	(hierarchical_label "HD_EN"
 		(shape output)
-		(at 321.31 241.3 0)
+		(at 321.31 250.19 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5757,17 +5754,6 @@
 		)
 		(uuid "b124c90c-ae6a-54b1-9646-123d22c35ee2")
 	)
-	(hierarchical_label "OSD_SYNC"
-		(shape input)
-		(at 321.31 269.24 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "b42e4b7d-67ff-5cf2-b239-1bb9b5c838a9")
-	)
 	(hierarchical_label "GYRO_INT"
 		(shape input)
 		(at 321.31 163.83 0)
@@ -5779,9 +5765,9 @@
 		)
 		(uuid "b706a4b0-df75-5c4d-bfb5-6b5cff2f98c1")
 	)
-	(hierarchical_label "HD_EN"
+	(hierarchical_label "OSD_EN"
 		(shape output)
-		(at 321.31 250.19 0)
+		(at 321.31 266.7 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5801,9 +5787,9 @@
 		)
 		(uuid "ca2f6f7c-f8bd-5095-b07a-8ad962f7fb0e")
 	)
-	(hierarchical_label "UART1_TX"
+	(hierarchical_label "LED0"
 		(shape output)
-		(at 321.31 234.95 0)
+		(at 321.31 241.3 0)
 		(effects
 			(font
 				(size 1.27 1.27)
