@@ -456,3 +456,11 @@ up, POWER battery pads clear of the frame (VBAT flag off the CSA+ label), ESC po
 VTX_AMP_PWM label clear of its sheet pin. Pipeline: sch_tidy/regen.sh (fix2 regen + tidy_sheets), idempotent and
 reproducible from 730986d. Checks: ERC 0 errors / 2 pin_to_pin, check_netlist 7/0, check_conventions planned 0 A-rule
 FAIL, svc_k10 visual check 0.
+
+Independent check of the readability pass (2026-10-10): netlist still byte-identical to 730986d and HEAD, ERC 0 errors /
+2 pin_to_pin, check_netlist 7/0, check_conventions planned 0 FAIL with the 730986d board (the one B7 FAIL in the repo is
+the board's silk, not the schematic), svc_k10 0. Three small fixes, made in the generators: RX AE1 moved 3.81 mm right
+so the RF_RX_ANT label no longer runs into its DNP cross; PADS VIDEO_IN row moved down 5.08 mm and its label 2.54 mm
+right, so the J32 +5V_CAM wire no longer crosses it and the label is clear of the block frame; RP2350A oscillator note
+now says X1 (not C42) goes within 3 mm of XIN pin 21. Still open, not small: RP2350A and VTX use only the top half of
+their A2 pages (a re-layout to A3 is a bigger change); the sheet headings use three different styles (copied siblings).
