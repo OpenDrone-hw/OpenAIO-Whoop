@@ -502,7 +502,7 @@ in-sheet label, which the setup_board.py net-class patterns match (`/ESC?/PHASE_
 | 1 | P0.1 | `B_Mux` (CMP0.P0) | `BEMF_B` | phase B through series R (BEMF network) |
 | 2 | P0.0 | unused | - | no-connect |
 | 3 | GND | | GND | |
-| 4 | VDD | | `+BATT` | its own cluster's +BATT copper, no series R (it must track the P sources); 100 nF X6S at the pin; the phase-B hot-loop cap (22 µF X5R 0603 since D108, C23 / C29 / C35 / C41) within 4 mm through the +BATT plane is the datasheet's 1 µF bulk (BR-05 amended, D77; C30 deleted) |
+| 4 | VDD | | `+BATT` | its own cluster's +BATT copper, no series R (it must track the P sources); 100 nF X6S at the pin; the phase-B hot-loop cap (22 µF 6.3 V X6S 0603 GRM188C80J226ME15D since D108, C23 / C29 / C35 / C41) within 4 mm through the +BATT plane is the datasheet's 1 µF bulk (BR-05 amended, D77; C30 deleted) |
 | 5 | RSTb / C2CK | reset | `C2CK` | C2CK test pad; internal pull-up only (F12: the 1 kΩ of datasheet Fig 5.2 is dropped, lean rule) |
 | 6 | P2.0 / C2D | `DebugPin` (push-pull output in layout A) | `C2D` | C2D test pad only, nothing else on the net |
 | 7 | P1.6 | unused | - | no-connect |

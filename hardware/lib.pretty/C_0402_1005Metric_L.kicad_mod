@@ -3,12 +3,12 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. IPC-7351C least density (D109): lands 0.38 x 0.48 at +-0.39 (gap 0.40, overall 1.16 x 0.48). Chip 1.00+-0.05 x 0.50+-0.05 (Murata GRM155, Samsung CL05, Yageo RC0402): toe 0.08 past the nominal end, 0.055 at L max 1.05; land inner edge 0.20 (terminal inner edge 0.15 at e max 0.35, heel -0.05 = IPC L); width 0.48 (side -0.01; Samsung CL05 rule b < W met, Murata c 0.40-0.60 met). Murata GR*15 Table 2: a 0.30-0.50 -> 0.40, b 0.35-0.45 -> 0.38, c 0.40-0.60 -> 0.48. Courtyard 1.36 x 0.70. Derived from lib:C_0402_1005Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0402_1005Metric_L.json")
+	(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. IPC-7351C least density (D109): lands 0.425 x 0.50 at +-0.4125 (x 0.20..0.625, gap 0.40, overall 1.25 x 0.50). Chip tolerance is set by the worst part on this footprint: Murata GRM155C80J106ME11 spec p1 '3. Type & Dimensions' L 1.0+-0.2, W 0.5+-0.2, e 0.15-0.35, g >= 0.3 (Samsung CL05A475MP5NRNC 1.00+-0.15, CL05A105KA5NQNC 1.00+-0.10, product pages): toe 0.125 past the nominal end, 0.025 at L max 1.20 (0.05 at 1.15); land inner edge 0.20 (terminal inner edge >= 0.15 at g min 0.30, heel -0.05 = IPC L); width 0.50 (= W nominal, side 0). Murata GR*15 (+-0.15/+-0.20) Table 2: a 0.4-0.6 -> 0.40, b 0.4-0.5 -> 0.425, c 0.5-0.7 -> 0.50. Courtyard 1.45 x 0.70. Verifier fix 2026-10-10: the first _L land (0.38 x 0.48 at +-0.39, outer edge 0.58) assumed L +-0.05 and left the GRM155C80J106ME11 terminal uncovered at L max. Derived from lib:C_0402_1005Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0402_1005Metric_L.json")
 	(tags "0402 (1005 metric 1.0 x 0.5")
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "5e9b2be7-7c43-4cb1-aecd-1e7171a6506e")
+		(uuid "09ff77ad-4f96-430a-a574-e75f227905a3")
 		(effects
 			(font
 				(size 0.2 0.2)
@@ -20,7 +20,7 @@
 		(at 0 0.45 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "f9eb6b31-a699-4420-a162-e9f3c929fc55")
+		(uuid "368b8811-df9b-4561-a8c6-a592e273b131")
 		(effects
 			(font
 				(size 0.2 0.2)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "25d35107-cbb1-421b-8fce-62bc22377ea6")
+		(uuid "a5a7b040-3a37-4aa4-9e50-76eae88ece2b")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "043f4a20-d423-4859-a60a-1664c5a54e77")
+		(uuid "8079223b-a560-4743-951b-7e360238c7c2")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -53,15 +53,15 @@
 	(attr smd)
 	(duplicate_pad_numbers_are_jumpers no)
 	(fp_rect
-		(start -0.68 -0.35)
-		(end 0.68 0.35)
+		(start -0.725 -0.35)
+		(end 0.725 0.35)
 		(stroke
 			(width 0.05)
 			(type default)
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "a61bd432-aba4-426f-903b-7113e2e29b7a")
+		(uuid "a1d70f6a-19e0-451b-bf0f-0a726ef7c466")
 	)
 	(fp_line
 		(start -0.5 -0.125)
@@ -71,7 +71,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "73577b53-608f-412d-8a8a-f80cead643ee")
+		(uuid "3a71c3d0-ea25-4c2d-b1d2-bd50fc17f4f4")
 	)
 	(fp_line
 		(start -0.5 0.25)
@@ -81,7 +81,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "0fd2ed5c-88f3-4381-971e-6ee8a6b83efc")
+		(uuid "9935c5c7-2640-492e-9e2c-dedd92dbeb12")
 	)
 	(fp_line
 		(start -0.375 -0.25)
@@ -91,7 +91,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "095f9b01-e360-45e8-9e2c-883867502a12")
+		(uuid "09052233-b7ea-4bcc-ae6c-5c677efa54e2")
 	)
 	(fp_line
 		(start 0.5 -0.25)
@@ -101,7 +101,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "77f65439-9444-4ad0-bb57-8d166c144866")
+		(uuid "fb877bc9-7334-44c9-a0dc-768c280b22b9")
 	)
 	(fp_line
 		(start 0.5 0.25)
@@ -111,23 +111,23 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "8447c2f4-e995-4166-ab1a-f991cca4baae")
+		(uuid "01360627-ac99-4beb-9f36-c2176b943486")
 	)
 	(pad "1" smd roundrect
-		(at -0.39 0)
-		(size 0.38 0.48)
+		(at -0.4125 0)
+		(size 0.425 0.5)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "06531453-c6cf-4a2f-8d2c-ef9dda7ace49")
+		(uuid "36b571f8-4874-48ea-934d-6252edcb9cd4")
 	)
 	(pad "2" smd roundrect
-		(at 0.39 0)
-		(size 0.38 0.48)
+		(at 0.4125 0)
+		(size 0.425 0.5)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "a727c078-9279-49b6-8a25-5e6c2c7ad1e9")
+		(uuid "99e961f5-587f-4743-8899-74e7b78ba212")
 	)
 	(embedded_fonts no)
 	(model "${OPENDRONE_LIB}/3dmodel/C_0402_1005Metric.step"
