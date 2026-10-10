@@ -8,7 +8,7 @@
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "c9a25799-04f9-4e94-ba9c-1f8aedfcf6f5")
+		(uuid "bc346fe2-7bff-4dd5-9b67-443aef1838aa")
 		(effects
 			(font
 				(size 0.32 0.32)
@@ -16,11 +16,11 @@
 			)
 		)
 	)
-	(property "Value" "TI_SOT-9X3-3_DRT"
+	(property "Value" "TI_SOT-9X3-3_DRT_L"
 		(at 0 0.72 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "0d92358e-c033-43d4-bff5-cf6a7afe1902")
+		(uuid "3edea675-fd5f-4fe6-a843-64868ee7406d")
 		(effects
 			(font
 				(size 0.32 0.32)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "71ea0ab6-d0f7-4429-a4e8-1631ce1465bf")
+		(uuid "8afb8fc5-4f72-4666-9e48-c9158c66176a")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "17f7403f-c23a-4aed-9d7b-66a53fcdca60")
+		(uuid "54592586-d3b8-433c-9ee7-8f8bdca9448e")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -61,7 +61,7 @@
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "0a87bf61-1513-4c84-9759-e2c63e684e44")
+		(uuid "4f7ca72d-6175-4757-98d4-7bf9cfb64fb1")
 	)
 	(fp_line
 		(start -0.5 -0.4)
@@ -71,7 +71,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "5b07827b-129b-4143-8747-b4d72b42f831")
+		(uuid "98d45480-e932-4eb9-bf8c-3e4dd1442fc3")
 	)
 	(fp_line
 		(start -0.5 0.2)
@@ -81,7 +81,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "e23d655f-4338-4890-b6d3-af16e2fb4d41")
+		(uuid "6090e4d8-14df-4e88-8c1f-e993eeb29a72")
 	)
 	(fp_line
 		(start -0.3 0.4)
@@ -91,7 +91,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "607a4a48-b91d-4bb0-a964-b51c5ecc06a3")
+		(uuid "da8824a2-959e-4591-8fba-7eb98864c387")
 	)
 	(fp_line
 		(start 0.5 -0.4)
@@ -101,7 +101,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "f652d453-050a-4d63-9975-9a847698e3d0")
+		(uuid "06545a89-4f92-4c03-8112-32add2c3b45f")
 	)
 	(fp_line
 		(start 0.5 0.4)
@@ -111,28 +111,28 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "6ed384c7-3030-4d7d-8d65-91da27663698")
+		(uuid "0b0923e1-eea3-4389-899a-89c5e77b44dd")
 	)
 	(pad "1" smd rect
 		(at -0.35 0.4175)
 		(size 0.3 0.285)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(thermal_bridge_angle 45)
-		(uuid "ee73ceb6-2b78-49d6-951f-233bd92ae932")
+		(uuid "6a9897d0-5253-43e0-815e-d82b94576aea")
 	)
 	(pad "2" smd rect
 		(at 0.35 0.4175)
 		(size 0.3 0.285)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(thermal_bridge_angle 45)
-		(uuid "432d50c7-feb0-4486-bf97-a93c800e48fe")
+		(uuid "1536f982-3a8b-4e08-ac33-ba3c50a01fae")
 	)
 	(pad "3" smd rect
 		(at 0 -0.4175)
 		(size 0.3 0.285)
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(thermal_bridge_angle 45)
-		(uuid "02b46229-21fc-49bf-938a-e2482aee3658")
+		(uuid "fbb74f5f-1771-4956-bd66-cfe5e8e7b856")
 	)
 	(embedded_fonts no)
 	(model "${KIPRJMOD}/lib.3dshapes/TI_SOT-9X3-3_DRT.step"
