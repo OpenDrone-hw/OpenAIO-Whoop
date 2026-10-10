@@ -380,22 +380,23 @@ RULES = [
      "  (severity warning)\n  (constraint disallow track)\n"
      "  (condition \"A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu'\")"),
 
-    ("In2 and In3: no analog, RF or gate nets",
-     ["Spec 8.2 / 11: In2 (L3) references the +BATT plane (L4) more than GND, so video and sense (Analog), RF and",
-      "the FET gates (Gate) route on L1 over L2 or L6 over L5. In3 (L4) is the +BATT plane itself."],
+    ("In2: no analog or RF; In3: no analog, RF or gate (D85)",
+     ["Spec 8.2 / 11, relaxed by D85 for routing closure: video and sense (Analog) and RF stay on L1 over L2 or L6",
+      "over L5; the FET gates (Gate) may use In2 (L3) but not In3 (L4), which is the +BATT plane itself."],
      "  (constraint disallow track)\n"
-     "  (condition \"(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && "
-     "(A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate')\")"),
+     "  (condition \"(A.Layer == 'In2.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF')) || "
+     "(A.Layer == 'In3.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate'))\")"),
 
-    ("In2 and In3: no gyro, VTX control or Kelvin nets",
-     ["Spec 8.2 / 8.4: the name-based sensitive set (gyro SPI1, GYRO_*, VTX_SPI, PA_*, SHUNT_SENSE_*) stays off",
-      "In2/In3 as well (net names compared with wildcards; '.' is literal). Route sync 2026-10-10: the integrated",
-      "schematic names the buses /SPI1_*, /VTX_SPI_* and /VTX/U19_SPI* (underscore), so those forms are matched too."],
+    ("In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)",
+     ["Spec 8.2 / 8.4, relaxed by D85: the gyro bus (SPI1, GYRO_*), VTX SPI and the digital PA controls may use In2",
+      "but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET, PA_NTC) stay off both inner",
+      "signal layers. Net names compared with wildcards; '.' is literal; underscore forms of the buses matched too."],
      "  (constraint disallow track)\n"
-     "  (condition \"(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SPI1.*' || "
+     "  (condition \"(A.Layer == 'In3.Cu' && (A.NetName == '*SPI1.*' || "
      "A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || "
-     "A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*' || "
-     "A.NetName == '*SHUNT_SENSE_*')\")"),
+     "A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')) || "
+     "((A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SHUNT_SENSE_*' || "
+     "A.NetName == '*/PA_DET*' || A.NetName == '*/PA_NTC*'))\")"),
 
     ("RF: no vias",
      ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.",
@@ -1494,15 +1495,17 @@ def selftest(P, rf):
     trk(ax + 1.9, ay + 2.0, ax + 2.3, ay + 2.0, 0.1, "/FLASH_CS"); case("NOR chip select /FLASH_CS 2.9 mm from the antenna hole", "SPI0 3 mm from the RX antenna hole", (ax + 2.1, ay + 2.0), r=0.4)
     fx, fy = RX_FEED[0]
     via(fx - 0.3, fy + 0.15, 0.35, 0.20, "/T/V9"); case("signal via in RF_RX_FEED", "RF_RX_FEED: GND vias only", (fx - 0.3, fy + 0.15), r=0.4)
-    # inner-layer bans (In2 / In3)
-    trk(6.0, 1.0, 7.0, 1.0, 0.1, "/OSD/VIDEO_IN", "In2.Cu"); case("Analog track on In2", "In2 and In3: no analog, RF or gate nets", (6.5, 1.0), r=0.6)
-    trk(6.0, 2.0, 7.0, 2.0, 0.15, "/ESC1/A_COM", "In3.Cu"); case("Gate track on In3", "In2 and In3: no analog, RF or gate nets", (6.5, 2.0), r=0.6)
-    trk(6.0, 3.0, 7.0, 3.0, 0.1, "/FC/SPI1.SCK", "In2.Cu"); case("gyro SPI1 track on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (6.5, 3.0), r=0.6)
-    trk(8.0, 1.0, 9.0, 1.0, 0.1, "/RX/VTX_SPI.CLK", "In2.Cu"); case("VTX SPI track on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (8.5, 1.0), r=0.6)
+    # inner-layer bans (In2 / In3), D85
+    trk(6.0, 1.0, 7.0, 1.0, 0.1, "/OSD/VIDEO_IN", "In2.Cu"); case("Analog track on In2", "In2: no analog or RF; In3: no analog, RF or gate (D85)", (6.5, 1.0), r=0.6)
+    trk(6.0, 2.0, 7.0, 2.0, 0.15, "/ESC1/A_COM", "In3.Cu"); case("Gate track on In3", "In2: no analog or RF; In3: no analog, RF or gate (D85)", (6.5, 2.0), r=0.6)
+    trk(10.0, 2.0, 11.0, 2.0, 0.15, "/ESC2/B_PWM", "In2.Cu"); case("Gate track on In2 (allowed, D85)", None, (10.5, 2.0), r=0.6)
+    trk(6.0, 3.0, 7.0, 3.0, 0.1, "/FC/SPI1.SCK", "In2.Cu"); case("gyro SPI1 track on In2 (allowed, D85)", None, (6.5, 3.0), r=0.6)
+    trk(8.0, 1.0, 9.0, 1.0, 0.1, "/RX/VTX_SPI.CLK", "In2.Cu"); case("VTX SPI track on In2 (allowed, D85)", None, (8.5, 1.0), r=0.6)
     trk(8.0, 2.0, 9.0, 2.0, 0.1, "/FC/SPI0.MISO", "In2.Cu"); case("blackbox SPI0 track on In2 (allowed)", None, (8.5, 2.0), r=0.6)
-    trk(6.0, 4.0, 7.0, 4.0, 0.1, "/SPI1_SCK", "In3.Cu"); case("schematic gyro net /SPI1_SCK on In3", "In2 and In3: no gyro, VTX control or Kelvin nets", (6.5, 4.0), r=0.6)
-    trk(8.0, 4.0, 9.0, 4.0, 0.1, "/VTX_SPI_CLK", "In2.Cu"); case("schematic VTX net /VTX_SPI_CLK on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (8.5, 4.0), r=0.6)
-    trk(6.0, 5.0, 7.0, 5.0, 0.1, "/VTX/U19_SPICLK", "In2.Cu"); case("RTC6705-side VTX net /VTX/U19_SPICLK on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (6.5, 5.0), r=0.6)
+    trk(6.0, 4.0, 7.0, 4.0, 0.1, "/SPI1_SCK", "In3.Cu"); case("schematic gyro net /SPI1_SCK on In3", "In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)", (6.5, 4.0), r=0.6)
+    trk(8.0, 4.0, 9.0, 4.0, 0.1, "/VTX_SPI_CLK", "In2.Cu"); case("schematic VTX net /VTX_SPI_CLK on In2 (allowed, D85)", None, (8.5, 4.0), r=0.6)
+    trk(6.0, 5.0, 7.0, 5.0, 0.1, "/VTX/U19_SPICLK", "In3.Cu"); case("RTC6705-side VTX net /VTX/U19_SPICLK on In3", "In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)", (6.5, 5.0), r=0.6)
+    trk(10.0, 4.0, 11.0, 4.0, 0.1, "/VTX/PA_DET", "In2.Cu"); case("PA_DET sense on In2", "In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)", (10.5, 4.0), r=0.6)
     trk(8.0, 5.0, 9.0, 5.0, 0.1, "/SPI0_MISO", "In2.Cu"); case("schematic blackbox net /SPI0_MISO on In2 (allowed)", None, (8.5, 5.0), r=0.6)
     # battery-to-shunt corridor
     (sx0, sy0), (sx1, sy1) = SHUNT_CORRIDOR
