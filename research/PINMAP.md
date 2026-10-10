@@ -494,6 +494,8 @@ pull-down RPD 36-113 kΩ at IOVDD 3.3 V (DS Table 1436), until Betaflight config
 | `PA_EN` | ESP32 GPIO21 (42) | no pull (oe=0, ie=0; after reset ie=1) | LP5907 1 MΩ EN pull-down (TI SNVS798, BR-12) | low | PA reference off until ELRS drives it: OK |
 | `VTX_AMP_PWM` | ESP32 GPIO33 (13) | no pull (oe=0, ie=0 at and after reset) | R71/C124, R72/C125 RC into the BC857BM base | Hi-Z; the base current stops once the RC caps charge | OK; ngspice case 4 (old GPIO13 pull-down) stays the upper bound (VTX sheet PNP note) |
 | `VTX_SPI_CS` | ESP32 GPIO22 (39) | no pull (oe=0, ie=0; after reset ie=1) | R80 1k | floats for the few ms until ELRS starts HSPI; the RTC6705 latches only a full 25-bit frame | OK (not an enable) |
+| `RADIO_NSS` | ESP32 GPIO26 (15) | no pull (oe=0, ie=0 at and after reset) | none (SX1281 NSS is a plain input, DS Table 2-1 pin 19) | floats until ELRS starts the radio SPI | OK: ELRS pulses `RADIO_RST` before its first SPI frame, so nothing clocked in before init survives (fix2 verify) |
+| `RADIO_RST` | ESP32 GPIO25 (14) | no pull (oe=0, ie=0 at and after reset) | SX1281 NRESET internal 50 kΩ pull-up (SX1281 DS Table 2-1 pin 3) | high: the radio runs from its own POR into standby | OK; ELRS drives the reset at init (fix2 verify) |
 | `RX_LED` | ESP32 GPIO32 (12) | no pull | WS2812 DIN | floats until ELRS init | cosmetic at most |
 | `HD_EN` (PINIO1) | RP2350 GPIO19 (31) | PDE | R11 2.4k pull-down, D2 BAS16LD from O4_EN | ≤ 0.22 V (RP2350 sheet note) | Q28 and U5 off = analog mode at reset: OK |
 | `OSD_EN` | RP2350 GPIO22 (34) | PDE | SN74LVC1G3157 S | low | S low = B1, camera passes through (OSD sheet): OK |

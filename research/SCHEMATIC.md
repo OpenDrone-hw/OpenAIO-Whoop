@@ -413,8 +413,9 @@ difference is C41: the board still has it on the 0402 land, while D108 puts all 
 
 ## fix2: UART net names, VTX_PWR_EN margin, doc fixes (2026-10-10)
 
-- **UART names = hardware instance.** RP2350 GPIO8/9 are UART1 TX/RX and GPIO16/17 are UART0 TX/RX (RP2350 DS Table 3,
-  Table 677, F2). The nets are now `/UART1_TX`, `/UART1_RX` (U10 pins 12/13 to ESP32 U16 pins 40/41, CRSF) and
+- **UART names = hardware instance.** RP2350 GPIO8/9 are UART1 TX/RX and GPIO16/17 are UART0 TX/RX (RP2350 DS §1.2.3 Table 3
+  and §9.4 Table 645, F2, in the repo PDF hardware/KiCad-Library/datasheet/RP2350.pdf build 2025-07-29; the 2026-01-10
+  build numbers the §9.4 table 677). The nets are now `/UART1_TX`, `/UART1_RX` (U10 pins 12/13 to ESP32 U16 pins 40/41, CRSF) and
   `/UART0_TX`, `/UART0_RX` (U10 pins 27/28 to pads J28 TX1 / J29 RX1). The pad silk stays TX1/RX1 (D89 names); the
   docs say "pad TX1/RX1 = Betaflight UART0" wherever the firmware is configured. Changed: the rp2350a, rx and pads
   generators, sch_contract.json (4 nets, 8 sheet pins, fw strings), the root layout rows in tools/sch_root.py (the two
@@ -435,4 +436,11 @@ difference is C41: the board still has it on the 0402 land, while D108 puts all 
 - **Netlist vs git HEAD:** only the four renames (8 pins) and the R68 / R84 values (MPN, plus R68 LCSC C106225 of the
   10k line). The pipeline is unchanged (fix2/regen.sh = the verify regen with its own log dir, run with --root). A baseline
   regen was byte-identical to HEAD before the edits.
+- **fix2 independent verify (2026-10-10):** netlist vs commit 201fb22 = the 8 UART pin renames + R68 10k / R84 270R only;
+  a fresh regen (fix2/regen.sh --root) is byte-identical to the repo sheets; ERC 0 errors / 2 pin_to_pin warnings (U13 WP/HOLD
+  on U4 OUT, unchanged), check_netlist 7 ok 0 FAIL, check_conventions planned 40 ok 0 FAIL 3 warn. EN recomputed: stock
+  2.27-2.96 V, driven low 0.09 V; EN stays >= 1.3 V up to about 200 uA of total sink (wpd + AP1606 leakage), so it also
+  holds if the ~75 uA wpd behaves as a current sink of up to 2x typical. Added: RADIO_NSS / RADIO_RST rows in PINMAP §6.1;
+  the RP2350 table citation above (Table 677 is the 2026-01-10 numbering); the IO-SET V9 row that still said "O4 on UART1". The hand-off board (cons/B4/polish_chk/fix1) is
+  still on the pre-D111 GPIO map, so the layout sync must be the by-pad sync_pcb re-net; net_rename.json says so.
 
