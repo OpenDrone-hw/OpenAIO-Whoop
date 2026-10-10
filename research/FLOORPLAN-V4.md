@@ -307,3 +307,10 @@ placement now goes tile-first: each schematic block becomes a compact tile, tile
 tiles at their motor pads, symmetric), inter-tile wiring is minimised, then the outline shrinks. Full datasheet lands
 on every IC (D101). Annealing only inside tiles. Acceptance: legal placement, HDI trial route (hdirouter ROUTER.md),
 the smallest outline that still routes.
+
+## 20. Constructive placement order (D105, 2026-10-10 15:15) - binding over section 19
+1. Fixed frame: outline (start S 25.6), holes, motor pads, the 12 AGM210MAP at their motor pads with hot-loop caps,
+   battery pads + shunt, USB J31 by its hole, IO pad groups on the edges; J32 placed for the CAM row / video path.
+2. ICs by signal flow, GPIO map solved between interconnected ICs, partner ICs stacked back to back (D104).
+3. Every passive next to the pin it connects to; passives fill the remaining space.
+4. Compaction to no unused area beyond routing needs; shrink the outline while the HDI trial route closes.
