@@ -8,7 +8,7 @@
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "f9b2ef26-d904-4e97-8a41-7aa2d6b32489")
+		(uuid "9b36cb3c-a153-4999-87df-4e100ebcf485")
 		(effects
 			(font
 				(size 0.52 0.52)
@@ -20,7 +20,7 @@
 		(at 0 1.17 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "849b9378-3362-4d4b-be60-1a5327b03e31")
+		(uuid "8f7cc0ed-25b8-4373-8b60-5b408a73745d")
 		(effects
 			(font
 				(size 0.52 0.52)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "bb09419a-990c-4f0a-b3fc-22650cb9c565")
+		(uuid "65a4722f-2816-4b97-b253-8940923218b1")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "1ff24389-b709-483f-8c77-90336066334c")
+		(uuid "e35d8dea-9e38-4bf0-8125-6c24bebde5ff")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -152,13 +152,13 @@
 	(embedded_fonts no)
 	(model "${KIPRJMOD}/lib.3dshapes/WLCSP-6_L1.30-W0.94-P0.40.step"
 		(offset
-			(xyz 0 0.11 0.475)
+			(xyz 0 0 0.475)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 270)
+			(xyz 0 0 90)
 		)
 	)
 )

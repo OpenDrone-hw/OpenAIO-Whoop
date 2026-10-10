@@ -25096,7 +25096,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz 0 0 180)
 			)
 		)
 	)
@@ -40974,13 +40974,13 @@
 		(embedded_fonts no)
 		(model "${KIPRJMOD}/lib.3dshapes/WLCSP-6_L1.30-W0.94-P0.40.step"
 			(offset
-				(xyz 0 0.11 0.475)
+				(xyz 0 0 0.475)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 270)
+				(xyz 0 0 90)
 			)
 		)
 	)
