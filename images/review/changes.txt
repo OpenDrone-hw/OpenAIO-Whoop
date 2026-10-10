@@ -1,3 +1,7 @@
-footprints: same 272
-counts old {'tracks': 815, 'vias': 320, 'zones': 72, 'footprints': 272}
-counts new {'tracks': 1037, 'vias': 355, 'zones': 72, 'footprints': 272}
+footprints: changed 4, same 268
+counts old {'tracks': 1037, 'vias': 355, 'zones': 72, 'footprints': 272}
+counts new {'tracks': 1109, 'vias': 356, 'zones': 72, 'footprints': 272}
+R58      changed B moved 1.45 mm, rot 90 -> 180
+R59      changed B moved 1.24 mm, rot 90 -> -90
+R64      changed B moved 1.10 mm, rot 90 -> 180
+R85      changed B moved 0.05 mm
