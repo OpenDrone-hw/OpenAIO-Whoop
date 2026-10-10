@@ -1,0 +1,121 @@
+(footprint "ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_D90Void"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Johanson 2450AT07A0100001T 2.4 GHz chip antenna, 1.00 x 0.50 x 0.37 mm, 4 terminals (1 Feed, 2 GND, 3 GND, 4 Feed), DS Ver 3.1 test-board lands 0.20 x 0.30. D90 variant (floorplan v4): no edge strip, no all-layer keep-out; the board carries the D90 voids as rule areas WIFI_VOID_V1 (B/In4/In3, 2.6 x 1.6, starts 0.30 mm beside pins 2/3), WIFI_VOID_V2_L2/_L3 (In1/In2, body + 0.3), WIFI_FAR_F, and WIFI_GND_LINK (<= 0.3 mm B.Cu GND link from pins 2/3 to the V1 edge, GND vias just outside V1), research/ANTENNA-WIFI.md 6.4 and 9. GND row toward the board edge, feed inboard.")
+	(tags "antenna chip 2.4GHz WiFi Johanson 2450AT07A0100 0402 ELRS D90")
+	(property "Reference" "REF**"
+		(at 1.9 1.2 0)
+		(layer "F.Fab")
+		(uuid "54843b15-43e1-4675-b2e1-73ccf703da07")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Value" "ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2"
+		(at 1.9 1.7 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a5c39249-90e7-4fc9-a978-36c45258743c")
+		(effects
+			(font
+				(size 0.3 0.3)
+				(thickness 0.05)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "64d66434-3b05-4f52-afd6-3cf2674524e9")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e0760b31-b465-4e25-9789-a700771826d5")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.35 -0.6)
+		(end 0.35 0.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "21d64eb9-c195-44e8-a682-efd430ba3705")
+	)
+	(fp_rect
+		(start -0.25 -0.5)
+		(end 0.25 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "b1d5bf94-6b60-4716-9a6f-e4f0dc8107e8")
+	)
+	(pad "1" smd rect
+		(at 0.15 0.3)
+		(size 0.2 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "ab8d68d9-bf33-4883-ba5b-386133229d04")
+	)
+	(pad "2" smd rect
+		(at 0.15 -0.3)
+		(size 0.2 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "41c4dcba-cd23-403a-bf59-45a34c7c6589")
+	)
+	(pad "3" smd rect
+		(at -0.15 -0.3)
+		(size 0.2 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "ede64431-b22d-45f6-985c-bf4a0078d5b8")
+	)
+	(pad "4" smd rect
+		(at -0.15 0.3)
+		(size 0.2 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
+		(thermal_bridge_angle 45)
+		(uuid "f33cf894-7fd1-4f7d-a7e4-6b351fdba8c7")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 90)
+		)
+	)
+)

@@ -1,0 +1,55 @@
+{
+ "footprint": "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100",
+ "part": "Johanson Technology 2450AT07A0100001T (legacy P/N 2450AT07A0100T), 2.4 GHz ceramic chip antenna, ELRS Wi-Fi (D58), fed from ESP32-PICO-V3 LNA_IN (pin 2) through a pi network",
+ "datasheet": "Johanson 'Ultra-Miniature 2.4GHz Chip antenna 0.37mm max Thickness' P/N 2450AT07A0100, Detail Specification 10/12/2020 Ver 3.1 (https://www.johansontechnology.com/datasheets/antennas/2450AT07A0100.pdf, local p2v3/wifi_dl/2450AT07A0100.pdf): p1 Mechanical Dimensions L 1.00+-0.10, W 0.50+-0.10, T 0.37 max, a 0.15, b 0.25, c 0.08; Terminal Configuration 1 Feed, 2 GND, 3 GND, 4 Feed (mark on the feed end); p2 'Mounting Considerations / Test Board-Top View': lands in two rows 0.3 deep with a 0.3 gap, columns split by a 0.1 slot, 'No Ground (Yellow area)' 5.0 x 3.0 at the board edge, edge strip 0.4 deep from the slot (0.9 from the clearance end) 4.0 long to the far ground, feed tongue 1.5 long / 0.7 deep / 0.25 past pad 1, 1.2 clear below it, pi (shunt-series-shunt) slots recommended; p3 evaluation board 40 x 20, clearance 5 x 3 on top AND bottom. Current P/N and -40..+85 C (part page) / -40..+105 C (Rev 4.0, 2024): https://www.johansontechnology.com/part/2450AT07A0100001T/",
+ "derivation": "D90 variant of ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2: the four terminal lands only (0.20 x 0.30 in two rows 0.3 deep with a 0.3 gap, columns split by a 0.1 slot, DS p2 test board), GND row (3 left, 2 right) toward the board edge, feed row (4 left, 1 right) inboard; no edge strip, no feed tongue and no keep-out in the footprint (D90: the board carries the voids as rule areas, research/ANTENNA-WIFI.md 6.4 and 9). KiCad frame: origin = body centre, L along y. 3D: body-equivalent 1005 4-terminal model turned 90 deg.",
+ "pads": [
+  {
+   "number": "3",
+   "x": -0.15,
+   "y": -0.3,
+   "w": 0.2,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.15,
+   "y": -0.3,
+   "w": 0.2,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -0.15,
+   "y": 0.3,
+   "w": 0.2,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "1",
+   "x": 0.15,
+   "y": 0.3,
+   "w": 0.2,
+   "h": 0.3,
+   "shape": "rect"
+  }
+ ],
+ "exposed": [],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 1.0
+ },
+ "body": {
+  "w": 0.5,
+  "h": 1.0,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top"
+}

@@ -21,6 +21,10 @@ designed.
 ## Environment
 
 ```sh
+# clone with the pinned shared library (symbols, footprints, 3D models)
+git clone --recurse-submodules https://github.com/OpenDrone-hw/OpenAIO-Whoop
+git submodule update --init   # existing clone, hardware/KiCad-Library empty
+
 # schematic and board checks
 kicad-cli sch erc hardware/OpenAIO-Whoop.kicad_sch
 kicad-cli pcb drc --schematic-parity --refill-zones hardware/OpenAIO-Whoop.kicad_pcb
@@ -31,6 +35,10 @@ kicad-cli sch export netlist --format kicadsexpr -o /tmp/OpenAIO-Whoop.net hardw
 # board setup report (layers, stackup, rules, presets, net classes, outline, holes)
 $KPY hardware/tools/check_board_setup.py [--spec <spec.json>]
 ```
+
+Project parts come from `hardware/lib.kicad_sym`, `lib.pretty` and
+`lib.3dshapes`; catalogue 3D models resolve through the project text variable
+`OPENDRONE_LIB` only when the submodule is initialised.
 
 On macOS `kicad-cli` is at
 `/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`, and `pcbnew` imports

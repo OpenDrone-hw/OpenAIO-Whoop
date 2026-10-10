@@ -92,6 +92,20 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). KiCad files cannot be merged, so say
 what you intend to change before you do, on
 [Discord](https://discord.gg/v3sWmTcx3R).
 
+Clone with the shared library and open `hardware/OpenAIO-Whoop.kicad_pro` in
+KiCad 10:
+
+```sh
+git clone --recursive https://github.com/OpenDrone-hw/OpenAIO-Whoop
+git submodule update --init      # after a plain git clone
+```
+
+Every symbol, footprint and 3D model comes from the project library
+(`hardware/lib.kicad_sym`, `lib.pretty`, `lib.3dshapes`) or from the pinned
+`hardware/KiCad-Library` submodule. Catalogue 3D models resolve through the
+project text variable `OPENDRONE_LIB` (`${KIPRJMOD}/KiCad-Library`), so
+without the submodule the 3D view shows bare pads.
+
 ## License
 
 Hardware licensed under [CERN-OHL-S-2.0](https://ohwr.org/cern_ohl_s_v2.txt),
