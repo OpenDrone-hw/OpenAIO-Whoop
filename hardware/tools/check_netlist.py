@@ -19,7 +19,8 @@ Exports the netlist with kicad-cli (unless --netlist is given), reads every shee
                           (net names compared without the sheet path; '-' = no-connect)
   N6 net classes          every net resolves (patterns in .kicad_pro + netclass directive labels) to the class
                           its role needs (rails, phases, gates, RF, USB, analog), and every directive label the
-                          contract lists is on its sheet
+                          contract lists is on its sheet; the class each net gets from the .kicad_pro patterns alone
+                          (what the board sees: sync_pcb.py does not carry directive labels) equals its netlist class
 """
 import argparse
 import collections
@@ -256,7 +257,8 @@ for ref, label in (("U10", "RP2354A"), ("U16", "ESP32-PICO-V3")):
 RULES = [  # (net pattern, class) - first match wins; the role each class stands for (spec 8.2/8.4, setup_board)
     ("GND", "GND"), ("+BATT", "VBAT"), ("+BATT_*", "VBAT"), ("+*", "Power"),
     ("/VBUS", "Power"), ("/VTX/PA_VCC", "Power"),
-    ("/ESC?/PHASE_?", "Phase"), ("/ESC?/?_COM", "Gate"), ("/ESC?/?_PWM", "Gate"),
+    ("/ESC?/PHASE_?", "Phase"), ("/POWER/U2_SW", "Phase"), ("/ESC?/?_COM", "Gate"), ("/ESC?/?_PWM", "Gate"),
+    # /POWER/U2_SW: boost switch node, 2.8-3.4 A average (P4 critique round 2)
     ("*/RF_*", "RF"), ("*/USB_D_P", "USB"), ("*/USB_D_N", "USB"),
     ("*CURR_SENSE*", "Analog"), ("*ADC_CURR*", "Analog"), ("*ADC_VBAT*", "Analog"), ("*SHUNT_SENSE*", "Analog"),
     ("*VIDEO*", "Analog"), ("*/VID_*", "Analog"), ("*/OSD_LVL", "Analog"), ("*/OSD_SYNC", "Analog"),
@@ -264,6 +266,11 @@ RULES = [  # (net pattern, class) - first match wins; the role each class stands
     ("*/VT_MOD*", "Analog"), ("*/RTC_*", "Analog"), ("*/U19_XTAL*", "Analog"), ("*/TCXO_OUT", "Analog"),
     ("*/XTA", "Analog"),                     # RTC6705 video input, PLL loop filter, 8 / 52 MHz references (P4 critique)
 ]
+# the board's view: KiCad assigns board net classes from the .kicad_pro patterns only (sync_pcb.py writes no
+# netclass_assignments), so a class that only a schematic directive label gives would be lost on the board
+_pro = json.load(open(os.path.join(HW, "OpenAIO-Whoop.kicad_pro"), encoding="utf-8"))["net_settings"]
+PATS = [(x["netclass"], x["pattern"]) for x in _pro.get("netclass_patterns", [])]
+ASSIGNED = _pro.get("netclass_assignments") or {}
 bad, by_cls = [], collections.Counter()
 for name in sorted(nets):
     if name.startswith("unconnected-"):
@@ -273,6 +280,10 @@ for name in sorted(nets):
     by_cls[got] += 1
     if got != want:
         bad.append("%s is %s, needs %s" % (name, got, want))
+    hits = sorted({c for c, pat in PATS if fnmatch.fnmatchcase(name, pat)})
+    board = ASSIGNED.get(name) or (hits[0] if len(hits) == 1 else ("Default" if not hits else "/".join(hits)))
+    if board != got:
+        bad.append("%s: netlist %s, board patterns give %s" % (name, got, board))
 want_flags = collections.Counter()
 for d in contract["netclasses"]["directive_labels"]:
     want_flags[("OpenAIO-Whoop.kicad_sch" if d["sheet"] == "root" else d["sheet"], d["class"])] += 1

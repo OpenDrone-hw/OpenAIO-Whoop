@@ -3655,8 +3655,8 @@
 		)
 	)
 	(rectangle
-		(start 233.68 43.18)
-		(end 297.18 91.44)
+		(start 204.47 46.99)
+		(end 405.13 96.52)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -3667,8 +3667,8 @@
 		(uuid "0926185c-12e4-5fac-a6c5-2110891f2d8b")
 	)
 	(rectangle
-		(start 298.45 22.86)
-		(end 405.13 251.46)
+		(start 204.47 22.86)
+		(end 405.13 45.72)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -3934,7 +3934,7 @@
 	)
 	(rectangle
 		(start 35.56 22.86)
-		(end 205.74 177.8)
+		(end 203.2 177.8)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -4137,8 +4137,8 @@
 		(uuid "b21d5b8d-c0fb-5d17-9202-b75be40d2ea2")
 	)
 	(rectangle
-		(start 204.47 140.97)
-		(end 297.18 256.54)
+		(start 204.47 97.79)
+		(end 405.13 251.46)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -4317,7 +4317,7 @@
 	)
 	(text "NOTES"
 		(exclude_from_sim no)
-		(at 300.99 25.4 0)
+		(at 207.01 25.4 0)
 		(effects
 			(font
 				(size 2.54 2.54)
@@ -4343,7 +4343,7 @@
 	)
 	(text "ESP32-PICO-V3 MCU (ELRS)"
 		(exclude_from_sim no)
-		(at 207.01 143.51 0)
+		(at 207.01 100.33 0)
 		(effects
 			(font
 				(size 2.54 2.54)
@@ -4382,7 +4382,7 @@
 	)
 	(text "BOOT / BIND BUTTON (D65)"
 		(exclude_from_sim no)
-		(at 236.22 45.72 0)
+		(at 207.01 49.53 0)
 		(effects
 			(font
 				(size 2.54 2.54)
@@ -4395,8 +4395,8 @@
 	)
 	(text_box "RFIO (22) -> RF_RFIO -> FL1 Johanson 2450FM07D0034T (house part: input matched to the SX1281 RFIO, internally DC blocked, IN pin 1 toward the chip) -> RF_RX_ANT (50 Ohm) -> AE1: insulated lambda/4 wire (about 28-29 mm, trimmed in V7) in a plated D0.5 hole; AE1 DNP, out of BOM / CPL. RF class; board rule areas RF_RX_ANT / RF_RX_EXIT."
 		(exclude_from_sim no)
-		(at 177.8 127 0)
-		(size 26.67 49.53)
+		(at 172.72 127 0)
+		(size 29.21 49.53)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -4413,10 +4413,10 @@
 		)
 		(uuid "3eba8ec1-da1d-5276-ac64-c4883ab8ffe9")
 	)
-	(text_box "BOOT / BIND BUTTON (D65; new). SW1 Alps SKUBAAE010 (2.4 x 1.4 mm) from BOOT_SW to GND. D8 Diodes SDM02M30CLP3 dual Schottky, common cathode on BOOT_SW: A1 = FC_BOOT (RP2354A QSPI_SS through R44 1k, RP2350A sheet), A2 = RX_BOOT (ESP32 GPIO0, pin 23).\nReleased: each strap sees only diode leakage (IR <= 0.15 uA at 10 V, 25 C), so GPIO0 keeps its internal pull-up and QSPI_SS its own level.\nHeld while power is applied: RP2354A BOOTSEL and ESP32 ROM download mode (CSn <= 0.51 V vs VIL 0.8 V; GPIO0 <= 0.42 V vs VIL 0.825 V); each mode stays latched until that chip's next reset.\nProduction / ELRS recovery (D67, spec 12.1): (1) hold SW1 (or probe BOOT_SW) while powering; (2) write the Betaflight UF2 (or picotool reboot): the RP2354A restarts into Betaflight, the ESP32 stays in download mode; (3) esptool through Betaflight serial passthrough.\nPressed while running: ELRS button (bind 1.5 s, Wi-Fi 5 s, reboot 12 s); 2.9 mA through R44, CS stays >= 2.62 V, the FC keeps running.\nBench V-btn: if GPIO0 dips below 2.5 V under XIP load while pressed, add 100 pF 0201 on BOOT_SW."
+	(text_box "BOOT / BIND BUTTON (D65; new). SW1 Alps SKUBAAE010 (2.4 x 1.4 mm) from BOOT_SW to GND. D8 Diodes SDM02M30CLP3 dual Schottky, common cathode on BOOT_SW: A1 = FC_BOOT (RP2354A QSPI_SS through R44 1k, RP2350A sheet), A2 = RX_BOOT (ESP32 GPIO0, pin 23).\nReleased: each strap sees only diode leakage (IR <= 0.15 uA at 10 V, 25 C), so GPIO0 keeps its internal pull-up and QSPI_SS its own level.\nHeld while power is applied: RP2354A BOOTSEL and ESP32 ROM download mode (CSn <= 0.51 V vs VIL 0.8 V; GPIO0 <= 0.42 V vs VIL 0.825 V); each mode stays latched until that chip's next reset.\nProduction / ELRS recovery (D67, spec 12.1): (1) hold SW1 (or probe BOOT_SW) while powering; (2) write the Betaflight UF2 (or picotool reboot): the RP2354A restarts into Betaflight, the ESP32 stays in download mode; (3) esptool through Betaflight serial passthrough.\nPressed while running: ELRS button (bind 1.5 s, Wi-Fi 5 s, reboot 12 s); 2.9 mA through R44, CS stays >= 2.62 V, the FC keeps running.\nBench V-btn: if GPIO0 dips below 2.5 V while released (QSPI_SS edges under XIP load coupling through D8), add 100 pF 0201 on BOOT_SW."
 		(exclude_from_sim no)
-		(at 299.72 60.96 0)
-		(size 104.14 43.18)
+		(at 294.64 50.8 0)
+		(size 109.22 44.45)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -4433,10 +4433,10 @@
 		)
 		(uuid "a4737001-9488-536c-bcdf-5cec22bc5356")
 	)
-	(text_box "ESP32-PICO-V3 (U16), Espressif PICO datasheet v1.3 Fig. 11 / Table 4 (new block).\nSUPPLY: VDDA (1, 43, 46), VDDA3P3 (3, 4), VDD3P3_RTC (19), VDD3P3_CPU (37) on +3V3; C82 10 uF + C76 100 nF at VDDA3P3 pins 3/4 (Fig. 11 C1/C2). The 4 MB flash, 40 MHz crystal, CAP1/CAP2 network and the VDD_SDIO capacitor are inside the SiP (Fig. 8): VDD_SDIO (26) stays open.\nEN: CHIP_PU (9) = RX_EN, R56 10k to +3V3 + C73 1 uF (tau 10 ms), never floating.\nSTRAPS at reset (P4-6, checked on the netlist):\n GPIO0 (23) RX_BOOT: internal 45k pull-up, D8 blocks -> 1 = SPI boot (SW1 held -> download).\n GPIO2 (22) PA_EN: internal 45k pull-down + LP5907 EN 1 MOhm pull-down (VTX sheet), no external part -> 0.\n GPIO5 (34) VTX_SPI_CLK: internal pull-up, R81 1k into the RTC6705 CMOS input -> 1 (default timing).\n GPIO12 / MTDI (18): no connect, internal pull-down -> VDD_SDIO 3.3 V for the in-package flash (VDD_SDIO eFuse burn optional).\n GPIO15 / MTDO (21): no connect, internal pull-up -> boot log on U0TXD (FC ignores it).\nNOT CONNECTED: flash CMD/IO11 (30) and CLK/IO6 (31); NC pins 25, 35, 36, 44, 45, 47, 48; free IO7/8/9/10 (32, 33, 28, 29; PSRAM on the -02 alternate), IO20 (27), I35 (11), I38 (7), I39 (8).\nELRS LAYOUT JSON (board overlay, D53): serial_rx 3, serial_tx 1, radio_sck 25, radio_mosi 32, radio_miso 33, radio_nss 27, radio_rst 26, radio_busy 36, radio_dio1 37, led_rgb 22, button 0, vtx_nss 19, vtx_sck 5, vtx_mosi 14, vtx_miso unset, vtx_amp_pwm 13, vtx_amp_vpd 4, vtx_amp_vref 2; patched ELRS: GPIO21 VTX_PWR_CTL (+3V3_VTX LDO EN through R84 1k), GPIO34 PA_NTC (ADC1, read in the isTick window, erratum 3.11).\nVTX LINES: series 1k R80/R81/R82 are drawn on the VTX sheet and placed at the ESP32 end (back-feed limit with +3V3_VTX off, F21). GPIO13 VTX_AMP_PWM = ELRS vtx_amp_pwm (RTC6705 PAOUT1 feed PNP, not the SE5004L bias). PA_DET is ADC2_CH0 (not readable with Wi-Fi on; not a flight state).\n+3V3 LOAD: ELRS about 0.07 A in flight. Wi-Fi TX peaks 370 mA (DS Table 19, 802.11b 19.5 dBm) in ELRS Wi-Fi mode only (disarmed, bench): +3V3 peak about 0.48 A with the FC and LED, inside the LP5912 500 mA rating; LDO heat and the COUT sum belong to the POWER sheet (P4-12).\nPLACEMENT: SiP site from floorplan v3 (D55, D61); no 85 C halo rule (D69). Alternate part ESP32-PICO-V3-02 (pins 28/29 unused here, P4-14)."
+	(text_box "ESP32-PICO-V3 (U16), Espressif PICO datasheet v1.3 Fig. 11 / Table 4 (new block).\nSUPPLY: VDDA (1, 43, 46), VDDA3P3 (3, 4), VDD3P3_RTC (19), VDD3P3_CPU (37) on +3V3; C82 10 uF + C76 100 nF at VDDA3P3 pins 3/4 (Fig. 11 C1/C2). The 4 MB flash, 40 MHz crystal, CAP1/CAP2 network and the VDD_SDIO capacitor are inside the SiP (Fig. 8): VDD_SDIO (26) stays open.\nEN: CHIP_PU (9) = RX_EN, R56 10k to +3V3 + C73 1 uF (tau 10 ms), never floating.\nSTRAPS at reset (P4-6, checked on the netlist):\n GPIO0 (23) RX_BOOT: internal 45k pull-up, D8 blocks -> 1 = SPI boot (SW1 held -> download).\n GPIO2 (22) PA_EN: internal 45k pull-down + LP5907 EN 1 MOhm pull-down (VTX sheet), no external part -> 0.\n GPIO5 (34) VTX_SPI_CLK: internal pull-up, R81 1k into the RTC6705 CMOS input -> 1 (default timing).\n GPIO12 / MTDI (18): no connect, internal pull-down -> VDD_SDIO 3.3 V for the in-package flash (VDD_SDIO eFuse burn optional).\n GPIO15 / MTDO (21): no connect, internal pull-up -> boot log on U0TXD (FC ignores it).\nNOT CONNECTED: flash CMD/IO11 (30) and CLK/IO6 (31); NC pins 25, 35, 36, 44, 45, 47, 48; free IO7/8/9/10 (32, 33, 28, 29; PSRAM on the -02 alternate), IO20 (27), I35 (11), I38 (7), I39 (8).\nELRS LAYOUT JSON (D53, D81): serial_rx 3, serial_tx 1, radio_sck 25, radio_mosi 32, radio_miso 33, radio_nss 27, radio_rst 26, radio_busy 36, radio_dio1 37, led_rgb 22, button 0, vtx_nss 19, vtx_sck 5, vtx_mosi 14, vtx_miso -1, vtx_amp_pwm 13, vtx_amp_vpd 4, vtx_amp_vref 2. \"vtx_miso\": -1 is written explicitly: an overlay only replaces keys, so an omitted key keeps the stock 23 = the PICO flash DI, which SPIClass(HSPI).begin() turns into an input (flash cut, crash at VTX init); -1 makes the core attach the HSPI default GPIO12 (no connect here) instead. patched ELRS: GPIO21 VTX_PWR_CTL (+3V3_VTX LDO EN through R84 1k), GPIO34 PA_NTC (ADC1, read in the isTick window, erratum 3.11).\nVTX LINES: series 1k R80/R81/R82 are drawn on the VTX sheet and placed at the ESP32 end (back-feed limit with +3V3_VTX off, F21). GPIO13 VTX_AMP_PWM = ELRS vtx_amp_pwm (RTC6705 PAOUT1 feed PNP, not the SE5004L bias). PA_DET is ADC2_CH0 (not readable with Wi-Fi on; not a flight state).\n+3V3 LOAD: ELRS about 0.07 A in flight. Wi-Fi TX peaks 370 mA (DS Table 19, 802.11b 19.5 dBm) in ELRS Wi-Fi mode only (disarmed, bench): +3V3 peak about 0.48 A with the FC and LED, inside the LP5912 500 mA rating; LDO heat and the COUT sum belong to the POWER sheet (P4-12).\nPLACEMENT: SiP site from floorplan v3 (D55, D61); no 85 C halo rule (D69). Alternate part ESP32-PICO-V3-02 (pins 28/29 unused here, P4-14)."
 		(exclude_from_sim no)
-		(at 299.72 106.68 0)
-		(size 104.14 142.24)
+		(at 284.48 100.33 0)
+		(size 119.38 76.2)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -4515,8 +4515,8 @@
 	)
 	(text_box "RX SHEET (P4 shard C). Sources: the SX1281 radio, 52 MHz TCXO, RGB LED and Wi-Fi pi match are COPIED from the house sheet OpenRX-Lite-UFL hardware/esp32c3_sx1281_lite.kicad_sch (same as OpenAIO rx_esp32c3_sx1281.kicad_sch): same symbol positions and wires, adapted to bom_plan refs/values/MPNs and to D52/D53/D58 (LDO mode, pin 5 to GND, U.FL replaced by the wire-antenna hole, 2450AT07A0100001T chip antenna, grounds turned down); the house Johanson 2450FM07D0034T front-end filter stays. The ESP32-PICO-V3 block is new, from the Espressif ESP32-PICO series datasheet v1.3 Fig. 11 (D52 BR-01, D55); the shared boot / bind button is new (D65, Matrix II style). Pin plan: research/PINMAP.md 6. Parts: hardware/bom_plan.json. Radio and LED +3V3 come from the POWER sheet (U4 LP5912-3.3)."
 		(exclude_from_sim no)
-		(at 299.72 27.94 0)
-		(size 104.14 30.48)
+		(at 205.74 27.94 0)
+		(size 198.12 16.51)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -9895,7 +9895,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "ANT 2.4G wire"
+		(property "Value" "ANT"
 			(at 190.5 109.22 0)
 			(show_name no)
 			(do_not_autoplace no)

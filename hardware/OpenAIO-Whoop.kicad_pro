@@ -1712,6 +1712,10 @@
         "pattern": "/ESC?/PHASE_?"
       },
       {
+        "netclass": "Phase",
+        "pattern": "/POWER/U2_SW"
+      },
+      {
         "netclass": "Gate",
         "pattern": "/ESC?/?_COM"
       },
@@ -1770,6 +1774,10 @@
       {
         "netclass": "Power",
         "pattern": "/VBUS"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/VTX/PA_VCC"
       },
       {
         "netclass": "GND",

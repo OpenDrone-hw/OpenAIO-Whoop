@@ -1036,7 +1036,7 @@
     "+5V_BST",
     "GND"
    ],
-   "notes": "5 V boost, 1 MHz forced PWM (MODE = VOUT), always enabled; +5V_BST 5.15 V; >= 2 mm from every FET group (H2); fallback TPS61023DRLR",
+   "notes": "5 V boost, 1 MHz forced PWM (MODE = VOUT), always enabled; +5V_BST 5.15 V; distance to the FET groups is a D69 preference, not a rule; fallback TPS61023DRLR",
    "lib_work": []
   },
   {
@@ -1453,7 +1453,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "shared LP5912 CIN for U4 (+3V3) and U21 (+3V3_VTX), between the two IN pins (D52 BR-14)",
+   "notes": "shared LP5912 CIN for U4 (+3V3) and U21 (+3V3_VTX), between the two IN pins (D52 BR-14), within 1 cm of each IN pin (LP5912 DS 9.2.2.2), checked by tools/check_p5_conditions.py; floorplan v3 puts U21 14.8 mm away: P5 moves U21 / C13 or U21 gets its own 10 uF 0402 CIN (GRM155C80J106ME11D)",
    "lib_work": []
   },
   {
@@ -1553,7 +1553,7 @@
     "/POWER/U5_EN",
     "GND"
    ],
-   "notes": "O4 Lite load switch +5V_BST -> +5V_HD (D53 BR-10: ahead of the TPS2116, USB cannot reach the O4 by topology); QOD tied to VOUT; EN = FC GPIO27 AND the cell threshold (R9/R10/R87/C129); CIN: C17 deleted (P4 critique): the boost output caps C8-C11 (20-28 uF effective) are the input capacitor (TPS22810 DS 10.3, CIN optional, 1 uF usually sufficient) under the P5 placement condition: U5 VIN within 3 mm of C8-C11 or U3 VIN2 on the +5V_BST copper",
+   "notes": "O4 Lite load switch +5V_BST -> +5V_HD (D53 BR-10: ahead of the TPS2116, USB cannot reach the O4 by topology); QOD tied to VOUT; EN = FC GPIO27 AND the cell threshold (R9/R10/R87/C129); CIN: C17 deleted (P4 critique): the boost output caps C8-C11 (20-28 uF effective) are the input capacitor (TPS22810 DS 10.3, CIN optional, 1 uF usually sufficient) under the P5 placement condition: U5 VIN within 3 mm of C8-C11 or U3 VIN2 on the +5V_BST copper (tools/check_p5_conditions.py; floorplan v3: 6.1 mm, so P5 moves U5 or puts back a 1 uF 0201 CIN, GRM033R61A105ME44D)",
    "lib_work": []
   },
   {
@@ -1575,7 +1575,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "TPS22810 CT slew 10 nF (~4.7 V/ms); X7R per spec \u00a74.2 (CT); P3 confirms the MPN",
+   "notes": "TPS22810 CT slew 10 nF (~4.7 V/ms); X7R per spec \u00a74.2 (CT)",
    "lib_work": []
   },
   {
@@ -1763,7 +1763,7 @@
     "/ESC1/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP1 C2D / TP2 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C23 within 4 mm of VDD pin 4 through the +BATT plane, C19 at the pin",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP1 C2D / TP2 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C23 within 4 mm of VDD pin 4 through the +BATT plane, C19 at the pin",
    "lib_work": []
   },
   {
@@ -2122,7 +2122,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "hot-loop capacitor of the phase B cell Q30 (slot M), ESC1, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C19 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U6 VDD pin 4 through the +BATT plane, 100 nF at the pin; the v3 cell site (3.4-3.9 mm) meets it",
+   "notes": "hot-loop capacitor of the phase B cell Q30 (slot M), ESC1, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C19 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U6 VDD pin 4 through the +BATT plane, 100 nF at the pin; a P5 placement condition checked by tools/check_p5_conditions.py (floorplan v3 at 2.6-5.0 mm: ESC1 and ESC2 miss it, P4 critique round 2)",
    "lib_work": []
   },
   {
@@ -2208,7 +2208,7 @@
     "/ESC2/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP3 C2D / TP4 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C29 within 4 mm of VDD pin 4 through the +BATT plane, C25 at the pin",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP3 C2D / TP4 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C29 within 4 mm of VDD pin 4 through the +BATT plane, C25 at the pin",
    "lib_work": []
   },
   {
@@ -2567,7 +2567,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "hot-loop capacitor of the phase B cell Q33 (slot M), ESC2, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C25 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U7 VDD pin 4 through the +BATT plane, 100 nF at the pin; the v3 cell site (3.4-3.9 mm) meets it",
+   "notes": "hot-loop capacitor of the phase B cell Q33 (slot M), ESC2, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C25 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U7 VDD pin 4 through the +BATT plane, 100 nF at the pin; a P5 placement condition checked by tools/check_p5_conditions.py (floorplan v3 at 2.6-5.0 mm: ESC1 and ESC2 miss it, P4 critique round 2)",
    "lib_work": []
   },
   {
@@ -2653,7 +2653,7 @@
     "/ESC3/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP5 C2D / TP6 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C35 within 4 mm of VDD pin 4 through the +BATT plane, C31 at the pin",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP5 C2D / TP6 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C35 within 4 mm of VDD pin 4 through the +BATT plane, C31 at the pin",
    "lib_work": []
   },
   {
@@ -3012,7 +3012,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "hot-loop capacitor of the phase B cell Q36 (slot M), ESC3, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C31 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U8 VDD pin 4 through the +BATT plane, 100 nF at the pin; the v3 cell site (3.4-3.9 mm) meets it; replaces the separate EFM8 bulk C30 (deleted, D77; the gyro 5 mm bulk-MLCC rule is a D69 preference)",
+   "notes": "hot-loop capacitor of the phase B cell Q36 (slot M), ESC3, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C31 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U8 VDD pin 4 through the +BATT plane, 100 nF at the pin; a P5 placement condition checked by tools/check_p5_conditions.py (floorplan v3 at 2.6-5.0 mm: ESC1 and ESC2 miss it, P4 critique round 2); replaces the separate EFM8 bulk C30 (deleted, D77; the gyro 5 mm bulk-MLCC rule is a D69 preference)",
    "lib_work": []
   },
   {
@@ -3098,7 +3098,7 @@
     "/ESC4/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); start the land from OpenDrone:QFN-20_L3.0-W3.0-P0.50-TL-EP1.7_SILICON_C8051F85X, check EP and the 4.0 mm land against EFM8BB51 Table 7.2; pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP7 C2D / TP8 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C41 within 4 mm of VDD pin 4 through the +BATT plane, C37 at the pin",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP7 C2D / TP8 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C41 within 4 mm of VDD pin 4 through the +BATT plane, C37 at the pin",
    "lib_work": []
   },
   {
@@ -3457,7 +3457,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "hot-loop capacitor of the phase B cell Q39 (slot M), ESC4, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C37 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U9 VDD pin 4 through the +BATT plane, 100 nF at the pin; the v3 cell site (3.4-3.9 mm) meets it",
+   "notes": "hot-loop capacitor of the phase B cell Q39 (slot M), ESC4, and the EFM8 VDD 1 uF-class bulk (EFM8BB51 DS Fig. 5.1 '1 uF and 0.1 uF', C37 100 nF at pin 4): pin 3 S2 (P source, +BATT) to pin 1 S1 (N source, GND) at the cell's lead side, both pads via-in-pad (filled + capped) into the +BATT / GND planes, so the commutation loop closes at the pins (D33 hot loop; Matrix II: one cap per AGM210MAP at its lead side, D73/D76); 10 uF 6.3 V X6S 0402, about 3-4 uF effective at 4.2 V (I), X6S -55..105 C. Three per ESC replace the one 22 uF 0603 cell bulk (D77, P4 critique); +BATT bus capacitance per ESC about equal (V3c hot-plug test unchanged). BR-05 as amended (P4 critique 2026-10-09): within 4 mm of U9 VDD pin 4 through the +BATT plane, 100 nF at the pin; a P5 placement condition checked by tools/check_p5_conditions.py (floorplan v3 at 2.6-5.0 mm: ESC1 and ESC2 miss it, P4 critique round 2)",
    "lib_work": []
   },
   {
@@ -4094,7 +4094,7 @@
     "QSPI_SS",
     "FC_BOOT"
    ],
-   "notes": "QSPI_SS (BOOT, pin 60) -> 1k -> FC_BOOT: D8.A1 (shared boot button, D65) and the FCB test via TP9; keep the QSPI_SS-to-R44 stub <= 1 mm (in-package flash CS, RPi guide R6), any length beyond R44 (the 1k isolates the diode capacitance). 1k, not the 4.7k of the RP2350 guide, so the diode drop keeps margin (CSn <= 0.51 V pressed)",
+   "notes": "QSPI_SS (BOOT, pin 60) -> 1k -> FC_BOOT: D8.A1 (shared boot button, D65) and the FCB test via TP9; keep the QSPI_SS-to-R44 stub <= 1 mm (in-package flash CS, RPi guide R6), any length beyond R44 (the 1k isolates the diode capacitance). 1k = the RPi guide's R6 (Hardware design with RP2350, BOOTSEL circuit); with the D8 drop CSn <= 0.51 V pressed",
    "lib_work": []
   },
   {
@@ -4778,7 +4778,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "ELRS RX MCU + VTX control (devVTXSPI/MSPVTX); SiP with 4 MB flash, 40 MHz crystal and CAP network inside (D52 BR-01); -40..85 C, so >= 2 mm outside the PA projection and >= 2 mm from every FET group (H1/H3, P2 trial); alternate ESP32-PICO-V3-02; pins per PINMAP \u00a76 (vtx_mosi GPIO14, vtx_amp_pwm GPIO13, D53); 0.5 mm pitch, no fine-pitch EQ; D58: LNA_IN (pin 2) -> RF_WIFI 50 Ohm CPW (<= 8 mm) -> pi network C133 / R88 / C132 -> AE2 chip antenna; stock ELRS auto Wi-Fi (D25 --no-auto-wifi reversed); Wi-Fi TX peak 370 mA (DS Table 19) vs the shared LP5912 budget: P4 decides",
+   "notes": "ELRS RX MCU + VTX control (devVTXSPI/MSPVTX); SiP with 4 MB flash, 40 MHz crystal and CAP network inside (D52 BR-01); -40..85 C (no placement halo, D69); alternate ESP32-PICO-V3-02; pins per PINMAP \u00a76 (vtx_mosi GPIO14, vtx_amp_pwm GPIO13, D53); 0.5 mm pitch, no fine-pitch EQ; D58: LNA_IN (pin 2) -> RF_WIFI 50 Ohm CPW (<= 8 mm) -> pi network C133 / R88 / C132 -> AE2 chip antenna; stock ELRS auto Wi-Fi (D25 --no-auto-wifi reversed); Wi-Fi TX peak 370 mA (DS Table 19) on the shared LP5912: accepted (ruling 2026-10-09: bench-only Wi-Fi mode, +3V3 peak about 0.48 A inside 500 mA; root power table, README)",
    "lib_work": []
   },
   {
@@ -5301,7 +5301,7 @@
    "ref": "AE1",
    "block": "rx",
    "sheet": "rx_esp32_sx1281",
-   "value": "ANT 2.4G wire",
+   "value": "ANT",
    "rating": null,
    "manufacturer": null,
    "mpn": null,
@@ -5364,7 +5364,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "exactly 8 MHz (ELRS R = 400 fixed); -40..85 C; no 2520 8 MHz found (P3 searches); copy fp from OpenVTX lib; fallback YXC X322508MSB4SI; >= 3 mm from ESC4 copper (N1)",
+   "notes": "exactly 8 MHz (ELRS R = 400 fixed); -40..85 C; no 2520 8 MHz found (P3 searches); copy fp from OpenVTX lib; fallback YXC X322508MSB4SI; >= 3 mm from ESC4 copper (N1); ESR 250 Ohm max (LCSC C400090) and the RTC6705 DS gives no oscillator ESR / negative-resistance limit: V5 tests start-up margin (series R of 3-5x ESR, cold start at -10 C on several boards, slow supply ramp); fallback = a lower-ESR 8 MHz 10 pF 3225 on the same land",
    "lib_work": []
   },
   {
@@ -5913,7 +5913,7 @@
     "/VTX/PAOUT1_SUP",
     "/VTX/Q27_C"
    ],
-   "notes": "PAOUT1 feed R34 (OpenOSD-X) from the PNP collector (D52 BR-02)",
+   "notes": "PAOUT1 feed R34 (OpenOSD-X) from the PNP collector (D52 BR-02); same top-step current as R73 (about 34 mW at 58.5 mA): V8 criterion (VTX PNP PA DRIVE note)",
    "lib_work": []
   },
   {
@@ -6513,7 +6513,7 @@
     "/VTX/Q27_C",
     "/VTX/Q27_E"
    ],
-   "notes": "PA drive stage, one PNP in current mode (D52 BR-02, spec \u00a74.8): base from the 2-pole RC, emitter through Re (R73) to +3V3_VTX, collector -> R65 -> L3 -> PAOUT1; SOT883 on the shared DFN-3L land (pin 1 B, 2 E, 3 C)",
+   "notes": "PA drive stage, one PNP in current mode (D52 BR-02, spec \u00a74.8): base from the 2-pole RC, emitter through Re (R73) to +3V3_VTX, collector -> R65 -> L3 -> PAOUT1; SOT883 on the shared DFN-3L land (pin 1 B, 2 E, 3 C); <= 114 mW at the top step (Re 10R, hFE 475, 85 C, ngspice) vs Ptot 130 mW at 85 C ambient (500 K/W): V5 logs Q27 case temperature at the top step hot, Re 15R / 27R is the lever",
    "lib_work": []
   },
   {
@@ -6638,7 +6638,7 @@
     "+3V3_VTX",
     "/VTX/Q27_E"
    ],
-   "notes": "PNP emitter Re to +3V3_VTX: sets the YOLO current ceiling (start 10-15 R, V5 sets; D52 BR-02)",
+   "notes": "PNP emitter Re to +3V3_VTX: sets the YOLO current ceiling (start 10-15 R, V5 sets; D52 BR-02); top step (hFE 475, 85 C, 58.5 mA) about 34 mW vs RC0201 derating 36 mW at 85 C / 27 mW at 95 C: V8 pass criterion (top-step current, board temperature at R73 / R65 / Q27), levers ELRS top-count cap (Ic <= 45 mA) or Re 27R",
    "lib_work": []
   },
   {
@@ -7400,7 +7400,7 @@
     "GND",
     "+5V_CAM"
    ],
-   "notes": "camera plug in parallel with the CAM pads J23-J25 (D63/D64, IO-SET row 3, MUST; BetaFPV C03 and the Matrix-recommended cameras use JST 0.8 mm). Pin 1 VIDEO_IN (-> TLV7031 + SN74LVC1G3157 OSD front end), 2 GND (video return into L2, spec \u00a711), 3 +5V_CAM (after FB1 + 10 uF), tabs 4/5 GND. Pin order is provisional until gate G1 (calipers + photo on a C03 lead and the MX2 CAM IN, before the P3 footprint freeze and P4): with GND in the middle a mirrored footprint puts 5 V on the camera video output. Side entry, mating face toward +y of the footprint; 85 C part: H1/H3 site or logged exemption (G3). Fallback if G1 measures 1.0 mm: JST SM03B-SRSS-TB(LF)(SN) (LCSC C160403) on lib:CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W with OpenDrone:SM03B-SRSS-TB (same pins 1-5), +17-21 mm2. LCSC C265338 (34,331 stock, JLCPCB parts API 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "camera plug in parallel with the CAM pads J23-J25 (D63/D64, IO-SET row 3, MUST; BetaFPV C03 and the Matrix-recommended cameras use JST 0.8 mm). Pin 1 VIDEO_IN (-> TLV7031 + SN74LVC1G3157 OSD front end), 2 GND (video return into L2, spec \u00a711), 3 +5V_CAM (after FB1 + 10 uF), tabs 4/5 GND. Pin order is provisional until gate G1 (calipers + photo on a C03 lead and the MX2 CAM IN, before the P3 footprint freeze and P4): with GND in the middle a mirrored footprint puts 5 V on the camera video output. Side entry, mating face toward +y of the footprint; Fallback if G1 measures 1.0 mm: JST SM03B-SRSS-TB(LF)(SN) (LCSC C160403) on lib:CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W with OpenDrone:SM03B-SRSS-TB (same pins 1-5), +17-21 mm2. LCSC C265338 (34,331 stock, JLCPCB parts API 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
    "lib_work": []
   },
   {

@@ -75,7 +75,7 @@ RX_ANT_HOLE = (-12.3, 7.5)                       # P2 v3 floorplan: RX antenna w
 RX_ANT_KEEPOUT_R = 1.6                           # copper keepout L1-L5 (L6 admits the feed): 1.0 mm around a 1.2 mm pad
 RX_ANT_EXIT_R = 1.4                              # v3 (D69 preference traded): 2.8 mm wide wire exit strip, hole to edge (ring 1.6 covers the hole)
 RX_ROOT_R = 3.0                                  # spec 4.9 / 11: NOR and SPI0 >= 3 mm from the antenna hole
-RX_FEED = ((-10.7, 8.825), RX_ANT_HOLE, 0.8)     # P2 v3: FL1 antenna-side pad -> hole on L6; L5 solid under it
+RX_FEED = ((-10.225, 6.8), RX_ANT_HOLE, 0.8)     # rxfix (BLOCKER): FL1 OUT pin 3 (rot 180) -> hole on L1, no via; L2 solid under it
 UFL_VTX = (4.5, -1.5)                            # P2 v3 floorplan: U.FL J1 top, rot 90 (mid-board, Matrix-informed)
 UFL_ZONE = ((3.25, -3.8), (6.7, 0.8))            # RF_VTX_UFL: U.FL land + 0.15 / 0.3 mm (only RF and GND on L1), P2 v3
 RF_PAD_CUT = ((5.4, -2.1), (6.65, -0.9))         # RF_PAD_CUTOUT: under the U.FL signal pad + 0.1, P2 v3
@@ -144,10 +144,13 @@ DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "
 # labels appear as "/NAME", sub-sheet ones as "/SHEET/NAME", power nets bare.
 NETCLASS_PATTERNS = [
     ("VBAT", ["+BATT", "+BATT_*"]),                                       # +BATT, +BATT_IN (spec 4.1)
-    ("Phase", ["/ESC?/PHASE_?"]),                                         # in-sheet PHASE_A/B/C (spec 8.4)
+    ("Phase", ["/ESC?/PHASE_?", "/POWER/U2_SW"]),                         # in-sheet PHASE_A/B/C (spec 8.4); boost switch
+                                                                          # node U2_SW 2.8-3.4 A avg (P4 critique round 2)
     ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
     ("Power", ["+5V", "+5V_BST", "+5V_USB", "+5V_HD", "+3V3", "+3V3_VTX", "+1V8", "+1V1",
-               "+5V_*", "+3V3_*", "+1V8_*", "+1V1_*", "/VBUS"]),           # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
+               "+5V_*", "+3V3_*", "+1V8_*", "+1V1_*", "/VBUS",             # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
+               "/VTX/PA_VCC"]),                                         # SE5004L VCC feed 0.65-0.8 A: the board ignores the
+                                                                          # schematic directive label (P4 critique round 2)
     ("GND", ["GND"]),
     ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", "*/CSA*",
                 "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*",      # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
@@ -392,7 +395,7 @@ RULES = [
      "A.NetName == '*SHUNT_SENSE_*')\")"),
 
     ("RF: no vias",
-     ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L6 to the antenna hole without one."],
+     ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one."],
      "  (constraint disallow via)\n  (condition \"A.NetClass == 'RF'\")"),
 
     ("RF: 50 ohm width on the outer layers",
@@ -412,12 +415,19 @@ RULES = [
      "  (constraint disallow via)\n  (condition \"A.intersectsArea('RF_VTX_CHAIN') && A.NetName != 'GND'\")"),
 
     ("RF_RX_FEED: GND vias only",
-     ["Spec 8.4 / 10: no non-GND via under the 2.4 GHz feed, so L5 stays solid under it."],
+     ["Spec 8.4 / 10: no non-GND via under the 2.4 GHz feed (L1, FL1 OUT to the hole), so L2 stays solid under it."],
      "  (constraint disallow via)\n  (condition \"A.intersectsArea('RF_RX_FEED') && A.NetName != 'GND'\")"),
 
+    ("RF_RX_ANT: only the RF feed on L1",
+     ["rxfix BLOCKER / OpenAIO lesson (net-aware antenna keepout): inside the RX antenna-hole ring (L1-L5; pours,",
+      "pads and parts are kept out by the rule area) the only track is the 2.4 GHz feed /RX/RF_RX_ANT on L1, from",
+      "FL1 OUT straight into the AE1 hole pad; no vias, no other tracks, no other layers."],
+     "  (constraint disallow track via)\n"
+     "  (condition \"A.intersectsArea('RF_RX_ANT') && (A.Type == 'Via' || A.NetName != '/RX/RF_RX_ANT' || A.Layer != 'F.Cu')\")"),
+
     ("RF_RX_ANT_L6: only the RF feed",
-     ["Spec 10: on L6 the antenna-hole keepout admits only the 2.4 GHz feed track (vias, parts and pours are",
-      "kept out by the rule area; L1-L5 are kept clear by RF_RX_ANT itself)."],
+     ["Spec 10: on L6 the antenna-hole keepout admits only an RF-class track (vias, parts and pours are",
+      "kept out by the rule area; L1-L5 by RF_RX_ANT and the rule above). rxfix: the feed now runs on L1."],
      "  (layer \"B.Cu\")\n  (constraint disallow track)\n"
      "  (condition \"A.intersectsArea('RF_RX_ANT_L6') && A.NetClass != 'RF'\")"),
 
@@ -874,15 +884,15 @@ def keepouts():
     K.append(("RF_PAD_CUTOUT_L3", ["In2.Cu"], dict(tracks=True), ("poly", rect(*RF_PAD_CUT)), True,
               "spec 4.8: no L3 track where L3 GND is the local RF reference"))
     ring = circle_pts(RX_ANT_HOLE, RX_ANT_KEEPOUT_R)
-    K.append(("RF_RX_ANT", CU[:5], dict(footprints=True, tracks=True, vias=True, pads=True, zone_fills=True),
-              ("poly", ring), True, "spec 10: L1-L5 copper and part keepout at the RX antenna hole"))
+    K.append(("RF_RX_ANT", CU[:5], dict(footprints=True, pads=True, zone_fills=True),
+              ("poly", ring), True, "spec 10: L1-L5 pour/pad/part keepout at the RX antenna hole; tracks and vias net-aware (DRU: only the RF_RX_ANT feed on L1)"))
     K.append(("RF_RX_ANT_L6", ["B.Cu"], dict(footprints=True, vias=True, zone_fills=True), ("poly", ring), True,
               "spec 10: L6 at the hole: only the 2.4 GHz feed track (DRU)"))
     edge_pt = (-BODY_HALF, RX_ANT_HOLE[1])
     K.append(("RF_RX_EXIT", ["B.Cu"], dict(footprints=True), ("poly", stadium(RX_ANT_HOLE, edge_pt, RX_ANT_EXIT_R)), True,
               "spec 10 / v3 (D69, D75): no parts on the antenna wire exit path, hole to edge, r %.1f (bottom)" % RX_ANT_EXIT_R))
-    K.append(("RF_RX_FEED", ["In4.Cu"], dict(tracks=True), ("path", [RX_FEED[0], RX_FEED[1]], RX_FEED[2]), True,
-              "spec 10: L5 solid under the 2.4 GHz feed; GND vias only (DRU)"))
+    K.append(("RF_RX_FEED", ["In1.Cu"], dict(tracks=True), ("path", [RX_FEED[0], RX_FEED[1]], RX_FEED[2]), True,
+              "spec 10: L2 solid under the 2.4 GHz L1 feed (FL1 OUT -> hole); GND vias only (DRU)"))
     K.append(("RF_RX_ROOT", CU, {}, ("poly", circle_pts(RX_ANT_HOLE, RX_ROOT_R)), True,
               "spec 4.9 / 11: SPI0 (blackbox) kept 3 mm from the antenna hole (DRU)"))
     K.append(("SHUNT_CORRIDOR", [SHUNT_LAYER], {}, ("poly", rect(*SHUNT_CORRIDOR)), True,
@@ -1459,12 +1469,13 @@ def selftest(P, rf):
     ax, ay = RX_ANT_HOLE
     trk(ax + 0.2, ay - 1.1, ax + 1.0, ay - 1.1, 0.1, "/T/SIG4", "B.Cu"); case("signal track in RF_RX_ANT_L6", "RF_RX_ANT_L6: only the RF feed", (ax + 0.6, ay - 1.1))
     trk(ax + 0.2, ay + 0.9, ax + 1.0, ay + 0.9, W, "/RX/ANT_FEED", "B.Cu"); case("RF feed in RF_RX_ANT_L6", None, (ax + 0.6, ay + 0.9), r=0.3)
-    trk(ax + 0.2, ay + 1.2, ax + 0.8, ay + 1.2, W, "/RX/RF_X2", "F.Cu"); case("RF track on L1 in RF_RX_ANT", KEEPOUT_HIT, (ax + 0.5, ay + 1.2), r=0.6)
+    trk(ax + 0.2, ay + 1.2, ax + 0.8, ay + 1.2, W, "/RX/RF_X2", "F.Cu"); case("other RF track on L1 in RF_RX_ANT", "RF_RX_ANT: only the RF feed on L1", (ax + 0.5, ay + 1.2), r=0.6)
+    trk(ax + 0.6, ay - 0.9, ax + 1.2, ay - 0.9, W, "/RX/RF_RX_ANT", "F.Cu"); case("RX feed on L1 in RF_RX_ANT", None, (ax + 0.9, ay - 0.9), r=0.3)
     tht("AE1", ax, ay, [(0, 1.0, 0.5, True)], netname="/RX/ANT_FEED"); case("antenna hole footprint AE1 at the hole", None, (ax, ay), r=0.45)
     trk(ax + 1.9, ay + 1.0, ax + 2.3, ay + 1.0, 0.1, "/FC/SPI0.SCK"); case("SPI0 track 2.3 mm from the antenna hole", "SPI0 3 mm from the RX antenna hole", (ax + 2.1, ay + 1.0), r=0.6)
     trk(6.0, 9.5, 7.0, 9.5, 0.1, "/FC/SPI0.MOSI"); case("SPI0 track far from the hole", None, (6.5, 9.5), r=0.6)
     fx, fy = RX_FEED[0]
-    via(fx - 0.5, fy + 0.45, 0.35, 0.20, "/T/V9"); case("signal via in RF_RX_FEED", "RF_RX_FEED: GND vias only", (fx - 0.5, fy + 0.45), r=0.4)
+    via(fx - 0.3, fy + 0.15, 0.35, 0.20, "/T/V9"); case("signal via in RF_RX_FEED", "RF_RX_FEED: GND vias only", (fx - 0.3, fy + 0.15), r=0.4)
     # inner-layer bans (In2 / In3)
     trk(6.0, 1.0, 7.0, 1.0, 0.1, "/OSD/VIDEO_IN", "In2.Cu"); case("Analog track on In2", "In2 and In3: no analog, RF or gate nets", (6.5, 1.0), r=0.6)
     trk(6.0, 2.0, 7.0, 2.0, 0.15, "/ESC1/A_COM", "In3.Cu"); case("Gate track on In3", "In2 and In3: no analog, RF or gate nets", (6.5, 2.0), r=0.6)

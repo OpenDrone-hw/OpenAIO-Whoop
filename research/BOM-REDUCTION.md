@@ -241,6 +241,8 @@ Result: **248 placements, 76 lines**, top 436.8 mm² (69.5 %).
    - The PICO-V3 uses GPIO16, 17, 18 and 23 for its in-package flash (Fig. 8; pins 25, 35, 36, 44, 45 NC, V).
    - So `vtx_mosi` (GPIO18) moves to GPIO14, or GPIO15 (MTDO strap), and the F8 3-wire production reads move with it.
    - `vtx_miso` (GPIO23) is left unset or put on an input-only pin (35/38/39). ELRS never reads it.
+     **Superseded by D81:** written as `"vtx_miso": -1` explicitly; an omitted overlay key keeps the stock 23
+     (the PICO flash DI), which SPIClass::begin() turns into an input.
    - BR-02 puts `vtx_amp_pwm` on **GPIO13**, which is free and not a strap pin on both MCUs (PINMAP §6: 13/14/16/17
      unused today). The BR-02 pin choice therefore does not depend on the BR-01 trial.
    - GPIO12 (MTDI) is then unconnected. Its internal pull-down holds the 3.3 V-flash strap, so the F18

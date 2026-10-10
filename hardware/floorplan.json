@@ -5773,5 +5773,101 @@
    }
   ],
   "markers": "User.3: 0.35 mm circles = reserved through-via sites (0.35/0.20 filled+capped, tented), rectangles = reserved power/GND copper landings"
+ },
+ "rxfix_2026_10_10": {
+  "why": "critique BLOCKER: RX RF chain U18 pin22 -> FL1 -> AE1 not DRC-routable",
+  "moves": {
+   "FL1": [
+    103.55,
+    120.0,
+    180,
+    "F"
+   ],
+   "X3": [
+    106.3,
+    119.65,
+    0,
+    "F"
+   ],
+   "C85": [
+    104.6,
+    119.125,
+    180,
+    "F"
+   ],
+   "C84": [
+    102.65,
+    123.25,
+    0,
+    "F"
+   ],
+   "R7": [
+    102.9,
+    122.2,
+    90,
+    "F"
+   ],
+   "D4": [
+    115.3,
+    123.6,
+    0,
+    "F"
+   ]
+  },
+  "rules": {
+   "RF_RX_ANT": "rule area pours/pads/footprints only; DRU 'RF_RX_ANT: only the RF feed on L1' (net-aware, no vias)",
+   "RF_RX_FEED": "In1.Cu, FL1 OUT (102.975,120.0) -> AE1, r 0.4, GND vias only"
+  },
+  "reserved_routes": {
+   "RF_RFIO": [
+    [
+     105.25,
+     121.1
+    ],
+    [
+     105.25,
+     120.85
+    ],
+    [
+     104.425,
+     120.0
+    ],
+    [
+     104.125,
+     120.0
+    ]
+   ],
+   "RF_RX_ANT": [
+    [
+     102.975,
+     120.0
+    ],
+    [
+     102.275,
+     120.0
+    ],
+    [
+     101.575,
+     120.7
+    ],
+    [
+     100.9,
+     120.7
+    ]
+   ],
+   "TCXO_OUT_via_L1_L5": [
+    102.375,
+    123.6
+   ],
+   "TCXO_OUT_via_X3": [
+    107.1,
+    119.45
+   ],
+   "TCXO_OUT_layer": "In4.Cu (warning-level, reviewed)"
+  },
+  "notes": [
+   "D4 sits in the Q30 L1 power landing (landing shrinks ~1.9 mm2)",
+   "R7 is 7 mm from U3/R8 (U3_PR1 divider), nearest legal site"
+  ]
  }
 }

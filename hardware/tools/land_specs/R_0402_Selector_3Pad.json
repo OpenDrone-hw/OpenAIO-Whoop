@@ -38,5 +38,11 @@
  "courtyard_margin": 0.1,
  "pin1": "1",
  "removed_nc": [],
- "staged_from": "p23/staging/vtx_osd/landspecs/R_0402_Selector_3Pad.json"
+ "staged_from": "p23/staging/vtx_osd/landspecs/R_0402_Selector_3Pad.json",
+ "no_paste": [
+  {
+   "number": "3",
+   "reason": "unfitted 2-3 option (+5V): a stencil deposit 0.40 mm from pad 2 could bridge to PA_VCC in reflow (P4 critique round 2); the 2-3 rework is soldered by hand. A 2-3 variant would drop the paste from pad 1 instead"
+  }
+ ]
 }

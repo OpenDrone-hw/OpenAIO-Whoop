@@ -27,6 +27,7 @@ Spec: JSON, millimetres, TOP view, origin at the package centre, KiCad axes
     "removed_nc": [{"number": "7", "reason": "NC (DS table 6.1), trimmed for density, D21"}],
     "exposed": ["21"],                             optional; else auto (>= 0.5 mm2 and >= 3x median pad)
     "paste": {"ratio_min": 0.50, "ratio_max": 0.80, "min_windows": 2},
+    "no_paste": [{"number": "3", "reason": "..."}],  optional: lands that must carry no paste
     "body": {"w": 3.0, "h": 3.0, "x": 0, "y": 0},
     "courtyard_margin": 0.10,
     "pin1": "1",                                   null on a single-terminal footprint (pin1 n/a)
@@ -802,7 +803,14 @@ def check_paste(spec, fp, lands, apertures, rep):
         rep.data["paste"].append({"pad": ep["number"], "ratio": round(ratio, 4), "windows": windows,
                                   "outside_mm2": round(outside, 4), "ok": ok})
     epset = {id(e) for e in eps}
-    nopaste = [l["number"] for l in lands if id(l) not in epset and l["side"] == "F"
+    # spec "no_paste": [{"number": "3", "reason": ...}] = lands that must stay paste-free (e.g. the unfitted pad of a
+    # selector land); paste on one of them is a FAIL, their missing paste is no WARN
+    keep_free = {str(x["number"]) for x in spec.get("no_paste", [])}
+    for l in lands:
+        if l["number"] in keep_free:
+            a = area(intersect(paste, l["poly"]))
+            rep.add("ok" if a < 1e-4 else "FAIL", f"paste: land {l['number']} paste-free by spec ({a:.3f} mm2 paste)")
+    nopaste = [l["number"] for l in lands if id(l) not in epset and l["side"] == "F" and l["number"] not in keep_free
                and not l["pad"].HasHole() and area(intersect(paste, l["poly"])) < 0.05 * l["area"]]
     if nopaste:
         rep.add("WARN", f"paste: {len(nopaste)} SMD lands without paste: {', '.join(nopaste[:12])}")

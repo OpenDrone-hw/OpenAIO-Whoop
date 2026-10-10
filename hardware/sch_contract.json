@@ -17,7 +17,8 @@
   ],
   "kicad": "10.0.6; files written by hardware/tools/sch_build.py and re-saved by kicad-cli sch upgrade",
   "integrated": "2026-10-09 P4 integration (p2v3/p4/integrate): sheets merged, contract text fixed (J31 pinout, USB source, IMU NC pins, R84, C134, VTX label names, PWR_FLAG rule, A9)",
-  "p4fix1": "2026-10-09 P4 critique round 1 (p2v3/p4/fix1): power table +5V / +5V_BST / +3V3_VTX rows, ESC per-cell hot-loop caps C20/C21 (D77), C17 / C30 deleted, VTX_AMP_PWM -> VTX_AMP_PWM, R84 note 1k"
+  "p4fix1": "2026-10-09 P4 critique round 1 (p2v3/p4/fix1): power table +5V / +5V_BST / +3V3_VTX rows, ESC per-cell hot-loop caps C20/C21 (D77), C17 / C30 deleted, VTX_AMP_PWM -> VTX_AMP_PWM, R84 note 1k",
+  "p4fix2": "2026-10-10 P4 critique round 2 (p2v3/p4/fix2): POWER block text without 'ESC3 BULK' (C30 gone, D77); PA_VCC and U2_SW net classes come from .kicad_pro patterns (the board ignores directive labels), U2_SW directive Phase added; check_netlist N6 cross-checks netlist class against the patterns"
  },
  "rules": [
   "Shard API: prj = sch_build.Project('hardware/OpenAIO-Whoop.kicad_sch'); sheets = sch_root.build_root(prj, sch_root.load_contract()) gives every Sheet already decorated (paper, title block, wordmark) and placed with the fixed uuids; fill your sheets, then sch_root.save_sheets(prj, [your files]) - never prj.save() from a shard (it would overwrite the other shards' files). sch_root.note() = borderless block-note text box, sch_root.netclass_flag() = directive label. Verified on a scratch copy: ESC1 R12/R13 become R19/R20 (ESC2), R26/R27, R33/R34; nets /ESC2/PHASE_A, /MOTOR2, /VBUS come out as specified.",
@@ -79,6 +80,14 @@
    {
     "class": "Analog",
     "pattern": "*ADC_CURR*"
+   },
+   {
+    "class": "Power",
+    "pattern": "/VTX/PA_VCC"
+   },
+   {
+    "class": "Phase",
+    "pattern": "/POWER/U2_SW"
    }
   ],
   "directive_labels": [
@@ -155,7 +164,7 @@
    {
     "sheet": "vtx.kicad_sch",
     "class": "Power",
-    "on": "PA_VCC (this flag assigns the class: no pattern covers it)"
+    "on": "PA_VCC (the board takes the class from the pattern /VTX/PA_VCC in setup_board.py / .kicad_pro; this flag mirrors it)"
    },
    {
     "sheet": "vtx.kicad_sch",
@@ -176,6 +185,11 @@
     "sheet": "pads.kicad_sch",
     "class": "VBAT",
     "on": "+BATT_IN at J2"
+   },
+   {
+    "sheet": "power.kicad_sch",
+    "class": "Phase",
+    "on": "U2_SW (boost switch node, 2.8-3.4 A average / about 4.5 A peak: Phase width; pattern /POWER/U2_SW)"
    }
   ]
  },
@@ -1117,7 +1131,7 @@
     }
    ],
    "fw": "ESP32 GPIO14, ELRS vtx_mosi",
-   "note": "-> R82 1k -> RTC6705 SPIDATA (3-wire); vtx_miso unset"
+   "note": "-> R82 1k -> RTC6705 SPIDATA (3-wire); \"vtx_miso\": -1 written explicitly (D81)"
   },
   {
    "net": "/VTX_AMP_PWM",
@@ -1465,8 +1479,7 @@
     "5V MUX",
     "3V3 LDO",
     "CAM 5V FILTER",
-    "O4 HD SWITCH",
-    "ESC3 BULK"
+    "O4 HD SWITCH"
    ],
    "source": "OpenFC-Lite-Mini/hardware/power.kicad_sch (sheet frame, LP5912 LDO block); OpenAIO/hardware/OpenAIO.kicad_sch (battery shunt + INA186A3 current sense on its root); new blocks from the TI/SGMICRO datasheets",
    "blocks": [

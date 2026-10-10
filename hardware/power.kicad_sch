@@ -1785,7 +1785,7 @@
 					)
 				)
 			)
-			(property "Description" "SG Micro SGM40661 OVP load switch, WLCSP-6: IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), OVLO tied to GND = internal 5.75-6.12 V trip, 4 A, 27/45 mOhm (SGM40659/60/61 DS REV.A, absolute maximum ratings and recommended operating conditions)"
+			(property "Description" "SG Micro SGM40661 OVP load switch, WLCSP-6: IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), OVLO tied to GND = internal 5.75-6.12 V trip, 3 A continuous (recommended operating), 4 A abs max, 27/45 mOhm (SGM40659/60/61 DS REV.A, absolute maximum ratings and recommended operating conditions)"
 				(at 0 -15.24 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4258,7 +4258,7 @@
 		)
 		(uuid "432733bd-b3fe-5aab-802f-ae68600f9301")
 	)
-	(text_box "Source: OpenAIO/hardware/OpenAIO.kicad_sch (battery entry), adapted.\n+BATT_IN = battery pads J2 (+) / J3 (-) on the PADS sheet, 1S LiPo/LiHV 3.0-4.35 V; PWR_FLAG here (the pads are passive). No reverse-polarity FET (spec 4.1: user-fitted pigtail, risk in README).\nD1 SMF5.0A: VBR 6.40-7.07 V, VC 9.2 V at 21.7 A, 200 W 10/1000 us: takes one motor's regen energy (~0.29 J per rated pulse) on a battery disconnect; fallback SMAJ5.0A (SMA, 400 W) if V3b exceeds it. It does not hold the 5.5-7 V parts (EFM8 VDD, TPS61022, TPS2116) in rating: Matrix-parity risk, spec 15.4.\nC1/C2 22 uF 16 V X5R 0603 at the pads: 9-13 uF effective each at 4.35 V. Hot plug of a 4.35 V pack can overshoot to 5.0-5.4 V (V3c); damping fallback ~100 uF polymer at the pads; PE-8 waits for V3c."
+	(text_box "Source: OpenAIO/hardware/OpenAIO.kicad_sch (battery entry), adapted.\n+BATT_IN = battery pads J2 (+) / J3 (-) on the PADS sheet, 1S LiPo/LiHV 3.0-4.35 V; PWR_FLAG here (the pads are passive). No reverse-polarity FET (spec 4.1: user-fitted pigtail, risk in README).\nD1 SMF5.0A: VBR 6.40-7.07 V, VC 9.2 V at 21.7 A, 200 W 10/1000 us: takes one motor's regen energy (~0.29 J per rated pulse) on a battery disconnect; fallback SMAJ5.0A (SMA, 400 W) if V3b exceeds it. It does not hold the 5.5-7 V parts in rating (EFM8 VDD on the cell; TPS61022 VIN 7 V abs max, and its pass-through carries a surge to +5V_BST = TPS2116 VIN2, 6 V abs max): Matrix-parity risk, spec 15.4.\nC1/C2 22 uF 16 V X5R 0603 at the pads: 9-13 uF effective each at 4.35 V. Hot plug of a 4.35 V pack can overshoot to 5.0-5.4 V (V3c): above the TPS61022 4.8 V VIN limit for a start-up with VOUT pre-biased < 0.7 V (DS 6.3), which is exactly hot plug (EN = VIN, +5V_BST at 0 V); V3c scopes VIN with the +5V_BST start. Damping fallback ~100 uF polymer at the pads; PE-8 waits for V3c."
 		(exclude_from_sim no)
 		(at 16.51 55.88 0)
 		(size 83.82 39.37)
@@ -4298,7 +4298,7 @@
 		)
 		(uuid "79c85b9d-61a0-5cb7-b044-aafa8ef9f6a6")
 	)
-	(text_box "New block from TI SLVSDX7D (no sibling uses the TPS61022); look matched to the OpenFC-Lite-Mini buck blocks.\nP4-7: VOUT = 0.600 V x (1 + 47k / 6.2k) = 5.148 V; with VFB 585-615 mV and 1 % resistors 4.93-5.37 V. R5 6.2k < 300 kOhm (TI). EN tied to VIN (+BATT) and nothing else (BR-11): same -0.3..7 V abs max, VEN_H <= 1.2 V, on whenever the cell is above UVLO. MODE = VOUT (+5V_BST): forced PWM, VMODE_H <= 1.2 V valid once VOUT > 2.2 V (start-up pass-through holds VOUT near VIN).\nC7 22 uF CIN at VIN/GND. C8-C11 4x 22 uF X6S 0603: ~20-28 uF effective at 5.15 V, inside TI's 10-50 uF; TI 6.3 asks >= 10 uF effective up to 1.5 A and >= 20 uF from 1.5 to 3 A, met only typically, so the published BEC is 1.5 A continuous (D79; HD load 1.43-1.48 A, LED strip limited in HD mode; V1 load step at 1.7 A). No feed-forward cap (Cout < 40 uF, VIN >= 2.8 V; TI 8.2.2.4). L1 0.68 uH, Isat 6.5 A, 17 mOhm; valley limit 6.5-10 A; converter capability 1.67/1.82/1.98 A at 2.8/3.0/3.2 V (spec 4.2). Passes VIN to VOUT when VIN > VOUT (surge path, spec 4.1).\nLayout (TI 10.1): Cout VOUT/GND pads at pins 3/1 (hot loop SW-VOUT-Cout-GND smallest), CIN at pins 7/1, SW copper minimal, R4/R5 at FB pin 4 away from SW; ground plane under the part."
+	(text_box "New block from TI SLVSDX7D (no sibling uses the TPS61022); look matched to the OpenFC-Lite-Mini buck blocks.\nP4-7: VOUT = 0.600 V x (1 + 47k / 6.2k) = 5.148 V; with VFB 585-615 mV and 1 % resistors 4.93-5.37 V. R5 6.2k < 300 kOhm (TI). EN tied to VIN (+BATT) and nothing else (BR-11): same -0.3..7 V abs max, VEN_H <= 1.2 V, on whenever the cell is above UVLO. MODE = VOUT (+5V_BST): forced PWM, VMODE_H <= 1.2 V valid once VOUT > 2.2 V (start-up pass-through holds VOUT near VIN).\nC7 22 uF CIN at VIN/GND. C8-C11 4x 22 uF X6S 0603: ~20-28 uF effective at 5.15 V, inside TI's 10-50 uF; TI 6.3 asks >= 10 uF effective up to 1.5 A and >= 20 uF from 1.5 to 3 A, met only typically, so the published BEC is 1.5 A continuous (D79; HD load 1.43-1.48 A, LED strip limited in HD mode; V1 load step at 1.7 A). Feed-forward cap (TI 8.2.2.4: above 40 uF effective, fFFZ 2 kHz = 1.7 nF across R4): C8-C11 give 20-28 uF, HD mode adds C12/C13 (~6 uF via the mux) and the O4 input (~47 uF, U5 note): none fitted (lean), V1b steps the load in HD with a real O4, 1.5-2.2 nF across R4 only if it rings. L1 0.68 uH, Isat 6.5 A, 17 mOhm; valley limit 6.5-10 A; converter capability 1.67/1.82/1.98 A at 2.8/3.0/3.2 V (spec 4.2). Passes VIN to VOUT when VIN > VOUT (surge path, spec 4.1).\nLayout (TI 10.1): Cout VOUT/GND pads at pins 3/1 (hot loop SW-VOUT-Cout-GND smallest), CIN at pins 7/1, SW copper minimal, R4/R5 at FB pin 4 away from SW; ground plane under the part."
 		(exclude_from_sim no)
 		(at 16.51 152.4 0)
 		(size 129.54 29.21)
@@ -5735,6 +5735,31 @@
 		(uuid "5fbce7fa-7daf-5559-bfe0-2b6bbbf2b3b9")
 		(property "Netclass" "VBAT"
 			(at 33.02 34.29 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 76.2 114.3 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7f42ab6b-6de2-54d4-b4f6-914d3c2801bd")
+		(property "Netclass" "Phase"
+			(at 77.47 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10355,7 +10380,7 @@
 				)
 			)
 		)
-		(property "Description" "SG Micro SGM40661 OVP load switch, WLCSP-6: IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), OVLO tied to GND = internal 5.75-6.12 V trip, 4 A, 27/45 mOhm (SGM40659/60/61 DS REV.A, absolute maximum ratings and recommended operating conditions)"
+		(property "Description" "SG Micro SGM40661 OVP load switch, WLCSP-6: IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), OVLO tied to GND = internal 5.75-6.12 V trip, 3 A continuous (recommended operating), 4 A abs max, 27/45 mOhm (SGM40659/60/61 DS REV.A, absolute maximum ratings and recommended operating conditions)"
 			(at 71.12 200.66 0)
 			(hide yes)
 			(show_name no)

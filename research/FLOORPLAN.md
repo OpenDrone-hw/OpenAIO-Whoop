@@ -275,3 +275,96 @@ This is the first item for the routing loop (D74).
 - **Wi-Fi feed:** the ESP32-PICO LNA_IN to antenna feed is 13.5 mm Manhattan; 8 mm is the preference. It needs an inner-layer
   50 ohm feed.
 - **Gyro and PA preferences:** 4.0 mm from the FETs and 3.2 mm from the PA. These are preferences under D69.
+
+### Floorplan v3 critique (2026-10-10, rxfix pass): BLOCKER fixed, MAJORs open
+
+**BLOCKER, verified and FIXED: RX RF corner (rf-firmware).**
+
+*The finding (it held on the board):* FL1 OUT had no exit that DRC accepts. F.Cu lay in RF_RX_ANT, and any via fell in
+RF_RX_ANT or RF_RX_FEED. FL1 IN faced away from pin 22, and X3 pad 2 sat 0.35 mm over the pin 22 escape. The scripts are
+in `p2v3/rxfix/work/` (`place5.py`, `areas.py`, `trial3.py`) and the checkpoint is `p2v3/fp_checkpoints/10_pre_rxfix`.
+
+*What changed:*
+- **FL1** moved to (103.55, 120.0), rot 180. IN (pin 1) faces U18 pin 22 and OUT (pin 3) faces AE1. It sits outside the
+  ring, 0.2 mm above U18's courtyard.
+- **X3** moved to (106.3, 119.65), above U18 to the right of the RF line. Its GND pad 1 faces the line and its OUT pad 3 is
+  on the far side.
+- **C85** (X3 VDD) moved to (104.6, 119.125).
+- **C84** (XTA DC block) moved to (102.65, 123.25), at U18 pin 4.
+- **R7** (+5V_USB / U3_PR1 divider) moved to (102.9, 122.2). It is the nearest legal site, but 7 mm from U3/R8.
+- **D4** (RX LED) moved to (115.3, 123.6) at the rear edge. It shrinks the Q30 L1 power landing by about 1.9 mm².
+
+*Rules (the net-aware antenna keep-out lesson; `setup_board.py` updated and its RX selftest cases pass):*
+- RF_RX_ANT now keeps out pours, pads and parts only.
+- A new DRU rule, `RF_RX_ANT: only the RF feed on L1`, uses `A.Type == 'Via' || A.NetName != '/RX/RF_RX_ANT' || A.Layer != 'F.Cu'`.
+- RF_RX_FEED moves to In1 (L2 solid under the L1 feed) along FL1 OUT → AE1, with GND vias only.
+- The "RF: no vias" comment now reads L1.
+
+*Trial route, run on a scratch board with nets set on the pads:*
+- RF_RFIO: pin 22 north 0.25 mm, then 45° to FL1.1. 2.2 mm.
+- RF_RX_ANT: FL1.3 west and 45° into the AE1 pad. 2.4 mm.
+
+Both are on L1 at 0.105 mm (50 ohm), with no via, 0.15 mm from every other pad. Neither gave a DRC finding.
+
+XTA and TCXO_OUT:
+- XTA runs from pin 4 to C84 on L1.
+- TCXO_OUT runs C84 → via (102.375, 123.6) → In4, 6.3 mm → via (107.1, 119.45), which half-overlaps X3 pad 3 (filled
+  and capped) → X3.
+- It crosses under the RF line with L2 GND between them. The Analog class is barred from In2/In3. The trial gave 1
+  warning ("In1 and In4 are solid GND planes"), which needs review at routing.
+- The TCXO via keeps clear of the reserved RX GND fence via at (101.66, 122.91).
+
+*Checks after the fix:*
+- DRC: 0 errors, 14 warnings, 62 unconnected (all unchanged).
+- check_spacing (`--d70`, AE\* owners): 0 / 0 / 0.
+- check_rules: parsed.
+- check_conventions: 37 ok, 0 FAIL.
+- Empty patches: F 0, B 0 (F free 65.3 mm², B 54.6 mm²).
+
+The renders are in `images/`, plus `p2v3/renders/corner_before.png` and `corner_after.png`.
+
+*Left for routing:*
+- The TCXO_OUT L5 segment, or an L6 path past J31's pads.
+- The R7 → U3/R8 divider trace length.
+- `setup_board.py --selftest` has 3 other failures in cases this pass did not touch: RF_VTX_CHAIN ×2 and the tall-parts
+  0201 case. They are not caused by this change.
+
+**MAJORs (critique round on v3), unfixed, for the owner:**
+1. **Installed orientation undefined (layout-dfm-power).** J31 (B, vertical BM04B) works only if B faces up. The docs
+   treat F as up (renders, U.FL coax "up into the canopy"), and the DNP motor headers are also on B. State the
+   orientation. If F is up, move J31 and USB_MATING to F beside a hole. If B is up, re-check J1, J32, SW1 and the coax
+   path, and flip the render labels.
+2. **Battery corridor blocked; R1 via count (layout-dfm-power).** SHUNT_CORRIDOR holds U1, R2, R3, C5, C6 and R8. That
+   leaves a 1.1 x 3.5 mm L1 neck (about 1.3 mOhm, 2 W at a 40 A burst). R1 pad 1 sits over Q36's drain EP, so it cannot
+   take vias. R1 pad 4 fits about 4 vias, where the plan counts 16. Move the six parts out, move R1 or Q36, and reserve
+   16 L4 sites.
+3. **Hot-loop caps far from 7 of 12 cells (layout-dfm-power).** Distances: C41 6.0 mm, C29 4.5, C35 3.6, C32 3.6, C33 3.1,
+   C38 2.6, C26 2.5. C29, C35, C38 and C41 are on the opposite side. Place one cap per cell across pins 1 and 3 on the lead
+   side, add a separate EFM8 bulk cap where needed, and check per cell.
+4. **D72 via budget not closed (layout-dfm-power).** About 190 power vias are needed and 20 sites are reserved. The pin 1
+   via-in-pad is blocked on 10 of 12 cells and pin 3 on 8 of 12. Drain-EP sites free: Q35 0/16, Q38 0/16, Q39 2/16.
+   "8 bottom cells need 0 vias" fails, because L6 cannot reach ESC1/2/4. Offset the stacked pairs, then reserve at least
+   5 sites per cell pin and at least 5 L4 ties per quadrant in floorplan.json.
+5. **BR-14/BR-09 preconditions broken (layout-dfm-power).** U21 is 12.3 mm from U4, and C13 is next to U4, so U21 IN has
+   no input cap. U12 OUT is 6.1 mm from C62 and IN 4.4-4.7 mm from C61. Put U21 beside U4, or give it a local 1 µF on IN.
+   Move U12 to the BMI270. Check decoupling per pin.
+6. **Binding labels not proven (layout-dfm-power).** Missing: the M4 (J13) and BZ- (J22) labels, and the pin-1 dots for
+   J32 and J1. The product name fits only at 0.8 mm, against 1.4 mm in D59. Free the silk space, or log an owner decision
+   for 0.8 mm.
+7. **5.8 GHz interstage (rf-firmware).** U20 RFin (pin 3) faces the edge, while the RTC6705 and C110 sit on the inner side.
+   The route is about 12 mm with a side change and no clean RF via site, and it passes R53, R63 and C26. Turn U20 so
+   pins 1-5 face U19 pin 35, put C110 at pin 35, and use one RF via within 2-3 mm with 2-4 GND vias. Draw it on User.2
+   with a scoped "RF: no vias" exception.
+8. **RX wire path drawn toward M3 (rf-firmware).** The User.2 path runs -x for 8.9 mm from AE1, toward the rear-left
+   motor. Its last 3 mm is inside the duct or prop disc, and it passes under the J31 shroud corner. Redraw it rearward
+   along the (-1, +1) arm, or up into the canopy. Measure it against the M3 leads and duct, the battery pigtail and the
+   USB plug, and put the numbers in the D75 table and the README.
+9. **FC crystal X1 on the wrong side of U10 (rf-firmware).** XIN/XOUT are B-side pins. The traces run about 7.5 and 8.6 mm
+   through the pin 23-37 escape field, R40 sits at the crystal end, and X1 is 0.6 mm from J1 and about 1.5 mm from FL2/PA.
+   Move X1, C42, C43 and R40 below U10 at pins 21/22 (band x 110.4-116.0, y 110.7-113.1; shift the HD labels or pads
+   about 0.6 mm), or rotate U10.
+10. **Wi-Fi feed breaches D75 (rf-firmware).** RF_WIFI runs 15.6 mm past the RTC6705, through a 0.44 mm gap between U21
+    and U19, likely on an inner layer. The pi match is split across sides (4 or more via transitions), C132 is 2.9 mm from
+    the AE2 feed across the no-ground area, and X4 is 0.23 mm from AE2's pads. Put the whole pi on the bottom at the feed
+    and run an L3 stripline with GND fences on User.2. Then either log a scoped D75 exemption (bench-only Wi-Fi, VTX off
+    under F9) or re-site AE2/U16.

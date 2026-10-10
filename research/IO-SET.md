@@ -1,7 +1,22 @@
 # IO set (D63): the IO a 1S whoop AIO usually has
 
-**Status: final for rev1, gated** (G1-G3 in §5). This set is part of the BOM plan and the floorplan (D63). Any agent that
-regenerates `hardware/bom_plan.json` or places parts must include it. No other repo file was edited in this pass.
+**Status (2026-10-10, P4 critique round 2): superseded in part; binding over the rows below.** The set was
+final on 2026-10-09 (D63 / D64) and is part of the BOM plan and the floorplan, but later decisions changed it.
+Anyone who regenerates `hardware/bom_plan.json` takes these, then bom_plan and the schematic, over the old rows:
+
+- **D65 button:** one shared button **SW1 Alps SKUBAAE010** (2.4 x 1.4 mm) for FC BOOTSEL and RX boot through
+  the dual Schottky **D8 SDM02M30CLP3** (common cathode on BOOT_SW: A1 = FC_BOOT via R44 1k, A2 = RX_BOOT, ESP32
+  GPIO0). Not the TS2306A on GPIO0 only, and not 'in parallel with TP11 RXB' (rows 6/10, §1 note, §6 'FC BOOTSEL
+  button ... not rev1' are reversed).
+- **D65 motor plugs:** plug-ready motor lands (optional Molex PicoBlade header, DNP; solder wires by default):
+  §6 'motor plug-ready holes: later revision' is reversed.
+- **D67 test points:** TP10 (GND), TP11 (RXB), TP14 / TP15 (USB D±) are removed; TP1-TP8 (EFM8 C2), TP9 (FCB),
+  TP12 / TP13 (SWD) are mask-open filled-via test points (no silk, no TestPoint_Pad_D0.8mm pads; rows 12/13).
+- **D69:** H1 / H3 (85 °C halos) and gate G3 do not exist; §4.2 site rules and the H1/H3 wording are void.
+- **D76 / final refs:** **J31 = USB**, vertical JST BM04B-SRSS-TB(LF)(SN) facing up next to a mounting hole;
+  **J32 = camera plug** SM03B-SURS-TF(LF)(SN) (§3 calls it J31); **J33 = LED-strip GND pad** (§3 calls it J32).
+
+Original status line: final for rev1, gated (G1-G3 in §5); no other repo file was edited in that pass.
 
 Date 2026-10-09. Owner request: "add all the IO a board like this usually has" (D63). Inputs:
 - the IO survey of 7 analog whoop AIOs, plus 4 reference boards (§7);

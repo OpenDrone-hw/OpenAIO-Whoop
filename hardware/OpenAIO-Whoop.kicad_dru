@@ -208,7 +208,7 @@
   (constraint disallow track)
   (condition "(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SPI1.*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*/PA_*' || A.NetName == '*SHUNT_SENSE_*')"))
 
-# Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L6 to the antenna hole without one.
+# Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.
 (rule "RF: no vias"
   (constraint disallow via)
   (condition "A.NetClass == 'RF'"))
@@ -232,13 +232,20 @@
   (constraint disallow via)
   (condition "A.intersectsArea('RF_VTX_CHAIN') && A.NetName != 'GND'"))
 
-# Spec 8.4 / 10: no non-GND via under the 2.4 GHz feed, so L5 stays solid under it.
+# Spec 8.4 / 10: no non-GND via under the 2.4 GHz feed (L1, FL1 OUT to the hole), so L2 stays solid under it.
 (rule "RF_RX_FEED: GND vias only"
   (constraint disallow via)
   (condition "A.intersectsArea('RF_RX_FEED') && A.NetName != 'GND'"))
 
-# Spec 10: on L6 the antenna-hole keepout admits only the 2.4 GHz feed track (vias, parts and pours are
-# kept out by the rule area; L1-L5 are kept clear by RF_RX_ANT itself).
+# rxfix BLOCKER / OpenAIO lesson (net-aware antenna keepout): inside the RX antenna-hole ring (L1-L5; pours,
+# pads and parts are kept out by the rule area) the only track is the 2.4 GHz feed /RX/RF_RX_ANT on L1, from
+# FL1 OUT straight into the AE1 hole pad; no vias, no other tracks, no other layers.
+(rule "RF_RX_ANT: only the RF feed on L1"
+  (constraint disallow track via)
+  (condition "A.intersectsArea('RF_RX_ANT') && (A.Type == 'Via' || A.NetName != '/RX/RF_RX_ANT' || A.Layer != 'F.Cu')"))
+
+# Spec 10: on L6 the antenna-hole keepout admits only an RF-class track (vias, parts and pours are
+# kept out by the rule area; L1-L5 by RF_RX_ANT and the rule above). rxfix: the feed now runs on L1.
 (rule "RF_RX_ANT_L6: only the RF feed"
   (layer "B.Cu")
   (constraint disallow track)

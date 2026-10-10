@@ -1,16 +1,20 @@
 # OpenAIO-Whoop schematic (P4 integration, 2026-10-09)
 
 Status: the eleven sheet files written by the P4 shards are merged into one hierarchy and pass every scripted
-check. P4 critique round 1 (4 MAJOR, 22 MINOR) is applied: 25 fixed, 1 rejected (section "P4 critique round 1"
-below); the loop (D22: no BLOCKER / MAJOR left) continues with round 2. The board was **not** synced: floorplan
-v3 is placed in parallel and `sync_pcb.py` runs after it. `OpenAIO-Whoop.kicad_pcb` is unchanged.
+check. P4 critique round 1 (4 MAJOR, 22 MINOR: 25 fixed, 1 rejected) and round 2 (2 MAJOR, 19 MINOR: 19 fixed,
+2 fixed in part, 0 rejected; section "P4 critique round 2") are applied; the loop (D22: no BLOCKER / MAJOR
+left) continues with round 3. The board was **not** synced (`OpenAIO-Whoop.kicad_pcb` unchanged); the P5
+placement conditions the schematic relies on are now scripted (`hardware/tools/check_p5_conditions.py`) and
+fail 20 of 32 on floorplan v3 (open item 10).
 
 | Check | Result |
 |---|---|
 | `kicad-cli sch erc` (all severities) | **0 errors, 2 warnings** (both justified below); baseline before integration: 2 errors, 105 warnings |
-| `hardware/tools/check_netlist.py` | **7 ok, 0 FAIL** (N1-N6, N5 run for the FC and the RX; N6 Analog 25 after the VTX patterns) |
+| `hardware/tools/check_netlist.py` | **7 ok, 0 FAIL** (N1-N6, N5 run for the FC and the RX; N6 now also checks each net's class through the .kicad_pro patterns, D82) |
 | `hardware/tools/check_conventions.py` | **37 ok, 0 FAIL**, 4 warn, 5 skip |
-| `sch_visual_check.py` (commons, KiCad 10 hide fix: `p2v3/p4/fix1/scripts/svc_k10.py`) | **0 hits on all 11 sheets**; the unpatched commons copy still reports 9223 hidden-field false hits |
+| `sch_visual_check.py` (commons, KiCad 10 hide fix: `p2v3/p4/fix2/scripts/svc_k10.py`) | **0 hits on all 11 sheets**; it has no frame-to-frame check, so round 2 added `p2v3/p4/fix2/scripts/frame_check.py`: 0 frame overlaps on the RX and VTX sheets (was 1 on the RX) |
+| `hardware/tools/check_p5_conditions.py` (new, board placement conditions) | 12 ok, **20 FAIL** on floorplan v3: P5 input, not a schematic error (open item 10) |
+| `hardware/tools/check_footprint.py` R_0402_Selector_3Pad | PASS, 0 WARN (pad 3 paste-free by spec) |
 | bom_plan parity (refs, values, footprints, symbols, MPN, Manufacturer, LCSC, DNP, BOM flag) | 274 of 274 symbols equal (check_netlist N4); LOGO1 is a board-only footprint |
 | Netlist | 271 board parts (H1-H3 are schematic-only); 236 BOM placements, 82 BOM lines; 73 no-connect pins, 0 auto-named nets |
 
@@ -98,7 +102,7 @@ datasheet or file first.
 | 18 | MINOR | PINMAP §7.1 / §7.3 still TI | fixed | AGM210MAP gate pins and routing; first power-up `A_X_10_96`, then `A_X_5_96` |
 | 19 | MINOR | D0WD fallback and "no Wi-Fi" text | fixed | spec and PINMAP marked withdrawn (D55 / D61), F9 per D58 |
 | 20 | MINOR | stale texts (PINMAP status, W25Q128JV, R84 10k, '4.7k') | fixed | all four |
-| 21 | MINOR | OSD level note assumed no DC load | fixed | recomputed: 1.47 kΩ DC / ~0.27 kΩ HF load, black 0.234-0.236 V, white 0.920-0.927 V, edges x0.57; V9b check |
+| 21 | MINOR | OSD level note assumed no DC load | fixed | recomputed: 1.47 kΩ DC load, black 0.234-0.236 V, white 0.920-0.927 V; V9b check (the HF load / edge figures were corrected in round 2, item 18) |
 | 22 | MINOR | VTX analog nets in Default | fixed | Analog patterns `*/VT_MOD*`, `*/RTC_*`, `*/U19_XTAL*`, `*/TCXO_OUT`, `*/XTA` (setup_board.py, .kicad_pro, check_netlist N6; the In2 / In3 Analog DRU rule covers them) |
 | 23 | MINOR | LP5907 abs max and VREF window margins | fixed | deviations recorded in the PA REFERENCE note; V5c / V9b |
 | 24 | MINOR | R84, R80-R82 position, SE5004L "match" | fixed | notes (R84 1k, R80-R82 at the ESP32 end), spec §4.8 |
@@ -106,6 +110,36 @@ datasheet or file first.
 | 26 | MINOR | +3V3_VTX budget 0.10 A | fixed | root table "0.10 A typ, about 0.17 A at max PA", spec §5.1 |
 
 Placements 269 -> 275 in bom_plan (+8 hot-loop caps, -C30, -C17), 82 lines unchanged.
+
+## P4 critique round 2 (2026-10-10)
+
+Single-writer fix pass `p2v3/p4/fix2` (scripts there; decisions D81-D82). Each item was checked against the
+datasheet, the source code or the board first. No part added or removed: 275 placements, 236 BOM, 82 lines.
+
+| # | Sev | Item | Verdict | What changed |
+|---|---|---|---|---|
+| 1 | MAJOR | ELRS `vtx_miso` 'unset' keeps the stock 23 (PICO flash DI) under an overlay | fixed (D81) | verified: `UnifiedConfiguration.py` `hardware.update(overlay)`, `hardware.cpp` absent key → -1, arduino-esp32 2.0.17 `spiAttachMISO` → `pinMode(miso, INPUT)` (-1 → HSPI GPIO12, NC here); `"vtx_miso": -1` written explicitly in the RX note, PINMAP §6 / F8 / row 25, spec §4.7 / §12 / P4-6, contract; V9 bring-up check |
+| 2 | MAJOR | PA_VCC Power only by directive label: Default on the board | fixed (D82) | verified on the netlist vs the patterns (only PA_VCC differed); `/VTX/PA_VCC` → Power in setup_board.py and .kicad_pro; contract text; check_netlist N6 resolves every net through the .kicad_pro patterns (tested: fails on the old .kicad_pro) |
+| 3 | MINOR | P5 placement conditions not met on floorplan v3 | fixed in part | new `tools/check_p5_conditions.py` (D77, BR-05, D79, BR-14 with the LP5912 1 cm rule of DS 9.2.2.2, BR-08, C108, R80-R82, USB inlet, boost COUT): 12 ok / 20 FAIL; bom_plan BR-05 claim corrected (2.6-5.0 mm), U5 / U21 fallbacks named (1 µF 0201 / 10 µF 0402). Moving parts is the board stage's (no board change in this pass) |
+| 4 | MINOR | R67 pad 3 carries paste (+5V bridge risk) | fixed | F.Paste removed from pad 3; land spec `no_paste`; check_footprint `no_paste` key (additive); spec §4.2 row |
+| 5 | MINOR | U2_SW in Default | fixed (D82) | `/POWER/U2_SW` → Phase (0.50 mm; short U2 SW-L1 pour) pattern + directive label on POWER; N6 rule; spec net-class table |
+| 6 | MINOR | TPS61022 4.8 V start-up limit (VOUT pre-bias < 0.7 V) missing | fixed | verified SLVSDX7D §6.3; POWER battery note, spec §4.1 hot-plug row, V3c pass criterion |
+| 7 | MINOR | R73 / R65 34 mW at the top step vs RC0201 derating | fixed | verified (RC0201 −55..125 °C, 36 mW at 85 °C); V8 pass criterion, levers (ELRS top-count cap Ic ≤ 45 mA, Re 27R); VTX note, bom_plan; R73 stays 10R (ruling 2026-10-09) |
+| 8 | MINOR | 'Cout < 40 µF' ignores C12/C13 and the O4 input | fixed | verified TI §8.2.2.4 (C3 ≈ 1.7 nF with 47k); POWER note restated; V1b steps the load in HD mode with a real O4; FF cap only if it rings |
+| 9 | MINOR | stale texts | fixed | spec C17 (D79) and ESC MCU supply (D77) rows; SGM40661 description 3 A continuous / 4 A abs max; bom_plan U2 / C16 / U6-U9 notes. D1 note: TPS2116 **kept** with its path named (the TPS61022 pass-through carries a cell surge to +5V_BST = VIN2, spec §4.1 / §4.2) |
+| 10 | MINOR | blackbox reads at 75 MHz, not 50 | fixed | verified (`spiCalculateDivider` even prescale ≥ 2; {133, 80} → 75 MHz; tCLQV 6-7 ns); BLACKBOX note, spec §4.9 / §10, PINMAP F7, V9 read-back CRC gate, fallback |
+| 11 | MINOR | IO-SET predates D65/D67/D69/D76 | fixed | status block at the top (button, motor plugs, test vias, D69, final refs J31 / J32 / J33) |
+| 12 | MINOR | RX1 5 V-logic device at power-up | fixed | RP2350A P4-11 and PADS HD notes; README item (open item 8) |
+| 13 | MINOR | R44 / U16 / J32 notes, V-btn 'pressed' | fixed | RPi guide R6 = 1k; H1/H3 wording dropped (D69); Wi-Fi peak ruling cited; V-btn 'while released' |
+| 14 | MINOR | check_netlist table stale | fixed | table below from the current run |
+| 15 | MINOR | root POWER block lists 'ESC3 BULK' | fixed | contract content, root regenerated |
+| 16 | MINOR | RX frames overlap; notes outside frames | fixed | SX1281 frame right edge 203.2; NOTES band on top, BOOT / BIND and ESP32 frames span the right column with their notes inside |
+| 17 | MINOR | VTX sheet sparse (A2) | fixed in part | RTC6705 and PA blocks moved up 30.48 mm (band under the frame title closed); A2 kept: the four block columns need about 567 mm of width, an A3 re-flow means redrawing the RTC6705 and PA blocks |
+| 18 | MINOR | VIDEO_OUT HF load / edge figures | fixed | 0.95 kΩ at 5 MHz, 0.60 kΩ at 10 MHz; OSD edges x0.86 / x0.80, camera x0.97 (OSD and VTX notes, spec V9b, round-1 #21 row) |
+| 19 | MINOR | PNP numbers disagree (spec / PINMAP vs ngspice) | fixed | spec §4.8 and PINMAP §6 from the ngspice table (copied to `research/bomred/verify/pnp_spice/`); Q27 ≤ 114 mW vs 130 mW at 85 °C; Q27 case temperature in V5 |
+| 20 | MINOR | X4 250 Ω ESR, start-up margin untested | fixed | verified (LCSC C400090); V5 start-up margin test, lower-ESR 3225 fallback (bom_plan, VTX bench note) |
+| 21 | MINOR | AE1 value 'ANT 2.4G wire' ≠ pad code | fixed | value `ANT` (bom_plan + schematic); wording in the notes |
+
 
 ## ERC: the two remaining warnings
 
@@ -122,10 +156,10 @@ No ERC exclusions and no severity changes are used (D7 / D21).
 |---|---|---|
 | N1 | single-pin nets only on no-connect pins or test points | 73 single-pin nets, all on flagged no-connect pins |
 | N2 | every supply input shares its net with a capacitor to GND | 59 power-input pins on 13 supply nets, all decoupled |
-| N3 | footprint on every part; MPN + Manufacturer + LCSC field on BOM parts, LCSC = bom_plan | 268 symbols, 230 BOM placements ok |
-| N4 | refs, values, footprints, symbols, MPN, Manufacturer, DNP, BOM flag = bom_plan.json | 268 equal; LOGO1 board-only; H1-H3 not on the board (outline holes) |
+| N3 | footprint on every part; MPN + Manufacturer + LCSC field on BOM parts, LCSC = bom_plan | 274 symbols, 236 BOM placements ok (63 without an LCSC number, D60) |
+| N4 | refs, values, footprints, symbols, MPN, Manufacturer, DNP, BOM flag = bom_plan.json | 274 equal; LOGO1 board-only; H1-H3 not on the board (outline holes) |
 | N5 | U10 RP2354A and U16 ESP32-PICO-V3 pin -> net = PINMAP.md §2/§3/§6 | 61 + 49 pins equal |
-| N6 | net classes from patterns + directive labels match each net's role; contract directive labels present | Analog 15, Gate 24, Phase 12, Power 11, RF 8, USB 2, VBAT 2, GND 1, Default 115; 19 / 19 directive labels |
+| N6 | net classes from patterns + directive labels match each net's role; contract directive labels present; each net's .kicad_pro pattern class = its netlist class (D82) | Analog 25, Gate 24, Phase 13, Power 11, RF 8, USB 2, VBAT 2, GND 1, Default 104; 20 / 20 directive labels; 0 pattern mismatches |
 
 ## check_conventions.py warnings and skips
 
@@ -153,7 +187,7 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 
 ## Open items
 
-1. **P4 critique loop** (D22) still to run on the merged schematic; the sheet notes carry the P4 items for it.
+1. **P4 critique loop** (D22): rounds 1 and 2 applied; round 3 to run.
 2. **Board sync (after floorplan v3):** `sync_pcb.py` will add C134 (needs a site at RP2354A DVDD pin 23), drop the GND
    net from BMI270 pads 2/3, rename 19 nets (new labels), change R84's value, and must not expect H1-H3 (no board
    footprint). bom_plan.json changed (C134, symbols, R84, LCSC, nets): a floorplan run that rewrites bom_plan must merge.
@@ -169,13 +203,19 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 6. **ESC dead time:** closed in round 1 (first power-up `A_X_10_96`, `A_X_5_96` after V2; spec §4.3 / §12, PINMAP §7.3).
 7. **ICM-42688-P** VDD 1.8 V with VDDIO 3.3 V: confirm in TDK DS-000347 before the TDK half of the V10 fly-off.
 8. **README notes owed** (rulings): ELRS Wi-Fi is a bench-only mode (+3V3 0.48 A peak); SGM40661 OVP 5.75-6.12 V
-   (out-of-spec sources only); user UART pads TP0/RP0 are PIO UART, 8N1, 3.3 V logic; 5 V BEC 1.5 A continuous and
+   (out-of-spec sources only); user UART pads TP0/RP0 are PIO UART, 8N1, 3.3 V logic, and so are TX1/RX1 when used as the second hardware UART in analog builds (5V pads come up before +3V3; FT pads take 3.63 V unpowered); 5 V BEC 1.5 A continuous and
    the LED-strip limit in HD mode (D79); the optional PicoBlade motor plug carries Molex's 1.0 A contact rating, the
    published ESC ratings apply to soldered motor wires, plugged motors at the user's risk; the boot / ELRS recovery
    sequence (hold SW1 at power-up, write the UF2, esptool through passthrough; spec §12.1).
 9. **Bench checks** carried by the sheet notes: V1 (+5V unplug dip, O4 EN thresholds), V5/V8 (R73 final value,
    RTC6705 pin 11 spur), V9 (MOTOR pads before +3V3, HD back-feed), V-LED (D4 on 3.3 V).
-10. **Placement conditions for P5** (sheet notes): each ESC hot-loop cap across its AGM210MAP pins 3/1 at the lead side
+10. **Placement conditions for P5**, scripted in `hardware/tools/check_p5_conditions.py` (run it on the board;
+    floorplan v3: 12 ok, 20 FAIL: 9 of 12 hot-loop caps off their AGM210MAP's side or > 1.5 mm from pins 1-3;
+    BR-05 ESC1 / ESC2 bulk 5.0 / 4.7 mm and C19 / C31 100 nF > 1.2 mm; U5 VIN 6.1 mm from C8-C11 (> 3 mm);
+    U21 IN 14.8 mm from C13 (> 1 cm, LP5912 DS 9.2.2.2); C108 2.7 mm from RTC6705 pins 39/40; R81 at the
+    RTC6705 end; U24 12.5 mm and D7 5.9 mm (other side) from J31; boost C10 / C11 5.3 / 7.2 mm from VOUT).
+    Fallbacks if P5 cannot meet U5 / U21: a 1 µF 0201 (GRM033R61A105ME44D) at U5 VIN, a 10 µF 0402
+    (GRM155C80J106ME11D) at U21 IN (decision). The conditions (sheet notes): each ESC hot-loop cap across its AGM210MAP pins 3/1 at the lead side
     with via-in-pad (D77); BR-05 (amended) phase-B cap within 4 mm of EFM8 VDD through the +BATT plane; U5 VIN within
     3 mm of C8-C11 / U3 VIN2 (D79); BR-14 C13 between the U4 and U21 IN pins, BR-08 C49 / C54 at pins 44 / 54, C108 at
     RTC6705 pins 39/40; R80-R82 at the ESP32 end.
@@ -193,6 +233,16 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 - `sch_integrate.py` is a mandatory step after any sheet generator.
 
 ## Reproduce
+
+Round 2 (scratchpad `p2v3/p4/fix2`, generators in `fix2/gens` copied from fix1, `OAW_HW` selects the hardware dir):
+
+```
+scripts/bom_fix2.py HW/bom_plan.json ; scripts/lib_fix2.py HW/lib.kicad_sym ; scripts/contract_fix2.py HW
+scripts/patterns_fix2.py HW ; scripts/blackbox_fix2.py HW/blackbox.kicad_sch
+scripts/regen.sh (esc rx osd vtx rp2350a power led pads + sch_integrate) ; scripts/root_build.py HW ; HW/tools/sch_integrate.py HW
+scripts/{spec,pinmap,ioset,decisions,bomred,schematic_md}_fix2.py research/<file>.md
+checks: kicad-cli sch erc ; check_netlist.py ; check_conventions.py ; svc_k10.py ; frame_check.py ; check_p5_conditions.py
+```
 
 Round 1 (scratchpad `p2v3/p4/fix1`, generators in `fix1/gens`, `OAW_HW` selects the hardware dir):
 
