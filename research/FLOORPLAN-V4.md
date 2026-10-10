@@ -300,3 +300,10 @@ v3 per tile, demand / supply:
 | Density target | via-site limited | maximise density (owner: no wasted board space); outline candidates S 26.4 and 25.6; report the smallest outline whose T1 passes |
 | T1 router | loop2 erouter, through vias | the HDI-capable router from scratchpad/p2v3/v4/hdirouter (micro + buried + through); erouter through-only as the lower-bound control |
 | Acceptance | section 15 | same gates with H2 relaxed as above; T3 unchanged: 0 unconnected, 0 DRC errors, parity 0 with the repo project files |
+
+## 19. Method change (D101, D102, 2026-10-10 15:00) - binding over sections 5, 8, 9, 14
+The round-1 annealed placements scattered the AGM FETs and the blocks (cohesion weight 0.02) and left free area. The
+placement now goes tile-first: each schematic block becomes a compact tile, tiles are arranged Matrix-style (ESC cell
+tiles at their motor pads, symmetric), inter-tile wiring is minimised, then the outline shrinks. Full datasheet lands
+on every IC (D101). Annealing only inside tiles. Acceptance: legal placement, HDI trial route (hdirouter ROUTER.md),
+the smallest outline that still routes.
