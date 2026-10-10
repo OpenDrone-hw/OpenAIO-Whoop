@@ -2,23 +2,26 @@
 
 Status: the eleven sheet files written by the P4 shards are merged into one hierarchy and pass every scripted
 check. P4 critique round 1 (4 MAJOR, 22 MINOR: 25 fixed, 1 rejected), round 2 (2 MAJOR, 19 MINOR: 19 fixed,
-2 fixed in part, 0 rejected) and round 3 (2 MAJOR, 17 MINOR: 17 fixed, 2 fixed in part, 0 rejected; section
-"P4 critique round 3") are applied; the loop (D22: no BLOCKER / MAJOR left) continues with round 4. The board
-was **not** synced; round 3 changed only its silkscreen (LED-row and M4 labels). The P5 placement conditions
-the schematic and the datasheets rely on are scripted (`hardware/tools/check_p5_conditions.py`, now including
-the RP2354A SMPS side rule) and fail 28 of 43 on the current board (open item 10).
+2 fixed in part, 0 rejected), round 3 (2 MAJOR, 17 MINOR: 17 fixed, 2 fixed in part, 0 rejected) and round 4
+(7 MAJOR, 12 MINOR, two pairs of duplicates: 19 fixed, 0 rejected; section "P4 critique round 4") are applied;
+the loop (D22: no BLOCKER / MAJOR left) continues with round 5. The board was **not** synced; round 4 changed
+only its silkscreen again (the routing prep had promoted a checkpoint without the round-3 LED-row / M4 labels).
+A scratch sync of the round-4 schematic gives schematic parity **0** (repo board: 25 until the next sync). The
+P5 placement conditions are scripted (`hardware/tools/check_p5_conditions.py`, round 4 adds the RTC6705 C103
+bypass and C94 / C95 crystal loads) and fail 31 of 46 on the current board (open item 10).
 
 | Check | Result |
 |---|---|
 | `kicad-cli sch erc` (all severities) | **0 errors, 2 warnings** (both justified below); baseline before integration: 2 errors, 105 warnings |
 | `hardware/tools/check_netlist.py` | **7 ok, 0 FAIL** (N1-N6, N5 run for the FC and the RX; N6 now also checks each net's class through the .kicad_pro patterns, D82) |
-| `hardware/tools/check_conventions.py` | **39 ok, 0 FAIL**, 4 warn, 3 skip (B7 now requires each solder pad's nearest aligned silk label to equal its pad code; B8 / B9 pass on the board labels) |
-| `sch_visual_check.py` (commons, KiCad 10 hide fix: `p2v3/p4/fix2/scripts/svc_k10.py`) | **0 hits on all 11 sheets**; it has no frame-to-frame check, so round 2 added `frame_check.py` and round 3 (`p2v3/p4/fix3/scripts/frame_check.py`) gave it a title-block test: **0 title-block hits on all 11 sheets** (was 1: ESC half-bridge frame); its 19 other hits are house-style items present in the sibling sheets (OSD hand-drawn table grid, notes outside frames on RP2350A / ESC / PADS) |
-| `hardware/tools/check_p5_conditions.py` (board placement conditions) | 15 ok, **28 FAIL** on the current board (round 3 added SMPS, BOOT, USB series R, NOR cap and LP5907 CIN conditions): P5 input, not a schematic error (open item 10) |
+| `hardware/tools/check_conventions.py` | **39 ok, 0 FAIL**, 4 warn, 3 skip after round 4 (B7 requires each solder pad's nearest aligned silk label to equal its pad code; B8 / B9 pass on the board labels). Correction: round 3 reported 39 / 0, but the routing prep promoted `route/ckpt/28_candidate` over the board at 03:03:28, 6 s after the re-apply, so the repo board read **37 ok, 2 FAIL (B7, B9)** until round 4 re-applied the labels with `hardware/tools/silk_pad_labels.py` |
+| `sch_visual_check.py` (commons, KiCad 10 hide fix: `p2v3/p4/rx/tools/svc_k10.py`, round 4 adds `textbox_intrusion`: a text or symbol body inside a note's rectangle, which caught C82's '+3V3' under the RX MCU note: 5 hits on the round-3 sheets) | **0 hits on all 11 sheets**; the unpatched commons copy counts the KiCad 10 hidden fields (9251 → 9353, not meaningful, ruling 2026-10-09); it has no frame-to-frame check, so round 2 added `frame_check.py` and round 3 (`p2v3/p4/fix3/scripts/frame_check.py`) gave it a title-block test: **0 title-block hits on all 11 sheets** (was 1: ESC half-bridge frame); its 19 other hits are house-style items present in the sibling sheets (OSD hand-drawn table grid, notes outside frames on RP2350A / ESC / PADS) |
+| `hardware/tools/check_p5_conditions.py` (board placement conditions) | 15 ok, **31 FAIL** on the current board (round 3 added SMPS, BOOT, USB series R, NOR cap and LP5907 CIN conditions; round 4 adds C103 at RTC6705 pins 31/32 same side <= 1.0 mm (3.3 mm, F vs B), C94 / C95 at pins 24 / 25 <= 1.5 mm (2.0 / 4.5 mm)): P5 input, not a schematic error (open item 10) |
+| `kicad-cli pcb drc --schematic-parity` | repo board **25** (21 footprint_filters_mismatch from the schematic, now fixed by project-lib copies, + 4 pending the C122 / D1 sync); after a scratch `sync_pcb.py` of the round-4 schematic **0** (ptest in `p2v3/p4/fix4`); the U20 NU / GND shorting_items error clears with that sync, the U5 WSON and C122 0402 lands then need 3 vias moved (FLOORPLAN open item 13) |
 | `hardware/tools/check_footprint.py` R_0402_Selector_3Pad | PASS, 0 WARN (pad 3 paste-free by spec) |
 | bom_plan parity (refs, values, footprints, symbols, MPN, Manufacturer, LCSC, DNP, BOM flag) | 274 of 274 symbols equal (check_netlist N4); LOGO1 is a board-only footprint |
-| Netlist | 271 board parts (H1-H3 are schematic-only); 236 BOM placements, 82 BOM lines; 73 no-connect pins, 0 auto-named nets |
-| Board silk (round 3 only) | kicad-cli DRC on the board: +1 silk_overlap warning (J33 GND label 0.148 mm from U6's tented EP via ring, accepted), no other change; `silk_check.py` count unchanged |
+| Netlist | 271 board parts (H1-H3 are schematic-only); 236 BOM placements, 82 BOM lines; 72 no-connect pins (U20 NU now on GND), 0 auto-named nets |
+| Board silk (rounds 3 and 4) | kicad-cli DRC on the board: +1 silk_overlap warning (J33 GND label 0.148 mm from U6's tented EP via ring, accepted), no other change; round 4 re-applied the labels to the repo board and 21 route checkpoints / saves (`hardware/tools/silk_pad_labels.py`, `--check` = the promote gate) |
 
 PDF: `hardware/OpenAIO-Whoop-schematic.pdf` (14 pages).
 
@@ -147,6 +150,33 @@ datasheet, the source code or the board first. No part added or removed: 275 pla
 | 21 | MINOR | AE1 value 'ANT 2.4G wire' ≠ pad code | fixed | value `ANT` (bom_plan + schematic); wording in the notes |
 
 
+## P4 critique round 4 (2026-10-10)
+
+Single-writer fix pass `p2v3/p4/fix4` (scripts there). Each item was checked against the datasheet, the source or the
+board first. No part added or removed (275 placements, 236 BOM, 82 lines); one package change (U5 DBV → DRV, D83), one
+value change (R68 100k → 47k, existing 47k line); five project-lib symbols (TPS22810DRVR, D_BAS16LD, L_FTC252012,
+R_Shunt_Kelvin, SolderPad_01x01). Decisions D83 (U5 package) and D84 (PicoBlade ring DRU exception, D21 log).
+
+| # | Sev | Item | Verdict | What changed |
+|---|---|---|---|---|
+| 1 | MAJOR | U5 TPS22810DBVR kept only for stock (smallest-package rule, D60) | fixed | verified SLVSDH0C §6 (DRV pins 1 VOUT 2 QOD 3 CT 4 GND 5 EN/UVLO 6 VIN), §7.3 (3 A vs 2 A at TA 65 °C), §7.4 (RθJA 74.6 vs 182 K/W), orderable table (DRVR Active); thermal pad: TI's TPS22810EVM ties U2 TPS22810DRV PAD 7 to GND 4 (SLVUAY7B Fig. 1), so EP 7 goes to GND; new `lib:TPS22810DRVR` (taller body, GND / EP names clear EN/UVLO, closes the open item 11 overlap for U5) on the LP5912 WSON land; bom_plan one line (no LCSC number), POWER note, spec §4.2 / §9 / §10 / §15.3 / §16, D83. Board: swap at the next sync; a scratch sync puts pad 5 on a GND via and EP 7 on a +BATT via of the prep (FLOORPLAN open item 13) |
+| 2 + 7 | MAJOR | LED-row / M4 silk lost again (repo board = route ckpt/28_candidate, B7 + B9 FAIL) | fixed | verified (md5 = 28_candidate, check_conventions 37 / 2 FAIL); `silk_fix3.py` moved into the repo as `hardware/tools/silk_pad_labels.py` (same table: pad Values, M4 at J13; `--check` exits 1 when a label is missing or off its pad) and applied to the repo board and to every route checkpoint / save older than two minutes (21 files: ckpt/28_candidate, 29, v1sp_00 … 14, v2of_00 … 02, v2-outer-first/save/*, v1-short-passes/save/00_repo), all `--check` OK; check_conventions 39 ok / 0 FAIL; DRC +1 silk_overlap (as round 3). Making it stick: setup_board.py owns rules and outline, not pad labels (they came from the floorplan build's silk step), so the gate is the promote step: run `silk_pad_labels.py BOARD` + check_conventions (B7 / B9 ok) before any copy to the repo (tool docstring, FLOORPLAN open item 6 reopened until the routing stage does it); round-3 counts corrected above |
+| 3 | MAJOR | spec §4.7 / §9 / §11 present the withdrawn BR-01 gate, D0WD fallback, LNA_IN dummy load and H1-H3 | fixed | §4.7 decision line 'D55: not gated, no fallback', Gate / Fallback paragraph → 'Superseded (D55, D61, D69)', the 'same JSON serves the fallback' sentence, RX MCU / flash / 40 MHz fallback cells 'withdrawn (D55, D61), never to be used', LNA_IN = AE2 behind R88 (D58) in §4.7 and §9, §11 H1-H3 void (D69, N1 and gyro distances as preferences), §11 crystal line; also the live H1 mentions in §4.3 and §10 |
+| 4 + 13 | MAJOR / MINOR | spec §4.10 / §13 describe the pre-D64 / D65 IO set | fixed | Motors (PicoBlade lands J4 / J7 / J10 / J13, DNP 53047-0310, D84 ring exception), Camera (J32 SUR plug + J23-J25 in front), User / HD pads (15 pads, GND LED 5V BZ- with J33, D70 0.2 mm halo), battery vias 0.35 / 0.20 (spec and bom_plan J2 / J3), §13 silk codes = bom_plan pad codes; D84 logs the 0.35 mm PicoBlade-ring DRU exception (it was only a DRU comment) and §15.3 lists it as an EQ item |
+| 5 | MAJOR | U20 SE5004L pin 1 NU no-connect inside the GND land (only DRC error) | fixed | verified footprint (pad 1 at (-1.85, -1) inside the pad 21 frame) and DS 202393B (pin 1 open in the package); gen_vtx: stub + GND pointing down, PA note 'NU (open in the package) tied to GND: it lies in the DS ground metal', contract note; scratch sync: the shorting_items error is gone |
+| 6 | MAJOR | 21 footprint_filters_mismatch parity issues from the schematic | fixed | verified the filters; D7 filter `*SOT*9X3*DRT*`; project copies `lib:D_BAS16LD` (`*SOD882*`), `lib:L_FTC252012` (`IND-SMD*`), `lib:R_Shunt_Kelvin` (`R_*Kelvin*`), `lib:SolderPad_01x01` (`SolderPad_* BattPad_*`, Conn_01x01 graphics) for J2 / J3 / J16-J29 / J33; check_conventions A16 / B7 use the footprint, so they accept it; LINEUP rule 16 names the copy; scratch sync parity 0 |
+| 8 | MINOR | EFM8BB51 RAMPVDD ≥ 10 µs/V not recorded | fixed | verified DS Table 4.7; ESC VDD note and spec §4.4 record it as a Matrix-parity deviation (hot plug about 1 µs/V; the 2.2-4.7 Ω VDD R gives τ 0.5 µs, a real fix needs ≥ 15 µs); V3c: 20 hot plugs, all ESCs answer DShot / EDT, settings intact, no stuck reset |
+| 9 | MINOR | VTX LDO enable margin checked at 25 °C only | fixed | verified AP1606 IDSS ≤ 1 / 100 µA at 25 / 125 °C (about 16 µA at 85 °C), VGS(th) 0.4-1.2 V at 250 µA, LP5912 VEN(ON) ≤ 1.3 V, VEN(OFF) ≥ 0.3 V, 3 MΩ pull-down; R68 → 47k (RC0201FR-0747KL, existing line): 42 µA leakage margin (was 20), GPIO21 low 0.07 V, Q28 sinks 70 µA; VTX and P4-11 notes with the hot figures, contract, V9 hot-soak boot at 85 °C |
+| 10 | MINOR | TPS2116 §7.3.4 RCB recommendation not dispositioned | fixed | verified §7.3.4; mux note and spec §4.2 cite it as a considered deviation (no part); V1: VIN1 / VOUT ≤ 6.0 V and +3V3 ≥ 3.0 V on every plug and unplug |
+| 11 | MINOR | SMF5.0A VBR 6.40-7.07 V; lib Datasheet empty | fixed | verified Littelfuse SMF table (6.40-7.00 V at 10 mA, IR ≤ 400 µA, VC 9.2 V at 21.7 A); POWER note, spec §4.1, lib description; Datasheet = the LCSC mirror of the Littelfuse SMF datasheet (C151296 = D1) |
+| 12 | MINOR | spec §4.2 / §4.4 stale power text | fixed | H2 as a D69 preference, Wi-Fi 0.48 A bench peak, PR1 3.44-4.04 V (3.37-4.10 V 1 %), no C30 / X6S-distance clause, C17 deleted (D79), +3V3_VTX 16.0 / 6.8 µF, no gate R / 0R options |
+| 14 | MINOR | PADS motor-land note gives B for J7 / J13 | fixed | verified bom_plan and board (all four F); note rewritten |
+| 15 | MINOR | PINMAP §4.5 pull-down 35-189 kΩ (1.8 V row) | fixed | verified RP2350 DS (36-113 kΩ at IOVDD 3.3 V) |
+| 16 | MINOR | RX MCU note printed over C82 '+3V3' | fixed | measured on the round-3 PDF (note ink to y 164.3, svc model 160.3); C76 / C82 moved below the note (y 186.69, right of the hierarchical labels); svc_k10 `textbox_intrusion` added (5 hits on the round-3 sheet, 0 now) |
+| 17 | MINOR | C103 / C94 / C95 placement not checked | fixed (P5 input) | verified pins (C103 on +3V3_VTX at pins 31/32, C94 / C95 on XTAL1 / XTAL2 pins 24 / 25); `check_p5_conditions.py` VTX: C103 same side <= 1.0 mm, C94 / C95 <= 1.5 mm (all FAIL now: 3.3 mm F vs B, 2.0, 4.5 mm); move at the next placement pass (FLOORPLAN open item 13) |
+| 18 | MINOR | FL1 still called 'LPF'; Wi-Fi '<= 8 mm' as a requirement | fixed | root block 'FILTER + WIRE ANT', contract block name / source, spec §2 / §10 rows; RX Wi-Fi note '<= 8 mm preferred, D69; FLOORPLAN open item 10'. bom_plan region key `radio_lpf` left as is (floorplan-owned field) |
+| 19 | MINOR | IO-SET row 12 still lists TP10 / TP11 pads | fixed | row 12 = D67 set (TP1-TP8, TP9, TP12, TP13 as mask-open filled vias, no silk; TP10 / TP11 removed) |
+
 ## P4 critique round 3 (2026-10-10)
 
 Single-writer fix pass `p2v3/p4/fix3` (scripts there). Each item was checked against the datasheet, the source or the
@@ -219,7 +249,7 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 
 ## Open items
 
-1. **P4 critique loop** (D22): rounds 1-3 applied; round 4 to run.
+1. **P4 critique loop** (D22): rounds 1-4 applied; round 5 to run.
 2. **Board sync (after floorplan v3):** `sync_pcb.py` will add C134 (needs a site at RP2354A DVDD pin 23), drop the GND
    net from BMI270 pads 2/3, rename 19 nets (new labels), change R84's value, and must not expect H1-H3 (no board
    footprint). bom_plan.json changed (C134, symbols, R84, LCSC, nets): a floorplan run that rewrites bom_plan must merge.
@@ -242,7 +272,8 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 9. **Bench checks** carried by the sheet notes: V1 (+5V unplug dip, O4 EN thresholds), V5/V8 (R73 final value,
    RTC6705 pin 11 spur), V9 (MOTOR pads before +3V3, HD back-feed), V-LED (D4 on 3.3 V).
 10. **Placement conditions for P5**, scripted in `hardware/tools/check_p5_conditions.py` (run it on the board;
-    current board 15 ok, 28 FAIL; round 3 added: RP2354A SMPS C58 / L2 / C56 / C57 on U10's side within 3 mm of pins
+    current board 15 ok, 31 FAIL; round 4 added C103 (pins 31/32, same side, <= 1.0 mm) and C94 / C95 (pins 24 / 25,
+    <= 1.5 mm); round 3 added: RP2354A SMPS C58 / L2 / C56 / C57 on U10's side within 3 mm of pins
     49 / 48 / 50 / 46 (RP2350 DS 6.3.8.1, now all on B), R44 at pin 60 (7.4 mm, B), D8 on SW1's side (B vs F), R43 at
     pin 51 (2.3 mm), C65 at U13 pin 8 (2.1 mm), C122 at U22 IN (ok); FLOORPLAN open items 11 / 12. Round 2 list,
     floorplan v3: 12 ok, 20 FAIL: 9 of 12 hot-loop caps off their AGM210MAP's side or > 1.5 mm from pins 1-3;
@@ -254,8 +285,7 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
     with via-in-pad (D77); BR-05 (amended) phase-B cap within 4 mm of EFM8 VDD through the +BATT plane; U5 VIN within
     3 mm of C8-C11 / U3 VIN2 (D79); BR-14 C13 between the U4 and U21 IN pins, BR-08 C49 / C54 at pins 44 / 54, C108 at
     RTC6705 pins 39/40; R80-R82 at the ESP32 end.
-11. **Cosmetic / tooling:** TPS22810 pin names "EN/UVLO" and "GND" touch inside the small body (not flagged by the
-    checker); the commons `sch_visual_check.py` still needs the KiCad 10 `(hide yes)` fix upstream; .kicad_pro
+11. **Cosmetic / tooling:** (round 4: the TPS22810DRVR symbol has a taller body, the pin names no longer touch); the commons `sch_visual_check.py` still needs the KiCad 10 `(hide yes)` fix upstream; .kicad_pro
     `sheets` lists only Root until a GUI save; reference gaps (C3, C4, ...) kept so the parallel floorplan's refs stay
     valid (the "P4 annotation closes gaps" step is deferred).
 12. **PY25Q128HA-DFH-IR quote (round 3):** the NextPCB quote must confirm U13 (the MPN is in the Puya DS Rev 2.0
@@ -265,8 +295,15 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 13. **Board follow-ups from round 3 (board stage):** the next `sync_pcb.py` swaps C122 to the 0402 land (4.7 µF) and
     picks up D1's `lib:SMF5.0A` symbol link; the next `setup_board.py` run writes component class RP2350A (bom_plan
     sheet field) and the new class colours (both already in the .kicad_pro); the routing checkpoints older than
-    2026-10-10 03:00 lack the LED-row / M4 silk fix: re-run `p2v3/p4/fix3/scripts/silk_fix3.py BOARD` (idempotent;
-    B7 fails without it).
+    2026-10-10 03:00 lack the LED-row / M4 silk fix: re-run `hardware/tools/silk_pad_labels.py BOARD` (round 4; the
+    same table as `silk_fix3.py`, idempotent, `--check` gate; B7 / B9 fail without it).
+
+14. **Board follow-ups from round 4 (board stage):** the next `sync_pcb.py` swaps U5 to the WSON land (move the GND via
+    under pad 5 and the +BATT via under EP 7), ties U20 pin 1 to GND (clears the only DRC error) and brings parity to 0
+    (scratch-verified); move C103 to B beside RTC6705 pins 31/32 and C94 / C95 to <= 1.5 mm (FLOORPLAN item 13); every
+    copy of a routing checkpoint to the repo board runs `hardware/tools/silk_pad_labels.py BOARD` and check_conventions
+    first (FLOORPLAN item 6). DECISIONS.md holds two rows numbered D77 (the 2026-10-09 hot-loop decision and the
+    2026-10-10 inner-layer decision of the routing stage): the orchestrator renumbers the second.
 
 ## Integration decisions to log (DECISIONS.md)
 
@@ -277,6 +314,16 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 - `sch_integrate.py` is a mandatory step after any sheet generator.
 
 ## Reproduce
+
+Round 4 (scratchpad `p2v3/p4/fix4`, generators in `fix4/gens` copied from fix3, mini repo `fix4/OpenAIO-Whoop`, `OAW_HW` selects the hardware dir):
+
+```
+scripts/lib_fix4.py HW/lib.kicad_sym ; scripts/bom_fix4.py HW/bom_plan.json ; scripts/contract_fix4.py HW/sch_contract.json
+scripts/root_build.py HW ; scripts/regen.sh ; HW/tools/silk_pad_labels.py HW/OpenAIO-Whoop.kicad_pcb
+scripts/spec_fix4.py research/DESIGN-SPEC.md ; scripts/docs_fix4.py research ; scripts/schematic_md_fix4.py research/SCHEMATIC.md
+checks: scripts/checks.sh (ERC, check_netlist, check_conventions, svc_k10) ; frame_check.py ; check_p5_conditions.py ;
+        ptest/: sync_pcb.py + kicad-cli pcb drc --schematic-parity --refill-zones (scratch board only)
+```
 
 Round 3 (scratchpad `p2v3/p4/fix3`, generators in `fix3/gens` copied from fix2, `OAW_HW` selects the hardware dir):
 

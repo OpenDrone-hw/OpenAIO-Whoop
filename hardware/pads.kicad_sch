@@ -10,135 +10,6 @@
 		(rev "rev1")
 	)
 	(lib_symbols
-		(symbol "Connector_Generic:Conn_01x01"
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at 0 2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Conn_01x01"
-				(at 0 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "connector"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "Connector*:*_1x??_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "Conn_01x01_1_1"
-				(rectangle
-					(start -1.27 1.27)
-					(end 1.27 -1.27)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(rectangle
-					(start -1.27 0.127)
-					(end 0 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 3.81)
-					(name "Pin_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Mechanical:MountingHole"
 			(pin_names
 				(offset 1.016)
@@ -913,6 +784,135 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "lib:SolderPad_01x01"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x01"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SolderPad_* BattPad_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SolderPad_01x01_1_1"
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -1.27)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "lib:TPD2EUSB30DRTR"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -1018,7 +1018,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "*DRT*SOT*9X3*"
+			(property "ki_fp_filters" "*SOT*9X3*DRT*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2538,7 +2538,7 @@
 		)
 		(uuid "d9604d41-3957-5eb9-a496-8e9027dc020d")
 	)
-	(text_box "Source: new (D65: plug-ready lands as on the BetaFPV Matrix 1S 5IN1 II), drawn in the house pad style. One land per motor, lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5: pads 1 / 2 / 3 = Mn_C / Mn_B / Mn_A = /ESCn/PHASE_C / B / A (symbol mirrored so A reads on top; phase order is free, Bluejay sets the direction). J4 and J10 on the top (F), J7 and J13 on the bottom (B), each on its ESC cell's FET side.\n\nMotor wires solder to the land (pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50) or through the 0.50 mm plated holes: the recommended default. The Molex 53047-0310 PicoBlade header (board side of the hobby 'JST1.25' motor plug, wire side 51021-0300) is a DNP BOM line, out of the CPL, hand-fitted from the far side with its pins trimmed on the land side. Molex rates 1.0 A per contact, -40..85 C, far below the motor current (4.3-5.2 A per channel, 12 A bursts): the published ESC ratings apply to soldered motor wires; the README pinout states the 1.0 A contact rating and that plugged motors run outside it at the user's risk (BetaFPV Matrix practice); V4 records the header temperature. Mating zone (D72): the plug faces outward over the ear neck, clear of parts.\n\nNet names come from the ESC sheets (the root wires carry no label: /ESCn/PHASE_x). Netclass Phase: directive on M1_A here, the pattern /ESC?/PHASE_? assigns the rest. Phase copper runs from the AGM210MAP phase island straight into the land; solder areas 0.30 mm and phase copper 0.20 mm from the edge (SOLDER_PAD class). M1 rear right (ESC1), M2 front right (ESC2), M3 rear left (ESC3), M4 front left (ESC4): Betaflight quad-X."
+	(text_box "Source: new (D65: plug-ready lands as on the BetaFPV Matrix 1S 5IN1 II), drawn in the house pad style. One land per motor, lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5: pads 1 / 2 / 3 = Mn_C / Mn_B / Mn_A = /ESCn/PHASE_C / B / A (symbol mirrored so A reads on top; phase order is free, Bluejay sets the direction). All four lands are placed on the top (F; bom_plan side = board), beside the corner ears (J4/J7 at one corner, J10/J13 at the opposite one), mouths facing out (D72).\n\nMotor wires solder to the land (pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50) or through the 0.50 mm plated holes: the recommended default. The Molex 53047-0310 PicoBlade header (board side of the hobby 'JST1.25' motor plug, wire side 51021-0300) is a DNP BOM line, out of the CPL, hand-fitted from the far side with its pins trimmed on the land side. Molex rates 1.0 A per contact, -40..85 C, far below the motor current (4.3-5.2 A per channel, 12 A bursts): the published ESC ratings apply to soldered motor wires; the README pinout states the 1.0 A contact rating and that plugged motors run outside it at the user's risk (BetaFPV Matrix practice); V4 records the header temperature. Mating zone (D72): the plug faces outward over the ear neck, clear of parts.\n\nNet names come from the ESC sheets (the root wires carry no label: /ESCn/PHASE_x). Netclass Phase: directive on M1_A here, the pattern /ESC?/PHASE_? assigns the rest. Phase copper runs from the AGM210MAP phase island straight into the land; solder areas 0.30 mm and phase copper 0.20 mm from the edge (SOLDER_PAD class). M1 rear right (ESC1), M2 front right (ESC2), M3 rear left (ESC3), M4 front left (ESC4): Betaflight quad-X."
 		(exclude_from_sim no)
 		(at 76.2 53.34 0)
 		(size 167.64 63.5)
@@ -3426,7 +3426,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "00aef79a-c6d3-558d-897c-f353e2f1a4db")
-		(property "Reference" "#PWR243"
+		(property "Reference" "#PWR244"
 			(at 60.96 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -3486,7 +3486,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR243")
+					(reference "#PWR244")
 					(unit 1)
 				)
 			)
@@ -3503,7 +3503,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0309ac5f-af68-5554-aa6b-cec4b9491351")
-		(property "Reference" "#PWR239"
+		(property "Reference" "#PWR240"
 			(at 367.03 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -3563,7 +3563,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR239")
+					(reference "#PWR240")
 					(unit 1)
 				)
 			)
@@ -4021,7 +4021,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 127 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -4073,7 +4073,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 127 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -4097,7 +4097,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 325.12 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -4149,7 +4149,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 325.12 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -4183,7 +4183,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "3c8ebcd5-3b67-586a-b4ff-fea35585feb1")
-		(property "Reference" "#PWR245"
+		(property "Reference" "#PWR246"
 			(at 137.16 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4243,14 +4243,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR245")
+					(reference "#PWR246")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 60.96 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -4302,7 +4302,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -4326,7 +4326,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 345.44 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -4378,7 +4378,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 345.44 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -4412,7 +4412,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "445f7115-8698-5d5b-9b39-79e0be644913")
-		(property "Reference" "#PWR250"
+		(property "Reference" "#PWR251"
 			(at 325.12 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4472,7 +4472,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR250")
+					(reference "#PWR251")
 					(unit 1)
 				)
 			)
@@ -4601,7 +4601,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 30.48 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -4653,7 +4653,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 30.48 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -4687,7 +4687,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "537578aa-d5b8-5e29-9aff-9a963915c54b")
-		(property "Reference" "#PWR246"
+		(property "Reference" "#PWR247"
 			(at 215.9 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -4747,14 +4747,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR246")
+					(reference "#PWR247")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 215.9 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -4806,7 +4806,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 215.9 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -4840,7 +4840,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5977d0c5-eae4-5279-9d2b-fb69e61a010a")
-		(property "Reference" "#PWR247"
+		(property "Reference" "#PWR248"
 			(at 226.06 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4900,7 +4900,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR247")
+					(reference "#PWR248")
 					(unit 1)
 				)
 			)
@@ -4917,7 +4917,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5c2f38a5-6dcb-53d2-916f-234e58ccbfad")
-		(property "Reference" "#PWR242"
+		(property "Reference" "#PWR243"
 			(at 50.8 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -4977,14 +4977,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR242")
+					(reference "#PWR243")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 116.84 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -5036,7 +5036,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 116.84 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -5060,7 +5060,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 30.48 33.02 90)
 		(unit 1)
 		(body_style 1)
@@ -5112,7 +5112,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 30.48 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -5146,7 +5146,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "6fed3220-6f3d-5f49-b058-63689329f866")
-		(property "Reference" "#PWR248"
+		(property "Reference" "#PWR249"
 			(at 254 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -5206,14 +5206,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR248")
+					(reference "#PWR249")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 50.8 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -5265,7 +5265,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 50.8 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -5501,7 +5501,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7cd24e49-aaac-57ca-8916-f774ff75d63e")
-		(property "Reference" "#PWR238"
+		(property "Reference" "#PWR239"
 			(at 347.98 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -5561,7 +5561,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR238")
+					(reference "#PWR239")
 					(unit 1)
 				)
 			)
@@ -5695,7 +5695,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "882644fe-ab7b-5443-8afb-76ef0766cedb")
-		(property "Reference" "#PWR249"
+		(property "Reference" "#PWR250"
 			(at 260.35 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -5755,7 +5755,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR249")
+					(reference "#PWR250")
 					(unit 1)
 				)
 			)
@@ -5878,7 +5878,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 335.28 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -5930,7 +5930,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 335.28 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -5964,7 +5964,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "9644be60-9de8-58a0-a34c-dc0e43bbdae0")
-		(property "Reference" "#PWR251"
+		(property "Reference" "#PWR252"
 			(at 335.28 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -6024,14 +6024,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR251")
+					(reference "#PWR252")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 53.34 33.02 90)
 		(unit 1)
 		(body_style 1)
@@ -6083,7 +6083,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 53.34 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -6107,7 +6107,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 147.32 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -6159,7 +6159,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 147.32 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -6183,7 +6183,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 40.64 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -6235,7 +6235,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 40.64 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -6269,7 +6269,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "bc8b87df-1979-5f70-beb0-7f3ebd13a4c1")
-		(property "Reference" "#PWR241"
+		(property "Reference" "#PWR242"
 			(at 30.48 41.91 0)
 			(hide yes)
 			(show_name no)
@@ -6329,14 +6329,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR241")
+					(reference "#PWR242")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 137.16 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -6388,7 +6388,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 137.16 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -6412,7 +6412,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 355.6 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -6464,7 +6464,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 355.6 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -6614,7 +6614,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "d391d508-d716-5071-a3de-5e347dc2bf57")
-		(property "Reference" "#PWR240"
+		(property "Reference" "#PWR241"
 			(at 379.73 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -6674,7 +6674,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR240")
+					(reference "#PWR241")
 					(unit 1)
 				)
 			)
@@ -6691,7 +6691,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "df0bae61-5184-5549-beb2-74e983132e72")
-		(property "Reference" "#PWR244"
+		(property "Reference" "#PWR245"
 			(at 116.84 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -6751,14 +6751,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR244")
+					(reference "#PWR245")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 205.74 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -6810,7 +6810,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 205.74 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -6834,7 +6834,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x01")
+		(lib_id "lib:SolderPad_01x01")
 		(at 226.06 142.24 90)
 		(unit 1)
 		(body_style 1)
@@ -6886,7 +6886,7 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
 			(at 226.06 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -6920,7 +6920,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f6aa28ac-761a-5f24-b090-c30fb90d6d9d")
-		(property "Reference" "#PWR252"
+		(property "Reference" "#PWR253"
 			(at 256.54 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -6980,7 +6980,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR252")
+					(reference "#PWR253")
 					(unit 1)
 				)
 			)
@@ -6997,7 +6997,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "fe5ced1d-e0f9-53a2-950c-7bac5b4e2215")
-		(property "Reference" "#PWR237"
+		(property "Reference" "#PWR238"
 			(at 53.34 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -7057,7 +7057,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR237")
+					(reference "#PWR238")
 					(unit 1)
 				)
 			)

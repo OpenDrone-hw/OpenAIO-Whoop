@@ -1203,7 +1203,7 @@
     }
    ],
    "fw": "ESP32 GPIO21, ELRS patched ELRS VTX power",
-   "note": "-> R84 1k -> VTX_PWR_EN (U21 EN, R68 100k pull-up)"
+   "note": "-> R84 1k -> VTX_PWR_EN (U21 EN, R68 47k pull-up)"
   },
   {
    "net": "/PA_DET",
@@ -2616,7 +2616,7 @@
    "content": [
     "ESP32-PICO-V3",
     "SX1281 + TCXO",
-    "LPF + WIRE ANT",
+    "FILTER + WIRE ANT",
     "WIFI CHIP ANT",
     "BOOT BUTTON"
    ],
@@ -2656,12 +2656,12 @@
      "p4": []
     },
     {
-     "name": "2.4 GHz RF: LPF + wire antenna",
+     "name": "2.4 GHz RF: front-end filter + wire antenna",
      "refs": [
       "FL1",
       "AE1"
      ],
-     "source": "OpenRX-Lite-UFL (LPF); AE1 = lambda/4 wire in a plated hole",
+     "source": "OpenRX-Lite-UFL FL1 (Johanson 2450FM07D0034T matched front-end filter, D80); AE1 = lambda/4 wire in a plated hole",
      "notes": "SX1281 RFIO -> RF_RFIO -> FL1 -> RF_RX_ANT -> AE1; netclass flag RF on RF_RFIO",
      "p4": []
     },
@@ -2889,7 +2889,7 @@
       "C108"
      ],
      "source": "D12 / D53 BR-03",
-     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 100k to +3V3, R84 1k from VTX_PWR_CTL (ruling 2026-10-09: EN < 0.3 V guaranteed), Q28 AP1606 drain; gate HD_EN)",
+     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 47k to +3V3 (P4 r4: hot AP1606 leakage margin), R84 1k from VTX_PWR_CTL (ruling 2026-10-09: EN < 0.3 V guaranteed), Q28 AP1606 drain; gate HD_EN)",
      "p4": [
       "P4-4",
       "P4-12"
@@ -2951,7 +2951,7 @@
       "R67"
      ],
      "source": "Skyworks SE5004L EK1",
-     "notes": "PA_VCC from R67 selector (+BATT default, +5V option): netclass directive Power on PA_VCC; C119 output DC block deleted (P4-18 confirms)",
+     "notes": "PA_VCC from R67 selector (+BATT default, +5V option): netclass directive Power on PA_VCC; C119 output DC block deleted (P4-18 confirms); pin 1 NU (open in the package) tied to GND: it lies in the DS 202393B Fig. 5 ground land",
      "p4": [
       "P4-18"
      ]

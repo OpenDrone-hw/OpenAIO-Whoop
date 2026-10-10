@@ -96,7 +96,8 @@ Where boards disagree, the canonical choice is the newest written source
     per-sheet number offsets; standard prefixes (C R L D U Q X, J connectors and
     solder pads, TP test points, AE antenna, FL filter). [E] KiCad annotation
     method 0, start 0 in every project; FC refs run C1..C46 across sheets.
-16. **Solder pads** are `Connector_Generic:Conn_01x01`, ref `J<n>`, footprint
+16. **Solder pads** are `Connector_Generic:Conn_01x01` (or a project copy with the same graphics whose footprint
+    filters match the pad footprints, e.g. OpenAIO-Whoop `lib:SolderPad_01x01`, so schematic parity stays 0), ref `J<n>`, footprint
     `lib:small_pad` (or `OpenDrone:SolderPad_*`), excluded from BOM and DNP;
     test points `Connector:TestPoint` `TP<n>`, out of the BOM (c, warn). Pads are
     grouped under a small blue heading per function ("RX pads", "Camera + VTX",

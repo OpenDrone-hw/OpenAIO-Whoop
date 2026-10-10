@@ -7,7 +7,7 @@ check_netlist N2 sees only that a supply pin shares a net with a capacitor; it c
 decisions removed or shared a capacitor on the condition that P5 places a part next to a pin (D77 hot-loop caps,
 D79 C17 deleted, BR-05 EFM8 VDD bulk, BR-14 shared LP5912 CIN, BR-08, the USB inlet parts, the boost COUT), and the
 sheet notes / bom_plan carry datasheet placement rules (P4 critique round 3): the RP2354A core SMPS on U10's side
-(RP2350 DS 6.3.8.1), the BOOTSEL strap R44 + D8 / SW1, the USB series resistors, the NOR VCC cap and the LP5907 CIN.
+(RP2350 DS 6.3.8.1), the BOOTSEL strap R44 + D8 / SW1, the USB series resistors, the NOR VCC cap, the LP5907 CIN and the RTC6705 C103 bypass / C94-C95 crystal loads.
 Routing-stage conditions that need copper (VREG_FB taken from the C56 pad and not under L2, one CIN/COUT GND point
 with 2 vias, no copper under L2 / VREG_LX on In1) are listed in research/FLOORPLAN.md, not checked here.
 This script turns each condition into a pass/fail number on the board: distances are centre to centre in mm
@@ -132,6 +132,18 @@ for c, pin, lim in (("C49", 44, 1.5), ("C54", 54, 1.0)):
 if need("VTX", ["C108", "U19"]):
     d = dist(centre("C108"), mid(pad("U19", 39), pad("U19", 40)))
     report("ok" if d <= 2.0 else "FAIL", "VTX", "C108 to U19 pins 39/40: %.1f mm (<= 2.0)" % d)
+# RTC6705 RF bypass and crystal loads (P4 critique r4): C103 100 pF = the BUFVDD/PAVDD (pins 31/32) 5.8 GHz bypass,
+# useless through a via (~2 nH at 5.8 GHz): same side as U19, centre within 1.0 mm of the nearer pin; C94 / C95 = the
+# 8 MHz load caps of XTAL1 / XTAL2 (pins 24 / 25): within 1.5 mm
+if need("VTX", ["C103", "U19"]):
+    d = min(dist(centre("C103"), pad("U19", n)) for n in (31, 32))
+    ok = d <= 1.0 and side("C103") == side("U19")
+    report("ok" if ok else "FAIL", "VTX", "C103 to U19 pins 31/32: %.1f mm (<= 1.0), side %s / U19 %s (same)"
+           % (d, side("C103"), side("U19")))
+for c, n in (("C94", 24), ("C95", 25)):
+    if need("VTX", [c, "U19"]):
+        d = dist(centre(c), pad("U19", n))
+        report("ok" if d <= 1.5 else "FAIL", "VTX", "%s to U19 pin %d: %.1f mm (<= 1.5)" % (c, n, d))
 for r in ("R80", "R81", "R82"):
     if need("VTX", [r, "U16", "U19"]):
         a, b = dist(centre(r), centre("U16")), dist(centre(r), centre("U19"))

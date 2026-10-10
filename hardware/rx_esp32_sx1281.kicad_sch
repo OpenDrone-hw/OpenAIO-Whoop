@@ -4473,7 +4473,7 @@
 		)
 		(uuid "ac67a7a4-0b4f-5da1-88c7-1df2eb9f96d9")
 	)
-	(text_box "Wi-Fi (D58): LNA_IN (2) -> RF_WIFI 50 Ohm CPW <= 8 mm -> C133 shunt (DNP) / R88 0R series (fitted) / C132 shunt (DNP) -> AE2 Johanson 2450AT07A0100001T (FEED 1/4, GND 2/3). Same pi as Espressif Fig. 11 (C4/L1/C3) and OpenRX-Lite-UFL (C22/L2/C21). The PICO matches LNA_IN to 50 Ohm inside, so the network only tunes the antenna: values from V7 tuning (VNA at the feed or Johanson's service); R88 may become a Murata LQP03TN 0201 inductor. The AE2 footprint carries the 5.0 x 3.2 mm keep-out (DRU 'D21 wifi_antenna_edge_strip')."
+	(text_box "Wi-Fi (D58): LNA_IN (2) -> RF_WIFI 50 Ohm line (<= 8 mm preferred, D69; FLOORPLAN open item 10) -> C133 shunt (DNP) / R88 0R series (fitted) / C132 shunt (DNP) -> AE2 Johanson 2450AT07A0100001T (FEED 1/4, GND 2/3). Same pi as Espressif Fig. 11 (C4/L1/C3) and OpenRX-Lite-UFL (C22/L2/C21). The PICO matches LNA_IN to 50 Ohm inside, so the network only tunes the antenna: values from V7 tuning (VNA at the feed or Johanson's service); R88 may become a Murata LQP03TN 0201 inductor. The AE2 footprint carries the 5.0 x 3.2 mm keep-out (DRU 'D21 wifi_antenna_edge_strip')."
 		(exclude_from_sim no)
 		(at 152.4 208.28 0)
 		(size 50.8 43.18)
@@ -6504,7 +6504,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 279.4 171.45 0)
+		(at 292.1 186.69 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6514,7 +6514,7 @@
 		(dnp no)
 		(uuid "15804a88-8787-50dd-a7f5-8f2ad3258a25")
 		(property "Reference" "C76"
-			(at 276.86 170.18 0)
+			(at 289.56 185.42 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6525,7 +6525,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 276.86 172.72 0)
+			(at 289.56 187.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6536,7 +6536,7 @@
 			)
 		)
 		(property "Footprint" "lib:C_0201_0603Metric_W"
-			(at 279.4 171.45 0)
+			(at 292.1 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6547,7 +6547,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 279.4 171.45 0)
+			(at 292.1 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6558,7 +6558,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 279.4 171.45 0)
+			(at 292.1 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6569,7 +6569,7 @@
 			)
 		)
 		(property "LCSC" "C181047"
-			(at 279.4 171.45 0)
+			(at 292.1 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6580,7 +6580,7 @@
 			)
 		)
 		(property "MPN" "GRM033C81E104KE14D"
-			(at 279.4 171.45 0)
+			(at 292.1 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6591,7 +6591,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 279.4 171.45 0)
+			(at 292.1 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7042,7 +7042,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 279.4 175.26 0)
+		(at 292.1 190.5 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7051,8 +7051,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "2b0fd9a4-4405-5c39-8ce1-897a3be5dcc9")
-		(property "Reference" "#PWR175"
-			(at 279.4 181.61 0)
+		(property "Reference" "#PWR176"
+			(at 292.1 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7063,7 +7063,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 279.4 179.07 0)
+			(at 292.1 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7073,7 +7073,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 279.4 175.26 0)
+			(at 292.1 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7084,7 +7084,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 279.4 175.26 0)
+			(at 292.1 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7095,7 +7095,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 279.4 175.26 0)
+			(at 292.1 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7111,7 +7111,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR175")
+					(reference "#PWR176")
 					(unit 1)
 				)
 			)
@@ -7233,7 +7233,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 292.1 175.26 0)
+		(at 304.8 190.5 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7242,8 +7242,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "34d0961d-fd70-584e-8bec-877cac651b0c")
-		(property "Reference" "#PWR176"
-			(at 292.1 181.61 0)
+		(property "Reference" "#PWR177"
+			(at 304.8 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7254,7 +7254,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 292.1 179.07 0)
+			(at 304.8 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7264,7 +7264,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 292.1 175.26 0)
+			(at 304.8 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7275,7 +7275,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 292.1 175.26 0)
+			(at 304.8 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7286,7 +7286,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 292.1 175.26 0)
+			(at 304.8 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7302,7 +7302,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR176")
+					(reference "#PWR177")
 					(unit 1)
 				)
 			)
@@ -7310,7 +7310,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 292.1 171.45 0)
+		(at 304.8 186.69 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7320,7 +7320,7 @@
 		(dnp no)
 		(uuid "387b6ccd-6372-5c29-8dbe-e91c99f7239f")
 		(property "Reference" "C82"
-			(at 289.56 170.18 0)
+			(at 302.26 185.42 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7331,7 +7331,7 @@
 			)
 		)
 		(property "Value" "10uF"
-			(at 289.56 172.72 0)
+			(at 302.26 187.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7342,7 +7342,7 @@
 			)
 		)
 		(property "Footprint" "lib:C_0402_1005Metric_W"
-			(at 292.1 171.45 0)
+			(at 304.8 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7353,7 +7353,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 292.1 171.45 0)
+			(at 304.8 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7364,7 +7364,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 292.1 171.45 0)
+			(at 304.8 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7375,7 +7375,7 @@
 			)
 		)
 		(property "LCSC" "C237279"
-			(at 292.1 171.45 0)
+			(at 304.8 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7386,7 +7386,7 @@
 			)
 		)
 		(property "MPN" "GRM155C80J106ME11D"
-			(at 292.1 171.45 0)
+			(at 304.8 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7397,7 +7397,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 292.1 171.45 0)
+			(at 304.8 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8091,7 +8091,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "681f1398-931b-57ff-bec2-cc3cf2b9347b")
-		(property "Reference" "#PWR177"
+		(property "Reference" "#PWR175"
 			(at 207.01 191.77 0)
 			(hide yes)
 			(show_name no)
@@ -8151,7 +8151,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR177")
+					(reference "#PWR175")
 					(unit 1)
 				)
 			)
@@ -8159,7 +8159,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 292.1 167.64 0)
+		(at 304.8 182.88 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8168,8 +8168,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "6aab06a2-d882-5a98-98a1-7a7bb8cf290e")
-		(property "Reference" "#PWR173"
-			(at 292.1 171.45 0)
+		(property "Reference" "#PWR174"
+			(at 304.8 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8180,7 +8180,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 292.1 164.084 0)
+			(at 304.8 179.324 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8190,7 +8190,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 292.1 167.64 0)
+			(at 304.8 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8201,7 +8201,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 292.1 167.64 0)
+			(at 304.8 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8212,7 +8212,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 292.1 167.64 0)
+			(at 304.8 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8228,7 +8228,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR173")
+					(reference "#PWR174")
 					(unit 1)
 				)
 			)
@@ -8350,7 +8350,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 279.4 167.64 0)
+		(at 292.1 182.88 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8359,8 +8359,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "756fb7cf-9125-5542-9cda-e87c03c72440")
-		(property "Reference" "#PWR172"
-			(at 279.4 171.45 0)
+		(property "Reference" "#PWR173"
+			(at 292.1 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8371,7 +8371,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 279.4 164.084 0)
+			(at 292.1 179.324 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8381,7 +8381,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 279.4 167.64 0)
+			(at 292.1 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8392,7 +8392,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 279.4 167.64 0)
+			(at 292.1 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8403,7 +8403,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 279.4 167.64 0)
+			(at 292.1 182.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8419,7 +8419,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR172")
+					(reference "#PWR173")
 					(unit 1)
 				)
 			)
@@ -9408,7 +9408,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "8bbfa82f-97ae-56b2-8b65-92e4e1b5bc00")
-		(property "Reference" "#PWR174"
+		(property "Reference" "#PWR172"
 			(at 213.36 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -9468,7 +9468,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR174")
+					(reference "#PWR172")
 					(unit 1)
 				)
 			)

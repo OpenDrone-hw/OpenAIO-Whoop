@@ -659,7 +659,7 @@
 		)
 		(uuid "5b2d881d-53ad-5221-b8e2-9d16029670dc")
 	)
-	(text "ESP32-PICO-V3\nSX1281 + TCXO\nLPF + WIRE ANT\nWIFI CHIP ANT\nBOOT BUTTON"
+	(text "ESP32-PICO-V3\nSX1281 + TCXO\nFILTER + WIRE ANT\nWIFI CHIP ANT\nBOOT BUTTON"
 		(exclude_from_sim no)
 		(at 226.06 43.18 0)
 		(effects
