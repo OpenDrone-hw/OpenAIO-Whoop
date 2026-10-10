@@ -250,10 +250,10 @@
   (constraint disallow track via)
   (condition "A.intersectsArea('RF_RX_ROOT') && (A.NetName == '*SPI0.*' || A.NetName == '*FLASH_CS*')"))
 
-# D10 / spec 11: the battery-to-shunt corridor on L6 carries +BATT_IN, +BATT and GND; the Kelvin pair
+# D10 / spec 11: the battery-to-shunt corridor (on the shunt's layer, F.Cu in P2 v3) carries +BATT_IN, +BATT and GND; the Kelvin pair
 # SHUNT_SENSE_P/N leaves at the shunt's inner pad edges. Everything else stays out before routing.
 (rule "SHUNT_CORRIDOR: battery current only"
-  (layer "B.Cu")
+  (layer "F.Cu")
   (constraint disallow track via)
   (condition "A.intersectsArea('SHUNT_CORRIDOR') && A.NetClass != 'VBAT' && A.NetName != 'GND' && A.NetName != '*SHUNT_SENSE_*'"))
 

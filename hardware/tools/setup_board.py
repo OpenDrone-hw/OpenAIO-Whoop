@@ -90,6 +90,7 @@ USB_MARGIN = 1.0
 # 5.8 GHz chain (sketch v4): RTC6705 PAOUT1 (pin 35, right side) -> 45 deg CPWG -> PA RF IN (down) -> PA RF OUT (up)
 # -> match zone -> BPF -> U.FL; half-width 1.2 = line + CPWG gap + 1 mm (spec 10: L2 solid under the chain + 1 mm).
 VTX_CHAIN = ([(9.49, -5.35), (7.85, -1.5), (10.2, -2.1), (7.2, -1.8), (6.025, -1.5)], 1.2)   # P2 v3: PAOUT1 (U19 pin 35, bottom) -> C110 -> PA U20 (top) -> BPF FL2 -> U.FL pin 1
+SHUNT_LAYER = "F.Cu"                             # P2 v3: shunt R1 sits on the top side, so the corridor is on L1
 SHUNT_CORRIDOR = ((-12.9, -3.5), (-8.6, 3.4))    # D10 / spec 10: B+ pad J2 -> shunt R1 on L6 (P2 v3 box)
 TAB_HALF, TAB_IN, TAB_OUT = 1.5, 1.3, 0.5        # spec 7: tab 1.2-1.5 wide + 1.0 mm part keepout beyond the 0.3 band
 TABS = {"T1": ((14.447, 14.447), (0.7071, 0.7071)), "T3": ((-14.447, -14.447), (-0.7071, -0.7071)), "T4": ((-14.447, 14.447), (-0.7071, 0.7071))}   # P2 v3 (concept D): tabs at the three ear tips, inside the MOUNT flange keep-outs (no extra area)
@@ -427,9 +428,9 @@ RULES = [
      "  (condition \"A.intersectsArea('RF_RX_ROOT') && (A.NetName == '*SPI0.*' || A.NetName == '*FLASH_CS*')\")"),
 
     ("SHUNT_CORRIDOR: battery current only",
-     ["D10 / spec 11: the battery-to-shunt corridor on L6 carries +BATT_IN, +BATT and GND; the Kelvin pair",
+     ["D10 / spec 11: the battery-to-shunt corridor (on the shunt's layer, @SHUNT_LAYER@ in P2 v3) carries +BATT_IN, +BATT and GND; the Kelvin pair",
       "SHUNT_SENSE_P/N leaves at the shunt's inner pad edges. Everything else stays out before routing."],
-     "  (layer \"B.Cu\")\n  (constraint disallow track via)\n"
+     "  (layer \"@SHUNT_LAYER@\")\n  (constraint disallow track via)\n"
      "  (condition \"A.intersectsArea('SHUNT_CORRIDOR') && A.NetClass != 'VBAT' && A.NetName != 'GND' && "
      "A.NetName != '*SHUNT_SENSE_*'\")"),
 
@@ -884,8 +885,8 @@ def keepouts():
               "spec 10: L5 solid under the 2.4 GHz feed; GND vias only (DRU)"))
     K.append(("RF_RX_ROOT", CU, {}, ("poly", circle_pts(RX_ANT_HOLE, RX_ROOT_R)), True,
               "spec 4.9 / 11: SPI0 (blackbox) kept 3 mm from the antenna hole (DRU)"))
-    K.append(("SHUNT_CORRIDOR", ["B.Cu"], {}, ("poly", rect(*SHUNT_CORRIDOR)), True,
-              "D10 / spec 11: battery-to-shunt corridor, battery current only on L6 (DRU)"))
+    K.append(("SHUNT_CORRIDOR", [SHUNT_LAYER], {}, ("poly", rect(*SHUNT_CORRIDOR)), True,
+              "D10 / spec 11: battery-to-shunt corridor, battery current only on the shunt's layer (P2 v3: R1 on top, L1) (DRU)"))
     K.append(("WIFI_ANT_KO", CU, dict(pads=True, vias=True, zone_fills=True), ("poly", rect(*WIFI_KO)), True,
               "D58 / D75: Wi-Fi chip antenna maker copper keep-out, all layers: no pads but AE2's, no vias, no pours;"
               " tracks only the RF feed (DRU)"))
@@ -992,6 +993,7 @@ def dru_text(rf, existing):
     sub = dict(rf)
     sub["SOLDER_PAD_FPID"] = " || ".join("A.memberOfFootprint('%s')" % p for p in SOLDER_PAD_FPIDS)
     sub["BAND"] = "%.2f" % PART_EDGE_BAND
+    sub["SHUNT_LAYER"] = SHUNT_LAYER
     out = [CANONICAL]
     for name, comment, body in RULES:
         out.append("#\n" if name == "header" else "\n")
@@ -1472,8 +1474,8 @@ def selftest(P, rf):
     # battery-to-shunt corridor
     (sx0, sy0), (sx1, sy1) = SHUNT_CORRIDOR
     smx = (sx0 + sx1) / 2
-    trk(smx - 0.5, sy0 + 0.8, smx + 0.5, sy0 + 0.8, 0.1, "/T/SIG9", "B.Cu"); case("signal track in SHUNT_CORRIDOR", "SHUNT_CORRIDOR: battery current only", (smx, sy0 + 0.8), r=0.6)
-    trk(smx - 0.5, sy0 + 1.8, smx + 0.5, sy0 + 1.8, 0.1, "/SHUNT_SENSE_P", "B.Cu"); case("Kelvin track in SHUNT_CORRIDOR", None, (smx, sy0 + 1.8), r=0.6)
+    trk(smx - 0.5, sy0 + 0.8, smx + 0.5, sy0 + 0.8, 0.1, "/T/SIG9", SHUNT_LAYER); case("signal track in SHUNT_CORRIDOR", "SHUNT_CORRIDOR: battery current only", (smx, sy0 + 0.8), r=0.6)
+    trk(smx - 0.5, sy0 + 1.8, smx + 0.5, sy0 + 1.8, 0.1, "/SHUNT_SENSE_P", SHUNT_LAYER); case("Kelvin track in SHUNT_CORRIDOR", None, (smx, sy0 + 1.8), r=0.6)
     trk(smx - 0.5, sy0 + 2.8, smx + 0.5, sy0 + 2.8, 0.5, "+BATT_IN", "B.Cu"); case("+BATT_IN track in SHUNT_CORRIDOR", None, (smx, sy0 + 2.8), r=0.6)
     # SMD pad to track 0.13, pads 0.30 from the edge, edge band, flange, courtyard classes
     f1 = fp("C_0402_1005Metric", "C1", -6, 4)
