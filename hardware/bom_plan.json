@@ -100,7 +100,7 @@
    },
    "placement_priority": "camera plug J32 -> LED-row GND pad J33 + SW1/D8 (G2); motor lands per ESC cell (D65); trade ladder IO-SET \u00a74.1",
    "gates": "G1 camera pitch + pin 1 before the P3 footprint freeze and P4; G2 area on the v3 board; G3 H1/H3 sites for J32 and SW1 (or a logged scoped exemption + V8); D65: motor header H1 exemption + V4 thermocouple, DRU 'D21 motor_plug_1p25_pth', hole 0.50 vs 0.60 from Molex SD-53047",
-   "pin_changes": "none on the MCUs (RP2354A 30/30): QSPI_SS -> R44 -> FC_BOOT -> D8.A1, ESP32 GPIO0 RX_BOOT -> D8.A2, D8.K BOOT_SW -> SW1 -> GND (D65); J21 BZ+ -> 5V same net; D89: GPIO2/3 (PIOUART0) freed, no-connect (RP2354A 28/30 used)"
+   "pin_changes": "none on the MCUs (RP2354A 30/30 at D65): QSPI_SS -> R44 -> FC_BOOT -> D8.A1, ESP32 GPIO0 RX_BOOT -> D8.A2, D8.K BOOT_SW -> SW1 -> GND (D65); J21 BZ+ -> 5V same net; D89: GPIO2/3 (PIOUART0) freed, no-connect (RP2354A 28/30 used)"
   }
  },
  "regions": {
@@ -7872,7 +7872,7 @@
  "summary": {
   "parts_total": 271,
   "bom_parts": 236,
-  "bom_lines": 82,
+  "bom_lines": 81,
   "passives": 181,
   "pads_and_mechanical": 29,
   "by_block": {
@@ -7891,12 +7891,12 @@
    "io": 27
   },
   "by_side": {
-   "B": 146,
-   "F": 125
+   "F": 146,
+   "B": 125
   },
   "by_package": {
    "0603": 7,
-   "0201": 144,
+   "0201": 142,
    "0402": 30
   },
   "lib_items": 77,
@@ -7905,6 +7905,7 @@
   "parts_needing_lib_work": 0,
   "no_lcsc": [
    "2450AT07A0100001T",
+   "53047-0310",
    "BLM03PX121SN1D",
    "EFM8BB51F16I-C-QFN20R",
    "GRM0335C1H101JA01D",
@@ -7918,7 +7919,6 @@
    "RC0201FR-07270RL",
    "RC0201FR-0727K4L",
    "RC0201FR-0727RL",
-   "RC0201FR-07287RL",
    "RC0201FR-0733KL",
    "RC0201FR-0747KL",
    "RC0201FR-07510KL",
@@ -7938,8 +7938,8 @@
    "GRM0335C1H1R2BA01D"
   ],
   "bom_parts_by_side": {
-   "B": 134,
-   "F": 102
+   "F": 118,
+   "B": 118
   },
   "bom_parts_note": "bom_parts / bom_lines = fitted placements and their MPNs (dnp and BOM-excluded pads not counted)",
   "owner_decisions": "D56: 24 TI FETs and their 12 leg caps out, 12x AGM210MAP Q29-Q40 in (D77: one hot-loop cap per AGM210MAP restored, C20/C21/C23 per ESC); D57: pogo J30 out, J31 BM04B, U24 SGM40661 + C131, D7 TPD2EUSB30 in; D58: R57 out, AE2 + R88 (0 R) + C132/C133 (DNP) in; D60: no consigned flags; refs kept stable, new parts take the next free number (P4 annotation closes gaps); D63/D64 IO set: J32 camera plug SM03B-SURS-TF, SW1 TS2306A RX boot/bind button, J33 LED-row GND pad (row GND LED 5V BZ-, J21 relabelled 5V), TP14/TP15 USB D-/D+ pads (COULD); D65: 12 single motor pads -> 4 plug-ready lands J4/J7/J10/J13 (Molex 53047-0310 header DNP), SW1 -> Alps SKUBAAE010 shared FC BOOTSEL + RX boot through D8 SDM02M30CLP3-7B and R44 (FC_BOOT); D66: U13 -> Puya PY25Q128HA-DFH-IR USON-8 3x3; D67: TP1-TP9, TP12, TP13 -> 0.35/0.20 test vias, TP10/TP11/TP14/TP15 removed, EFM8 pre-programmed by NextPCB",

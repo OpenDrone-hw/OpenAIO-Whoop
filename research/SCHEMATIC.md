@@ -265,7 +265,7 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 6. **ESC dead time:** closed in round 1 (first power-up `A_X_10_96`, `A_X_5_96` after V2; spec §4.3 / §12, PINMAP §7.3).
 7. **ICM-42688-P** VDD 1.8 V with VDDIO 3.3 V: confirm in TDK DS-000347 before the TDK half of the V10 fly-off.
 8. **README notes owed** (rulings): ELRS Wi-Fi is a bench-only mode (+3V3 0.48 A peak); SGM40661 OVP 5.75-6.12 V
-   (out-of-spec sources only); user UART pads TP0/RP0 are PIO UART, 8N1, 3.3 V logic, and so are TX1/RX1 when used as the second hardware UART in analog builds (5V pads come up before +3V3; FT pads take 3.63 V unpowered); 5 V BEC 1.5 A continuous and
+   (out-of-spec sources only); no user UART pads since D89 (TP0/RP0 removed), so TX1/RX1 are the one free UART (hardware UART1, analog builds) and take 3.3 V logic only (5V pads come up before +3V3; FT pads take 3.63 V unpowered); 5 V BEC 1.5 A continuous and
    the LED-strip limit in HD mode (D79); the optional PicoBlade motor plug carries Molex's 1.0 A contact rating, the
    published ESC ratings apply to soldered motor wires, plugged motors at the user's risk; the boot / ELRS recovery
    sequence (hold SW1 at power-up, write the UF2, esptool through passthrough; spec §12.1).

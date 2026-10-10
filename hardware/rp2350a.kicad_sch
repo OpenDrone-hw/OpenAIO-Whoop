@@ -4047,7 +4047,7 @@
 		)
 		(uuid "afcffe38-47c4-5389-9f35-cd6721d2cbfe")
 	)
-	(text_box "SHEET RP2350A, source: OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (flown Rev2), copied block by block with its layout, frames and text style. Changes: USB-C + CC removed (USB = JST SH J31 + D7 on PADS; 27R series R42/R43 stay at U10, D52 BR-21 value); I2C0 pull-ups removed (GPIO4/5 = UART1); the inverting WS2812 stage is not copied (F1, BR-04: GPIO8 drives the LED pad); status LEDs moved to the LED sheet; BOOTSEL button replaced by R44 + FC_BOOT (shared button on RX); SWD to test vias (D67); VBAT divider 10k/10k; 12 MHz crystal = ABM8-272-T3 (D78); VREG_AVDD 27R; two 4.7 uF on +1V1 (C56 at VREG_FB, C134 at DVDD 23). GPIO map: research/PINMAP.md 2-3 (30 of 30 GPIOs, no move); Betaflight config PINMAP 5."
+	(text_box "SHEET RP2350A, source: OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (flown Rev2), copied block by block with its layout, frames and text style. Changes: USB-C + CC removed (USB = JST SH J31 + D7 on PADS; 27R series R42/R43 stay at U10, D52 BR-21 value); I2C0 pull-ups removed (GPIO4/5 = UART1); the inverting WS2812 stage is not copied (F1, BR-04: GPIO8 drives the LED pad); status LEDs moved to the LED sheet; BOOTSEL button replaced by R44 + FC_BOOT (shared button on RX); SWD to test vias (D67); VBAT divider 10k/10k; 12 MHz crystal = ABM8-272-T3 (D78); VREG_AVDD 27R; two 4.7 uF on +1V1 (C56 at VREG_FB, C134 at DVDD 23). GPIO map: research/PINMAP.md 2-3 (28 of 30 GPIOs since D89, GPIO2/3 no-connect; no move); Betaflight config PINMAP 5."
 		(exclude_from_sim no)
 		(at 424.18 175.26 0)
 		(size 81.28 30.48)
