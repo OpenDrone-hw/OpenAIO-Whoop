@@ -60481,10 +60481,10 @@
 			)
 		)
 	)
-	(gr_text "5V"
-		(at 117 119.55 0)
+	(gr_text "CAM"
+		(at 117.85 114.449999 0)
 		(layer "F.SilkS")
-		(uuid "75e72516-f0e9-42c5-93f3-814b4a66bfcb")
+		(uuid "19188d66-a3d2-4c0e-95db-f2a38ec7b637")
 		(effects
 			(font
 				(size 0.8 0.6)
@@ -60492,10 +60492,10 @@
 			)
 		)
 	)
-	(gr_text "CAM"
-		(at 117.85 114.449999 0)
+	(gr_text "5V"
+		(at 120 119.55 0)
 		(layer "F.SilkS")
-		(uuid "19188d66-a3d2-4c0e-95db-f2a38ec7b637")
+		(uuid "75e72516-f0e9-42c5-93f3-814b4a66bfcb")
 		(effects
 			(font
 				(size 0.8 0.6)
@@ -60560,6 +60560,17 @@
 			)
 		)
 	)
+	(gr_text "TX1"
+		(at 68.65 112 90)
+		(layer "F.SilkS")
+		(uuid "02839f54-74fd-4cc5-b5a1-6521cb85a946")
+		(effects
+			(font
+				(size 0.8 0.6)
+				(thickness 0.13)
+			)
+		)
+	)
 	(gr_text "GND"
 		(at 68.7 123.2 90)
 		(layer "F.SilkS")
@@ -60608,17 +60619,6 @@
 		(at 101.1 109.77 90)
 		(layer "F.SilkS")
 		(uuid "a0c8ed2f-1b0b-4b51-b00a-a1bfa8c41abc")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
-		)
-	)
-	(gr_text "TX1"
-		(at 102.530999 104.596357 90)
-		(layer "F.SilkS")
-		(uuid "02839f54-74fd-4cc5-b5a1-6521cb85a946")
 		(effects
 			(font
 				(size 0.8 0.6)

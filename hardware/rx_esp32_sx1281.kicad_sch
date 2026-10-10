@@ -5133,7 +5133,7 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 116.84) (xy 193.04 116.84)
+			(xy 181.61 116.84) (xy 196.85 116.84)
 		)
 		(stroke
 			(width 0)
@@ -9905,7 +9905,7 @@
 	)
 	(symbol
 		(lib_id "Device:Antenna")
-		(at 193.04 111.76 0)
+		(at 196.85 111.76 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9915,7 +9915,7 @@
 		(dnp yes)
 		(uuid "a4e280a9-5624-5046-98de-a5fff2d5b7d9")
 		(property "Reference" "AE1"
-			(at 190.5 106.68 0)
+			(at 194.31 106.68 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9926,7 +9926,7 @@
 			)
 		)
 		(property "Value" "ANT"
-			(at 190.5 109.22 0)
+			(at 194.31 109.22 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9937,7 +9937,7 @@
 			)
 		)
 		(property "Footprint" "lib:AE_WireHole_PTH0.5mm"
-			(at 193.04 111.76 0)
+			(at 196.85 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9948,7 +9948,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 193.04 111.76 0)
+			(at 196.85 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9959,7 +9959,7 @@
 			)
 		)
 		(property "Description" "Antenna"
-			(at 193.04 111.76 0)
+			(at 196.85 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

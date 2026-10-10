@@ -3690,7 +3690,7 @@
 		)
 		(uuid "bc103280-b02e-552c-9fee-f44891fa1257")
 	)
-	(text_box "X1 12 MHz CMOS oscillator drives XIN; XOUT stays open, no trace (D99, D100 replace the D78 crystal). C42 at VDD; place within 3 mm of pin 21."
+	(text_box "X1 12 MHz CMOS oscillator drives XIN (pin 21); XOUT stays open, no trace (D99, D100 replace the D78 crystal). C42 at X1 VDD; X1 within 3 mm of pin 21."
 		(exclude_from_sim no)
 		(at 93.98 150.495 0)
 		(size 101.6 7.62)
