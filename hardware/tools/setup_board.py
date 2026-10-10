@@ -101,7 +101,7 @@ TABS = {"T1": ((14.447, 14.447), (0.7071, 0.7071)), "T3": ((-14.447, -14.447), (
 PRO_RULES = {
     "min_clearance": 0.09, "min_track_width": 0.09, "min_connection": 0.09,
     "min_via_diameter": 0.35, "min_via_annular_width": 0.075, "min_through_hole_diameter": 0.20,
-    "min_microvia_diameter": 0.2, "min_microvia_drill": 0.1,            # template values; microvias disallowed (DRU)
+    "min_microvia_diameter": 0.25, "min_microvia_drill": 0.1,           # D97 HDI 1+4+1 laser via 0.10 / 0.25
     "min_hole_to_hole": 0.2, "min_hole_clearance": 0.2, "min_copper_edge_clearance": 0.2,
     "min_text_height": 0.8, "min_text_thickness": 0.13,                 # spec 8.1 / 13, D12: 0.8 / 0.13 labels
     "min_silk_clearance": 0.0, "solder_mask_to_copper_clearance": 0.005,
@@ -140,7 +140,7 @@ NETCLASSES = [
     ("GND", 0.20, 0.09, 0.40, 0.20, "rgb(130, 130, 130)", 7, {}),
 ]
 DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "via_drill": 0.20,
-                 "microvia_diameter": 0.3, "microvia_drill": 0.1, "diff_pair_width": 0.2, "diff_pair_gap": 0.25}
+                 "microvia_diameter": 0.25, "microvia_drill": 0.1, "diff_pair_width": 0.2, "diff_pair_gap": 0.25}
 # Planned net names (D4 power names; PINMAP.md; OpenAIO esc_channel upper-cased per LINEUP). Root-sheet local
 # labels appear as "/NAME", sub-sheet ones as "/SHEET/NAME", power nets bare.
 NETCLASS_PATTERNS = [
@@ -213,9 +213,34 @@ RULES = [
       "board needs on top of them, from the NextPCB and JLCPCB intersection in spec 8.1. D21: every deliberate",
       "break of a conservative rule is a rule named 'D21 <name>' with its reason; nothing is ignored globally."], None),
 
-    ("through vias only",
-     ["Owner rule and spec 8: no microvias, blind or buried vias. Filled and capped via-in-pad is a through via."],
-     "  (constraint disallow micro_via blind_via buried_via)"),
+    ("HDI 1+4+1: no mechanical blind vias",
+     ["Owner decision D97 (HDI): NextPCB 1+4+1 (HDI I), laser microvias L1-L2 and L6-L5 in the 1080 build-up, mechanical",
+      "buried vias L2-L5 in the core sub-lamination, through vias as before. No mechanical blind vias (another press cycle)."],
+     "  (constraint disallow blind_via)"),
+
+    ("HDI 1+4+1: microvias L1-L2 and L5-L6 only",
+     ["Laser vias span one 1080 layer only (NextPCB laser AR 1:1 max, 0.75:1 recommended); no skip vias."],
+     "  (constraint disallow micro_via)\n"
+     "  (condition \"!((A.Layer_Top == 'F.Cu' && A.Layer_Bottom == 'In1.Cu') || "
+     "(A.Layer_Top == 'In4.Cu' && A.Layer_Bottom == 'B.Cu'))\")"),
+
+    ("HDI 1+4+1: buried vias L2-L5 only",
+     ["The buried via is drilled through the L2-L5 sub-lamination (about 0.74 mm), resin filled and capped (POFV)."],
+     "  (constraint disallow buried_via)\n"
+     "  (condition \"!(A.Layer_Top == 'In1.Cu' && A.Layer_Bottom == 'In4.Cu')\")"),
+
+    ("HDI microvia: laser hole 0.10 to 0.125",
+     ["NextPCB laser 0.075-0.15; 0.10 gives AR 0.77:1 in 0.077 mm 1080 and copper-fills flat for via-in-pad."],
+     "  (constraint hole_size (min 0.10mm) (max 0.125mm))\n  (condition \"A.Via_Type == 'Micro'\")"),
+
+    ("HDI microvia: land 0.25, ring 0.075",
+     ["NextPCB min pad 8 mil, laser registration +-2 mil: 0.25 land / 0.075 ring (0.30 where room)."],
+     "  (constraint via_diameter (min 0.25mm))\n  (constraint annular_width (min 0.075mm))\n"
+     "  (condition \"A.Via_Type == 'Micro'\")"),
+
+    ("HDI buried via: mechanical hole 0.20",
+     ["D6 drill for the buried via too (NextPCB min mechanical 0.15); the netclass via size applies (0.35 / 0.40)."],
+     "  (constraint hole_size (min 0.20mm) (max 0.25mm))\n  (condition \"A.Via_Type == 'Buried'\")"),
 
     ("hole to hole, different nets 0.30",
      ["NextPCB 0.30 between holes of different nets (CAF); JLCPCB 0.20. Same net stays at the 0.20 minimum."],
@@ -226,6 +251,13 @@ RULES = [
       "arrays, battery and power arrays) stay at the 0.20 board minimum, which both fabs build."],
      "  (constraint hole_to_hole (min 0.20mm))\n"
      "  (condition \"A.Net == B.Net && A.Type == 'Via' && B.Type == 'Via'\")"),
+
+    ("D21 HDI staggered microvia on a buried via land",
+     ["D21: a staggered microvia lands on the buried via's L2/L5 land, 0.25 mm centre to centre (0.10 mm hole to",
+      "hole) so the laser hole sits on solid copper, not on the resin fill; both holes share only that copper layer."],
+     "  (constraint hole_to_hole (min 0.10mm))\n"
+     "  (condition \"A.Net == B.Net && ((A.Via_Type == 'Micro' && B.Via_Type == 'Buried') || "
+     "(A.Via_Type == 'Buried' && B.Via_Type == 'Micro'))\")"),
 
     ("PTH pad holes 0.45 apart",
      ["JLCPCB 0.45 hole to hole between plated pad holes (battery holes, motor wire anchors)."],
@@ -949,6 +981,10 @@ def write_pro(path, rf):
     ds["via_dimensions"] = [{"diameter": 0.0, "drill": 0.0}] + [{"diameter": d, "drill": h} for d, h in VIA_PRESETS]
     ds["diff_pair_dimensions"] = [{"gap": 0.0, "via_gap": 0.0, "width": 0.0}] + \
         [{"gap": g, "via_gap": vg, "width": w} for w, g, vg in DIFF_PAIR_PRESETS]
+    p["board"]["layer_pairs"] = [                                        # D97 HDI 1+4+1 via spans
+        {"topLayer": 4, "bottomLayer": 10, "enabled": True, "name": "Buried L2-L5"},
+        {"topLayer": 0, "bottomLayer": 4, "enabled": True, "name": "Micro L1-L2"},
+        {"topLayer": 10, "bottomLayer": 2, "enabled": True, "name": "Micro L5-L6"}]
     ns = p["net_settings"]
     base = next(c for c in ns["classes"] if c["name"] == "Default")
     base.update(DEFAULT_CLASS)
@@ -1468,7 +1504,8 @@ def selftest(P, rf):
     case("vias of two nets, holes 0.25 apart", "rule 'hole to hole, different nets 0.30'", (-3.8, -9))
     via(-4, -7, 0.35, 0.20, "/T/V5"); via(-3.55, -7, 0.35, 0.20, "/T/V5")
     case("vias of one net, holes 0.25 apart", None, (-3.8, -7))
-    via(-2, -9, 0.35, 0.15, "/T/V6", P.VIATYPE_MICROVIA); case("microvia", "through vias only", (-2, -9))
+    via(-2, -9, 0.35, 0.15, "/T/V6", P.VIATYPE_MICROVIA); case("microvia 0.35 / 0.15 (D97)", "HDI microvia: laser hole", (-2, -9))
+    via(-2, -7, 0.25, 0.10, "/T/V8", P.VIATYPE_MICROVIA); case("microvia 0.25 / 0.10 F-In1 (D97)", None, (-2, -7))
     via(-8, -7, 0.35, 0.15, "/T/V7"); case("via 0.35 / 0.15 (below the 0.20 minimum through hole)", "drill", (-8, -7))
     # RF
     trk(-1, -9, 1, -9, W, "/VTX/RF_OUT"); case("RF track at the 50 ohm width", None, (0, -9), r=1.1)
