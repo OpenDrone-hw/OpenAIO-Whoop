@@ -1748,19 +1748,19 @@
       },
       {
         "netclass": "Power",
-        "pattern": "+3V3"
+        "pattern": "+3.3V"
       },
       {
         "netclass": "Power",
-        "pattern": "+3V3_VTX"
+        "pattern": "+3.3V_VTX"
       },
       {
         "netclass": "Power",
-        "pattern": "+1V8"
+        "pattern": "+1.8V_GYRO"
       },
       {
         "netclass": "Power",
-        "pattern": "+1V1"
+        "pattern": "+1.1V"
       },
       {
         "netclass": "Power",
@@ -1768,15 +1768,15 @@
       },
       {
         "netclass": "Power",
-        "pattern": "+3V3_*"
+        "pattern": "+3.3V_*"
       },
       {
         "netclass": "Power",
-        "pattern": "+1V8_*"
+        "pattern": "+1.8V_GYRO_*"
       },
       {
         "netclass": "Power",
-        "pattern": "+1V1_*"
+        "pattern": "+1.1V_*"
       },
       {
         "netclass": "Power",

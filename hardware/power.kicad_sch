@@ -2774,7 +2774,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+3V3"
+		(symbol "power:+3.3V"
 			(power global)
 			(pin_numbers
 				(hide yes)
@@ -2799,7 +2799,7 @@
 					)
 				)
 			)
-			(property "Value" "+3V3"
+			(property "Value" "+3.3V"
 				(at 0 3.556 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2831,7 +2831,7 @@
 					)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2853,7 +2853,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_0_1"
+			(symbol "+3.3V_0_1"
 				(polyline
 					(pts
 						(xy -0.762 1.27) (xy 0 2.54)
@@ -2891,7 +2891,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_1_1"
+			(symbol "+3.3V_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
@@ -4256,7 +4256,7 @@
 		)
 		(uuid "33229367-0d88-532e-8376-96800a846d4a")
 	)
-	(text_box "POWER sheet, generated with hardware/tools/sch_build.py + sch_root.py (P4 power shard); do not edit by hand.\nRails are power symbols (net = Value): +BATT_IN, +BATT, +5V_BST, +5V_USB, +5V, +5V_CAM, +5V_HD, +3V3, GND. Sheet pins: HD_EN (in), CURR_SENSE (out), VBUS (in). Local nets: SHUNT_SENSE_P/N(_RC), U2_SW, U2_FB, U3_PR1, U5_EN.\nClosed here: P4-1, P4-2, P4-3, P4-7, P4-9, P4-12 (+3V3), P4-17 (BR-14 C13), P4-19 (C30 deleted); R11 is the GPIO27 pull-down P4-4 counts on; P4-13 is void (D69: C2, C5, C14 stay X5R, sized on DC bias). Values: research/DESIGN-SPEC.md 4.1, 4.2, 15.5; P4 hand calculations reproduced in the shard notes.\nP4 critique round 1 (D77): C30 (ESC3 EFM8 VDD bulk) deleted: each ESC now has one 10 uF hot-loop cap per AGM210MAP on its own sheet, and ESC3's slot-M cap C35 sits within 4 mm of U8 VDD pin 4 (BR-05 as amended, 100 nF C31 at the pin). C17 (U5 CIN) deleted: C8-C11 serve, P5 placement condition above.\nD92 5 V boost ground return (U2 on B today: component layer L6, adjacent GND plane L5; L1 / L2 if it moves to F). The pulsed current is on the output side (SW -> high-side FET -> VOUT pin 3 -> C8-C11 -> GND -> low-side FET at GND pin 1), so C8-C11 GND, C7 GND and U2 pin 1 form one component-layer copper island and the loop closes on it: no via inside the loop, no copper neck between the caps and pin 1. The island joins the GND planes (L2/L5) through its own GND vias at the C7 (input) end, outside the loop: they carry the battery-side return, 2.9-3.6 A DC at 1.5-2.0 A out from a 3.0-3.2 V cell (eff. 0.9), so >= 4 vias at the FLOORPLAN 1 A per via. The adjacent plane stays unbroken under the loop, SW node and L1 (no D85 L5 jumps there). R5 returns to pin 1 on its own trace, not into the C8-C11 copper; R4 senses VOUT at C8-C11. Keep the island out of the J3 to ESC-cell return corridor and the camera/OSD/VTX video ground, and U2_SW / L1 away from the SHUNT_SENSE / CURR_SENSE traces, gyro, crystals and antennas."
+	(text_box "POWER sheet, generated with hardware/tools/sch_build.py + sch_root.py (P4 power shard); do not edit by hand.\nRails are power symbols (net = Value): +BATT_IN, +BATT, +5V_BST, +5V_USB, +5V, +5V_CAM, +5V_HD, +3.3V, GND. Sheet pins: HD_EN (in), CURR_SENSE (out), VBUS (in). Local nets: SHUNT_SENSE_P/N(_RC), U2_SW, U2_FB, U3_PR1, U5_EN.\nClosed here: P4-1, P4-2, P4-3, P4-7, P4-9, P4-12 (+3.3V), P4-17 (BR-14 C13), P4-19 (C30 deleted); R11 is the HD_EN (GPIO19 since the D111 map) pull-down P4-4 counts on; P4-13 is void (D69: C2, C5, C14 stay X5R, sized on DC bias). Values: research/DESIGN-SPEC.md 4.1, 4.2, 15.5; P4 hand calculations reproduced in the shard notes.\nP4 critique round 1 (D77, D108): C30 (ESC3 EFM8 VDD bulk) deleted: each ESC has one 22 uF 6.3 V X6S 0603 hot-loop cap per AGM210MAP on its own sheet (D108, was 10 uF 0402), and ESC3's slot-M cap C35 sits within 4 mm of U8 VDD pin 4 (BR-05 as amended, 100 nF C31 at the pin). C17 (U5 CIN) deleted: C8-C11 serve, P5 placement condition above.\nD92 5 V boost ground return (U2, L1 and C7-C11 on F in the winning placement V4_B4: component layer L1, adjacent GND plane L2). The pulsed current is on the output side (SW -> high-side FET -> VOUT pin 3 -> C8-C11 -> GND -> low-side FET at GND pin 1), so C8-C11 GND, C7 GND and U2 pin 1 form one component-layer copper island and the loop closes on it: no via inside the loop, no copper neck between the caps and pin 1. The island joins the GND planes (L2/L5) through its own GND vias at the C7 (input) end, outside the loop: they carry the battery-side return, 2.9-3.6 A DC at 1.5-2.0 A out from a 3.0-3.2 V cell (eff. 0.9), so >= 4 vias at the FLOORPLAN 1 A per via. The adjacent plane stays unbroken under the loop, SW node and L1 (L2 stays solid, D85). R5 returns to pin 1 on its own trace, not into the C8-C11 copper; R4 senses VOUT at C8-C11. Keep the island out of the J3 to ESC-cell return corridor and the camera/OSD/VTX video ground, and U2_SW / L1 away from the SHUNT_SENSE / CURR_SENSE traces, gyro, crystals and antennas."
 		(exclude_from_sim no)
 		(at 255.27 189.23 0)
 		(size 148.59 60.96)
@@ -4296,7 +4296,7 @@
 		)
 		(uuid "64e327d8-1cc9-5ade-ab9b-b8a528d2d3c8")
 	)
-	(text_box "New block from TI SLVSFG1A, priority mode (D24). C128 = the VIN1 cap: place it at U3 pin 3 (TI 9-10).\nMODE tied to VIN1 (+5V_USB). PR1 = VIN1 x 10k / 37.4k: USB is selected above VREF x 3.74 = 3.44-4.04 V (VREF 0.92-1.08 V; 3.37-4.10 V with 1 % R), +5V_BST (VIN2) otherwise. ST (open drain) unused.\nP4-2: +5V_BST holds only U2 VOUT/MODE, C8-C11, R4, U3 VIN2 and U5 VIN (netlist checked). USB selected: VIN2 stays off (truth table 'VIN2 = X') and both channels block reverse current, so USB never feeds +5V_BST or the O4.\nP4-3: C128 10 uF X6S 0402 at VIN1 (TI CIN 1 uF); VIN1/MODE/PR1 peaks are bounded by U24. Unplug with a cell: +5V follows VBUS to the PR1 threshold, then the 8 us break-before-make gap: dV = 0.7 A x 8 us / (C12 + C13 + C15, 3.4 uF each at 3.4 V, Murata curve) = 0.55 V -> +5V >= 3.19 V typical; worst corner (3.44 V, -20 % caps) 2.75 V. +3V3 stays >= 3.07 V: the LP5912 blocks reverse current and its >= 7 uF output carries 0.2 A for 8 us. V1 case (b) scopes it.\nC12 10 uF at VOUT: +5V hold-up. Mux 40/60 mOhm: <= 0.04 V at 0.70 A analog; HD about 0.25 A (the O4 is on +5V_BST ahead of the mux, D53 BR-10).\nTI 7.3.4 (clamp VOUT or about 100 uF where RCB occurs): RCB happens by design at USB plug/unplug with a cell; considered deviation, no part (short +5V copper, near-zero current at the 42-70 mV trip). V1: VIN1/VOUT <= 6.0 V."
+	(text_box "New block from TI SLVSFG1A, priority mode (D24). C128 = the VIN1 cap: place it at U3 pin 3 (TI 9-10).\nMODE tied to VIN1 (+5V_USB). PR1 = VIN1 x 10k / 37.4k: USB is selected above VREF x 3.74 = 3.44-4.04 V (VREF 0.92-1.08 V; 3.37-4.10 V with 1 % R), +5V_BST (VIN2) otherwise. ST (open drain) unused.\nP4-2: +5V_BST holds only U2 VOUT/MODE, C8-C11, R4, U3 VIN2 and U5 VIN (netlist checked). USB selected: VIN2 stays off (truth table 'VIN2 = X') and both channels block reverse current, so USB never feeds +5V_BST or the O4.\nP4-3: C128 10 uF X6S 0402 at VIN1 (TI CIN 1 uF); VIN1/MODE/PR1 peaks are bounded by U24. Unplug with a cell: +5V follows VBUS to the PR1 threshold, then the 8 us break-before-make gap: dV = 0.7 A x 8 us / (C12 + C13 + C15, 3.4 uF each at 3.4 V, Murata curve) = 0.55 V -> +5V >= 3.19 V typical; worst corner (3.44 V, -20 % caps) 2.75 V. +3.3V stays >= 3.07 V: the LP5912 blocks reverse current and its >= 7 uF output carries 0.2 A for 8 us. V1 case (b) scopes it.\nC12 10 uF at VOUT: +5V hold-up. Mux 40/60 mOhm: <= 0.04 V at 0.70 A analog; HD about 0.25 A (the O4 is on +5V_BST ahead of the mux, D53 BR-10).\nTI 7.3.4 (clamp VOUT or about 100 uF where RCB occurs): RCB happens by design at USB plug/unplug with a cell; considered deviation, no part (short +5V copper, near-zero current at the 42-70 mV trip). V1: VIN1/VOUT <= 6.0 V."
 		(exclude_from_sim no)
 		(at 120.65 223.52 0)
 		(size 132.08 26.67)
@@ -4336,7 +4336,7 @@
 		)
 		(uuid "81012877-ff3f-5e4c-b48d-b382fb601fb3")
 	)
-	(text_box "Source: OpenAIO/hardware/OpenAIO.kicad_sch (shunt + INA186A3, root sheet); input RC moved to 0201 and its two common-mode caps deleted (D52 BR-07); the output RC (1k/100n) sits at the ADC pin (RP2350A sheet, R47/C60).\nP4-9: R1 HCS1206 0.5 mOhm on the four-pad Kelvin net-tie land (pad groups 1-2 and 3-4). SHUNT_SENSE_P = pad 2 (battery side), SHUNT_SENSE_N = pad 3: each holds only its inner sense pad and R2/R3; SHUNT_SENSE_P_RC/N_RC hold R2/R3, C5 and U1 (netlist checked); all four match the Analog and Kelvin DRU patterns. Route the pair on L1 or L6, never In2/In3 (DRU), class Analog. Everything that draws current taps +BATT after R1.\nR2/R3 1k + C5 1 uF differential: fc = 1/(2 pi x 2 kOhm x 1 uF) = 80 Hz. IIB <= 3 nA x 1 kOhm = 3 uV (6 mA), VOS <= 50 uV (0.1 A).\nU1 INA186A3, gain 100: 0.5 mOhm x 100 = 50 mV/A, Betaflight ibata_scale 500; output to VS - 40 mV gives about 65 A full scale on +3V3; VCM -0.2..40 V covers the cell; REF to GND (unidirectional); C6 100 nF at VS. Shunt loss 0.2 W at 20 A. Scale checked on every prototype (V-plan)."
+	(text_box "Source: OpenAIO/hardware/OpenAIO.kicad_sch (shunt + INA186A3, root sheet); input RC moved to 0201 and its two common-mode caps deleted (D52 BR-07); the output RC (1k/100n) sits at the ADC pin (RP2350A sheet, R47/C60).\nP4-9: R1 HCS1206 0.5 mOhm on the four-pad Kelvin net-tie land (pad groups 1-2 and 3-4). SHUNT_SENSE_P = pad 2 (battery side), SHUNT_SENSE_N = pad 3: each holds only its inner sense pad and R2/R3; SHUNT_SENSE_P_RC/N_RC hold R2/R3, C5 and U1 (netlist checked); all four match the Analog and Kelvin DRU patterns. Route the pair on L1 or L6, never In2/In3 (DRU), class Analog. Everything that draws current taps +BATT after R1.\nR2/R3 1k + C5 1 uF differential: fc = 1/(2 pi x 2 kOhm x 1 uF) = 80 Hz. IIB <= 3 nA x 1 kOhm = 3 uV (6 mA), VOS <= 50 uV (0.1 A).\nU1 INA186A3, gain 100: 0.5 mOhm x 100 = 50 mV/A, Betaflight ibata_scale 500; output to VS - 40 mV gives about 65 A full scale on +3.3V; VCM -0.2..40 V covers the cell; REF to GND (unidirectional); C6 100 nF at VS. Shunt loss 0.2 W at 20 A. Scale checked on every prototype (V-plan)."
 		(exclude_from_sim no)
 		(at 102.87 71.12 0)
 		(size 149.86 24.13)
@@ -4356,7 +4356,7 @@
 		)
 		(uuid "90dcf120-2814-5959-81e6-f5d5512ba8df")
 	)
-	(text_box "Source: OpenFC-Lite-Mini/hardware/power.kicad_sch ('3.3V 0.5A MAIN LDO', LP5912-3.3), with the OpenDrone LP5912-3.3DRVR symbol (pins in package order: IN/EN on the left here, EN tied to +5V, no EN shared with another rail; U21 on VTX has its own EN). PG and NC open; EP to GND for heat (TI: GND or open).\nP4-17 / BR-14: C13 10 uF X6S 0402 is the one CIN of U4 and U21 (VTX sheet): place it between the two IN pins (~2.4 mm apart). 2.0 uF effective at 5 V (Murata curve) > the 0.7 uF LP5912 minimum.\nP4-12, +3V3 COUT at 3.3 V: C82 10 uF 3.5 uF (Murata GRM155C80J106ME11 DC-bias curve), C58 4.7 uF 0402 X5R ~2.6 uF, 3x 1 uF 0201 X5R (C14, C61, C92) ~0.45 uF each, 15x 100 nF X6S 0201 ~0.085 uF each (last three typical, I): 8.7 uF typical, 7.1 uF at -20 %, 10.3 uF only with every part at +20 % -> inside TI's 0.7-10 uF (SNVSA77D 7.6) but for that +3 % corner, and most of it is remote (5-30 mm of trace), which the LP5912 allows. Lever if a V-bench load step rings: PS-O6 (delete C92). +3V3_VTX is summed on the VTX sheet.\nLoad 0.20 A: (5.15 - 3.3) V x 0.2 A = 0.37 W, +26 K (RthJA 71.2 K/W). U4 OUT (project-lib LP5912 copy, power_out pin) drives +3V3: no PWR_FLAG."
+	(text_box "Source: OpenFC-Lite-Mini/hardware/power.kicad_sch ('3.3V 0.5A MAIN LDO', LP5912-3.3), with the OpenDrone LP5912-3.3DRVR symbol (pins in package order: IN/EN on the left here, EN tied to +5V, no EN shared with another rail; U21 on VTX has its own EN). PG and NC open; EP to GND for heat (TI: GND or open).\nP4-17 / BR-14: C13 10 uF X6S 0402 is the one CIN of U4 and U21 (VTX sheet): place it between the two IN pins (~2.4 mm apart). 2.0 uF effective at 5 V (Murata curve) > the 0.7 uF LP5912 minimum.\nP4-12, +3.3V COUT at 3.3 V: C82 10 uF 3.5 uF (Murata GRM155C80J106ME11 DC-bias curve), C58 4.7 uF 0402 X5R ~2.6 uF, 3x 1 uF 0201 X5R (C14, C61, C92) ~0.45 uF each, 15x 100 nF X6S 0201 ~0.085 uF each (last three typical, I): 8.7 uF typical, 7.1 uF at -20 %, 10.3 uF only with every part at +20 % -> inside TI's 0.7-10 uF (SNVSA77D 7.6) but for that +3 % corner, and most of it is remote (5-30 mm of trace), which the LP5912 allows. Lever if a V-bench load step rings: PS-O6 (delete C92). +3.3V_VTX is summed on the VTX sheet.\nLoad 0.20 A: (5.15 - 3.3) V x 0.2 A = 0.37 W, +26 K (RthJA 71.2 K/W). U4 OUT (project-lib LP5912 copy, power_out pin) drives +3.3V: no PWR_FLAG."
 		(exclude_from_sim no)
 		(at 255.27 63.5 0)
 		(size 148.59 31.75)
@@ -4376,7 +4376,7 @@
 		)
 		(uuid "c77933a6-3d3b-5ec8-8491-53bb2cca6627")
 	)
-	(text_box "New block from the SGMICRO SGM40659/60/61 datasheet REV.A (D57).\nIN = VBUS (J31 pin 4, PADS), OUT = +5V_USB. OVLO (C2) to GND selects the internal threshold: 5.75-6.12 V rising, 5.45-5.66 V falling. IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), UVLO 2.4 V. 15 ms debounce, then a 2 ms soft turn-on: a cable LC ring (simulated <= 10.8 V at IN) never reaches TPS2116 VIN1 (6 V abs max), and the soft turn-on is the VBUS surge limit USB asks for above 10 uF downstream.\nC131 100 nF X6S 25 V at the IN balls (datasheet CIN 0.1 uF; also takes ESD charge). COUT = C128 10 uF at U3 VIN1 (<= 100 uF allowed). RON 27 / 45 mOhm: 11-19 mV at 0.42 A. TA -40..85 C.\nOpen: a non-compliant source at 5.5-6.12 V would pass before the OVLO trips (TPS2116 VIN1 5.5 V recommended, 6 V abs max); USB sources are <= 5.25 V (5.5 V with PD)."
+	(text_box "New block from the SGMICRO SGM40659/60/61 datasheet REV.A (D57).\nIN = VBUS (J31 pin 4, PADS), OUT = +5V_USB. OVLO (C2) to GND selects the internal threshold: 5.75-6.12 V rising, 5.45-5.66 V falling. IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), UVLO 2.4 V. 15 ms debounce, then a 2 ms soft turn-on: a cable LC ring (simulated <= 10.8 V at IN) never reaches TPS2116 VIN1 (6 V abs max), and the soft turn-on is the VBUS surge limit USB asks for above 10 uF downstream.\nC131 100 nF X6S 25 V at the IN balls \n\n(datasheet CIN 0.1 uF; also takes ESD charge). COUT = C128 10 uF at U3 VIN1 (<= 100 uF allowed). RON 27 / 45 mOhm: 11-19 mV at 0.42 A. TA -40..85 C.\nOpen: a non-compliant source at 5.5-6.12 V would pass before the OVLO trips (TPS2116 VIN1 5.5 V recommended, 6 V abs max); USB sources are <= 5.25 V (5.5 V with PD)."
 		(exclude_from_sim no)
 		(at 16.51 218.44 0)
 		(size 101.6 31.75)
@@ -4396,7 +4396,7 @@
 		)
 		(uuid "e2b137f3-25e3-54c6-9aac-a456f419c8c5")
 	)
-	(text_box "New block from TI SLVSDH0C (D15, D34; D53 BR-10/22/24). U5 = TPS22810DRVR WSON-6 2x2 (D83, P4 r4: smallest package, 3 A at TA 65 C vs 2 A DBV, RthJA 74.6 vs 182 C/W; same die and EN/UVLO figures; pins 1 VOUT 2 QOD 3 CT 4 GND 5 EN/UVLO 6 VIN, EP 7 to GND as on TI's EVM, SLVUAY7B Fig. 1).\nP4-2 / BR-10: U5 VIN on +5V_BST, ahead of the mux: USB never reaches the O4. No separate CIN (C17 deleted, P4 critique): the boost outputs C8-C11 (20-28 uF effective) are U5's input capacitor (TI 10.3: CIN optional, 1 uF usually sufficient); P5 condition: U5 VIN within 3 mm of C8-C11 or U3 VIN2 on the +5V_BST copper. C16 CT 10 nF: ~4.7 V/ms, 0.2 A inrush per 47 uF. QOD tied to VOUT: the internal RPD empties +5V_HD when off.\nU5_EN (bom_plan O4_EN) holds exactly R9 33k / R10 18k from +BATT, R87 510k from +5V_HD, C129 100 nF, D2 anode and U5 EN/UVLO pin 5 (netlist checked). D2 BAS16LD cathode + R11 2.4k pull-down on HD_EN (GPIO27, PINIO1).\nP4-1 (VENR 1.13-1.30 V, VENF 1.08-1.18 V, +5V_HD 4.93-5.37 V): EN = 0.345 x cell (+0.0223 x +5V_HD when on). Nominal R: on at 3.27-3.77 V, shed at 2.78-3.10 V; 1 % R: on 3.23-3.82 V, shed 2.74-3.14 V; resistor hysteresis 0.327-0.340 V >= the 0.31 V cell rebound.\nGPIO27 low or undriven: EN <= VF 0.715 V + 66 uA x 2.4k = 0.87 V < VENF 1.08 V, also with +5V_HD still up. GPIO27 high: D2 reverse >= 1.7 V; 1 uA hot leakage moves EN 11 mV (shed 0.03 V); R11 draws 1.4 mA.\nFilter: 11.4 kOhm x 100 nF = 1.14 ms (140 Hz): the 96 kHz ESC ripple (0.21 V p-p at EN) falls to 0.3 mV. D2 + R11 discharge it below VENF in 0.25 ms; turn-on from the clamp ~1.6 ms at 4.2 V. USB only (back-fed 2.5-2.8 V + 0.3 V ripple): EN <= 1.07 V < VENR. EN <= 1.62 V << 18 V abs max."
+	(text_box "New block from TI SLVSDH0C (D15, D34; D53 BR-10/22/24). U5 = TPS22810DRVR WSON-6 2x2 (D83, P4 r4: smallest package, 3 A at TA 65 C vs 2 A DBV, RthJA 74.6 vs 182 C/W; same die and EN/UVLO figures; pins 1 VOUT 2 QOD 3 CT 4 GND 5 EN/UVLO 6 VIN, EP 7 to GND as on TI's EVM, SLVUAY7B Fig. 1).\nP4-2 / BR-10: U5 VIN on +5V_BST, ahead of the mux: USB never reaches the O4. No separate CIN (C17 deleted, P4 critique): the boost outputs C8-C11 (20-28 uF effective) are U5's input capacitor (TI 10.3: CIN optional, 1 uF usually sufficient); P5 condition: U5 VIN within 3 mm of C8-C11 or U3 VIN2 on the +5V_BST copper. C16 CT 10 nF: ~4.7 V/ms, 0.2 A inrush per 47 uF. QOD tied to VOUT: the internal RPD empties +5V_HD when off.\nU5_EN (bom_plan O4_EN) holds exactly R9 33k / R10 18k from +BATT, R87 510k from +5V_HD, C129 100 nF, D2 anode and U5 EN/UVLO pin 5 (netlist checked). D2 BAS16LD cathode + R11 2.4k pull-down on HD_EN (GPIO27, PINIO1).\nP4-1 (VENR 1.13-1.30 V, VENF 1.08-1.18 V, +5V_HD 4.93-5.37 V): EN = 0.345 x cell (+0.0223 x +5V_HD when on). Nominal R: on at 3.27-3.77 V, shed at 2.78-3.10 V; 1 % R: on 3.23-3.82 V, shed 2.74-3.14 V; resistor hysteresis 0.327-0.340 V >= the 0.31 V cell rebound.\nHD_EN (GPIO19) low or undriven: EN <= VF 0.715 V + 66 uA x 2.4k = 0.87 V < VENF 1.08 V, also with +5V_HD still up. HD_EN high: D2 reverse >= 1.7 V; 1 uA hot leakage moves EN 11 mV (shed 0.03 V); R11 draws 1.4 mA.\nFilter: 11.4 kOhm x 100 nF = 1.14 ms (140 Hz): the 96 kHz ESC ripple (0.21 V p-p at EN) falls to 0.3 mV. D2 + R11 discharge it below VENF in 0.25 ms; turn-on from the clamp ~1.6 ms at 4.2 V. USB only (back-fed 2.5-2.8 V + 0.3 V ripple): EN <= 1.07 V < VENR. EN <= 1.62 V << 18 V abs max."
 		(exclude_from_sim no)
 		(at 148.59 152.4 0)
 		(size 187.96 29.21)
@@ -6129,7 +6129,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 129.54 201.93 0)
 			(hide yes)
 			(show_name no)
@@ -6474,7 +6474,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 283.21 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -6633,7 +6633,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 203.2 22.86 0)
 		(unit 1)
 		(body_style 1)
@@ -6654,7 +6654,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 203.2 19.304 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6686,7 +6686,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 203.2 22.86 0)
 			(hide yes)
 			(show_name no)
@@ -6740,7 +6740,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:L_0201_0603Metric_W"
+		(property "Footprint" "lib:L_0201_0603Metric_L"
 			(at 363.22 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -6854,7 +6854,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 114.3 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -7353,7 +7353,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 124.46 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -7619,7 +7619,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:TI_SOT-583_DRL"
+		(property "Footprint" "lib:TI_SOT-583_DRL_L"
 			(at 195.58 203.2 0)
 			(hide yes)
 			(show_name no)
@@ -7905,7 +7905,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 104.14 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -8096,7 +8096,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 124.46 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -8208,7 +8208,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:Nexperia_SOD882D"
+		(property "Footprint" "lib:Nexperia_SOD882D_L"
 			(at 219.71 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -8573,7 +8573,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:TI_VQFN-HR-7_2x2mm_RWU"
+		(property "Footprint" "lib:TI_VQFN-HR-7_2x2mm_RWU_L"
 			(at 60.96 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -8702,7 +8702,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 45.72 201.93 0)
 			(hide yes)
 			(show_name no)
@@ -8893,7 +8893,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 231.14 140.97 0)
 			(hide yes)
 			(show_name no)
@@ -9005,7 +9005,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense"
+		(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L"
 			(at 304.8 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -9134,7 +9134,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 30.48 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -9633,7 +9633,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 180.34 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -9747,7 +9747,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 374.65 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -10015,7 +10015,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 256.54 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -10127,7 +10127,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense"
+		(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L"
 			(at 236.22 114.3 0)
 			(hide yes)
 			(show_name no)
@@ -10256,7 +10256,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 83.82 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -10370,7 +10370,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 318.77 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -10608,7 +10608,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 170.18 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -11156,7 +11156,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 195.58 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -11844,7 +11844,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 213.36 201.93 0)
 			(hide yes)
 			(show_name no)
@@ -12388,7 +12388,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 336.55 39.37 0)
 		(unit 1)
 		(body_style 1)
@@ -12409,7 +12409,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 336.55 35.814 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12441,7 +12441,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 336.55 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -12574,7 +12574,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 203.2 125.73 0)
 			(hide yes)
 			(show_name no)
@@ -12687,7 +12687,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_Dense"
+		(property "Footprint" "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_L"
 			(at 127 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -12805,7 +12805,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:IND-SMD_L2.5-W2.0_FTC252012"
+		(property "Footprint" "lib:IND-SMD_L2.5-W2.0_FTC252012_L"
 			(at 60.96 114.3 0)
 			(hide yes)
 			(show_name no)
@@ -12996,7 +12996,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 48.26 41.91 0)
 			(hide yes)
 			(show_name no)
@@ -13108,7 +13108,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 157.48 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -13607,7 +13607,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 193.04 29.21 0)
 			(hide yes)
 			(show_name no)
@@ -13721,7 +13721,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 58.42 41.91 0)
 			(hide yes)
 			(show_name no)
@@ -13835,7 +13835,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 154.94 209.55 0)
 			(hide yes)
 			(show_name no)
@@ -14180,7 +14180,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 93.98 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -14448,7 +14448,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 187.96 125.73 0)
 			(hide yes)
 			(show_name no)
@@ -14560,7 +14560,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 157.48 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -14674,7 +14674,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 154.94 201.93 0)
 			(hide yes)
 			(show_name no)

@@ -2380,7 +2380,7 @@
 					)
 				)
 			)
-			(property "Description" "5.8 GHz FM video/audio transmitter (PLL synthesiser + VCO + driver), 3-wire SPI (SPI_SE high) or channel pins, QFN-40 6x6 mm, EP (41) = GND. Data-sheet NC pins 2, 12, 18, 36, 37 omitted (no internal connection; trimmed in the _Dense footprint). PAOUT1 +2 dBm / PAOUT2 +13 dBm outputs; REG1D8/REG1D8_1 are internal 1.8 V regulator outputs for decoupling only. RTC6705A is pin compatible"
+			(property "Description" "5.8 GHz FM video/audio transmitter (PLL synthesiser + VCO + driver), 3-wire SPI (SPI_SE high) or channel pins, QFN-40 6x6 mm, EP (41) = GND. Data-sheet NC pins 2, 12, 18, 36, 37 are no_connect pins (no internal connection; full datasheet lands, D101). PAOUT1 +2 dBm / PAOUT2 +13 dBm outputs; REG1D8/REG1D8_1 are internal 1.8 V regulator outputs for decoupling only. RTC6705A is pin compatible"
 				(at 0 -38.1 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2460,6 +2460,24 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at -15.24 -16.51 0)
+					(length 2.54)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2629,6 +2647,24 @@
 						)
 					)
 				)
+				(pin no_connect line
+					(at -15.24 -19.05 0)
+					(length 2.54)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 				(pin power_in line
 					(at -6.35 30.48 270)
 					(length 2.54)
@@ -2712,6 +2748,24 @@
 						)
 					)
 					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at -15.24 -21.59 0)
+					(length 2.54)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "18"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3018,6 +3072,42 @@
 						)
 					)
 					(number "35"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at -15.24 -24.13 0)
+					(length 2.54)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "36"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at -15.24 -26.67 0)
+					(length 2.54)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "37"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3999,7 +4089,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+3V3"
+		(symbol "power:+3.3V"
 			(power global)
 			(pin_numbers
 				(hide yes)
@@ -4024,7 +4114,7 @@
 					)
 				)
 			)
-			(property "Value" "+3V3"
+			(property "Value" "+3.3V"
 				(at 0 3.556 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4056,7 +4146,7 @@
 					)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4078,7 +4168,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_0_1"
+			(symbol "+3.3V_0_1"
 				(polyline
 					(pts
 						(xy -0.762 1.27) (xy 0 2.54)
@@ -4116,7 +4206,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_1_1"
+			(symbol "+3.3V_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
@@ -4748,7 +4838,7 @@
 	)
 	(rectangle
 		(start 137.16 27.94)
-		(end 302.26 274.92)
+		(end 302.26 272.86)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -5401,7 +5491,7 @@
 		)
 		(uuid "692d18a6-3013-5cf5-83fe-892ce87133e0")
 	)
-	(text "+3V3_VTX LDO + HD GATE"
+	(text "+3.3V_VTX LDO + HD GATE"
 		(exclude_from_sim no)
 		(at 17.78 30.48 0)
 		(effects
@@ -5595,7 +5685,7 @@
 		)
 		(uuid "fa8cf270-c9c1-54b3-a251-bfcda8e015a1")
 	)
-	(text_box "U22 LP5907-2.85 from +3V3_VTX (TI SNVS798): HD mode removes PA_VREF with the rail. EN = PA_EN straight from ESP32 GPIO2 (strap: internal 45k pull-down + the LP5907 1 MOhm EN pull-down). C123 4.7 uF 0402 (> 0.7 uF effective). CIN = C122 4.7 uF 0402 X5R at U22 IN (about 2.6 uF at 3.3 V, >= 2 uF at -20 % and hot): LP5907 DS 5.6 / 7.2.2.4 needs > 0.7 uF effective over all conditions within 1 cm; the 1 uF 0201 (about 0.45 uF) alone missed it (P4 critique r3).\nDEVIATIONS, bench-gated: (a) VREF window: 2.85 V +-2 % = 2.79-2.91 V vs SE5004L VREF H 2.80-2.90 V, and the +-2 % is specified only for VIN >= VOUT + 1 V (VIN here 3.3 V): V5 measures PA_VREF on several units, cold and hot. (b) HD switch-on with ELRS holding PA_EN high: +3V3_VTX collapses before C123 discharges, so VOUT exceeds VIN + 0.3 V (LP5907 abs max, DS 5.1) by up to one body-diode drop (<= 0.7 V, < 1 ms, <= 10 uJ from C123): V9 scopes PA_VREF and +3V3_VTX (< 0.5 V). Fallbacks: C123 down to 1 uF, or the patched ELRS drops PA_EN on HD_EN."
+	(text_box "U22 LP5907-2.85 from +3.3V_VTX (TI SNVS798): HD mode removes PA_VREF with the rail. EN = PA_EN straight from ESP32 GPIO21 (D111 map; the LP5907 1 MOhm EN pull-down holds it off until ELRS drives it). C123 4.7 uF 0402 (> 0.7 uF effective). CIN = C122 4.7 uF 0402 X5R at U22 IN (about 2.6 uF at 3.3 V, >= 2 uF at -20 % and hot): LP5907 DS 5.6 / 7.2.2.4 needs > 0.7 uF effective over all conditions within 1 cm; the 1 uF 0201 (about 0.45 uF) alone missed it (P4 critique r3).\nDEVIATIONS, bench-gated: (a) VREF window: 2.85 V +-2 % = 2.79-2.91 V vs SE5004L VREF H 2.80-2.90 V, and the +-2 % is specified only for VIN >= VOUT + 1 V (VIN here 3.3 V): V5 measures PA_VREF on several units, cold and hot. (b) HD switch-on with ELRS holding PA_EN high: +3.3V_VTX collapses before C123 discharges, so VOUT exceeds VIN + 0.3 V (LP5907 abs max, DS 5.1) by up to one body-diode drop (<= 0.7 V, < 1 ms, <= 10 uJ from C123): V9 scopes PA_VREF and +3.3V_VTX (< 0.5 V). Fallbacks: C123 down to 1 uF, or the patched ELRS drops PA_EN on HD_EN."
 		(exclude_from_sim no)
 		(at 20.32 158.75 0)
 		(size 111.76 25.66)
@@ -5615,7 +5705,7 @@
 		)
 		(uuid "13f3de22-71bb-5e9f-bd38-b143648a6555")
 	)
-	(text_box "U21 LP5912-3.3 on +5V; CIN = the shared 10 uF C13 on POWER (BR-14) only if P5 puts C13 within 1 cm of the U21 IN pin (LP5912 DS 9.2.2.2; tools/check_p5_conditions.py), else U21 gets its own 10 uF 0402 CIN (GRM155C80J106ME11D). EN = VTX_PWR_EN: R68 47k to +3V3 (stock ELRS runs the VTX); R84 1k from ESP32 GPIO21 (patched-ELRS power-down hook): GPIO21 low gives VEN 0.07 V < VEN(OFF) 0.3 V; Q28 AP1606 drain = HD gate (HD_EN high: <= 220 mOhm at VGS 2.5 V sinks 70 uA, 3.3 mA with GPIO21 high, VEN < 1 mV). Hot margin (P4 r4, R68 was 100k): EN stays >= VEN(ON) 1.3 V max up to 42 uA of Q28 leakage (100k: 20 uA); AP1606 IDSS <= 1 uA at 25 C, <= 100 uA at 125 C (VDS 20 V), about 16 uA at 85 C. HD_EN before Betaflight drives PINIO1: <= 0.22 V vs VGS(th) 0.4 V min at 25 C (250 uA), about 0.25 V at 85 C (-2.5 mV/K): a hot low-Vth part may keep the VTX off until PINIO1 is driven low (V9 hot-soak boot check). COUT on +3V3_VTX: C108 10u + C121 1u + C122 4.7u + 3x 100n + 2x 100p = 16.0 uF nominal, about 6.8 uF effective at 3.3 V typical (5.4-8.2 uF at -/+20 %; POWER-sheet DC-bias figures), inside the LP5912 0.7-10 uF window. C108 sits at the RTC6705 VCO pins 39/40 (VCO bulk). Load 0.10 A typical, about 0.17 A at the top PA step (root power table)."
+	(text_box "U21 LP5912-3.3 on +5V; CIN = the shared 10 uF C13 on POWER (BR-14) only if P5 puts C13 within 1 cm of the U21 IN pin (LP5912 DS 9.2.2.2; tools/check_p5_conditions.py), else U21 gets its own 10 uF 0402 CIN (GRM155C80J106ME11D). EN = VTX_PWR_EN: R68 47k to +3.3V (stock ELRS runs the VTX); R84 1k from ESP32 GPIO21 (patched-ELRS power-down hook): GPIO4 low gives VEN 0.07 V < VEN(OFF) 0.3 V; Q28 AP1606 drain = HD gate (HD_EN high: <= 220 mOhm at VGS 2.5 V sinks 70 uA, 3.3 mA with GPIO4 high, VEN < 1 mV). Hot margin (P4 r4, R68 was 100k): EN stays >= VEN(ON) 1.3 V max up to 42 uA of Q28 leakage (100k: 20 uA); AP1606 IDSS <= 1 uA at 25 C, <= 100 uA at 125 C (VDS 20 V), about 16 uA at 85 C. HD_EN before Betaflight drives PINIO1: <= 0.22 V vs VGS(th) 0.4 V min at 25 C (250 uA), about 0.25 V at 85 C (-2.5 mV/K): a hot low-Vth part may keep the VTX off until PINIO1 is driven low (V9 hot-soak boot check). COUT on +3.3V_VTX: C108 10u + C121 1u + C122 4.7u + 3x 100n + 2x 100p = 16.0 uF nominal, about 6.8 uF effective at 3.3 V typical (5.4-8.2 uF at -/+20 %; POWER-sheet DC-bias figures), inside the LP5912 0.7-10 uF window. C108 sits at the RTC6705 VCO pins 39/40 (VCO bulk). Load 0.10 A typical, about 0.17 A at the top PA step (root power table)."
 		(exclude_from_sim no)
 		(at 20.32 86.36 0)
 		(size 111.76 27.72)
@@ -5635,7 +5725,7 @@
 		)
 		(uuid "2dab5148-fcea-596e-bbc5-a92175f5e2e5")
 	)
-	(text_box "PA DETECTOR + NTC (spec 4.8). DET (0.325 V no RF .. 1.0 V at 27 dBm) -> PA_DET_RAW -> R66 1k / C117 100p -> PA_DET (ESP32 GPIO4, ADC2); the trace crosses sides, keep the RC at the ESP32 end of R66. TH1 NCP03XH103F05RL in the PA ring + R70 10k from +3V3 -> PA_NTC (GPIO34, ADC1, input only): 1.65 V at 25 C. BPF + U.FL: FL2 Walsin RFBPF1608060K98Q1C on the PA side away from the PA body (power handling at 0.71 W: open item O7); J1 U.FL with L2 cut out under the signal pad (RF_PAD_CUTOUT), >= 4 GND vias at the tabs."
+	(text_box "PA DETECTOR + NTC (spec 4.8). DET (0.325 V no RF .. 1.0 V at 27 dBm) -> PA_DET_RAW -> R66 1k / C117 100p -> PA_DET (ESP32 GPIO36, ADC1); the trace crosses sides, keep the RC at the ESP32 end of R66. TH1 NCP03XH103F05RL in the PA ring + R70 10k from +3.3V -> PA_NTC (GPIO37, ADC1, input only): 1.65 V at 25 C. BPF + U.FL: FL2 Walsin RFBPF1608060K98Q1C on the PA side away from the PA body (power handling at 0.71 W: open item O7); J1 U.FL with L2 cut out under the signal pad (RF_PAD_CUTOUT), >= 4 GND vias at the tabs."
 		(exclude_from_sim no)
 		(at 307.34 205.07 0)
 		(size 170.18 11.24)
@@ -5675,7 +5765,7 @@
 		)
 		(uuid "676f6fac-2d4f-53de-ab5a-f4091824023a")
 	)
-	(text_box "VIDEO + LOOP FILTER (OpenOSD-X v1.01). VIDEO_OUT (OSD switch; 75R camera termination on the OSD sheet) -> R58 1.2k || C104 33p -> R59 270R shunt -> C105 4.7u -> R60 1.2k -> VT_MOD, bias R61 510k / R62 560k from +3V3_VTX (1.73 V) = OpenOSD-X R24 C17 R25 C21 R29 R30 R31. Load seen at VIDEO_OUT: 1.47 kOhm DC (R58 + R59), about 0.95 kOhm at 5 MHz and 0.60 kOhm at 10 MHz (R58 / C104 4.0 MHz, R59-loaded 21.9 MHz; 270R only above about 20 MHz, outside the video band); the OSD level note uses it. Loop filter = OpenOSD-X: CP -> R63 100k -> VT; VT -> C106 1u and R64 47k + C107 4.7u to GND. RTC_CP / RTC_VT / RTC_LF and VT_MOD* are high-impedance nodes (Analog net class): short copper, >= 5 mm from the boost and the ESC phases."
+	(text_box "VIDEO + LOOP FILTER (OpenOSD-X v1.01). VIDEO_OUT (OSD switch; 75R camera termination on the OSD sheet) -> R58 1.2k || C104 33p -> R59 270R shunt -> C105 4.7u -> R60 1.2k -> VT_MOD, bias R61 510k / R62 560k from +3.3V_VTX (1.73 V) = OpenOSD-X R24 C17 R25 C21 R29 R30 R31. Load seen at VIDEO_OUT: 1.47 kOhm DC (R58 + R59), about 0.95 kOhm at 5 MHz and 0.60 kOhm at 10 MHz (R58 / C104 4.0 MHz, R59-loaded 21.9 MHz; 270R only above about 20 MHz, outside the video band); the OSD level note uses it. Loop filter = OpenOSD-X: CP -> R63 100k -> VT; VT -> C106 1u and R64 47k + C107 4.7u to GND. RTC_CP / RTC_VT / RTC_LF and VT_MOD* are high-impedance nodes (Analog net class): short copper, >= 5 mm from the boost and the ESC phases."
 		(exclude_from_sim no)
 		(at 139.7 217.58 0)
 		(size 160.02 13.3)
@@ -5695,10 +5785,10 @@
 		)
 		(uuid "6be002d0-840e-5af6-befc-ebe1955347e1")
 	)
-	(text_box "PNP PA DRIVE. ESP32 GPIO13 VTX_AMP_PWM (ELRS vtx_amp_pwm, 10 kHz) -> two RC poles (R71 / C124, R72 / C125, 1k / 1u each) -> BC857BM base; emitter R73 (Re) to +3V3_VTX; collector Q27_C -> R65 10R -> PAOUT1_SUP -> L3 -> RTC6705 PAOUT1: it sets the RTC6705 output-stage current, not the SE5004L bias. Inverting, current mode. ngspice (Nexperia BC857BM model, PAOUT1 sink model): Re 10R gives 32-59 mA at the top step over hFE 220-475 and -20..85 C, Q27 <= 114 mW (Ptot 130 mW at 85 C), base ripple 2.1 mV p-p, settles in 8 ms (ELRS 20 ms loop). GPIO13 after reset is an input with the internal pull-down (ESP32 DS IO_MUX: oe=0, ie=1, wpd; about 45 kOhm): ngspice case 4 gives 10-19 mA (Re 10R) from reset until ELRS initialize() sets the pit count (stock vtxSPIPWM = MAX_PWM), and for as long as the ESP32 stays in ROM download mode (SW1 held, recovery): Q27 about 50 mW, the PA off (GPIO2 wpd), V5 measures that boot leakage at the U.FL. HD mode: both junctions reverse-biased 3.3 V (VEBO 5 V). Steps per 6 dB at Re 10R: 11-13 at 1 mA, 16-19 at 2 mA, 25-32 at 4 mA; V8 measures the PAOUT1 current at 25 mW and V5 sets Re (27R gives >= 20 steps from 1.5 mA). Start value R73 = 10R.\nRATINGS AT THE TOP STEP (Re 10R, hFE 475, 85 C: 58.5 mA): R73 and R65 dissipate about 34 mW each, against the RC0201 derating (50 mW to 70 C, zero at 125 C: 36 mW at 85 C, 27 mW at 95 C) beside a 2 W PA; Q27 <= 114 mW against 130 mW at 85 C (12 % margin). V8 pass: top-step current and the board temperature at R73 / R65 / Q27 keep each part inside its derated rating; levers: cap the ELRS power-table top count so Ic <= 45 mA (P <= 20 mW), or Re 27R (26 mW in R73, 10 mW in R65) if V5 accepts the steps; 0402s only if V8 shows the top step is needed."
+	(text_box "PNP PA DRIVE. ESP32 GPIO33 VTX_AMP_PWM (ELRS vtx_amp_pwm, 10 kHz) -> two RC poles (R71 / C124, R72 / C125, 1k / 1u each) -> BC857BM base; emitter R73 (Re) to +3.3V_VTX; collector Q27_C -> R65 10R -> PAOUT1_SUP -> L3 -> RTC6705 PAOUT1: it sets the RTC6705 output-stage current, not the SE5004L bias. Inverting, current mode. ngspice (Nexperia BC857BM model, PAOUT1 sink model): Re 10R gives 32-59 mA at the top step over hFE 220-475 and -20..85 C, Q27 <= 114 mW (Ptot 130 mW at 85 C), base ripple 2.1 mV p-p, settles in 8 ms (ELRS 20 ms loop). GPIO33 after reset is an input (ESP32 DS IO_MUX: oe=0, ie=1, wpd; about 45 kOhm): ngspice case 4 gives 10-19 mA (Re 10R) from reset until ELRS initialize() sets the pit count (stock vtxSPIPWM = MAX_PWM), and for as long as the ESP32 stays in ROM download mode (SW1 held, recovery): Q27 about 50 mW, the PA off (GPIO2 wpd), V5 measures that boot leakage at the U.FL. HD mode: both junctions reverse-biased 3.3 V (VEBO 5 V). Steps per 6 dB at Re 10R: 11-13 at 1 mA, 16-19 at 2 mA, 25-32 at 4 mA; V8 measures the PAOUT1 current at 25 mW and V5 sets Re (27R gives >= 20 steps from 1.5 mA). Start value R73 = 10R.\nRATINGS AT THE TOP STEP (Re 10R, hFE 475, 85 C: 58.5 mA): R73 and R65 dissipate about 34 mW each, against the RC0201 derating (50 mW to 70 C, zero at 125 C: 36 mW at 85 C, 27 mW at 95 C) beside a 2 W PA; Q27 <= 114 mW against 130 mW at 85 C (12 % margin). V8 pass: top-step current and the board temperature at R73 / R65 / Q27 keep each part inside its derated rating; levers: cap the ELRS power-table top count so Ic <= 45 mA (P <= 20 mW), or Re 27R (26 mW in R73, 10 mW in R65) if V5 accepts the steps; 0402s only if V8 shows the top step is needed."
 		(exclude_from_sim no)
 		(at 139.7 232.15 0)
-		(size 160.02 29.78)
+		(size 160.02 27.72)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -5715,7 +5805,7 @@
 		)
 		(uuid "9f627506-f93b-5e1c-9d3e-c71fbe308da2")
 	)
-	(text_box "RTC6705, checked pin by pin against OpenOSD-X v1.01: 23 REG1D8_1 -> C96 470n (= ref); 26 REG1D8 open (ref DNI); 17 AVDD_6.5 open (ref 3.3k + 1u, no 3.3 V; V5 checks for a 6.5 MHz spur); 31/32 BUFVDD/PAVDD -> +3V3_VTX with C103 100p + C101 100n shared with 30; 40 LDD2V5 -> +3V3_VTX direct with C102 100p (ref 51R + 1u filter; V5 video SNR); 39 VCOVDD with C102 + the 10 uF C108 placed there (ref 4.7u); 8/9 C98, 22 C100. Open: 1 SPI_SE (internal pull-up = SPI mode), 2-4, 11-16 (11 RF_VT2 audio input: V5 spur check), 18-21, 34, 36, 37. X4 exactly 8 MHz (ELRS R = 400), CL 10 pF = 15p + 15p in series + about 2.5 pF stray."
+	(text_box "RTC6705, checked pin by pin against OpenOSD-X v1.01: 23 REG1D8_1 -> C96 470n (= ref); 26 REG1D8 open (ref DNI); 17 AVDD_6.5 open (ref 3.3k + 1u, no 3.3 V; V5 checks for a 6.5 MHz spur); 31/32 BUFVDD/PAVDD -> +3.3V_VTX with C103 100p + C101 100n shared with 30; 40 LDD2V5 -> +3.3V_VTX direct with C102 100p (ref 51R + 1u filter; V5 video SNR); 39 VCOVDD with C102 + the 10 uF C108 placed there (ref 4.7u); 8/9 C98, 22 C100. Open: 1 SPI_SE (internal pull-up = SPI mode), 2-4, 11-16 (11 RF_VT2 audio input: V5 spur check), 18-21, 34, 36, 37. X4 exactly 8 MHz (ELRS R = 400), CL 10 pF = 15p + 15p in series + about 2.5 pF stray."
 		(exclude_from_sim no)
 		(at 139.7 190.5 0)
 		(size 160.02 13.3)
@@ -5737,7 +5827,7 @@
 	)
 	(text_box "PAOUT1 FEED + DC BLOCK (OpenOSD-X L4 C40 C43 R34, fed by the PNP stage instead of its NPN follower). PAOUT1 (pin 35, +2 dBm) -> L3 4.7 nH choke to PAOUT1_SUP (C109 10 nF X7R) <- R65 10R <- Q27_C; C110 10 pF DC block into RF_PA_IN (SE5004L pin 3 'DC block required'). Only L3, C109 and C110 sit in the 5.8 GHz part-free band between pin 35 and the PA (50 Ohm CPWG < 5 mm, 45 degree). RF class on RF_PAOUT1 / RF_PA_IN / RF_PA_OUT / RF_UFL (pattern */RF_*)."
 		(exclude_from_sim no)
-		(at 139.7 263.2 0)
+		(at 139.7 261.14 0)
 		(size 160.02 9.18)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -5755,7 +5845,7 @@
 		)
 		(uuid "b0089bc5-e8a3-5b94-8575-d9ad95b9ab53")
 	)
-	(text_box "VTX SPI (PINMAP F21). R80 / R81 / R82 1k in series with CS / CLK / DATA, drawn here and PLACED AT THE ESP32 END of each line (bom_plan): they limit back-feed into the unpowered RTC6705 in HD mode (<= 2.7 mA per high line; CS idles high -> +3V3_VTX about 0.27 V on the LP5912 100 Ohm active discharge, V9 limit 0.5 V; writes only at frequency changes). ELRS HSPI 1 MHz, mode 0, LSB first: tau = 1k x about 12 pF = 12 ns (26 ns 10-90 %) against >= 20 ns setup / hold in a 500 ns half period; the same RC on all three lines. SPIDATA is bidirectional (3-wire reads through R82, production test)."
+	(text_box "VTX SPI (PINMAP F21). R80 / R81 / R82 1k in series with CS / CLK / DATA, drawn here and PLACED AT THE ESP32 END of each line (bom_plan): they limit back-feed into the unpowered RTC6705 in HD mode (<= 2.7 mA per high line; CS idles high -> +3.3V_VTX about 0.27 V on the LP5912 100 Ohm active discharge, V9 limit 0.5 V; writes only at frequency changes). ELRS HSPI 1 MHz, mode 0, LSB first: tau = 1k x about 12 pF = 12 ns (26 ns 10-90 %) against >= 20 ns setup / hold in a 500 ns half period; the same RC on all three lines. SPIDATA is bidirectional (3-wire reads through R82, production test)."
 		(exclude_from_sim no)
 		(at 139.7 205.07 0)
 		(size 160.02 11.24)
@@ -8382,7 +8472,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0441ec21-be19-53f9-98c0-16c52c19dc14")
-		(property "Reference" "#PWR193"
+		(property "Reference" "#PWR194"
 			(at 208.28 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -8442,7 +8532,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR193")
+					(reference "#PWR194")
 					(unit 1)
 				)
 			)
@@ -8459,7 +8549,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "045bf379-9b6e-5e2b-98b9-4ff5c74d23ee")
-		(property "Reference" "#PWR200"
+		(property "Reference" "#PWR201"
 			(at 373.38 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -8519,7 +8609,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR200")
+					(reference "#PWR201")
 					(unit 1)
 				)
 			)
@@ -8558,7 +8648,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 393.7 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -8640,7 +8730,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 113.03 67.31 0)
 		(unit 1)
 		(body_style 1)
@@ -8650,7 +8740,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "05873ecc-9d48-5e11-bbf6-04091e0e167c")
-		(property "Reference" "#PWR195"
+		(property "Reference" "#PWR196"
 			(at 113.03 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -8661,7 +8751,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_VTX"
+		(property "Value" "+3.3V_VTX"
 			(at 113.03 63.754 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8693,7 +8783,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 113.03 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -8710,14 +8800,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR195")
+					(reference "#PWR196")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 50.8 46.99 0)
 		(unit 1)
 		(body_style 1)
@@ -8727,7 +8817,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "06630e2c-8d25-5233-80e4-a0efc46fce6b")
-		(property "Reference" "#PWR187"
+		(property "Reference" "#PWR188"
 			(at 50.8 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -8738,7 +8828,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 50.8 43.434 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8770,7 +8860,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 50.8 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -8787,7 +8877,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR187")
+					(reference "#PWR188")
 					(unit 1)
 				)
 			)
@@ -8804,7 +8894,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0b0718e9-46ac-5f0b-8c69-e5b2be3e6994")
-		(property "Reference" "#PWR199"
+		(property "Reference" "#PWR200"
 			(at 347.98 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -8864,7 +8954,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR199")
+					(reference "#PWR200")
 					(unit 1)
 				)
 			)
@@ -8881,7 +8971,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0b61c735-9c77-5d7d-8dfd-acb9fd375661")
-		(property "Reference" "#PWR203"
+		(property "Reference" "#PWR204"
 			(at 266.7 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -8941,7 +9031,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR203")
+					(reference "#PWR204")
 					(unit 1)
 				)
 			)
@@ -8980,7 +9070,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 246.38 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -9072,7 +9162,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0e89a7b5-7da0-5055-ac34-8e09b85043b6")
-		(property "Reference" "#PWR208"
+		(property "Reference" "#PWR209"
 			(at 373.38 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -9132,7 +9222,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR208")
+					(reference "#PWR209")
 					(unit 1)
 				)
 			)
@@ -9149,7 +9239,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0edf14ba-4343-5b03-9c78-d64c2dc0e5b9")
-		(property "Reference" "#PWR232"
+		(property "Reference" "#PWR233"
 			(at 207.01 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -9209,7 +9299,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR232")
+					(reference "#PWR233")
 					(unit 1)
 				)
 			)
@@ -9246,7 +9336,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 256.54 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -9338,7 +9428,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "11a9d689-0f5a-578f-a93d-ba99e995d762")
-		(property "Reference" "#PWR190"
+		(property "Reference" "#PWR191"
 			(at 170.18 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -9398,7 +9488,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR190")
+					(reference "#PWR191")
 					(unit 1)
 				)
 			)
@@ -9415,7 +9505,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "1747ee3a-2080-5ed3-929d-a613f69a7b49")
-		(property "Reference" "#PWR215"
+		(property "Reference" "#PWR216"
 			(at 289.56 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -9475,7 +9565,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR215")
+					(reference "#PWR216")
 					(unit 1)
 				)
 			)
@@ -9492,7 +9582,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "17d9d661-50da-545d-b6c9-4a77cc8db83d")
-		(property "Reference" "#PWR213"
+		(property "Reference" "#PWR214"
 			(at 444.5 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -9552,7 +9642,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR213")
+					(reference "#PWR214")
 					(unit 1)
 				)
 			)
@@ -9569,7 +9659,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "187e068d-2b41-5aee-8564-6d5409eea310")
-		(property "Reference" "#PWR228"
+		(property "Reference" "#PWR229"
 			(at 80.01 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -9629,14 +9719,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR228")
+					(reference "#PWR229")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 204.47 124.46 0)
 		(unit 1)
 		(body_style 1)
@@ -9646,7 +9736,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "19c2c0ff-1c20-5fc3-9bac-ceab37ab629b")
-		(property "Reference" "#PWR217"
+		(property "Reference" "#PWR218"
 			(at 204.47 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -9657,7 +9747,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_VTX"
+		(property "Value" "+3.3V_VTX"
 			(at 204.47 120.904 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9689,7 +9779,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 204.47 124.46 0)
 			(hide yes)
 			(show_name no)
@@ -9706,7 +9796,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR217")
+					(reference "#PWR218")
 					(unit 1)
 				)
 			)
@@ -9743,7 +9833,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 198.12 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -9855,7 +9945,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 38.1 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -9947,7 +10037,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "273ea157-348e-54c2-b38e-0f3c827293fc")
-		(property "Reference" "#PWR194"
+		(property "Reference" "#PWR195"
 			(at 62.23 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -10007,7 +10097,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR194")
+					(reference "#PWR195")
 					(unit 1)
 				)
 			)
@@ -10046,7 +10136,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 170.18 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -10160,7 +10250,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 276.86 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -10274,7 +10364,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 411.48 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -10388,7 +10478,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 182.88 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -10502,7 +10592,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 204.47 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -10614,7 +10704,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L"
+		(property "Footprint" "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L_L"
 			(at 360.68 125.73 0)
 			(hide yes)
 			(show_name no)
@@ -10785,7 +10875,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 289.56 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -10877,7 +10967,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "3675e126-6a1f-5892-ad86-99f325d838d1")
-		(property "Reference" "#PWR198"
+		(property "Reference" "#PWR199"
 			(at 105.41 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -10937,7 +11027,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR198")
+					(reference "#PWR199")
 					(unit 1)
 				)
 			)
@@ -10976,7 +11066,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 373.38 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -11068,7 +11158,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "402b9887-45af-5d73-950f-3c6beaa3e11a")
-		(property "Reference" "#PWR233"
+		(property "Reference" "#PWR234"
 			(at 219.71 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -11128,7 +11218,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR233")
+					(reference "#PWR234")
 					(unit 1)
 				)
 			)
@@ -11145,7 +11235,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "495f4bca-5a19-558c-810a-7d4a207b766e")
-		(property "Reference" "#PWR230"
+		(property "Reference" "#PWR231"
 			(at 213.36 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -11205,7 +11295,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR230")
+					(reference "#PWR231")
 					(unit 1)
 				)
 			)
@@ -11242,7 +11332,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 163.83 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -11324,7 +11414,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 276.86 52.07 0)
 		(unit 1)
 		(body_style 1)
@@ -11334,7 +11424,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "49906e23-70d5-5138-a281-61c282068a43")
-		(property "Reference" "#PWR188"
+		(property "Reference" "#PWR189"
 			(at 276.86 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -11345,7 +11435,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_VTX"
+		(property "Value" "+3.3V_VTX"
 			(at 276.86 48.514 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11377,7 +11467,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 276.86 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -11394,7 +11484,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR188")
+					(reference "#PWR189")
 					(unit 1)
 				)
 			)
@@ -11431,7 +11521,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense"
+		(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L"
 			(at 81.28 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -11560,7 +11650,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 219.71 170.18 0)
 			(hide yes)
 			(show_name no)
@@ -11652,7 +11742,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "4cb322d0-258d-51ee-b527-57890c1bab88")
-		(property "Reference" "#PWR225"
+		(property "Reference" "#PWR226"
 			(at 99.06 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -11712,7 +11802,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR225")
+					(reference "#PWR226")
 					(unit 1)
 				)
 			)
@@ -11751,7 +11841,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 173.99 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -11865,7 +11955,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 99.06 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -11947,7 +12037,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 257.81 101.6 0)
 		(unit 1)
 		(body_style 1)
@@ -11957,7 +12047,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "536d97f8-2c13-52a9-a926-d35316354a83")
-		(property "Reference" "#PWR212"
+		(property "Reference" "#PWR213"
 			(at 257.81 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -11968,7 +12058,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_VTX"
+		(property "Value" "+3.3V_VTX"
 			(at 257.81 98.044 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12000,7 +12090,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 257.81 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -12017,7 +12107,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR212")
+					(reference "#PWR213")
 					(unit 1)
 				)
 			)
@@ -12034,7 +12124,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "549bbc63-d644-5de1-a84e-7e07e907312c")
-		(property "Reference" "#PWR224"
+		(property "Reference" "#PWR225"
 			(at 173.99 152.4 0)
 			(hide yes)
 			(show_name no)
@@ -12094,7 +12184,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR224")
+					(reference "#PWR225")
 					(unit 1)
 				)
 			)
@@ -12133,7 +12223,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 276.86 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -12245,7 +12335,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical"
+		(property "Footprint" "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical_L"
 			(at 459.74 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -12360,7 +12450,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 236.22 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -12474,7 +12564,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 337.82 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -12586,7 +12676,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 194.31 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -12678,7 +12768,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "648afa5d-636e-5a84-a0e6-a18c8ba004fe")
-		(property "Reference" "#PWR204"
+		(property "Reference" "#PWR205"
 			(at 50.8 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -12738,7 +12828,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR204")
+					(reference "#PWR205")
 					(unit 1)
 				)
 			)
@@ -12777,7 +12867,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 398.78 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -12869,7 +12959,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "69cdf726-d5b5-5b89-8275-a80a7ede4ea6")
-		(property "Reference" "#PWR196"
+		(property "Reference" "#PWR197"
 			(at 72.39 76.2 0)
 			(hide yes)
 			(show_name no)
@@ -12929,7 +13019,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR196")
+					(reference "#PWR197")
 					(unit 1)
 				)
 			)
@@ -12968,7 +13058,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 325.12 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -13080,7 +13170,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 163.83 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -13172,7 +13262,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "6b599f17-8fd4-55c3-bcbe-d9fa0b6754fc")
-		(property "Reference" "#PWR189"
+		(property "Reference" "#PWR190"
 			(at 157.48 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -13232,7 +13322,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR189")
+					(reference "#PWR190")
 					(unit 1)
 				)
 			)
@@ -13271,7 +13361,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 208.28 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -13363,7 +13453,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "74a0f199-fdd5-5b8a-acfd-c10e7524b791")
-		(property "Reference" "#PWR221"
+		(property "Reference" "#PWR222"
 			(at 279.4 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -13423,7 +13513,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR221")
+					(reference "#PWR222")
 					(unit 1)
 				)
 			)
@@ -13460,7 +13550,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 393.7 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -13552,7 +13642,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7a6b86c2-f8d5-5264-9a40-3f10ea4f925d")
-		(property "Reference" "#PWR235"
+		(property "Reference" "#PWR236"
 			(at 393.7 187.96 0)
 			(hide yes)
 			(show_name no)
@@ -13612,7 +13702,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR235")
+					(reference "#PWR236")
 					(unit 1)
 				)
 			)
@@ -13629,7 +13719,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7b6aa8a4-946a-5a46-84a6-7afa39b4deea")
-		(property "Reference" "#PWR205"
+		(property "Reference" "#PWR206"
 			(at 312.42 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -13689,7 +13779,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR205")
+					(reference "#PWR206")
 					(unit 1)
 				)
 			)
@@ -13938,7 +14028,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "80bc725d-8046-5ca6-83bc-000789ae3620")
-		(property "Reference" "#PWR201"
+		(property "Reference" "#PWR202"
 			(at 67.31 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -13998,7 +14088,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR201")
+					(reference "#PWR202")
 					(unit 1)
 				)
 			)
@@ -14114,7 +14204,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 157.48 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -14228,7 +14318,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 95.25 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -14320,7 +14410,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "8da6d3e1-fa4b-5372-8971-26070088f842")
-		(property "Reference" "#PWR216"
+		(property "Reference" "#PWR217"
 			(at 434.34 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -14380,7 +14470,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR216")
+					(reference "#PWR217")
 					(unit 1)
 				)
 			)
@@ -14537,7 +14627,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "98a6cb4e-f77c-53ea-b1f1-60eab789c02a")
-		(property "Reference" "#PWR192"
+		(property "Reference" "#PWR193"
 			(at 195.58 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -14597,7 +14687,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR192")
+					(reference "#PWR193")
 					(unit 1)
 				)
 			)
@@ -14636,7 +14726,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 386.08 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -14750,7 +14840,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 266.7 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -14862,7 +14952,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 181.61 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -14976,7 +15066,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 393.7 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -15068,7 +15158,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "9dd9268d-b606-5bdf-a542-433adb258426")
-		(property "Reference" "#PWR209"
+		(property "Reference" "#PWR210"
 			(at 386.08 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -15128,7 +15218,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR209")
+					(reference "#PWR210")
 					(unit 1)
 				)
 			)
@@ -15145,7 +15235,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "a18d0f0c-2c38-5cb8-9e12-0e01258835e3")
-		(property "Reference" "#PWR211"
+		(property "Reference" "#PWR212"
 			(at 411.48 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -15205,14 +15295,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR211")
+					(reference "#PWR212")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 393.7 156.21 0)
 		(unit 1)
 		(body_style 1)
@@ -15222,7 +15312,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "a4f3cf76-982f-54c7-bb19-2c10b8ff5444")
-		(property "Reference" "#PWR229"
+		(property "Reference" "#PWR230"
 			(at 393.7 160.02 0)
 			(hide yes)
 			(show_name no)
@@ -15233,7 +15323,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 393.7 152.654 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15265,7 +15355,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 393.7 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -15282,7 +15372,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR229")
+					(reference "#PWR230")
 					(unit 1)
 				)
 			)
@@ -15321,7 +15411,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 401.32 127 0)
 			(hide yes)
 			(show_name no)
@@ -15435,7 +15525,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 233.68 175.26 0)
 			(hide yes)
 			(show_name no)
@@ -15527,7 +15617,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ad6acf00-85fd-50c4-9408-407748aacb79")
-		(property "Reference" "#PWR210"
+		(property "Reference" "#PWR211"
 			(at 398.78 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -15587,7 +15677,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR210")
+					(reference "#PWR211")
 					(unit 1)
 				)
 			)
@@ -15604,7 +15694,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ad6ef170-9f3b-5665-9bfc-439dc0744f2e")
-		(property "Reference" "#PWR207"
+		(property "Reference" "#PWR208"
 			(at 337.82 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -15664,7 +15754,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR207")
+					(reference "#PWR208")
 					(unit 1)
 				)
 			)
@@ -15681,7 +15771,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "adb56b2c-66b1-5786-a5ce-f76d0bd3d48a")
-		(property "Reference" "#PWR223"
+		(property "Reference" "#PWR224"
 			(at 350.52 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -15741,7 +15831,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR223")
+					(reference "#PWR224")
 					(unit 1)
 				)
 			)
@@ -15780,7 +15870,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 292.1 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -15894,7 +15984,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:L_0201_0603Metric_W"
+		(property "Footprint" "lib:L_0201_0603Metric_L"
 			(at 276.86 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -15986,7 +16076,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b0f4c79a-9ba2-528d-a9ea-a5810cbe660f")
-		(property "Reference" "#PWR218"
+		(property "Reference" "#PWR219"
 			(at 401.32 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -16046,7 +16136,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR218")
+					(reference "#PWR219")
 					(unit 1)
 				)
 			)
@@ -16063,7 +16153,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b2dfa14c-2700-5bda-905d-a7c10bc9a4ff")
-		(property "Reference" "#PWR234"
+		(property "Reference" "#PWR235"
 			(at 233.68 185.42 0)
 			(hide yes)
 			(show_name no)
@@ -16123,7 +16213,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR234")
+					(reference "#PWR235")
 					(unit 1)
 				)
 			)
@@ -16140,7 +16230,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b5548f22-6f21-5aea-910a-c2ea9ba71e91")
-		(property "Reference" "#PWR227"
+		(property "Reference" "#PWR228"
 			(at 204.47 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -16200,7 +16290,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR227")
+					(reference "#PWR228")
 					(unit 1)
 				)
 			)
@@ -16217,7 +16307,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b5848a74-3ae0-5782-b1da-2fecd4d33fab")
-		(property "Reference" "#PWR202"
+		(property "Reference" "#PWR203"
 			(at 246.38 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -16277,7 +16367,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR202")
+					(reference "#PWR203")
 					(unit 1)
 				)
 			)
@@ -16316,7 +16406,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 312.42 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -16430,7 +16520,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 204.47 146.05 0)
 			(hide yes)
 			(show_name no)
@@ -16522,7 +16612,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b8e51e8f-cfb9-5004-a92b-256d500c0b4d")
-		(property "Reference" "#PWR214"
+		(property "Reference" "#PWR215"
 			(at 474.98 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -16582,7 +16672,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR214")
+					(reference "#PWR215")
 					(unit 1)
 				)
 			)
@@ -16599,7 +16689,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b966ec2b-9b51-5a63-919d-8431955587a9")
-		(property "Reference" "#PWR222"
+		(property "Reference" "#PWR223"
 			(at 63.5 146.05 0)
 			(hide yes)
 			(show_name no)
@@ -16659,7 +16749,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR222")
+					(reference "#PWR223")
 					(unit 1)
 				)
 			)
@@ -16698,7 +16788,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 105.41 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -16810,7 +16900,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 287.02 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -16924,7 +17014,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 207.01 170.18 0)
 			(hide yes)
 			(show_name no)
@@ -17036,7 +17126,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 198.12 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -17128,7 +17218,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ced6a4fc-818e-5c2e-a9aa-9ccc5ecd1a16")
-		(property "Reference" "#PWR206"
+		(property "Reference" "#PWR207"
 			(at 325.12 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -17188,7 +17278,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR206")
+					(reference "#PWR207")
 					(unit 1)
 				)
 			)
@@ -17227,7 +17317,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_Dense"
+		(property "Footprint" "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_L"
 			(at 241.3 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -17249,7 +17339,7 @@
 				)
 			)
 		)
-		(property "Description" "5.8 GHz FM video/audio transmitter (PLL synthesiser + VCO + driver), 3-wire SPI (SPI_SE high) or channel pins, QFN-40 6x6 mm, EP (41) = GND. Data-sheet NC pins 2, 12, 18, 36, 37 omitted (no internal connection; trimmed in the _Dense footprint). PAOUT1 +2 dBm / PAOUT2 +13 dBm outputs; REG1D8/REG1D8_1 are internal 1.8 V regulator outputs for decoupling only. RTC6705A is pin compatible"
+		(property "Description" "5.8 GHz FM video/audio transmitter (PLL synthesiser + VCO + driver), 3-wire SPI (SPI_SE high) or channel pins, QFN-40 6x6 mm, EP (41) = GND. Data-sheet NC pins 2, 12, 18, 36, 37 are no_connect pins (no internal connection; full datasheet lands, D101). PAOUT1 +2 dBm / PAOUT2 +13 dBm outputs; REG1D8/REG1D8_1 are internal 1.8 V regulator outputs for decoupling only. RTC6705A is pin compatible"
 			(at 241.3 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -17401,6 +17491,21 @@
 		(pin "41"
 			(uuid "71d73151-a164-50c9-a3b0-76c07c6d08c5")
 		)
+		(pin "2"
+			(uuid "b5684d46-3df1-528b-83fb-74bf2cf7deb0")
+		)
+		(pin "12"
+			(uuid "38139bff-17db-5097-9c44-d58fb675d830")
+		)
+		(pin "18"
+			(uuid "eaf5841a-3b90-5b29-8809-b0b3279aed8b")
+		)
+		(pin "36"
+			(uuid "bd684057-4128-5e6c-bf68-2aa92bf6224e")
+		)
+		(pin "37"
+			(uuid "1482b191-ab97-57f5-a554-d748e8844314")
+		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
@@ -17441,7 +17546,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 198.12 78.74 0)
 			(hide yes)
 			(show_name no)
@@ -17533,7 +17638,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "d7bbff71-6183-57f4-9ad0-f2edc7111efc")
-		(property "Reference" "#PWR191"
+		(property "Reference" "#PWR192"
 			(at 182.88 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -17593,7 +17698,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR191")
+					(reference "#PWR192")
 					(unit 1)
 				)
 			)
@@ -17632,7 +17737,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 279.4 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -17724,7 +17829,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "d94cb727-24f1-55c9-aacc-1668a4509ba7")
-		(property "Reference" "#PWR197"
+		(property "Reference" "#PWR198"
 			(at 95.25 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -17784,14 +17889,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR197")
+					(reference "#PWR198")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 152.4 45.72 0)
 		(unit 1)
 		(body_style 1)
@@ -17801,7 +17906,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "de6a1b51-cb13-5afa-a04f-bf7c7a6a010f")
-		(property "Reference" "#PWR186"
+		(property "Reference" "#PWR187"
 			(at 152.4 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -17812,7 +17917,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_VTX"
+		(property "Value" "+3.3V_VTX"
 			(at 152.4 42.164 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17844,7 +17949,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 152.4 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -17861,7 +17966,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR186")
+					(reference "#PWR187")
 					(unit 1)
 				)
 			)
@@ -17900,7 +18005,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_W"
+		(property "Footprint" "lib:C_0402_1005Metric_L"
 			(at 63.5 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -18012,7 +18117,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 269.24 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -18104,7 +18209,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "e85725e6-7dcb-5202-9919-f20993334046")
-		(property "Reference" "#PWR231"
+		(property "Reference" "#PWR232"
 			(at 241.3 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -18164,7 +18269,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR231")
+					(reference "#PWR232")
 					(unit 1)
 				)
 			)
@@ -18181,7 +18286,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "e9aca885-5a59-5d25-b29c-35308119fa03")
-		(property "Reference" "#PWR226"
+		(property "Reference" "#PWR227"
 			(at 292.1 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -18241,7 +18346,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR226")
+					(reference "#PWR227")
 					(unit 1)
 				)
 			)
@@ -18258,7 +18363,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ea9b4190-7ab6-5732-815a-954c3a15f905")
-		(property "Reference" "#PWR220"
+		(property "Reference" "#PWR221"
 			(at 342.9 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -18318,14 +18423,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR220")
+					(reference "#PWR221")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 58.42 132.08 0)
 		(unit 1)
 		(body_style 1)
@@ -18335,7 +18440,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "edccd8a5-63bd-5c1c-a983-b3b0c18065c8")
-		(property "Reference" "#PWR219"
+		(property "Reference" "#PWR220"
 			(at 58.42 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -18346,7 +18451,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3_VTX"
+		(property "Value" "+3.3V_VTX"
 			(at 58.42 128.524 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18378,7 +18483,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 58.42 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -18395,7 +18500,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR219")
+					(reference "#PWR220")
 					(unit 1)
 				)
 			)
@@ -18434,7 +18539,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 50.8 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -18668,7 +18773,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 292.1 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -18782,7 +18887,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 195.58 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -18894,7 +18999,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0402_Selector_3Pad"
+		(property "Footprint" "lib:R_0402_Selector_3Pad_L"
 			(at 360.68 76.2 0)
 			(hide yes)
 			(show_name no)

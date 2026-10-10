@@ -15,7 +15,7 @@ bypass and C94 / C95 crystal loads) and fail 31 of 46 on the current board (open
 | `kicad-cli sch erc` (all severities) | **0 errors, 2 warnings** (both justified below); baseline before integration: 2 errors, 105 warnings |
 | `hardware/tools/check_netlist.py` | **7 ok, 0 FAIL** (N1-N6, N5 run for the FC and the RX; N6 now also checks each net's class through the .kicad_pro patterns, D82) |
 | `hardware/tools/check_conventions.py` | **39 ok, 0 FAIL**, 4 warn, 3 skip after round 4 (B7 requires each solder pad's nearest aligned silk label to equal its pad code; B8 / B9 pass on the board labels). Correction: round 3 reported 39 / 0, but the routing prep promoted `route/ckpt/28_candidate` over the board at 03:03:28, 6 s after the re-apply, so the repo board read **37 ok, 2 FAIL (B7, B9)** until round 4 re-applied the labels with `hardware/tools/silk_pad_labels.py` |
-| `sch_visual_check.py` (commons, KiCad 10 hide fix: `p2v3/p4/rx/tools/svc_k10.py`, round 4 adds `textbox_intrusion`: a text or symbol body inside a note's rectangle, which caught C82's '+3V3' under the RX MCU note: 5 hits on the round-3 sheets) | **0 hits on all 11 sheets**; the unpatched commons copy counts the KiCad 10 hidden fields (9251 → 9353, not meaningful, ruling 2026-10-09); it has no frame-to-frame check, so round 2 added `frame_check.py` and round 3 (`p2v3/p4/fix3/scripts/frame_check.py`) gave it a title-block test: **0 title-block hits on all 11 sheets** (was 1: ESC half-bridge frame); its 19 other hits are house-style items present in the sibling sheets (OSD hand-drawn table grid, notes outside frames on RP2350A / ESC / PADS) |
+| `sch_visual_check.py` (commons, KiCad 10 hide fix: `p2v3/p4/rx/tools/svc_k10.py`, round 4 adds `textbox_intrusion`: a text or symbol body inside a note's rectangle, which caught C82's '+3.3V' under the RX MCU note: 5 hits on the round-3 sheets) | **0 hits on all 11 sheets**; the unpatched commons copy counts the KiCad 10 hidden fields (9251 → 9353, not meaningful, ruling 2026-10-09); it has no frame-to-frame check, so round 2 added `frame_check.py` and round 3 (`p2v3/p4/fix3/scripts/frame_check.py`) gave it a title-block test: **0 title-block hits on all 11 sheets** (was 1: ESC half-bridge frame); its 19 other hits are house-style items present in the sibling sheets (OSD hand-drawn table grid, notes outside frames on RP2350A / ESC / PADS) |
 | `hardware/tools/check_p5_conditions.py` (board placement conditions) | 15 ok, **31 FAIL** on the current board (round 3 added SMPS, BOOT, USB series R, NOR cap and LP5907 CIN conditions; round 4 adds C103 at RTC6705 pins 31/32 same side <= 1.0 mm (3.3 mm, F vs B), C94 / C95 at pins 24 / 25 <= 1.5 mm (2.0 / 4.5 mm)): P5 input, not a schematic error (open item 10) |
 | `kicad-cli pcb drc --schematic-parity` | repo board **25** (21 footprint_filters_mismatch from the schematic, now fixed by project-lib copies, + 4 pending the C122 / D1 sync); after a scratch `sync_pcb.py` of the round-4 schematic **0** (ptest in `p2v3/p4/fix4`); the U20 NU / GND shorting_items error clears with that sync, the U5 WSON and C122 0402 lands then need 3 vias moved (FLOORPLAN open item 13) |
 | `hardware/tools/check_footprint.py` R_0402_Selector_3Pad | PASS, 0 WARN (pad 3 paste-free by spec) |
@@ -65,15 +65,15 @@ the edits to the shard originals). After any generator run, `hardware/tools/sch_
   `lib.kicad_sym` with datasheet pin types (list in research/LIBRARY.md); `bom_plan.json` `symbol` points at the
   copies. Pin-name cosmetics fixed on the copies: INA186, AP1606, SDM02U30, SDM02M30 (D8) names hidden, AOTA numbers
   hidden, BMI270 pins 2/3 lengthened so they reach the body.
-- **PWR_FLAGs.** Regulator outputs are now `power_out` pins, so the flags on +3V3 (POWER) and +3V3_VTX (VTX) were
+- **PWR_FLAGs.** Regulator outputs are now `power_out` pins, so the flags on +3.3V (POWER) and +3.3V_VTX (VTX) were
   removed (a flag next to a power output is an ERC error). Flags stay where the only source is passive or a
-  connector: +BATT_IN, GND, +BATT, +5V_CAM, VBUS, +1V1, PA_VCC, plus a new one on VREG_AVDD (R41 RC filter, ERC asked).
+  connector: +BATT_IN, GND, +BATT, +5V_CAM, VBUS, +1.1V, PA_VCC, plus a new one on VREG_AVDD (R41 RC filter, ERC asked).
   Contract rule 7 updated.
 - **Rulings applied.** R84 10k -> 1k (RC0201FR-071KL; LP5912 EN 0.03-0.04 V with GPIO21 low). New **C134** 4.7 uF
-  (CL05A475MP5NRNC, same line as C56) on +1V1 at DVDD pin 23. Net class pattern `*ADC_CURR*` -> Analog and `/VBUS` ->
+  (CL05A475MP5NRNC, same line as C56) on +1.1V at DVDD pin 23. Net class pattern `*ADC_CURR*` -> Analog and `/VBUS` ->
   Power (setup_board.py NETCLASS_PATTERNS and .kicad_pro, same order). bom_plan net notes synced to the netlist for
-  35 parts (U1 / C5 on SHUNT_SENSE_P_RC / N_RC, R64 on RTC_VT, R59 shunt, U22 from +3V3_VTX, O4_EN = U5_EN, ...).
-  +3V3 Wi-Fi peak (0.48 A, bench-only mode) in the root power table.
+  35 parts (U1 / C5 on SHUNT_SENSE_P_RC / N_RC, R64 on RTC_VT, R59 shunt, U22 from +3.3V_VTX, O4_EN = U5_EN, ...).
+  +3.3V Wi-Fi peak (0.48 A, bench-only mode) in the root power table.
 - **Local labels on every multi-pin net** (contract rule 8): the 19 auto-named nets now carry labels named after the
   driving pin or the contract name: VTX RTC_CP / RTC_VT / RTC_LF, VT_MOD / VT_MOD_N1 / VT_MOD_N2, U19_XTAL1 / XTAL2,
   U19_REG1D8, U19_SPILE / SPICLK / SPIDATA, PA_RC1, Q27_B, Q27_E; RP2350A VREG_LX; POWER U5_CT; LED D5_K, D6_K.
@@ -126,7 +126,7 @@ datasheet or file first.
 | 23 | MINOR | LP5907 abs max and VREF window margins | fixed | deviations recorded in the PA REFERENCE note; V5c / V9b |
 | 24 | MINOR | R84, R80-R82 position, SE5004L "match" | fixed | notes (R84 1k, R80-R82 at the ESP32 end), spec §4.8 |
 | 25 | MINOR | VTX / RX sheet style | fixed | framed blocks with titles, notes inside each frame, Q27_C -> R65 one wire (drive stage beside the PAOUT1 feed), net `PA_BIAS_PWM` -> `VTX_AMP_PWM` |
-| 26 | MINOR | +3V3_VTX budget 0.10 A | fixed | root table "0.10 A typ, about 0.17 A at max PA", spec §5.1 |
+| 26 | MINOR | +3.3V_VTX budget 0.10 A | fixed | root table "0.10 A typ, about 0.17 A at max PA", spec §5.1 |
 
 Placements 269 -> 275 in bom_plan (+8 hot-loop caps, -C30, -C17), 82 lines unchanged.
 
@@ -177,13 +177,13 @@ R_Shunt_Kelvin, SolderPad_01x01). Decisions D83 (U5 package) and D84 (PicoBlade 
 | 6 | MAJOR | 21 footprint_filters_mismatch parity issues from the schematic | fixed | verified the filters; D7 filter `*SOT*9X3*DRT*`; project copies `lib:D_BAS16LD` (`*SOD882*`), `lib:L_FTC252012` (`IND-SMD*`), `lib:R_Shunt_Kelvin` (`R_*Kelvin*`), `lib:SolderPad_01x01` (`SolderPad_* BattPad_*`, Conn_01x01 graphics) for J2 / J3 / J16-J29 / J33; check_conventions A16 / B7 use the footprint, so they accept it; LINEUP rule 16 names the copy; scratch sync parity 0 |
 | 8 | MINOR | EFM8BB51 RAMPVDD ≥ 10 µs/V not recorded | fixed | verified DS Table 4.7; ESC VDD note and spec §4.4 record it as a Matrix-parity deviation (hot plug about 1 µs/V; the 2.2-4.7 Ω VDD R gives τ 0.5 µs, a real fix needs ≥ 15 µs); V3c: 20 hot plugs, all ESCs answer DShot / EDT, settings intact, no stuck reset |
 | 9 | MINOR | VTX LDO enable margin checked at 25 °C only | fixed | verified AP1606 IDSS ≤ 1 / 100 µA at 25 / 125 °C (about 16 µA at 85 °C), VGS(th) 0.4-1.2 V at 250 µA, LP5912 VEN(ON) ≤ 1.3 V, VEN(OFF) ≥ 0.3 V, 3 MΩ pull-down; R68 → 47k (RC0201FR-0747KL, existing line): 42 µA leakage margin (was 20), GPIO21 low 0.07 V, Q28 sinks 70 µA; VTX and P4-11 notes with the hot figures, contract, V9 hot-soak boot at 85 °C |
-| 10 | MINOR | TPS2116 §7.3.4 RCB recommendation not dispositioned | fixed | verified §7.3.4; mux note and spec §4.2 cite it as a considered deviation (no part); V1: VIN1 / VOUT ≤ 6.0 V and +3V3 ≥ 3.0 V on every plug and unplug |
+| 10 | MINOR | TPS2116 §7.3.4 RCB recommendation not dispositioned | fixed | verified §7.3.4; mux note and spec §4.2 cite it as a considered deviation (no part); V1: VIN1 / VOUT ≤ 6.0 V and +3.3V ≥ 3.0 V on every plug and unplug |
 | 11 | MINOR | SMF5.0A VBR 6.40-7.07 V; lib Datasheet empty | fixed | verified Littelfuse SMF table (6.40-7.00 V at 10 mA, IR ≤ 400 µA, VC 9.2 V at 21.7 A); POWER note, spec §4.1, lib description; Datasheet = the LCSC mirror of the Littelfuse SMF datasheet (C151296 = D1) |
-| 12 | MINOR | spec §4.2 / §4.4 stale power text | fixed | H2 as a D69 preference, Wi-Fi 0.48 A bench peak, PR1 3.44-4.04 V (3.37-4.10 V 1 %), no C30 / X6S-distance clause, C17 deleted (D79), +3V3_VTX 16.0 / 6.8 µF, no gate R / 0R options |
+| 12 | MINOR | spec §4.2 / §4.4 stale power text | fixed | H2 as a D69 preference, Wi-Fi 0.48 A bench peak, PR1 3.44-4.04 V (3.37-4.10 V 1 %), no C30 / X6S-distance clause, C17 deleted (D79), +3.3V_VTX 16.0 / 6.8 µF, no gate R / 0R options |
 | 14 | MINOR | PADS motor-land note gives B for J7 / J13 | fixed | verified bom_plan and board (all four F); note rewritten |
 | 15 | MINOR | PINMAP §4.5 pull-down 35-189 kΩ (1.8 V row) | fixed | verified RP2350 DS (36-113 kΩ at IOVDD 3.3 V) |
-| 16 | MINOR | RX MCU note printed over C82 '+3V3' | fixed | measured on the round-3 PDF (note ink to y 164.3, svc model 160.3); C76 / C82 moved below the note (y 186.69, right of the hierarchical labels); svc_k10 `textbox_intrusion` added (5 hits on the round-3 sheet, 0 now) |
-| 17 | MINOR | C103 / C94 / C95 placement not checked | fixed (P5 input) | verified pins (C103 on +3V3_VTX at pins 31/32, C94 / C95 on XTAL1 / XTAL2 pins 24 / 25); `check_p5_conditions.py` VTX: C103 same side <= 1.0 mm, C94 / C95 <= 1.5 mm (all FAIL now: 3.3 mm F vs B, 2.0, 4.5 mm); move at the next placement pass (FLOORPLAN open item 13) |
+| 16 | MINOR | RX MCU note printed over C82 '+3.3V' | fixed | measured on the round-3 PDF (note ink to y 164.3, svc model 160.3); C76 / C82 moved below the note (y 186.69, right of the hierarchical labels); svc_k10 `textbox_intrusion` added (5 hits on the round-3 sheet, 0 now) |
+| 17 | MINOR | C103 / C94 / C95 placement not checked | fixed (P5 input) | verified pins (C103 on +3.3V_VTX at pins 31/32, C94 / C95 on XTAL1 / XTAL2 pins 24 / 25); `check_p5_conditions.py` VTX: C103 same side <= 1.0 mm, C94 / C95 <= 1.5 mm (all FAIL now: 3.3 mm F vs B, 2.0, 4.5 mm); move at the next placement pass (FLOORPLAN open item 13) |
 | 18 | MINOR | FL1 still called 'LPF'; Wi-Fi '<= 8 mm' as a requirement | fixed | root block 'FILTER + WIRE ANT', contract block name / source, spec §2 / §10 rows; RX Wi-Fi note '<= 8 mm preferred, D69; FLOORPLAN open item 10'. bom_plan region key `radio_lpf` left as is (floorplan-owned field) |
 | 19 | MINOR | IO-SET row 12 still lists TP10 / TP11 pads | fixed | row 12 = D67 set (TP1-TP8, TP9, TP12, TP13 as mask-open filled vias, no silk; TP10 / TP11 removed) |
 
@@ -196,7 +196,7 @@ board first. No part added or removed (275 placements, 236 BOM, 82 lines); one v
 |---|---|---|---|---|
 | 1 | MAJOR | RP2354A SMPS CIN / LX / COUT on the far side (U10 F, C58 / L2 / C56 / C57 B) | fixed in part | verified RP2350 DS 6.3.8.1 ("Don't place any of CIN/LX/COUT on the opposite side"); `check_p5_conditions.py` SMPS (C58 / L2 LX pad / C56 / C57 on U10's side within 3 mm of pins 49 / 48 / 50 / 46, L2 pad nets); FLOORPLAN open item 11 (move them to F with SW1 / D8, routing conditions, deviation + V9 fallback); sheet note DS Fig. 26 / 28 + P5 reference; bom_plan notes. Moving the parts is the placement stage's |
 | 2 | MAJOR | LED-row silk labels one pad off (BZ- pad read '5V'), no M4; B7 blind to it | fixed | verified on the board; labels re-placed one per pad (BZ- 5V LED GND, aligned) and M4 at J13 (`silk_fix3.py`, idempotent); check_conventions B7 = nearest aligned label must equal the pad code (fails on the old board: J20 / J21 / J22); 39 ok, 0 FAIL |
-| 3 | MINOR | LP5907 CIN below 0.7 µF effective | fixed (option a) | verified SNVS798Q 5.6 / 7.2.2.4; C122 → Samsung CL05A475MP5NRNC 4.7 µF 0402 (existing line, about 2.6 µF at 3.3 V); +3V3_VTX 16.0 µF nominal / about 6.8 µF effective, inside the LP5912 10 µF; VTX notes, spec §4.2 row and P4-17, P5 condition (same side, ≤ 1.5 mm) |
+| 3 | MINOR | LP5907 CIN below 0.7 µF effective | fixed (option a) | verified SNVS798Q 5.6 / 7.2.2.4; C122 → Samsung CL05A475MP5NRNC 4.7 µF 0402 (existing line, about 2.6 µF at 3.3 V); +3.3V_VTX 16.0 µF nominal / about 6.8 µF effective, inside the LP5912 10 µF; VTX notes, spec §4.2 row and P4-17, P5 condition (same side, ≤ 1.5 mm) |
 | 4 | MINOR | spec power-esc passages describe the TI stage / old decisions | fixed | verified AGM210MAP DS VER2.73 Table 1 (VDS 20 / −20 V, VGS ±12 V, EAS 36 / 49 mJ); spec §4.1 TVS row and §15.4 row (TI text kept as fallback), §4.4 bulk (D77), §5.3 H2 as a D69 preference with V1, 10 µF 0402 at about 2.6-2.8 µF at 4.2 V (spec table and ESC VDD note) |
 | 5 | MINOR | §15.3 predates D56-D66; PY25Q128HA quote risk only in LIBRARY.md | fixed | §15.3 regenerated from bom_plan under D60 as a per-line quote check (stall-risk lines first); open item 12; bom_plan U13 note |
 | 6 | MINOR | O4 enable thresholds stated three ways | fixed | verified TPS22810 VENR 1.13-1.30 / VENF 1.08-1.18 V with 33k / 18k / 510k and +5V_HD 4.93-5.37 V: on 3.23-3.82 V, shed 2.74-3.14 V (1 %); PADS note, spec §1 / §4.2 / §5.3 / V1 / §15.4 / P4-1, PINMAP F21 |
@@ -206,7 +206,7 @@ board first. No part added or removed (275 placements, 236 BOM, 82 lines); one v
 | 10 | MINOR | CS ≥ 2.75 V at reset overstated | fixed | verified RPD 36-113 kΩ at 3.3 V (DS Table 1683): ≥ 2.58 V (0.78 VDD) > 2.31 V; PINMAP §4.5, IMU note |
 | 11 | MINOR | spec §4.5 / §4.9 / §10 / P4-6 / §2 describe earlier variants | fixed | D78 crystal row, D57 / D76 USB, SW1 + D8 + R44 boot, D66 NOR table and paragraph, §10 test-via (and USB) rows, P4-6 RX_BOOT |
 | 12 | MINOR | PINMAP §5.4 lacks the IO-SET §2.3 presets | fixed | EXT-HD-PADS, EXT-USER-PADS, I2C-USER, I2C-HD rows (resource moves, pull-ups, passthrough, V9); IO-SET §2.2 item marked applied |
-| 13 | MINOR | GPIO5 strap reads 0 in HD mode | fixed | RX note: 1 with +3V3_VTX up, 0 in HD mode (RTC6705 unpowered), SDIO-slave timing only |
+| 13 | MINOR | GPIO5 strap reads 0 in HD mode | fixed | RX note: 1 with +3.3V_VTX up, 0 in HD mode (RTC6705 unpowered), SDIO-slave timing only |
 | 14 | MINOR | GPIO13 'floating' at reset: three numbers | fixed | verified ESP32 DS IO_MUX (MTCK after reset oe=0, ie=1, wpd) and ngspice case 4 (10.2-18.9 mA at Re 10 Ω); VTX note, spec §4.8 start-up and ExpressLRS row (patch (4) GPIO13 part dropped: stock ELRS sets the pit count at init), PINMAP §6 row and F15; V5 download-mode leakage |
 | 15 | MINOR | RX_LED label touches VTX_PWR_CTL | fixed | IO22 routed one grid lower; svc_k10 0 hits |
 | 16 | MINOR | net-class colours swapped against OpenAIO, RF near wire green | fixed | OpenAIO colours (Phase magenta, Power orange, RF gold, Analog teal, VBAT red, USB blue), Gate violet rgb(120, 60, 220) (OpenAIO's green sits on the wire colour), GND grey; `setup_board.py` + .kicad_pro; PDF re-exported |
@@ -218,8 +218,8 @@ board first. No part added or removed (275 placements, 236 BOM, 82 lines); one v
 
 | Sheet | Warning | Why it stays |
 |---|---|---|
-| BLACKBOX | U13 pin 3 WP#/IO2 (bidirectional) on +3V3, driven by U4 OUT (power output) | Deliberate tie: WP# high disables write protection; Betaflight drives the NOR in 1-bit SPI only and the status/config registers ship as 00h, so IO2 never drives. KiCad flags every bidirectional pin on a power rail. |
-| BLACKBOX | U13 pin 7 HOLD#/RESET#/IO3 (bidirectional) on +3V3, same | PY25Q128HA: HOLD#/RESET# must not float; tied high as on the house blackbox sheet. Same reasoning. |
+| BLACKBOX | U13 pin 3 WP#/IO2 (bidirectional) on +3.3V, driven by U4 OUT (power output) | Deliberate tie: WP# high disables write protection; Betaflight drives the NOR in 1-bit SPI only and the status/config registers ship as 00h, so IO2 never drives. KiCad flags every bidirectional pin on a power rail. |
+| BLACKBOX | U13 pin 7 HOLD#/RESET#/IO3 (bidirectional) on +3.3V, same | PY25Q128HA: HOLD#/RESET# must not float; tied high as on the house blackbox sheet. Same reasoning. |
 
 No ERC exclusions and no severity changes are used (D7 / D21).
 
@@ -236,20 +236,20 @@ No ERC exclusions and no severity changes are used (D7 / D21).
 
 ## check_conventions.py warnings and skips
 
-A5 deprecated wordmark gold (the lineup decision is to copy the shipped artwork exactly); A11b `+1V1 +1V8 +3V3
-+3V3_VTX +BATT_IN` (LINEUP A11 names chosen for this board); B12 silkscreen font (board stage);
+A5 deprecated wordmark gold (the lineup decision is to copy the shipped artwork exactly); A11b `+1.1V +1.8V_GYRO +3.3V
++3.3V_VTX +BATT_IN` (LINEUP A11 names chosen for this board); B12 silkscreen font (board stage);
 D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B17b (no model-fixes file).
 
 ## Closed deferred items
 
 - POWER: U1 net names synced to bom_plan; O4_EN / PR1 aliases recorded as U5_EN / U3_PR1; C12 / C15 LCSC; R7 note;
   #PWR numbering; INA186 pin names; unspecified pins; P4-1/2/3/7/9/12/17/19 drawn with the accepted rulings.
-- VTX: R84 1k; bom_plan nets for R64 / R59 / R60 / U22 / R65 / Q27; +3V3_VTX flag removed, PA_VCC flag kept; sch_build
+- VTX: R84 1k; bom_plan nets for R64 / R59 / R60 / U22 / R65 / Q27; +3.3V_VTX flag removed, PA_VCC flag kept; sch_build
   `private` bug fixed in the tool; PNP drive SPICE passed (P4-5); P4-18 (C119 deleted) noted on the sheet.
 - RX: FL1 / X3 / D4 pin types (AE1 error gone); PA_NTC error gone with the VTX sheet present; D8 pin names; Wi-Fi peak
-  in the power table; PINMAP LNA_IN and GPIO0 rows; D4 stays on +3V3 (ruling, bench V-LED).
+  in the power table; PINMAP LNA_IN and GPIO0 rows; D4 stays on +3.3V (ruling, bench V-LED).
 - OSD: library pin types and the SDM02U30 names; cross-sheet items gone.
-- RP2350A: ADC_CURR pattern; C134 fitted; +1V1 flag kept, VREG_AVDD flag added; AP1606 / AOTA cosmetics; TP9 / TP12 /
+- RP2350A: ADC_CURR pattern; C134 fitted; +1.1V flag kept, VREG_AVDD flag added; AP1606 / AOTA cosmetics; TP9 / TP12 /
   TP13 bom_plan sheet = rp2354a.
 - PADS: contract J31 pinout and source text; J31 note per D76; H1-H3 notes on the D73 25.5 mm square; VBUS flag.
 - ESC: 4-instance netlist clean in the merged project (the standalone +BATT / GND errors came from the missing POWER).
@@ -274,13 +274,13 @@ D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B1
 5. **Camera gate G1** (J32 pitch and pin 1) and **J31 pin 1 = GND**: gate V0-USB before the P5 freeze (spec §14).
 6. **ESC dead time:** closed in round 1 (first power-up `A_X_10_96`, `A_X_5_96` after V2; spec §4.3 / §12, PINMAP §7.3).
 7. **ICM-42688-P** VDD 1.8 V with VDDIO 3.3 V: confirm in TDK DS-000347 before the TDK half of the V10 fly-off.
-8. **README notes owed** (rulings): ELRS Wi-Fi is a bench-only mode (+3V3 0.48 A peak); SGM40661 OVP 5.75-6.12 V
-   (out-of-spec sources only); no user UART pads since D89 (TP0/RP0 removed), so TX1/RX1 are the one free UART (hardware UART1, analog builds) and take 3.3 V logic only (5V pads come up before +3V3; FT pads take 3.63 V unpowered); 5 V BEC 1.5 A continuous and
+8. **README notes owed** (rulings): ELRS Wi-Fi is a bench-only mode (+3.3V 0.48 A peak); SGM40661 OVP 5.75-6.12 V
+   (out-of-spec sources only); no user UART pads since D89 (TP0/RP0 removed), so TX1/RX1 are the one free UART (hardware UART1, analog builds) and take 3.3 V logic only (5V pads come up before +3.3V; FT pads take 3.63 V unpowered); 5 V BEC 1.5 A continuous and
    the LED-strip limit in HD mode (D79); the optional PicoBlade motor plug carries Molex's 1.0 A contact rating, the
    published ESC ratings apply to soldered motor wires, plugged motors at the user's risk; the boot / ELRS recovery
    sequence (hold SW1 at power-up, write the UF2, esptool through passthrough; spec §12.1).
 9. **Bench checks** carried by the sheet notes: V1 (+5V unplug dip, O4 EN thresholds), V5/V8 (R73 final value,
-   RTC6705 pin 11 spur), V9 (MOTOR pads before +3V3, HD back-feed), V-LED (D4 on 3.3 V).
+   RTC6705 pin 11 spur), V9 (MOTOR pads before +3.3V, HD back-feed), V-LED (D4 on 3.3 V).
 10. **Placement conditions for P5**, scripted in `hardware/tools/check_p5_conditions.py` (run it on the board;
     current board 15 ok, 31 FAIL; round 4 added C103 (pins 31/32, same side, <= 1.0 mm) and C94 / C95 (pins 24 / 25,
     <= 1.5 mm); round 3 added: RP2354A SMPS C58 / L2 / C56 / C57 on U10's side within 3 mm of pins

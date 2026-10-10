@@ -2509,7 +2509,7 @@
 		)
 		(uuid "1bd4460a-1a52-590f-9773-19722374a13b")
 	)
-	(text_box "ESC channel, one file placed 4x. The references drawn are ESC1's; the root sheet offsets them per instance (ESC2 U+1 Q+3 R+7 C+6 TP+2, ESC3 x2, ESC4 x3), matching bom_plan.json:\nESC1 M1 rear right: U6 C19, hot loop C20 C23 C21, R12-R18, Q29-Q31, TP1/TP2\nESC2 M2 front right: U7 C25, hot loop C26 C29 C27, R19-R25, Q32-Q34, TP3/TP4\nESC3 M3 rear left: U8 C31, hot loop C32 C35 C33, R26-R32, Q35-Q37, TP5/TP6\nESC4 M4 front left: U9 C37, hot loop C38 C41 C39, R33-R39, Q38-Q40, TP7/TP8\nPins: DSHOT (left, root net /MOTORn: FC GPIO25/24/23/22); PHASE_A/B/C (right, local label + hierarchical label, net /ESCn/PHASE_x, motor lands J4/J7/J10/J13). In-sheet nets: x_COM, x_PWM (Gate class), BEMF_x, NEUTRAL, RTX, C2D, C2CK. Netclass flags: Phase (PHASE_A), Gate (A_COM), VBAT (+BATT rail); setup_board.py patterns /ESC?/PHASE_?, /ESC?/?_COM, /ESC?/?_PWM assign the rest.\nSource: copied from OpenAIO hardware/esc_channel.kicad_sch (frames, block titles, C2 test points at the MCU pins, three-column BEMF block, power stage along the bottom) and adapted: AT32F421 + NSG2065Q + 6x DOY180N03T become EFM8BB51 + 3x AGM210MAP (tinyPEPPER direct drive, Matrix 1S 5IN1 II stage, D56), the 3S divider becomes the tinyPEPPER 1S star."
+	(text_box "ESC channel, one file placed 4x. The references drawn are ESC1's; the root sheet offsets them per instance (ESC2 U+1 Q+3 R+7 C+6 TP+2, ESC3 x2, ESC4 x3), matching bom_plan.json:\nESC1 M1 rear right: U6 C19, hot loop C20 C23 C21, R12-R18, Q29-Q31, TP1/TP2\nESC2 M2 front right: U7 C25, hot loop C26 C29 C27, R19-R25, Q32-Q34, TP3/TP4\nESC3 M3 rear left: U8 C31, hot loop C32 C35 C33, R26-R32, Q35-Q37, TP5/TP6\nESC4 M4 front left: U9 C37, hot loop C38 C41 C39, R33-R39, Q38-Q40, TP7/TP8\nPins: DSHOT (left, root net /MOTORn: FC GPIO4/6/18/20); PHASE_A/B/C (right, local label + hierarchical label, net /ESCn/PHASE_x, motor lands J4/J7/J10/J13). In-sheet nets: x_COM, x_PWM (Gate class), BEMF_x, NEUTRAL, RTX, C2D, C2CK. Netclass flags: Phase (PHASE_A), Gate (A_COM), VBAT (+BATT rail); setup_board.py patterns /ESC?/PHASE_?, /ESC?/?_COM, /ESC?/?_PWM assign the rest.\nSource: copied from OpenAIO hardware/esc_channel.kicad_sch (frames, block titles, C2 test points at the MCU pins, three-column BEMF block, power stage along the bottom) and adapted: AT32F421 + NSG2065Q + 6x DOY180N03T become EFM8BB51 + 3x AGM210MAP (tinyPEPPER direct drive, Matrix 1S 5IN1 II stage, D56), the 3S divider becomes the tinyPEPPER 1S star."
 		(exclude_from_sim no)
 		(at 203.2 15.24 0)
 		(size 81.28 78.74)
@@ -3820,7 +3820,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 156.21 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -3946,7 +3946,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51"
+		(property "Footprint" "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L"
 			(at 76.2 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -4216,7 +4216,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 156.21 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -4340,7 +4340,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 156.21 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -4466,7 +4466,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 58.42 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -4592,7 +4592,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 66.04 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -4716,7 +4716,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 40.64 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4842,7 +4842,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP"
+		(property "Footprint" "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L"
 			(at 96.52 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -5164,7 +5164,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP"
+		(property "Footprint" "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L"
 			(at 139.7 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -5306,7 +5306,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 156.21 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -5430,7 +5430,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:TestPoint_Via_D0.35mm_Drill0.2mm"
+		(property "Footprint" "lib:TestPoint_Pad_D0.30mm_MicroVia_L"
 			(at 106.68 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -5518,7 +5518,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:TestPoint_Via_D0.35mm_Drill0.2mm"
+		(property "Footprint" "lib:TestPoint_Pad_D0.30mm_MicroVia_L"
 			(at 45.72 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -5695,7 +5695,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 156.21 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -5821,7 +5821,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 152.4 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -6214,7 +6214,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0603_1608Metric_W"
+		(property "Footprint" "lib:C_0603_1608Metric_L"
 			(at 109.22 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -6518,7 +6518,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP"
+		(property "Footprint" "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L"
 			(at 53.34 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -6660,7 +6660,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 156.21 45.72 0)
 			(hide yes)
 			(show_name no)

@@ -589,7 +589,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+3V3"
+		(symbol "power:+3.3V"
 			(power global)
 			(pin_numbers
 				(hide yes)
@@ -614,7 +614,7 @@
 					)
 				)
 			)
-			(property "Value" "+3V3"
+			(property "Value" "+3.3V"
 				(at 0 3.556 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -646,7 +646,7 @@
 					)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -668,7 +668,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_0_1"
+			(symbol "+3.3V_0_1"
 				(polyline
 					(pts
 						(xy -0.762 1.27) (xy 0 2.54)
@@ -706,7 +706,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_1_1"
+			(symbol "+3.3V_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
@@ -1465,7 +1465,7 @@
 		)
 		(uuid "01ce9a0d-41ce-570b-9418-94a5b1f85e88")
 	)
-	(text_box "Source: OpenFC-Lite-Mini hardware/blackbox.kicad_sch (rev2). Kept: layout, the 10k CS pull-up (R39 -> R50) and the 100n supply cap (C43 -> C65). Changed: its microSD (Card1) became this 16 MB SPI NOR (D66); the SPI0{SCK,MOSI,MISO} bus label became four hierarchical labels (sch_contract.json).\n\nU13 Puya PY25Q128HA-DFH-IR: 128 Mbit, USON-8 3x3 (DF), 2.7-3.6 V, -40..85 C, fC 133 MHz, READ 03h 80 MHz. JEDEC ID 85 20 18 is in the Betaflight m25p16 table: USE_FLASH_M25P16, SPI0 PA18/PA19/PA20, FLASH_CS_PIN PA21 (PINMAP). SPI0 runs at 75 MHz for writes AND reads: Betaflight bus_spi_pico.c spiCalculateDivider() uses an even prescale >= 2 on clk_peri 150 MHz, so the table's 133 / 80 MHz both give 150/2. Writes are inside fC; reads are not guaranteed: tCLQV 6-7 ns vs the 6.67 ns SCK half period plus pad and trace delay (the RP2350 DS gives no SPI receive timing). Gate F7 / V9: erase, write, read back and CRC a full log, status polling under load; fallback = a lower read clock for this JEDEC ID (firmware cap or table entry), upstreamed with the board config.\n\nWP# (3) and HOLD#/RESET# (7) tied to +3V3: the DS gives an internal pull-up only to the SOP-16 dedicated RESET#, so pin 7 must not float. Delivered SR = 00h, CR = 00h (QE 0, HOLD# function, WPS 0: no block lock) and Betaflight sends 1-bit SPI commands only, so IO2/IO3 never drive against the rail (the ERC pin_to_pin warning on pins 3/7 against a +3V3 power output is this deliberate tie).\n\nR50 10k: CS# must follow VCC at power-up (DS 5.5). RP2354A pads reset with the pull-down on (PDE 1, RPD 36-113 kOhm at 3.3 V): CS >= 36/46 VCC = 0.78 VCC > VIH 0.7 VCC, so U13 stays deselected through reset and boot. U13 and the RP2354A IOVDD share +3V3: no pin above VCC + 0.5 V.\n\nC65 100 nF X6S at pin 8, GND return straight to pin 4 (ICC max 13 mA read, 12 mA erase; adds 0.1 uF nominal to the +3V3 COUT sum of P4-12). EP (9) = two tie-bar tabs with no electrical function in the DS: no-connect, no vias in the tabs."
+	(text_box "Source: OpenFC-Lite-Mini hardware/blackbox.kicad_sch (rev2). Kept: layout, the 10k CS pull-up (R39 -> R50) and the 100n supply cap (C43 -> C65). Changed: its microSD (Card1) became this 16 MB SPI NOR (D66); the SPI0{SCK,MOSI,MISO} bus label became four hierarchical labels (sch_contract.json).\n\nU13 Puya PY25Q128HA-DFH-IR: 128 Mbit, USON-8 3x3 (DF), 2.7-3.6 V, -40..85 C, fC 133 MHz, READ 03h 80 MHz. JEDEC ID 85 20 18 is in the Betaflight m25p16 table: USE_FLASH_M25P16, SPI0 PA18/PA19/PA20, FLASH_CS_PIN PA21 (PINMAP). SPI0 runs at 75 MHz for writes AND reads: Betaflight bus_spi_pico.c spiCalculateDivider() uses an even prescale >= 2 on clk_peri 150 MHz, so the table's 133 / 80 MHz both give 150/2. Writes are inside fC; reads are not guaranteed: tCLQV 6-7 ns vs the 6.67 ns SCK half period plus pad and trace delay (the RP2350 DS gives no SPI receive timing). Gate F7 / V9: erase, write, read back and CRC a full log, status polling under load; fallback = a lower read clock for this JEDEC ID (firmware cap or table entry), upstreamed with the board config.\n\nWP# (3) and HOLD#/RESET# (7) tied to +3.3V: the DS gives an internal pull-up only to the SOP-16 dedicated RESET#, so pin 7 must not float. Delivered SR = 00h, CR = 00h (QE 0, HOLD# function, WPS 0: no block lock) and Betaflight sends 1-bit SPI commands only, so IO2/IO3 never drive against the rail (the ERC pin_to_pin warning on pins 3/7 against a +3.3V power output is this deliberate tie).\n\nR50 10k: CS# must follow VCC at power-up (DS 5.5). RP2354A pads reset with the pull-down on (PDE 1, RPD 36-113 kOhm at 3.3 V): CS >= 36/46 VCC = 0.78 VCC > VIH 0.7 VCC, so U13 stays deselected through reset and boot. U13 and the RP2354A IOVDD share +3.3V: no pin above VCC + 0.5 V.\n\nC65 100 nF X6S at pin 8, GND return straight to pin 4 (ICC max 13 mA read, 12 mA erase; adds 0.1 uF nominal to the +3.3V COUT sum of P4-12). EP (9) = two tie-bar tabs with no electrical function in the DS: no-connect, no vias in the tabs."
 		(exclude_from_sim no)
 		(at 118.11 21.59 0)
 		(size 78.74 80.01)
@@ -1712,7 +1712,7 @@
 		(uuid "bf0f0137-4e51-5e09-8e45-9c55af2d8e39")
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 96.52 73.66 0)
 		(unit 1)
 		(body_style 1)
@@ -1722,7 +1722,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "11c30ce5-f3c5-5e8f-b181-b354ca7bdd03")
-		(property "Reference" "#PWR144"
+		(property "Reference" "#PWR145"
 			(at 96.52 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -1733,7 +1733,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 96.52 70.104 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1765,7 +1765,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 96.52 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -1782,7 +1782,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3"
-					(reference "#PWR144")
+					(reference "#PWR145")
 					(unit 1)
 				)
 			)
@@ -1799,7 +1799,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "1d6fd723-bad1-5281-b3f2-28d45611a4df")
-		(property "Reference" "#PWR143"
+		(property "Reference" "#PWR144"
 			(at 83.82 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -1859,14 +1859,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3"
-					(reference "#PWR143")
+					(reference "#PWR144")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 53.34 53.34 0)
 		(unit 1)
 		(body_style 1)
@@ -1876,7 +1876,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "28f9ad77-842f-589c-84bc-eff445927668")
-		(property "Reference" "#PWR142"
+		(property "Reference" "#PWR143"
 			(at 53.34 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -1887,7 +1887,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 53.34 49.784 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1919,7 +1919,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 53.34 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -1936,7 +1936,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3"
-					(reference "#PWR142")
+					(reference "#PWR143")
 					(unit 1)
 				)
 			)
@@ -1975,7 +1975,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 83.82 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -2067,7 +2067,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "bf4f5d68-a6b6-5789-8718-9ffc927214f6")
-		(property "Reference" "#PWR145"
+		(property "Reference" "#PWR146"
 			(at 74.93 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -2127,14 +2127,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3"
-					(reference "#PWR145")
+					(reference "#PWR146")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 76.2 44.45 0)
 		(unit 1)
 		(body_style 1)
@@ -2144,7 +2144,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "c96c68ca-3712-5945-90ab-4b9c32d3ff10")
-		(property "Reference" "#PWR141"
+		(property "Reference" "#PWR142"
 			(at 76.2 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -2155,7 +2155,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 76.2 40.894 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2187,7 +2187,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 76.2 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -2204,7 +2204,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3"
-					(reference "#PWR141")
+					(reference "#PWR142")
 					(unit 1)
 				)
 			)
@@ -2241,7 +2241,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 53.34 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -2355,7 +2355,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA"
+		(property "Footprint" "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA_L"
 			(at 76.2 68.58 0)
 			(hide yes)
 			(show_name no)

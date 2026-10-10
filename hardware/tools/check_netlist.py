@@ -228,7 +228,7 @@ def net_of(cell):
         return tick[0]
     if cell in ("-", ""):
         return None
-    return cell if re.fullmatch(r"[+A-Z0-9_]+", cell) else "UNPARSED(%s)" % cell
+    return cell if re.fullmatch(r"[+A-Z0-9_.]+", cell) else "UNPARSED(%s)" % cell
 
 
 text = open(PINMAP, encoding="utf-8").read()

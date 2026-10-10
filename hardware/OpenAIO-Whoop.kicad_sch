@@ -2577,7 +2577,7 @@
 				)
 				(uuid "f74a2ba6-d017-5fd8-b1c4-49507ced9c17")
 			)
-			(table_cell "+3V3"
+			(table_cell "+3.3V"
 				(exclude_from_sim no)
 				(at 17.78 246.38 0)
 				(size 22.86 3.81)
@@ -2662,7 +2662,7 @@
 				)
 				(uuid "b820ae46-6887-5b4c-af71-4f2d0d2b2487")
 			)
-			(table_cell "+3V3_VTX"
+			(table_cell "+3.3V_VTX"
 				(exclude_from_sim no)
 				(at 17.78 250.19 0)
 				(size 22.86 3.81)
@@ -2747,7 +2747,7 @@
 				)
 				(uuid "1366b22b-b0c1-55ea-9e03-37a2fcd9684e")
 			)
-			(table_cell "+1V8"
+			(table_cell "+1.8V_GYRO"
 				(exclude_from_sim no)
 				(at 17.78 254 0)
 				(size 22.86 3.81)
@@ -2832,7 +2832,7 @@
 				)
 				(uuid "8a57a621-25f5-5450-acc6-21e52eb8d2fa")
 			)
-			(table_cell "+1V1"
+			(table_cell "+1.1V"
 				(exclude_from_sim no)
 				(at 17.78 257.81 0)
 				(size 22.86 3.81)

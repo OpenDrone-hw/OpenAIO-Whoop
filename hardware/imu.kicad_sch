@@ -887,7 +887,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+1V8"
+		(symbol "power:+3.3V"
 			(power global)
 			(pin_numbers
 				(hide yes)
@@ -912,7 +912,7 @@
 					)
 				)
 			)
-			(property "Value" "+1V8"
+			(property "Value" "+3.3V"
 				(at 0 3.556 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -944,7 +944,7 @@
 					)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+1V8\""
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -966,7 +966,7 @@
 					)
 				)
 			)
-			(symbol "+1V8_0_1"
+			(symbol "+3.3V_0_1"
 				(polyline
 					(pts
 						(xy -0.762 1.27) (xy 0 2.54)
@@ -1004,146 +1004,7 @@
 					)
 				)
 			)
-			(symbol "+1V8_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "power:+3V3"
-			(power global)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "+3V3"
-				(at 0 3.556 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+3V3\""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "+3V3_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+3V3_1_1"
+			(symbol "+3.3V_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
@@ -1880,7 +1741,7 @@
 		)
 		(uuid "9a96920b-9965-54a4-8dc0-fa0bdee462ad")
 	)
-	(text_box "GYRO BMI270: U11, R49\nSource: OpenFC-Lite-Mini imu.kicad_sch (universal LGA-14 land, SPI1 4-wire, R49), copied and adapted. BMI270 on the BOM; TDK ICM-42688-P qualified on the same land (V10 fly-off, one part per revision).\nPins 2/3 (BMI270 ASDx/ASCx, TDK RESV) and 10/11 (OCSB/OSDO, TDK RESV): no-connect. BMI270 DS Table 22: unused ASDx/ASCx go to VDDIO or stay open, never to GND (the house sheet grounded them for the LSM6DSV16X).\nPins 6/7 GND (TDK pin 7 RESV must be GND). VDDIO pin 5 = +3V3 (RP2354A I/O level), VDD pin 8 = +1V8; the BMI270 has no supply-order rule (DS 4.3). Abs max 4.0 V on VDD/VDDIO, I/O up to VDDIO + 0.3 V.\nPin 9: TDK CLKIN = GYRO_CLKIN (RP2354A GPIO6, PWM 32 kHz, driven only with the TDK part); BMI270 INT2, unused, left disabled.\nR49 10k: GPIO13 resets with its pull-down on, which would select the chip; R49 holds CSB >= 2.58 V (0.78 x VDDIO with the RP2354A RPD min 36 kOhm at IOVDD 3.3 V, RP2350 DS Table 1683) > VIH 0.7 x VDDIO = 2.31 V.\nP5: top side next to U12, LGA rotated 90 deg; GYRO_1_ALIGN from the placed orientation (PINMAP F11)."
+	(text_box "GYRO BMI270: U11, R49\nSource: OpenFC-Lite-Mini imu.kicad_sch (universal LGA-14 land, SPI1 4-wire, R49), copied and adapted. BMI270 on the BOM; TDK ICM-42688-P qualified on the same land (V10 fly-off, one part per revision).\nPins 2/3 (BMI270 ASDx/ASCx, TDK RESV) and 10/11 (OCSB/OSDO, TDK RESV): no-connect. BMI270 DS Table 22: unused ASDx/ASCx go to VDDIO or stay open, never to GND (the house sheet grounded them for the LSM6DSV16X).\nPins 6/7 GND (TDK pin 7 RESV must be GND). VDDIO pin 5 = +3.3V (RP2354A I/O level), VDD pin 8 = +1.8V_GYRO; the BMI270 has no supply-order rule (DS 4.3). Abs max 4.0 V on VDD/VDDIO, I/O up to VDDIO + 0.3 V.\nPin 9: TDK CLKIN = GYRO_CLKIN (RP2354A GPIO6, PWM 32 kHz, driven only with the TDK part); BMI270 INT2, unused, left disabled.\nR49 10k: GPIO13 resets with its pull-down on, which would select the chip; R49 holds CSB >= 2.58 V (0.78 x VDDIO with the RP2354A RPD min 36 kOhm at IOVDD 3.3 V, RP2350 DS Table 1683) > VIH 0.7 x VDDIO = 2.31 V.\nP5: top side next to U12, LGA rotated 90 deg; GYRO_1_ALIGN from the placed orientation (PINMAP F11)."
 		(exclude_from_sim no)
 		(at 127 36.83 0)
 		(size 69.85 62.23)
@@ -1900,7 +1761,7 @@
 		)
 		(uuid "0ed8f934-d911-5f7f-a5c1-e76654bf6ef5")
 	)
-	(text_box "+1V8 GYRO LDO: U12, C61, C62 (D52 BR-09, P4-17)\nSource: pcb-agent-commons blocks/LDO_IMU_TPS7A2033 (OpenFC-H7) topology with the 1.8 V part and no ferrite (fed from the +3V3 LDO); the house OpenFC-Lite-Mini also runs the gyro VDD from its own 1.8 V LDO.\nTPS7A2018 DQN: 1 OUT, 2 GND, 3 EN, 4 IN, 5 EP to GND. IN = EN = +3V3: VIN 1.6-6.0 V, VEN 0-6.0 V (abs max 6.5 V), EN never above IN. Load < 1 mA.\nNo 100 nF at the gyro: C61 = U12 CIN at BMI270 VDDIO pin 5, C62 = U12 COUT at VDD pin 8 (COUT >= 0.47 uF effective, ESR <= 100 mOhm: about 0.6-0.85 uF at 1.8 V). C61 counts in the +3V3 COUT sum (P4-12, POWER).\nP5: U12 on the gyro side with OUT facing pin 8; C61 between U12 pin 4 and gyro pin 5, C62 <= 1.5 mm from pin 8 (PS-06), else re-place U12."
+	(text_box "+1.8V_GYRO GYRO LDO: U12, C61, C62 (D52 BR-09, P4-17)\nSource: pcb-agent-commons blocks/LDO_IMU_TPS7A2033 (OpenFC-H7) topology with the 1.8 V part and no ferrite (fed from the +3.3V LDO); the house OpenFC-Lite-Mini also runs the gyro VDD from its own 1.8 V LDO.\nTPS7A2018 DQN: 1 OUT, 2 GND, 3 EN, 4 IN, 5 EP to GND. IN = EN = +3.3V: VIN 1.6-6.0 V, VEN 0-6.0 V (abs max 6.5 V), EN never above IN. Load < 1 mA.\nNo 100 nF at the gyro: C61 = U12 CIN at BMI270 VDDIO pin 5, C62 = U12 COUT at VDD pin 8 (COUT >= 0.47 uF effective, ESR <= 100 mOhm: about 0.6-0.85 uF at 1.8 V). C61 counts in the +3.3V COUT sum (P4-12, POWER).\nP5: U12 on the gyro side with OUT facing pin 8; C61 between U12 pin 4 and gyro pin 5, C62 <= 1.5 mm from pin 8 (PS-06), else re-place U12."
 		(exclude_from_sim no)
 		(at 12.7 99.06 0)
 		(size 74.93 36.83)
@@ -2279,7 +2140,7 @@
 		(uuid "b8b1ee7b-40e2-518a-b0f7-bc3e12ca0215")
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 83.82 43.18 0)
 		(unit 1)
 		(body_style 1)
@@ -2289,7 +2150,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "1f32a0bd-cd9f-5522-99e9-f5b641bc299e")
-		(property "Reference" "#PWR135"
+		(property "Reference" "#PWR136"
 			(at 83.82 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -2300,7 +2161,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 83.82 39.624 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2332,7 +2193,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 83.82 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -2349,14 +2210,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR135")
+					(reference "#PWR136")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 26.67 43.18 0)
 		(unit 1)
 		(body_style 1)
@@ -2366,7 +2227,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "2270f482-057a-516d-9300-8ab7bc2b5c98")
-		(property "Reference" "#PWR133"
+		(property "Reference" "#PWR134"
 			(at 26.67 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -2377,7 +2238,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 26.67 39.624 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2409,7 +2270,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 26.67 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -2426,7 +2287,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR133")
+					(reference "#PWR134")
 					(unit 1)
 				)
 			)
@@ -2465,7 +2326,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 62.23 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -2579,7 +2440,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 83.82 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -2942,7 +2803,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "addf9b93-e512-5044-be47-c030088c7f62")
-		(property "Reference" "#PWR138"
+		(property "Reference" "#PWR139"
 			(at 41.91 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -3002,7 +2863,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR138")
+					(reference "#PWR139")
 					(unit 1)
 				)
 			)
@@ -3019,7 +2880,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b0106b3d-f7d0-5607-8f43-04412a2ae971")
-		(property "Reference" "#PWR140"
+		(property "Reference" "#PWR141"
 			(at 72.39 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -3079,7 +2940,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR140")
+					(reference "#PWR141")
 					(unit 1)
 				)
 			)
@@ -3096,7 +2957,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "cb189a1b-0326-5060-8c28-69c53be050e1")
-		(property "Reference" "#PWR137"
+		(property "Reference" "#PWR138"
 			(at 83.82 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -3156,7 +3017,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR137")
+					(reference "#PWR138")
 					(unit 1)
 				)
 			)
@@ -3173,7 +3034,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "dc31db5d-fba5-5f2c-ba51-d037d855f8eb")
-		(property "Reference" "#PWR136"
+		(property "Reference" "#PWR137"
 			(at 62.23 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -3233,14 +3094,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR136")
+					(reference "#PWR137")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 116.84 78.74 0)
 		(unit 1)
 		(body_style 1)
@@ -3250,7 +3111,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "dde1833a-4734-548f-a927-ee59815b38f3")
-		(property "Reference" "#PWR139"
+		(property "Reference" "#PWR140"
 			(at 116.84 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -3261,7 +3122,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 116.84 75.184 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3293,7 +3154,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 116.84 78.74 0)
 			(hide yes)
 			(show_name no)
@@ -3310,7 +3171,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR139")
+					(reference "#PWR140")
 					(unit 1)
 				)
 			)
@@ -3347,7 +3208,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 107.95 78.74 0)
 			(hide yes)
 			(show_name no)
@@ -3429,7 +3290,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+1V8")
+		(lib_id "power:+3.3V")
 		(at 62.23 43.18 0)
 		(unit 1)
 		(body_style 1)
@@ -3439,7 +3300,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f35b106e-38d2-5400-b145-b4e81d14a7d9")
-		(property "Reference" "#PWR134"
+		(property "Reference" "#PWR135"
 			(at 62.23 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -3450,7 +3311,7 @@
 				)
 			)
 		)
-		(property "Value" "+1V8"
+		(property "Value" "+1.8V_GYRO"
 			(at 62.23 39.624 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3482,7 +3343,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+1V8\""
+		(property "Description" "Power symbol creates a global label with name \"+1.8V_GYRO\""
 			(at 62.23 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -3499,7 +3360,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/f446158c-b285-51eb-bc17-5ec1fb190fc1"
-					(reference "#PWR134")
+					(reference "#PWR135")
 					(unit 1)
 				)
 			)

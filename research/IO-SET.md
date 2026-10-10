@@ -43,6 +43,8 @@ Tags: **V** = verified this session from a primary source or a measurement, eith
 
 ---
 
+> D111 GPIO map (2026-10-10): the FC and receiver pins of the IO set follow research/PINMAP.md sections 2 and 6 (map of the winning placement V4_B4; OSD on the consecutive GPIO21-23; CRSF on hardware UART1 GPIO8/9; TX1/RX1 pads on hardware UART0 GPIO16/17; LED_STRIP GPIO5; BEEPER GPIO25; LED0/LED1 GPIO10/24; HD_EN GPIO19; MOTOR1-4 GPIO4/6/18/20). Older GPIO numbers further down are history.
+
 ## 0. Result
 
 - **Already on the board (kept):** battery holes, 12 motor pads, CAM/5V/GND pads, a full user UART (TP0 RP0 5V GND), the O4 pads, the LED strip and buzzer outputs, the U.FL VTX connector, the RX wire hole, the Wi-Fi chip antenna (D58), the JST SH USB (D57), 2 FC LEDs plus the RGB RX LED, V + I sense, and the FCB/RXB/SWD/C2 pads.
@@ -69,7 +71,7 @@ Area = occupied incl. the 0.1 mm halo, FLOORPLAN metric; "existing" = already in
 | 8 | HD pads / 2nd UART | J26 VHD, J27 GND, J28 TX1, J29 RX1: lib:SolderPad_1.0x1.2mm | TX1 = GPIO4 (pin 7), RX1 = GPIO5 (pin 8), hardware UART1; VHD = +5V_HD (live only in HD mode) | HD builds: MSP DisplayPort to the O4. **Analog builds: a free hardware UART** (the analog preset leaves UART1 at 0, PINMAP §5.4); its device takes 5V from row 7 or row 9. No half duplex. The CLI can make it I2C0 | top, existing (21.4 mm², V) | MUST, kept; 2nd-UART role SHOULD (README) |
 | 9 | **LED strip + buzzer row** | **GND LED 5V BZ-**: J20 LED, J21 5V (relabelled from BZ+, same net), J22 BZ-, plus 1 new GND pad. lib:SolderPad_1.0x1.2mm_Dense | LED = GPIO8 (PIO1 WS2812, driven directly, D52 BR-04); 5V = +5V; BZ- = AP1606 drain (gate on GPIO17) | unchanged: `LED_STRIP_PIN PA8`, `PIO_LEDSTRIP_INDEX 1`, `BEEPER_PIN PA17` + `BEEPER_INVERTED` | top, inboard (§4.2); +4.8-5.4 mm² (V method) | SHOULD (reverses D27) |
 | 10 | **RX boot / bind button (new)** | SW1 **SHOU HAN TS2306A 240gf MSM 9** (LCSC C2976675; lineup part, PARTS-USED.md:20). 3.0 x 2.0 x 0.6 mm, DC 15 V 20 mA, -40..85 °C (V, datasheet §1) | `RX_BOOT` (ESP32 GPIO0, pin 23) to GND, in parallel with TP11 RXB | ELRS layout key `"button": 0` (already set). Hold 1.5 s = bind, 5 s = Wi-Fi, 12 s = reboot (V, devButton.cpp:19-22). Held at power-up = download mode. Ignored while linked (V, :92-95) | top preferred, at an edge (§4.2); about 9-10 mm², no silk | SHOULD (D63 names buttons; move, do not drop) |
-| 11 | Status LEDs | D5 green (GPIO7), D6 blue (GPIO26), D4 XL-1010RGBC (ESP32 GPIO22) | sink from +3V3; WS2812 | `LED0_PIN`, `LED1_PIN`; ELRS `led_rgb` | existing | MUST, kept |
+| 11 | Status LEDs | D5 green (GPIO7), D6 blue (GPIO26), D4 XL-1010RGBC (ESP32 GPIO22) | sink from +3.3V; WS2812 | `LED0_PIN`, `LED1_PIN`; ELRS `led_rgb` | existing | MUST, kept |
 | 12 | Test / programming points (D67) | TP1-TP8 C2D/C2CK (EFM8), TP9 FCB, TP12 CLK, TP13 DIO: lib:TestPoint_Via_D0.35mm_Drill0.2mm, mask-open filled vias, no silk, documented in the pinout | EFM8 C2, BOOT (QSPI_SS via 1 k), SWD | bench recovery only (NextPCB pre-programs Bluejay; RP2354A by USB BOOTSEL; ESP32 by Betaflight passthrough with SW1 held) | bottom, test vias | MUST as vias; TP10 GND and TP11 RXB removed (D67 overrides D54 OC-4/5) |
 | 13 | USB D-/D+ pads (new) | TP14 D-, TP15 D+: lib:TestPoint_Pad_D0.8mm | USB_D_N / USB_D_P on the connector side of the TPD2EUSB30 | none. README: "battery required, connect GND" | bottom, beside the USB connector, near a GND pad; 7-9 mm² | **COULD**: only if G2 shows bottom room; first to drop |
 

@@ -865,7 +865,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+3V3"
+		(symbol "power:+3.3V"
 			(power global)
 			(pin_numbers
 				(hide yes)
@@ -890,7 +890,7 @@
 					)
 				)
 			)
-			(property "Value" "+3V3"
+			(property "Value" "+3.3V"
 				(at 0 3.556 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -922,7 +922,7 @@
 					)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -944,7 +944,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_0_1"
+			(symbol "+3.3V_0_1"
 				(polyline
 					(pts
 						(xy -0.762 1.27) (xy 0 2.54)
@@ -982,7 +982,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_1_1"
+			(symbol "+3.3V_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
@@ -2085,7 +2085,7 @@
 		)
 		(uuid "1a4996ab-ad95-5ab2-b2e9-baa3c6b20ecc")
 	)
-	(text_box "Source: OpenFC-Lite-Mini hardware/osd.kicad_sch (rev2, flown), copied and adapted: cells, texts, truth table and part spots kept (A3 -> A4). Same topology: 75R termination, 680R/470p chroma filter, 1u + SDM02U30LP3 sync-tip clamp, TLV7031 comparator, SN74LVC1G3157 camera/level switch (contract source, spec 4.8).\nChanged: COS8051 buffer deleted (output = VIDEO_OUT); divider R42 3.9k / R43 12k / R44 1.4k -> R52 820R / R53 2.4k / R54 287R (about 5x down, P4-10); C39 + C42 -> one shared C70 100n X6S (D52 BR-13 + BR-18); C66 100p entry shunt added (spec 11); refs per bom_plan (R41>R51, C38>C67, C40>C68, D9>D3, U2>U15, R45>R55, R42-44>R52-54, U18>U14).\nSymbols from the OpenDrone catalogue with TI pin numbers: TLV7031 X2SON 1 OUT, 2 V+, 3 V- (centre pad), 4 IN-, 5 IN+; SN74LVC1G3157 DTB 1 B2, 2 GND, 3 B1, 4 A, 5 VCC, 6 S. The house lib symbols used the EasyEDA pad order (consistent with its own footprints), so the drawing is re-routed with the same nets: IN+ = VID_DC, IN- = GND, B1 = camera, B2 = OSD level. The house sheet's rotated ground is upright here.\n\nOperation: OSD_EN low (RP2354A reset pull-down, OSD idle) -> B1, the camera passes through. OSD_EN high -> B2: OSD_W high = white, low = black. No OSD without camera sync (osd_pico.c overlays on detected sync). OSD_W/EN/SYNC = GPIO14/15/16, consecutive, PIO2 (PINMAP).\n\nSync threshold (P4-10): 680R/470p = 498 kHz: colour burst x0.11-0.14 (+-17-21 mV), 4.7 us sync kept (tau 0.32 us). C68 + D3 (cathode on VID_DC) clamp the sync tips to -VF; the leakage-limited clamp current (uA average, tens of uA at the tip) gives VF about 0.1-0.2 V over temperature (I; DS 0.37 V max at 10 mA / 25 C, 0.20 V at 10 mA / 125 C). IN- at GND puts the trip point VF above the tip, 33-67 % of the 0.3 V sync, >= 0.08 V from tip and blanking after VIO +-8 mV and VHYS 2-17 mV. OSD_SYNC is low during sync (osd_tx.pio waits for a low sync pin). IN+ at -VF stays inside abs max (VEE - 0.3 V), at most 0.1 V under the ROC input floor (VEE - 0.1 V), no phase reversal (DS 6.4.1). tpd 3 us on both edges (equal shift, as on the house board).\n\nRatings: +3V3 only (U14 1.65-5.5 V, U15 1.6-6.5 V). S: VIH 0.7 VCC = 2.31 V, edges <= 10 ns/V (fast slew pads). AC-coupled camera sync tips (-0.3 to -0.4 V) are below the switch ROC (0..VCC) but inside abs max (-0.5 V, 50 mA; 37.5R source), as on the house board; V9 checks. Supply: U15 0.9 uA, U14 <= 10 uA, divider 0.94-1.26 mA + OSD_W 2.74 mA. C68 X5R carries <= 0.6 V DC: no DC-bias loss (P4-13 hot-zone rule void, D69)."
+	(text_box "Source: OpenFC-Lite-Mini hardware/osd.kicad_sch (rev2, flown), copied and adapted: cells, texts, truth table and part spots kept (A3 -> A4). Same topology: 75R termination, 680R/470p chroma filter, 1u + SDM02U30LP3 sync-tip clamp, TLV7031 comparator, SN74LVC1G3157 camera/level switch (contract source, spec 4.8).\nChanged: COS8051 buffer deleted (output = VIDEO_OUT); divider R42 3.9k / R43 12k / R44 1.4k -> R52 820R / R53 2.4k / R54 287R (about 5x down, P4-10); C39 + C42 -> one shared C70 100n X6S (D52 BR-13 + BR-18); C66 100p entry shunt added (spec 11); refs per bom_plan (R41>R51, C38>C67, C40>C68, D9>D3, U2>U15, R45>R55, R42-44>R52-54, U18>U14).\nSymbols from the OpenDrone catalogue with TI pin numbers: TLV7031 X2SON 1 OUT, 2 V+, 3 V- (centre pad), 4 IN-, 5 IN+; SN74LVC1G3157 DTB 1 B2, 2 GND, 3 B1, 4 A, 5 VCC, 6 S. The house lib symbols used the EasyEDA pad order (consistent with its own footprints), so the drawing is re-routed with the same nets: IN+ = VID_DC, IN- = GND, B1 = camera, B2 = OSD level. The house sheet's rotated ground is upright here.\n\nOperation: OSD_EN low (RP2354A reset pull-down, OSD idle) -> B1, the camera passes through. OSD_EN high -> B2: OSD_W high = white, low = black. No OSD without camera sync (osd_pico.c overlays on detected sync). OSD_W/EN/SYNC = GPIO21/22/23, consecutive, PIO2 (PINMAP).\n\nSync threshold (P4-10): 680R/470p = 498 kHz: colour burst x0.11-0.14 (+-17-21 mV), 4.7 us sync kept (tau 0.32 us). C68 + D3 (cathode on VID_DC) clamp the sync tips to -VF; the leakage-limited clamp current (uA average, tens of uA at the tip) gives VF about 0.1-0.2 V over temperature (I; DS 0.37 V max at 10 mA / 25 C, 0.20 V at 10 mA / 125 C). IN- at GND puts the trip point VF above the tip, 33-67 % of the 0.3 V sync, >= 0.08 V from tip and blanking after VIO +-8 mV and VHYS 2-17 mV. OSD_SYNC is low during sync (osd_tx.pio waits for a low sync pin). IN+ at -VF stays inside abs max (VEE - 0.3 V), at most 0.1 V under the ROC input floor (VEE - 0.1 V), no phase reversal (DS 6.4.1). tpd 3 us on both edges (equal shift, as on the house board).\n\nRatings: +3.3V only (U14 1.65-5.5 V, U15 1.6-6.5 V). S: VIH 0.7 VCC = 2.31 V, edges <= 10 ns/V (fast slew pads). AC-coupled camera sync tips (-0.3 to -0.4 V) are below the switch ROC (0..VCC) but inside abs max (-0.5 V, 50 mA; 37.5R source), as on the house board; V9 checks. Supply: U15 0.9 uA, U14 <= 10 uA, divider 0.94-1.26 mA + OSD_W 2.74 mA. C68 X5R carries <= 0.6 V DC: no DC-bias loss (P4-13 hot-zone rule void, D69)."
 		(exclude_from_sim no)
 		(at 200.66 17.78 0)
 		(size 85.09 147.32)
@@ -2105,7 +2105,7 @@
 		)
 		(uuid "58e79308-e6ca-568b-a0bc-0b58c69303f4")
 	)
-	(text_box "VIDEO_OUT: the switch output drives the RTC6705 video network on the VTX sheet directly (R58 1.2k || C104 33p, R59 270R, C105 4.7u, R60 1.2k: OpenOSD-X values); the house COS8051 buffer (U1, R46-R48, C41) is deleted (spec 4.8).\nOSD levels (P4-10, recomputed at the P4 critique with the real load): open-circuit at OSD_LVL (+3V3 3.30 V, OSD_W push-pull) black 0.268 V / white 1.054 V from 195R (R53||R54 = 0.352 V / 256R, with R52) + switch ron 7-18R. VIDEO_OUT is loaded by the VTX network ahead of C105: R58 + R59 = 1.47 kOhm at DC, about 0.95 kOhm at 5 MHz and 0.60 kOhm at 10 MHz (R58 / C104 4.0 MHz, 21.9 MHz with R59; 270R only above about 20 MHz). Loaded levels: black 0.234-0.236 V, white 0.920-0.927 V (swing x0.88 of the open-circuit 0.786 V); edge gain x0.86 at 5 MHz and x0.80 at 10 MHz vs x0.97 for the camera (37.5R source): OSD text slightly dimmer and softer than the camera picture, not a failure (the house COS8051 buffer that made the source low-impedance is deleted). V9 checks OSD white / black and edge sharpness on a monitor; fallback: rescale R52-R54 within the 3 mA OSD_W budget. PS-O1 (R54 270R) would lower white to about 0.89 V: not recommended.\nOSD_W: 2.74 mA high (<= 3 mA, 2.79 mA at 3.36 V), 0.33 mA low."
+	(text_box "VIDEO_OUT: the switch output drives the RTC6705 video network on the VTX sheet directly (R58 1.2k || C104 33p, R59 270R, C105 4.7u, R60 1.2k: OpenOSD-X values); the house COS8051 buffer (U1, R46-R48, C41) is deleted (spec 4.8).\nOSD levels (P4-10, recomputed at the P4 critique with the real load): open-circuit at OSD_LVL (+3.3V 3.30 V, OSD_W push-pull) black 0.268 V / white 1.054 V from 195R (R53||R54 = 0.352 V / 256R, with R52) + switch ron 7-18R. VIDEO_OUT is loaded by the VTX network ahead of C105: R58 + R59 = 1.47 kOhm at DC, about 0.95 kOhm at 5 MHz and 0.60 kOhm at 10 MHz (R58 / C104 4.0 MHz, 21.9 MHz with R59; 270R only above about 20 MHz). Loaded levels: black 0.234-0.236 V, white 0.920-0.927 V (swing x0.88 of the open-circuit 0.786 V); edge gain x0.86 at 5 MHz and x0.80 at 10 MHz vs x0.97 for the camera (37.5R source): OSD text slightly dimmer and softer than the camera picture, not a failure (the house COS8051 buffer that made the source low-impedance is deleted). V9 checks OSD white / black and edge sharpness on a monitor; fallback: rescale R52-R54 within the 3 mA OSD_W budget. PS-O1 (R54 270R) would lower white to about 0.89 V: not recommended.\nOSD_W: 2.74 mA high (<= 3 mA, 2.79 mA at 3.36 V), 0.33 mA low."
 		(exclude_from_sim no)
 		(at 133.35 86.36 0)
 		(size 62.23 59.69)
@@ -2612,7 +2612,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "16469b10-0904-5832-b8fd-868ba18c7767")
-		(property "Reference" "#PWR147"
+		(property "Reference" "#PWR148"
 			(at 158.75 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -2672,7 +2672,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR147")
+					(reference "#PWR148")
 					(unit 1)
 				)
 			)
@@ -2803,7 +2803,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "2842f491-a4e1-5eba-bd6c-452dfb844a06")
-		(property "Reference" "#PWR148"
+		(property "Reference" "#PWR149"
 			(at 54.61 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -2863,7 +2863,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR148")
+					(reference "#PWR149")
 					(unit 1)
 				)
 			)
@@ -2880,7 +2880,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "39ff2d68-377a-5b69-93ce-13f8ce0c4615")
-		(property "Reference" "#PWR157"
+		(property "Reference" "#PWR158"
 			(at 106.68 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -2940,7 +2940,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR157")
+					(reference "#PWR158")
 					(unit 1)
 				)
 			)
@@ -2957,7 +2957,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "3dac65e6-1a24-5fcb-8cfe-bb70baee6071")
-		(property "Reference" "#PWR149"
+		(property "Reference" "#PWR150"
 			(at 63.5 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -3017,7 +3017,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR149")
+					(reference "#PWR150")
 					(unit 1)
 				)
 			)
@@ -3056,7 +3056,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 54.61 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -3148,7 +3148,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "4aa695fb-5de9-54b8-9346-ae4c5d33a358")
-		(property "Reference" "#PWR158"
+		(property "Reference" "#PWR159"
 			(at 66.04 135.89 0)
 			(hide yes)
 			(show_name no)
@@ -3208,14 +3208,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR158")
+					(reference "#PWR159")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 184.15 55.88 0)
 		(unit 1)
 		(body_style 1)
@@ -3225,7 +3225,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "58b96630-0fc0-5f82-a107-0fe3d0f1dd5c")
-		(property "Reference" "#PWR146"
+		(property "Reference" "#PWR147"
 			(at 184.15 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -3236,7 +3236,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 184.15 52.324 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3268,7 +3268,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 184.15 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -3285,7 +3285,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR146")
+					(reference "#PWR147")
 					(unit 1)
 				)
 			)
@@ -3446,7 +3446,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 116.84 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -3558,7 +3558,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 54.61 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -3672,7 +3672,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 91.44 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -3754,7 +3754,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 106.68 90.17 0)
 		(unit 1)
 		(body_style 1)
@@ -3764,7 +3764,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "73b27e23-30cb-5732-8b19-cd794e49973e")
-		(property "Reference" "#PWR154"
+		(property "Reference" "#PWR155"
 			(at 106.68 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -3775,7 +3775,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 106.68 86.614 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3807,7 +3807,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 106.68 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -3824,14 +3824,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR154")
+					(reference "#PWR155")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 66.04 109.22 0)
 		(unit 1)
 		(body_style 1)
@@ -3841,7 +3841,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "73d9e055-a01d-548a-bf8e-0f94a1da2aa6")
-		(property "Reference" "#PWR156"
+		(property "Reference" "#PWR157"
 			(at 66.04 113.03 0)
 			(hide yes)
 			(show_name no)
@@ -3852,7 +3852,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 66.04 105.664 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3884,7 +3884,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 66.04 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -3901,7 +3901,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR156")
+					(reference "#PWR157")
 					(unit 1)
 				)
 			)
@@ -3938,7 +3938,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 66.04 113.03 0)
 			(hide yes)
 			(show_name no)
@@ -4050,7 +4050,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 66.04 125.73 0)
 			(hide yes)
 			(show_name no)
@@ -4164,7 +4164,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 93.98 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -4405,7 +4405,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0201_0603Metric_W"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 63.5 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -4497,7 +4497,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "dde6a493-ce15-5802-ae69-c579d0e9f55a")
-		(property "Reference" "#PWR151"
+		(property "Reference" "#PWR152"
 			(at 125.73 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -4557,7 +4557,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR151")
+					(reference "#PWR152")
 					(unit 1)
 				)
 			)
@@ -4574,7 +4574,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "df5c0e64-b222-5099-8074-66f8896826d8")
-		(property "Reference" "#PWR155"
+		(property "Reference" "#PWR156"
 			(at 91.44 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -4634,14 +4634,14 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR155")
+					(reference "#PWR156")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 91.44 86.36 0)
 		(unit 1)
 		(body_style 1)
@@ -4651,7 +4651,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "dfeb89fc-7e8b-562b-9035-232e0e5d8c88")
-		(property "Reference" "#PWR153"
+		(property "Reference" "#PWR154"
 			(at 91.44 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -4662,7 +4662,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 91.44 82.804 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4694,7 +4694,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 91.44 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -4711,7 +4711,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR153")
+					(reference "#PWR154")
 					(unit 1)
 				)
 			)
@@ -4748,7 +4748,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 86.36 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -4840,7 +4840,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ef15cf98-df67-574d-8541-87df50dd4219")
-		(property "Reference" "#PWR150"
+		(property "Reference" "#PWR151"
 			(at 93.98 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -4900,7 +4900,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR150")
+					(reference "#PWR151")
 					(unit 1)
 				)
 			)
@@ -4917,7 +4917,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "fb8284be-5e81-51c1-ab29-e9d60154d530")
-		(property "Reference" "#PWR152"
+		(property "Reference" "#PWR153"
 			(at 176.53 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -4977,7 +4977,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d622c956-8c4e-5ac1-b8c4-8a8024f124d6"
-					(reference "#PWR152")
+					(reference "#PWR153")
 					(unit 1)
 				)
 			)

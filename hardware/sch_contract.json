@@ -17,7 +17,7 @@
   ],
   "kicad": "10.0.6; files written by hardware/tools/sch_build.py and re-saved by kicad-cli sch upgrade",
   "integrated": "2026-10-09 P4 integration (p2v3/p4/integrate): sheets merged, contract text fixed (J31 pinout, USB source, IMU NC pins, R84, C134, VTX label names, PWR_FLAG rule, A9)",
-  "p4fix1": "2026-10-09 P4 critique round 1 (p2v3/p4/fix1): power table +5V / +5V_BST / +3V3_VTX rows, ESC per-cell hot-loop caps C20/C21 (D77), C17 / C30 deleted, VTX_AMP_PWM -> VTX_AMP_PWM, R84 note 1k",
+  "p4fix1": "2026-10-09 P4 critique round 1 (p2v3/p4/fix1): power table +5V / +5V_BST / +3.3V_VTX rows, ESC per-cell hot-loop caps C20/C21 (D77), C17 / C30 deleted, VTX_AMP_PWM -> VTX_AMP_PWM, R84 note 1k",
   "p4fix2": "2026-10-10 P4 critique round 2 (p2v3/p4/fix2): POWER block text without 'ESC3 BULK' (C30 gone, D77); PA_VCC and U2_SW net classes come from .kicad_pro patterns (the board ignores directive labels), U2_SW directive Phase added; check_netlist N6 cross-checks netlist class against the patterns"
  },
  "rules": [
@@ -27,8 +27,8 @@
   "Every signal between sheets is a real root wire between sheet pins; every hierarchical label in a sub-sheet has exactly the name, direction (= label shape) and count of the pins listed here; no global labels.",
   "Root net names: each root wire carries a root local label with the net name (net '/<NAME>'), except the motor phases: the ESC sheet puts a LOCAL label PHASE_x (plus the hierarchical label) on the phase net, and the root wire has no label, so the net is '/ESCn/PHASE_x' (verified with kicad-cli 10.0.6: a sub-sheet local label beats root sheet pins; a root local label beats sub-sheet hierarchical labels).",
   "Sub-sheets must not put a local label on a net that leaves through a hierarchical label (except ESC PHASE_x): the root label names it.",
-  "Rails are power symbols from the stock 'power' library; the Value is the rail name (net = Value, verified): +BATT_IN uses power:+BATT, +5V_BST/+5V_USB/+5V_CAM/+5V_HD use power:+5V, +3V3_VTX uses power:+3V3. VBUS is a hierarchical net (LINEUP A11: power symbols must be + rails).",
-  "PWR_FLAG on every rail whose only source is passive or a connector: +BATT_IN and GND (POWER), +BATT (after the shunt), +5V_CAM (after FB1), VBUS (PADS, at J31), +1V1 (RP2350A: SMPS through L2), VREG_AVDD (RP2350A: R41 RC filter) and PA_VCC (VTX: R67 selector). Regulator outputs are typed power_out in the project library (LP5912, TPS61022, TPS2116, SGM40661, TPS22810, TPS7A2018, LP5907), so +3V3 / +3V3_VTX carry no flag.",
+  "Rails are power symbols from the stock 'power' library; the Value is the rail name (net = Value, verified): +BATT_IN uses power:+BATT, +5V_BST/+5V_USB/+5V_CAM/+5V_HD use power:+5V, +3.3V_VTX uses power:+3.3V. VBUS is a hierarchical net (LINEUP A11: power symbols must be + rails).",
+  "PWR_FLAG on every rail whose only source is passive or a connector: +BATT_IN and GND (POWER), +BATT (after the shunt), +5V_CAM (after FB1), VBUS (PADS, at J31), +1.1V (RP2350A: SMPS through L2), VREG_AVDD (RP2350A: R41 RC filter) and PA_VCC (VTX: R67 selector). Regulator outputs are typed power_out in the project library (LP5912, TPS61022, TPS2116, SGM40661, TPS22810, TPS7A2018, LP5907), so +3.3V / +3.3V_VTX carry no flag.",
   "Multi-pin nets inside a sheet get a local label named after the driving pin (U2_SW, U5_EN, Q27_C), except the fixed names listed per sheet (local_nets_fixed / spec names such as RF_*, PA_DET_RAW, SHUNT_SENSE_P/N, which the netclass patterns match).",
   "Never rotate a ground symbol; block notes go in borderless text boxes (stroke width -0.0001); sheet title block fields title/date/rev filled, company empty, wordmark polylines from hardware/tools/opendrone_wordmark.json (shipped art, black + #c89d2e) via sch_root.decorate().",
   "Deterministic uuids: sch_build uuid5(root uuid, file|kind|key); symbol key = the ESC1 / single-instance reference. Sheet symbol, sheet file and instance-path uuids are fixed in this file.",
@@ -315,8 +315,8 @@
    ]
   },
   {
-   "rail": "+3V3",
-   "symbol": "power:+3V3",
+   "rail": "+3.3V",
+   "symbol": "power:+3.3V",
    "source": "U4 LP5912-3.3",
    "nominal": "3.3 V",
    "budget": "0.20 A (FC 0.09 + RX 0.11, 0.16 peak); 0.48 A peak in ELRS Wi-Fi update mode (ESP32-PICO TX 370 mA, bench only, disarmed; LP5912 500 mA, ~0.9 W bursts; ruling 2026-10-09)",
@@ -330,8 +330,8 @@
    ]
   },
   {
-   "rail": "+3V3_VTX",
-   "symbol": "power:+3V3",
+   "rail": "+3.3V_VTX",
+   "symbol": "power:+3.3V",
    "source": "U21 LP5912-3.3, EN = VTX_PWR_EN (off in HD mode)",
    "nominal": "3.3 V",
    "budget": "0.10 A typical (RTC6705 95 mA DS); about 0.17 A at the top PA step (+ PNP PAOUT1 feed 32-66 mA + U22 SE5004L VREF about 10 mA); LP5912 500 mA",
@@ -345,9 +345,9 @@
    ]
   },
   {
-   "rail": "+1V8",
-   "symbol": "power:+1V8",
-   "source": "U12 TPS7A2018 from +3V3",
+   "rail": "+1.8V_GYRO",
+   "symbol": "power:+1.8V_GYRO",
+   "source": "U12 TPS7A2018 from +3.3V",
    "nominal": "1.8 V",
    "budget": "< 1 mA",
    "feeds": "BMI270 VDD (IMU)",
@@ -360,8 +360,8 @@
    ]
   },
   {
-   "rail": "+1V1",
-   "symbol": "power:+1V1",
+   "rail": "+1.1V",
+   "symbol": "power:+1.1V",
    "source": "RP2354A core SMPS (VREG_LX + L2)",
    "nominal": "1.1 V",
    "budget": "internal",
@@ -392,7 +392,7 @@
   {
    "rail": "PA_VREF",
    "symbol": "local net /VTX/PA_VREF",
-   "source": "U22 LP5907SNX-2.85 from +3V3_VTX, EN = PA_EN (ESP32 GPIO2); off in HD mode with +3V3_VTX",
+   "source": "U22 LP5907SNX-2.85 from +3.3V_VTX, EN = PA_EN (ESP32 GPIO2); off in HD mode with +3.3V_VTX",
    "nominal": "2.85 V +-2 % (V5 gate: SE5004L VREF H 2.80-2.90 V)",
    "budget": "about 10 mA (SE5004L IEN typ, incl. its internal 2 kOhm pull-down)",
    "feeds": "SE5004L VREF/EN pin 5 (VTX)",
@@ -442,8 +442,8 @@
      "dir": "input"
     }
    ],
-   "fw": "PINIO1_PIN PA27 (GPIO27, pin 41)",
-   "note": "high = HD mode: O4 switch EN via D2 BAS16LD (cathode), AP1606 HD gate Q28 holds +3V3_VTX off; R11 2.4k pull-down on the POWER sheet keeps analog mode at reset (P4-1, P4-4)"
+   "fw": "PINIO1_PIN PA19 (GPIO19, pin 31)",
+   "note": "high = HD mode: O4 switch EN via D2 BAS16LD (cathode), AP1606 HD gate Q28 holds +3.3V_VTX off; R11 2.4k pull-down on the POWER sheet keeps analog mode at reset (P4-1, P4-4)"
   },
   {
    "net": "/CURR_SENSE",
@@ -461,7 +461,7 @@
      "dir": "input"
     }
    ],
-   "fw": "ADC_CURR_PIN PA28 (GPIO28) after R47/C60",
+   "fw": "ADC_CURR_PIN PA26 (GPIO26) after R47/C60",
    "note": "INA186A3 OUT, 50 mV/A, ibata_scale 500"
   },
   {
@@ -499,7 +499,7 @@
      "dir": "input"
     }
    ],
-   "fw": "LED0_PIN PA7 (GPIO7, pin 10)",
+   "fw": "LED0_PIN PA10 (GPIO10, pin 14)",
    "note": "status LED sink (low = on)"
   },
   {
@@ -518,7 +518,7 @@
      "dir": "input"
     }
    ],
-   "fw": "LED1_PIN PA26 (GPIO26, pin 40)",
+   "fw": "LED1_PIN PA24 (GPIO24, pin 36)",
    "note": "status LED sink (low = on)"
   },
   {
@@ -537,7 +537,7 @@
      "dir": "input"
     }
    ],
-   "fw": "SPI1_SCK_PIN PA10 (GPIO10)",
+   "fw": "SPI1_SCK_PIN PA14 (GPIO14)",
    "note": ""
   },
   {
@@ -594,7 +594,7 @@
      "dir": "input"
     }
    ],
-   "fw": "GYRO_1_CS_PIN PA13 (GPIO13)",
+   "fw": "GYRO_1_CS_PIN PA15 (GPIO15)",
    "note": "R49 10k pull-up on the IMU sheet"
   },
   {
@@ -613,7 +613,7 @@
      "dir": "output"
     }
    ],
-   "fw": "GYRO_1_EXTI_PIN PA9 (GPIO9)",
+   "fw": "GYRO_1_EXTI_PIN PA7 (GPIO7)",
    "note": ""
   },
   {
@@ -632,7 +632,7 @@
      "dir": "input"
     }
    ],
-   "fw": "GYRO_1_CLKIN_PIN PA6 (GPIO6)",
+   "fw": "GYRO_1_CLKIN_PIN PA13 (GPIO13)",
    "note": "IMU LGA pin 9 (CLKIN on ICM-42688-P, INT2 on BMI270, unused)"
   },
   {
@@ -651,7 +651,7 @@
      "dir": "input"
     }
    ],
-   "fw": "SPI0_SCK_PIN PA18 (GPIO18)",
+   "fw": "SPI0_SCK_PIN PA2 (GPIO2)",
    "note": ""
   },
   {
@@ -670,7 +670,7 @@
      "dir": "input"
     }
    ],
-   "fw": "SPI0_SDO_PIN PA19 (GPIO19)",
+   "fw": "SPI0_SDO_PIN PA3 (GPIO3)",
    "note": ""
   },
   {
@@ -689,7 +689,7 @@
      "dir": "output"
     }
    ],
-   "fw": "SPI0_SDI_PIN PA20 (GPIO20)",
+   "fw": "SPI0_SDI_PIN PA0 (GPIO0)",
    "note": ""
   },
   {
@@ -708,7 +708,7 @@
      "dir": "input"
     }
    ],
-   "fw": "FLASH_CS_PIN PA21 (GPIO21)",
+   "fw": "FLASH_CS_PIN PA1 (GPIO1)",
    "note": "R50 10k pull-up on the BLACKBOX sheet"
   },
   {
@@ -727,7 +727,7 @@
      "dir": "input"
     }
    ],
-   "fw": "UART0_TX_PIN PA0 (GPIO0); SERIALRX_UART UART0, CRSF",
+   "fw": "UART1_TX_PIN PA8 (GPIO8); SERIALRX_UART UART1, CRSF (hardware UART1 since the D111 map; net name kept)",
    "note": "-> ESP32-PICO GPIO3 U0RXD (pin 40), ELRS serial_rx"
   },
   {
@@ -746,7 +746,7 @@
      "dir": "input"
     }
    ],
-   "fw": "UART0_RX_PIN PA1 (GPIO1)",
+   "fw": "UART1_RX_PIN PA9 (GPIO9) (hardware UART1 since the D111 map; net name kept)",
    "note": "<- ESP32-PICO GPIO1 U0TXD (pin 41), ELRS serial_tx"
   },
   {
@@ -784,7 +784,7 @@
      "dir": "input"
     }
    ],
-   "fw": "OSD_W_PIN PA14 (GPIO14, PIO2 FB OSD)",
+   "fw": "OSD_W_PIN PA21 (GPIO21, PIO2 FB OSD)",
    "note": ""
   },
   {
@@ -803,7 +803,7 @@
      "dir": "input"
     }
    ],
-   "fw": "OSD_EN_PIN PA15 (GPIO15, PIO2 FB OSD)",
+   "fw": "OSD_EN_PIN PA22 (GPIO22, PIO2 FB OSD)",
    "note": ""
   },
   {
@@ -822,7 +822,7 @@
      "dir": "output"
     }
    ],
-   "fw": "OSD_SYNC_PIN PA16 (GPIO16, PIO2 FB OSD)",
+   "fw": "OSD_SYNC_PIN PA23 (GPIO23, PIO2 FB OSD)",
    "note": ""
   },
   {
@@ -879,7 +879,7 @@
      "dir": "bidirectional"
     }
    ],
-   "fw": "MOTOR1_PIN PA25 (GPIO25, PIO0 bidirectional DShot)",
+   "fw": "MOTOR1_PIN PA4 (GPIO4, PIO0 bidirectional DShot)",
    "note": "R12 2.4k at the EFM8 RTX pin (ESC sheet)"
   },
   {
@@ -898,7 +898,7 @@
      "dir": "bidirectional"
     }
    ],
-   "fw": "MOTOR2_PIN PA24 (GPIO24, PIO0 bidirectional DShot)",
+   "fw": "MOTOR2_PIN PA6 (GPIO6, PIO0 bidirectional DShot)",
    "note": "R19 2.4k at the EFM8 RTX pin (ESC sheet)"
   },
   {
@@ -917,7 +917,7 @@
      "dir": "bidirectional"
     }
    ],
-   "fw": "MOTOR3_PIN PA23 (GPIO23, PIO0 bidirectional DShot)",
+   "fw": "MOTOR3_PIN PA18 (GPIO18, PIO0 bidirectional DShot)",
    "note": "R26 2.4k at the EFM8 RTX pin (ESC sheet)"
   },
   {
@@ -936,7 +936,7 @@
      "dir": "bidirectional"
     }
    ],
-   "fw": "MOTOR4_PIN PA22 (GPIO22, PIO0 bidirectional DShot)",
+   "fw": "MOTOR4_PIN PA20 (GPIO20, PIO0 bidirectional DShot)",
    "note": "R33 2.4k at the EFM8 RTX pin (ESC sheet)"
   },
   {
@@ -955,7 +955,7 @@
      "dir": "input"
     }
    ],
-   "fw": "UART1_TX_PIN PA4 (GPIO4)",
+   "fw": "UART0_TX_PIN PA16 (GPIO16) (hardware UART0 since the D111 map; net name kept)",
    "note": "pad J28 TX1"
   },
   {
@@ -974,7 +974,7 @@
      "dir": "output"
     }
    ],
-   "fw": "UART1_RX_PIN PA5 (GPIO5)",
+   "fw": "UART0_RX_PIN PA17 (GPIO17) (hardware UART0 since the D111 map; net name kept)",
    "note": "pad J29 RX1"
   },
   {
@@ -993,7 +993,7 @@
      "dir": "input"
     }
    ],
-   "fw": "LED_STRIP_PIN PA8 (GPIO8, PIO1)",
+   "fw": "LED_STRIP_PIN PA5 (GPIO5, PIO1)",
    "note": "pad J20 LED, driven directly (D52 BR-04); PINMAP net LED_STRIP_IO"
   },
   {
@@ -1069,7 +1069,7 @@
      "dir": "input"
     }
    ],
-   "fw": "ESP32 GPIO19, ELRS vtx_nss",
+   "fw": "ESP32 GPIO22, ELRS vtx_nss",
    "note": "-> R80 1k -> RTC6705 SPILE (VTX sheet)"
   },
   {
@@ -1088,7 +1088,7 @@
      "dir": "input"
     }
    ],
-   "fw": "ESP32 GPIO5, ELRS vtx_sck",
+   "fw": "ESP32 GPIO20, ELRS vtx_sck",
    "note": "-> R81 1k -> RTC6705 SPICLK"
   },
   {
@@ -1107,7 +1107,7 @@
      "dir": "bidirectional"
     }
    ],
-   "fw": "ESP32 GPIO14, ELRS vtx_mosi",
+   "fw": "ESP32 GPIO19, ELRS vtx_mosi",
    "note": "-> R82 1k -> RTC6705 SPIDATA (3-wire); \"vtx_miso\": -1 written explicitly (D81)"
   },
   {
@@ -1126,7 +1126,7 @@
      "dir": "input"
     }
    ],
-   "fw": "ESP32 GPIO13, ELRS vtx_amp_pwm",
+   "fw": "ESP32 GPIO33, ELRS vtx_amp_pwm",
    "note": "-> R71/C124/R72/C125 2-pole RC -> Q27 BC857BM base (inverting)"
   },
   {
@@ -1145,7 +1145,7 @@
      "dir": "input"
     }
    ],
-   "fw": "ESP32 GPIO2, ELRS vtx_amp_vref",
+   "fw": "ESP32 GPIO21, ELRS vtx_amp_vref",
    "note": "-> U22 LP5907-2.85 EN directly (strap: internal pull-downs only)"
   },
   {
@@ -1164,7 +1164,7 @@
      "dir": "input"
     }
    ],
-   "fw": "ESP32 GPIO21, ELRS patched ELRS VTX power",
+   "fw": "ESP32 GPIO4, ELRS patched ELRS VTX power",
    "note": "-> R84 1k -> VTX_PWR_EN (U21 EN, R68 47k pull-up)"
   },
   {
@@ -1183,7 +1183,7 @@
      "dir": "output"
     }
    ],
-   "fw": "ESP32 GPIO4, ELRS vtx_amp_vpd",
+   "fw": "ESP32 GPIO36, ELRS vtx_amp_vpd",
    "note": "<- R66 1k / C117 100p from the SE5004L DET"
   },
   {
@@ -1202,7 +1202,7 @@
      "dir": "output"
     }
    ],
-   "fw": "ESP32 GPIO34, ELRS patched ELRS PA temperature",
+   "fw": "ESP32 GPIO37, ELRS patched ELRS PA temperature",
    "note": "<- TH1 NCP03XH103 / R70 10k divider"
   },
   {
@@ -1540,7 +1540,7 @@
       "C14"
      ],
      "source": "OpenFC-Lite-Mini/hardware/power.kicad_sch (LP5912-3.3 block)",
-     "notes": "+5V -> +3V3, EN tied to +5V; C13 is the shared CIN between the U4 and U21 (VTX sheet) IN pins (BR-14, sheet note)",
+     "notes": "+5V -> +3.3V, EN tied to +5V; C13 is the shared CIN between the U4 and U21 (VTX sheet) IN pins (BR-14, sheet note)",
      "p4": [
       "P4-12",
       "P4-17"
@@ -1940,14 +1940,14 @@
       "C58"
      ],
      "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
-     "notes": "pin plan PINMAP §2/§3; QSPI SD0-SD3/SCLK no-connect (in-package flash); RUN tied to +3V3; C49 at ADC_AVDD pin 44, C54 <= 1 mm from pin 54 (BR-08 sheet notes)",
+     "notes": "pin plan PINMAP §2/§3; QSPI SD0-SD3/SCLK no-connect (in-package flash); RUN tied to +3.3V; C49 at ADC_AVDD pin 44, C54 <= 1 mm from pin 54 (BR-08 sheet notes)",
      "p4": [
       "P4-11",
       "P4-17"
      ]
     },
     {
-     "name": "Core SMPS +1V1 and VREG_AVDD",
+     "name": "Core SMPS +1.1V and VREG_AVDD",
      "refs": [
       "L2",
       "C56",
@@ -1956,19 +1956,17 @@
       "R41"
      ],
      "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
-     "notes": "VREG_LX -> L2 -> +1V1 (pin-side net VREG_LX); C56 4.7u at VREG_FB + C134 4.7u at DVDD pin 23 (RP2350 DS 6.3.8, ruling 2026-10-09); 27R + 4.7u RC",
+     "notes": "VREG_LX -> L2 -> +1.1V (pin-side net VREG_LX); C56 4.7u at VREG_FB + C134 4.7u at DVDD pin 23 (RP2350 DS 6.3.8, ruling 2026-10-09); 27R + 4.7u RC",
      "p4": []
     },
     {
-     "name": "12 MHz crystal",
+     "name": "12 MHz oscillator",
      "refs": [
       "X1",
-      "C42",
-      "C43",
-      "R40"
+      "C42"
      ],
      "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
-     "notes": "XIN, XOUT -> R40 1k -> XOUT_X",
+     "notes": "X1 YXC OT201612MJBA4SL CMOS oscillator: OUT -> XIN (pin 21), EN tied to +3.3V, C42 100 nF at VDD; XOUT (pin 22) no-connect (D100, research/OSCILLATOR-O3.md)",
      "p4": []
     },
     {
@@ -2003,7 +2001,7 @@
       "C60"
      ],
      "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
-     "notes": "+BATT -> 10k/10k -> ADC_VBAT (GPIO29) + 100n; CURR_SENSE -> 1k -> ADC_CURR (GPIO28) + 100n",
+     "notes": "+BATT -> 10k/10k -> ADC_VBAT (GPIO27) + 100n; CURR_SENSE -> 1k -> ADC_CURR (GPIO26) + 100n",
      "p4": []
     },
     {
@@ -2013,7 +2011,7 @@
       "R48"
      ],
      "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (DMN1150UFB there, AP1606 here)",
-     "notes": "GPIO17 BEEPER -> gate, 100k pull-down; drain -> BUZZER- (hierarchical)",
+     "notes": "GPIO25 BEEPER -> gate, 100k pull-down; drain -> BUZZER- (hierarchical)",
      "p4": []
     }
    ],
@@ -2249,8 +2247,6 @@
     "R41",
     "X1",
     "C42",
-    "C43",
-    "R40",
     "R42",
     "R43",
     "R44",
@@ -2265,7 +2261,7 @@
     "Q26",
     "R48"
    ],
-   "ref_count": 34,
+   "ref_count": 32,
    "file_uuid": "c4f624fc-57b8-50ab-a6ff-1ad252940f3e"
   },
   {
@@ -2298,14 +2294,14 @@
      "p4": []
     },
     {
-     "name": "+1V8 gyro LDO TPS7A2018",
+     "name": "+1.8V_GYRO gyro LDO TPS7A2018",
      "refs": [
       "U12",
       "C61",
       "C62"
      ],
      "source": "commons blocks/LDO_IMU_TPS7A2033 (topology)",
-     "notes": "+3V3 -> +1V8, EN = +3V3; C61 between U12 IN and VDDIO pin 5, C62 at VDD pin 8 (BR-09 sheet note)",
+     "notes": "+3.3V -> +1.8V_GYRO, EN = +3.3V; C61 between U12 IN and VDDIO pin 5, C62 at VDD pin 8 (BR-09 sheet note)",
      "p4": [
       "P4-17"
      ]
@@ -2392,7 +2388,7 @@
       "R50"
      ],
      "source": "new part (D66), Betaflight USE_FLASH_M25P16 JEDEC list",
-     "notes": "WP# pin 3 and HOLD#/RESET# pin 7 to +3V3; R50 FLASH_CS pull-up; C65 at pin 8",
+     "notes": "WP# pin 3 and HOLD#/RESET# pin 7 to +3.3V; R50 FLASH_CS pull-up; C65 at pin 8",
      "p4": []
     }
    ],
@@ -2580,7 +2576,7 @@
       "C82"
      ],
      "source": "Espressif ESP32-PICO-V3 datasheet Fig. 11",
-     "notes": "pin plan PINMAP §6; GPIO12 no-connect, GPIO2 = PA_EN straight to the LP5907 EN, NC pins 25 30 31 35 36 44 45 47 48 open; EN (RX_EN) 10k + 1u",
+     "notes": "pin plan PINMAP §6; GPIO12 no-connect, GPIO21 = PA_EN straight to the LP5907 EN (D111 map; GPIO2 and GPIO5 no-connect), NC pins 25 30 31 35 36 44 45 47 48 open; EN (RX_EN) 10k + 1u",
      "p4": [
       "P4-6"
      ]
@@ -2827,7 +2823,7 @@
      "p4": []
     },
     {
-     "name": "+3V3_VTX LDO and HD gate",
+     "name": "+3.3V_VTX LDO and HD gate",
      "refs": [
       "U21",
       "C121",
@@ -2837,7 +2833,7 @@
       "C108"
      ],
      "source": "D12 / D53 BR-03",
-     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 47k to +3V3 (P4 r4: hot AP1606 leakage margin), R84 1k from VTX_PWR_CTL (ruling 2026-10-09: EN < 0.3 V guaranteed), Q28 AP1606 drain; gate HD_EN)",
+     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 47k to +3.3V (P4 r4: hot AP1606 leakage margin), R84 1k from VTX_PWR_CTL (ruling 2026-10-09: EN < 0.3 V guaranteed), Q28 AP1606 drain; gate HD_EN)",
      "p4": [
       "P4-4",
       "P4-12"
@@ -2851,7 +2847,7 @@
       "C123"
      ],
      "source": "D53 BR-03",
-     "notes": "IN = +3V3_VTX, EN = PA_EN (hierarchical), OUT = PA_VREF; C108 -> U22 path note (BR-03)",
+     "notes": "IN = +3.3V_VTX, EN = PA_EN (hierarchical), OUT = PA_VREF; C108 -> U22 path note (BR-03)",
      "p4": [
       "P4-4",
       "P4-17"
@@ -2869,7 +2865,7 @@
       "R65"
      ],
      "source": "D52 BR-02",
-     "notes": "VTX_AMP_PWM -> R71 -> PA_RC1 -> R72 -> Q27_B (2-pole RC); emitter Q27_E -> R73 to +3V3_VTX; collector Q27_C -> R65 -> PAOUT1_SUP",
+     "notes": "VTX_AMP_PWM -> R71 -> PA_RC1 -> R72 -> Q27_B (2-pole RC); emitter Q27_E -> R73 to +3.3V_VTX; collector Q27_C -> R65 -> PAOUT1_SUP",
      "p4": [
       "P4-5"
      ]
@@ -3091,7 +3087,7 @@
    "content": [
     "STATUS LEDS"
    ],
-   "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (status LED block: LED + series R from +3V3, GPIO sinks)",
+   "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch (status LED block: LED + series R from +3.3V, GPIO sinks)",
    "blocks": [
     {
      "name": "Status LEDs",
@@ -3102,7 +3098,7 @@
       "R86"
      ],
      "source": "OpenFC-Lite-Mini/hardware/rp2350a.kicad_sch",
-     "notes": "+3V3 -> LED -> 150R -> LEDn (sink)",
+     "notes": "+3.3V -> LED -> 150R -> LEDn (sink)",
      "p4": []
     }
    ],
@@ -3447,7 +3443,7 @@
   "P4-19": "power (C30): closed, C30 deleted (P4 critique, D77); ESC3's slot-M hot-loop cap C35 carries BR-05"
  },
  "bom_reduction_s7": {
-  "1 +3V3 output capacitance vs LP5912 10 uF max": "P4-12 (power + vtx)",
+  "1 +3.3V output capacitance vs LP5912 10 uF max": "P4-12 (power + vtx)",
   "2 X5R parts in H1/H3 zones": "void under D69 (owner: no 85 C rule); keep DC-bias check only",
   "3 orderability": "P4-14 at BOM freeze (D60: NextPCB sources; MPN + genuine still required)",
   "4 D4 WS2812 on 3.3 V": "P4-15 (rx_esp32_sx1281 sheet note)",

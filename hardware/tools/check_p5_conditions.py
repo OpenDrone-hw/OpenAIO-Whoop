@@ -167,7 +167,7 @@ if need("BOOST", ["U2", "C8", "C9", "C10", "C11"]):
 
 # SMPS (RP2350 DS 6.3.8.1, binding: "Don't place any of CIN/LX/COUT on the opposite side of the PCB"; sheet note RP2350A):
 # C58 CIN at VREG_VIN pin 49, L2 LX pad (2) at VREG_LX pin 48, C56 COUT at VREG_FB pin 50, C57 CFILT at VREG_AVDD
-# pin 46, all on U10's side within 3 mm. L2 pad 2 = VREG_LX and pad 1 = +1V1 as on the flown house board (DS Fig. 26 /
+# pin 46, all on U10's side within 3 mm. L2 pad 2 = VREG_LX and pad 1 = +1.1V as on the flown house board (DS Fig. 26 /
 # 28 orientation; a part on the far side mirrors the field direction, which the side check catches).
 for ref, pin, lim in (("C58", 49, 3.0), ("L2", 48, 3.0), ("C56", 50, 3.0), ("C57", 46, 3.0)):
     if need("SMPS", [ref, "U10"]):
@@ -178,8 +178,8 @@ for ref, pin, lim in (("C58", 49, 3.0), ("L2", 48, 3.0), ("C56", 50, 3.0), ("C57
                % (ref, " LX pad" if ref == "L2" else "", pin, d, side(ref), side("U10"), lim))
 if need("SMPS", ["L2"]):
     nets = {p.GetNumber(): p.GetNetname() for p in FP["L2"].Pads()}
-    ok = nets.get("2", "").endswith("VREG_LX") and nets.get("1", "").endswith("+1V1")
-    report("ok" if ok else "FAIL", "SMPS", "L2 pad 1 %s, pad 2 %s (pad 2 = VREG_LX, pad 1 = +1V1)" % (nets.get("1"), nets.get("2")))
+    ok = nets.get("2", "").endswith("VREG_LX") and nets.get("1", "").endswith("+1.1V")
+    report("ok" if ok else "FAIL", "SMPS", "L2 pad 1 %s, pad 2 %s (pad 2 = VREG_LX, pad 1 = +1.1V)" % (nets.get("1"), nets.get("2")))
 
 # BOOT (sheet notes RP2350A / RX, bom_plan R44 / D8): R44 pad 1 at QSPI_SS pin 60 (stub <= 1 mm, RPi guide R6 'close to
 # the flash' = the RP2354A package), D8 on SW1's side with BOOT_SW <= 3 mm

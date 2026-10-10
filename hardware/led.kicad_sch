@@ -351,7 +351,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+3V3"
+		(symbol "power:+3.3V"
 			(power global)
 			(pin_numbers
 				(hide yes)
@@ -376,7 +376,7 @@
 					)
 				)
 			)
-			(property "Value" "+3V3"
+			(property "Value" "+3.3V"
 				(at 0 3.556 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -408,7 +408,7 @@
 					)
 				)
 			)
-			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -430,7 +430,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_0_1"
+			(symbol "+3.3V_0_1"
 				(polyline
 					(pts
 						(xy -0.762 1.27) (xy 0 2.54)
@@ -468,7 +468,7 @@
 					)
 				)
 			)
-			(symbol "+3V3_1_1"
+			(symbol "+3.3V_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
@@ -1093,7 +1093,7 @@
 		)
 		(uuid "601b62a3-3d74-5520-86fb-8903209dd21b")
 	)
-	(text_box "STATUS LEDS (D5 D6 R85 R86)  source: OpenFC-Lite-Mini hardware/rp2350a.kicad_sch 'status LED' block (R52 + R53 2x 75R, D2 XL-1005UBC), copied and adapted: sink drive per hardware/sch_contract.json and research/PINMAP.md, 2x 75R -> one 150R 0201, second column for LED1.\nCircuit: +3V3 -> LED -> 150R -> GPIO, the pin sinks (contract). Betaflight default polarity, low = on, no LEDx_INVERTED: LED0_PIN PA7 (GPIO7, green D5), LED1_PIN PA26 (GPIO26, blue D6).\nDatasheet check (XINGLIGHT XL-1005UGC / UBC, 0402): VF 2.7-3.3 / 2.6-3.4 V at 20 mA, IF max 20 mA, PD 70 mW, VR 5 V. At a few mA the InGaN VF is about 0.2-0.3 V lower (inferred), so with VOL <= 0.5 V at 4 mA drive (RP2350 DS) the LED current is about 0.5-5 mA, typ. 2-3 mA, hard ceiling (3.3 - 2.4) / 150R = 6 mA: LED, 0201 resistor (<= 5.4 mW of 50 mW) and GPIO (4 mA setting, 100 mA IOVSS sum) all inside their ratings; brightness at 1-3 mA is about 17-135 mcd green and 4-36 mcd blue (Iv scaled from 350-900 / 80-240 mcd at 20 mA), enough for an indicator. Reverse bias is 0 V when the pin drives high (IOVDD = +3V3).\nReset state: RP2350 pads come up with the pull-down on (PDE = 1, 36-113 kOhm), so both LEDs may glow faintly (about 10-30 uA) until Betaflight drives the pins and in BOOTSEL mode. Accepted, cosmetic.\nPlacement (P5): bottom side, fc_core region (bom_plan); the R may sit at either end of the LED, slow signal (D33). Pins LED0/LED1 = root nets /LED0, /LED1 (RP2350A).\nP4 closed here: bom_plan R85/R86 'P4 checks brightness vs Vf' (above). P4-14 fields: RC0201FR-07150RL is a stocked Yageo RC_L part (Element14 4008725, RS 198-7568: 150R 1 % 50 mW 25 V); no LCSC number known, field left empty (contract open item A9-LCSC)."
+	(text_box "STATUS LEDS (D5 D6 R85 R86)  source: OpenFC-Lite-Mini hardware/rp2350a.kicad_sch 'status LED' block (R52 + R53 2x 75R, D2 XL-1005UBC), copied and adapted: sink drive per hardware/sch_contract.json and research/PINMAP.md, 2x 75R -> one 150R 0201, second column for LED1.\nCircuit: +3.3V -> LED -> 150R -> GPIO, the pin sinks (contract). Betaflight default polarity, low = on, no LEDx_INVERTED: LED0_PIN PA10 (GPIO10, green D5), LED1_PIN PA24 (GPIO24, blue D6).\nDatasheet check (XINGLIGHT XL-1005UGC / UBC, 0402): VF 2.7-3.3 / 2.6-3.4 V at 20 mA, IF max 20 mA, PD 70 mW, VR 5 V. At a few mA the InGaN VF is about 0.2-0.3 V lower (inferred), so with VOL <= 0.5 V at 4 mA drive (RP2350 DS) the LED current is about 0.5-5 mA, typ. 2-3 mA, hard ceiling (3.3 - 2.4) / 150R = 6 mA: LED, 0201 resistor (<= 5.4 mW of 50 mW) and GPIO (4 mA setting, 100 mA IOVSS sum) all inside their ratings; brightness at 1-3 mA is about 17-135 mcd green and 4-36 mcd blue (Iv scaled from 350-900 / 80-240 mcd at 20 mA), enough for an indicator. Reverse bias is 0 V when the pin drives high (IOVDD = +3.3V).\nReset state: RP2350 pads come up with the pull-down on (PDE = 1, 36-113 kOhm), so both LEDs may glow faintly (about 10-30 uA) until Betaflight drives the pins and in BOOTSEL mode. Accepted, cosmetic.\nPlacement (P5): bottom side, fc_core region (bom_plan); the R may sit at either end of the LED, slow signal (D33). Pins LED0/LED1 = root nets /LED0, /LED1 (RP2350A).\nP4 closed here: bom_plan R85/R86 'P4 checks brightness vs Vf' (above). P4-14 fields: RC0201FR-07150RL is a stocked Yageo RC_L part (Element14 4008725, RS 198-7568: 150R 1 % 50 mW 25 V); no LCSC number known, field left empty (contract open item A9-LCSC)."
 		(exclude_from_sim no)
 		(at 88.9 25.4 0)
 		(size 107.95 71.12)
@@ -1249,7 +1249,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 66.04 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -1364,7 +1364,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:R_0201_0603Metric_W"
+		(property "Footprint" "lib:R_0201_0603Metric_L"
 			(at 45.72 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -1446,7 +1446,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 45.72 40.64 0)
 		(unit 1)
 		(body_style 1)
@@ -1456,7 +1456,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "631e3a1a-de22-5535-99f2-450046f659b4")
-		(property "Reference" "#PWR236"
+		(property "Reference" "#PWR237"
 			(at 45.72 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -1467,7 +1467,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 45.72 37.084 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1499,7 +1499,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 45.72 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -1516,7 +1516,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0a9dca22-7345-53f8-9367-07faa3e8899c"
-					(reference "#PWR236")
+					(reference "#PWR237")
 					(unit 1)
 				)
 			)
@@ -1556,7 +1556,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:LED_0402_1005Metric"
+		(property "Footprint" "lib:LED_0402_1005Metric_L"
 			(at 66.04 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -1682,7 +1682,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:LED_0402_1005Metric"
+		(property "Footprint" "lib:LED_0402_1005Metric_L"
 			(at 45.72 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -1775,7 +1775,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
+		(lib_id "power:+3.3V")
 		(at 66.04 40.64 0)
 		(unit 1)
 		(body_style 1)
@@ -1785,7 +1785,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f882358a-447c-5b31-a027-3ba5f6daa202")
-		(property "Reference" "#PWR237"
+		(property "Reference" "#PWR238"
 			(at 66.04 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -1796,7 +1796,7 @@
 				)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3.3V"
 			(at 66.04 37.084 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1828,7 +1828,7 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
 			(at 66.04 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -1845,7 +1845,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0a9dca22-7345-53f8-9367-07faa3e8899c"
-					(reference "#PWR237")
+					(reference "#PWR238")
 					(unit 1)
 				)
 			)
