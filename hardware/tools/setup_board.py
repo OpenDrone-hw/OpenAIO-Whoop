@@ -388,15 +388,19 @@ RULES = [
 
     ("In2 and In3: no gyro, VTX control or Kelvin nets",
      ["Spec 8.2 / 8.4: the name-based sensitive set (gyro SPI1, GYRO_*, VTX_SPI, PA_*, SHUNT_SENSE_*) stays off",
-      "In2/In3 as well (net names compared with wildcards; '.' is literal)."],
+      "In2/In3 as well (net names compared with wildcards; '.' is literal). Route sync 2026-10-10: the integrated",
+      "schematic names the buses /SPI1_*, /VTX_SPI_* and /VTX/U19_SPI* (underscore), so those forms are matched too."],
      "  (constraint disallow track)\n"
      "  (condition \"(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SPI1.*' || "
-     "A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*/PA_*' || "
+     "A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || "
+     "A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*' || "
      "A.NetName == '*SHUNT_SENSE_*')\")"),
 
     ("RF: no vias",
-     ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one."],
-     "  (constraint disallow via)\n  (condition \"A.NetClass == 'RF'\")"),
+     ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.",
+      "D21 / FLOORPLAN Open: the RTC6705 (bottom) feeds the PA (top), so RF_PA_IN carries the one RF via,",
+      "fenced by GND vias at <= 1 mm (route/prep); every other RF net stays via-free."],
+     "  (constraint disallow via)\n  (condition \"A.NetClass == 'RF' && A.NetName != '/VTX/RF_PA_IN'\")"),
 
     ("RF: 50 ohm width on the outer layers",
      ["Spec 8.2: CPWG, gap @GAP@ mm (the RF clearance), L1 over L2 and L6 over L5, 50 ohm +- 10 %.",
@@ -433,9 +437,11 @@ RULES = [
 
     ("SPI0 3 mm from the RX antenna hole",
      ["Spec 4.9 / 11: the blackbox bus (75 MHz writes, 50 MHz reads) has harmonics in the ELRS band; SPI0 and",
-      "the NOR chip select stay outside RF_RX_ROOT (r 3.0 around the hole) on every layer."],
+      "the NOR chip select stay outside RF_RX_ROOT (r 3.0 around the hole) on every layer. Route sync 2026-10-10",
+      "(P4 ruling 'add SPI0 to the 3 mm rule'): the schematic nets are /SPI0_MISO, /SPI0_MOSI, /SPI0_SCK."],
      "  (constraint disallow track via)\n"
-     "  (condition \"A.intersectsArea('RF_RX_ROOT') && (A.NetName == '*SPI0.*' || A.NetName == '*FLASH_CS*')\")"),
+     "  (condition \"A.intersectsArea('RF_RX_ROOT') && (A.NetName == '*SPI0_*' || A.NetName == '*SPI0.*' || "
+     "A.NetName == '*FLASH_CS*')\")"),
 
     ("SHUNT_CORRIDOR: battery current only",
      ["D10 / spec 11: the battery-to-shunt corridor (on the shunt's layer, @SHUNT_LAYER@ in P2 v3) carries +BATT_IN, +BATT and GND; the Kelvin pair",
@@ -481,6 +487,15 @@ RULES = [
     ("USB: length match",
      ["Spec 8.2: length-matched pair; 0.5 mm is about 3 ps, far inside the 12 Mbit/s budget."],
      "  (constraint skew (max 0.5mm))\n  (condition \"A.NetClass == 'USB'\")"),
+
+    ("D21 Analog X2SON land gaps (U14, U15)",
+     ["D21 / route sync 2026-10-10: the Analog class clearance (0.15) also hits pad pairs inside the 1.0 x 0.8 X2SON",
+      "video switch U14 (SN74LVC1G3157DTBR, land gap 0.10) and the 0.8 x 0.8 X2SON comparator U15 (TLV7031DPWR, 0.11).",
+      "Those gaps are the manufacturer land pattern, above the 0.09 fab minimum; routed copper keeps the class clearance."],
+     "  (constraint clearance (min 0.09mm))\n"
+     "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && "
+     "((A.memberOfFootprint('lib:X2SON-6_L1.0-W0.8-BL_Dense') && B.memberOfFootprint('lib:X2SON-6_L1.0-W0.8-BL_Dense')) || "
+     "(A.memberOfFootprint('lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense') && B.memberOfFootprint('lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense')))\")"),
 ]
 
 # ==============================================================================================================
@@ -1474,6 +1489,8 @@ def selftest(P, rf):
     tht("AE1", ax, ay, [(0, 1.0, 0.5, True)], netname="/RX/ANT_FEED"); case("antenna hole footprint AE1 at the hole", None, (ax, ay), r=0.45)
     trk(ax + 1.9, ay + 1.0, ax + 2.3, ay + 1.0, 0.1, "/FC/SPI0.SCK"); case("SPI0 track 2.3 mm from the antenna hole", "SPI0 3 mm from the RX antenna hole", (ax + 2.1, ay + 1.0), r=0.6)
     trk(6.0, 9.5, 7.0, 9.5, 0.1, "/FC/SPI0.MOSI"); case("SPI0 track far from the hole", None, (6.5, 9.5), r=0.6)
+    trk(ax + 1.9, ay - 1.6, ax + 2.3, ay - 1.6, 0.1, "/SPI0_SCK"); case("schematic SPI0 net /SPI0_SCK 2.6 mm from the antenna hole", "SPI0 3 mm from the RX antenna hole", (ax + 2.1, ay - 1.6), r=0.6)
+    trk(ax + 1.9, ay + 2.0, ax + 2.3, ay + 2.0, 0.1, "/FLASH_CS"); case("NOR chip select /FLASH_CS 2.9 mm from the antenna hole", "SPI0 3 mm from the RX antenna hole", (ax + 2.1, ay + 2.0), r=0.4)
     fx, fy = RX_FEED[0]
     via(fx - 0.3, fy + 0.15, 0.35, 0.20, "/T/V9"); case("signal via in RF_RX_FEED", "RF_RX_FEED: GND vias only", (fx - 0.3, fy + 0.15), r=0.4)
     # inner-layer bans (In2 / In3)
@@ -1482,6 +1499,10 @@ def selftest(P, rf):
     trk(6.0, 3.0, 7.0, 3.0, 0.1, "/FC/SPI1.SCK", "In2.Cu"); case("gyro SPI1 track on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (6.5, 3.0), r=0.6)
     trk(8.0, 1.0, 9.0, 1.0, 0.1, "/RX/VTX_SPI.CLK", "In2.Cu"); case("VTX SPI track on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (8.5, 1.0), r=0.6)
     trk(8.0, 2.0, 9.0, 2.0, 0.1, "/FC/SPI0.MISO", "In2.Cu"); case("blackbox SPI0 track on In2 (allowed)", None, (8.5, 2.0), r=0.6)
+    trk(6.0, 4.0, 7.0, 4.0, 0.1, "/SPI1_SCK", "In3.Cu"); case("schematic gyro net /SPI1_SCK on In3", "In2 and In3: no gyro, VTX control or Kelvin nets", (6.5, 4.0), r=0.6)
+    trk(8.0, 4.0, 9.0, 4.0, 0.1, "/VTX_SPI_CLK", "In2.Cu"); case("schematic VTX net /VTX_SPI_CLK on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (8.5, 4.0), r=0.6)
+    trk(6.0, 5.0, 7.0, 5.0, 0.1, "/VTX/U19_SPICLK", "In2.Cu"); case("RTC6705-side VTX net /VTX/U19_SPICLK on In2", "In2 and In3: no gyro, VTX control or Kelvin nets", (6.5, 5.0), r=0.6)
+    trk(8.0, 5.0, 9.0, 5.0, 0.1, "/SPI0_MISO", "In2.Cu"); case("schematic blackbox net /SPI0_MISO on In2 (allowed)", None, (8.5, 5.0), r=0.6)
     # battery-to-shunt corridor
     (sx0, sy0), (sx1, sy1) = SHUNT_CORRIDOR
     smx = (sx0 + sx1) / 2

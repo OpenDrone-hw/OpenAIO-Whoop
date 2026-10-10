@@ -203,10 +203,11 @@
   (condition "(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate')"))
 
 # Spec 8.2 / 8.4: the name-based sensitive set (gyro SPI1, GYRO_*, VTX_SPI, PA_*, SHUNT_SENSE_*) stays off
-# In2/In3 as well (net names compared with wildcards; '.' is literal).
+# In2/In3 as well (net names compared with wildcards; '.' is literal). Route sync 2026-10-10: the integrated
+# schematic names the buses /SPI1_*, /VTX_SPI_* and /VTX/U19_SPI* (underscore), so those forms are matched too.
 (rule "In2 and In3: no gyro, VTX control or Kelvin nets"
   (constraint disallow track)
-  (condition "(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SPI1.*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*/PA_*' || A.NetName == '*SHUNT_SENSE_*')"))
+  (condition "(A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SPI1.*' || A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*' || A.NetName == '*SHUNT_SENSE_*')"))
 
 # Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.
 (rule "RF: no vias"
@@ -252,10 +253,11 @@
   (condition "A.intersectsArea('RF_RX_ANT_L6') && A.NetClass != 'RF'"))
 
 # Spec 4.9 / 11: the blackbox bus (75 MHz writes, 50 MHz reads) has harmonics in the ELRS band; SPI0 and
-# the NOR chip select stay outside RF_RX_ROOT (r 3.0 around the hole) on every layer.
+# the NOR chip select stay outside RF_RX_ROOT (r 3.0 around the hole) on every layer. Route sync 2026-10-10
+# (P4 ruling 'add SPI0 to the 3 mm rule'): the schematic nets are /SPI0_MISO, /SPI0_MOSI, /SPI0_SCK.
 (rule "SPI0 3 mm from the RX antenna hole"
   (constraint disallow track via)
-  (condition "A.intersectsArea('RF_RX_ROOT') && (A.NetName == '*SPI0.*' || A.NetName == '*FLASH_CS*')"))
+  (condition "A.intersectsArea('RF_RX_ROOT') && (A.NetName == '*SPI0_*' || A.NetName == '*SPI0.*' || A.NetName == '*FLASH_CS*')"))
 
 # D10 / spec 11: the battery-to-shunt corridor (on the shunt's layer, F.Cu in P2 v3) carries +BATT_IN, +BATT and GND; the Kelvin pair
 # SHUNT_SENSE_P/N leaves at the shunt's inner pad edges. Everything else stays out before routing.
@@ -304,3 +306,10 @@
 (rule "USB: length match"
   (constraint skew (max 0.5mm))
   (condition "A.NetClass == 'USB'"))
+
+# D21 / route sync 2026-10-10: the Analog class clearance (0.15) also hits pad pairs inside the 1.0 x 0.8 X2SON
+# video switch U14 (SN74LVC1G3157DTBR, land gap 0.10) and the 0.8 x 0.8 X2SON comparator U15 (TLV7031DPWR, 0.11).
+# Those gaps are the manufacturer land pattern, above the 0.09 fab minimum; routed copper keeps the class clearance.
+(rule "D21 Analog X2SON land gaps (U14, U15)"
+  (constraint clearance (min 0.09mm))
+  (condition "A.Type == 'Pad' && B.Type == 'Pad' && ((A.memberOfFootprint('lib:X2SON-6_L1.0-W0.8-BL_Dense') && B.memberOfFootprint('lib:X2SON-6_L1.0-W0.8-BL_Dense')) || (A.memberOfFootprint('lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense') && B.memberOfFootprint('lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense')))"))
