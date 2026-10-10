@@ -444,3 +444,15 @@ difference is C41: the board still has it on the 0402 land, while D108 puts all 
   the RP2350 table citation above (Table 677 is the 2026-01-10 numbering); the IO-SET V9 row that still said "O4 on UART1". The hand-off board (cons/B4/polish_chk/fix1) is
   still on the pre-D111 GPIO map, so the layout sync must be the by-pad sync_pcb re-net; net_rename.json says so.
 
+
+## Readability pass (2026-10-10)
+
+Graphics only, netlist byte-identical to 730986d (kicad-cli netlist compare). Sheet notes cut to the decision and the
+reason, every D-number and the safety rules kept (GPIO4 VTX_PWR_CTL open-drain, J31 pin-1 gate V0-USB, J32 gate G1,
+HD_EN reset state, ERC pin_to_pin on U13 pins 3/7). Short texts live in `lineup/sch/gens/tidy_notes.py` (generators
+call `tidy_notes.install(sr)`, imu/blackbox via `scripts/tidy_sheets.py`). The full design-history notes stay in the
+generator sources and in the sheets at 730986d. Layout: RP2350A drawing moved up 76.2 mm on its A2 page, PADS rows closed
+up, POWER battery pads clear of the frame (VBAT flag off the CSA+ label), ESC power-up note under the sheet note, RX
+VTX_AMP_PWM label clear of its sheet pin. Pipeline: sch_tidy/regen.sh (fix2 regen + tidy_sheets), idempotent and
+reproducible from 730986d. Checks: ERC 0 errors / 2 pin_to_pin, check_netlist 7/0, check_conventions planned 0 A-rule
+FAIL, svc_k10 visual check 0.
