@@ -1,0 +1,87 @@
+(footprint "SolderPad_0.8x1.0mm_V4"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "SMD wire solder pad 0.8 x 1.0 mm, rounded corners, no paste (hand-soldered ENIG, 26-30 AWG); V4 (D89) replaces SolderPad_1.0x1.2mm and SolderPad_1.0x1.2mm_Dense; label is board silk, not part of the footprint")
+	(tags "solder pad wire connector V4 D89")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "1aa64fda-b31f-499c-b8fc-0e81dae52258")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Value" "SolderPad_0.8x1.0mm_V4"
+		(at 0 1 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5cbe12e5-927f-4a17-b2a0-5063f19df436")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8cd21b63-e569-4f3f-a0b2-e1a8673ea035")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "273bd2e6-428e-4a2f-8bb5-6db68ae2526d")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.5 -0.6)
+		(end 0.5 0.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "0f2c57f1-7de9-4066-bee3-e86f98bbf0d4")
+	)
+	(fp_rect
+		(start -0.4 -0.5)
+		(end 0.4 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "262c8b23-92f7-444c-b865-fbb0c1944dd2")
+	)
+	(pad "1" smd roundrect
+		(at 0 0)
+		(size 0.8 1)
+		(property pad_prop_testpoint)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "fec4f8e7-dc57-4d47-9895-203e81495f53")
+	)
+	(embedded_fonts no)
+)

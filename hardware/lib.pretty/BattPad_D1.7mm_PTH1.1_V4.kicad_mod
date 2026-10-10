@@ -1,0 +1,109 @@
+(footprint "BattPad_D1.7mm_PTH1.1_V4"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Battery lead pad, round D1.7 on both sides, plated D1.1 hole for a 22 AWG lead (BT2.0 pigtail, conductor ~0.76 mm); ring 0.30 (DRU >= 0.20); Matrix 1S 5IN1 II class (ring ~1.65-1.75 OD, hole ~1.1-1.2); V4 (D89) replaces BattPad_3.0x2.0mm_PTH1.1; power vias next to the pad on the board")
+	(tags "battery pad pigtail PTH power V4 D89")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "36ff1cb1-4a83-4d6d-a81e-a215ee233baf")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "BattPad_D1.7mm_PTH1.1_V4"
+		(at 0 1.8 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c6bb0114-16d7-48a5-b0bc-2fb720bbe093")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ba6b3060-790d-41df-93ac-8a5554efcb39")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "df5d73e4-bd52-4165-b641-d4619eb6b15c")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_circle
+		(center 0 0)
+		(end 0.95 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "B.CrtYd")
+		(uuid "18d7e006-6d6b-45a8-b4d1-14ef4b231362")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 0.95 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "bb1c3367-678d-48a5-9371-5a918e6f5698")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 0.55 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "bdd6891e-aaf4-427b-bad4-205ebd5ce52a")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 0.85 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "ab1ea2a7-e97d-403f-adf3-9bd95f84a5fc")
+	)
+	(pad "1" thru_hole circle
+		(at 0 0)
+		(size 1.7 1.7)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers yes)
+		(keep_end_layers yes)
+		(uuid "4bff7e7f-38e1-44d8-9962-7d7bd3bf7963")
+	)
+	(embedded_fonts no)
+)

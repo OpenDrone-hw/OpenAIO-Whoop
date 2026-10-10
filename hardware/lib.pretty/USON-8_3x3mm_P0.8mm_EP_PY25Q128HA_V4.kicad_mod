@@ -1,0 +1,192 @@
+(footprint "USON-8_3x3mm_P0.8mm_EP_PY25Q128HA_V4"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Puya USON-8 3x3x0.55 mm (package code DF), P0.8, leads to the body edge, two exposed tie-bar tabs 0.20 x 0.80 on the centre line; PY25Q128HA DS Rev 2.0 p106 (drawing QRPD-0077), pins p4 (pin 1 top-left, 1-4 down the left). No vendor land: IPC-7351B least density, lands 0.94 x 0.29 at x +-1.28 (toe 0.25 past the body), tab lands 1:1 = pad 9 (no electrical function stated, leave unconnected). https://atta.szlcsc.com/upload/public/pdf/source/20250117/E5397163A091235CFF3CDB19865BC1CE.pdf | V4 (D95): PY25Q128HA: the two no-net tie-bar tab lands (pad 9) removed; centre column free for vias")
+	(tags "USON-8 DFN-8 3x3 PY25Q128HA-DFH-IR Puya SPI NOR flash 128Mbit blackbox V4 D95")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "1881fed0-9915-4be4-be4c-210d1510dc5c")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(property "Value" "USON-8_3x3mm_P0.8mm_EP_PY25Q128HA_V4"
+		(at 0 2.1 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9e329bfe-5fd5-412e-8ee2-bd03c125a9bf")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8223e9c0-2e9a-4f88-be00-d68766a3c225")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9293d49a-4cea-461f-b009-d5c24b609b2d")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.85 -1.6)
+		(end 1.85 1.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "5d5e5d2c-6572-4760-bb81-e3895751d068")
+	)
+	(fp_line
+		(start -1.5 -1)
+		(end -1 -1.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "34a8f795-d5f0-4cd7-ac9b-b941b5e1576f")
+	)
+	(fp_line
+		(start -1.5 1.5)
+		(end -1.5 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ce4a43c7-6b5d-4112-9328-af6fdfc39b55")
+	)
+	(fp_line
+		(start -1 -1.5)
+		(end 1.5 -1.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "9a90e9e2-fc96-4b20-bd0e-db0e39f083dd")
+	)
+	(fp_line
+		(start 1.5 -1.5)
+		(end 1.5 1.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "136faac1-d251-4943-9500-c3793e2c05ae")
+	)
+	(fp_line
+		(start 1.5 1.5)
+		(end -1.5 1.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "279e0782-612e-4565-b7f8-26b310293dd5")
+	)
+	(pad "1" smd roundrect
+		(at -1.28 -1.2)
+		(size 0.94 0.29)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "dee5047f-50bd-4f9a-a781-9272d965ef15")
+	)
+	(pad "2" smd roundrect
+		(at -1.28 -0.4)
+		(size 0.94 0.29)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "118efda1-9f61-4500-a8d9-33912c772240")
+	)
+	(pad "3" smd roundrect
+		(at -1.28 0.4)
+		(size 0.94 0.29)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "fd4893a5-0078-4022-981f-28b6b00bd08b")
+	)
+	(pad "4" smd roundrect
+		(at -1.28 1.2)
+		(size 0.94 0.29)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "553a7780-0ae7-4970-acc0-2161d40e2f7a")
+	)
+	(pad "5" smd roundrect
+		(at 1.28 1.2)
+		(size 0.94 0.29)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "1ef380b6-2ce4-43bf-baa6-907ce3521e5a")
+	)
+	(pad "6" smd roundrect
+		(at 1.28 0.4)
+		(size 0.94 0.29)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "a36e72f5-c7ad-4500-a3ff-97186568e8f2")
+	)
+	(pad "7" smd roundrect
+		(at 1.28 -0.4)
+		(size 0.94 0.29)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "05419883-dafa-4269-8331-7c54b068a299")
+	)
+	(pad "8" smd roundrect
+		(at 1.28 -1.2)
+		(size 0.94 0.29)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "89ee7964-fa76-4536-b613-c8c2b3af01a7")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/USON-8_3x3mm_P0.8mm_EP_PY25Q128HA.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
