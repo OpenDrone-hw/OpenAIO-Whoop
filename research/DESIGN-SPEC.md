@@ -38,8 +38,8 @@ variant, these win:
   the R88 / C132 / C133 pi match (bench-only update mode). SX1281 RFIO feeds the
   house **Johanson 2450FM07D0034T** front-end filter (matched to the SX1281,
   internally DC blocked).
-- **Parts:** blackbox Puya PY25Q128HA-DFH-IR (D66); 12 MHz crystal Abracon
-  ABM8-272-T3 (D78, RP2350 Table 629 ESR ≤ 50 Ω); camera plug J32 + pads (D64);
+- **Parts:** blackbox Puya PY25Q128HA-DFH-IR (D66); 12 MHz clock YXC
+  OT201612MJBA4SL CMOS oscillator on XIN (D100, research/OSCILLATOR-O3.md; replaces the D78 crystal); camera plug J32 + pads (D64);
   plug-ready motor lands (D65); shared boot button SW1 (D65); test vias (D67);
   holes on 25.5 mm (D73).
 - **5 V BEC (D79):** published **1.5 A continuous**; the 1.67 / 1.82 / 1.98 A
@@ -191,7 +191,7 @@ parts nearest the FET groups and the PA:
 
 | Grade | Parts |
 |---|---|
-| 85 °C (bind the board) | RP2354A (ambient), BMI270, SX1281, Puya PY25Q128HA-DFH-IR (−40..85, D66), **ESP32-PICO-V3** (−40..85 ambient, set by its in-package flash; V, Espressif PICO series datasheet v1.3; D55, no placement halo, D69), SE5004L (case), RTC6705 (Tj −40..85, so case ≤ about 80 °C), Abracon ABM8-272-T3 12 MHz crystal (−40..85, D78) and Yajingxin 8 MHz crystal (−40..85), YXC 52 MHz TCXO (−30..85), Walsin BPF and Johanson 2450FM07D0034T front-end filter (−40..85, D80), XINGLIGHT LEDs (−40..85; RGB −20..85), JST BM04B-SRSS-TB USB and SM03B-SURS-TF camera plugs (−25..85, S, JST catalogue), X5R capacitors (no zone rule under D69; V4 logs the hottest) |
+| 85 °C (bind the board) | RP2354A (ambient), BMI270, SX1281, Puya PY25Q128HA-DFH-IR (−40..85, D66), **ESP32-PICO-V3** (−40..85 ambient, set by its in-package flash; V, Espressif PICO series datasheet v1.3; D55, no placement halo, D69), SE5004L (case), RTC6705 (Tj −40..85, so case ≤ about 80 °C), YXC OT201612MJBA4SL 12 MHz oscillator (−40..85, D100) and Yajingxin 8 MHz crystal (−40..85), YXC 52 MHz TCXO (−30..85), Walsin BPF and Johanson 2450FM07D0034T front-end filter (−40..85, D80), XINGLIGHT LEDs (−40..85; RGB −20..85), JST BM04B-SRSS-TB USB and SM03B-SURS-TF camera plugs (−25..85, S, JST catalogue), X5R capacitors (no zone rule under D69; V4 logs the hottest) |
 | 90 °C | Hirose U.FL |
 | ≥ 105 °C | X6S capacitors in every ESC quarter and at the PA (Murata GRM033C81E104KE14D, GRM033C81A105ME05D, GRM188C80J226ME15D (boost caps and, D108, the 12 ESC hot-loop caps), GRM155C80J106ME11D; −55..105 °C, V/S maker data via distributors; D52 BR-18 moves every 100 nF to the X6S GRM033C81E104KE14D and BR-20 retires GRM155C81A225KE11D); X7R 10 nF GRM033R71A103KA01D (BR-19, −55..125); TPS2116 and TPS22810 (TA −40..105, V); EFM8BB51 I grade, TPS61022 and the LDOs (TJ 125); SN74LVC1G3157, TLV7031, INA186 (125); FETs, BC857BM (S), diodes (150); resistors, NTC, ferrite (125-155) |
 
@@ -809,7 +809,7 @@ STM32G473CEU6 + AT7456E HTSSOP-28.
 | Part | Primary | Fallback |
 |---|---|---|
 | FC MCU | Raspberry Pi **RP2354A**, QFN-60 7x7 0.4 mm, 2 MB in-package flash, C41378174, 14,698 [PU] | ST STM32G473CEU6 (C1342773, 750) with AT7456E (new sheet) |
-| 12 MHz crystal | Abracon **ABM8-272-T3**, 3225, 12 MHz, CL 10 pF, ESR ≤ 50 Ω, ±30 ppm, −40..85 °C, C20625731, with C42 / C43 15 pF and R40 1 kΩ (D78: RP2350 DS §8.2.1.1 Table 629 names it; the RPi guide sized the 1 kΩ for it) | none staged; the earlier YXC X252012MMB4SI-24 (2520, ESR 150 Ω) is superseded by D78. Not the house TOGNJING part (−20..70 °C) |
+| 12 MHz clock | YXC **OT201612MJBA4SL** 12 MHz CMOS oscillator, 2016, ±20 ppm over −40..85 °C, C669076, on XIN with XOUT open, EN tied high, C42 100 nF at VDD (D99(a)/D100, research/OSCILLATOR-O3.md; superseded the D78 Abracon ABM8-272-T3 crystal with C42 / C43 15 pF and R40 1 kΩ) | none staged; the earlier YXC X252012MMB4SI-24 (2520, ESR 150 Ω) is superseded by D78. Not the house TOGNJING part (−20..70 °C) |
 | Status LEDs | XINGLIGHT **XL-1005UGC** green (C965793) and **XL-1005UBC** blue (C22355736), 0402, sinking into GPIO7/26 from +3.3V [PU] | Kept at 0402 for the house colours. The commons-verified Kingbright 0201 family was checked: the green APG0201ZGC-5MAV is InGaN with Vf 2.85 V typ at 5 mA (S, Digi-Key listing), and blue InGaN parts sit at or above that, which leaves 0.25-0.45 V for the resistor at 3.3 V sink drive, so the current is set by the Vf spread, not the resistor. Red/orange AlInGaP 0201 parts (Vf about 2 V) work and save 1.2 mm² but change the house colours: a P2 lever |
 | LED-strip drive | **none: GPIO8 drives the LED pad directly**, no series resistor, like the other user pads (D52 BR-04; Matrix II parity: `LED_STRIP_PIN PB2` direct, V). A WS2812 at 5.15 V wants VIH 3.6 V, so the README carries the Betaflight inline-diode note and V9 tests a strip | Nexperia 74LVC1T45GM,115 (XSON6 SOT886, 0.5 mm pitch, VCCA +3.3V / VCCB +5V) if V9 fails on the target strips. The round-4 74LVC1T45GS (SOT1202, 0.35 mm pitch) and its two caps are deleted |
 | Beeper FET | ALLPOWER **AP1606**, DFN-3L 1.0x0.6, 20 V, Vgs(th) 1.2 V, C2849580, 2,000 [PU] (also the HD gate, D53 BR-03; 2 per board: the round-4 USB term is deleted, BR-10) | Nexperia PMZ250UN class (S), land check in P3 |
@@ -827,24 +827,27 @@ button is the shared SW1 + D8 on the RX sheet, R44 1k from QSPI_SS to FC_BOOT, F
 
 | GPIO | Function | Peripheral |
 |---|---|---|
-| 0 / 1 | CRSF to ESP32 (ELRS RX; also serial passthrough) | UART0 TX/RX |
-| 2 / 3 | user UART pads TP0 / RP0 (D16) | PIOUART0 (PIO1) |
-| 4 / 5 | DJI O4 Lite pads TX1 / RX1: MSP DisplayPort (D16) | UART1 TX/RX |
-| 6 | gyro pin 9 (CLKIN for TDK; INT2 on BMI270, unused) | PWM slice 3A (32 kHz CLKIN) |
-| 7 | LED0 green (status) | GPIO |
-| 8 | LED strip, driven direct (PINMAP F1, D52 BR-04) | PIO1 (WS2812) |
-| 9 | gyro INT | GPIO IRQ |
-| 10 / 11 / 12 / 13 | gyro SCK / MOSI / MISO / CS | SPI1 |
-| 14 / 15 / 16 | OSD_W / OSD_EN / OSD_SYNC (must be consecutive) | PIO2 (FB OSD) |
-| 17 | beeper (low-side FET) | GPIO / PWM slice 0B |
-| 18 / 19 / 20 / 21 | NOR SCK / MOSI / MISO / CS | SPI0 |
-| 22 / 23 / 24 / 25 | M4 / M3 / M2 / M1 | PIO0 (bidirectional DShot) |
-| 26 | LED1 blue | GPIO (ADC0 unused) |
-| 27 | HD line: O4 switch enable and analog-VTX hold-off (D15, D17); 2.4 kΩ pull-down = analog mode at reset (BR-24) | PINIO1 |
-| 28 | current sense | ADC2 |
-| 29 | VBAT sense | ADC3 |
+| 0 / 2 / 3 / 1 | NOR MISO / SCK / MOSI / CS | SPI0 (CS as GPIO) |
+| 4 / 6 / 18 / 20 | M1 / M2 / M3 / M4 | PIO0 (bidirectional DShot) |
+| 5 | LED strip, driven direct (PINMAP F1, D52 BR-04) | PIO1 (WS2812) |
+| 7 | gyro INT | GPIO IRQ |
+| 8 / 9 | CRSF to ESP32 (ELRS RX; also serial passthrough), nets UART0_TX/RX | UART1 TX/RX |
+| 10 | LED0 green (status) | GPIO |
+| 11 / 12 / 14 / 15 | gyro MOSI / MISO / SCK / CS | SPI1 (CS as GPIO) |
+| 13 | gyro pin 9 (CLKIN for TDK; INT2 on BMI270, unused) | PWM slice 6B (32 kHz CLKIN) |
+| 16 / 17 | DJI O4 Lite pads TX1 / RX1: MSP DisplayPort (D16), nets UART1_TX/RX | UART0 TX/RX |
+| 19 | HD line: O4 switch enable and analog-VTX hold-off (D15, D17); 2.4 kΩ pull-down = analog mode at reset (BR-24) | PINIO1 |
+| 21 / 22 / 23 | OSD_W / OSD_EN / OSD_SYNC (must be consecutive, osd_pico.c) | PIO2 (FB OSD) |
+| 24 | LED1 blue | GPIO |
+| 25 | beeper (low-side FET) | GPIO / PWM slice 4B |
+| 26 | current sense | ADC0 |
+| 27 | VBAT sense | ADC1 |
+| 28 / 29 | spare, no-connect | - |
 
-Conflict check (I, V in PINMAP §4): 30 of 30 GPIOs used. PIO0 holds DShot (29
+D111 (2026-10-10): this is the GPIO map of the winning placement V4_B4 (PINMAP §2 note); the D16 user UART pads
+TP0/RP0 left with D89.
+
+Conflict check (I, V in PINMAP §4; before D89/D111): 30 of 30 GPIOs used. PIO0 holds DShot (29
 of 32 instructions, 4 state machines). PIO2 holds the FB OSD (31 instructions),
 so the LED strip moves to PIO1 with `PIO_LEDSTRIP_INDEX 1`. PIO1 then holds
 WS2812 (4) + PIOUART0 tx (10) + rx (9) = 23 of 32 instructions and 3 of 4 state
@@ -2248,7 +2251,7 @@ round 3, 2026-10-10; D108 part update): 81 BOM lines, 236 placements.
 | Semtech SX1281IMLTRT | 1 | HQ Online stock was below the run quantity (2026-10-09) | quote confirms |
 | Standard passives without an LCSC number recorded: BLM03PX121SN1D, GRM0335C1H101JA01D, GRM0335C1H330JA01D, RC0201FR-07150RL, RC0201FR-0718KL, RC0201FR-071K2L, RC0201FR-071KL, RC0201FR-07270RL, RC0201FR-0727K4L, RC0201FR-0727RL, RC0201FR-07287RL, RC0201FR-0733KL, RC0201FR-0747KL, RC0201FR-07510KL, RC0201FR-07560KL, RC0201FR-076K2L, RC0201FR-07820RL, RC0201JR-070RL | per BOM | Murata / Yageo catalogue parts | quote confirms the exact MPN (Yageo RC0201FR-07 of the same value is the same part) |
 | DNP lines (not assembled: plug-ready motor headers, Wi-Fi pi-match shunts): Molex 53047-0310 (4 DNP); Murata GRM0335C1H1R2BA01D (2 DNP) | 0 | - | - |
-| Everything else: 2450FM07D0034T, ABM8-272-T3, AOTA-B201610S3R3-101-T, AP1606, BAS16LD,315, BC857BM,315, BM04B-SRSS-TB(LF)(SN), BMI270, CC0201JRX7R9BB471, CL05A105KA5NQNC, CL05A475MP5NRNC, CL10A226MO7JZNC, FTC252012SR68MBCA, GRM0335C1H100JA01D, GRM0335C1H150JA01D, GRM033C81E104KE14D, GRM033R60J474KE90D, GRM033R61A105ME44D, GRM033R71A103KA01D, GRM033R71H102KA12D, GRM155C80J106ME11D, GRM188C80J226ME15D, HCS1206FTL500, INA186A3IDCKR, LP5912-3.3DRVR, LQP03TN4N7H02D, NCP03XH103F05RL, OW7EL89CENUNFAYLC-52M, RC0201FR-07100KL, RC0201FR-0710KL, RC0201FR-0710RL, RC0201FR-07680RL, RC0201FR-0775RL, RC0402JR-070RL, RFBPF1608060K98Q1C, RTT012401FTH, SDM02U30LP3-7B, SM03B-SURS-TF(LF)(SN), SMF5.0A, SN74LVC1G3157DTBR, TAXM8M4RDBCCT2T, TLV7031DPWR, TPD2EUSB30DRTR, TPS2116DRLR, TPS61022RWUR, TPS7A2018PDQNRM3, U.FL-R-SMT-1(80), XL-1005UBC, XL-1005UGC, XL-1010RGBC-2812B | per BOM | LCSC-listed, standard | turnkey; the quote confirms each MPN |
+| Everything else: 2450FM07D0034T, AOTA-B201610S3R3-101-T, AP1606, BAS16LD,315, BC857BM,315, BM04B-SRSS-TB(LF)(SN), BMI270, CC0201JRX7R9BB471, CL05A105KA5NQNC, CL05A475MP5NRNC, CL10A226MO7JZNC, FTC252012SR68MBCA, GRM0335C1H100JA01D, GRM0335C1H150JA01D, GRM033C81E104KE14D, GRM033R60J474KE90D, GRM033R61A105ME44D, GRM033R71A103KA01D, GRM033R71H102KA12D, GRM155C80J106ME11D, GRM188C80J226ME15D, HCS1206FTL500, INA186A3IDCKR, LP5912-3.3DRVR, LQP03TN4N7H02D, NCP03XH103F05RL, OT201612MJBA4SL, OW7EL89CENUNFAYLC-52M, RC0201FR-07100KL, RC0201FR-0710KL, RC0201FR-0710RL, RC0201FR-07680RL, RC0201FR-0775RL, RC0402JR-070RL, RFBPF1608060K98Q1C, RTT012401FTH, SDM02U30LP3-7B, SM03B-SURS-TF(LF)(SN), SMF5.0A, SN74LVC1G3157DTBR, TAXM8M4RDBCCT2T, TLV7031DPWR, TPD2EUSB30DRTR, TPS2116DRLR, TPS61022RWUR, TPS7A2018PDQNRM3, U.FL-R-SMT-1(80), XL-1005UBC, XL-1005UGC, XL-1010RGBC-2812B | per BOM | LCSC-listed, standard | turnkey; the quote confirms each MPN |
 
 NextPCB EQ list (one submission): filled and capped via-in-pad (Type VII, through vias only) in
 0201 / QFN / LGA / AGM210MAP pads (D34, §8.3); the min track/space and the silk minimum at the

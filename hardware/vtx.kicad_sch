@@ -4838,7 +4838,7 @@
 	)
 	(rectangle
 		(start 137.16 27.94)
-		(end 302.26 272.86)
+		(end 302.26 276.98)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -5785,10 +5785,10 @@
 		)
 		(uuid "6be002d0-840e-5af6-befc-ebe1955347e1")
 	)
-	(text_box "PNP PA DRIVE. ESP32 GPIO33 VTX_AMP_PWM (ELRS vtx_amp_pwm, 10 kHz) -> two RC poles (R71 / C124, R72 / C125, 1k / 1u each) -> BC857BM base; emitter R73 (Re) to +3.3V_VTX; collector Q27_C -> R65 10R -> PAOUT1_SUP -> L3 -> RTC6705 PAOUT1: it sets the RTC6705 output-stage current, not the SE5004L bias. Inverting, current mode. ngspice (Nexperia BC857BM model, PAOUT1 sink model): Re 10R gives 32-59 mA at the top step over hFE 220-475 and -20..85 C, Q27 <= 114 mW (Ptot 130 mW at 85 C), base ripple 2.1 mV p-p, settles in 8 ms (ELRS 20 ms loop). GPIO33 after reset is an input (ESP32 DS IO_MUX: oe=0, ie=1, wpd; about 45 kOhm): ngspice case 4 gives 10-19 mA (Re 10R) from reset until ELRS initialize() sets the pit count (stock vtxSPIPWM = MAX_PWM), and for as long as the ESP32 stays in ROM download mode (SW1 held, recovery): Q27 about 50 mW, the PA off (GPIO2 wpd), V5 measures that boot leakage at the U.FL. HD mode: both junctions reverse-biased 3.3 V (VEBO 5 V). Steps per 6 dB at Re 10R: 11-13 at 1 mA, 16-19 at 2 mA, 25-32 at 4 mA; V8 measures the PAOUT1 current at 25 mW and V5 sets Re (27R gives >= 20 steps from 1.5 mA). Start value R73 = 10R.\nRATINGS AT THE TOP STEP (Re 10R, hFE 475, 85 C: 58.5 mA): R73 and R65 dissipate about 34 mW each, against the RC0201 derating (50 mW to 70 C, zero at 125 C: 36 mW at 85 C, 27 mW at 95 C) beside a 2 W PA; Q27 <= 114 mW against 130 mW at 85 C (12 % margin). V8 pass: top-step current and the board temperature at R73 / R65 / Q27 keep each part inside its derated rating; levers: cap the ELRS power-table top count so Ic <= 45 mA (P <= 20 mW), or Re 27R (26 mW in R73, 10 mW in R65) if V5 accepts the steps; 0402s only if V8 shows the top step is needed."
+	(text_box "PNP PA DRIVE. ESP32 GPIO33 VTX_AMP_PWM (ELRS vtx_amp_pwm, 10 kHz) -> two RC poles (R71 / C124, R72 / C125, 1k / 1u each) -> BC857BM base; emitter R73 (Re) to +3.3V_VTX; collector Q27_C -> R65 10R -> PAOUT1_SUP -> L3 -> RTC6705 PAOUT1: it sets the RTC6705 output-stage current, not the SE5004L bias. Inverting, current mode. ngspice (Nexperia BC857BM model, PAOUT1 sink model): Re 10R gives 32-59 mA at the top step over hFE 220-475 and -20..85 C, Q27 <= 114 mW (Ptot 130 mW at 85 C), base ripple 2.1 mV p-p, settles in 8 ms (ELRS 20 ms loop). GPIO33 (D111 map) is an RTC pad that comes out of reset high impedance (ESP32 DS IO_MUX reset value: input disabled, no pull; inferred, check the DS table): after the RC caps charge the base current stops, so ngspice case 4 of the old GPIO13 map (internal pull-down, 10-19 mA at Re 10R) is the upper bound from reset until ELRS initialize() sets the pit count (stock vtxSPIPWM = MAX_PWM), and for as long as the ESP32 stays in ROM download mode (SW1 held, recovery); the PA stays off (PA_EN on GPIO21, LP5907 1 MOhm EN pull-down); V5 measures that boot leakage at the U.FL. HD mode: both junctions reverse-biased 3.3 V (VEBO 5 V). Steps per 6 dB at Re 10R: 11-13 at 1 mA, 16-19 at 2 mA, 25-32 at 4 mA; V8 measures the PAOUT1 current at 25 mW and V5 sets Re (27R gives >= 20 steps from 1.5 mA). Start value R73 = 10R.\nRATINGS AT THE TOP STEP (Re 10R, hFE 475, 85 C: 58.5 mA): R73 and R65 dissipate about 34 mW each, against the RC0201 derating (50 mW to 70 C, zero at 125 C: 36 mW at 85 C, 27 mW at 95 C) beside a 2 W PA; Q27 <= 114 mW against 130 mW at 85 C (12 % margin). V8 pass: top-step current and the board temperature at R73 / R65 / Q27 keep each part inside its derated rating; levers: cap the ELRS power-table top count so Ic <= 45 mA (P <= 20 mW), or Re 27R (26 mW in R73, 10 mW in R65) if V5 accepts the steps; 0402s only if V8 shows the top step is needed."
 		(exclude_from_sim no)
 		(at 139.7 232.15 0)
-		(size 160.02 27.72)
+		(size 160.02 31.84)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -5827,7 +5827,7 @@
 	)
 	(text_box "PAOUT1 FEED + DC BLOCK (OpenOSD-X L4 C40 C43 R34, fed by the PNP stage instead of its NPN follower). PAOUT1 (pin 35, +2 dBm) -> L3 4.7 nH choke to PAOUT1_SUP (C109 10 nF X7R) <- R65 10R <- Q27_C; C110 10 pF DC block into RF_PA_IN (SE5004L pin 3 'DC block required'). Only L3, C109 and C110 sit in the 5.8 GHz part-free band between pin 35 and the PA (50 Ohm CPWG < 5 mm, 45 degree). RF class on RF_PAOUT1 / RF_PA_IN / RF_PA_OUT / RF_UFL (pattern */RF_*)."
 		(exclude_from_sim no)
-		(at 139.7 261.14 0)
+		(at 139.7 265.26 0)
 		(size 160.02 9.18)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
