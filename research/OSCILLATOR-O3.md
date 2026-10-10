@@ -2,6 +2,9 @@
 
 Research only. No repo edits. Date 2026-10-10.
 
+> Applied as D100 in the D111 final schematic. Net names below are the pre-D113 ones: +3V3 is now +3.3V (lineup power-net style);
+> C42 uses the D109 land `lib:C_0201_0603Metric_L`.
+
 ## Verdict
 
 **Accepted.** The RP2350 datasheet, the hardware design guide, the bootrom source and pico-sdk all support a

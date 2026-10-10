@@ -6369,7 +6369,7 @@
     "/VTX/PA_VREF",
     "GND"
    ],
-   "notes": "switched 2.85 V +/-2 % PA reference -> SE5004L VREF/EN, input +3.3V_VTX (D53 BR-03), EN = PA_EN straight from GPIO2 (internal 1 M pull-down, BR-12), active discharge; V5 qualifies",
+   "notes": "switched 2.85 V +/-2 % PA reference -> SE5004L VREF/EN, input +3.3V_VTX (D53 BR-03), EN = PA_EN straight from ESP32 GPIO21 (D111 map; was GPIO2) (internal 1 M pull-down, BR-12), active discharge; V5 qualifies",
    "lib_work": []
   },
   {

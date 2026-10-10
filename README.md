@@ -100,9 +100,11 @@ git clone --recursive https://github.com/OpenDrone-hw/OpenAIO-Whoop
 git submodule update --init      # after a plain git clone
 ```
 
-Every symbol, footprint and 3D model comes from the project library
-(`hardware/lib.kicad_sym`, `lib.pretty`, `lib.3dshapes`) or from the pinned
-`hardware/KiCad-Library` submodule. Catalogue 3D models resolve through the
+Every footprint and 3D model comes from the project library
+(`hardware/lib.pretty`, `lib.3dshapes`) or from the pinned
+`hardware/KiCad-Library` submodule. Symbols come from `hardware/lib.kicad_sym`,
+the submodule, or KiCad 10's stock `Device`, `power`, `Connector` and
+`Mechanical` libraries, which a default KiCad install provides (lineup rule A8). Catalogue 3D models resolve through the
 project text variable `OPENDRONE_LIB` (`${KIPRJMOD}/KiCad-Library`), so
 without the submodule the 3D view shows bare pads.
 

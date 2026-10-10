@@ -387,7 +387,7 @@
   {
    "rail": "PA_VREF",
    "symbol": "local net /VTX/PA_VREF",
-   "source": "U22 LP5907SNX-2.85 from +3.3V_VTX, EN = PA_EN (ESP32 GPIO2); off in HD mode with +3.3V_VTX",
+   "source": "U22 LP5907SNX-2.85 from +3.3V_VTX, EN = PA_EN (ESP32 GPIO21, D111 map); off in HD mode with +3.3V_VTX",
    "nominal": "2.85 V +-2 % (V5 gate: SE5004L VREF H 2.80-2.90 V)",
    "budget": "about 10 mA (SE5004L IEN typ, incl. its internal 2 kOhm pull-down)",
    "feeds": "SE5004L VREF/EN pin 5 (VTX)",
@@ -1007,7 +1007,7 @@
      "dir": "input"
     }
    ],
-   "fw": "BEEPER_PIN PA17 + BEEPER_INVERTED (gate of Q26)",
+   "fw": "BEEPER_PIN PA25 + BEEPER_INVERTED (gate of Q26)",
    "note": "Q26 AP1606 drain -> pad J22 BZ-; BZ+ = +5V pad J21"
   },
   {
@@ -2636,7 +2636,7 @@
       "C83"
      ],
      "source": "OpenRX-Lite-UFL (XL-1010RGBC WS2812)",
-     "notes": "GPIO22 RX_LED; supply decision P4-15",
+     "notes": "ESP32 GPIO32 RX_LED (D111 map); supply decision P4-15",
      "p4": [
       "P4-15"
      ]

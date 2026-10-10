@@ -288,9 +288,9 @@ BT2.0 -> CSA+ pads -- SMF5.0A, 2x22u -- shunt (Kelvin SHUNT_SENSE_P/N -> INA186)
              +5V -> buzzer +, user 5V pad (also the LED-strip 5V; strip data driven direct from GPIO8, BR-04)
              +5V -> LP5912-3.3 (EN = +5V) -> +3.3V (RP2354A, NOR, OSD front end, INA186, LEDs, ESP32-PICO-V3, SX1281, RGB LED)
                       +3.3V -> TPS7A2018 (EN = +3.3V) -> +1.8V_GYRO (gyro)
-             +5V -> LP5912-3.3 (EN: 100k to +3.3V, ESP32 GPIO21 via 1k; HD gate AP1606 pulls it low) -> +3.3V_VTX
+             +5V -> LP5912-3.3 (EN: 47k to +3.3V, ESP32 GPIO4 via 1k (D111 map); HD gate AP1606 pulls it low) -> +3.3V_VTX
                       +3.3V_VTX -> RTC6705, PNP PA drive stage (BR-02)
-                      +3.3V_VTX -> LP5907-2.85 (EN = ESP32 GPIO2 direct, internal 1M pull-down; BR-03, BR-12) -> PA VREF
+                      +3.3V_VTX -> LP5907-2.85 (EN = ESP32 GPIO21 direct (D111 map), internal 1M pull-down; BR-03, BR-12) -> PA VREF
              (both LP5912 inputs share one 10u X6S 0402 between their IN pins, BR-14)
   RP2354A internal core SMPS -> +1.1V (3.3 uH 2016, per RPi guide)
 ```
@@ -940,6 +940,13 @@ site (D61), and the 85 °C halo rules H1/H3 that defined the gate do not exist (
 D0WD-V3, GD25Q32 and 40 MHz crystal library parts stay in the library only; they are not
 in bom_plan or on the board, and no stage may fit them.
 
+> D111 (2026-10-10): the ESP32 pins below are the D53 plan. The final schematic uses the V4_B4 map in PINMAP §6:
+> radio SCK/MOSI/MISO/NSS/RST 27/14/13/26/25, BUSY 39, DIO1 34, RGB LED 32, VTX NSS/SCK/MOSI 22/20/19, `vtx_amp_pwm` 33,
+> PA detector 36 (ADC1), PA enable (`vtx_amp_vref`) 21, patched-firmware VTX power 4 and PA NTC 37; GPIO2, GPIO5,
+> GPIO12 and GPIO15 are no-connect. GPIO4 comes out of reset with its weak pull-down on (ESP32 IO_MUX reset state),
+> unlike the old GPIO21, so the "pulled up, stock ELRS runs the VTX" property of VTX_PWR_EN (R68 47k, R84 1k) is a
+> review item for the D111 map.
+
 **Pins (D53).** The PICO's in-package flash uses GPIO16/17/18/23 and GPIO6/11
 (Fig. 8; pins 30/31 are flash CMD/CLK, pins 25, 35, 36, 44, 45, 47 and 48 are
 NC, Table 4, V), so GPIO18 and GPIO23 are not exposed and the stock layout
@@ -1143,7 +1150,7 @@ resistor cannot hold that (ESP32 driver ≤ 16.5 Ω at 40 mA, default drive abou
 reference is the baseline. VREF and Icq are measured in V5; Icq versus a lower
 VREF (2.0-2.85 V on a lab supply) is bench item 2 for heat lever (a) (§5.4). The
 logic-EN PAs of the shared footprint (QPA9501, TQP5525) accept the 2.85 V level.
-Detector: PA DET → 1 kΩ / 100 pF → ESP32 GPIO4 (ADC2). ELRS reads it with
+Detector: PA DET → 1 kΩ / 100 pF → ESP32 GPIO36 (ADC1, D111 map; was GPIO4 ADC2). ELRS reads it with
 `analogRead()` (raw counts, default 11 dB attenuation, range to about 3 V, no
 eFuse calibration; the "max 1.0 V" comment in the code is stale; V,
 devVTXSPI.cpp l. 291). SE5004L DET runs 0.325 V (no RF) to 1.0 V (27 dBm),
