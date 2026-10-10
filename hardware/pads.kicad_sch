@@ -1472,7 +1472,7 @@
 	)
 	(rectangle
 		(start 15.24 17.78)
-		(end 68.58 119.38)
+		(end 68.58 93.98)
 		(stroke
 			(width 0)
 			(type default)
@@ -1483,8 +1483,8 @@
 		(uuid "160f3f80-22e4-56b9-8b53-faf85d4f59b6")
 	)
 	(rectangle
-		(start 15.24 124.46)
-		(end 96.52 236.22)
+		(start 15.24 99.06)
+		(end 96.52 177.8)
 		(stroke
 			(width 0)
 			(type default)
@@ -1651,8 +1651,8 @@
 		(uuid "4ce9664d-a9ec-5b4d-984d-c659a6cfe555")
 	)
 	(rectangle
-		(start 220.98 124.46)
-		(end 320.04 236.22)
+		(start 220.98 99.06)
+		(end 320.04 177.8)
 		(stroke
 			(width 0)
 			(type default)
@@ -1716,7 +1716,7 @@
 	)
 	(rectangle
 		(start 251.46 17.78)
-		(end 406.4 119.38)
+		(end 406.4 93.98)
 		(stroke
 			(width 0)
 			(type default)
@@ -1794,8 +1794,8 @@
 		(uuid "9e2b0309-028d-514f-b0fb-23621cbabdb0")
 	)
 	(rectangle
-		(start 101.6 124.46)
-		(end 215.9 236.22)
+		(start 101.6 99.06)
+		(end 215.9 177.8)
 		(stroke
 			(width 0)
 			(type default)
@@ -1807,7 +1807,7 @@
 	)
 	(rectangle
 		(start 73.66 17.78)
-		(end 246.38 119.38)
+		(end 246.38 93.98)
 		(stroke
 			(width 0)
 			(type default)
@@ -1952,8 +1952,8 @@
 		(uuid "be66a51c-83c8-5c15-adbe-320c205008a1")
 	)
 	(rectangle
-		(start 15.24 241.3)
-		(end 96.52 284.48)
+		(start 15.24 182.88)
+		(end 96.52 226.06)
 		(stroke
 			(width 0)
 			(type default)
@@ -2145,7 +2145,7 @@
 	)
 	(text "Mounting holes"
 		(exclude_from_sim no)
-		(at 55.88 245.11 0)
+		(at 55.88 186.69 0)
 		(effects
 			(font
 				(size 1.778 1.778)
@@ -2197,7 +2197,7 @@
 	)
 	(text "LED strip + buzzer row"
 		(exclude_from_sim no)
-		(at 55.88 128.27 0)
+		(at 55.88 102.87 0)
 		(effects
 			(font
 				(size 1.778 1.778)
@@ -2210,7 +2210,7 @@
 	)
 	(text "Camera pads + JST SUR 0.8 mm plug"
 		(exclude_from_sim no)
-		(at 158.75 128.27 0)
+		(at 158.75 102.87 0)
 		(effects
 			(font
 				(size 1.778 1.778)
@@ -2223,7 +2223,7 @@
 	)
 	(text "HD pads (DJI O4 Lite)"
 		(exclude_from_sim no)
-		(at 270.51 128.27 0)
+		(at 270.51 102.87 0)
 		(effects
 			(font
 				(size 1.778 1.778)
@@ -2236,7 +2236,7 @@
 	)
 	(text_box "Camera: JST SUR 0.8 mm plug J32 and pads CAM / GND / 5V in parallel (D63, D64), one mating zone (D72). VIDEO_IN -> OSD sheet (Analog class); +5V_CAM via FB1 on POWER, 0.12 A.\nGate G1 open: plug pin order provisional until a C03 lead is measured (a mirrored footprint puts 5 V on the camera's video output)."
 		(exclude_from_sim no)
-		(at 104.14 172.72 0)
+		(at 104.14 147.32 0)
 		(size 109.22 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2256,7 +2256,7 @@
 	)
 	(text_box "H1-H3: 25.5 mm M1.4 pattern (D73) cut in Edge.Cuts; symbols excluded from board, BOM and CPL, no net."
 		(exclude_from_sim no)
-		(at 17.78 261.62 0)
+		(at 17.78 203.2 0)
 		(size 76.2 7.62)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2296,7 +2296,7 @@
 	)
 	(text_box "HD pads for the DJI O4 Lite (D13, D16): VHD = +5V_HD (U5, on with HD_EN), TX1/RX1 = UART0 GPIO16/17 (silk per D89) for MSP DisplayPort; no SBUS pad.\nAnalog builds: TX1/RX1 are the only free UART (D89). 3.3 V logic only: a 5 V TX on RX1 would exceed the unpowered pad limit during the ramp. Copper only (DNP, A16)."
 		(exclude_from_sim no)
-		(at 223.52 172.72 0)
+		(at 223.52 147.32 0)
 		(size 93.98 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2316,7 +2316,7 @@
 	)
 	(text_box "Row GND LED 5V BZ- (D63, D64; own GND pad J33 supersedes D27). LED = LED_STRIP straight from GPIO5, no translator (D52); a dead first LED is the level-problem symptom (V9). 5V feeds the strip and the buzzer, BZ- = drain of Q26 (RP2350A sheet). Copper only (DNP, A16)."
 		(exclude_from_sim no)
-		(at 17.78 172.72 0)
+		(at 17.78 147.32 0)
 		(size 76.2 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2376,7 +2376,7 @@
 	)
 	(text_box "PADS: every off-board connection, style from the OpenFC-Lite(-Mini) pads sheets. Solder pads are DNP and out of BOM / CPL (LINEUP A16); the motor header is a DNP BOM line. 20 hierarchical labels = the sheet pins. TX1/RX1 = UART0, the only free UART (D89).\nOwed: J31 pin 1 = GND (V0-USB), J32 pin order (G1), motor-header temperature (V4)."
 		(exclude_from_sim no)
-		(at 101.6 241.3 0)
+		(at 101.6 182.88 0)
 		(size 193.04 10.16)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2407,7 +2407,7 @@
 		(uuid "2c064d5b-c83f-558c-89ab-544150ba2c9c")
 	)
 	(junction
-		(at 119.38 160.02)
+		(at 119.38 134.62)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "781705c9-f161-598e-b8af-1f4c02274abf")
@@ -2420,7 +2420,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 147.32) (xy 119.38 160.02)
+			(xy 119.38 121.92) (xy 119.38 134.62)
 		)
 		(stroke
 			(width 0)
@@ -2430,7 +2430,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 147.32) (xy 170.18 157.48)
+			(xy 170.18 121.92) (xy 170.18 132.08)
 		)
 		(stroke
 			(width 0)
@@ -2470,7 +2470,7 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 147.32) (xy 50.8 152.4)
+			(xy 50.8 121.92) (xy 50.8 127)
 		)
 		(stroke
 			(width 0)
@@ -2480,7 +2480,7 @@
 	)
 	(wire
 		(pts
-			(xy 269.24 147.32) (xy 269.24 152.4)
+			(xy 269.24 121.92) (xy 269.24 127)
 		)
 		(stroke
 			(width 0)
@@ -2510,7 +2510,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 147.32) (xy 30.48 152.4)
+			(xy 30.48 121.92) (xy 30.48 127)
 		)
 		(stroke
 			(width 0)
@@ -2540,7 +2540,7 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 147.32) (xy 129.54 152.4)
+			(xy 129.54 121.92) (xy 129.54 127)
 		)
 		(stroke
 			(width 0)
@@ -2550,7 +2550,7 @@
 	)
 	(wire
 		(pts
-			(xy 238.76 147.32) (xy 238.76 152.4)
+			(xy 238.76 121.92) (xy 238.76 127)
 		)
 		(stroke
 			(width 0)
@@ -2590,7 +2590,7 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 147.32) (xy 40.64 152.4)
+			(xy 40.64 121.92) (xy 40.64 127)
 		)
 		(stroke
 			(width 0)
@@ -2610,7 +2610,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 160.02) (xy 165.1 160.02)
+			(xy 119.38 134.62) (xy 165.1 134.62)
 		)
 		(stroke
 			(width 0)
@@ -2620,7 +2620,7 @@
 	)
 	(wire
 		(pts
-			(xy 248.92 147.32) (xy 248.92 152.4)
+			(xy 248.92 121.92) (xy 248.92 127)
 		)
 		(stroke
 			(width 0)
@@ -2630,7 +2630,7 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 147.32) (xy 60.96 152.4)
+			(xy 60.96 121.92) (xy 60.96 127)
 		)
 		(stroke
 			(width 0)
@@ -2650,7 +2650,7 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 147.32) (xy 139.7 152.4)
+			(xy 139.7 121.92) (xy 139.7 127)
 		)
 		(stroke
 			(width 0)
@@ -2700,7 +2700,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 147.32) (xy 167.64 152.4)
+			(xy 167.64 121.92) (xy 167.64 127)
 		)
 		(stroke
 			(width 0)
@@ -2730,7 +2730,7 @@
 	)
 	(wire
 		(pts
-			(xy 259.08 147.32) (xy 259.08 152.4)
+			(xy 259.08 121.92) (xy 259.08 127)
 		)
 		(stroke
 			(width 0)
@@ -2770,7 +2770,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 147.32) (xy 173.99 152.4)
+			(xy 173.99 121.92) (xy 173.99 127)
 		)
 		(stroke
 			(width 0)
@@ -2790,7 +2790,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 160.02) (xy 119.38 160.02)
+			(xy 111.76 134.62) (xy 119.38 134.62)
 		)
 		(stroke
 			(width 0)
@@ -2820,7 +2820,7 @@
 	)
 	(wire
 		(pts
-			(xy 165.1 147.32) (xy 165.1 160.02)
+			(xy 165.1 121.92) (xy 165.1 134.62)
 		)
 		(stroke
 			(width 0)
@@ -2862,7 +2862,7 @@
 	)
 	(hierarchical_label "LED_STRIP"
 		(shape input)
-		(at 40.64 152.4 270)
+		(at 40.64 127 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2884,7 +2884,7 @@
 	)
 	(hierarchical_label "UART0_TX"
 		(shape input)
-		(at 259.08 152.4 270)
+		(at 259.08 127 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3005,7 +3005,7 @@
 	)
 	(hierarchical_label "BUZZER-"
 		(shape input)
-		(at 60.96 152.4 270)
+		(at 60.96 127 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3038,7 +3038,7 @@
 	)
 	(hierarchical_label "VIDEO_IN"
 		(shape output)
-		(at 111.76 160.02 180)
+		(at 111.76 134.62 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3049,7 +3049,7 @@
 	)
 	(hierarchical_label "UART0_RX"
 		(shape output)
-		(at 269.24 152.4 270)
+		(at 269.24 127 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3110,7 +3110,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 30.48 152.4 0)
+		(at 30.48 127 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3120,7 +3120,7 @@
 		(dnp no)
 		(uuid "0470b14b-5f91-5cd0-b157-77d0173ff073")
 		(property "Reference" "#PWR241"
-			(at 30.48 158.75 0)
+			(at 30.48 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3131,7 +3131,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 30.48 156.21 0)
+			(at 30.48 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3141,7 +3141,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 30.48 152.4 0)
+			(at 30.48 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3152,7 +3152,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 152.4 0)
+			(at 30.48 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3163,7 +3163,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 30.48 152.4 0)
+			(at 30.48 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3187,7 +3187,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 81.28 255.27 0)
+		(at 81.28 196.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3197,7 +3197,7 @@
 		(dnp yes)
 		(uuid "096238c1-1288-546d-8f3b-5574c8f2e27e")
 		(property "Reference" "H3"
-			(at 81.28 251.46 0)
+			(at 81.28 193.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3207,7 +3207,7 @@
 			)
 		)
 		(property "Value" "MountingHole 3.5"
-			(at 81.28 259.08 0)
+			(at 81.28 200.66 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3217,7 +3217,7 @@
 			)
 		)
 		(property "Footprint" "lib:MountingHole_3.5mm_Ear_Flange5.2"
-			(at 81.28 255.27 0)
+			(at 81.28 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3228,7 +3228,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 81.28 255.27 0)
+			(at 81.28 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3239,7 +3239,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 81.28 255.27 0)
+			(at 81.28 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3376,7 +3376,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 55.88 255.27 0)
+		(at 55.88 196.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3386,7 +3386,7 @@
 		(dnp yes)
 		(uuid "1d48639d-0dfb-5407-b6de-c86c93b4424e")
 		(property "Reference" "H2"
-			(at 55.88 251.46 0)
+			(at 55.88 193.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3396,7 +3396,7 @@
 			)
 		)
 		(property "Value" "MountingHole 3.5"
-			(at 55.88 259.08 0)
+			(at 55.88 200.66 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3406,7 +3406,7 @@
 			)
 		)
 		(property "Footprint" "lib:MountingHole_3.5mm_Ear_Flange5.2"
-			(at 55.88 255.27 0)
+			(at 55.88 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3417,7 +3417,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 55.88 255.27 0)
+			(at 55.88 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3428,7 +3428,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 55.88 255.27 0)
+			(at 55.88 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3526,7 +3526,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 30.48 255.27 0)
+		(at 30.48 196.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3536,7 +3536,7 @@
 		(dnp yes)
 		(uuid "2a07914b-a88b-5fc4-8ac1-39160771b124")
 		(property "Reference" "H1"
-			(at 30.48 251.46 0)
+			(at 30.48 193.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3546,7 +3546,7 @@
 			)
 		)
 		(property "Value" "MountingHole 3.5"
-			(at 30.48 259.08 0)
+			(at 30.48 200.66 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3556,7 +3556,7 @@
 			)
 		)
 		(property "Footprint" "lib:MountingHole_3.5mm_Ear_Flange5.2"
-			(at 30.48 255.27 0)
+			(at 30.48 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3567,7 +3567,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 255.27 0)
+			(at 30.48 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3578,7 +3578,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 30.48 255.27 0)
+			(at 30.48 196.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3715,7 +3715,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 40.64 142.24 90)
+		(at 40.64 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3725,7 +3725,7 @@
 		(dnp yes)
 		(uuid "2cd038c2-1706-5ce6-83c8-726bdc0e4866")
 		(property "Reference" "J20"
-			(at 40.64 136.906 90)
+			(at 40.64 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3735,7 +3735,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 40.64 138.938 90)
+			(at 40.64 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3745,7 +3745,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 40.64 142.24 0)
+			(at 40.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3756,7 +3756,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 40.64 142.24 0)
+			(at 40.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3767,7 +3767,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 40.64 142.24 0)
+			(at 40.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3791,7 +3791,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 238.76 142.24 90)
+		(at 238.76 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3801,7 +3801,7 @@
 		(dnp yes)
 		(uuid "2d79e408-ba64-5e11-ace5-b25b8a913a7f")
 		(property "Reference" "J26"
-			(at 238.76 136.906 90)
+			(at 238.76 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3811,7 +3811,7 @@
 			)
 		)
 		(property "Value" "VHD"
-			(at 238.76 138.938 90)
+			(at 238.76 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3821,7 +3821,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 238.76 142.24 0)
+			(at 238.76 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3832,7 +3832,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 238.76 142.24 0)
+			(at 238.76 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3843,7 +3843,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 238.76 142.24 0)
+			(at 238.76 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3867,7 +3867,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 167.64 152.4 0)
+		(at 167.64 127 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3877,7 +3877,7 @@
 		(dnp no)
 		(uuid "3c8ebcd5-3b67-586a-b4ff-fea35585feb1")
 		(property "Reference" "#PWR245"
-			(at 167.64 158.75 0)
+			(at 167.64 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3888,7 +3888,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 167.64 156.21 0)
+			(at 167.64 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3898,7 +3898,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 167.64 152.4 0)
+			(at 167.64 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3909,7 +3909,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 167.64 152.4 0)
+			(at 167.64 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3920,7 +3920,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 167.64 152.4 0)
+			(at 167.64 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3944,7 +3944,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 259.08 142.24 90)
+		(at 259.08 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3954,7 +3954,7 @@
 		(dnp yes)
 		(uuid "41075a6b-9b8e-5559-a8a4-27be2e1c168d")
 		(property "Reference" "J28"
-			(at 259.08 136.906 90)
+			(at 259.08 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3964,7 +3964,7 @@
 			)
 		)
 		(property "Value" "TX1"
-			(at 259.08 138.938 90)
+			(at 259.08 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3974,7 +3974,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 259.08 142.24 0)
+			(at 259.08 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3985,7 +3985,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 259.08 142.24 0)
+			(at 259.08 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3996,7 +3996,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 259.08 142.24 0)
+			(at 259.08 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4020,7 +4020,7 @@
 	)
 	(symbol
 		(lib_id "lib:SM03B-SURS-TF")
-		(at 167.64 142.24 0)
+		(at 167.64 116.84 0)
 		(mirror x)
 		(unit 1)
 		(body_style 1)
@@ -4031,7 +4031,7 @@
 		(dnp no)
 		(uuid "45ccbc6e-e5e0-5d52-9a57-85629a36b331")
 		(property "Reference" "J32"
-			(at 165.1 138.43 0)
+			(at 165.1 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4041,7 +4041,7 @@
 			)
 		)
 		(property "Value" "CAM"
-			(at 172.72 138.43 0)
+			(at 172.72 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4051,7 +4051,7 @@
 			)
 		)
 		(property "Footprint" "lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal"
-			(at 167.64 142.24 0)
+			(at 167.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4062,7 +4062,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.jst-mfg.com/product/pdf/eng/eSUR.pdf"
-			(at 167.64 142.24 0)
+			(at 167.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4073,7 +4073,7 @@
 			)
 		)
 		(property "Description" "JST SUR 0.8 mm pitch 3-circuit shrouded header, side entry SMT, 0.5 A (AWG32), 50 V, -25..+85 C; solder tabs 4/5 stacked as MP; mated length 3.9 mm, height 1.75 mm"
-			(at 167.64 142.24 0)
+			(at 167.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4084,7 +4084,7 @@
 			)
 		)
 		(property "LCSC" "C265338"
-			(at 167.64 142.24 0)
+			(at 167.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4095,7 +4095,7 @@
 			)
 		)
 		(property "MPN" "SM03B-SURS-TF(LF)(SN)"
-			(at 167.64 142.24 0)
+			(at 167.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4106,7 +4106,7 @@
 			)
 		)
 		(property "Manufacturer" "JST"
-			(at 167.64 142.24 0)
+			(at 167.64 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4142,7 +4142,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 173.99 152.4 0)
+		(at 173.99 127 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4152,7 +4152,7 @@
 		(dnp no)
 		(uuid "537578aa-d5b8-5e29-9aff-9a963915c54b")
 		(property "Reference" "#PWR246"
-			(at 173.99 158.75 0)
+			(at 173.99 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4163,7 +4163,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 173.99 156.21 0)
+			(at 173.99 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4173,7 +4173,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 173.99 152.4 0)
+			(at 173.99 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4184,7 +4184,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 173.99 152.4 0)
+			(at 173.99 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4195,7 +4195,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 173.99 152.4 0)
+			(at 173.99 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4219,7 +4219,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 129.54 142.24 90)
+		(at 129.54 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4229,7 +4229,7 @@
 		(dnp yes)
 		(uuid "53e54fe3-1319-5297-ae52-fb3e048dc0fd")
 		(property "Reference" "J25"
-			(at 129.54 136.906 90)
+			(at 129.54 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4239,7 +4239,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 129.54 138.938 90)
+			(at 129.54 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4249,7 +4249,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 129.54 142.24 0)
+			(at 129.54 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4260,7 +4260,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 129.54 142.24 0)
+			(at 129.54 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4271,7 +4271,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 129.54 142.24 0)
+			(at 129.54 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4295,7 +4295,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 238.76 152.4 180)
+		(at 238.76 127 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4305,7 +4305,7 @@
 		(dnp no)
 		(uuid "5977d0c5-eae4-5279-9d2b-fb69e61a010a")
 		(property "Reference" "#PWR247"
-			(at 238.76 148.59 0)
+			(at 238.76 123.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4316,7 +4316,7 @@
 			)
 		)
 		(property "Value" "+5V_HD"
-			(at 238.76 155.956 0)
+			(at 238.76 130.556 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4326,7 +4326,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 238.76 152.4 0)
+			(at 238.76 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4337,7 +4337,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 238.76 152.4 0)
+			(at 238.76 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4348,7 +4348,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 238.76 152.4 0)
+			(at 238.76 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4449,7 +4449,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 139.7 152.4 180)
+		(at 139.7 127 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4459,7 +4459,7 @@
 		(dnp no)
 		(uuid "5c2f38a5-6dcb-53d2-916f-234e58ccbfad")
 		(property "Reference" "#PWR244"
-			(at 139.7 148.59 0)
+			(at 139.7 123.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4470,7 +4470,7 @@
 			)
 		)
 		(property "Value" "+5V_CAM"
-			(at 139.7 155.956 0)
+			(at 139.7 130.556 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4480,7 +4480,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 139.7 152.4 0)
+			(at 139.7 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4491,7 +4491,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 139.7 152.4 0)
+			(at 139.7 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4502,7 +4502,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 139.7 152.4 0)
+			(at 139.7 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4526,7 +4526,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 30.48 142.24 90)
+		(at 30.48 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4536,7 +4536,7 @@
 		(dnp yes)
 		(uuid "61e2fab3-98ec-54c8-9a36-d256820681d1")
 		(property "Reference" "J33"
-			(at 30.48 136.906 90)
+			(at 30.48 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4546,7 +4546,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 30.48 138.938 90)
+			(at 30.48 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4556,7 +4556,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 30.48 142.24 0)
+			(at 30.48 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4567,7 +4567,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 142.24 0)
+			(at 30.48 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4578,7 +4578,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 30.48 142.24 0)
+			(at 30.48 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4960,7 +4960,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 248.92 142.24 90)
+		(at 248.92 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4970,7 +4970,7 @@
 		(dnp yes)
 		(uuid "940f14ae-d9ea-5c44-853e-b45a6f221cab")
 		(property "Reference" "J27"
-			(at 248.92 136.906 90)
+			(at 248.92 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4980,7 +4980,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 248.92 138.938 90)
+			(at 248.92 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4990,7 +4990,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 248.92 142.24 0)
+			(at 248.92 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5001,7 +5001,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 142.24 0)
+			(at 248.92 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5012,7 +5012,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 248.92 142.24 0)
+			(at 248.92 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5190,7 +5190,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 60.96 142.24 90)
+		(at 60.96 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5200,7 +5200,7 @@
 		(dnp yes)
 		(uuid "b6a74047-0d16-5113-adbf-b1dd8ecc914a")
 		(property "Reference" "J22"
-			(at 60.96 136.906 90)
+			(at 60.96 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5210,7 +5210,7 @@
 			)
 		)
 		(property "Value" "BZ-"
-			(at 60.96 138.938 90)
+			(at 60.96 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5220,7 +5220,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 60.96 142.24 0)
+			(at 60.96 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5231,7 +5231,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 60.96 142.24 0)
+			(at 60.96 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5242,7 +5242,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 60.96 142.24 0)
+			(at 60.96 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5266,7 +5266,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 50.8 142.24 90)
+		(at 50.8 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5276,7 +5276,7 @@
 		(dnp yes)
 		(uuid "bef9c950-8339-5548-9577-93f88c5a1b52")
 		(property "Reference" "J21"
-			(at 50.8 136.906 90)
+			(at 50.8 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5286,7 +5286,7 @@
 			)
 		)
 		(property "Value" "5V"
-			(at 50.8 138.938 90)
+			(at 50.8 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5296,7 +5296,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 50.8 142.24 0)
+			(at 50.8 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5307,7 +5307,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 50.8 142.24 0)
+			(at 50.8 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5318,7 +5318,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 50.8 142.24 0)
+			(at 50.8 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5342,7 +5342,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 269.24 142.24 90)
+		(at 269.24 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5352,7 +5352,7 @@
 		(dnp yes)
 		(uuid "c8157f66-0725-5039-aab7-c7c9c1e4e148")
 		(property "Reference" "J29"
-			(at 269.24 136.906 90)
+			(at 269.24 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5362,7 +5362,7 @@
 			)
 		)
 		(property "Value" "RX1"
-			(at 269.24 138.938 90)
+			(at 269.24 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5372,7 +5372,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 269.24 142.24 0)
+			(at 269.24 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5383,7 +5383,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 269.24 142.24 0)
+			(at 269.24 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5394,7 +5394,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 269.24 142.24 0)
+			(at 269.24 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5418,7 +5418,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 129.54 152.4 0)
+		(at 129.54 127 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5428,7 +5428,7 @@
 		(dnp no)
 		(uuid "caa82f5c-2761-5ce2-8ae1-6ac357fa2997")
 		(property "Reference" "#PWR243"
-			(at 129.54 158.75 0)
+			(at 129.54 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5439,7 +5439,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 129.54 156.21 0)
+			(at 129.54 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5449,7 +5449,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 129.54 152.4 0)
+			(at 129.54 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5460,7 +5460,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 129.54 152.4 0)
+			(at 129.54 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5471,7 +5471,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 129.54 152.4 0)
+			(at 129.54 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5611,7 +5611,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 50.8 152.4 180)
+		(at 50.8 127 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5621,7 +5621,7 @@
 		(dnp no)
 		(uuid "e4803243-619c-5a5d-aae1-8e37de8b2b2f")
 		(property "Reference" "#PWR242"
-			(at 50.8 148.59 0)
+			(at 50.8 123.19 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5632,7 +5632,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 50.8 155.956 0)
+			(at 50.8 130.556 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5642,7 +5642,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 50.8 152.4 0)
+			(at 50.8 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5653,7 +5653,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 50.8 152.4 0)
+			(at 50.8 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5664,7 +5664,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 50.8 152.4 0)
+			(at 50.8 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5688,7 +5688,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 119.38 142.24 90)
+		(at 119.38 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5698,7 +5698,7 @@
 		(dnp yes)
 		(uuid "e7ca1599-1445-579d-bb8f-be54ea67a035")
 		(property "Reference" "J23"
-			(at 119.38 136.906 90)
+			(at 119.38 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5708,7 +5708,7 @@
 			)
 		)
 		(property "Value" "CAM"
-			(at 119.38 138.938 90)
+			(at 119.38 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5718,7 +5718,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 119.38 142.24 0)
+			(at 119.38 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5729,7 +5729,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 119.38 142.24 0)
+			(at 119.38 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5740,7 +5740,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 119.38 142.24 0)
+			(at 119.38 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5764,7 +5764,7 @@
 	)
 	(symbol
 		(lib_id "lib:SolderPad_01x01")
-		(at 139.7 142.24 90)
+		(at 139.7 116.84 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5774,7 +5774,7 @@
 		(dnp yes)
 		(uuid "efc16aa8-dc88-51ea-8e5c-e043351cc599")
 		(property "Reference" "J24"
-			(at 139.7 136.906 90)
+			(at 139.7 111.506 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5784,7 +5784,7 @@
 			)
 		)
 		(property "Value" "5V"
-			(at 139.7 138.938 90)
+			(at 139.7 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5794,7 +5794,7 @@
 			)
 		)
 		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
-			(at 139.7 142.24 0)
+			(at 139.7 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5805,7 +5805,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 139.7 142.24 0)
+			(at 139.7 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5816,7 +5816,7 @@
 			)
 		)
 		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
-			(at 139.7 142.24 0)
+			(at 139.7 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5840,7 +5840,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 248.92 152.4 0)
+		(at 248.92 127 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5850,7 +5850,7 @@
 		(dnp no)
 		(uuid "f53d7a8e-7d04-5d01-bd35-74e157a3940e")
 		(property "Reference" "#PWR248"
-			(at 248.92 158.75 0)
+			(at 248.92 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5861,7 +5861,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 248.92 156.21 0)
+			(at 248.92 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5871,7 +5871,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 248.92 152.4 0)
+			(at 248.92 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5882,7 +5882,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.92 152.4 0)
+			(at 248.92 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5893,7 +5893,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 248.92 152.4 0)
+			(at 248.92 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5917,7 +5917,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 170.18 157.48 180)
+		(at 170.18 132.08 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5927,7 +5927,7 @@
 		(dnp no)
 		(uuid "f86b1469-06da-5f83-834a-d1f59ede5bc5")
 		(property "Reference" "#PWR249"
-			(at 170.18 153.67 0)
+			(at 170.18 128.27 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5938,7 +5938,7 @@
 			)
 		)
 		(property "Value" "+5V_CAM"
-			(at 170.18 161.036 0)
+			(at 170.18 135.636 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5948,7 +5948,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 170.18 157.48 0)
+			(at 170.18 132.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5959,7 +5959,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 170.18 157.48 0)
+			(at 170.18 132.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5970,7 +5970,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 170.18 157.48 0)
+			(at 170.18 132.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
