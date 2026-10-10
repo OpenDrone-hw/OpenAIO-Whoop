@@ -4,16 +4,16 @@ All-in-one board for 1S whoops, 65 to 85 mm class: a Betaflight flight
 controller on an RP2354A, four Bluejay ESC channels (EFM8BB51 driving
 AGM210MAP half-bridges), an onboard ExpressLRS 2.4 GHz receiver
 (ESP32-PICO-V3 and SX1281) and an onboard analog VTX (RTC6705 and SE5004L)
-with a PIO framebuffer OSD. 26.4 mm body on the 25.5 x 25.5 mm whoop pattern, the 1S sibling of
-[OpenAIO](https://github.com/OpenDrone-hw/OpenAIO). It is not a 2S board:
-every rail is boosted or regulated down from one cell.
+with a PIO framebuffer OSD. A 26.4 mm body on the 25.5 x 25.5 mm whoop
+pattern, the 1S sibling of [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO).
+It is not a 2S board: every rail is boosted or regulated from one cell.
 
 ## Architecture
 
 One cell feeds everything. The battery pads, with a TVS across them, feed
-`+BATT` through a Kelvin shunt (`power`). Each ESC channel (`esc_channel`, one sheet placed
-four times as ESC1 to ESC4) is an EFM8BB51 running Bluejay that drives three
-AGM210MAP P+N half-bridges straight from its port pins. There is no gate
+`+BATT` through a Kelvin shunt (`power`). Each ESC channel (`esc_channel`,
+one sheet placed four times as ESC1 to ESC4) is an EFM8BB51 running Bluejay
+that drives three AGM210MAP P+N half-bridges straight from its port pins. There is no gate
 driver, because at 1S the cell voltage is the gate drive. A BEMF divider per
 phase feeds the EFM8 comparator, and the FC sends DShot to each EFM8 on one wire.
 
@@ -25,8 +25,8 @@ video (`osd`), and the result feeds the RTC6705 video input.
 
 The ESP32-PICO-V3 + SX1281 (`rx_esp32_sx1281`) runs ExpressLRS and reaches the
 FC as CRSF on hardware UART1. The same ESP32 also drives the VTX (`vtx`): the
-RTC6705 over SPI, the SE5004L PA bias through a one-PNP drive stage from a PWM
-pin, the PA enable and the power detector. Betaflight sets channel and power
+RTC6705 over SPI, the RTC6705 output drive through a one-PNP current stage from
+a PWM pin, the SE5004L PA enable and the PA power detector. Betaflight sets channel and power
 over MSP-VTX through CRSF. The VTX hangs off the receiver because Betaflight
 on RP2350 has no RTC6705 driver.
 
@@ -79,7 +79,7 @@ lead shorts the cell through the TVS and the FET body diodes.
 | 2.4 GHz radio | U18 | SX1281 | C2151551 | LDO mode, X3 52 MHz TCXO, FL1 filter |
 | VTX synthesiser | U19 | RTC6705, QFN-40 | C913074 | X4 8 MHz crystal |
 | VTX PA | U20 | SE5004L | C210263 | FL2 harmonic band-pass, J1 U.FL |
-| VTX LDOs | U21, U22 | LP5912-3.3, LP5907-2.85 | C524780 | +3.3V_VTX and PA_VREF, both switched |
+| VTX LDOs | U21, U22 | LP5912-3.3, LP5907-2.85 | C524780 (U21) | +3.3V_VTX and PA_VREF, both switched |
 | OSD | U14, U15, D3 | SN74LVC1G3157, TLV7031, SDM02U30LP3 | C2673087, C2876045, C151629 | level switch, sync comparator, clamp |
 | Protection | D1, D7 | SMF5.0A, TPD2EUSB30 | C151296, C97502 | battery TVS, USB ESD |
 
@@ -137,7 +137,7 @@ target are in [research/PINMAP.md](research/PINMAP.md); the pad set is in
   the U.FL signal pad.
 - AE1, the RX wire, leaves through a plated D0.5 hole with a copper keep-out
   on L1-L5 around it. AE2 has no all-layer keep-out but minimal copper around
-  it, with parts on the opposite side. Nothing sits behind an antenna feed.
+  it, with parts on the opposite side.
 - The 5 V boost hot loop closes on the component layer with a direct ground
   return: no via in the loop, unbroken GND under it, a small switch node, away
   from the gyro, the crystals and the antennas.

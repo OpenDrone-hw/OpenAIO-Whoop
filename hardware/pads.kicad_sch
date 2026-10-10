@@ -2234,10 +2234,10 @@
 		)
 		(uuid "d97c04ad-13c5-5dce-b2ff-2e19ae07060e")
 	)
-	(text_box "Source: OpenFC-Lite hardware/pads.kicad_sch (CAM frame: pads + SH1.0 SM03B plug), adapted to the JST SUR 0.8 mm SM03B-SURS-TF(LF)(SN) (D63/D64, IO-SET row 3: BetaFPV C03 and the Matrix-recommended cameras).\n\nPlug and pads in parallel: J32 pin 1 VIDEO_IN, 2 GND, 3 +5V_CAM, tabs 4/5 GND; pads CAM / GND / 5V (J23 J25 J24). On the board the plug faces inward and the pads sit in front of its mouth: plug OR solder in one mating zone (D72).\n\nVIDEO_IN -> OSD front end (TLV7031 sync + SN74LVC1G3157, OSD sheet), netclass Analog (OSD directive). +5V_CAM = +5V after FB1 120 R + C15 10 uF (POWER), 0.12 A. Video return: CAM GND pad and plug pin 2 enter L2 at the CAM pad (spec 11).\n\nGate G1 still open: pin order provisional until calipers + photo on a C03 lead and the MX2 CAM IN. With GND in the middle a mirrored footprint puts 5 V on the camera's video output. G1 = 1.0 mm pitch -> SM03B-SRSS-TB(LF)(SN), same pins."
+	(text_box "Camera: JST SUR 0.8 mm plug J32 and pads CAM / GND / 5V in parallel (D63, D64), one mating zone (D72). VIDEO_IN -> OSD sheet (Analog class); +5V_CAM via FB1 on POWER, 0.12 A.\nGate G1 open: plug pin order provisional until a C03 lead is measured (a mirrored footprint puts 5 V on the camera's video output)."
 		(exclude_from_sim no)
 		(at 104.14 172.72 0)
-		(size 109.22 60.96)
+		(size 109.22 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2254,10 +2254,10 @@
 		)
 		(uuid "16c1832b-1fcc-545a-ba1e-b0edbad236d3")
 	)
-	(text_box "H1-H3: the 25.5 mm M1.4 pattern (D73) is cut in Edge.Cuts (ear holes with flange keep-outs, spec 7), so the symbols are excluded from the board (FLOORPLAN 'For P4'), BOM and CPL; footprint kept as reference. No net (non-plated; GND annulus = O16). LOGO1 (incutec, B.Silkscreen) is a board-only footprint, no symbol."
+	(text_box "H1-H3: 25.5 mm M1.4 pattern (D73) cut in Edge.Cuts; symbols excluded from board, BOM and CPL, no net."
 		(exclude_from_sim no)
 		(at 17.78 261.62 0)
-		(size 76.2 21.59)
+		(size 76.2 7.62)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2274,10 +2274,10 @@
 		)
 		(uuid "6901b8ab-f643-5e9f-b8f1-b9fd2b87c3cb")
 	)
-	(text_box "Source: OpenFC-Lite hardware/pads.kicad_sch (JST SH SM04B plug in a frame; there it carries a UART). The USB pinout, D7 and the VBUS flag are new (D57). Commons block USB_C_GCT4105_USBLC6 checked, not used (USB-C and a 6-pin ESD part).\n\nJ31 JST BM04B-SRSS-TB(LF)(SN) as in bom_plan (vertical, bottom): 1 GND, 2 D- (USB_D_N), 3 D+ (USB_D_P), 4 VBUS, tabs 5/6 GND = BetaFPV 'USB(GND DM DP 5V)' order (bom_plan, IO-SET row 6, LIBRARY D57). Pin 1 = GND is inferred: V-plan gate V0-USB before the P5 freeze (continuity on a BetaFPV SH1.0 USB adapter or a Matrix II close-up); a mirrored plug would put 5 V on board GND and -5 V on the SGM40661 IN (abs min -0.3 V). D76 (owner) keeps the vertical BM04B facing up next to a mounting hole (D72 side-entry SM04B withdrawn); its mating zone above the board stays clear of tall parts.\n\nD7 TPD2EUSB30DRTR (TI SLVSAC2G): pin 1 D+, 2 D-, 3 GND (Table 5-1); VRWM 5.5 V, IO abs max 6 V, so a D+/D- short to VBUS survives; 8 V clamp at 1 A, 0.7 pF, IEC 61000-4-2 8 kV contact, -40..85 C. It sits at J31, ahead of the 27 R R42/R43 at the RP2354A (RP2350A sheet). Layout per DS 10.1: next to J31, protected traces straight with rounded corners, no unprotected trace beside the J31-D7 stretch, GND pin by via-in-pad into L2. USB pair 90 ohm, length-matched (D33); netclass USB from the directive on USB_D_P (_P/_N pair).\n\nVBUS is a hierarchical net (LINEUP A11) to POWER: U24 SGM40661 OVP IN + C131 100 nF take the hot-plug and over-voltage duty (D57). PWR_FLAG here: J31 is the only source of VBUS. A cable with pins 1/4 swapped puts -5 V on VBUS (unprotected, as on the Matrix)."
+	(text_box "USB: J31 JST SH 4-pin vertical (D76; D72 side-entry withdrawn), BetaFPV order 1 GND, 2 D-, 3 D+, 4 VBUS. Pin 1 = GND is inferred: gate V0-USB before the P5 freeze (a mirrored plug puts -5 V on the OVP input).\nD7 TPD2EUSB30 ESD at J31, ahead of the 27R at the MCU. USB pair 90 Ohm, length-matched (D33). VBUS -> POWER (U24 OVP, D57); PWR_FLAG here."
 		(exclude_from_sim no)
 		(at 254 73.66 0)
-		(size 149.86 43.18)
+		(size 149.86 10.16)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2294,10 +2294,10 @@
 		)
 		(uuid "69a05841-5488-576d-9dc8-e8ff87250b46")
 	)
-	(text_box "Source: OpenFC-Lite-Mini hardware/pads.kicad_sch (digital video pads), new pad set (D13/D16).\n\nVHD = +5V_HD from U5 TPS22810 (on with HD_EN and cell >= 3.23-3.82 V, held down to 2.74-3.14 V; POWER P4-1, 1 % resistors), 1.20 A budget; O4 Lite input 3.7-13.2 V. TX1 = UART0_TX (GPIO16, hardware and Betaflight UART0; silk TX1 per D89) -> O4 RX, RX1 = UART0_RX (GPIO17) <- O4 TX: MSP DisplayPort; no SBUS pad (D16). Cut DJI cable: red -> VHD, black + brown -> GND, white -> TX1, grey -> RX1, yellow open (no SBUS input since D89).\n\nAnalog builds: TX1/RX1 are the free hardware UART (the only one since D89, no user UART pads), or I2C0 via the I2C-HD preset (IO-SET row 8).\n\nP4-11: the O4 stays unpowered until HD_EN, so its TX cannot drive RX1 before IOVDD (FT pads limited to 3.63 V unpowered, PINMAP F16). A device on TX1/RX1 in an analog build runs from a 5V pad (LED row), which comes up before +3.3V: 3.3 V logic only (a 5 V TX on RX1 can exceed 3.63 V during the ramp).\n\nCopper only (DNP, out of BOM and CPL, LINEUP A16)."
+	(text_box "HD pads for the DJI O4 Lite (D13, D16): VHD = +5V_HD (U5, on with HD_EN), TX1/RX1 = UART0 GPIO16/17 (silk per D89) for MSP DisplayPort; no SBUS pad.\nAnalog builds: TX1/RX1 are the only free UART (D89). 3.3 V logic only: a 5 V TX on RX1 would exceed the unpowered pad limit during the ramp. Copper only (DNP, A16)."
 		(exclude_from_sim no)
 		(at 223.52 172.72 0)
-		(size 93.98 60.96)
+		(size 93.98 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2314,10 +2314,10 @@
 		)
 		(uuid "6faaff37-4c41-503d-a2e5-8c533365b63a")
 	)
-	(text_box "Source: OpenFC-Lite-Mini hardware/pads.kicad_sch (LED-strip and buzzer pads).\n\nRow GND LED 5V BZ- (D63/D64): the strip gets its own GND pad J33 (supersedes D27).\n\nLED = LED_STRIP driven straight from GPIO5 (PIO1 ws2812; D52 BR-04: no translator, no series resistor, Matrix II parity). A WS2812B on 5 V asks VIH 0.7 VDD = 3.5 V; the 3.3 V drive works on the common whoop strips, a level problem shows as a dead first LED (bench check, V9).\n\n5V = +5V for the strip (0.20 A allowance, analog mode, spec 5.1) and the buzzer +. BZ- = BUZZER-: drain of the AP1606 low-side switch Q26, gate on GPIO25 (BEEPER_INVERTED, RP2350A sheet); the buzzer sits between 5V and BZ-.\n\nCopper only (DNP, out of BOM and CPL, LINEUP A16)."
+	(text_box "Row GND LED 5V BZ- (D63, D64; own GND pad J33 supersedes D27). LED = LED_STRIP straight from GPIO5, no translator (D52); a dead first LED is the level-problem symptom (V9). 5V feeds the strip and the buzzer, BZ- = drain of Q26 (RP2350A sheet). Copper only (DNP, A16)."
 		(exclude_from_sim no)
 		(at 17.78 172.72 0)
-		(size 76.2 60.96)
+		(size 76.2 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2334,10 +2334,10 @@
 		)
 		(uuid "a579dd9f-e3a6-5b42-9352-66d81a91eea9")
 	)
-	(text_box "J2 (+) and J3 (-) are drawn on the POWER sheet, next to the TVS, the pad bulk and the shunt R1 (D113: the battery node is the local label CSA+, lineup style).\n\nJ2 '+' = CSA+, J3 '-' = GND: BT2.0 pigtail (22 AWG, user-fitted) through plated D1.1 holes in D1.7 mm round pads (lib:BattPad_D1.7mm_PTH1.1, D101), >= 12 power vias each into the pours (spec 4.10, D72 power plan: CSA+ into L4 + L1/L6, GND into L2/L5). Silk '+' / '-' 2.0 mm and '1S' (spec 13).\n\n1S LiPo/LiHV only, 3.0-4.35 V (D14). D1 SMF5.0A TVS, the pad bulk and the shunt R1 sit on POWER, which also holds the CSA+ and GND PWR_FLAGs and the VBAT netclass directive.\n\nCopper only: DNP, out of BOM and CPL (LINEUP A16)."
+	(text_box "Battery pads J2 (+, CSA+) / J3 (-, GND) are drawn on the POWER sheet (D113): D1.7 mm plated pads (D101) for a user-fitted BT2.0 pigtail, >= 12 power vias each (D72). 1S only, 3.0-4.35 V (D14). Copper only (DNP, A16)."
 		(exclude_from_sim no)
 		(at 17.78 25.4 0)
-		(size 48.26 91.44)
+		(size 48.26 15.24)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2354,10 +2354,10 @@
 		)
 		(uuid "d9604d41-3957-5eb9-a496-8e9027dc020d")
 	)
-	(text_box "Source: new (D65: plug-ready lands as on the BetaFPV Matrix 1S 5IN1 II), drawn in the house pad style. One land per motor, lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5: pads 1 / 2 / 3 = Mn_C / Mn_B / Mn_A = /ESCn/PHASE_C / B / A \n\n(symbol mirrored so A reads on top; phase order is free, Bluejay sets the direction). All four lands are placed on the top (F; bom_plan side = board), beside the corner ears (J4/J7 at one corner, J10/J13 at the opposite one), mouths facing out (D72).\n\nMotor wires solder to the land (pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50) or through the 0.50 mm plated holes: the recommended default. The Molex 53047-0310 PicoBlade header (board side of the hobby 'JST1.25' motor plug, wire side 51021-0300) is a DNP BOM line, out of the CPL, hand-fitted from the far side with its pins trimmed on the land side. Molex rates 1.0 A per contact, -40..85 C, far below the motor current (4.3-5.2 A per channel, 12 A bursts): the published ESC ratings apply to soldered motor wires; the README pinout states the 1.0 A contact rating and that plugged motors run outside it at the user's risk (BetaFPV Matrix practice); V4 records the header temperature. Mating zone (D72): the plug faces outward over the ear neck, clear of parts.\n\nNet names come from the ESC sheets (the root wires carry no label: /ESCn/PHASE_x). Netclass Phase: directive on M1_A here, the pattern /ESC?/PHASE_? assigns the rest. Phase copper runs from the AGM210MAP phase island straight into the land; solder areas 0.30 mm and phase copper 0.20 mm from the edge (SOLDER_PAD class). M1 rear right (ESC1), M2 front right (ESC2), M3 rear left (ESC3), M4 front left (ESC4): Betaflight quad-X."
+	(text_box "Motor lands (D65, Matrix 1S 5IN1 II style): one PicoBlade land per motor, pads 1/2/3 = PHASE_C/B/A; phase order is free, Bluejay sets the direction. On the top side, mouths facing out (D72).\nSolder the motor wires (default) or fit the DNP Molex 53047-0310 header: its 1.0 A contact rating is below the motor current, plugged motors run at the user's risk (README); V4 records the header temperature.\nM1 rear right, M2 front right, M3 rear left, M4 front left (Betaflight quad-X)."
 		(exclude_from_sim no)
 		(at 76.2 53.34 0)
-		(size 167.64 63.5)
+		(size 167.64 15.24)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2374,10 +2374,10 @@
 		)
 		(uuid "ead189ca-2578-5179-a006-3d957446b2af")
 	)
-	(text_box "PADS: every off-board connection. Style from the OpenFC-Lite-Mini and OpenFC-Lite pads sheets (pads pin down, a rail symbol or a hierarchical label at the wire end, plug blocks in frames); the source of each block is in its note. References, values (pad codes = silk codes), footprints, MPN / Manufacturer / LCSC and the DNP / BOM / CPL attributes are hardware/bom_plan.json; solder pads are DNP and out of BOM and CPL (LINEUP A16), the motor header is a DNP BOM line.\n20 hierarchical labels = the PADS sheet pins (sch_contract.json): VIDEO_IN, M1_A..M4_C, UART0_TX/RX, LED_STRIP, BUZZER-, USB_D_P/N, VBUS. Rails by power symbol (+5V, +5V_CAM, +5V_HD, GND; sources on POWER); VBUS carries its PWR_FLAG here. Netclass directives: Phase (M1_A), USB (USB_D_P). No user UART group (D89): the free UART is the HD group TX1/RX1 (nets UART0_TX/RX = hardware UART0; renamed fix2, were UART1_TX/RX).\nOwed: J31 pin 1 = GND (gate V0-USB before the P5 freeze), J32 pin order (gate G1), motor-header temperature (V4)."
+	(text_box "PADS: every off-board connection, style from the OpenFC-Lite(-Mini) pads sheets. Solder pads are DNP and out of BOM / CPL (LINEUP A16); the motor header is a DNP BOM line. 20 hierarchical labels = the sheet pins. TX1/RX1 = UART0, the only free UART (D89).\nOwed: J31 pin 1 = GND (V0-USB), J32 pin order (G1), motor-header temperature (V4)."
 		(exclude_from_sim no)
 		(at 101.6 241.3 0)
-		(size 193.04 43.18)
+		(size 193.04 10.16)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)

@@ -52,6 +52,18 @@ Goal (D113): `git clone --recursive` gives every symbol, footprint and 3D model 
 - **Checks.** check_footprint passes on all three new footprints (SolderPad: the intended "no paste" WARN). In a
   clean clone (empty HOME, no exported variables, offline submodule init) the v4 board has 0 unresolved FPIDs and 0
   missing or untracked models. ERC on a default KiCad 10 symbol table shows 0 lib_symbol issues and 0 mismatches.
+- **Hand-off cleanup (D111, 2026-10-10).** The synced v4 board is now `hardware/OpenAIO-Whoop.kicad_pcb` and carries
+  the lineup names. Before removing anything, the unused list was checked again against the board, the Footprint
+  fields of the final schematic (including the defaults in its embedded symbols) and every tracked file under
+  `hardware/`. 11 footprints had no reference left and were removed from `lib.pretty` (125 -> 114 files): the
+  transitional copies `ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_D90Void`, `BattPad_D1.7mm_PTH1.1_V4`,
+  `SolderPad_0.8x1.0mm_V4`, and the diet `_V4` variants of the ESP32-PICO, EFM8BB51, SX1281, RTC6705, RP2354A
+  (QFN-60), TPS2116, PY25Q128HA and LP5912 footprints. The other 47 footprints in the old unused list are still kept. 24 of them are
+  the outputs of `tools/land_specs/*.json`. 23 are named in `lib.kicad_sym` symbol defaults, `floorplan.json` or
+  `bom_plan.json`. Removing them needs those files to change together with the library. No 3D model was removed: the
+  kept footprints still reference all 35 files in `lib.3dshapes`, except `MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5.step`,
+  which the board, `bom_plan.json` and the pads sheet still name. A new clean-clone run, with the removal applied,
+  again shows 0 unresolved FPIDs and 0 missing models on the board.
 
 ## D65-D67 and the D52-D67 bom_plan (2026-10-09)
 

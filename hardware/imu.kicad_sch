@@ -1741,10 +1741,10 @@
 		)
 		(uuid "9a96920b-9965-54a4-8dc0-fa0bdee462ad")
 	)
-	(text_box "GYRO BMI270: U11, R49\nSource: OpenFC-Lite-Mini imu.kicad_sch (universal LGA-14 land, SPI1 4-wire, R49), copied and adapted. BMI270 on the BOM; TDK ICM-42688-P qualified on the same land (V10 fly-off, one part per revision).\nPins 2/3 (BMI270 ASDx/ASCx, TDK RESV) and 10/11 (OCSB/OSDO, TDK RESV): no-connect. BMI270 DS Table 22: unused ASDx/ASCx go to VDDIO or stay open, never to GND (the house sheet grounded them for the LSM6DSV16X).\nPins 6/7 GND (TDK pin 7 RESV must be GND). VDDIO pin 5 = +3.3V (RP2354A I/O level), VDD pin 8 = +1.8V_GYRO; the BMI270 has no supply-order rule (DS 4.3). Abs max 4.0 V on VDD/VDDIO, I/O up to VDDIO + 0.3 V.\nPin 9: TDK CLKIN = GYRO_CLKIN (RP2354A GPIO13, PWM 32 kHz, driven only with the TDK part); BMI270 INT2, unused, left disabled.\nR49 10k: GYRO_CS (GPIO15) resets with its pull-down on, which would select the chip; R49 holds CSB >= 2.58 V (0.78 x VDDIO with the RP2354A RPD min 36 kOhm at IOVDD 3.3 V, RP2350 DS Table 1683) > VIH 0.7 x VDDIO = 2.31 V.\nP5: top side next to U12, LGA rotated 90 deg; GYRO_1_ALIGN from the placed orientation (PINMAP F11)."
+	(text_box "GYRO BMI270 (U11) on the universal LGA-14 land from OpenFC-Lite-Mini; ICM-42688-P qualified on the same land (V10 fly-off).\nASDx/ASCx and OCSB/OSDO no-connect (never GND for the BMI270). VDDIO = +3.3V, VDD = +1.8V_GYRO. GYRO_CLKIN (GPIO13) used only with the TDK part.\nR49 10k keeps CSB high while GPIO15 resets with its pull-down on. GYRO_1_ALIGN from the placed orientation."
 		(exclude_from_sim no)
 		(at 127 36.83 0)
-		(size 69.85 62.23)
+		(size 69.85 19.05)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -1761,10 +1761,10 @@
 		)
 		(uuid "0ed8f934-d911-5f7f-a5c1-e76654bf6ef5")
 	)
-	(text_box "+1.8V_GYRO GYRO LDO: U12, C61, C62 (D52 BR-09, P4-17)\nSource: pcb-agent-commons blocks/LDO_IMU_TPS7A2033 (OpenFC-H7) topology with the 1.8 V part and no ferrite (fed from the +3.3V LDO); the house OpenFC-Lite-Mini also runs the gyro VDD from its own 1.8 V LDO.\nTPS7A2018 DQN: 1 OUT, 2 GND, 3 EN, 4 IN, 5 EP to GND. IN = EN = +3.3V: VIN 1.6-6.0 V, VEN 0-6.0 V (abs max 6.5 V), EN never above IN. Load < 1 mA.\nNo 100 nF at the gyro: C61 = U12 CIN at BMI270 VDDIO pin 5, C62 = U12 COUT at VDD pin 8 (COUT >= 0.47 uF effective, ESR <= 100 mOhm: about 0.6-0.85 uF at 1.8 V). C61 counts in the +3.3V COUT sum (P4-12, POWER).\nP5: U12 on the gyro side with OUT facing pin 8; C61 between U12 pin 4 and gyro pin 5, C62 <= 1.5 mm from pin 8 (PS-06), else re-place U12."
+	(text_box "+1.8V_GYRO LDO U12 TPS7A2018 from +3.3V (D52), load < 1 mA. C61 = CIN at gyro VDDIO pin 5, C62 = COUT <= 1.5 mm from VDD pin 8; no separate 100 nF."
 		(exclude_from_sim no)
 		(at 12.7 99.06 0)
-		(size 74.93 36.83)
+		(size 74.93 10.16)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)

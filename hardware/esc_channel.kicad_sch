@@ -2489,10 +2489,10 @@
 		)
 		(uuid "eb43d776-4cf2-52c0-a80a-c87375483dcb")
 	)
-	(text_box "AGM210MAP (AGMSEMI, DS VER2.73 p1 top view; D23 rule, P3 symbol/footprint check): 1 S1 N source = GND, 2 G1 N gate = x_PWM, 3 S2 P source = +BATT, 4 G2 P gate = x_COM, 5/6 + EP D2 (P drain) and 7/8 + EP D1 (N drain) = PHASE_x; the two drain pads are joined only by the phase island on the board (never split it). Gates straight from the EFM8: no gate resistors and no 0R options (tinyPEPPER / Matrix II field record; bom_plan v3 has none); the about 0.15 A gate-edge current for tens of ns is a transient above the EFM8's 50 mA per-pin abs max, accepted as on the Matrix II (spec 4.4). VGS +-12 V, VDS 20 V abs max vs VDD <= 5.25 V regen peak. Hot loop (D77, D108): one cap per AGM210MAP, C20 / C23 / C21 22 uF 6.3 V X6S 0603 (Murata GRM188C80J226ME15D, about 7-10 uF at 4.2 V) from pin 3 S2 (+BATT) to pin 1 S1 (GND) at the cell's lead side, microvias in both pads, so the commutation loop closes at the pins (Matrix II: one cap per FET); the three are also the ESC +BATT bulk. Bluejay: first power-up A_X_10_96 (about 200 ns; DS td(off) + tf = 58 ns N at RGEN 3.3 Ohm, 84 ns P at 1 Ohm, longer on EFM8 port drive), then A_X_5_96 (Matrix II) after the V2 shoot-through check (PINMAP 7.3); the DS Qg of 23 / 33 nC disagrees 3-5x with Ciss 950 pF, so V2 measures the gate edges."
+	(text_box "AGM210MAP P+N pair per phase (D23 pinout check): S1 = GND, G1 = x_PWM, S2 = +BATT, G2 = x_COM, both drains = PHASE_x (joined only by the phase island: never split it). Gates driven straight from the EFM8, no resistors (Matrix II practice).\nHot loop (D77, D108): one 22 uF 0603 per FET from S2 to S1 at the pins, microvias in both pads. Bluejay dead time A_X_10_96 at first power-up, A_X_5_96 after the V2 shoot-through check."
 		(exclude_from_sim no)
 		(at 19.05 176.53 0)
-		(size 154.94 19.05)
+		(size 154.94 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2509,10 +2509,10 @@
 		)
 		(uuid "1bd4460a-1a52-590f-9773-19722374a13b")
 	)
-	(text_box "ESC channel, one file placed 4x. The references drawn are ESC1's; the root sheet offsets them per instance (ESC2 U+1 Q+3 R+7 C+6 TP+2, ESC3 x2, ESC4 x3), matching bom_plan.json:\nESC1 M1 rear right: U6 C19, hot loop C20 C23 C21, R12-R18, Q29-Q31, TP1/TP2\nESC2 M2 front right: U7 C25, hot loop C26 C29 C27, R19-R25, Q32-Q34, TP3/TP4\nESC3 M3 rear left: U8 C31, hot loop C32 C35 C33, R26-R32, Q35-Q37, TP5/TP6\nESC4 M4 front left: U9 C37, hot loop C38 C41 C39, R33-R39, Q38-Q40, TP7/TP8\nPins: DSHOT (left, root net /MOTORn: FC GPIO4/6/18/20); PHASE_A/B/C (right, local label + hierarchical label, net /ESCn/PHASE_x, motor lands J4/J7/J10/J13). In-sheet nets: x_COM, x_PWM (Gate class), BEMF_x, NEUTRAL, RTX, C2D, C2CK. Netclass flags: Phase (PHASE_A), Gate (A_COM), VBAT (+BATT rail); setup_board.py patterns /ESC?/PHASE_?, /ESC?/?_COM, /ESC?/?_PWM assign the rest.\nSource: copied from OpenAIO hardware/esc_channel.kicad_sch (frames, block titles, C2 test points at the MCU pins, three-column BEMF block, power stage along the bottom) and adapted: AT32F421 + NSG2065Q + 6x DOY180N03T become EFM8BB51 + 3x AGM210MAP (tinyPEPPER direct drive, Matrix 1S 5IN1 II stage, D56), the 3S divider becomes the tinyPEPPER 1S star."
+	(text_box "ESC channel, one file placed 4x; refs drawn are ESC1's, the root offsets them per instance:\nESC1 M1 rear right: U6, Q29-Q31, TP1/TP2\nESC2 M2 front right: U7, Q32-Q34, TP3/TP4\nESC3 M3 rear left: U8, Q35-Q37, TP5/TP6\nESC4 M4 front left: U9, Q38-Q40, TP7/TP8\nDSHOT in from the FC (GPIO4/6/18/20), PHASE_A/B/C out to the motor lands. Adapted from OpenAIO esc_channel: EFM8BB51 + 3x AGM210MAP (tinyPEPPER direct drive, D56)."
 		(exclude_from_sim no)
 		(at 203.2 15.24 0)
-		(size 81.28 78.74)
+		(size 81.28 24.13)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2529,10 +2529,10 @@
 		)
 		(uuid "6b855792-3656-5d17-b4fb-d67deaac2a82")
 	)
-	(text_box "Power-up (P4-11, PINMAP F16): battery first, the EFM8 runs from the cell within 0.4 ms (POR 1.76 V, tPOR <= 390 us) and the Bluejay bootloader turns on the 70-220k weak pull-ups (RTX included) while the RP2354A IOVDD still ramps (boost soft start + LDO, about 1-2 ms). Worst-case FC pad voltage in that window: the cell, up to 4.35 V (LiHV full), through >= 72k (pull-up + R12), i.e. <= 60 uA: 0.72 V over the 3.63 V unpowered-FT limit, current-limited. Accepted on Matrix parity (G473 FT pads about 4 V unpowered); V9 scopes the pad at power-up; fallback a 3.3 V-domain clamp or a DShot-path enable (not in rev1).\nUSB only: the PIO DShot idle-high back-feeds +BATT through the EFM8 I/O diode, <= (3.3 V - VF) / 2.4k, about 1 mA per channel; the EFM8s may cycle near POR, +5V stays on USB via the TPS2116 (10k fallback if V9 shows brown-out cycling)."
+	(text_box "Power-up: the EFM8 runs from the cell before the FC's 3.3 V is up; its weak pull-up can put <= 60 uA on the FC DShot pad (0.72 V over the unpowered-FT limit, current-limited). Accepted on Matrix parity; V9 scopes it.\nUSB only: DShot idle-high back-feeds +BATT through the EFM8 I/O diode (about 1 mA per channel)."
 		(exclude_from_sim no)
 		(at 203.2 96.52 0)
-		(size 81.28 68.58)
+		(size 81.28 15.24)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2549,10 +2549,10 @@
 		)
 		(uuid "6ebdb997-59d5-5f1c-9369-59619f208b43")
 	)
-	(text_box "Pin use = Bluejay src/Layouts/BB51/A.inc (0368d11): P0.1 B_Mux, P0.2 C_Mux, P0.3 A_Mux, P0.4 V_Mux (neutral), P0.5 RTX; P1.0/P1.1 A_Pwm/A_Com, P1.2/P1.3 B, P1.4/P1.5 C (PWM active high = N gate, COM active low = P gate, all push-pull); P2.0 DebugPin = C2D. Pin numbers: EFM8BB51 data sheet Rev 1.0 Table 6.1. P0.0, P0.6, P0.7, P1.6 unused: no-connect (PINMAP 7.1).\nVDD pin 4 straight on +BATT, no series R (it must track the P sources); C19 100 nF X6S at pin 4 / GND pin 3. The data sheet's 1 uF (Fig. 5.1) is the phase B hot-loop cap C23 22 uF X6S 0603 (D108; about 7-10 uF effective at 4.2 V); BR-05 as amended (P4 critique): within 4 mm of pin 4 through the +BATT plane, 100 nF at the pin (v3 cell site 3.4-3.9 mm). ESC3 has no extra cap (C30 deleted, D77). VDD abs max 5.5 V vs 4.35 V cell + ripple + regen 4.7-5.25 V (V3c). Ramp: DS Table 4.7 RAMPVDD >= 10 us/V vs about 1 us/V at a hot plug (spec 4.1): Matrix-parity deviation, V3c 20 hot plugs; a 2.2-4.7 Ohm VDD R (tau 0.5 us) does not fix it.\nDShot (P4-8): R12 2.4k at RTX. At a 2.5 V cell the 3.3 V DShot high sits up to 0.53 V over P0.5's VDD + 0.3 V abs max; R12 holds the clamp current to <= 0.35 mA ((3.33 - 2.5) V / 2.4k; about 0.1-0.2 mA after the clamp drop) against 50 mA per pin. RSTb/C2CK: internal pull-up only (PINMAP F12).\nC2D / C2CK: TP1 / TP2, filled test vias (D67), bench recovery only: NextPCB pre-programs Bluejay; updates via Betaflight passthrough."
+	(text_box "Pins per Bluejay BB51 layout A: P0.1-P0.3 B/C/A comparator, P0.4 neutral, P0.5 RTX (DShot), P1.0-P1.5 x_PWM (N gate, active high) / x_COM (P gate, active low), P2.0 C2D. Unused pins no-connect.\nVDD on +BATT with C19 100 nF at pin 4; the phase B hot-loop cap C23 is its bulk (D108); no ESC3 extra cap (D77). R12 2.4k limits the DShot clamp current at a low cell. C2D/C2CK on test vias TP1/TP2 (D67)."
 		(exclude_from_sim no)
 		(at 19.05 88.9 0)
-		(size 105.41 31.75)
+		(size 105.41 15.24)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -2569,10 +2569,10 @@
 		)
 		(uuid "8b062139-85aa-51e0-8d9b-606774df1f6e")
 	)
-	(text_box "Source: tinyPEPPER single_esc.sch (CERN-OHL v1.2, wire trace in research 08): 10k series from each phase to its comparator input (BEMF_A P0.3, BEMF_B P0.1, BEMF_C P0.2) and 1k from each phase to the virtual neutral (P0.4 V_Mux, CMP0 negative). No leg to GND: at 1S the phase stays within the cell + one body-diode drop, and the 10k limit the input clamp current to < 0.1 mA. 1k star, worst case one phase low and two high: 2/3 x 5.25 V / 1k = 3.5 mA, 12 mW per 0201 (50 mW part). P4-8: the netlist puts BEMF_A/B/C and NEUTRAL on U6 pins 19/1/20 and 18 = A.inc A_Mux 3 / B_Mux 1 / C_Mux 2 / V_Mux 4."
+	(text_box "BEMF network from tinyPEPPER: 10k from each phase to its comparator input, 1k from each phase to the virtual neutral (P0.4). No leg to GND at 1S; the 10k keeps the input clamp current < 0.1 mA."
 		(exclude_from_sim no)
 		(at 132.08 83.82 0)
-		(size 66.04 38.1)
+		(size 66.04 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
