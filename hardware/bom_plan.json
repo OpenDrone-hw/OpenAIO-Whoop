@@ -810,10 +810,10 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "+BATT_IN",
+    "CSA+",
     "GND"
    ],
-   "notes": "TVS on +BATT_IN at the pads, VBR 6.40-7.07 V, 200 W (\u00a74.1); fallback SMAJ5.0A (SMA) after V3b",
+   "notes": "TVS on CSA+ at the pads, VBR 6.40-7.07 V, 200 W (\u00a74.1); fallback SMAJ5.0A (SMA) after V3b",
    "lib_work": []
   },
   {
@@ -835,10 +835,10 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "+BATT_IN",
+    "CSA+",
     "GND"
    ],
-   "notes": "pad bulk 1/2 on +BATT_IN (\u00a74.1); [PU]; outside the ESC quarters",
+   "notes": "pad bulk 1/2 on CSA+ (\u00a74.1); [PU]; outside the ESC quarters",
    "lib_work": []
   },
   {
@@ -860,10 +860,10 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "+BATT_IN",
+    "CSA+",
     "GND"
    ],
-   "notes": "pad bulk 2/2 on +BATT_IN (\u00a74.1); [PU]; outside the ESC quarters",
+   "notes": "pad bulk 2/2 on CSA+ (\u00a74.1); [PU]; outside the ESC quarters",
    "lib_work": []
   },
   {
@@ -885,7 +885,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [
-    "+BATT_IN",
+    "CSA+",
     "+BATT",
     "SHUNT_SENSE_P",
     "SHUNT_SENSE_N"
@@ -6822,7 +6822,7 @@
   {
    "ref": "J2",
    "block": "io",
-   "sheet": "pads",
+   "sheet": "power",
    "value": "+",
    "rating": null,
    "manufacturer": null,
@@ -6838,7 +6838,7 @@
    "exclude_from_pos": true,
    "silk": "+",
    "nets": [
-    "+BATT_IN"
+    "CSA+"
    ],
    "notes": "battery + (BT2.0 pigtail, 22 AWG, user-fitted); plated D1.1 in a 3.0 x 2.0 pad, >= 12 power vias (0.35/0.20, D6); silk '+' 2.0 mm high and '1S' beside (\u00a713); docs alias B+; LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
@@ -6846,7 +6846,7 @@
   {
    "ref": "J3",
    "block": "io",
-   "sheet": "pads",
+   "sheet": "power",
    "value": "-",
    "rating": null,
    "manufacturer": null,

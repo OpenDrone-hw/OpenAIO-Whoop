@@ -67,7 +67,7 @@ the edits to the shard originals). After any generator run, `hardware/tools/sch_
   hidden, BMI270 pins 2/3 lengthened so they reach the body.
 - **PWR_FLAGs.** Regulator outputs are now `power_out` pins, so the flags on +3.3V (POWER) and +3.3V_VTX (VTX) were
   removed (a flag next to a power output is an ERC error). Flags stay where the only source is passive or a
-  connector: +BATT_IN, GND, +BATT, +5V_CAM, VBUS, +1.1V, PA_VCC, plus a new one on VREG_AVDD (R41 RC filter, ERC asked).
+  connector: CSA+, GND, +BATT, +5V_CAM, VBUS, +1.1V, PA_VCC, plus a new one on VREG_AVDD (R41 RC filter, ERC asked).
   Contract rule 7 updated.
 - **Rulings applied.** R84 10k -> 1k (RC0201FR-071KL; LP5912 EN 0.03-0.04 V with GPIO21 low). New **C134** 4.7 uF
   (CL05A475MP5NRNC, same line as C56) on +1.1V at DVDD pin 23. Net class pattern `*ADC_CURR*` -> Analog and `/VBUS` ->
@@ -237,7 +237,7 @@ No ERC exclusions and no severity changes are used (D7 / D21).
 ## check_conventions.py warnings and skips
 
 A5 deprecated wordmark gold (the lineup decision is to copy the shipped artwork exactly); A11b `+1.1V +1.8V_GYRO +3.3V
-+3.3V_VTX +BATT_IN` (LINEUP A11 names chosen for this board); B12 silkscreen font (board stage);
++3.3V_VTX CSA+` (LINEUP A11 names chosen for this board); B12 silkscreen font (board stage);
 D1 README section "VTX dependency" (README). Skips: C3 and B18 (alpha stage), B17b (no model-fixes file).
 
 ## Closed deferred items
@@ -398,10 +398,14 @@ difference is C41: the board still has it on the 0402 land, while D108 puts all 
   - The power symbol is power:+3.3V, with the rail name as its Value, in the OpenFC-Lite / OpenFC-Lite-Mini style.
   - The .kicad_pro net-class patterns, setup_board.py, check_p5_conditions.py and check_netlist.py (dotted names)
     follow the new names.
-  - +BATT_IN stays; it is the one remaining A11b warning (see the open item below).
+  - The pre-shunt battery node +BATT_IN is now the local label CSA+ on the POWER sheet (net /POWER/CSA+, audit S3,
+    lineup precedent OpenESC-20x20 / OpenESC-30x30 / OpenAIO). The battery pads J2 / J3 moved from PADS to POWER,
+    beside the TVS, the pad bulk and the shunt. The net class is VBAT through the .kicad_pro pattern `/POWER/CSA+`;
+    the unused Analog pattern `*/CSA*` is gone. A11b is ok.
 - **Notes:** the stale D77 hot-loop note on the power sheet now names the D108 22 uF 0603 part. The D92 boost note
   names the V4_B4 side (F, L1 over L2). The GPIO numbers in the sheet notes and the ELRS layout follow the new map.
 - **Pipeline:** the generators in p2v3/v4/lineup/sch/gens run first, then scripts/imu_d113.py and
   scripts/power_style.py (both kicad-skip), then tools/sch_integrate.py. Two runs give byte-identical sheets.
-- **Open:** renaming +BATT_IN to CSA+ (the lineup precedent) needs a root-level hierarchical net between PADS and POWER.
-  sch_root.py has no layout row for it, so either that tool gets an additive entry or J2 moves to the power sheet.
+- **Board sync:** the J2 / J3 paths change; sync_pcb relinks them by reference. The +BATT_IN copper moves to
+  /POWER/CSA+, because the pad set is unchanged. +3V3 -> +3.3V is NOT a pure rename for sync_pcb: C42 pad 1 joins
+  the rail (D100), so the layout stage moves the +3V3 copper to +3.3V explicitly.

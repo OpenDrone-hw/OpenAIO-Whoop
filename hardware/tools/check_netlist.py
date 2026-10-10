@@ -255,7 +255,7 @@ for ref, label in (("U10", "RP2354A"), ("U16", "ESP32-PICO-V3")):
 
 # ------------------------------------------------------------------------------------------------ N6
 RULES = [  # (net pattern, class) - first match wins; the role each class stands for (spec 8.2/8.4, setup_board)
-    ("GND", "GND"), ("+BATT", "VBAT"), ("+BATT_*", "VBAT"), ("+*", "Power"),
+    ("GND", "GND"), ("+BATT", "VBAT"), ("+BATT_*", "VBAT"), ("/POWER/CSA+", "VBAT"), ("+*", "Power"),
     ("/VBUS", "Power"), ("/VTX/PA_VCC", "Power"),
     ("/ESC?/PHASE_?", "Phase"), ("/POWER/U2_SW", "Phase"), ("/ESC?/?_COM", "Gate"), ("/ESC?/?_PWM", "Gate"),
     # /POWER/U2_SW: boost switch node, 2.8-3.4 A average (P4 critique round 2)

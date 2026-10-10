@@ -1978,6 +1978,135 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "lib:SolderPad_01x01"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x01"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SolderPad_* BattPad_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SolderPad_01x01_1_1"
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -1.27)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "lib:TPS2116DRLR"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -4256,7 +4385,7 @@
 		)
 		(uuid "33229367-0d88-532e-8376-96800a846d4a")
 	)
-	(text_box "POWER sheet, generated with hardware/tools/sch_build.py + sch_root.py (P4 power shard); do not edit by hand.\nRails are power symbols (net = Value): +BATT_IN, +BATT, +5V_BST, +5V_USB, +5V, +5V_CAM, +5V_HD, +3.3V, GND. Sheet pins: HD_EN (in), CURR_SENSE (out), VBUS (in). Local nets: SHUNT_SENSE_P/N(_RC), U2_SW, U2_FB, U3_PR1, U5_EN.\nClosed here: P4-1, P4-2, P4-3, P4-7, P4-9, P4-12 (+3.3V), P4-17 (BR-14 C13), P4-19 (C30 deleted); R11 is the HD_EN (GPIO19 since the D111 map) pull-down P4-4 counts on; P4-13 is void (D69: C2, C5, C14 stay X5R, sized on DC bias). Values: research/DESIGN-SPEC.md 4.1, 4.2, 15.5; P4 hand calculations reproduced in the shard notes.\nP4 critique round 1 (D77, D108): C30 (ESC3 EFM8 VDD bulk) deleted: each ESC has one 22 uF 6.3 V X6S 0603 hot-loop cap per AGM210MAP on its own sheet (D108, was 10 uF 0402), and ESC3's slot-M cap C35 sits within 4 mm of U8 VDD pin 4 (BR-05 as amended, 100 nF C31 at the pin). C17 (U5 CIN) deleted: C8-C11 serve, P5 placement condition above.\nD92 5 V boost ground return (U2, L1 and C7-C11 on F in the winning placement V4_B4: component layer L1, adjacent GND plane L2). The pulsed current is on the output side (SW -> high-side FET -> VOUT pin 3 -> C8-C11 -> GND -> low-side FET at GND pin 1), so C8-C11 GND, C7 GND and U2 pin 1 form one component-layer copper island and the loop closes on it: no via inside the loop, no copper neck between the caps and pin 1. The island joins the GND planes (L2/L5) through its own GND vias at the C7 (input) end, outside the loop: they carry the battery-side return, 2.9-3.6 A DC at 1.5-2.0 A out from a 3.0-3.2 V cell (eff. 0.9), so >= 4 vias at the FLOORPLAN 1 A per via. The adjacent plane stays unbroken under the loop, SW node and L1 (L2 stays solid, D85). R5 returns to pin 1 on its own trace, not into the C8-C11 copper; R4 senses VOUT at C8-C11. Keep the island out of the J3 to ESC-cell return corridor and the camera/OSD/VTX video ground, and U2_SW / L1 away from the SHUNT_SENSE / CURR_SENSE traces, gyro, crystals and antennas."
+	(text_box "POWER sheet, generated with hardware/tools/sch_build.py + sch_root.py (P4 power shard); do not edit by hand.\nBattery node before the shunt: local label CSA+ (J2). Rails are power symbols (net = Value): +BATT, +5V_BST, +5V_USB, +5V, +5V_CAM, +5V_HD, +3.3V, GND. Sheet pins: HD_EN (in), CURR_SENSE (out), VBUS (in). Local nets: SHUNT_SENSE_P/N(_RC), U2_SW, U2_FB, U3_PR1, U5_EN.\nClosed here: P4-1, P4-2, P4-3, P4-7, P4-9, P4-12 (+3.3V), P4-17 (BR-14 C13), P4-19 (C30 deleted); R11 is the HD_EN (GPIO19 since the D111 map) pull-down P4-4 counts on; P4-13 is void (D69: C2, C5, C14 stay X5R, sized on DC bias). Values: research/DESIGN-SPEC.md 4.1, 4.2, 15.5; P4 hand calculations reproduced in the shard notes.\nP4 critique round 1 (D77, D108): C30 (ESC3 EFM8 VDD bulk) deleted: each ESC has one 22 uF 6.3 V X6S 0603 hot-loop cap per AGM210MAP on its own sheet (D108, was 10 uF 0402), and ESC3's slot-M cap C35 sits within 4 mm of U8 VDD pin 4 (BR-05 as amended, 100 nF C31 at the pin). C17 (U5 CIN) deleted: C8-C11 serve, P5 placement condition above.\nD92 5 V boost ground return (U2, L1 and C7-C11 on F in the winning placement V4_B4: component layer L1, adjacent GND plane L2). The pulsed current is on the output side (SW -> high-side FET -> VOUT pin 3 -> C8-C11 -> GND -> low-side FET at GND pin 1), so C8-C11 GND, C7 GND and U2 pin 1 form one component-layer copper island and the loop closes on it: no via inside the loop, no copper neck between the caps and pin 1. The island joins the GND planes (L2/L5) through its own GND vias at the C7 (input) end, outside the loop: they carry the battery-side return, 2.9-3.6 A DC at 1.5-2.0 A out from a 3.0-3.2 V cell (eff. 0.9), so >= 4 vias at the FLOORPLAN 1 A per via. The adjacent plane stays unbroken under the loop, SW node and L1 (L2 stays solid, D85). R5 returns to pin 1 on its own trace, not into the C8-C11 copper; R4 senses VOUT at C8-C11. Keep the island out of the J3 to ESC-cell return corridor and the camera/OSD/VTX video ground, and U2_SW / L1 away from the SHUNT_SENSE / CURR_SENSE traces, gyro, crystals and antennas."
 		(exclude_from_sim no)
 		(at 255.27 189.23 0)
 		(size 148.59 60.96)
@@ -4276,7 +4405,7 @@
 		)
 		(uuid "432733bd-b3fe-5aab-802f-ae68600f9301")
 	)
-	(text_box "Source: OpenAIO/hardware/OpenAIO.kicad_sch (battery entry), adapted.\n+BATT_IN = battery pads J2 (+) / J3 (-) on the PADS sheet, 1S LiPo/LiHV 3.0-4.35 V; PWR_FLAG here (the pads are passive). No reverse-polarity FET (spec 4.1: user-fitted pigtail, risk in README).\nD1 SMF5.0A: VBR 6.40-7.00 V (10 mA), VC 9.2 V at 21.7 A, 200 W 10/1000 us: takes one motor's regen energy (~0.29 J per rated pulse) on a battery disconnect; fallback SMAJ5.0A (SMA, 400 W) if V3b exceeds it. It does not hold the 5.5-7 V parts in rating (EFM8 VDD on the cell; TPS61022 VIN 7 V abs max, and its pass-through carries a surge to +5V_BST = TPS2116 VIN2, 6 V abs max): Matrix-parity risk, spec 15.4.\nC1/C2 22 uF 16 V X5R 0603 at the pads: 9-13 uF effective each at 4.35 V. Hot plug of a 4.35 V pack can overshoot to 5.0-5.4 V (V3c): above the TPS61022 4.8 V VIN limit for a start-up with VOUT pre-biased < 0.7 V (DS 6.3), which is exactly hot plug (EN = VIN, +5V_BST at 0 V); V3c scopes VIN with the +5V_BST start. Damping fallback ~100 uF polymer at the pads; PE-8 waits for V3c."
+	(text_box "Source: OpenAIO/hardware/OpenAIO.kicad_sch (battery entry), adapted.\nCSA+ = battery pad J2 (+) node before the shunt (J3 - = GND), 1S LiPo/LiHV 3.0-4.35 V; local label as on OpenESC-20x20 / OpenAIO (D113); PWR_FLAG here (the pads are passive). No reverse-polarity FET (spec 4.1: user-fitted pigtail, risk in README).\nD1 SMF5.0A: VBR 6.40-7.00 V (10 mA), VC 9.2 V at 21.7 A, 200 W 10/1000 us: takes one motor's regen energy (~0.29 J per rated pulse) on a battery disconnect; fallback SMAJ5.0A (SMA, 400 W) if V3b exceeds it. It does not hold the 5.5-7 V parts in rating (EFM8 VDD on the cell; TPS61022 VIN 7 V abs max, and its pass-through carries a surge to +5V_BST = TPS2116 VIN2, 6 V abs max): Matrix-parity risk, spec 15.4.\nC1/C2 22 uF 16 V X5R 0603 at the pads: 9-13 uF effective each at 4.35 V. Hot plug of a 4.35 V pack can overshoot to 5.0-5.4 V (V3c): above the TPS61022 4.8 V VIN limit for a start-up with VOUT pre-biased < 0.7 V (DS 6.3), which is exactly hot plug (EN = VIN, +5V_BST at 0 V); V3c scopes VIN with the +5V_BST start. Damping fallback ~100 uF polymer at the pads; PE-8 waits for V3c."
 		(exclude_from_sim no)
 		(at 16.51 55.88 0)
 		(size 83.82 39.37)
@@ -4417,520 +4546,190 @@
 		(uuid "f156f9e1-c2d7-5bfd-8d3b-4488ec0ec2ba")
 	)
 	(junction
-		(at 251.46 111.76)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "06b7d06e-b905-5230-a14d-bb8d15263d3b")
-	)
-	(junction
-		(at 187.96 129.54)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "08804786-8d2f-53f3-be64-7471e4bb8f18")
-	)
-	(junction
-		(at 215.9 129.54)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0d43089b-7f05-5f9d-bcf4-dc05546e88c8")
-	)
-	(junction
-		(at 374.65 116.84)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0dc77c07-bd82-5667-882f-fdcde3327787")
-	)
-	(junction
-		(at 48.26 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "14ac05bd-b84b-5550-a50f-92f733d6ee4f")
-	)
-	(junction
 		(at 170.18 45.72)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "1507679b-7147-5642-8668-aed0686f0f7d")
-	)
-	(junction
-		(at 104.14 127)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "18734524-a258-5003-abd1-3e556d940a79")
-	)
-	(junction
-		(at 231.14 137.16)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1c6c3fdb-c12a-52f9-85d4-36297be22f2a")
-	)
-	(junction
-		(at 384.81 116.84)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "25142bf2-7395-5921-9551-2e3939590c0d")
-	)
-	(junction
-		(at 283.21 46.99)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "283d0574-748f-5818-9367-c4bef52b0504")
-	)
-	(junction
-		(at 45.72 124.46)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "542f3e05-2fc6-5abb-a045-c9ad1e637186")
-	)
-	(junction
-		(at 83.82 127)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5532fe7d-00c8-5413-b249-20371d3bcdf0")
-	)
-	(junction
-		(at 238.76 127)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5974ea6d-f121-54be-9cfe-7ccdc617564c")
-	)
-	(junction
-		(at 318.77 39.37)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "59f917aa-a894-5447-9e7b-906895e15671")
-	)
-	(junction
-		(at 154.94 205.74)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "629badd2-3282-52f2-9a9f-31c622b87ab7")
-	)
-	(junction
-		(at 58.42 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "66b53d26-fa36-5c91-b01f-5f2799132bc0")
+		(uuid "05ce988e-e2a3-5a36-a149-2c72e4ab5d31")
 	)
 	(junction
 		(at 195.58 129.54)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "79741e09-11eb-56bb-88cb-21189f7cbb73")
-	)
-	(junction
-		(at 139.7 35.56)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "88a76504-5af9-5f82-a7af-cad12918d046")
-	)
-	(junction
-		(at 45.72 198.12)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "91559a25-9d92-5814-8bbe-377944583fce")
-	)
-	(junction
-		(at 114.3 127)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "960b055d-d816-5197-b516-de5d2117ac5e")
-	)
-	(junction
-		(at 93.98 127)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9a0554a6-6b34-5fa8-8df8-e860f81f74ec")
-	)
-	(junction
-		(at 203.2 129.54)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9ca93dc1-5913-50f8-8281-8124a0d569b7")
-	)
-	(junction
-		(at 124.46 127)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b4006146-f538-58f7-a00a-54252a2b4305")
-	)
-	(junction
-		(at 170.18 53.34)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "beb56fa6-72b7-5743-9271-ab337975d467")
-	)
-	(junction
-		(at 38.1 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c1df3bf9-05b9-515a-bae1-1607f192ed5a")
-	)
-	(junction
-		(at 30.48 124.46)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d1df3fe8-3fdb-53ee-b3e9-74f21afa83a5")
-	)
-	(junction
-		(at 213.36 198.12)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d4112037-b41b-5c71-b400-14e6e2377fe1")
-	)
-	(junction
-		(at 40.64 124.46)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "da640d80-d3d6-5908-b10a-287f5b2a2838")
+		(uuid "0d43089b-7f05-5f9d-bcf4-dc05546e88c8")
 	)
 	(junction
 		(at 203.2 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "e4a062e7-2983-541a-beae-eaa494a9ebe5")
+		(uuid "10354a23-faff-5278-ba0e-8bed0183ecc9")
 	)
-	(no_connect
-		(at 205.74 208.28)
-		(uuid "1b865b1c-a281-58e3-a60a-c0a92ab08da3")
+	(junction
+		(at 93.98 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "18734524-a258-5003-abd1-3e556d940a79")
 	)
-	(no_connect
-		(at 313.69 34.29)
-		(uuid "25ad6b84-8256-5f71-b712-99607a6572c8")
+	(junction
+		(at 374.65 116.84)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "25142bf2-7395-5921-9551-2e3939590c0d")
+	)
+	(junction
+		(at 215.9 129.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "395d8d59-896e-5870-b17c-16129e5b2127")
+	)
+	(junction
+		(at 154.94 205.74)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3f62c5c1-6182-5a8d-8427-455d594ea1b4")
+	)
+	(junction
+		(at 170.18 53.34)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4f7a7775-2aae-5c71-a79c-07a0511685d4")
+	)
+	(junction
+		(at 318.77 39.37)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "526032bf-1316-5b5b-9fea-ebcd6ce0b68d")
+	)
+	(junction
+		(at 231.14 137.16)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "61e19cc2-5d4f-5509-b803-2d2d92d6941a")
+	)
+	(junction
+		(at 38.1 38.1)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "66b53d26-fa36-5c91-b01f-5f2799132bc0")
+	)
+	(junction
+		(at 238.76 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6a55388b-75b4-5fca-9512-e940d742c2d6")
+	)
+	(junction
+		(at 40.64 124.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6e6b64a4-81de-57b2-a17d-f0bdaa7dc4e2")
+	)
+	(junction
+		(at 213.36 198.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7b97d78a-a90e-5b6e-8a4f-028750e42110")
+	)
+	(junction
+		(at 45.72 198.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "818885c4-1896-5fb0-b82f-e3361dc0893c")
+	)
+	(junction
+		(at 203.2 129.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8c70cfbc-5a50-525c-b136-dab7d71d5583")
+	)
+	(junction
+		(at 139.7 35.56)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8d9ce3d7-4a9d-55fd-963d-dfecb38e1290")
+	)
+	(junction
+		(at 104.14 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "960b055d-d816-5197-b516-de5d2117ac5e")
+	)
+	(junction
+		(at 58.42 38.1)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "985b33de-0b9b-5b41-b46c-3255ee8560d6")
+	)
+	(junction
+		(at 83.82 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9a0554a6-6b34-5fa8-8df8-e860f81f74ec")
+	)
+	(junction
+		(at 124.46 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9b671bfc-82e9-5960-9d11-b62b46c1ce7e")
+	)
+	(junction
+		(at 187.96 129.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9ca93dc1-5913-50f8-8281-8124a0d569b7")
+	)
+	(junction
+		(at 48.26 38.1)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b2265ac8-82ef-5024-81c4-00de0e0cb42c")
+	)
+	(junction
+		(at 114.3 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b4006146-f538-58f7-a00a-54252a2b4305")
+	)
+	(junction
+		(at 283.21 46.99)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b8dea72e-9565-5a62-b1e3-583b28116629")
+	)
+	(junction
+		(at 45.72 124.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c7335d96-b2b3-5d5c-ade7-e39aec175ec7")
+	)
+	(junction
+		(at 30.48 124.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "da640d80-d3d6-5908-b10a-287f5b2a2838")
+	)
+	(junction
+		(at 251.46 111.76)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ddd0c9a0-8659-5d42-afb8-432d35806920")
+	)
+	(junction
+		(at 384.81 116.84)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ec31c065-48a9-5a9d-8459-abcc2cb50fa1")
 	)
 	(no_connect
 		(at 313.69 36.83)
-		(uuid "a256ee26-5a53-5a12-b5c6-29613820279e")
+		(uuid "4e7aa9b3-8df0-5be4-b5f5-d40b36f9a7db")
 	)
-	(wire
-		(pts
-			(xy 374.65 116.84) (xy 384.81 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "037aa577-fc45-5c6f-87e0-e87139f43a8b")
+	(no_connect
+		(at 205.74 208.28)
+		(uuid "72eac583-11d9-5944-961e-9cf44dd6e3c1")
 	)
-	(wire
-		(pts
-			(xy 45.72 129.54) (xy 45.72 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "083877ca-81e3-5a09-a77e-b261d6be9e71")
-	)
-	(wire
-		(pts
-			(xy 195.58 129.54) (xy 187.96 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "09604464-051f-59db-af21-b854924fdbb8")
-	)
-	(wire
-		(pts
-			(xy 241.3 124.46) (xy 241.3 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0aa99194-12c6-5675-8a4c-a5ae844e27f8")
-	)
-	(wire
-		(pts
-			(xy 60.96 203.2) (xy 55.88 203.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "100f65c9-8ecf-596b-af60-2fe6e13a50ae")
-	)
-	(wire
-		(pts
-			(xy 45.72 198.12) (xy 60.96 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1314a7fc-15da-5ceb-b225-41725a11d6a0")
-	)
-	(wire
-		(pts
-			(xy 295.91 41.91) (xy 293.37 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1395b500-0b01-59e7-aa49-ab5d280d543c")
-	)
-	(wire
-		(pts
-			(xy 25.4 38.1) (xy 38.1 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "14f47972-71b0-509b-8ff7-95cdb31059d5")
-	)
-	(wire
-		(pts
-			(xy 124.46 134.62) (xy 129.54 134.62)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "15dccf98-a2bd-558e-bdf2-e613bfa634da")
-	)
-	(wire
-		(pts
-			(xy 246.38 114.3) (xy 251.46 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "16bd27ac-5d7f-5673-acb9-039a406ad42f")
-	)
-	(wire
-		(pts
-			(xy 83.82 127) (xy 93.98 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1d428589-3093-5a04-ab04-fdf87a779af7")
-	)
-	(wire
-		(pts
-			(xy 38.1 38.1) (xy 48.26 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1ea654bc-65a6-53c0-9df2-db6d19697190")
-	)
-	(wire
-		(pts
-			(xy 154.94 198.12) (xy 154.94 195.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1f4619c4-4eb6-5865-b805-ec308934db83")
-	)
-	(wire
-		(pts
-			(xy 215.9 60.96) (xy 231.14 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "29dc0f5f-3dc9-5b9c-a2c6-d5ba76031573")
-	)
-	(wire
-		(pts
-			(xy 213.36 198.12) (xy 223.52 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2ab5e49a-b949-5c8e-8911-9eee62923cfd")
-	)
-	(wire
-		(pts
-			(xy 71.12 48.26) (xy 71.12 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2de82423-ead1-5abf-9811-44073a156842")
-	)
-	(wire
-		(pts
-			(xy 203.2 60.96) (xy 203.2 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2f262457-c9ce-50e8-94fe-63990bd6d83b")
-	)
-	(wire
-		(pts
-			(xy 48.26 137.16) (xy 40.64 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2f859fd7-1638-592d-b02d-aa8d11cad937")
-	)
-	(wire
-		(pts
-			(xy 48.26 132.08) (xy 48.26 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "30264d71-09ac-532e-a31e-936ae0f0a7b0")
-	)
-	(wire
-		(pts
-			(xy 60.96 139.7) (xy 60.96 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "31181ce7-e273-508d-9b40-092dad02e823")
-	)
-	(wire
-		(pts
-			(xy 313.69 39.37) (xy 318.77 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3508b83b-91c4-5855-95ba-1bc930d53a2b")
-	)
-	(wire
-		(pts
-			(xy 241.3 127) (xy 238.76 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "36a6de62-341b-5318-b661-9eeab47b0584")
-	)
-	(wire
-		(pts
-			(xy 182.88 208.28) (xy 182.88 215.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "39d00ebe-88d3-5e32-9f7e-646283146d98")
-	)
-	(wire
-		(pts
-			(xy 71.12 208.28) (xy 71.12 210.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3be31f6f-9539-5feb-9ed0-2186904da051")
-	)
-	(wire
-		(pts
-			(xy 251.46 111.76) (xy 264.16 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3c213fdd-eacc-543a-be3e-13070d2ffef4")
-	)
-	(wire
-		(pts
-			(xy 170.18 45.72) (xy 187.96 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3d6928c1-7c6f-5483-bec8-44351319a83d")
-	)
-	(wire
-		(pts
-			(xy 71.12 127) (xy 83.82 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3e45b94f-ee6e-512b-ba85-d0bae9729043")
-	)
-	(wire
-		(pts
-			(xy 185.42 208.28) (xy 182.88 208.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "42969c37-3b3b-5723-857b-4eeebc462cde")
-	)
-	(wire
-		(pts
-			(xy 30.48 198.12) (xy 45.72 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "42b385fc-03d7-5934-a61a-e013dca74857")
-	)
-	(wire
-		(pts
-			(xy 182.88 215.9) (xy 175.26 215.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "45a93954-8339-57e5-8db8-de48b58b7bc4")
-	)
-	(wire
-		(pts
-			(xy 187.96 48.26) (xy 193.04 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "47c3b8a6-c813-5558-9d1d-3ac334e70d45")
-	)
-	(wire
-		(pts
-			(xy 203.2 25.4) (xy 193.04 25.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "48608a9b-229e-5516-a69b-c738388d17bd")
-	)
-	(wire
-		(pts
-			(xy 170.18 53.34) (xy 193.04 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "493f12dd-2745-5700-9215-c730db4246ac")
+	(no_connect
+		(at 313.69 34.29)
+		(uuid "e9f20f04-7ad7-5b60-83d0-2d0769dcae51")
 	)
 	(wire
 		(pts
@@ -4940,667 +4739,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "4deb6e66-4645-5632-b054-29e98e639191")
-	)
-	(wire
-		(pts
-			(xy 223.52 129.54) (xy 215.9 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4f728788-f6ea-5460-9833-2186883c0521")
-	)
-	(wire
-		(pts
-			(xy 129.54 45.72) (xy 153.67 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50cbe511-8952-5157-beb0-4f6f58eca9da")
-	)
-	(wire
-		(pts
-			(xy 384.81 116.84) (xy 394.97 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "57dc752f-0dbd-5be6-98ba-64b521c6c997")
-	)
-	(wire
-		(pts
-			(xy 165.1 200.66) (xy 165.1 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5cd82dea-8917-552e-acd1-f0020300fe04")
-	)
-	(wire
-		(pts
-			(xy 93.98 127) (xy 104.14 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "622f5295-c152-561a-8ed9-070fec40633d")
-	)
-	(wire
-		(pts
-			(xy 58.42 45.72) (xy 58.42 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "68ff2794-dbce-56fb-b26b-88c3c3c87c3e")
-	)
-	(wire
-		(pts
-			(xy 48.26 38.1) (xy 58.42 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69907abc-5c3c-5214-97b4-6522b9cdee62")
-	)
-	(wire
-		(pts
-			(xy 213.36 50.8) (xy 215.9 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6be6211b-738a-565f-87e3-64ef5029a439")
-	)
-	(wire
-		(pts
-			(xy 185.42 205.74) (xy 154.94 205.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6c9308c6-cfbc-5a7f-ad03-fa315c371cd3")
-	)
-	(wire
-		(pts
-			(xy 208.28 111.76) (xy 226.06 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6da64de6-ac9d-5d1e-877b-16bfd40047e1")
-	)
-	(wire
-		(pts
-			(xy 295.91 34.29) (xy 293.37 34.29)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6e2176ad-c9ea-5ba6-bbc1-4b073fb6a78e")
-	)
-	(wire
-		(pts
-			(xy 223.52 116.84) (xy 223.52 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "775c9046-3bb5-514d-b0c1-ad5cf148f804")
-	)
-	(wire
-		(pts
-			(xy 40.64 124.46) (xy 40.64 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "77a23602-2dee-532e-b009-ed9dea96801d")
-	)
-	(wire
-		(pts
-			(xy 76.2 124.46) (xy 71.12 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "78033424-53cb-54e8-b9fc-288eaa8275a4")
-	)
-	(wire
-		(pts
-			(xy 226.06 116.84) (xy 223.52 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7dbded9d-1586-53b2-8ad8-7dc888a4bd28")
-	)
-	(wire
-		(pts
-			(xy 223.52 137.16) (xy 231.14 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7e2aec79-a48b-546e-ae56-9b781615825e")
-	)
-	(wire
-		(pts
-			(xy 50.8 129.54) (xy 45.72 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "81f8d5d2-d23e-5fb4-920f-c2cb7e9ddcfa")
-	)
-	(wire
-		(pts
-			(xy 326.39 39.37) (xy 336.55 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8275b6f9-04e7-5a97-a8b6-80ded84d2fde")
-	)
-	(wire
-		(pts
-			(xy 215.9 50.8) (xy 215.9 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "857ba100-bf4e-5f0c-88ca-abf4f8b66fec")
-	)
-	(wire
-		(pts
-			(xy 185.42 198.12) (xy 180.34 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8817a8b1-b502-5736-bcb5-799c785b8bc3")
-	)
-	(wire
-		(pts
-			(xy 180.34 198.12) (xy 180.34 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8ccde5f5-52bc-54aa-9063-41a070cd7813")
-	)
-	(wire
-		(pts
-			(xy 40.64 124.46) (xy 45.72 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8e6decb0-1878-54ac-93b2-d36a1c0e40a4")
-	)
-	(wire
-		(pts
-			(xy 288.29 39.37) (xy 288.29 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9391d059-33d8-5bb6-9b8b-354dafc1751e")
-	)
-	(wire
-		(pts
-			(xy 30.48 124.46) (xy 40.64 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "95274c95-3b07-5dd4-b0f1-298efe18faab")
-	)
-	(wire
-		(pts
-			(xy 215.9 129.54) (xy 203.2 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "96ac0baf-03f9-5e6d-93fe-e40b48d26426")
-	)
-	(wire
-		(pts
-			(xy 288.29 46.99) (xy 273.05 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "971b4b73-10c5-53f6-853b-05c1fbe49a7f")
-	)
-	(wire
-		(pts
-			(xy 76.2 114.3) (xy 76.2 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "98e94167-aebf-51e2-94c9-be1c7997dee1")
-	)
-	(wire
-		(pts
-			(xy 367.03 116.84) (xy 374.65 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99152df2-233e-5223-b9ec-f9330ae11652")
-	)
-	(wire
-		(pts
-			(xy 187.96 45.72) (xy 187.96 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99fd6a2c-0239-5a58-9a71-3bb6dad30810")
-	)
-	(wire
-		(pts
-			(xy 246.38 111.76) (xy 251.46 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9c4cb06a-8120-54d9-9c4f-f5c017ff4d99")
-	)
-	(wire
-		(pts
-			(xy 213.36 45.72) (xy 223.52 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a2383149-e7e6-5ad3-b568-29c1f5510a69")
-	)
-	(wire
-		(pts
-			(xy 124.46 53.34) (xy 153.67 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a24ebed5-080d-58bf-a57b-c4de451a6d1b")
-	)
-	(wire
-		(pts
-			(xy 293.37 34.29) (xy 293.37 29.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a5fc837f-06ab-5e03-9cda-0bed4b8bdbd0")
-	)
-	(wire
-		(pts
-			(xy 203.2 129.54) (xy 195.58 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a9fc5365-61bf-5cdb-9d41-de0fd1fa3da8")
-	)
-	(wire
-		(pts
-			(xy 295.91 36.83) (xy 283.21 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ac414bfb-4d7b-5959-9a62-25c38d6abafe")
-	)
-	(wire
-		(pts
-			(xy 215.9 129.54) (xy 215.9 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aff408c2-4a95-5a91-9313-cad454c2404d")
-	)
-	(wire
-		(pts
-			(xy 185.42 200.66) (xy 165.1 200.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b12b8a55-e70b-5e17-88a0-59f37bfe50c7")
-	)
-	(wire
-		(pts
-			(xy 121.92 35.56) (xy 114.3 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b3cee07c-fe91-556f-bffa-36da5c5ffed0")
-	)
-	(wire
-		(pts
-			(xy 25.4 124.46) (xy 30.48 124.46)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b667ff48-81f5-599f-8154-224ca4396e3c")
-	)
-	(wire
-		(pts
-			(xy 318.77 39.37) (xy 326.39 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b9ec54e9-da3b-5de7-94bd-c140b1b133ce")
-	)
-	(wire
-		(pts
-			(xy 124.46 38.1) (xy 124.46 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "be726fc1-fb21-59cf-a857-5995580b4c62")
-	)
-	(wire
-		(pts
-			(xy 231.14 137.16) (xy 243.84 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c3099617-67a7-5c1a-8cf6-f540ec88f378")
-	)
-	(wire
-		(pts
-			(xy 195.58 213.36) (xy 195.58 215.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c3cc49ce-7249-51f0-b304-e05837013579")
-	)
-	(wire
-		(pts
-			(xy 161.29 53.34) (xy 170.18 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c4a7189e-f1fe-558d-b60e-f92f40b69642")
-	)
-	(wire
-		(pts
-			(xy 187.96 129.54) (xy 180.34 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c9c705c6-6016-5fb6-9eb5-0746fc39d7de")
-	)
-	(wire
-		(pts
-			(xy 124.46 127) (xy 139.7 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cc199fbf-9de5-5248-99de-092c26794c0a")
-	)
-	(wire
-		(pts
-			(xy 203.2 40.64) (xy 203.2 25.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cccd7d4a-c2d2-592e-b492-3c6326be8fd0")
-	)
-	(wire
-		(pts
-			(xy 238.76 124.46) (xy 238.76 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cdfaea6d-6ae1-5814-be30-5bf2e6990fdb")
-	)
-	(wire
-		(pts
-			(xy 205.74 198.12) (xy 213.36 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dd072b6d-b571-5725-93ee-3a8144f1298a")
-	)
-	(wire
-		(pts
-			(xy 129.54 38.1) (xy 129.54 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dfc63fea-9ff4-5e1b-a7af-ba4cd9b0afb6")
-	)
-	(wire
-		(pts
-			(xy 104.14 127) (xy 114.3 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e19f1f61-99ba-536b-a3be-1c1353b121da")
-	)
-	(wire
-		(pts
-			(xy 161.29 45.72) (xy 170.18 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e2045a20-f0e2-5008-b78e-654579beb143")
-	)
-	(wire
-		(pts
-			(xy 295.91 39.37) (xy 288.29 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e27e6e1c-43a7-5af2-bca4-fa6057943e21")
-	)
-	(wire
-		(pts
-			(xy 132.08 35.56) (xy 139.7 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e7fb4c8c-9028-50e5-a6f5-7989d89ca9a7")
-	)
-	(wire
-		(pts
-			(xy 81.28 198.12) (xy 93.98 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e8b1f4c5-c703-530f-b61e-0d0cde023b5d")
-	)
-	(wire
-		(pts
-			(xy 71.12 132.08) (xy 73.66 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e987f316-6bb5-5e21-97f9-9d6dd19814d5")
-	)
-	(wire
-		(pts
-			(xy 48.26 45.72) (xy 48.26 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ebf38ae5-11c2-56c2-a6e3-42288f86beea")
-	)
-	(wire
-		(pts
-			(xy 38.1 45.72) (xy 38.1 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ee9eb7e4-56a6-5e59-904f-8f4bba04c3d2")
-	)
-	(wire
-		(pts
-			(xy 346.71 116.84) (xy 359.41 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ef07f2a1-2aae-5377-b62e-00f22825c96e")
-	)
-	(wire
-		(pts
-			(xy 251.46 114.3) (xy 251.46 111.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f002b1e8-afed-577e-8f79-779b4fdc16cd")
-	)
-	(wire
-		(pts
-			(xy 40.64 114.3) (xy 57.15 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f2947e75-9616-5491-9bd2-b67cd7ce8d27")
-	)
-	(wire
-		(pts
-			(xy 50.8 132.08) (xy 48.26 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f6a653d6-c2ef-56ad-8858-e3bf30c3c8fb")
-	)
-	(wire
-		(pts
-			(xy 139.7 35.56) (xy 149.86 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f6aaa48c-baf9-5f60-9f13-13bdc55ae974")
-	)
-	(wire
-		(pts
-			(xy 114.3 127) (xy 124.46 127)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f7f82ac9-b547-59ca-a46c-14cceba6f43a")
-	)
-	(wire
-		(pts
-			(xy 58.42 38.1) (xy 71.12 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f8b242d1-ccd0-5d5a-9bf4-80fe81645beb")
-	)
-	(wire
-		(pts
-			(xy 64.77 114.3) (xy 76.2 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f9196afa-10cb-5d87-b368-32393da88ba8")
+		(uuid "079d6978-e8bf-5153-879e-c2a7d1eab2ec")
 	)
 	(wire
 		(pts
@@ -5610,17 +4749,277 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "fb977f60-2f74-5e07-a933-f21084816596")
+		(uuid "0854987b-81c4-5539-8249-c4e41f9be0aa")
 	)
 	(wire
 		(pts
-			(xy 45.72 124.46) (xy 50.8 124.46)
+			(xy 215.9 129.54) (xy 203.2 129.54)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fe7ebfc8-e4de-5538-8425-013625a6bd34")
+		(uuid "09604464-051f-59db-af21-b854924fdbb8")
+	)
+	(wire
+		(pts
+			(xy 238.76 124.46) (xy 238.76 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0aa99194-12c6-5675-8a4c-a5ae844e27f8")
+	)
+	(wire
+		(pts
+			(xy 124.46 38.1) (xy 124.46 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0ed11fad-725f-50df-a79a-77b8d80a709d")
+	)
+	(wire
+		(pts
+			(xy 45.72 198.12) (xy 60.96 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "107053f6-a736-548a-a486-aa5bf735a12a")
+	)
+	(wire
+		(pts
+			(xy 246.38 111.76) (xy 251.46 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "16bd27ac-5d7f-5673-acb9-039a406ad42f")
+	)
+	(wire
+		(pts
+			(xy 203.2 40.64) (xy 203.2 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1d7d3889-5c03-5e18-ae74-b2a73af9b19c")
+	)
+	(wire
+		(pts
+			(xy 25.4 38.1) (xy 38.1 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ea654bc-65a6-53c0-9df2-db6d19697190")
+	)
+	(wire
+		(pts
+			(xy 165.1 200.66) (xy 165.1 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f4619c4-4eb6-5865-b805-ec308934db83")
+	)
+	(wire
+		(pts
+			(xy 124.46 53.34) (xy 153.67 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21af2da9-0ea4-5f58-8995-88f7c6986148")
+	)
+	(wire
+		(pts
+			(xy 76.2 114.3) (xy 76.2 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27627d96-38c5-5822-b7fe-66db8468c72a")
+	)
+	(wire
+		(pts
+			(xy 213.36 50.8) (xy 215.9 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "29dc0f5f-3dc9-5b9c-a2c6-d5ba76031573")
+	)
+	(wire
+		(pts
+			(xy 203.2 25.4) (xy 193.04 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f262457-c9ce-50e8-94fe-63990bd6d83b")
+	)
+	(wire
+		(pts
+			(xy 50.8 132.08) (xy 48.26 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f859fd7-1638-592d-b02d-aa8d11cad937")
+	)
+	(wire
+		(pts
+			(xy 48.26 137.16) (xy 40.64 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "31181ce7-e273-508d-9b40-092dad02e823")
+	)
+	(wire
+		(pts
+			(xy 48.26 132.08) (xy 48.26 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "31fa2c69-e520-5bf4-9bed-04ed2dee7630")
+	)
+	(wire
+		(pts
+			(xy 60.96 203.2) (xy 55.88 203.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3be31f6f-9539-5feb-9ed0-2186904da051")
+	)
+	(wire
+		(pts
+			(xy 60.96 139.7) (xy 60.96 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3e45b94f-ee6e-512b-ba85-d0bae9729043")
+	)
+	(wire
+		(pts
+			(xy 161.29 53.34) (xy 170.18 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43556ca0-8c83-5961-9d68-17e75ea8ab8a")
+	)
+	(wire
+		(pts
+			(xy 295.91 41.91) (xy 293.37 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "437a90c7-bb98-5080-b506-6313394928de")
+	)
+	(wire
+		(pts
+			(xy 195.58 129.54) (xy 187.96 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4549c7e7-8325-52e3-adfb-1a04a2542dda")
+	)
+	(wire
+		(pts
+			(xy 185.42 208.28) (xy 182.88 208.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "45a93954-8339-57e5-8db8-de48b58b7bc4")
+	)
+	(wire
+		(pts
+			(xy 170.18 45.72) (xy 187.96 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47c3b8a6-c813-5558-9d1d-3ac334e70d45")
+	)
+	(wire
+		(pts
+			(xy 187.96 48.26) (xy 193.04 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "493f12dd-2745-5700-9215-c730db4246ac")
+	)
+	(wire
+		(pts
+			(xy 185.42 205.74) (xy 154.94 205.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c5d57cd-d53f-53d0-a710-62e55f406f5f")
+	)
+	(wire
+		(pts
+			(xy 226.06 116.84) (xy 223.52 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f728788-f6ea-5460-9833-2186883c0521")
+	)
+	(wire
+		(pts
+			(xy 71.12 132.08) (xy 73.66 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4fb40f62-241e-59fa-8bdf-aa5b030e7c5e")
+	)
+	(wire
+		(pts
+			(xy 367.03 116.84) (xy 374.65 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "57dc752f-0dbd-5be6-98ba-64b521c6c997")
 	)
 	(wire
 		(pts
@@ -5630,77 +5029,757 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "ffc86af5-e3e6-51f9-baef-fdccbf117da0")
+		(uuid "5baaa367-48a3-5653-a0b2-f90823c75866")
 	)
-	(label "SHUNT_SENSE_N_RC"
-		(at 171.45 45.72 0)
+	(wire
+		(pts
+			(xy 71.12 127) (xy 83.82 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "622f5295-c152-561a-8ed9-070fec40633d")
+	)
+	(wire
+		(pts
+			(xy 19.05 38.1) (xy 19.05 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "681f822e-a3c8-537d-bffa-ceac67cee760")
+	)
+	(wire
+		(pts
+			(xy 48.26 45.72) (xy 48.26 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "68ff2794-dbce-56fb-b26b-88c3c3c87c3e")
+	)
+	(wire
+		(pts
+			(xy 38.1 38.1) (xy 48.26 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "69907abc-5c3c-5214-97b4-6522b9cdee62")
+	)
+	(wire
+		(pts
+			(xy 213.36 45.72) (xy 223.52 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6be6211b-738a-565f-87e3-64ef5029a439")
+	)
+	(wire
+		(pts
+			(xy 132.08 35.56) (xy 139.7 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e11370f-9cbf-517f-af64-9e3bcce743a2")
+	)
+	(wire
+		(pts
+			(xy 215.9 60.96) (xy 231.14 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e2176ad-c9ea-5ba6-bbc1-4b073fb6a78e")
+	)
+	(wire
+		(pts
+			(xy 30.48 198.12) (xy 45.72 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72a5f172-7e54-5829-afba-e0d19129835d")
+	)
+	(wire
+		(pts
+			(xy 50.8 129.54) (xy 45.72 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77a23602-2dee-532e-b009-ed9dea96801d")
+	)
+	(wire
+		(pts
+			(xy 64.77 114.3) (xy 76.2 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78033424-53cb-54e8-b9fc-288eaa8275a4")
+	)
+	(wire
+		(pts
+			(xy 187.96 129.54) (xy 180.34 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78b6e97e-ea87-57d2-9a64-217dc74652c1")
+	)
+	(wire
+		(pts
+			(xy 139.7 35.56) (xy 149.86 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7acaf434-9579-50d6-84bf-a0415e940b08")
+	)
+	(wire
+		(pts
+			(xy 223.52 137.16) (xy 231.14 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "804177ff-10b8-52f6-9394-bc652da319c8")
+	)
+	(wire
+		(pts
+			(xy 313.69 39.37) (xy 318.77 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8275b6f9-04e7-5a97-a8b6-80ded84d2fde")
+	)
+	(wire
+		(pts
+			(xy 384.81 116.84) (xy 394.97 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84db960a-1e36-559a-809a-15156371ece2")
+	)
+	(wire
+		(pts
+			(xy 81.28 198.12) (xy 93.98 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8817a8b1-b502-5736-bcb5-799c785b8bc3")
+	)
+	(wire
+		(pts
+			(xy 25.4 124.46) (xy 30.48 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8e6decb0-1878-54ac-93b2-d36a1c0e40a4")
+	)
+	(wire
+		(pts
+			(xy 251.46 114.3) (xy 251.46 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ef45fde-127e-518c-8d6c-55a3ceba8cba")
+	)
+	(wire
+		(pts
+			(xy 185.42 200.66) (xy 165.1 200.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91d91bcb-b3d7-50ba-bd18-8c7224725cf3")
+	)
+	(wire
+		(pts
+			(xy 124.46 127) (xy 139.7 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95d4c2fc-84fb-5b31-bb03-d87a143673b7")
+	)
+	(wire
+		(pts
+			(xy 223.52 116.84) (xy 223.52 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "96ac0baf-03f9-5e6d-93fe-e40b48d26426")
+	)
+	(wire
+		(pts
+			(xy 295.91 39.37) (xy 288.29 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "971b4b73-10c5-53f6-853b-05c1fbe49a7f")
+	)
+	(wire
+		(pts
+			(xy 40.64 114.3) (xy 57.15 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98e94167-aebf-51e2-94c9-be1c7997dee1")
+	)
+	(wire
+		(pts
+			(xy 346.71 116.84) (xy 359.41 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99152df2-233e-5223-b9ec-f9330ae11652")
+	)
+	(wire
+		(pts
+			(xy 161.29 45.72) (xy 170.18 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99fd6a2c-0239-5a58-9a71-3bb6dad30810")
+	)
+	(wire
+		(pts
+			(xy 45.72 124.46) (xy 50.8 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a61148f-44be-5c02-8477-8c087980d775")
+	)
+	(wire
+		(pts
+			(xy 246.38 114.3) (xy 251.46 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9bc57a05-a4e5-5f93-9c24-135a529db6eb")
+	)
+	(wire
+		(pts
+			(xy 241.3 127) (xy 238.76 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c4cb06a-8120-54d9-9c4f-f5c017ff4d99")
+	)
+	(wire
+		(pts
+			(xy 318.77 39.37) (xy 326.39 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a01e1f67-f380-5f6f-b4ac-6546cdb3fa49")
+	)
+	(wire
+		(pts
+			(xy 203.2 60.96) (xy 203.2 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a2383149-e7e6-5ad3-b568-29c1f5510a69")
+	)
+	(wire
+		(pts
+			(xy 129.54 45.72) (xy 153.67 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a24ebed5-080d-58bf-a57b-c4de451a6d1b")
+	)
+	(wire
+		(pts
+			(xy 223.52 129.54) (xy 215.9 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9fc5365-61bf-5cdb-9d41-de0fd1fa3da8")
+	)
+	(wire
+		(pts
+			(xy 293.37 34.29) (xy 293.37 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac414bfb-4d7b-5959-9a62-25c38d6abafe")
+	)
+	(wire
+		(pts
+			(xy 288.29 39.37) (xy 288.29 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae48f215-8a2f-52f9-b741-605589ebfb5c")
+	)
+	(wire
+		(pts
+			(xy 180.34 198.12) (xy 180.34 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b12b8a55-e70b-5e17-88a0-59f37bfe50c7")
+	)
+	(wire
+		(pts
+			(xy 40.64 124.46) (xy 45.72 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b25fd2b3-6957-5832-b6eb-4d4e13b2863f")
+	)
+	(wire
+		(pts
+			(xy 71.12 48.26) (xy 71.12 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3cee07c-fe91-556f-bffa-36da5c5ffed0")
+	)
+	(wire
+		(pts
+			(xy 129.54 38.1) (xy 129.54 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be726fc1-fb21-59cf-a857-5995580b4c62")
+	)
+	(wire
+		(pts
+			(xy 215.9 129.54) (xy 215.9 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3099617-67a7-5c1a-8cf6-f540ec88f378")
+	)
+	(wire
+		(pts
+			(xy 182.88 215.9) (xy 175.26 215.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3cc49ce-7249-51f0-b304-e05837013579")
+	)
+	(wire
+		(pts
+			(xy 187.96 45.72) (xy 187.96 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c4a7189e-f1fe-558d-b60e-f92f40b69642")
+	)
+	(wire
+		(pts
+			(xy 58.42 38.1) (xy 71.12 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c57cabf9-3bc1-5a4f-b598-4439085ef730")
+	)
+	(wire
+		(pts
+			(xy 182.88 208.28) (xy 182.88 215.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c74b690a-6ab0-5c07-a4b6-ad8ed6d8c0e2")
+	)
+	(wire
+		(pts
+			(xy 203.2 129.54) (xy 195.58 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9c705c6-6016-5fb6-9eb5-0746fc39d7de")
+	)
+	(wire
+		(pts
+			(xy 104.14 127) (xy 114.3 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc199fbf-9de5-5248-99de-092c26794c0a")
+	)
+	(wire
+		(pts
+			(xy 326.39 39.37) (xy 336.55 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cdc53528-1410-5442-a8e3-1863e90263bb")
+	)
+	(wire
+		(pts
+			(xy 208.28 111.76) (xy 226.06 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cdfaea6d-6ae1-5814-be30-5bf2e6990fdb")
+	)
+	(wire
+		(pts
+			(xy 154.94 198.12) (xy 154.94 195.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce5e81e5-41eb-5fa5-98ba-7e9dbb35492c")
+	)
+	(wire
+		(pts
+			(xy 58.42 45.72) (xy 58.42 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d0a5a868-2422-57c5-a2f6-92e8024cf3a0")
+	)
+	(wire
+		(pts
+			(xy 195.58 213.36) (xy 195.58 215.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7bba1cb-2704-52b4-9194-0714cf7829ef")
+	)
+	(wire
+		(pts
+			(xy 295.91 34.29) (xy 293.37 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9f88129-5922-5855-89cd-bac003a9fc28")
+	)
+	(wire
+		(pts
+			(xy 185.42 198.12) (xy 180.34 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e06370cf-12f3-5079-991c-adeb10b0f7eb")
+	)
+	(wire
+		(pts
+			(xy 83.82 127) (xy 93.98 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e19f1f61-99ba-536b-a3be-1c1353b121da")
+	)
+	(wire
+		(pts
+			(xy 295.91 36.83) (xy 283.21 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e27e6e1c-43a7-5af2-bca4-fa6057943e21")
+	)
+	(wire
+		(pts
+			(xy 288.29 46.99) (xy 273.05 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e623e56f-9a67-5580-9e25-1f637bbe7603")
+	)
+	(wire
+		(pts
+			(xy 231.14 137.16) (xy 243.84 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7219f74-e4ea-5cd0-a99e-19b9a4be16a8")
+	)
+	(wire
+		(pts
+			(xy 114.3 127) (xy 124.46 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e796c974-f416-53e3-b79b-3c07e6bf8bba")
+	)
+	(wire
+		(pts
+			(xy 121.92 35.56) (xy 114.3 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7fb4c8c-9028-50e5-a6f5-7989d89ca9a7")
+	)
+	(wire
+		(pts
+			(xy 71.12 208.28) (xy 71.12 210.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e8b1f4c5-c703-530f-b61e-0d0cde023b5d")
+	)
+	(wire
+		(pts
+			(xy 124.46 134.62) (xy 129.54 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e987f316-6bb5-5e21-97f9-9d6dd19814d5")
+	)
+	(wire
+		(pts
+			(xy 170.18 53.34) (xy 193.04 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea7c0853-d508-51df-916f-ea1a8e616d8c")
+	)
+	(wire
+		(pts
+			(xy 205.74 198.12) (xy 213.36 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea83aa16-2f9a-51b8-bc6f-0a94767534ec")
+	)
+	(wire
+		(pts
+			(xy 38.1 45.72) (xy 38.1 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ebf38ae5-11c2-56c2-a6e3-42288f86beea")
+	)
+	(wire
+		(pts
+			(xy 251.46 111.76) (xy 264.16 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f002b1e8-afed-577e-8f79-779b4fdc16cd")
+	)
+	(wire
+		(pts
+			(xy 45.72 129.54) (xy 45.72 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f2947e75-9616-5491-9bd2-b67cd7ce8d27")
+	)
+	(wire
+		(pts
+			(xy 213.36 198.12) (xy 223.52 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5f75a51-1fb2-5f6e-ad9c-876705f3523a")
+	)
+	(wire
+		(pts
+			(xy 76.2 124.46) (xy 71.12 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f6a653d6-c2ef-56ad-8858-e3bf30c3c8fb")
+	)
+	(wire
+		(pts
+			(xy 93.98 127) (xy 104.14 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7f82ac9-b547-59ca-a46c-14cceba6f43a")
+	)
+	(wire
+		(pts
+			(xy 374.65 116.84) (xy 384.81 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f885f943-86bd-50f9-940d-866482cd04a3")
+	)
+	(wire
+		(pts
+			(xy 48.26 38.1) (xy 58.42 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8b242d1-ccd0-5d5a-9bf4-80fe81645beb")
+	)
+	(wire
+		(pts
+			(xy 40.64 124.46) (xy 40.64 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f9196afa-10cb-5d87-b368-32393da88ba8")
+	)
+	(wire
+		(pts
+			(xy 215.9 50.8) (xy 215.9 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f938b01c-3438-578c-8b9c-f637391bf938")
+	)
+	(wire
+		(pts
+			(xy 241.3 124.46) (xy 241.3 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fa2c3466-39c6-516c-b850-c417b754e119")
+	)
+	(wire
+		(pts
+			(xy 30.48 124.46) (xy 40.64 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fe7ebfc8-e4de-5538-8425-013625a6bd34")
+	)
+	(label "CSA+"
+		(at 114.3 35.56 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
-		(uuid "001e5ef2-419d-5a9d-b03f-3eb565d3b2ff")
-	)
-	(label "U2_FB"
-		(at 129.54 134.62 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "324480f6-cbeb-5f7f-9bee-84d573d017e0")
-	)
-	(label "SHUNT_SENSE_N"
-		(at 132.08 45.72 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4e55592a-d95e-5292-a4c5-e3566e27d13d")
-	)
-	(label "U2_FB"
-		(at 73.66 132.08 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "53c1b655-4a10-5af7-8fa7-1f2b3835d082")
-	)
-	(label "SHUNT_SENSE_P"
-		(at 137.16 53.34 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6eaab20c-041d-58e9-898f-4388d005b2a2")
-	)
-	(label "U5_EN"
-		(at 205.74 129.54 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "7adeb5f5-746b-57fc-897f-be78ead07342")
-	)
-	(label "U5_CT"
-		(at 248.92 116.84 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "acc900c6-e4c3-58d9-9588-f6081316e4af")
+		(uuid "08e3254e-bbee-5eaa-9b27-842e42d46097")
 	)
 	(label "SHUNT_SENSE_P_RC"
 		(at 171.45 53.34 0)
@@ -5710,7 +5789,7 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "bf5905aa-5eec-5d2f-8e92-bc2c0ce35e30")
+		(uuid "14fca51a-ee0e-5527-b4a9-66fd3ad1cf81")
 	)
 	(label "U2_SW"
 		(at 66.04 114.3 0)
@@ -5720,7 +5799,37 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "ec66978f-e8dd-53d3-9807-230b56fa3fef")
+		(uuid "3c1273cc-37b5-5ad4-89aa-22164ad72a73")
+	)
+	(label "U5_EN"
+		(at 205.74 129.54 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "42e9012f-ec96-55ef-a72b-6957c6cc6b5a")
+	)
+	(label "SHUNT_SENSE_N"
+		(at 132.08 45.72 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "519d452f-5d39-5926-813e-6408c45222f7")
+	)
+	(label "U2_FB"
+		(at 129.54 134.62 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "53c1b655-4a10-5af7-8fa7-1f2b3835d082")
 	)
 	(label "U3_PR1"
 		(at 160.02 205.74 0)
@@ -5730,29 +5839,57 @@
 			)
 			(justify left bottom)
 		)
-		(uuid "f6787a3c-9202-569e-b482-baa9e8c3b278")
+		(uuid "5befdf8b-e7eb-5424-842a-b1eb43c4b744")
 	)
-	(hierarchical_label "VBUS"
-		(shape input)
-		(at 30.48 198.12 180)
+	(label "SHUNT_SENSE_P"
+		(at 137.16 53.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left bottom)
 		)
-		(uuid "2a453543-2cb2-5bad-ac40-891024596a57")
+		(uuid "76694332-904d-5039-878b-b65a799b95a5")
 	)
-	(hierarchical_label "HD_EN"
-		(shape input)
-		(at 243.84 137.16 0)
+	(label "CSA+"
+		(at 26.67 38.1 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify left bottom)
 		)
-		(uuid "8ce11d29-34f3-5ef0-b14c-eda425409fc6")
+		(uuid "79caa35c-1dcf-5840-9717-d8cef6f9f0c2")
+	)
+	(label "U2_FB"
+		(at 73.66 132.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "908cf0b3-3569-57e7-8106-040c037913c4")
+	)
+	(label "U5_CT"
+		(at 248.92 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "aa2d84bb-5971-54fa-a172-233255c59ab0")
+	)
+	(label "SHUNT_SENSE_N_RC"
+		(at 171.45 45.72 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d400bc90-f80a-53fe-b91c-7077ca126e6e")
 	)
 	(hierarchical_label "CURR_SENSE"
 		(shape output)
@@ -5763,7 +5900,29 @@
 			)
 			(justify left)
 		)
-		(uuid "f05a0422-13d2-52a1-813b-767de6910b8e")
+		(uuid "06ee4399-c367-5fdd-b4a1-325262745292")
+	)
+	(hierarchical_label "VBUS"
+		(shape input)
+		(at 30.48 198.12 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4f56c630-493e-5912-8498-67f4faceaed8")
+	)
+	(hierarchical_label "HD_EN"
+		(shape input)
+		(at 243.84 137.16 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ae440bf1-9663-5268-ae48-1d9e35dc9a8e")
 	)
 	(netclass_flag ""
 		(length 2.54)
@@ -5867,7 +6026,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 48.26 48.26 0)
+		(at 38.1 48.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5876,8 +6035,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "020bd1c6-bdff-509e-9372-bfb3a8ee66ee")
-		(property "Reference" "#PWR14"
-			(at 48.26 54.61 0)
+		(property "Reference" "#PWR12"
+			(at 38.1 54.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5888,7 +6047,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 48.26 52.07 0)
+			(at 38.1 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5898,7 +6057,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 48.26 48.26 0)
+			(at 38.1 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5909,7 +6068,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 48.26 48.26 0)
+			(at 38.1 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5920,7 +6079,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 48.26 48.26 0)
+			(at 38.1 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5936,84 +6095,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+BATT")
-		(at 25.4 38.1 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "077fe752-4eef-5f90-a0f7-a41e6e6f12b8")
-		(property "Reference" "#PWR07"
-			(at 25.4 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+BATT_IN"
-			(at 25.4 34.544 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 25.4 38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 25.4 38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 25.4 38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e48203b6-90e3-5367-b2b6-3fc16133b0de")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR07")
+					(reference "#PWR12")
 					(unit 1)
 				)
 			)
@@ -6021,7 +6103,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 114.3 134.62 0)
+		(at 104.14 134.62 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6030,8 +6112,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0897434c-9fe0-5c71-8a5b-7d193df1b120")
-		(property "Reference" "#PWR34"
-			(at 114.3 140.97 0)
+		(property "Reference" "#PWR32"
+			(at 104.14 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6042,7 +6124,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 114.3 138.43 0)
+			(at 104.14 138.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6052,7 +6134,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 114.3 134.62 0)
+			(at 104.14 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6063,7 +6145,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 114.3 134.62 0)
+			(at 104.14 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6074,7 +6156,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 114.3 134.62 0)
+			(at 104.14 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6090,7 +6172,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR34")
+					(reference "#PWR32")
 					(unit 1)
 				)
 			)
@@ -6211,8 +6293,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 293.37 41.91 0)
+		(lib_id "power:+5V")
+		(at 273.05 46.99 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6221,8 +6303,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0c13f6c8-8fa3-5f39-a8c1-d78d198f045b")
-		(property "Reference" "#PWR09"
-			(at 293.37 48.26 0)
+		(property "Reference" "#PWR10"
+			(at 273.05 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6232,8 +6314,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 293.37 45.72 0)
+		(property "Value" "+5V"
+			(at 273.05 43.434 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6243,7 +6325,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 293.37 41.91 0)
+			(at 273.05 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6254,7 +6336,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 293.37 41.91 0)
+			(at 273.05 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6264,8 +6346,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 293.37 41.91 0)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 273.05 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6281,15 +6363,15 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR09")
+					(reference "#PWR10")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 195.58 137.16 0)
+		(lib_id "power:+5V")
+		(at 203.2 121.92 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6298,8 +6380,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0d51da3a-7d7a-54b4-b54a-2f0b1d9021b6")
-		(property "Reference" "#PWR37"
-			(at 195.58 143.51 0)
+		(property "Reference" "#PWR23"
+			(at 203.2 125.73 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6309,8 +6391,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 195.58 140.97 0)
+		(property "Value" "+5V_HD"
+			(at 203.2 118.364 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6320,7 +6402,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 195.58 137.16 0)
+			(at 203.2 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6331,7 +6413,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 195.58 137.16 0)
+			(at 203.2 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6341,8 +6423,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 195.58 137.16 0)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 203.2 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6358,84 +6440,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR37")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 394.97 116.84 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "11925d58-8403-5bbd-84b8-7ade94c319df")
-		(property "Reference" "#FLG04"
-			(at 394.97 114.935 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 394.97 113.03 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 394.97 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 394.97 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 394.97 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "bc6da613-b369-5444-ab90-ecc1db9f200a")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#FLG04")
+					(reference "#PWR23")
 					(unit 1)
 				)
 			)
@@ -6556,8 +6561,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 40.64 137.16 0)
+		(lib_id "power:PWR_FLAG")
+		(at 394.97 116.84 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6565,9 +6570,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "182d58da-ca5e-5456-ad06-a07771d00283")
-		(property "Reference" "#PWR35"
-			(at 40.64 140.97 0)
+		(uuid "18dc3a13-0121-54e2-a315-463ced9c18e8")
+		(property "Reference" "#FLG04"
+			(at 394.97 114.935 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6577,8 +6582,8 @@
 				)
 			)
 		)
-		(property "Value" "+5V_BST"
-			(at 40.64 133.604 0)
+		(property "Value" "PWR_FLAG"
+			(at 394.97 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6588,7 +6593,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 40.64 137.16 0)
+			(at 394.97 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6599,7 +6604,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 40.64 137.16 0)
+			(at 394.97 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6609,8 +6614,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 40.64 137.16 0)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 394.97 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6621,20 +6626,20 @@
 			)
 		)
 		(pin "1"
-			(uuid "e5a3d052-e4e7-51ac-b4ec-64dd96ad59f7")
+			(uuid "7672f806-7f25-5811-9331-b651fcf66a06")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR35")
+					(reference "#FLG04")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 203.2 22.86 0)
+		(lib_id "power:GND")
+		(at 154.94 213.36 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6642,9 +6647,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "1b6ad43d-37a7-5d3f-92cc-aaa591eaf231")
-		(property "Reference" "#PWR01"
-			(at 203.2 26.67 0)
+		(uuid "19ea8e83-17a7-5817-885b-3b95e0228bc5")
+		(property "Reference" "#PWR51"
+			(at 154.94 219.71 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6654,8 +6659,8 @@
 				)
 			)
 		)
-		(property "Value" "+3.3V"
-			(at 203.2 19.304 0)
+		(property "Value" "GND"
+			(at 154.94 217.17 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6665,7 +6670,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 203.2 22.86 0)
+			(at 154.94 213.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6676,7 +6681,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 203.2 22.86 0)
+			(at 154.94 213.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6686,8 +6691,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 203.2 22.86 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 154.94 213.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6698,12 +6703,121 @@
 			)
 		)
 		(pin "1"
-			(uuid "c0896cca-26dd-538a-bf39-09c5e81fc338")
+			(uuid "2911e984-c710-5964-9512-d7cbe7d0cbed")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR01")
+					(reference "#PWR51")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "lib:SolderPad_01x01")
+		(at 25.4 33.02 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp yes)
+		(uuid "1e8bf0b1-f732-5e92-976f-2e5d26a02f4b")
+		(property "Reference" "J2"
+			(at 25.4 27.686 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+"
+			(at 25.4 29.718 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "lib:BattPad_D1.7mm_PTH1.1"
+			(at 25.4 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 25.4 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
+			(at 25.4 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" ""
+			(at 25.4 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" ""
+			(at 25.4 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 25.4 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "547dbf07-3c26-5655-bc09-44192c52abba")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -6936,85 +7050,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 71.12 38.1 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "22c6a5f0-ed7e-59f1-a50b-28598340f476")
-		(property "Reference" "#FLG02"
-			(at 71.12 36.195 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 71.12 34.29 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 71.12 38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 71.12 38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 71.12 38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "5a03369e-e3ae-5acd-8f6f-e2ddf87f8ad3")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#FLG02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
-		(at 55.88 203.2 0)
+		(at 45.72 205.74 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7024,7 +7061,7 @@
 		(dnp no)
 		(uuid "247c075f-c9cd-5d91-8f91-96d6d55f8f4f")
 		(property "Reference" "#PWR47"
-			(at 55.88 209.55 0)
+			(at 45.72 212.09 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7035,7 +7072,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 55.88 207.01 0)
+			(at 45.72 209.55 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7045,7 +7082,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 55.88 203.2 0)
+			(at 45.72 205.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7056,7 +7093,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 55.88 203.2 0)
+			(at 45.72 205.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7067,7 +7104,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 55.88 203.2 0)
+			(at 45.72 205.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7091,7 +7128,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 208.28 111.76 0)
+		(at 139.7 127 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7100,8 +7137,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "24d0ea3b-ed9b-5d10-ab78-0db8882d1ceb")
-		(property "Reference" "#PWR19"
-			(at 208.28 115.57 0)
+		(property "Reference" "#PWR27"
+			(at 139.7 130.81 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7112,7 +7149,7 @@
 			)
 		)
 		(property "Value" "+5V_BST"
-			(at 208.28 108.204 0)
+			(at 139.7 123.444 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7122,7 +7159,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 208.28 111.76 0)
+			(at 139.7 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7133,7 +7170,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 208.28 111.76 0)
+			(at 139.7 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7144,7 +7181,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 208.28 111.76 0)
+			(at 139.7 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7160,84 +7197,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR19")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 71.12 48.26 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "25736766-a5b0-5deb-b46a-5d98b7adc35b")
-		(property "Reference" "#FLG03"
-			(at 71.12 46.355 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 71.12 44.45 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 71.12 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 71.12 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 71.12 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e977a466-bf31-595e-bbb0-155044804de9")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#FLG03")
+					(reference "#PWR27")
 					(unit 1)
 				)
 			)
@@ -7245,7 +7205,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 180.34 193.04 0)
+		(at 93.98 198.12 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7253,9 +7213,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "2817cb77-6a65-5aaf-a045-acf60b5295a7")
-		(property "Reference" "#PWR42"
-			(at 180.34 196.85 0)
+		(uuid "26d99183-75cf-5ff3-9fbf-1c400094aa13")
+		(property "Reference" "#PWR44"
+			(at 93.98 201.93 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7266,7 +7226,7 @@
 			)
 		)
 		(property "Value" "+5V_USB"
-			(at 180.34 189.484 0)
+			(at 93.98 194.564 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7276,7 +7236,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 180.34 193.04 0)
+			(at 93.98 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7287,7 +7247,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 180.34 193.04 0)
+			(at 93.98 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7298,7 +7258,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 180.34 193.04 0)
+			(at 93.98 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7309,12 +7269,89 @@
 			)
 		)
 		(pin "1"
-			(uuid "617f0fc6-c009-5dc7-9615-c24fe6f6bca3")
+			(uuid "c2bb6558-7bd9-52e1-bc18-b97bcc2b0b47")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR42")
+					(reference "#PWR44")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 195.58 215.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "292d9076-c9f9-518a-a040-479c28ce3ee3")
+		(property "Reference" "#PWR53"
+			(at 195.58 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 195.58 219.71 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 195.58 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 195.58 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 195.58 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "adc1a096-48e0-5272-be43-154fa2d69d96")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR53")
 					(unit 1)
 				)
 			)
@@ -7429,160 +7466,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "R5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 256.54 124.46 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "2b030a1d-2bb7-50a0-8c95-fbb80410ed58")
-		(property "Reference" "#PWR26"
-			(at 256.54 130.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 256.54 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 256.54 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 256.54 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 256.54 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0e63ff28-5c3d-5af9-8897-46bba9b0f601")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 129.54 205.74 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "2ead5172-0002-5779-af11-bc2ca3835ea7")
-		(property "Reference" "#PWR49"
-			(at 129.54 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 129.54 209.55 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 129.54 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 129.54 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 129.54 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "605519ec-d661-535d-b3fc-3e5b3ce9d244")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR49")
 					(unit 1)
 				)
 			)
@@ -7720,7 +7603,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 175.26 215.9 0)
+		(at 154.94 195.58 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7728,9 +7611,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "30ad9d02-1b4e-55a9-b61f-d8a4cbfdfafa")
-		(property "Reference" "#PWR53"
-			(at 175.26 219.71 0)
+		(uuid "2fef4b50-c319-5ed9-880a-ec60d4f30c73")
+		(property "Reference" "#PWR43"
+			(at 154.94 199.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7741,7 +7624,7 @@
 			)
 		)
 		(property "Value" "+5V_USB"
-			(at 175.26 212.344 0)
+			(at 154.94 192.024 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7751,7 +7634,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 175.26 215.9 0)
+			(at 154.94 195.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7762,7 +7645,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 175.26 215.9 0)
+			(at 154.94 195.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7773,7 +7656,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 175.26 215.9 0)
+			(at 154.94 195.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7784,89 +7667,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "438acee1-3b71-5363-8cfc-4db6db9b651f")
+			(uuid "6581a4ca-371f-5cd5-9283-c535eead54ce")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR53")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 38.1 48.26 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "3167b281-71ab-5a4c-b438-91136b13e72f")
-		(property "Reference" "#PWR13"
-			(at 38.1 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 38.1 52.07 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 38.1 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 38.1 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 38.1 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "50efdf06-24e9-5b97-8f45-8226f1de45ff")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR13")
+					(reference "#PWR43")
 					(unit 1)
 				)
 			)
@@ -7988,7 +7794,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 129.54 195.58 0)
+		(at 223.52 198.12 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7997,8 +7803,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "33f88d89-9d82-5f21-a2b1-2114e77d14b4")
-		(property "Reference" "#PWR43"
-			(at 129.54 199.39 0)
+		(property "Reference" "#PWR45"
+			(at 223.52 201.93 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8008,8 +7814,8 @@
 				)
 			)
 		)
-		(property "Value" "+5V_USB"
-			(at 129.54 192.024 0)
+		(property "Value" "+5V"
+			(at 223.52 194.564 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8019,7 +7825,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 129.54 195.58 0)
+			(at 223.52 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8030,7 +7836,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 129.54 195.58 0)
+			(at 223.52 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8041,7 +7847,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 129.54 195.58 0)
+			(at 223.52 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8057,7 +7863,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR43")
+					(reference "#PWR45")
 					(unit 1)
 				)
 			)
@@ -8312,162 +8118,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+BATT")
-		(at 187.96 121.92 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "37bc2a9c-c425-55f0-afbf-733d2df89cee")
-		(property "Reference" "#PWR23"
-			(at 187.96 125.73 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+BATT"
-			(at 187.96 118.364 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 187.96 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 187.96 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 187.96 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "949635dc-4399-5d6e-873d-c7545c551b48")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR23")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 139.7 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "37c0410c-e723-5cd6-8c94-9b8db95df5e8")
-		(property "Reference" "#PWR28"
-			(at 139.7 130.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_BST"
-			(at 139.7 123.444 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 139.7 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 139.7 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 139.7 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f04878eb-2ea0-5379-b8d2-d81ca81d4298")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR28")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
-		(at 223.52 45.72 0)
+		(at 213.36 205.74 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8475,9 +8127,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "38a7e3da-a0bc-5ca2-8b85-02b2b9038926")
-		(property "Reference" "#PWR10"
-			(at 223.52 52.07 0)
+		(uuid "37e74e95-1224-54ab-928c-1edbcc0ca5b6")
+		(property "Reference" "#PWR49"
+			(at 213.36 212.09 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8488,7 +8140,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 223.52 49.53 0)
+			(at 213.36 209.55 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8498,7 +8150,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 223.52 45.72 0)
+			(at 213.36 205.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8509,7 +8161,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 223.52 45.72 0)
+			(at 213.36 205.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8520,7 +8172,84 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 223.52 45.72 0)
+			(at 213.36 205.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "24ea1f97-e813-5195-80ef-451ce093de2b")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR49")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 203.2 63.5 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "38a7e3da-a0bc-5ca2-8b85-02b2b9038926")
+		(property "Reference" "#PWR17"
+			(at 203.2 69.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 203.2 67.31 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 203.2 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 203.2 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 203.2 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8536,7 +8265,84 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR10")
+					(reference "#PWR17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 30.48 132.08 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "3c61b660-7293-5d1e-83fe-c57132428eb7")
+		(property "Reference" "#PWR29"
+			(at 30.48 138.43 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 30.48 135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 30.48 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 30.48 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 30.48 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5daff679-9d89-5dfe-bee7-8098a2301294")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR29")
 					(unit 1)
 				)
 			)
@@ -8784,19 +8590,18 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 58.42 48.26 0)
+		(lib_id "lib:SolderPad_01x01")
+		(at 19.05 33.02 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "47d619fa-7cd7-5d37-8601-938ed16aad00")
-		(property "Reference" "#PWR15"
-			(at 58.42 54.61 0)
-			(hide yes)
+		(in_pos_files yes)
+		(dnp yes)
+		(uuid "478b581f-3cf7-5736-8017-0c05a7a994ab")
+		(property "Reference" "J3"
+			(at 19.05 27.686 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8805,8 +8610,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 58.42 52.07 0)
+		(property "Value" "-"
+			(at 19.05 29.718 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8815,8 +8620,8 @@
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 58.42 48.26 0)
+		(property "Footprint" "lib:BattPad_D1.7mm_PTH1.1"
+			(at 19.05 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8827,7 +8632,117 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 58.42 48.26 0)
+			(at 19.05 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Solder pad (one bare copper land, no part fitted): Connector_Generic:Conn_01x01 graphics with filters for the project SolderPad_* / BattPad_* footprints (LINEUP-CONVENTIONS rule 16)"
+			(at 19.05 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" ""
+			(at 19.05 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" ""
+			(at 19.05 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 19.05 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "69a8a461-4fb9-51be-ace4-c9a9860bda09")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 48.26 48.26 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "47d619fa-7cd7-5d37-8601-938ed16aad00")
+		(property "Reference" "#PWR13"
+			(at 48.26 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 48.26 52.07 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 48.26 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 48.26 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8838,7 +8753,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 58.42 48.26 0)
+			(at 48.26 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8854,7 +8769,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR15")
+					(reference "#PWR13")
 					(unit 1)
 				)
 			)
@@ -9217,237 +9132,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 203.2 63.5 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "4fef9f86-b13f-5e48-af22-c53d2b3cebb0")
-		(property "Reference" "#PWR18"
-			(at 203.2 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 203.2 67.31 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 203.2 63.5 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 203.2 63.5 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 203.2 63.5 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6f4501c0-90c3-5e6c-9541-2f4281a6ba82")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 346.71 116.84 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "513c34a9-8250-521a-aec7-46348bfcaccb")
-		(property "Reference" "#PWR21"
-			(at 346.71 120.65 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 346.71 113.284 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 346.71 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 346.71 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 346.71 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "5cd5e0af-8d6e-52dc-bce7-63622be9d83d")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR21")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+BATT")
-		(at 25.4 124.46 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "59912cf8-540a-5f9f-8b2b-e3fe64c45abc")
-		(property "Reference" "#PWR25"
-			(at 25.4 128.27 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+BATT"
-			(at 25.4 120.904 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 25.4 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 25.4 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 25.4 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0bc8be9f-9866-5209-90ce-e0b002554604")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR25")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 193.04 33.02 0)
 		(unit 1)
 		(body_style 1)
@@ -9456,7 +9140,7 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "5b07d2fb-cade-5ce1-b211-90b783870510")
+		(uuid "4fef9f86-b13f-5e48-af22-c53d2b3cebb0")
 		(property "Reference" "#PWR03"
 			(at 193.04 39.37 0)
 			(hide yes)
@@ -9512,7 +9196,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "3831374f-607c-543b-98bc-35c88fb07bd0")
+			(uuid "6f4501c0-90c3-5e6c-9541-2f4281a6ba82")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
@@ -9524,8 +9208,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 83.82 134.62 0)
+		(lib_id "power:PWR_FLAG")
+		(at 139.7 35.56 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9533,9 +9217,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "633c420c-b9b8-576d-ab60-fca89bcf7ab2")
-		(property "Reference" "#PWR31"
-			(at 83.82 140.97 0)
+		(uuid "5201726c-534f-5778-99b5-c136ff3b85d8")
+		(property "Reference" "#FLG01"
+			(at 139.7 33.655 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9545,8 +9229,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 83.82 138.43 0)
+		(property "Value" "PWR_FLAG"
+			(at 139.7 31.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9556,7 +9240,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 83.82 134.62 0)
+			(at 139.7 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9567,7 +9251,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 83.82 134.62 0)
+			(at 139.7 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9577,8 +9261,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 83.82 134.62 0)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 139.7 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9589,12 +9273,397 @@
 			)
 		)
 		(pin "1"
-			(uuid "ba9878b4-5a40-50be-a082-6db146bf4736")
+			(uuid "94c2c01b-6232-5603-85b0-b293fc4fa57a")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR31")
+					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 318.77 46.99 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "59912cf8-540a-5f9f-8b2b-e3fe64c45abc")
+		(property "Reference" "#PWR11"
+			(at 318.77 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 318.77 50.8 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 318.77 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 318.77 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 318.77 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0bc8be9f-9866-5209-90ce-e0b002554604")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 19.05 43.18 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "5b6d138b-a449-5868-b38e-07d57fd8856d")
+		(property "Reference" "#PWR08"
+			(at 19.05 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 19.05 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 19.05 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 19.05 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 19.05 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5a59bd80-91a6-59e4-981a-3222b2bbf167")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR08")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 283.21 54.61 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "5c7d598d-d799-50fd-ab59-9ddbe7798578")
+		(property "Reference" "#PWR16"
+			(at 283.21 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 283.21 58.42 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 283.21 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 283.21 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 283.21 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7102b15d-08d0-59ec-a7ce-753211be0bdc")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 203.2 22.86 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "6292dc06-6272-5526-83d0-14159730e9bb")
+		(property "Reference" "#PWR01"
+			(at 203.2 26.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 203.2 19.304 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 203.2 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 203.2 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 203.2 22.86 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9e059241-223f-5194-a563-e0e1067c9b7a")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 223.52 45.72 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "63c1b9c1-a1f4-5b3a-8513-fda08b29bea4")
+		(property "Reference" "#PWR09"
+			(at 223.52 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 223.52 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 223.52 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 223.52 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 223.52 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a96468e3-3856-5578-a7e9-bcc49c75f1ad")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -9829,8 +9898,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 318.77 46.99 0)
+		(lib_id "power:+BATT")
+		(at 149.86 35.56 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9838,9 +9907,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "697363d7-4526-5197-9fbb-562852b2d04c")
-		(property "Reference" "#PWR12"
-			(at 318.77 53.34 0)
+		(uuid "68317a1e-a3e2-5af4-bd89-b4d5cfa5257b")
+		(property "Reference" "#PWR04"
+			(at 149.86 39.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9850,8 +9919,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 318.77 50.8 0)
+		(property "Value" "+BATT"
+			(at 149.86 32.004 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9861,7 +9930,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 318.77 46.99 0)
+			(at 149.86 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9872,7 +9941,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 318.77 46.99 0)
+			(at 149.86 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9882,85 +9951,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 318.77 46.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "de82de19-6c46-560b-a13d-cb53634b8cdf")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 154.94 213.36 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "69a374ae-09e8-5f48-babf-96cf3ccbdfd8")
-		(property "Reference" "#PWR52"
-			(at 154.94 219.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 154.94 217.17 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 154.94 213.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 154.94 213.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 154.94 213.36 0)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 149.86 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9971,12 +9963,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "c853c1f8-5046-5292-bf89-eed8693c8daf")
+			(uuid "4398aa50-26b9-52d7-bd9c-71ff95327ed8")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR52")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -10690,8 +10682,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 283.21 54.61 0)
+		(lib_id "power:+5V")
+		(at 384.81 116.84 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10699,9 +10691,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "79e1630b-eec4-5c92-be37-ce22a334542d")
-		(property "Reference" "#PWR17"
-			(at 283.21 60.96 0)
+		(uuid "77e9664b-233b-5ecd-b13d-aa7a2b9c2939")
+		(property "Reference" "#PWR21"
+			(at 384.81 120.65 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10711,8 +10703,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 283.21 58.42 0)
+		(property "Value" "+5V_CAM"
+			(at 384.81 113.284 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10722,7 +10714,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 283.21 54.61 0)
+			(at 384.81 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10733,7 +10725,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 283.21 54.61 0)
+			(at 384.81 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10743,8 +10735,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 283.21 54.61 0)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 384.81 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10755,12 +10747,89 @@
 			)
 		)
 		(pin "1"
-			(uuid "c6b6c9e2-6a2d-5d2d-819b-d03977c02655")
+			(uuid "0f3b6e15-5385-5b5d-a707-95dc4958f70c")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR17")
+					(reference "#PWR21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 293.37 41.91 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "797a3311-610d-5648-91b3-ed5abb323d52")
+		(property "Reference" "#PWR07"
+			(at 293.37 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 293.37 45.72 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 293.37 41.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 293.37 41.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 293.37 41.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "46cb2694-94a8-5989-94fd-935854810a0d")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -10893,8 +10962,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 180.34 137.16 0)
+		(lib_id "power:+BATT")
+		(at 187.96 121.92 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10903,8 +10972,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7cf20f63-f026-548b-8111-d8ee8688c69f")
-		(property "Reference" "#PWR36"
-			(at 180.34 143.51 0)
+		(property "Reference" "#PWR22"
+			(at 187.96 125.73 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10914,8 +10983,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 180.34 140.97 0)
+		(property "Value" "+BATT"
+			(at 187.96 118.364 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10925,7 +10994,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 180.34 137.16 0)
+			(at 187.96 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10936,7 +11005,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 180.34 137.16 0)
+			(at 187.96 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10946,8 +11015,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 180.34 137.16 0)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 187.96 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10963,7 +11032,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR36")
+					(reference "#PWR22")
 					(unit 1)
 				)
 			)
@@ -10971,7 +11040,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 104.14 134.62 0)
+		(at 93.98 134.62 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10980,8 +11049,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7d20f6cb-3016-5c38-8f87-d310ea34e5ec")
-		(property "Reference" "#PWR33"
-			(at 104.14 140.97 0)
+		(property "Reference" "#PWR31"
+			(at 93.98 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10992,7 +11061,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 104.14 138.43 0)
+			(at 93.98 138.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11002,7 +11071,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 104.14 134.62 0)
+			(at 93.98 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11013,7 +11082,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 104.14 134.62 0)
+			(at 93.98 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11024,7 +11093,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 104.14 134.62 0)
+			(at 93.98 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11040,15 +11109,15 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR33")
+					(reference "#PWR31")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 93.98 198.12 0)
+		(lib_id "power:GND")
+		(at 71.12 210.82 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11057,8 +11126,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7de1734e-f231-5738-aa70-0876d9c57913")
-		(property "Reference" "#PWR45"
-			(at 93.98 201.93 0)
+		(property "Reference" "#PWR50"
+			(at 71.12 217.17 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11068,8 +11137,8 @@
 				)
 			)
 		)
-		(property "Value" "+5V_USB"
-			(at 93.98 194.564 0)
+		(property "Value" "GND"
+			(at 71.12 214.63 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11079,7 +11148,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 93.98 198.12 0)
+			(at 71.12 210.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11090,7 +11159,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 93.98 198.12 0)
+			(at 71.12 210.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11100,8 +11169,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 93.98 198.12 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 71.12 210.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11117,7 +11186,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR45")
+					(reference "#PWR50")
 					(unit 1)
 				)
 			)
@@ -11238,6 +11307,160 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+BATT")
+		(at 25.4 124.46 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "833c8db1-d46e-5042-873b-51300b2bc28a")
+		(property "Reference" "#PWR24"
+			(at 25.4 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+BATT"
+			(at 25.4 120.904 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 25.4 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 25.4 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 25.4 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "45cb1a4f-2423-51be-9baa-62594b95b3e0")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 195.58 137.16 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "87ae22d7-efb7-5375-b1ec-2dcbbc5b2e8b")
+		(property "Reference" "#PWR36"
+			(at 195.58 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 195.58 140.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 195.58 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 195.58 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 195.58 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "70cd5b3e-ae57-5c5f-9d6a-32fc47b17fd8")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR36")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "lib:SMF5.0A")
 		(at 38.1 41.91 270)
 		(unit 1)
@@ -11351,7 +11574,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 71.12 210.82 0)
+		(at 55.88 203.2 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11360,8 +11583,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "8944916c-9e26-5ca6-9adf-564c3f9b7fdc")
-		(property "Reference" "#PWR51"
-			(at 71.12 217.17 0)
+		(property "Reference" "#PWR46"
+			(at 55.88 209.55 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11372,7 +11595,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 71.12 214.63 0)
+			(at 55.88 207.01 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11382,7 +11605,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 71.12 210.82 0)
+			(at 55.88 203.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11393,7 +11616,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 71.12 210.82 0)
+			(at 55.88 203.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11404,7 +11627,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 71.12 210.82 0)
+			(at 55.88 203.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11420,7 +11643,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR51")
+					(reference "#PWR46")
 					(unit 1)
 				)
 			)
@@ -11428,7 +11651,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 30.48 132.08 0)
+		(at 58.42 48.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11436,9 +11659,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "8c1afb04-cf02-5380-997d-f8419fea5875")
-		(property "Reference" "#PWR30"
-			(at 30.48 138.43 0)
+		(uuid "8c5bac8f-1040-5803-9af0-7f92e79b504b")
+		(property "Reference" "#PWR14"
+			(at 58.42 54.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11449,7 +11672,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 30.48 135.89 0)
+			(at 58.42 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11459,7 +11682,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 30.48 132.08 0)
+			(at 58.42 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11470,7 +11693,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 30.48 132.08 0)
+			(at 58.42 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11481,7 +11704,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 30.48 132.08 0)
+			(at 58.42 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11492,20 +11715,20 @@
 			)
 		)
 		(pin "1"
-			(uuid "503c9552-1b27-5f8b-a2a8-14986488bbb1")
+			(uuid "747865d1-2f7b-59d9-a6fc-1a8d97184f8d")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR30")
+					(reference "#PWR14")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 139.7 35.56 0)
+		(lib_id "power:GND")
+		(at 60.96 142.24 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11513,9 +11736,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "8d72643c-f757-59e2-8da2-7fe1660ba364")
-		(property "Reference" "#FLG01"
-			(at 139.7 33.655 0)
+		(uuid "8e4da2c3-efa2-51b3-848f-d290df0806ae")
+		(property "Reference" "#PWR37"
+			(at 60.96 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11525,8 +11748,8 @@
 				)
 			)
 		)
-		(property "Value" "PWR_FLAG"
-			(at 139.7 31.75 0)
+		(property "Value" "GND"
+			(at 60.96 146.05 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11536,7 +11759,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 139.7 35.56 0)
+			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11547,7 +11770,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 139.7 35.56 0)
+			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11557,85 +11780,8 @@
 				)
 			)
 		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 139.7 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8bc1c5bf-bdec-5421-b34a-17046ba70dec")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#FLG01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 165.1 193.04 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "8e81422a-62d6-57cd-a356-18d8ddff1178")
-		(property "Reference" "#PWR41"
-			(at 165.1 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_BST"
-			(at 165.1 189.484 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 165.1 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 165.1 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 165.1 193.04 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 60.96 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11646,166 +11792,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "789b1a80-845a-534d-86d0-7b73e40c85b7")
+			(uuid "1d477e28-9107-5180-94ee-09b171500663")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR41")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 203.2 121.92 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "8fdcd801-345d-52de-a891-fac929078355")
-		(property "Reference" "#PWR24"
-			(at 203.2 125.73 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_HD"
-			(at 203.2 118.364 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 203.2 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 203.2 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 203.2 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6c158102-e46d-58b8-badf-b236bfe46833")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR24")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 293.37 29.21 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "926d5c7e-0cd6-5bf9-82cf-db668d593b61")
-		(property "Reference" "#PWR02"
-			(at 293.37 33.02 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 293.37 25.654 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 293.37 29.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 293.37 29.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 293.37 29.21 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "405decf6-993d-53f8-b498-7bf4b9f076fb")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR02")
+					(reference "#PWR37")
 					(unit 1)
 				)
 			)
@@ -11927,84 +11919,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 231.14 144.78 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "98308638-d052-59ff-a7b7-4b4771837d2c")
-		(property "Reference" "#PWR40"
-			(at 231.14 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 231.14 148.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 231.14 144.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 231.14 144.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 231.14 144.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c8d4f160-5dfb-510a-b343-164460504790")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR40")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 93.98 134.62 0)
+		(at 83.82 134.62 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12013,8 +11928,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "9e3cfe9d-f98f-563d-8ed4-4b2a08db0c76")
-		(property "Reference" "#PWR32"
-			(at 93.98 140.97 0)
+		(property "Reference" "#PWR30"
+			(at 83.82 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12025,7 +11940,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 93.98 138.43 0)
+			(at 83.82 138.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12035,7 +11950,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 93.98 134.62 0)
+			(at 83.82 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12046,7 +11961,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 93.98 134.62 0)
+			(at 83.82 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12057,7 +11972,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 93.98 134.62 0)
+			(at 83.82 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12073,7 +11988,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR32")
+					(reference "#PWR30")
 					(unit 1)
 				)
 			)
@@ -12081,7 +11996,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 45.72 205.74 0)
+		(at 238.76 127 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12089,9 +12004,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "9f667000-0a00-5149-9483-1df70b77a42e")
-		(property "Reference" "#PWR48"
-			(at 45.72 212.09 0)
+		(uuid "a08e6518-e3df-5f84-977f-2eb6d4f51eca")
+		(property "Reference" "#PWR28"
+			(at 238.76 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12102,7 +12017,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 45.72 209.55 0)
+			(at 238.76 130.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12112,7 +12027,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 45.72 205.74 0)
+			(at 238.76 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12123,7 +12038,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 45.72 205.74 0)
+			(at 238.76 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12134,7 +12049,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 45.72 205.74 0)
+			(at 238.76 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12145,12 +12060,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "375474bf-c97f-569a-9ad4-24d2c79deab6")
+			(uuid "f049b134-089d-5298-b421-c7f34990513c")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR48")
+					(reference "#PWR28")
 					(unit 1)
 				)
 			)
@@ -12158,7 +12073,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 195.58 215.9 0)
+		(at 180.34 137.16 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12166,9 +12081,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "a5ef13db-b981-5ae6-8421-a665ad5ecce7")
-		(property "Reference" "#PWR54"
-			(at 195.58 222.25 0)
+		(uuid "a0bb5756-ef4d-5f26-a893-58b56efe003c")
+		(property "Reference" "#PWR35"
+			(at 180.34 143.51 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12179,7 +12094,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 195.58 219.71 0)
+			(at 180.34 140.97 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12189,7 +12104,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 195.58 215.9 0)
+			(at 180.34 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12200,7 +12115,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 195.58 215.9 0)
+			(at 180.34 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12211,7 +12126,84 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 195.58 215.9 0)
+			(at 180.34 137.16 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "69579093-f67f-5a1a-8226-822371642c3d")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR35")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 175.26 215.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "a5ef13db-b981-5ae6-8421-a665ad5ecce7")
+		(property "Reference" "#PWR52"
+			(at 175.26 219.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_USB"
+			(at 175.26 212.344 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 175.26 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 175.26 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 175.26 215.9 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12227,15 +12219,15 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR54")
+					(reference "#PWR52")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 154.94 195.58 0)
+		(lib_id "power:GND")
+		(at 124.46 142.24 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12243,9 +12235,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "a7caaa08-4074-51c6-948b-17481d37d863")
-		(property "Reference" "#PWR44"
-			(at 154.94 199.39 0)
+		(uuid "a699d101-3667-5712-80f2-cc64dbefa1cc")
+		(property "Reference" "#PWR38"
+			(at 124.46 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12255,8 +12247,8 @@
 				)
 			)
 		)
-		(property "Value" "+5V_USB"
-			(at 154.94 192.024 0)
+		(property "Value" "GND"
+			(at 124.46 146.05 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12266,7 +12258,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 154.94 195.58 0)
+			(at 124.46 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12277,7 +12269,84 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 154.94 195.58 0)
+			(at 124.46 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 124.46 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "1dbe2169-3bbe-5cf4-8f30-2d1ee7f2a46d")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR38")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 165.1 193.04 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "a7caaa08-4074-51c6-948b-17481d37d863")
+		(property "Reference" "#PWR40"
+			(at 165.1 196.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_BST"
+			(at 165.1 189.484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 165.1 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 165.1 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12288,7 +12357,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 154.94 195.58 0)
+			(at 165.1 193.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12304,7 +12373,161 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR44")
+					(reference "#PWR40")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 293.37 29.21 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "a885c480-aebe-571a-b4a4-3f6e44bf5b94")
+		(property "Reference" "#PWR02"
+			(at 293.37 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V"
+			(at 293.37 25.654 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 293.37 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 293.37 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 293.37 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "236c8586-8a47-50dc-a0a4-d0a87f3c9fcd")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 129.54 205.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "a8f1e90b-a57d-5627-b173-329163d90290")
+		(property "Reference" "#PWR48"
+			(at 129.54 212.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 129.54 209.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 129.54 205.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 129.54 205.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 129.54 205.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2f4b6c68-a268-5920-829a-d0708f265b7c")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR48")
 					(unit 1)
 				)
 			)
@@ -12320,8 +12543,8 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "a885c480-aebe-571a-b4a4-3f6e44bf5b94")
-		(property "Reference" "#PWR06"
+		(uuid "b1ef11c2-0272-5f9c-b298-333da33bb16b")
+		(property "Reference" "#PWR05"
 			(at 283.21 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -12376,97 +12599,20 @@
 			)
 		)
 		(pin "1"
-			(uuid "236c8586-8a47-50dc-a0a4-d0a87f3c9fcd")
+			(uuid "e205e46a-3bb3-5eab-aa84-dfefcd8cef76")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR06")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 336.55 39.37 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "ab77ac9a-115e-5e86-8f93-957c7ffa0e3e")
-		(property "Reference" "#PWR08"
-			(at 336.55 43.18 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 336.55 35.814 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 336.55 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 336.55 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 336.55 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d267dc5a-213c-593c-bd69-c77033816f9b")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 384.81 116.84 0)
+		(lib_id "power:GND")
+		(at 374.65 124.46 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12475,8 +12621,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b3e99b4b-5ce2-5bf8-813a-748880d66b44")
-		(property "Reference" "#PWR22"
-			(at 384.81 120.65 0)
+		(property "Reference" "#PWR26"
+			(at 374.65 130.81 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12486,8 +12632,8 @@
 				)
 			)
 		)
-		(property "Value" "+5V_CAM"
-			(at 384.81 113.284 0)
+		(property "Value" "GND"
+			(at 374.65 128.27 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12497,7 +12643,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 384.81 116.84 0)
+			(at 374.65 124.46 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12508,7 +12654,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 384.81 116.84 0)
+			(at 374.65 124.46 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12518,8 +12664,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 384.81 116.84 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 374.65 124.46 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12535,7 +12681,161 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR22")
+					(reference "#PWR26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 180.34 193.04 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "b697e453-6a41-595a-a683-c903e5520c61")
+		(property "Reference" "#PWR41"
+			(at 180.34 196.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_USB"
+			(at 180.34 189.484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 180.34 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 180.34 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 180.34 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "86a84a24-2841-55e9-8f8d-d4637c1b2b77")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR41")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 264.16 111.76 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "bce3325a-37e2-5a04-b608-33a0ed8763e3")
+		(property "Reference" "#PWR19"
+			(at 264.16 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_HD"
+			(at 264.16 108.204 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 264.16 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 264.16 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 264.16 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e4a1647d-8558-5fd2-b39c-19ba994a9938")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR19")
 					(unit 1)
 				)
 			)
@@ -12887,8 +13187,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 264.16 111.76 0)
+		(lib_id "power:GND")
+		(at 231.14 144.78 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12896,9 +13196,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "d0e1a035-0ba4-5fb6-8525-139f4e9db888")
-		(property "Reference" "#PWR20"
-			(at 264.16 115.57 0)
+		(uuid "d194e5fa-b50e-5dfd-a94e-a656fbf7dade")
+		(property "Reference" "#PWR39"
+			(at 231.14 151.13 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12908,8 +13208,8 @@
 				)
 			)
 		)
-		(property "Value" "+5V_HD"
-			(at 264.16 108.204 0)
+		(property "Value" "GND"
+			(at 231.14 148.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12919,7 +13219,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 264.16 111.76 0)
+			(at 231.14 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12930,7 +13230,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 264.16 111.76 0)
+			(at 231.14 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12940,8 +13240,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 264.16 111.76 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 231.14 144.78 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12952,12 +13252,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "dcab057c-4f07-56d2-89c2-f188a813d5bd")
+			(uuid "925dd410-a82b-549d-81ea-5c4fa765b71d")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR20")
+					(reference "#PWR39")
 					(unit 1)
 				)
 			)
@@ -13078,6 +13378,160 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+5V")
+		(at 129.54 195.58 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "d1f79e8b-4709-51e8-bb21-42af57959606")
+		(property "Reference" "#PWR42"
+			(at 129.54 199.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V_USB"
+			(at 129.54 192.024 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 129.54 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 129.54 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 129.54 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "163c8d80-b2a8-5b90-a317-fe429eb0907e")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR42")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 256.54 124.46 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "d2b89ab5-0fed-5114-aad6-14cacab11f96")
+		(property "Reference" "#PWR25"
+			(at 256.54 130.81 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 256.54 128.27 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 256.54 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 256.54 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 256.54 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9b57b67a-ad91-5870-8661-0cd064d28a06")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR25")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 157.48 45.72 90)
 		(unit 1)
@@ -13190,85 +13644,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+BATT")
-		(at 149.86 35.56 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "d6a20c20-8bdb-573f-865d-d80d55d808a7")
-		(property "Reference" "#PWR05"
-			(at 149.86 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+BATT"
-			(at 149.86 32.004 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 149.86 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 149.86 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 149.86 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f3bcc06b-002d-556c-b0ac-a59ea6fe80d7")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 238.76 127 0)
+		(lib_id "power:+5V")
+		(at 208.28 111.76 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13277,8 +13654,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "d8930f46-9016-5e31-90bd-21e8ef0071ec")
-		(property "Reference" "#PWR29"
-			(at 238.76 133.35 0)
+		(property "Reference" "#PWR18"
+			(at 208.28 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13288,8 +13665,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 238.76 130.81 0)
+		(property "Value" "+5V_BST"
+			(at 208.28 108.204 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13299,7 +13676,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 238.76 127 0)
+			(at 208.28 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13310,7 +13687,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 238.76 127 0)
+			(at 208.28 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13320,8 +13697,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 238.76 127 0)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 208.28 111.76 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13337,7 +13714,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR29")
+					(reference "#PWR18")
 					(unit 1)
 				)
 			)
@@ -13345,84 +13722,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 374.65 124.46 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "d8d991f5-77f3-5c7a-a393-54caeec9ff82")
-		(property "Reference" "#PWR27"
-			(at 374.65 130.81 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 374.65 128.27 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 374.65 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 374.65 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 374.65 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "fd067de7-763a-56da-9d3e-e66f1de4f76d")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR27")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 124.46 142.24 0)
+		(at 114.3 134.62 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13431,8 +13731,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "daba8c81-4967-5d0d-aed5-14e1cc3286d6")
-		(property "Reference" "#PWR39"
-			(at 124.46 148.59 0)
+		(property "Reference" "#PWR33"
+			(at 114.3 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13443,7 +13743,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 124.46 146.05 0)
+			(at 114.3 138.43 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13453,7 +13753,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 124.46 142.24 0)
+			(at 114.3 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13464,7 +13764,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 124.46 142.24 0)
+			(at 114.3 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13475,7 +13775,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 124.46 142.24 0)
+			(at 114.3 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13491,15 +13791,15 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR39")
+					(reference "#PWR33")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 71.12 50.8 0)
+		(lib_id "power:+5V")
+		(at 346.71 116.84 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13507,9 +13807,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "dcbad65e-c91a-5995-be6d-b84b2ef5bc65")
-		(property "Reference" "#PWR16"
-			(at 71.12 57.15 0)
+		(uuid "dbd1f3df-862c-5171-8240-08c003a1c430")
+		(property "Reference" "#PWR20"
+			(at 346.71 120.65 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13519,8 +13819,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 71.12 54.61 0)
+		(property "Value" "+5V"
+			(at 346.71 113.284 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13530,7 +13830,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 71.12 50.8 0)
+			(at 346.71 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13541,7 +13841,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 71.12 50.8 0)
+			(at 346.71 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13551,8 +13851,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 71.12 50.8 0)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 346.71 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13563,12 +13863,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "fada6f54-e898-565a-85ee-dd367cf0ccb6")
+			(uuid "4aeea788-0c3a-5c99-96b3-aa416866dbb9")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR16")
+					(reference "#PWR20")
 					(unit 1)
 				)
 			)
@@ -13683,6 +13983,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 71.12 38.1 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "dee33575-5ed2-5266-9a96-618572474e80")
+		(property "Reference" "#FLG02"
+			(at 71.12 36.195 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 71.12 34.29 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 71.12 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 71.12 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 71.12 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bcb5faf9-0ea4-5213-8e01-2556ed585815")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)
@@ -13917,85 +14294,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 223.52 198.12 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "e89dcdfc-9588-5977-889c-7d39a0d9ff37")
-		(property "Reference" "#PWR46"
-			(at 223.52 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 223.52 194.564 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 223.52 198.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 223.52 198.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 223.52 198.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2886b983-afad-57a6-adee-d45077e03055")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR46")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+BATT")
-		(at 114.3 35.56 0)
+		(lib_id "power:GND")
+		(at 71.12 50.8 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14004,8 +14304,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "e9556207-6d03-54b4-bf5e-1ba95737cc01")
-		(property "Reference" "#PWR04"
-			(at 114.3 39.37 0)
+		(property "Reference" "#PWR15"
+			(at 71.12 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14015,8 +14315,8 @@
 				)
 			)
 		)
-		(property "Value" "+BATT_IN"
-			(at 114.3 32.004 0)
+		(property "Value" "GND"
+			(at 71.12 54.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14026,7 +14326,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 114.3 35.56 0)
+			(at 71.12 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14037,7 +14337,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 114.3 35.56 0)
+			(at 71.12 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14047,8 +14347,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 114.3 35.56 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 71.12 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14064,84 +14364,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR04")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 273.05 46.99 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "ea4067fa-dd5d-5051-9f9c-91ebb0e6ebe6")
-		(property "Reference" "#PWR11"
-			(at 273.05 50.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 273.05 43.434 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 273.05 46.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 273.05 46.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 273.05 46.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c150992e-4681-5706-a0f5-7fb5105c27ed")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR11")
+					(reference "#PWR15")
 					(unit 1)
 				)
 			)
@@ -14262,8 +14485,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 213.36 205.74 0)
+		(lib_id "power:PWR_FLAG")
+		(at 71.12 48.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14271,9 +14494,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "eff29141-4d86-5186-b57c-fb55a826c9c6")
-		(property "Reference" "#PWR50"
-			(at 213.36 212.09 0)
+		(uuid "eeb28be2-7938-59f5-b1b5-709e6830a34d")
+		(property "Reference" "#FLG03"
+			(at 71.12 46.355 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14283,8 +14506,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 213.36 209.55 0)
+		(property "Value" "PWR_FLAG"
+			(at 71.12 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14294,7 +14517,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 213.36 205.74 0)
+			(at 71.12 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14305,7 +14528,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 213.36 205.74 0)
+			(at 71.12 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14315,8 +14538,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 213.36 205.74 0)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 71.12 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14327,20 +14550,20 @@
 			)
 		)
 		(pin "1"
-			(uuid "1e528d77-37c1-54ca-9df5-ed14489a5326")
+			(uuid "826adb70-9508-5adb-9417-75c63aea3424")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR50")
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 60.96 142.24 0)
+		(lib_id "power:+5V")
+		(at 40.64 137.16 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14349,8 +14572,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f015d4d9-78dc-5032-bd51-0450961b3916")
-		(property "Reference" "#PWR38"
-			(at 60.96 148.59 0)
+		(property "Reference" "#PWR34"
+			(at 40.64 140.97 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14360,8 +14583,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 60.96 146.05 0)
+		(property "Value" "+5V_BST"
+			(at 40.64 133.604 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14371,7 +14594,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 60.96 142.24 0)
+			(at 40.64 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14382,7 +14605,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 60.96 142.24 0)
+			(at 40.64 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14392,8 +14615,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 60.96 142.24 0)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 40.64 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14409,7 +14632,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR38")
+					(reference "#PWR34")
 					(unit 1)
 				)
 			)
@@ -14750,6 +14973,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "R7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 336.55 39.37 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "fdbf2676-409e-574c-9d31-7aa8ecc1a0b5")
+		(property "Reference" "#PWR06"
+			(at 336.55 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 336.55 35.814 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 336.55 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 336.55 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 336.55 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6fc52153-4a00-51ad-913a-cc4566996e56")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)

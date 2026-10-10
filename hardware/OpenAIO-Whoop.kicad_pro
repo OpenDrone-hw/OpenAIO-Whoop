@@ -738,57 +738,51 @@
             "primary": "J13"
           },
           "REFERENCE-3": {
-            "primary": "J2"
-          },
-          "REFERENCE-4": {
             "primary": "J20"
           },
-          "REFERENCE-5": {
+          "REFERENCE-4": {
             "primary": "J21"
           },
-          "REFERENCE-6": {
+          "REFERENCE-5": {
             "primary": "J22"
           },
-          "REFERENCE-7": {
+          "REFERENCE-6": {
             "primary": "J23"
           },
-          "REFERENCE-8": {
+          "REFERENCE-7": {
             "primary": "J24"
           },
-          "REFERENCE-9": {
+          "REFERENCE-8": {
             "primary": "J25"
           },
-          "REFERENCE-10": {
+          "REFERENCE-9": {
             "primary": "J26"
           },
-          "REFERENCE-11": {
+          "REFERENCE-10": {
             "primary": "J27"
           },
-          "REFERENCE-12": {
+          "REFERENCE-11": {
             "primary": "J28"
           },
-          "REFERENCE-13": {
+          "REFERENCE-12": {
             "primary": "J29"
           },
-          "REFERENCE-14": {
-            "primary": "J3"
-          },
-          "REFERENCE-15": {
+          "REFERENCE-13": {
             "primary": "J31"
           },
-          "REFERENCE-16": {
+          "REFERENCE-14": {
             "primary": "J32"
           },
-          "REFERENCE-17": {
+          "REFERENCE-15": {
             "primary": "J33"
           },
-          "REFERENCE-18": {
+          "REFERENCE-16": {
             "primary": "J4"
           },
-          "REFERENCE-19": {
+          "REFERENCE-17": {
             "primary": "J7"
           },
-          "REFERENCE-20": {
+          "REFERENCE-18": {
             "primary": "LOGO1"
           }
         }
@@ -858,57 +852,63 @@
             "primary": "FB1"
           },
           "REFERENCE-20": {
-            "primary": "L1"
+            "primary": "J2"
           },
           "REFERENCE-21": {
-            "primary": "R1"
+            "primary": "J3"
           },
           "REFERENCE-22": {
-            "primary": "R10"
+            "primary": "L1"
           },
           "REFERENCE-23": {
-            "primary": "R11"
+            "primary": "R1"
           },
           "REFERENCE-24": {
-            "primary": "R2"
+            "primary": "R10"
           },
           "REFERENCE-25": {
-            "primary": "R3"
+            "primary": "R11"
           },
           "REFERENCE-26": {
-            "primary": "R4"
+            "primary": "R2"
           },
           "REFERENCE-27": {
-            "primary": "R5"
+            "primary": "R3"
           },
           "REFERENCE-28": {
-            "primary": "R7"
+            "primary": "R4"
           },
           "REFERENCE-29": {
-            "primary": "R8"
+            "primary": "R5"
           },
           "REFERENCE-30": {
-            "primary": "R87"
+            "primary": "R7"
           },
           "REFERENCE-31": {
-            "primary": "R9"
+            "primary": "R8"
           },
           "REFERENCE-32": {
-            "primary": "U1"
+            "primary": "R87"
           },
           "REFERENCE-33": {
-            "primary": "U2"
+            "primary": "R9"
           },
           "REFERENCE-34": {
-            "primary": "U24"
+            "primary": "U1"
           },
           "REFERENCE-35": {
-            "primary": "U3"
+            "primary": "U2"
           },
           "REFERENCE-36": {
-            "primary": "U4"
+            "primary": "U24"
           },
           "REFERENCE-37": {
+            "primary": "U3"
+          },
+          "REFERENCE-38": {
+            "primary": "U4"
+          },
+          "REFERENCE-39": {
             "primary": "U5"
           }
         }
@@ -1709,6 +1709,10 @@
         "pattern": "+BATT_*"
       },
       {
+        "netclass": "VBAT",
+        "pattern": "/POWER/CSA+"
+      },
+      {
         "netclass": "Phase",
         "pattern": "/ESC?/PHASE_?"
       },
@@ -1807,10 +1811,6 @@
       {
         "netclass": "Analog",
         "pattern": "*ADC_VBAT*"
-      },
-      {
-        "netclass": "Analog",
-        "pattern": "*/CSA*"
       },
       {
         "netclass": "Analog",

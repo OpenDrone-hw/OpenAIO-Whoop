@@ -144,7 +144,7 @@ DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "
 # Planned net names (D4 power names; PINMAP.md; OpenAIO esc_channel upper-cased per LINEUP). Root-sheet local
 # labels appear as "/NAME", sub-sheet ones as "/SHEET/NAME", power nets bare.
 NETCLASS_PATTERNS = [
-    ("VBAT", ["+BATT", "+BATT_*"]),                                       # +BATT, +BATT_IN (spec 4.1)
+    ("VBAT", ["+BATT", "+BATT_*", "/POWER/CSA+"]),                        # +BATT, CSA+ battery node (spec 4.1, D113)
     ("Phase", ["/ESC?/PHASE_?", "/POWER/U2_SW"]),                         # in-sheet PHASE_A/B/C (spec 8.4); boost switch
                                                                           # node U2_SW 2.8-3.4 A avg (P4 critique round 2)
     ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
@@ -153,7 +153,7 @@ NETCLASS_PATTERNS = [
                "/VTX/PA_VCC"]),                                         # SE5004L VCC feed 0.65-0.8 A: the board ignores the
                                                                           # schematic directive label (P4 critique round 2)
     ("GND", ["GND"]),
-    ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", "*/CSA*",
+    ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", 
                 "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*",      # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
                 "*/VT_MOD*", "*/RTC_*", "*/U19_XTAL*", "*/TCXO_OUT", "*/XTA"]),  # RTC6705 video input, PLL loop filter, 8/52 MHz refs (P4 critique)
     ("RF", ["*/RF_*", "*/ANT*", "*/RFIO*", "*/RFOUT*", "*/RFIN*"]),
@@ -478,7 +478,7 @@ RULES = [
      "A.NetName == '*FLASH_CS*')\")"),
 
     ("SHUNT_CORRIDOR: battery current only",
-     ["D10 / spec 11: the battery-to-shunt corridor (on the shunt's layer, @SHUNT_LAYER@ in P2 v3) carries +BATT_IN, +BATT and GND; the Kelvin pair",
+     ["D10 / spec 11: the battery-to-shunt corridor (on the shunt's layer, @SHUNT_LAYER@ in P2 v3) carries CSA+, +BATT and GND; the Kelvin pair",
       "SHUNT_SENSE_P/N leaves at the shunt's inner pad edges. Everything else stays out before routing."],
      "  (layer \"@SHUNT_LAYER@\")\n  (constraint disallow track via)\n"
      "  (condition \"A.intersectsArea('SHUNT_CORRIDOR') && A.NetClass != 'VBAT' && A.NetName != 'GND' && "
@@ -1549,7 +1549,7 @@ def selftest(P, rf):
     smx = (sx0 + sx1) / 2
     trk(smx - 0.5, sy0 + 0.8, smx + 0.5, sy0 + 0.8, 0.1, "/T/SIG9", SHUNT_LAYER); case("signal track in SHUNT_CORRIDOR", "SHUNT_CORRIDOR: battery current only", (smx, sy0 + 0.8), r=0.6)
     trk(smx - 0.5, sy0 + 1.8, smx + 0.5, sy0 + 1.8, 0.1, "/SHUNT_SENSE_P", SHUNT_LAYER); case("Kelvin track in SHUNT_CORRIDOR", None, (smx, sy0 + 1.8), r=0.6)
-    trk(smx - 0.5, sy0 + 2.8, smx + 0.5, sy0 + 2.8, 0.5, "+BATT_IN", "B.Cu"); case("+BATT_IN track in SHUNT_CORRIDOR", None, (smx, sy0 + 2.8), r=0.6)
+    trk(smx - 0.5, sy0 + 2.8, smx + 0.5, sy0 + 2.8, 0.5, "/POWER/CSA+", "B.Cu"); case("CSA+ track in SHUNT_CORRIDOR", None, (smx, sy0 + 2.8), r=0.6)
     # SMD pad to track 0.13, pads 0.30 from the edge, edge band, flange, courtyard classes
     f1 = fp("C_0402_1005Metric", "C1", -6, 4)
     p1 = [p for p in f1.Pads() if p.GetNumber() == "1"][0]
@@ -1601,7 +1601,7 @@ def selftest(P, rf):
     tht("H1", -9, 3, [(0, 0.4, 0.4, False)])
     case("NPTH 0.40", "NPTH at least 0.50", (-9, 3), r=0.5)
     # netclass patterns
-    sample = {"+BATT": "VBAT", "+BATT_IN": "VBAT", "/ESC1/PHASE_A": "Phase", "/ESC3/B_COM": "Gate",
+    sample = {"+BATT": "VBAT", "/POWER/CSA+": "VBAT", "/ESC1/PHASE_A": "Phase", "/ESC3/B_COM": "Gate",
               "/ESC2/C_PWM": "Gate", "+3.3V_VTX": "Power", "+5V": "Power", "+5V_USB": "Power", "+5V_BST": "Power",
               "+5V_HD": "Power", "+1.8V_GYRO": "Power", "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog",
               "/SHUNT_SENSE_P": "Analog", "/POWER/SHUNT_SENSE_N": "Analog", "/VTX/RF_OUT": "RF",

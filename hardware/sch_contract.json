@@ -27,8 +27,8 @@
   "Every signal between sheets is a real root wire between sheet pins; every hierarchical label in a sub-sheet has exactly the name, direction (= label shape) and count of the pins listed here; no global labels.",
   "Root net names: each root wire carries a root local label with the net name (net '/<NAME>'), except the motor phases: the ESC sheet puts a LOCAL label PHASE_x (plus the hierarchical label) on the phase net, and the root wire has no label, so the net is '/ESCn/PHASE_x' (verified with kicad-cli 10.0.6: a sub-sheet local label beats root sheet pins; a root local label beats sub-sheet hierarchical labels).",
   "Sub-sheets must not put a local label on a net that leaves through a hierarchical label (except ESC PHASE_x): the root label names it.",
-  "Rails are power symbols from the stock 'power' library; the Value is the rail name (net = Value, verified): +BATT_IN uses power:+BATT, +5V_BST/+5V_USB/+5V_CAM/+5V_HD use power:+5V, +3.3V_VTX uses power:+3.3V. VBUS is a hierarchical net (LINEUP A11: power symbols must be + rails).",
-  "PWR_FLAG on every rail whose only source is passive or a connector: +BATT_IN and GND (POWER), +BATT (after the shunt), +5V_CAM (after FB1), VBUS (PADS, at J31), +1.1V (RP2350A: SMPS through L2), VREG_AVDD (RP2350A: R41 RC filter) and PA_VCC (VTX: R67 selector). Regulator outputs are typed power_out in the project library (LP5912, TPS61022, TPS2116, SGM40661, TPS22810, TPS7A2018, LP5907), so +3.3V / +3.3V_VTX carry no flag.",
+  "Rails are power symbols from the stock 'power' library; the Value is the rail name (net = Value, verified): CSA+ uses power:+BATT, +5V_BST/+5V_USB/+5V_CAM/+5V_HD use power:+5V, +3.3V_VTX uses power:+3.3V. VBUS is a hierarchical net (LINEUP A11: power symbols must be + rails).",
+  "PWR_FLAG on every rail whose only source is passive or a connector: CSA+ and GND (POWER), +BATT (after the shunt), +5V_CAM (after FB1), VBUS (PADS, at J31), +1.1V (RP2350A: SMPS through L2), VREG_AVDD (RP2350A: R41 RC filter) and PA_VCC (VTX: R67 selector). Regulator outputs are typed power_out in the project library (LP5912, TPS61022, TPS2116, SGM40661, TPS22810, TPS7A2018, LP5907), so +3.3V / +3.3V_VTX carry no flag.",
   "Multi-pin nets inside a sheet get a local label named after the driving pin (U2_SW, U5_EN, Q27_C), except the fixed names listed per sheet (local_nets_fixed / spec names such as RF_*, PA_DET_RAW, SHUNT_SENSE_P/N, which the netclass patterns match).",
   "Never rotate a ground symbol; block notes go in borderless text boxes (stroke width -0.0001); sheet title block fields title/date/rev filled, company empty, wordmark polylines from hardware/tools/opendrone_wordmark.json (shipped art, black + #c89d2e) via sch_root.decorate().",
   "Deterministic uuids: sch_build uuid5(root uuid, file|kind|key); symbol key = the ESC1 / single-instance reference. Sheet symbol, sheet file and instance-path uuids are fixed in this file.",
@@ -109,7 +109,7 @@
    {
     "sheet": "power.kicad_sch",
     "class": "VBAT",
-    "on": "+BATT_IN (topmost battery wire)"
+    "on": "CSA+ (topmost battery wire)"
    },
    {
     "sheet": "power.kicad_sch",
@@ -182,11 +182,6 @@
     "on": "USB_D_P hierarchical label"
    },
    {
-    "sheet": "pads.kicad_sch",
-    "class": "VBAT",
-    "on": "+BATT_IN at J2"
-   },
-   {
     "sheet": "power.kicad_sch",
     "class": "Phase",
     "on": "U2_SW (boost switch node, 2.8-3.4 A average / about 4.5 A peak: Phase width; pattern /POWER/U2_SW)"
@@ -195,8 +190,8 @@
  },
  "power_rails": [
   {
-   "rail": "+BATT_IN",
-   "symbol": "power:+BATT",
+   "rail": "CSA+",
+   "symbol": "local label CSA+ (POWER sheet, net /POWER/CSA+)",
    "source": "battery pads J2 (+) / J3 (-), 1S LiPo/LiHV",
    "nominal": "3.0-4.35 V",
    "budget": "motors 4x ESC + board (2.0 A at VTX max)",
@@ -1449,6 +1444,7 @@
    "title": "Power: input, current sense, 5 V, 3.3 V, O4",
    "description": "Battery input, current sense, 5 V boost, USB inlet and mux, 3.3 V, O4 switch",
    "content": [
+    "BATTERY PADS",
     "TVS + SHUNT",
     "INA186 CURRENT",
     "5V BOOST",
@@ -1461,6 +1457,16 @@
    "source": "OpenFC-Lite-Mini/hardware/power.kicad_sch (sheet frame, LP5912 LDO block); OpenAIO/hardware/OpenAIO.kicad_sch (battery shunt + INA186A3 current sense on its root); new blocks from the TI/SGMICRO datasheets",
    "blocks": [
     {
+     "name": "Battery pads",
+     "refs": [
+      "J2",
+      "J3"
+     ],
+     "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch",
+     "notes": "J2 '+' on CSA+, J3 '-' on GND (+ PWR_FLAGs on POWER)",
+     "p4": []
+    },
+    {
      "name": "Battery input and TVS",
      "refs": [
       "D1",
@@ -1468,7 +1474,7 @@
       "C2"
      ],
      "source": "OpenAIO/hardware/OpenAIO.kicad_sch (battery entry)",
-     "notes": "+BATT_IN from the battery pad J2 (PADS); PWR_FLAG on +BATT_IN",
+     "notes": "CSA+ from the battery pad J2 (PADS); PWR_FLAG on CSA+",
      "p4": []
     },
     {
@@ -1600,6 +1606,8 @@
     }
    ],
    "refs": [
+    "J2",
+    "J3",
     "D1",
     "C1",
     "C2",
@@ -1639,7 +1647,7 @@
     "R87",
     "C129"
    ],
-   "ref_count": 38,
+   "ref_count": 40,
    "file_uuid": "667866cf-d10d-58b9-b634-4eb3d3146f81"
   },
   {
@@ -3141,7 +3149,6 @@
    "title": "Pads, motor lands, camera, HD, USB",
    "description": "Solder pads, motor lands, camera, HD and USB connectors, mounting",
    "content": [
-    "BATTERY",
     "MOTOR LANDS",
     "LED / BUZZER",
     "CAMERA",
@@ -3150,16 +3157,6 @@
    ],
    "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch (Conn_01x01 pad groups under blue headings) + OpenFC-Lite/hardware/pads.kicad_sch (JST SH plug frame and style; USB J31 = vertical BM04B, D76); camera plug, motor lands and the ESD array new (D57, D63-D65)",
    "blocks": [
-    {
-     "name": "Battery pads",
-     "refs": [
-      "J2",
-      "J3"
-     ],
-     "source": "OpenFC-Lite-Mini/hardware/pads.kicad_sch",
-     "notes": "J2 '+' on +BATT_IN, J3 '-' on GND (+ PWR_FLAGs on POWER)",
-     "p4": []
-    },
     {
      "name": "Motor lands M1-M4 (plug-ready, header DNP)",
      "refs": [
@@ -3373,8 +3370,6 @@
     }
    ],
    "refs": [
-    "J2",
-    "J3",
     "J4",
     "J7",
     "J10",
@@ -3397,7 +3392,7 @@
     "H2",
     "H3"
    ],
-   "ref_count": 27,
+   "ref_count": 21,
    "file_uuid": "0f1cbcec-adb2-5bb7-80e8-5279a10ff51c"
   }
  ],
@@ -3419,6 +3414,18 @@
    "bom_plan_sheet": "pads",
    "contract_sheet": "rp2350a.kicad_sch",
    "why": "test via of the RP2354A boot strap: drawn next to R44 like the ESC C2 test points sit in esc_channel (D67 made it an unlabelled via, not a user pad); removes a root net"
+  },
+  {
+   "ref": "J2",
+   "bom_plan_sheet": "power",
+   "contract_sheet": "power.kicad_sch",
+   "why": "D113 lineup power-net style: the battery node is the local label CSA+ beside the TVS and shunt (audit S3)"
+  },
+  {
+   "ref": "J3",
+   "bom_plan_sheet": "power",
+   "contract_sheet": "power.kicad_sch",
+   "why": "battery pad pair stays together with J2 (D113, audit S3)"
   }
  ],
  "p4_items": {

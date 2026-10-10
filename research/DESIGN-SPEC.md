@@ -249,10 +249,10 @@ and matters for the PA supply (§4.8, V5b).
 | Current amp | TI **INA186A3IDCKR**, SC-70-6, gain 100, C2058245, 5,715 [PU] | TI INA186A3 DSBGA (YFD) (S, −4.8 mm²) |
 | VBAT divider | 2x 10 kΩ 0201 (Yageo RC0201FR-0710KL, C106225 [PU]) + 100 nF | Uni-Royal 0201WMF1002TEE (S) |
 
-Nets: the battery pads, TVS and pad bulk sit on **`+BATT_IN`** (net class VBAT,
+Nets: the battery pads, TVS and pad bulk sit on **`CSA+`** (net class VBAT,
 `PWR_FLAG`); after the shunt the rail is **`+BATT`**. The Kelvin taps are their
 own nets **`SHUNT_SENSE_P` / `SHUNT_SENSE_N`** (class Analog), separated from
-`+BATT_IN` / `+BATT` by a net-tie in the four-pad shunt footprint, routed as a
+`CSA+` / `+BATT` by a net-tie in the four-pad shunt footprint, routed as a
 pair on L1 or L6 away from the power current and never on In2/In3. Everything that draws
 current, including the boost VIN and the PA VCC, taps `+BATT` after the shunt,
 so the INA186 sees it. Numbers: 0.5 mΩ x 100 V/V = 50 mV/A, full scale 66 A at
@@ -269,7 +269,7 @@ production lot (±10-20 % unit to unit otherwise, I).
 ### 4.2 Power tree
 
 ```
-BT2.0 -> +BATT_IN pads -- SMF5.0A, 2x22u -- shunt (Kelvin SHUNT_SENSE_P/N -> INA186) -- +BATT
+BT2.0 -> CSA+ pads -- SMF5.0A, 2x22u -- shunt (Kelvin SHUNT_SENSE_P/N -> INA186) -- +BATT
   +BATT -> 4x ESC power stages; 4x EFM8 VDD on their own cluster's +BATT (100n X6S at the pin, no series R;
              one 10u X6S 0402 hot-loop cap per AGM210MAP (pin 3 S2 to pin 1 S1), the phase-B one within 4 mm of VDD; D77)
   +BATT -> SE5004L PA VCC (10u X6S + per-pin 1n/100p)   [3-pad 0 ohm selector: +BATT (default) or +5V]
@@ -1474,7 +1474,7 @@ KiCad coordinates in mm, board body centred at (113.2, 113.2) so the body spans
 | Area net of holes | 696.6 mm² (grid estimate, ±3 mm² for fillets) |
 | Copper keepout | 0.20 from every edge and hole (copper-to-edge rule) |
 | Part keepout | 0.30 band inside the outline; Ø 5.2 grommet flange at each hole, both sides (rule areas `MOUNT_*`) |
-| Panel tabs | 3 tabs, 1.2-1.5 mm wide with mouse bites, each with a part keepout on both sides (rule areas `TAB_*`, `setup_board.tab_rect()`: 1.5 mm each way along the edge, 1.3 mm inward from the edge, i.e. 1.0 mm beyond the 0.3 mm edge band; MLCC crack risk): **T1 right edge at y −6.6** (between the PA's VCC ring and the CAM pads; round 4 moved it off the front arc, where the SE5004L land and its right VCC ring sat inside the keepout at every arc position), T3 left edge y −8.9 (between the left flange and the M3 pads), T4 rear edge x −9.3 (between the rear flange and the B+ pad; the 22 µF pad bulk, which sits across +BATT_IN and GND with no fuse, moved 1.0 mm inboard to 2.1 mm from the edge with its long axes parallel to it, so a depanel crack cannot short the battery). The round-2 T2 on the top edge is dropped: the M4 pads moved left with ESC4 and the pogo USB pads take the rest of that edge (a clip-on adapter needs a clean edge). `sketch_v5.py` checks all three keepouts against every part, pad group and pad (0 fails) and the P2 placement script must keep them as hard checks; `setup_board.py` still writes T1 on the arc and takes the new position at the next P1 re-apply; final positions with the P2 placement and the NextPCB panel EQ |
+| Panel tabs | 3 tabs, 1.2-1.5 mm wide with mouse bites, each with a part keepout on both sides (rule areas `TAB_*`, `setup_board.tab_rect()`: 1.5 mm each way along the edge, 1.3 mm inward from the edge, i.e. 1.0 mm beyond the 0.3 mm edge band; MLCC crack risk): **T1 right edge at y −6.6** (between the PA's VCC ring and the CAM pads; round 4 moved it off the front arc, where the SE5004L land and its right VCC ring sat inside the keepout at every arc position), T3 left edge y −8.9 (between the left flange and the M3 pads), T4 rear edge x −9.3 (between the rear flange and the B+ pad; the 22 µF pad bulk, which sits across CSA+ and GND with no fuse, moved 1.0 mm inboard to 2.1 mm from the edge with its long axes parallel to it, so a depanel crack cannot short the battery). The round-2 T2 on the top edge is dropped: the M4 pads moved left with ESC4 and the pogo USB pads take the rest of that edge (a clip-on adapter needs a clean edge). `sketch_v5.py` checks all three keepouts against every part, pad group and pad (0 fails) and the P2 placement script must keep them as hard checks; `setup_board.py` still writes T1 on the arc and takes the new position at the next P1 re-apply; final positions with the P2 placement and the NextPCB panel EQ |
 | Panel | ≥ 70 x 70 mm with **rail fiducials only** (JLCPCB Standard PCBA minimum for a single design, capability page 2026-10-07); no fiducials in the board file (LINEUP B16: the panel is its own project). The EQ asks NextPCB and JLC whether rail fiducials suffice for 0201 and 0.35 mm pitch; if local fiducials are needed, that is a lineup exception for the owner and their area (about 8-12 mm² per side) is booked |
 | Guides | 25.5 and 26.0 mm frame patterns drawn on `User.Eco1`; front marked on `User.Eco2` |
 
@@ -1609,7 +1609,7 @@ the board):
 | Class | Nets | Track | Clearance | Via | Colour |
 |---|---|---|---|---|---|
 | Default | signals | 0.09 | 0.09 | 0.35/0.20 | - |
-| VBAT | +BATT_IN, +BATT | 0.50 (pours) | 0.15 | 0.40/0.20 | red |
+| VBAT | CSA+, +BATT | 0.50 (pours) | 0.15 | 0.40/0.20 | red |
 | Phase | 12 motor phase nets (in-sheet `PHASE_A/B/C`) and the boost switch node `/POWER/U2_SW` (2.8-3.4 A average, about 4.5 A peak; a short pour from U2 SW to L1, D33) | 0.50 (pours) | 0.15 | 0.40/0.20 | orange |
 | Gate | 24 FET gate nets (in-sheet `A_COM`, `A_PWM`, ...) | 0.15 | 0.10 | 0.35/0.20 | yellow |
 | Power | +5V, +5V_BST, +5V_USB, +5V_HD, +3.3V, +3.3V_VTX, +1.8V_GYRO, +1.1V, VBUS, `/VTX/PA_VCC` (SE5004L VCC, 0.65-0.8 A) | 0.25 (+5V_BST and +5V_HD 0.50 or pours: 1.5-3 A) | 0.09 | 0.35/0.20 | magenta |
@@ -1619,7 +1619,7 @@ the board):
 | GND | GND | 0.20 | 0.09 | 0.40/0.20 | - |
 
 Power net names per the lineup decision and LINEUP A11: +BATT, +5V, +3.3V, +1.8V_GYRO,
-GND, with suffixed rails +BATT_IN, +5V_BST, +5V_USB (the template name; `VBUS`
+GND, with suffixed rails CSA+, +5V_BST, +5V_USB (the template name; `VBUS`
 would fail A11), +5V_HD, +3.3V_VTX, +1.1V (+3.3V_RX is gone: FC and RX share +3.3V,
 D14).
 
@@ -2006,7 +2006,7 @@ RF keepouts:
   to motor pad ≥ 1.2 mm wide on L1 and repeated on L6, joined at the wire-anchor
   holes; solid pad connections (no thermal relief) on FET pads; the P gate leaves
   pin 3 through a via to L6.
-- **+BATT path**: battery pad (`+BATT_IN`) → shunt (Kelvin) → `+BATT` on L6 pour
+- **+BATT path**: battery pad (`CSA+`) → shunt (Kelvin) → `+BATT` on L6 pour
   + L4 plane + L1 pours at the clusters; ≥ 12 power vias at each battery pad; 4
   +BATT vias per phase in the P source land plus the leg-cap via. Size the trunk for 25 A pack, each channel for 12 A
   bursts. Battery-to-shunt corridor in the `SHUNT_CORRIDOR` rule area before

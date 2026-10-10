@@ -683,7 +683,7 @@
 		)
 		(uuid "5fa9655b-38d3-5c7d-8e2e-dd47a2f52774")
 	)
-	(text "TVS + SHUNT\nINA186 CURRENT\n5V BOOST\nUSB OVP\n5V MUX\n3V3 LDO\nCAM 5V FILTER\nO4 HD SWITCH"
+	(text "BATTERY PADS\nTVS + SHUNT\nINA186 CURRENT\n5V BOOST\nUSB OVP\n5V MUX\n3V3 LDO\nCAM 5V FILTER\nO4 HD SWITCH"
 		(exclude_from_sim no)
 		(at 20.32 34.29 0)
 		(effects
@@ -695,7 +695,7 @@
 		)
 		(uuid "5fbe6456-f39b-547a-a74e-f9373bad65f1")
 	)
-	(text "BATTERY\nMOTOR LANDS\nLED / BUZZER\nCAMERA\nHD (O4)\nUSB JST SH"
+	(text "MOTOR LANDS\nLED / BUZZER\nCAMERA\nHD (O4)\nUSB JST SH"
 		(exclude_from_sim no)
 		(at 378.46 34.29 0)
 		(effects
@@ -1897,7 +1897,7 @@
 				)
 				(uuid "888a2bc8-3941-5172-b605-00a6d0223cdf")
 			)
-			(table_cell "+BATT_IN"
+			(table_cell "CSA+"
 				(exclude_from_sim no)
 				(at 17.78 215.9 0)
 				(size 22.86 3.81)
