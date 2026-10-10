@@ -285,3 +285,18 @@ v3 per tile, demand / supply:
 | C5 (pin maps) | `verify/C5/legal.py` reports no violations. GPIO7-10 (VDD_SDIO domain) still to confirm |
 | C6 (plane and via current) | Partial: 46-56 mV at 48 A on v3 geometry for ESC1/ESC2, so the 40 mV target is not met yet |
 | Templates | U13 / U11 under-body sites: check against D96 and the Bosch handling note |
+
+## 18. HDI addendum (D97, 2026-10-10 12:30) - binding over sections 6, 9, 11, 12, 14, 15 where they differ
+
+| Item | Through-via plan (above) | HDI plan (now) |
+|---|---|---|
+| Via set | 0.35 / 0.20 through only | laser micro 0.10 / 0.25 L1-L2, L6-L5 (copper filled, in pad); buried 0.20 / 0.35 L2-L5 (POFV), staggered 0.25 mm from its microvia; through vias for power / phase fields and where useful |
+| Layer change L1 <-> L3 | through via (blocks both surfaces) | microvia in pad + buried via (blocks only F at the pad and L2-L5 at the buried site) |
+| GND / +BATT pads | through via each | microvia in pad into L2 / L5 (GND); +BATT: microvia + buried into L4, or through-via arrays for current |
+| H2 far-side keep-out | 0.30 mm disks around every template site | applies to through vias only; microvias need no far-side clearance; buried sites need clear L2-L5 copper (other buried vias, L3 / L4 tracks, plane antipads) |
+| Escape templates (section 11) | template through-via sites | microvia in each signal pad (or 0.1 mm off the pad end where the pad is narrower than 0.25 mm), buried via staggered 0.25 mm toward free inner space; D96 still holds (never under other-net package metal) |
+| Double-siding | ring-on-ring forbidden | ring-on-ring allowed (microvias do not reach the far side); back-to-back decaps directly under the IC power pins with microvias on both ends are preferred |
+| Placer via term V | 4 mm per cross-side edge | per layer change: about 1 mm micro-only (to L2/L5 GND or a same-side neighbour via L3 with buried), 2 mm micro+buried; through vias 4 mm; the T / B tile and boxed terms drop out for HDI-legal pads |
+| Density target | via-site limited | maximise density (owner: no wasted board space); outline candidates S 26.4 and 25.6; report the smallest outline whose T1 passes |
+| T1 router | loop2 erouter, through vias | the HDI-capable router from scratchpad/p2v3/v4/hdirouter (micro + buried + through); erouter through-only as the lower-bound control |
+| Acceptance | section 15 | same gates with H2 relaxed as above; T3 unchanged: 0 unconnected, 0 DRC errors, parity 0 with the repo project files |
