@@ -286,7 +286,7 @@ v3 per tile, demand / supply:
 | C6 (plane and via current) | Partial: 46-56 mV at 48 A on v3 geometry for ESC1/ESC2, so the 40 mV target is not met yet |
 | Templates | U13 / U11 under-body sites: check against D96 and the Bosch handling note |
 
-## 18. HDI addendum (D97, 2026-10-10 12:30) - binding over sections 6, 9, 11, 12, 14, 15 where they differ
+## 18. HDI option (D97 PENDING the owner) - not binding; the placement follows the through-via sections above. Each trial route also runs an HDI copy of the same placement to measure the difference
 
 | Item | Through-via plan (above) | HDI plan (now) |
 |---|---|---|

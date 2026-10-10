@@ -30,36 +30,9 @@
 # board needs on top of them, from the NextPCB and JLCPCB intersection in spec 8.1. D21: every deliberate
 # break of a conservative rule is a rule named 'D21 <name>' with its reason; nothing is ignored globally.
 
-# Owner decision D97 (HDI): NextPCB 1+4+1 (HDI I), laser microvias L1-L2 and L6-L5 in the 1080 build-up, mechanical
-# buried vias L2-L5 in the core sub-lamination, through vias as before. No mechanical blind vias (another press cycle).
-(rule "HDI 1+4+1: no mechanical blind vias"
-  (constraint disallow blind_via))
-
-# Laser vias span one 1080 layer only (NextPCB laser AR 1:1 max, 0.75:1 recommended); no skip vias.
-(rule "HDI 1+4+1: microvias L1-L2 and L5-L6 only"
-  (constraint disallow micro_via)
-  (condition "!((A.Layer_Top == 'F.Cu' && A.Layer_Bottom == 'In1.Cu') || (A.Layer_Top == 'In4.Cu' && A.Layer_Bottom == 'B.Cu'))"))
-
-# The buried via is drilled through the L2-L5 sub-lamination (about 0.74 mm), resin filled and capped (POFV).
-(rule "HDI 1+4+1: buried vias L2-L5 only"
-  (constraint disallow buried_via)
-  (condition "!(A.Layer_Top == 'In1.Cu' && A.Layer_Bottom == 'In4.Cu')"))
-
-# NextPCB laser 0.075-0.15; 0.10 gives AR 0.77:1 in 0.077 mm 1080 and copper-fills flat for via-in-pad.
-(rule "HDI microvia: laser hole 0.10 to 0.125"
-  (constraint hole_size (min 0.10mm) (max 0.125mm))
-  (condition "A.Via_Type == 'Micro'"))
-
-# NextPCB min pad 8 mil, laser registration +-2 mil: 0.25 land / 0.075 ring (0.30 where room).
-(rule "HDI microvia: land 0.25, ring 0.075"
-  (constraint via_diameter (min 0.25mm))
-  (constraint annular_width (min 0.075mm))
-  (condition "A.Via_Type == 'Micro'"))
-
-# D6 drill for the buried via too (NextPCB min mechanical 0.15); the netclass via size applies (0.35 / 0.40).
-(rule "HDI buried via: mechanical hole 0.20"
-  (constraint hole_size (min 0.20mm) (max 0.25mm))
-  (condition "A.Via_Type == 'Buried'"))
+# Owner rule and spec 8: no microvias, blind or buried vias. Filled and capped via-in-pad is a through via.
+(rule "through vias only"
+  (constraint disallow micro_via blind_via buried_via))
 
 # NextPCB 0.30 between holes of different nets (CAF); JLCPCB 0.20. Same net stays at the 0.20 minimum.
 (rule "hole to hole, different nets 0.30"
@@ -71,12 +44,6 @@
 (rule "D21 same_net_via_array"
   (constraint hole_to_hole (min 0.20mm))
   (condition "A.Net == B.Net && A.Type == 'Via' && B.Type == 'Via'"))
-
-# D21: a staggered microvia lands on the buried via's L2/L5 land, 0.25 mm centre to centre (0.10 mm hole to
-# hole) so the laser hole sits on solid copper, not on the resin fill; both holes share only that copper layer.
-(rule "D21 HDI staggered microvia on a buried via land"
-  (constraint hole_to_hole (min 0.10mm))
-  (condition "A.Net == B.Net && ((A.Via_Type == 'Micro' && B.Via_Type == 'Buried') || (A.Via_Type == 'Buried' && B.Via_Type == 'Micro'))"))
 
 # JLCPCB 0.45 hole to hole between plated pad holes (battery holes, motor wire anchors).
 (rule "PTH pad holes 0.45 apart"
