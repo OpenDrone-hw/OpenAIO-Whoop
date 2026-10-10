@@ -29,7 +29,7 @@ PDF: `hardware/OpenAIO-Whoop-schematic.pdf` (14 pages).
 22 µF 6.3 V X5R 0603 Samsung CL10A226MQ8NRNC (LCSC C59461, `lib:C_0603_1608Metric_W`) instead of the D77
 10 µF X6S 0402 GRM155C80J106ME11D; nets unchanged (pin 3 S2 +BATT to pin 1 S1 GND of each AGM210MAP).
 Generator `p2v3/v4/sch_d108/build_esc.py` (stage and VDD notes) + `scripts/bom_d108.py` (bom_plan: 12 parts,
-esc group, summary 0603 7 -> 19, 0402 30 -> 18, 0201 recounted 144, BOM lines 81 -> 82), then `sch_integrate.py`.
+esc group, summary 0603 7 -> 19, 0402 30 -> 18, 0201 142 unchanged (fitted parts), BOM lines 81 -> 82), then `sch_integrate.py`.
 Checks: ERC 0 errors (the same 2 warnings), check_netlist 7 ok / 0 FAIL, netlist vs HEAD: only the 12 caps'
 value / footprint / MPN / Manufacturer / LCSC differ, 262 nets identical. The board is not synced (placement
 stages swap the 12 footprints, D108).

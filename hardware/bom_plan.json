@@ -7895,7 +7895,7 @@
   },
   "by_package": {
    "0603": 19,
-   "0201": 144,
+   "0201": 142,
    "0402": 18
   },
   "lib_items": 77,
@@ -7947,6 +7947,6 @@
   ],
   "p4fix1": "P4 critique round-1 fixes 2026-10-09 (p2v3/p4/fix1/scripts/bom_fix.py): D77 per-cell 10 uF hot-loop caps C20/C21/C23, C26/C27/C29, C32/C33/C35, C38/C39/C41 (GRM155C80J106ME11D; 22 uF 0603 cell bulk out), C30 and C17 deleted; D78 X1 Abracon ABM8-272-T3; FL1 Johanson 2450FM07D0034T (house part); R67 selector anchor; L1 manufacturer name; U24 / C8-C11 / U5 notes; net PA_BIAS_PWM renamed VTX_AMP_PWM",
   "p4fix4": "P4 critique round-4 fixes 2026-10-10 (p2v3/p4/fix4/scripts/bom_fix4.py): U5 -> TPS22810DRVR WSON-6 (D83); R68 47k; project-lib symbols D_BAS16LD / L_FTC252012 / R_Shunt_Kelvin / SolderPad_01x01 (parity footprint filters)",
-  "d108": "D108 2026-10-10 (p2v3/v4/sch_d108/scripts/bom_d108.py): ESC hot-loop caps C20/C21/C23, C26/C27/C29, C32/C33/C35, C38/C39/C41 from GRM155C80J106ME11D 10 uF X6S 0402 to Samsung CL10A226MQ8NRNC 22 uF 6.3 V X5R 0603 (LCSC C59461, lib:C_0603_1608Metric_W); new BOM line, GRM155C80J106ME11D keeps its other placements; by_package recounted over all parts"
+  "d108": "D108 2026-10-10 (p2v3/v4/sch_d108/scripts/bom_d108.py): ESC hot-loop caps C20/C21/C23, C26/C27/C29, C32/C33/C35, C38/C39/C41 from GRM155C80J106ME11D 10 uF X6S 0402 to Samsung CL10A226MQ8NRNC 22 uF 6.3 V X5R 0603 (LCSC C59461, lib:C_0603_1608Metric_W); new BOM line, GRM155C80J106ME11D keeps its other placements; by_package recounted over fitted parts (D89 verify method, 0201 stays 142: DNP C132/C133 not counted)"
  }
 }
