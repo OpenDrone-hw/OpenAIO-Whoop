@@ -20,7 +20,7 @@ bypass and C94 / C95 crystal loads) and fail 31 of 46 on the current board (open
 | `kicad-cli pcb drc --schematic-parity` | repo board **25** (21 footprint_filters_mismatch from the schematic, now fixed by project-lib copies, + 4 pending the C122 / D1 sync); after a scratch `sync_pcb.py` of the round-4 schematic **0** (ptest in `p2v3/p4/fix4`); the U20 NU / GND shorting_items error clears with that sync, the U5 WSON and C122 0402 lands then need 3 vias moved (FLOORPLAN open item 13) |
 | `hardware/tools/check_footprint.py` R_0402_Selector_3Pad | PASS, 0 WARN (pad 3 paste-free by spec) |
 | bom_plan parity (refs, values, footprints, symbols, MPN, Manufacturer, LCSC, DNP, BOM flag) | 274 of 274 symbols equal (check_netlist N4); LOGO1 is a board-only footprint |
-| Netlist | 271 board parts (H1-H3 are schematic-only); 236 BOM placements, 82 BOM lines; 72 no-connect pins (U20 NU now on GND), 0 auto-named nets |
+| Netlist | 271 board parts (H1-H3 are schematic-only); 236 BOM placements, 81 BOM lines; 72 no-connect pins (U20 NU now on GND), 0 auto-named nets |
 | Board silk (rounds 3 and 4) | kicad-cli DRC on the board: +1 silk_overlap warning (J33 GND label 0.148 mm from U6's tented EP via ring, accepted), no other change; round 4 re-applied the labels to the repo board and 21 route checkpoints / saves (`hardware/tools/silk_pad_labels.py`, `--check` = the promote gate) |
 
 PDF: `hardware/OpenAIO-Whoop-schematic.pdf` (14 pages).
@@ -33,6 +33,7 @@ esc group, summary 0603 7 -> 19, 0402 30 -> 18, 0201 142 unchanged (fitted parts
 Checks: ERC 0 errors (the same 2 warnings), check_netlist 7 ok / 0 FAIL, netlist vs HEAD: only the 12 caps'
 value / footprint / MPN / Manufacturer / LCSC differ, 262 nets identical. The board is not synced (placement
 stages swap the 12 footprints, D108).
+**D108 part update (2026-10-10):** the 12 caps are Murata GRM188C80J226ME15D 22 µF 6.3 V X6S 0603 (105 °C, LCSC C393031, the C7-C11 line; footprint unchanged) instead of the X5R Samsung part, BOM lines 82 -> 81 (`p2v3/v4/sch_d108b`: build_esc.py notes, scripts/bom_d108b.py, sch_integrate.py); ERC 0 errors (same 2 warnings), check_netlist 7 ok / 0 FAIL, netlist vs 19450d7: only the 12 caps' MPN / Manufacturer / LCSC.
 
 ## Sheets
 
