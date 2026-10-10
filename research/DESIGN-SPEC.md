@@ -20,9 +20,11 @@ FLOORPLAN.md and are not restated here.
 orchestrator decisions; where a paragraph below still describes an earlier
 variant, these win:
 
-- **ESC stage (D56, D77):** 12x AGMSEMI AGM210MAP P+N half-bridges (one per
-  phase, the Matrix II stage) with **one 10 µF X6S 0402 hot-loop capacitor per
-  AGM210MAP** from pin 3 S2 (+BATT) to pin 1 S1 (GND) at the cell's lead side
+- **ESC stage (D56, D77, D108):** 12x AGMSEMI AGM210MAP P+N half-bridges (one per
+  phase, the Matrix II stage) with **one 22 µF 6.3 V X5R 0603 hot-loop capacitor per
+  AGM210MAP** (Samsung CL10A226MQ8NRNC, LCSC C59461, about 10 µF at 4.2 V, microvias
+  in both pads; D108 replaces the D77 10 µF X6S 0402 GRM155C80J106ME11D)
+  from pin 3 S2 (+BATT) to pin 1 S1 (GND) at the cell's lead side
   (C20 / C23 / C21 per ESC, x4); the phase-B one is also the EFM8 VDD bulk within
   4 mm of VDD pin 4. The TI CSD25310Q2 + CSD13202Q2 text of §4.3 is the documented
   fallback. Bluejay first power-up `A_X_10_96`, then `A_X_5_96` after V2.
@@ -188,9 +190,9 @@ parts nearest the FET groups and the PA:
 
 | Grade | Parts |
 |---|---|
-| 85 °C (bind the board) | RP2354A (ambient), BMI270, SX1281, Puya PY25Q128HA-DFH-IR (−40..85, D66), **ESP32-PICO-V3** (−40..85 ambient, set by its in-package flash; V, Espressif PICO series datasheet v1.3; D55, no placement halo, D69), SE5004L (case), RTC6705 (Tj −40..85, so case ≤ about 80 °C), Abracon ABM8-272-T3 12 MHz crystal (−40..85, D78) and Yajingxin 8 MHz crystal (−40..85), YXC 52 MHz TCXO (−30..85), Walsin BPF and Johanson 2450FM07D0034T front-end filter (−40..85, D80), XINGLIGHT LEDs (−40..85; RGB −20..85), JST BM04B-SRSS-TB USB and SM03B-SURS-TF camera plugs (−25..85, S, JST catalogue), X5R capacitors (no zone rule under D69; V4 logs the hottest) |
+| 85 °C (bind the board) | RP2354A (ambient), BMI270, SX1281, Puya PY25Q128HA-DFH-IR (−40..85, D66), **ESP32-PICO-V3** (−40..85 ambient, set by its in-package flash; V, Espressif PICO series datasheet v1.3; D55, no placement halo, D69), SE5004L (case), RTC6705 (Tj −40..85, so case ≤ about 80 °C), Abracon ABM8-272-T3 12 MHz crystal (−40..85, D78) and Yajingxin 8 MHz crystal (−40..85), YXC 52 MHz TCXO (−30..85), Walsin BPF and Johanson 2450FM07D0034T front-end filter (−40..85, D80), XINGLIGHT LEDs (−40..85; RGB −20..85), JST BM04B-SRSS-TB USB and SM03B-SURS-TF camera plugs (−25..85, S, JST catalogue), X5R capacitors (no zone rule under D69; V4 logs the hottest), including the 12 ESC hot-loop caps Samsung CL10A226MQ8NRNC (X5R −55..85 °C at the FET leads: D108 owner exception to the X6S rule below; V4 logs them) |
 | 90 °C | Hirose U.FL |
-| ≥ 105 °C | X6S capacitors in every ESC quarter and at the PA (Murata GRM033C81E104KE14D, GRM033C81A105ME05D, GRM188C80J226ME15D, GRM155C80J106ME11D; −55..105 °C, V/S maker data via distributors; D52 BR-18 moves every 100 nF to the X6S GRM033C81E104KE14D and BR-20 retires GRM155C81A225KE11D); X7R 10 nF GRM033R71A103KA01D (BR-19, −55..125); TPS2116 and TPS22810 (TA −40..105, V); EFM8BB51 I grade, TPS61022 and the LDOs (TJ 125); SN74LVC1G3157, TLV7031, INA186 (125); FETs, BC857BM (S), diodes (150); resistors, NTC, ferrite (125-155) |
+| ≥ 105 °C | X6S capacitors in every ESC quarter (except the D108 hot-loop caps, X5R, row above) and at the PA (Murata GRM033C81E104KE14D, GRM033C81A105ME05D, GRM188C80J226ME15D, GRM155C80J106ME11D; −55..105 °C, V/S maker data via distributors; D52 BR-18 moves every 100 nF to the X6S GRM033C81E104KE14D and BR-20 retires GRM155C81A225KE11D); X7R 10 nF GRM033R71A103KA01D (BR-19, −55..125); TPS2116 and TPS22810 (TA −40..105, V); EFM8BB51 I grade, TPS61022 and the LDOs (TJ 125); SN74LVC1G3157, TLV7031, INA186 (125); FETs, BC857BM (S), diodes (150); resistors, NTC, ferrite (125-155) |
 
 The TOGNJING 12 MHz crystal of the house FC sheet is rated −20..70 °C (V,
 LCSC C37635340) and is replaced (§4.5). The BR-01 fallback parts (ESP32-D0WD-V3,
@@ -210,10 +212,16 @@ replaced by the Murata/Samsung simulator curves in P3):
 | Part | Use | At | Effective each |
 |---|---|---|---|
 | CL10A226MO7JZNC 22 µF 16 V 0603 X5R | pad bulk x2 | 4.35 V | about 9-13 µF |
-| GRM188C80J226ME15D 22 µF 6.3 V 0603 X6S | boost Cin x1 (the 22 µF ESC cell bulk of D52 became three 10 µF 0402 per ESC, D77) | 4.35 V | about 7-10 µF |
+| GRM188C80J226ME15D 22 µF 6.3 V 0603 X6S | boost Cin x1 (the 22 µF ESC cell bulk of D52 became three 10 µF 0402 per ESC, D77; 22 µF X5R 0603 each since D108, row below) | 4.35 V | about 7-10 µF |
 | GRM188C80J226ME15D | boost Cout x4 (D15) | 5.15 V | about 5-7 µF (20-28 µF for four) |
-| GRM155C80J106ME11D 10 µF 6.3 V 0402 X6S | ESC hot-loop caps x12 (D77: one per AGM210MAP, pin 3 to pin 1 at the lead side; the phase-B one per ESC is also the EFM8 VDD bulk within 4 mm of VDD pin 4); the ESC3-only C30 is deleted | 4.35-5.25 V | about 2.6-2.8 µF at 4.2 V (Murata curve: 3.5 µF at 3.3 V, 2.0 µF at 5 V; EFM8 datasheet asks 1 µF) |
+| CL10A226MQ8NRNC 22 µF 6.3 V 0603 X5R (Samsung, LCSC C59461; D108) | ESC hot-loop caps x12 (D77: one per AGM210MAP, pin 3 to pin 1 at the lead side; the phase-B one per ESC is also the EFM8 VDD bulk within 4 mm of VDD pin 4); the ESC3-only C30 is deleted; D108 replaces the 10 µF X6S 0402 GRM155C80J106ME11D (about 2.6-2.8 µF at 4.2 V, Murata curve) | 4.35-5.25 V | about 10 µF at 4.2 V (D108, I; Samsung curve to confirm at P5; EFM8 datasheet asks 1 µF) |
 | GRM033C81A105ME05D 1 µF 10 V 0201 X6S | round-2 EFM8 VDD part, now fallback | 4.35 V | about 0.4-0.6 µF |
+
+D108 (2026-10-10): the twelve hot-loop caps carry about 10 µF each at 4.2 V instead
+of about 2.7 µF, so the +BATT bus gains about 85 µF effective (12 x about 7 µF, I)
+on top of the board total quoted above. Hot plug (I): the damping ratio grows with
+the square root of the bus capacitance (less overshoot) while the inrush peak grows
+by the same factor; V3c re-measures both with the 0603 caps fitted.
 
 D52 BR-05 deletes the 2.2 µF EFM8 VDD caps of ESC1, ESC2 and ESC4 (their 22 µF
 local bulk moves next to VDD pin 4, the 100 nF stays at the pin): the bus loses
@@ -501,7 +509,8 @@ TI fallback).** Per phase one AGMSEMI **AGM210MAP** (PDFN 3.3x3.3, DS VER2.73 p1
 top view): 1 S1 N source = GND, 2 G1 N gate = x_PWM, 3 S2 P source = +BATT, 4 G2
 P gate = x_COM, 5/6 + EP D2 and 7/8 + EP D1 = PHASE_x (the two drain pads joined
 only by the phase island). Gates straight from the EFM8 (no gate resistors).
-**Hot loop:** one 10 µF X6S 0402 (GRM155C80J106ME11D) per AGM210MAP from pin 3
+**Hot loop:** one 22 µF 6.3 V X5R 0603 (Samsung CL10A226MQ8NRNC, D108; was the
+D77 10 µF X6S 0402 GRM155C80J106ME11D) per AGM210MAP from pin 3
 to pin 1 at the cell's lead side with filled via-in-pad on both pads, so the
 commutation loop (S2, P die, phase, N die, S1) closes at the pins and the edge
 current stays out of the In3 / L4 planes near the gyro and VTX (D33; Matrix II:
@@ -720,12 +729,12 @@ continuous / 15 A burst (V, BetaFPV) and a 300 mAh 75C pack 22.5 A (marketing).
 
 Per channel: VDD straight to its own cluster's +BATT copper (no series R),
 100 nF (GRM033C81E104KE14D, X6S) at the pin, returned to the ESC's GND, and the
-datasheet's 1 µF from the phase-B hot-loop capacitor (D77): one Murata
-GRM155C80J106ME11D 10 µF X6S 0402 per AGM210MAP from pin 3 (+BATT) to pin 1 (GND)
+datasheet's 1 µF from the phase-B hot-loop capacitor (D77, D108): one Samsung
+CL10A226MQ8NRNC 22 µF 6.3 V X5R 0603 per AGM210MAP from pin 3 (+BATT) to pin 1 (GND)
 at the cell's lead side, and the phase-B one per ESC (C23 / C29 / C35 / C41) is
 the EFM8 VDD bulk within 4 mm of VDD pin 4 through the +BATT plane (BR-05 as
-amended, P5 condition in `tools/check_p5_conditions.py`); about 2.6-2.8 µF
-effective at 4.2 V (Murata DC-bias curve), which meets the datasheet's "1 µF and
+amended, P5 condition in `tools/check_p5_conditions.py`); about 10 µF
+effective at 4.2 V (D108, I; the D77 0402 gave 2.6-2.8 µF), which meets the datasheet's "1 µF and
 0.1 µF bypass capacitors required". The ESC3-only C30 is deleted (D77; the gyro
 5 mm rule is a D69 preference). The round-2 0201 1 µF part gives only 0.4-0.6 µF
 at bias and is the fallback only with a V3c ripple check at the pin. The off-state P-gate level then tracks the P sources;
@@ -2205,7 +2214,7 @@ pads with a clip-on adapter (D18); digital VTX → O4 Lite pads (D13).
 | O14 | Area gate | **decided (D23)**: passed on the real-placement evidence of the floorplan preview; P2 places every part and closes the via-site count. The budget (v6: 100.5 % / 92.5 % like-for-like, 107.2 % / 100.2 % corrected) and the levers of §9.3 stay P2 tools |
 | O15 | 0.35 mm-pitch leadless parts: round 4 had the ESP32-D0WD-V3 (QFN-48), 74LVC1T45GS (SOT1202) and 2x BC847QASZ (SOT1216); NextPCB publishes 0.38 mm for fine-pitch ICs and 0.25 mm for BGA/LGA/QFN without saying which covers leadless parts. **D53:** BR-01 to BR-04 remove all four (ESP32-PICO-V3 at 0.5 mm, PNP drive stage, AP1606 HD gate, direct LED drive), so the EQ and the ganged-mask rule (D38, D43) are dropped once they land | **closed by D53** if the BR-01 P2 trial passes; on the BR-01 fallback a NextPCB EQ for the ESP32-D0WD-V3 alone (and the BC847QASZ on the PS-12 fallback), before P3 |
 | O16 | Plated Ø 3.5 holes with a GND annulus (Matrix practice) | P2 with O2 and the ear-survival result of V12 |
-| O17 | NextPCB BOM quote by exact MPN on the full BOM (HQ Online / Digi-Key stock per line, incl. TPS22810DRVR and the D52 lines: ESP32-PICO-V3 (HQ Online lists only the V3-02), SX1281IMLTRT, BC857BM,315 and RC0201FR-0733KL (stock not checked), GRM155C80J106ME11D (8 parts per board; LCSC only, S); TPS61022RWUR at 0 on LCSC is a watch item), EFM8 C2 and ESP32 programming service | **P0 close** |
+| O17 | NextPCB BOM quote by exact MPN on the full BOM (HQ Online / Digi-Key stock per line, incl. TPS22810DRVR and the D52 lines: ESP32-PICO-V3 (HQ Online lists only the V3-02), SX1281IMLTRT, BC857BM,315 and RC0201FR-0733KL (stock not checked), GRM155C80J106ME11D (7 parts per board since D108; LCSC only, S), CL10A226MQ8NRNC (12 parts, D108, LCSC C59461); TPS61022RWUR at 0 on LCSC is a watch item), EFM8 C2 and ESP32 programming service | **P0 close** |
 | O18 | DJI O4 Wide (BetaFPV's 2026 whoops): input range and current not checked | before the README claims it |
 | O19 | Decisions proposed in rounds 3-4 (TPS2116 mux, no Wi-Fi radiator, rail consolidation, LED pad sharing, floorplan moves, Bluejay start build, VTX defaults and ceiling, A2 sheet-name exception, O4 EN network, 3225 8 MHz crystal, corrected ESC cell, firmware build, leadless 0.35 mm parts, the six named D21 rules) | **logged** as D24-D44 in DECISIONS.md (round 4) |
 | O20 | User UART pad group (TP0 RP0 5V GND) has no compliant top site at real size (sketch v5 free-site search; §10): (a) bottom (+20 mm² bottom; the LED strip then needs its own GND), (b) left edge below M3 as in the floorplan preview with the antenna-root spacing cut from 6 to about 3.6 mm and V7 measuring it with wires fitted, (c) owner lever: shared HD/user GND pad | P2 (with the owner if (c)) |
@@ -2238,7 +2247,7 @@ round 3, 2026-10-10): 82 BOM lines, 236 placements.
 | Semtech SX1281IMLTRT | 1 | HQ Online stock was below the run quantity (2026-10-09) | quote confirms |
 | Standard passives without an LCSC number recorded: BLM03PX121SN1D, GRM0335C1H101JA01D, GRM0335C1H330JA01D, RC0201FR-07150RL, RC0201FR-0718KL, RC0201FR-071K2L, RC0201FR-071KL, RC0201FR-07270RL, RC0201FR-0727K4L, RC0201FR-0727RL, RC0201FR-07287RL, RC0201FR-0733KL, RC0201FR-0747KL, RC0201FR-07510KL, RC0201FR-07560KL, RC0201FR-076K2L, RC0201FR-07820RL, RC0201JR-070RL | per BOM | Murata / Yageo catalogue parts | quote confirms the exact MPN (Yageo RC0201FR-07 of the same value is the same part) |
 | DNP lines (not assembled: plug-ready motor headers, Wi-Fi pi-match shunts): Molex 53047-0310 (4 DNP); Murata GRM0335C1H1R2BA01D (2 DNP) | 0 | - | - |
-| Everything else: 2450FM07D0034T, ABM8-272-T3, AOTA-B201610S3R3-101-T, AP1606, BAS16LD,315, BC857BM,315, BM04B-SRSS-TB(LF)(SN), BMI270, CC0201JRX7R9BB471, CL05A105KA5NQNC, CL05A475MP5NRNC, CL10A226MO7JZNC, FTC252012SR68MBCA, GRM0335C1H100JA01D, GRM0335C1H150JA01D, GRM033C81E104KE14D, GRM033R60J474KE90D, GRM033R61A105ME44D, GRM033R71A103KA01D, GRM033R71H102KA12D, GRM155C80J106ME11D, GRM188C80J226ME15D, HCS1206FTL500, INA186A3IDCKR, LP5912-3.3DRVR, LQP03TN4N7H02D, NCP03XH103F05RL, OW7EL89CENUNFAYLC-52M, RC0201FR-07100KL, RC0201FR-0710KL, RC0201FR-0710RL, RC0201FR-07680RL, RC0201FR-0775RL, RC0402JR-070RL, RFBPF1608060K98Q1C, RTT012401FTH, SDM02U30LP3-7B, SM03B-SURS-TF(LF)(SN), SMF5.0A, SN74LVC1G3157DTBR, TAXM8M4RDBCCT2T, TLV7031DPWR, TPD2EUSB30DRTR, TPS2116DRLR, TPS61022RWUR, TPS7A2018PDQNRM3, U.FL-R-SMT-1(80), XL-1005UBC, XL-1005UGC, XL-1010RGBC-2812B | per BOM | LCSC-listed, standard | turnkey; the quote confirms each MPN |
+| Everything else: 2450FM07D0034T, ABM8-272-T3, AOTA-B201610S3R3-101-T, AP1606, BAS16LD,315, BC857BM,315, BM04B-SRSS-TB(LF)(SN), BMI270, CC0201JRX7R9BB471, CL05A105KA5NQNC, CL05A475MP5NRNC, CL10A226MO7JZNC, CL10A226MQ8NRNC (D108), FTC252012SR68MBCA, GRM0335C1H100JA01D, GRM0335C1H150JA01D, GRM033C81E104KE14D, GRM033R60J474KE90D, GRM033R61A105ME44D, GRM033R71A103KA01D, GRM033R71H102KA12D, GRM155C80J106ME11D, GRM188C80J226ME15D, HCS1206FTL500, INA186A3IDCKR, LP5912-3.3DRVR, LQP03TN4N7H02D, NCP03XH103F05RL, OW7EL89CENUNFAYLC-52M, RC0201FR-07100KL, RC0201FR-0710KL, RC0201FR-0710RL, RC0201FR-07680RL, RC0201FR-0775RL, RC0402JR-070RL, RFBPF1608060K98Q1C, RTT012401FTH, SDM02U30LP3-7B, SM03B-SURS-TF(LF)(SN), SMF5.0A, SN74LVC1G3157DTBR, TAXM8M4RDBCCT2T, TLV7031DPWR, TPD2EUSB30DRTR, TPS2116DRLR, TPS61022RWUR, TPS7A2018PDQNRM3, U.FL-R-SMT-1(80), XL-1005UBC, XL-1005UGC, XL-1010RGBC-2812B | per BOM | LCSC-listed, standard | turnkey; the quote confirms each MPN |
 
 NextPCB EQ list (one submission): filled and capped via-in-pad (Type VII, through vias only) in
 0201 / QFN / LGA / AGM210MAP pads (D34, §8.3); the min track/space and the silk minimum at the
@@ -2310,7 +2319,7 @@ D52-D54) and the gated items BR-02 (P4-5), BR-17 and BR-20.
 | P4-11 | FT pads and power-up sequence: DShot and UART pads driven before IOVDD, EFM8 pull-ups against 3.63 V (PINMAP F16) | r3 round-2 carry-over | P4 | sheet note with the worst-case pad voltage; V9 scope at power-up |
 | P4-12 | +3V3 and +3V3_VTX output capacitance against the LP5912 COUT maximum of 10 µF (BOM-REDUCTION §7 item 1, §6 items 9 and 14): after D52 +3V3 holds about 19 µF nominal (9-10 µF effective, I) and +3V3_VTX about 12.3 µF nominal (5-6 µF effective, I) | D52 (§7) | P4 | sum each rail's effective capacitance at 3.3 V from the maker DC-bias curves with tolerance: inside 0.7-10 µF; next levers PS-O6 (delete the 1 µF at the SX1281), a TLV75533PDRVR in place of the +3V3 LP5912, or dropping the +3V3_VTX 1 µF when its 10 µF sits at the LDO |
 | P4-13 | X5R parts still inside the H1/H3 zones after D52: C5, C14, C68, C56, C57, C105, C87 and C2 (C80 left with BR-01) (§7 item 2) | D52 (§7) | P4 (P3 parts, P5 positions) | each gets an X6S / X7R part (P3) or a position outside the zone (P5); one 1 µF X6S 0201 (GRM033C81A105ME05D, P3 confirms) for the whole 1 µF line keeps the line count; C2 moves ≥ 2 mm from its FET unless PE-8 lands after V3c |
-| P4-14 | Orderability of the D52 lines (§7 item 3): GRM155C80J106ME11D now carries 8 parts (LCSC C237279, S; no Digi-Key listing); BC857BM,315 and RC0201FR-0733KL stock not checked; HQ Online lists only the ESP32-PICO-V3-02; TPS61022RWUR 0 at LCSC | D52 (§7) | P4 (with O17) | stock per line at NextPCB channels before the BOM freeze; a second source or the consigned list for each line that fails the gate; the PICO-V3-02 confirmed as the alternate for this pin use (pins 28/29 unused) |
+| P4-14 | Orderability of the D52 lines (§7 item 3): GRM155C80J106ME11D now carries 7 parts (D108 moved the 12 ESC hot-loop caps to CL10A226MQ8NRNC; LCSC C237279, S; no Digi-Key listing); BC857BM,315 and RC0201FR-0733KL stock not checked; HQ Online lists only the ESP32-PICO-V3-02; TPS61022RWUR 0 at LCSC | D52 (§7) | P4 (with O17) | stock per line at NextPCB channels before the BOM freeze; a second source or the consigned list for each line that fails the gate; the PICO-V3-02 confirmed as the alternate for this pin use (pins 28/29 unused) |
 | P4-15 | RX RGB LED XL-1010RGBC-2812B on +3V3, below its 3.5-5.5 V supply range (inherited from OpenRX-Lite-UFL; §7 item 4) | D52 (§7) | P4 | decide and record in the RX sheet note: keep on +3V3 with a datasheet or bench check of data and colour at 3.3 V, move it to +5V with a data level it accepts, or change the part |
 | P4-16 | RTC6705 supply details (§7 item 5, §4.8): pin 40 (LDD2V5) without the reference's 51 Ω + 1 µF filter; the 100 pF (C103) at PAVDD/BUFVDD (pins 31/32); REG1D8 (pin 26) without a capacitor and pin 17 open as decided (BR-15, BR-16) | D52 (§7) | P4 | the drawn sheet against OpenOSD-X v1.01 pin by pin for pins 17, 23, 26, 31, 32 and 40; V5 video SNR and no 6.5 MHz spur confirm |
 | P4-17 | Placement conditions of the D52 set, carried as sheet notes for P5 (§7 item 8): BR-01 P2 trial; BR-05 0603 sites ≤ 3 mm from EFM8 VDD; BR-08 the RP2354A pin-53/54 cap ≤ 1 mm from pin 54 and the pin-44/45 cap at pin 44; BR-09 LDO orientation (OUT toward BMI270 pin 8); BR-13 one cap between the OSD switch and the comparator; BR-14 one CIN between the two LP5912 IN pins; BR-03 the LP5907 CIN C122 is CL05A475MP5NRNC at U22 IN (applied in the P4 critique round 3, +0.3 mm² top; P5 condition: same side, ≤ 1.5 mm) | D52 (§7) | P4 (sheet notes); P5 places | every condition is a sheet note next to its part; the P5 check script lists each with its measured distance |
