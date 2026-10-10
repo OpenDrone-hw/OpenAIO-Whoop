@@ -1,0 +1,54 @@
+{
+ "footprint": "lib:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_Dense",
+ "source": "OpenDrone:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B",
+ "part": "XINGLIGHT XL-1010RGBC-WS2812B",
+ "datasheet": "${OPENDRONE_LIB}/datasheet/XL-1010RGBC-WS2812B.pdf p11 'Outline Dimension' (1.0 x 1.0, top view 1 DOUT top-left, 2 VDD top-right, 3 GND bottom-left, 4 DI bottom-right) and 'Recommended Soldering Pattern' (0.45 pads, 0.4 gaps)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.375,
+   "y": -0.375,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.375,
+   "y": -0.375,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -0.375,
+   "y": 0.375,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": 0.375,
+   "y": 0.375,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 1.0,
+  "h": 1.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "recommended pattern with the outer edges trimmed 0.10 (inner gap 0.40 kept)",
+ "dense": "budget envelope WS1010 1.1 x 1.1 vs recommended 1.3 x 1.3: pads 0.35 at +-0.375 (outer edge 0.55, 0.05 past the body); the corner terminals (0.35 gaps, p11 bottom view) stay covered within 0.025 at the inner edge",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true
+ }
+}

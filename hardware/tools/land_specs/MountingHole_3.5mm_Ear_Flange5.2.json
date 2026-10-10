@@ -1,0 +1,45 @@
+{
+ "datasheet": "/home/user/OpenAIO-Whoop/research/DESIGN-SPEC.md \u00a71 'Ears and holes' (\u00d8 3.5 on a 25.75 mm square, ring OD 4.8 = ear), \u00a77 outline table (holes, \u00d8 5.2 grommet flange part keepout both sides), O2/O16; DRU 'NPTH at least 0.50'",
+ "derivation": "non-plated hole \u00d8 3.50 as an NPTH pad (no copper; KiCad mounting-hole form), F.Fab hole outline as body, F.Fab \u00d8 5.2 circle for the flange, footprint rule area \u00d8 5.2 on F.Cu + B.Cu keeping other footprints out (same as the board's MOUNT_* areas), courtyard = hole + 0.10 on both sides (the flange keepout is the rule area, not the courtyard). The P1 board cuts the holes as Edge.Cuts circles: P2 keeps either those or this pad, never both (REPORT). Plated GND-annulus variant (O16): annulus OD <= 4.4 (ear OD 4.8 - 2 x 0.20 copper-to-edge)",
+ "pads": [
+  {
+   "number": "",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 3.5,
+   "h": 3.5,
+   "shape": "circle"
+  }
+ ],
+ "holes": [
+  {
+   "number": "",
+   "x": 0.0,
+   "y": 0.0,
+   "drill": 3.5,
+   "plated": false
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 3.5,
+  "h": 3.5,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": null,
+ "attrs": [
+  "exclude_from_pos_files",
+  "exclude_from_bom"
+ ],
+ "b_courtyard": "same",
+ "flange_d": 5.2,
+ "footprint": "lib:MountingHole_3.5mm_Ear_Flange5.2",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "staged_from": "p23/staging/io_pads/landspecs/MountingHole_3.5mm_Ear_Flange5.2.json"
+}

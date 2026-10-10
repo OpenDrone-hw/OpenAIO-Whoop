@@ -1,0 +1,150 @@
+{
+ "footprint": "lib:TI_SON-6_2x2mm_DQK_CSD13202Q2",
+ "part": "CSD13202Q2 (Q5-Q7, Q11-Q13, Q17-Q19, Q23-Q25), LCSC C187839",
+ "datasheet": "TI CSD13202Q2 SLPS313A (Jan 2018, https://www.ti.com/lit/ds/symlink/csd13202q2.pdf; local scratchpad/study-1-2s/dl/ds/csd13202q2.pdf): pinout p1 'Top View' (D = 1, 2, 5, 6 + pad 8, G = 3, S = 4 + pad 7), package p8 (7.1, pad 8 1 x 0.95, pad 7 0.75 x 0.3), 7.1.1 Recommended PCB Pattern p9 (NSMD, mask 0.05 max all around), 7.1.2 Recommended Stencil Pattern p10",
+ "derivation": "Merged-drain land (DESIGN-SPEC 4.3, EQ): pad 8 copper = the TI pad 8 (1.00 x 0.95 at y -0.325) widened to the pin toes (x +-1.20), so it joins drain pins 1, 2, 5, 6 (same y span -0.80..+0.15); copper only, the solder-mask openings stay the TI lands (pins 1:1 + 1.00 x 0.95 aperture), so solder wets only the TI land. 8 phase vias 0.35/0.20 (D6, Type VII) as PTH heatsink pads numbered 8: 2 x 2 at the 0.40 minimum pitch centred in pad 8, plus one centred in each drain pin pad 1, 2, 5, 6. Paste per the TI stencil (pad 8 0.90 x 0.86, pad 7 0.70 x 0.29, pins 1:1).",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.975,
+   "y": -0.65,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -0.975,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -0.975,
+   "y": 0.65,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": 0.975,
+   "y": 0.65,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 0.975,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 0.975,
+   "y": -0.65,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": 0.095,
+   "y": 0.65,
+   "w": 0.75,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": 0,
+   "y": -0.325,
+   "w": 2.4,
+   "h": 0.95,
+   "shape": "rect"
+  },
+  {
+   "number": "8",
+   "x": -0.2,
+   "y": -0.525,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  },
+  {
+   "number": "8",
+   "x": 0.2,
+   "y": -0.525,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  },
+  {
+   "number": "8",
+   "x": -0.2,
+   "y": -0.125,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  },
+  {
+   "number": "8",
+   "x": 0.2,
+   "y": -0.125,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  },
+  {
+   "number": "8",
+   "x": -0.975,
+   "y": -0.65,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  },
+  {
+   "number": "8",
+   "x": 0.975,
+   "y": -0.65,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  },
+  {
+   "number": "8",
+   "x": -0.975,
+   "y": 0.0,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  },
+  {
+   "number": "8",
+   "x": 0.975,
+   "y": 0.0,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  }
+ ],
+ "removed_nc": [],
+ "exposed_note": "auto-detected (>= 0.5 mm2): the 8 via pads share number 8 with the drain land and must not count as exposed pads",
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8,
+  "min_windows": 2
+ },
+ "body": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/esc/landspecs/TI_SON-6_2x2mm_DQK_CSD13202Q2.json"
+}

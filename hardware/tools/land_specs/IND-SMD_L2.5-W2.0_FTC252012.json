@@ -1,0 +1,34 @@
+{
+ "footprint": "lib:IND-SMD_L2.5-W2.0_FTC252012",
+ "part": "FTC252012SR68MBCA (LCSC C5832369), L1",
+ "datasheet": "cjiang FTC series Specification for Approval (LCSC C5832369 PDF, 61 p.) [/tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/power/dl/ftc252012.pdf; https://datasheet.lcsc.com/datasheet/pdf/77df80da131e4870f452feed30b2f415.pdf?productCode=C5832369]: p5 section 3 Shape and Dimensions drawing (L, G, W, E, T; land A overall, B gap, C height), p6 table row FTC252012S: L 2.5+-0.2, G 0.8 typ, W 2.0+-0.2, E 0.85+-0.2, T 1.20 max, land A 2.60, B 0.70, C 2.10 (typ)",
+ "derivation": "Land per pad (A - B) / 2 = 0.95 x C 2.10, centres +-(B/2 + 0.475) = +-0.825.",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.825,
+   "y": 0.0,
+   "w": 0.95,
+   "h": 2.1,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.825,
+   "y": 0.0,
+   "w": 0.95,
+   "h": 2.1,
+   "shape": "rect"
+  }
+ ],
+ "removed_nc": [],
+ "body": {
+  "w": 2.5,
+  "h": 2.0,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/power/landspecs/IND-SMD_L2.5-W2.0_FTC252012.json"
+}

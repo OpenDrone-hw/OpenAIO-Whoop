@@ -1,0 +1,69 @@
+{
+ "footprint": "lib:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN",
+ "datasheet": "JST SH connector catalogue 'eSH' (LCSC copy https://datasheet.lcsc.com/datasheet/pdf/40c649e22fa9bda892cfec952005fd51.pdf, sha256 27aaa74d..., same drawings as hardware/KiCad-Library/datasheet/JST-SH-SR-Series.pdf): p1 PC board layout, SMT side entry type; p2 shrouded header table (SM04B-SRSS-TB: A 3.0, B 6.0) and side-entry drawing (depth 4.25, height 2.9, tails 0.7)",
+ "derivation": "lands identical to OpenDrone:CONN-SMD_4P-P1.00_SM04B-SRSS-TB-LF-SN (signal y -1.94, tabs +1.94; JST gives +-1.9375); mating face toward +y (tab side); pin 1 at -x seen from the mating face = JST circuit No.1; body 6.0 x 4.25 from 0.2 inside the tab front edge; the mated plug sticks out 2.0 beyond the body front (keep-out, not courtyard)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.5,
+   "y": -1.9375,
+   "w": 0.6,
+   "h": 1.55,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -0.5,
+   "y": -1.9375,
+   "w": 0.6,
+   "h": 1.55,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.5,
+   "y": -1.9375,
+   "w": 0.6,
+   "h": 1.55,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": 1.5,
+   "y": -1.9375,
+   "w": 0.6,
+   "h": 1.55,
+   "shape": "rect"
+  },
+  {
+   "number": "5",
+   "x": 2.8,
+   "y": 1.9375,
+   "w": 1.2,
+   "h": 1.8,
+   "shape": "rect"
+  },
+  {
+   "number": "6",
+   "x": -2.8,
+   "y": 1.9375,
+   "w": 1.2,
+   "h": 1.8,
+   "shape": "rect"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 1.0
+ },
+ "body": {
+  "w": 6.0,
+  "h": 4.25,
+  "x": 0.0,
+  "y": 0.5125
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top"
+}

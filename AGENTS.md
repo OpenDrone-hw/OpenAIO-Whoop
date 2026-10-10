@@ -1,11 +1,12 @@
 # OpenAIO-Whoop
 
 All-in-one board for 1S whoops, the 1S sibling of
-[OpenAIO](https://github.com/OpenDrone-hw/OpenAIO). No schematic or layout
-exists: `hardware/` holds only the pinned `KiCad-Library` submodule. Product
-intent, targets, constraints, prior art and the open design questions are in
-[README.md](README.md). They are targets, not specifications; do not restate
-them here and do not describe the board as designed.
+[OpenAIO](https://github.com/OpenDrone-hw/OpenAIO). `hardware/` holds the
+KiCad project, still empty as created from hardware-template, and the pinned
+`KiCad-Library` submodule. Product intent, targets, constraints, prior art and
+the open design questions are in [README.md](README.md). They are targets, not
+specifications; do not restate them here and do not describe the board as
+designed.
 
 ## Repo
 
@@ -13,18 +14,35 @@ them here and do not describe the board as designed.
 |---|---|
 | Status | See the `status-*` topic on the repo. Never written here. |
 | Designed in | KiCad 10 |
-| KiCad project | None. A project starts from [hardware-template](https://github.com/OpenDrone-hw/hardware-template) and lands in `hardware/`. |
+| KiCad project | `hardware/OpenAIO-Whoop.kicad_pro` |
 | Shared library | `hardware/KiCad-Library/`, submodule of [OpenDrone-hw/KiCad-Library](https://github.com/OpenDrone-hw/KiCad-Library), nickname `OpenDrone`; 3D models and exact component datasheets resolve through the project text variable `OPENDRONE_LIB` |
 | License | CERN-OHL-S-2.0 |
 
 ## Environment
 
-There is no schematic or board to check yet. Once the project exists, the
-ERC, DRC and netlist commands are the template's, on the `.kicad_sch` and
-`.kicad_pcb` in `hardware/`. On macOS `kicad-cli` is at
-`/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`; `KPY` is KiCad's
-bundled Python,
+```sh
+# schematic and board checks
+kicad-cli sch erc hardware/OpenAIO-Whoop.kicad_sch
+kicad-cli pcb drc --schematic-parity --refill-zones hardware/OpenAIO-Whoop.kicad_pcb
+
+# netlist, for scripted analysis
+kicad-cli sch export netlist --format kicadsexpr -o /tmp/OpenAIO-Whoop.net hardware/OpenAIO-Whoop.kicad_sch
+
+# board setup report (layers, stackup, rules, presets, net classes, outline, holes)
+$KPY hardware/tools/check_board_setup.py [--spec <spec.json>]
+```
+
+On macOS `kicad-cli` is at
+`/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`, and `pcbnew` imports
+only under KiCad's bundled Python, `KPY`:
 `/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3`.
+On Linux, `bash hardware/tools/setup-agent-env.sh` installs KiCad 10 with
+`kicad-cli` on `PATH`; `KPY` is `/usr/bin/python3.12`, and
+`/opt/kicad-agent-venv/bin/python` is the same with kicad-skip added.
+Reusable scripts for renders, STEP export, and packaging art come from Incutec
+hardware tooling. The OpenDrone release standard is
+[RELEASES.md](https://github.com/OpenDrone-hw/.github/blob/main/RELEASES.md).
+Board-specific scripts, where a board has any, live in `hardware/tools/`.
 
 ## Rules
 
@@ -58,7 +76,7 @@ Identical in every OpenDrone board repo. Do not edit here; edit the template.
 Board-specific paths are in Environment above. `KPY` is KiCad's bundled
 Python named there.
 
-- Start the design: only on request. Create the KiCad project from hardware-template in `hardware/`, then replace the Environment section above with the template's commands.
+- Check the design: run the ERC and DRC commands in Environment before every pull request.
 - Add a part: place it from the `OpenDrone` library if `hardware/KiCad-Library/PARTS-USED.md` lists it; otherwise import it into `lib` with `$KPY <hardware-tooling>/hardware/kicad/import_part.py` (read `--help` first), KiCad closed.
 - Update the shared library: `git submodule update --remote hardware/KiCad-Library`, commit as its own reviewed change; run DRC once a board exists.
 - Answer a design question: the open ones are listed in README "Design questions". Resolve one only as part of requested design work, then move the answer into README Constraints or Specifications.

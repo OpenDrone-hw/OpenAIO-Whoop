@@ -1,0 +1,71 @@
+{
+ "footprint": "lib:SOT-363_SC-70-6_Dense",
+ "source": "OpenDrone:SOT-363_SC-70-6",
+ "part": "TI INA186A3IDCKR SC70-6 (DCK)",
+ "datasheet": "TI INA186 data sheet SBOS761 (www.ti.com/lit/ds/symlink/ina186.pdf, p23/merge/od/dl/ti/ina186.pdf) p42-44 DCK0006A (4214835/D): body 2.0 x 1.25 (D 1.85-2.15, E1 1.1-1.4), lead span E 1.8-2.4; land example 6X (0.9) x 6X (0.4), 4X (0.65) pitch, (2.2) row centres, (R0.05); pin 1 top-left. The bundled ${OPENDRONE_LIB}/datasheet/INA186A3IDCKR.pdf (2022) omits the DCK drawing",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.925,
+   "y": -0.65,
+   "w": 0.55,
+   "h": 0.4,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -0.925,
+   "y": 0,
+   "w": 0.55,
+   "h": 0.4,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -0.925,
+   "y": 0.65,
+   "w": 0.55,
+   "h": 0.4,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": 0.925,
+   "y": 0.65,
+   "w": 0.55,
+   "h": 0.4,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 0.925,
+   "y": 0,
+   "w": 0.55,
+   "h": 0.4,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 0.925,
+   "y": -0.65,
+   "w": 0.55,
+   "h": 0.4,
+   "shape": "roundrect"
+  }
+ ],
+ "body": {
+  "w": 1.25,
+  "h": 2.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "TI land with the toe trimmed (heel edge 0.65 kept)",
+ "dense": "budget envelope SC70_6 2.4 (lead direction) vs TI example 3.1: outer edge 1.55 -> 1.20 (0.15 past the 1.05 nominal lead tip, IPC-7351B least toe), pads 0.55 x 0.40 at +-0.925; heel edge 0.65 covers the 0.26-0.46 lead foot",
+ "build": {
+  "radius": 0.05,
+  "courtyard": "polygon",
+  "model_from_source": true
+ }
+}

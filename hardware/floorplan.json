@@ -1,0 +1,5873 @@
+{
+ "board": "OpenAIO-Whoop.kicad_pcb",
+ "gap": 0.2,
+ "meta": {
+  "generated": "2026-10-09 P2 floorplan proof (p23/fp/work/stages.py + mkplan.py)",
+  "coordinates": "poly: absolute KiCad mm; rel_mm / at: relative to the body centre (113.2, 113.2)",
+  "regions": "spec 10 blocks as realised by the hand-tuned placement; *_outer_* = parts more than 3.0 mm from their block's main part",
+  "parts_total": 275,
+  "placed": 272
+ },
+ "regions": {
+  "art_t": {
+   "side": "F",
+   "poly": [
+    [
+     120.399,
+     102.447
+    ],
+    [
+     122.0,
+     102.447
+    ],
+    [
+     122.0,
+     108.753
+    ],
+    [
+     120.399,
+     108.753
+    ]
+   ],
+   "rel_mm": [
+    7.2,
+    -10.75,
+    8.8,
+    -4.45
+   ],
+   "area_mm2": 10.1,
+   "src": "spec 13 silk art (logo)",
+   "parts": 1
+  },
+  "blackbox_t": {
+   "side": "F",
+   "poly": [
+    [
+     106.05,
+     109.6
+    ],
+    [
+     110.35,
+     109.6
+    ],
+    [
+     110.35,
+     113.9
+    ],
+    [
+     106.05,
+     113.9
+    ]
+   ],
+   "rel_mm": [
+    -7.15,
+    -3.6,
+    -2.85,
+    0.7
+   ],
+   "area_mm2": 18.5,
+   "src": "spec 10 NOR (rear-left quadrant)",
+   "parts": 3
+  },
+  "boost_b": {
+   "side": "B",
+   "poly": [
+    [
+     104.6,
+     115.4
+    ],
+    [
+     110.7,
+     115.4
+    ],
+    [
+     110.7,
+     120.95
+    ],
+    [
+     104.6,
+     120.95
+    ]
+   ],
+   "rel_mm": [
+    -8.6,
+    2.2,
+    -2.5,
+    7.75
+   ],
+   "area_mm2": 33.9,
+   "src": "spec 10 boost (TPS61022 + 2520 L + caps)",
+   "parts": 7
+  },
+  "boost_outer_b": {
+   "side": "B",
+   "poly": [
+    [
+     100.85,
+     108.75
+    ],
+    [
+     108.3,
+     108.75
+    ],
+    [
+     108.3,
+     114.4
+    ],
+    [
+     100.85,
+     114.4
+    ]
+   ],
+   "rel_mm": [
+    -12.35,
+    -4.45,
+    -4.9,
+    1.2
+   ],
+   "area_mm2": 42.1,
+   "src": "spec 10 boost (TPS61022 + 2520 L + caps); parts more than 3.0 mm from the block's main part (P5 review)",
+   "parts": 2
+  },
+  "esc1_b": {
+   "side": "B",
+   "poly": [
+    [
+     110.62,
+     116.75
+    ],
+    [
+     119.25,
+     116.75
+    ],
+    [
+     119.25,
+     126.05
+    ],
+    [
+     110.62,
+     126.05
+    ]
+   ],
+   "rel_mm": [
+    -2.58,
+    3.55,
+    6.05,
+    12.85
+   ],
+   "area_mm2": 80.3,
+   "src": "spec 10 ESC1 group (P row top / N row bottom, rotated cell)",
+   "parts": 7
+  },
+  "esc1_t": {
+   "side": "F",
+   "poly": [
+    [
+     113.8,
+     119.775
+    ],
+    [
+     120.65,
+     119.775
+    ],
+    [
+     120.65,
+     124.45
+    ],
+    [
+     113.8,
+     124.45
+    ]
+   ],
+   "rel_mm": [
+    0.6,
+    6.58,
+    7.45,
+    11.25
+   ],
+   "area_mm2": 32.0,
+   "src": "spec 10 ESC1 group (P row top / N row bottom, rotated cell)",
+   "parts": 10
+  },
+  "esc2_b": {
+   "side": "B",
+   "poly": [
+    [
+     117.5,
+     110.55
+    ],
+    [
+     126.05,
+     110.55
+    ],
+    [
+     126.05,
+     122.65
+    ],
+    [
+     117.5,
+     122.65
+    ]
+   ],
+   "rel_mm": [
+    4.3,
+    -2.65,
+    12.85,
+    9.45
+   ],
+   "area_mm2": 103.5,
+   "src": "spec 10 block esc2",
+   "parts": 14
+  },
+  "esc2_t": {
+   "side": "F",
+   "poly": [
+    [
+     120.95,
+     117.4
+    ],
+    [
+     124.25,
+     117.4
+    ],
+    [
+     124.25,
+     123.125
+    ],
+    [
+     120.95,
+     123.125
+    ]
+   ],
+   "rel_mm": [
+    7.75,
+    4.2,
+    11.05,
+    9.92
+   ],
+   "area_mm2": 18.9,
+   "src": "spec 10 block esc2",
+   "parts": 3
+  },
+  "esc3_b": {
+   "side": "B",
+   "poly": [
+    [
+     100.35,
+     107.15
+    ],
+    [
+     108.775,
+     107.15
+    ],
+    [
+     108.775,
+     115.3
+    ],
+    [
+     100.35,
+     115.3
+    ]
+   ],
+   "rel_mm": [
+    -12.85,
+    -6.05,
+    -4.43,
+    2.1
+   ],
+   "area_mm2": 68.7,
+   "src": "spec 10 block esc3",
+   "parts": 7
+  },
+  "esc3_t": {
+   "side": "F",
+   "poly": [
+    [
+     102.05,
+     105.275
+    ],
+    [
+     107.6,
+     105.275
+    ],
+    [
+     107.6,
+     117.18
+    ],
+    [
+     102.05,
+     117.18
+    ]
+   ],
+   "rel_mm": [
+    -11.15,
+    -7.92,
+    -5.6,
+    3.98
+   ],
+   "area_mm2": 66.1,
+   "src": "spec 10 block esc3",
+   "parts": 10
+  },
+  "esc4_b": {
+   "side": "B",
+   "poly": [
+    [
+     103.75,
+     100.35
+    ],
+    [
+     114.35,
+     100.35
+    ],
+    [
+     114.35,
+     108.0
+    ],
+    [
+     103.75,
+     108.0
+    ]
+   ],
+   "rel_mm": [
+    -9.45,
+    -12.85,
+    1.15,
+    -5.2
+   ],
+   "area_mm2": 81.1,
+   "src": "spec 10 block esc4",
+   "parts": 10
+  },
+  "esc4_t": {
+   "side": "F",
+   "poly": [
+    [
+     103.475,
+     100.725
+    ],
+    [
+     111.0,
+     100.725
+    ],
+    [
+     111.0,
+     107.18
+    ],
+    [
+     103.475,
+     107.18
+    ]
+   ],
+   "rel_mm": [
+    -9.72,
+    -12.47,
+    -2.2,
+    -6.02
+   ],
+   "area_mm2": 48.6,
+   "src": "spec 10 block esc4",
+   "parts": 7
+  },
+  "fc_b": {
+   "side": "B",
+   "poly": [
+    [
+     108.0,
+     102.25
+    ],
+    [
+     124.55,
+     102.25
+    ],
+    [
+     124.55,
+     109.85
+    ],
+    [
+     108.0,
+     109.85
+    ]
+   ],
+   "rel_mm": [
+    -5.2,
+    -10.95,
+    11.35,
+    -3.35
+   ],
+   "area_mm2": 125.8,
+   "src": "spec 10 RP2354A + crystal (bottom centre)",
+   "parts": 14
+  },
+  "fc_t": {
+   "side": "F",
+   "poly": [
+    [
+     105.95,
+     100.7
+    ],
+    [
+     118.95,
+     100.7
+    ],
+    [
+     118.95,
+     110.7
+    ],
+    [
+     105.95,
+     110.7
+    ]
+   ],
+   "rel_mm": [
+    -7.25,
+    -12.5,
+    5.75,
+    -2.5
+   ],
+   "area_mm2": 130.0,
+   "src": "spec 10 RP2354A + crystal (bottom centre)",
+   "parts": 16
+  },
+  "fc_outer_t": {
+   "side": "F",
+   "poly": [
+    [
+     118.7,
+     106.65
+    ],
+    [
+     119.3,
+     106.65
+    ],
+    [
+     119.3,
+     107.75
+    ],
+    [
+     118.7,
+     107.75
+    ]
+   ],
+   "rel_mm": [
+    5.5,
+    -6.55,
+    6.1,
+    -5.45
+   ],
+   "area_mm2": 0.7,
+   "src": "spec 10 RP2354A + crystal (bottom centre); parts more than 3.0 mm from the block's main part (P5 review)",
+   "parts": 1
+  },
+  "hd_gate_b": {
+   "side": "B",
+   "poly": [
+    [
+     113.65,
+     117.55
+    ],
+    [
+     114.95,
+     117.55
+    ],
+    [
+     114.95,
+     118.45
+    ],
+    [
+     113.65,
+     118.45
+    ]
+   ],
+   "rel_mm": [
+    0.45,
+    4.35,
+    1.75,
+    5.25
+   ],
+   "area_mm2": 1.2,
+   "src": "spec 10 HD gate",
+   "parts": 1
+  },
+  "imu_b": {
+   "side": "B",
+   "poly": [
+    [
+     118.55,
+     103.5
+    ],
+    [
+     120.2,
+     103.5
+    ],
+    [
+     120.2,
+     104.8
+    ],
+    [
+     118.55,
+     104.8
+    ]
+   ],
+   "rel_mm": [
+    5.35,
+    -9.7,
+    7.0,
+    -8.4
+   ],
+   "area_mm2": 2.1,
+   "src": "spec 10 gyro + 1.8 V LDO",
+   "parts": 2
+  },
+  "imu_t": {
+   "side": "F",
+   "poly": [
+    [
+     116.4,
+     101.2
+    ],
+    [
+     123.155,
+     101.2
+    ],
+    [
+     123.155,
+     106.05
+    ],
+    [
+     116.4,
+     106.05
+    ]
+   ],
+   "rel_mm": [
+    3.2,
+    -12.0,
+    9.96,
+    -7.15
+   ],
+   "area_mm2": 32.8,
+   "src": "spec 10 gyro + 1.8 V LDO",
+   "parts": 3
+  },
+  "led_b": {
+   "side": "B",
+   "poly": [
+    [
+     108.85,
+     108.55
+    ],
+    [
+     118.5,
+     108.55
+    ],
+    [
+     118.5,
+     113.15
+    ],
+    [
+     108.85,
+     113.15
+    ]
+   ],
+   "rel_mm": [
+    -4.35,
+    -4.65,
+    5.3,
+    -0.05
+   ],
+   "area_mm2": 44.4,
+   "src": "LED / beeper drivers",
+   "parts": 3
+  },
+  "led_t": {
+   "side": "F",
+   "poly": [
+    [
+     107.65,
+     119.425
+    ],
+    [
+     108.95,
+     119.425
+    ],
+    [
+     108.95,
+     120.175
+    ],
+    [
+     107.65,
+     120.175
+    ]
+   ],
+   "rel_mm": [
+    -5.55,
+    6.23,
+    -4.25,
+    6.97
+   ],
+   "area_mm2": 1.0,
+   "src": "LED / beeper drivers",
+   "parts": 1
+  },
+  "o4_b": {
+   "side": "B",
+   "poly": [
+    [
+     108.55,
+     121.45
+    ],
+    [
+     112.65,
+     121.45
+    ],
+    [
+     112.65,
+     126.05
+    ],
+    [
+     108.55,
+     126.05
+    ]
+   ],
+   "rel_mm": [
+    -4.65,
+    8.25,
+    -0.55,
+    12.85
+   ],
+   "area_mm2": 18.9,
+   "src": "spec 10 O4 switch block (bottom, side-balancing lever)",
+   "parts": 3
+  },
+  "o4_t": {
+   "side": "F",
+   "poly": [
+    [
+     109.75,
+     124.3
+    ],
+    [
+     112.05,
+     124.3
+    ],
+    [
+     112.05,
+     126.1
+    ],
+    [
+     109.75,
+     126.1
+    ]
+   ],
+   "rel_mm": [
+    -3.45,
+    11.1,
+    -1.15,
+    12.9
+   ],
+   "area_mm2": 4.1,
+   "src": "spec 10 O4 switch block (bottom, side-balancing lever)",
+   "parts": 5
+  },
+  "osd_b": {
+   "side": "B",
+   "poly": [
+    [
+     112.2,
+     108.595
+    ],
+    [
+     115.85,
+     108.595
+    ],
+    [
+     115.85,
+     109.805
+    ],
+    [
+     112.2,
+     109.805
+    ]
+   ],
+   "rel_mm": [
+    -1.0,
+    -4.6,
+    2.65,
+    -3.4
+   ],
+   "area_mm2": 4.4,
+   "src": "spec 10 OSD front end",
+   "parts": 3
+  },
+  "osd_outer_b": {
+   "side": "B",
+   "poly": [
+    [
+     116.45,
+     111.4
+    ],
+    [
+     122.75,
+     111.4
+    ],
+    [
+     122.75,
+     118.35
+    ],
+    [
+     116.45,
+     118.35
+    ]
+   ],
+   "rel_mm": [
+    3.25,
+    -1.8,
+    9.55,
+    5.15
+   ],
+   "area_mm2": 43.8,
+   "src": "spec 10 OSD front end; parts more than 3.0 mm from the block's main part (P5 review)",
+   "parts": 5
+  },
+  "osd_t": {
+   "side": "F",
+   "poly": [
+    [
+     107.0,
+     108.45
+    ],
+    [
+     119.15,
+     108.45
+    ],
+    [
+     119.15,
+     115.06
+    ],
+    [
+     107.0,
+     115.06
+    ]
+   ],
+   "rel_mm": [
+    -6.2,
+    -4.75,
+    5.95,
+    1.86
+   ],
+   "area_mm2": 80.3,
+   "src": "spec 10 OSD front end",
+   "parts": 4
+  },
+  "pads_b": {
+   "side": "B",
+   "poly": [
+    [
+     102.616,
+     117.767
+    ],
+    [
+     109.533,
+     117.767
+    ],
+    [
+     109.533,
+     124.614
+    ],
+    [
+     102.616,
+     124.614
+    ]
+   ],
+   "rel_mm": [
+    -10.58,
+    4.57,
+    -3.67,
+    11.41
+   ],
+   "area_mm2": 47.4,
+   "src": "spec 4.10 / 10 pad groups",
+   "parts": 1
+  },
+  "pads_t": {
+   "side": "F",
+   "poly": [
+    [
+     100.1,
+     100.28
+    ],
+    [
+     126.15,
+     100.28
+    ],
+    [
+     126.15,
+     126.19
+    ],
+    [
+     100.1,
+     126.19
+    ]
+   ],
+   "rel_mm": [
+    -13.1,
+    -12.92,
+    12.95,
+    12.99
+   ],
+   "area_mm2": 675.0,
+   "src": "spec 4.10 / 10 pad groups",
+   "parts": 23
+  },
+  "power_entry_b": {
+   "side": "B",
+   "poly": [
+    [
+     103.3,
+     115.75
+    ],
+    [
+     104.3,
+     115.75
+    ],
+    [
+     104.3,
+     118.05
+    ],
+    [
+     103.3,
+     118.05
+    ]
+   ],
+   "rel_mm": [
+    -9.9,
+    2.55,
+    -8.9,
+    4.85
+   ],
+   "area_mm2": 2.3,
+   "src": "spec 10 shunt, INA186, TVS / pad bulk",
+   "parts": 1
+  },
+  "power_entry_t": {
+   "side": "F",
+   "poly": [
+    [
+     100.445,
+     109.795
+    ],
+    [
+     106.475,
+     109.795
+    ],
+    [
+     106.475,
+     118.65
+    ],
+    [
+     100.445,
+     118.65
+    ]
+   ],
+   "rel_mm": [
+    -12.75,
+    -3.41,
+    -6.73,
+    5.45
+   ],
+   "area_mm2": 53.4,
+   "src": "spec 10 shunt, INA186, TVS / pad bulk",
+   "parts": 7
+  },
+  "power_entry_outer_t": {
+   "side": "F",
+   "poly": [
+    [
+     106.5,
+     116.15
+    ],
+    [
+     107.5,
+     116.15
+    ],
+    [
+     107.5,
+     118.45
+    ],
+    [
+     106.5,
+     118.45
+    ]
+   ],
+   "rel_mm": [
+    -6.7,
+    2.95,
+    -5.7,
+    5.25
+   ],
+   "area_mm2": 2.3,
+   "src": "spec 10 shunt, INA186, TVS / pad bulk; parts more than 3.0 mm from the block's main part (P5 review)",
+   "parts": 1
+  },
+  "pwr_b": {
+   "side": "B",
+   "poly": [
+    [
+     115.03,
+     117.65
+    ],
+    [
+     116.8,
+     117.65
+    ],
+    [
+     116.8,
+     119.15
+    ],
+    [
+     115.03,
+     119.15
+    ]
+   ],
+   "rel_mm": [
+    1.83,
+    4.45,
+    3.6,
+    5.95
+   ],
+   "area_mm2": 2.7,
+   "src": "spec 10 mux, +3V3 LDO, camera filter",
+   "parts": 2
+  },
+  "pwr_t": {
+   "side": "F",
+   "poly": [
+    [
+     106.35,
+     114.25
+    ],
+    [
+     111.9,
+     114.25
+    ],
+    [
+     111.9,
+     119.2
+    ],
+    [
+     106.35,
+     119.2
+    ]
+   ],
+   "rel_mm": [
+    -6.85,
+    1.05,
+    -1.3,
+    6.0
+   ],
+   "area_mm2": 27.5,
+   "src": "spec 10 mux, +3V3 LDO, camera filter",
+   "parts": 6
+  },
+  "pwr_outer_t": {
+   "side": "F",
+   "poly": [
+    [
+     101.4,
+     108.55
+    ],
+    [
+     116.25,
+     108.55
+    ],
+    [
+     116.25,
+     121.75
+    ],
+    [
+     101.4,
+     121.75
+    ]
+   ],
+   "rel_mm": [
+    -11.8,
+    -4.65,
+    3.05,
+    8.55
+   ],
+   "area_mm2": 196.0,
+   "src": "spec 10 mux, +3V3 LDO, camera filter; parts more than 3.0 mm from the block's main part (P5 review)",
+   "parts": 4
+  },
+  "radio_t": {
+   "side": "F",
+   "poly": [
+    [
+     101.85,
+     118.65
+    ],
+    [
+     108.9,
+     118.65
+    ],
+    [
+     108.9,
+     125.9
+    ],
+    [
+     101.85,
+     125.9
+    ]
+   ],
+   "rel_mm": [
+    -11.35,
+    5.45,
+    -4.3,
+    12.7
+   ],
+   "area_mm2": 51.1,
+   "src": "spec 10 SX1280 + TCXO + LPF (bottom rear-left)",
+   "parts": 11
+  },
+  "rx_b": {
+   "side": "B",
+   "poly": [
+    [
+     108.795,
+     109.895
+    ],
+    [
+     117.825,
+     109.895
+    ],
+    [
+     117.825,
+     117.505
+    ],
+    [
+     108.795,
+     117.505
+    ]
+   ],
+   "rel_mm": [
+    -4.4,
+    -3.31,
+    4.62,
+    4.3
+   ],
+   "area_mm2": 68.7,
+   "src": "spec 10 ESP32 + flash + crystal (bottom front-right)",
+   "parts": 5
+  },
+  "rx_outer_b": {
+   "side": "B",
+   "poly": [
+    [
+     114.85,
+     100.2
+    ],
+    [
+     121.75,
+     100.2
+    ],
+    [
+     121.75,
+     104.45
+    ],
+    [
+     114.85,
+     104.45
+    ]
+   ],
+   "rel_mm": [
+    1.65,
+    -13.0,
+    8.55,
+    -8.75
+   ],
+   "area_mm2": 29.3,
+   "src": "spec 10 ESP32 + flash + crystal (bottom front-right); parts more than 3.0 mm from the block's main part (P5 review)",
+   "parts": 4
+  },
+  "rx_t": {
+   "side": "F",
+   "poly": [
+    [
+     100.3,
+     100.6
+    ],
+    [
+     120.95,
+     100.6
+    ],
+    [
+     120.95,
+     121.3
+    ],
+    [
+     100.3,
+     121.3
+    ]
+   ],
+   "rel_mm": [
+    -12.9,
+    -12.6,
+    7.75,
+    8.1
+   ],
+   "area_mm2": 427.5,
+   "src": "spec 10 ESP32 + flash + crystal (bottom front-right)",
+   "parts": 5
+  },
+  "test_t": {
+   "side": "F",
+   "poly": [
+    [
+     106.82,
+     107.22
+    ],
+    [
+     108.18,
+     107.22
+    ],
+    [
+     108.18,
+     108.38
+    ],
+    [
+     106.82,
+     108.38
+    ]
+   ],
+   "rel_mm": [
+    -6.38,
+    -5.98,
+    -5.02,
+    -4.82
+   ],
+   "area_mm2": 1.6,
+   "src": "spec 10 test pads",
+   "parts": 3
+  },
+  "vtx_pwr_b": {
+   "side": "B",
+   "poly": [
+    [
+     113.5,
+     105.05
+    ],
+    [
+     124.5,
+     105.05
+    ],
+    [
+     124.5,
+     109.6
+    ],
+    [
+     113.5,
+     109.6
+    ]
+   ],
+   "rel_mm": [
+    0.3,
+    -8.15,
+    11.3,
+    -3.6
+   ],
+   "area_mm2": 50.0,
+   "src": "VTX LDO, PA reference, drive stage (P2)",
+   "parts": 4
+  },
+  "vtx_pwr_t": {
+   "side": "F",
+   "poly": [
+    [
+     122.45,
+     104.2
+    ],
+    [
+     125.9,
+     104.2
+    ],
+    [
+     125.9,
+     108.55
+    ],
+    [
+     122.45,
+     108.55
+    ]
+   ],
+   "rel_mm": [
+    9.25,
+    -9.0,
+    12.7,
+    -4.65
+   ],
+   "area_mm2": 15.0,
+   "src": "VTX LDO, PA reference, drive stage (P2)",
+   "parts": 9
+  },
+  "vtx_rf_b": {
+   "side": "B",
+   "poly": [
+    [
+     120.5,
+     106.65
+    ],
+    [
+     125.4,
+     106.65
+    ],
+    [
+     125.4,
+     113.15
+    ],
+    [
+     120.5,
+     113.15
+    ]
+   ],
+   "rel_mm": [
+    7.3,
+    -6.55,
+    12.2,
+    -0.05
+   ],
+   "area_mm2": 31.8,
+   "src": "spec 10 SE5004L + zones, BPF, U.FL",
+   "parts": 9
+  },
+  "vtx_rf_t": {
+   "side": "F",
+   "poly": [
+    [
+     116.05,
+     108.15
+    ],
+    [
+     126.05,
+     108.15
+    ],
+    [
+     126.05,
+     114.55
+    ],
+    [
+     116.05,
+     114.55
+    ]
+   ],
+   "rel_mm": [
+    2.85,
+    -5.05,
+    12.85,
+    1.35
+   ],
+   "area_mm2": 64.0,
+   "src": "spec 10 SE5004L + zones, BPF, U.FL",
+   "parts": 9
+  },
+  "vtx_rtc_b": {
+   "side": "B",
+   "poly": [
+    [
+     116.5,
+     101.25
+    ],
+    [
+     125.1,
+     101.25
+    ],
+    [
+     125.1,
+     113.65
+    ],
+    [
+     116.5,
+     113.65
+    ]
+   ],
+   "rel_mm": [
+    3.3,
+    -11.95,
+    11.9,
+    0.45
+   ],
+   "area_mm2": 106.6,
+   "src": "spec 10 RTC6705 + crystal + loop filter",
+   "parts": 19
+  },
+  "vtx_rtc_outer_b": {
+   "side": "B",
+   "poly": [
+    [
+     112.55,
+     117.55
+    ],
+    [
+     118.55,
+     117.55
+    ],
+    [
+     118.55,
+     119.0
+    ],
+    [
+     112.55,
+     119.0
+    ]
+   ],
+   "rel_mm": [
+    -0.65,
+    4.35,
+    5.35,
+    5.8
+   ],
+   "area_mm2": 8.7,
+   "src": "spec 10 RTC6705 + crystal + loop filter; parts more than 3.0 mm from the block's main part (P5 review)",
+   "parts": 2
+  },
+  "vtx_rtc_t": {
+   "side": "F",
+   "poly": [
+    [
+     119.15,
+     105.25
+    ],
+    [
+     122.8,
+     105.25
+    ],
+    [
+     122.8,
+     114.9
+    ],
+    [
+     119.15,
+     114.9
+    ]
+   ],
+   "rel_mm": [
+    5.95,
+    -7.95,
+    9.6,
+    1.7
+   ],
+   "area_mm2": 35.2,
+   "src": "spec 10 RTC6705 + crystal + loop filter",
+   "parts": 5
+  },
+  "mount_holes": {
+   "side": "F",
+   "poly": [
+    [
+     97.72500000000001,
+     97.72500000000001
+    ],
+    [
+     128.675,
+     97.72500000000001
+    ],
+    [
+     128.675,
+     128.675
+    ],
+    [
+     97.72500000000001,
+     128.675
+    ]
+   ],
+   "src": "spec 7 holes (Edge.Cuts cut-outs + MOUNT_* rule areas); H1-H3 footprints unplaced",
+   "parts": 0
+  }
+ },
+ "parts": [
+  {
+   "ref": "D1",
+   "footprint": "lib:SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense",
+   "value": "SMF5.0A",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_t",
+   "side": "F",
+   "at": [
+    -7.7,
+    3.4,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C1",
+   "footprint": "lib:C_0603_1608Metric_W",
+   "value": "22uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_outer_t",
+   "side": "F",
+   "at": [
+    -6.2,
+    4.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C2",
+   "footprint": "lib:C_0603_1608Metric_W",
+   "value": "22uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_b",
+   "side": "B",
+   "at": [
+    -9.4,
+    3.7,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R1",
+   "footprint": "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_Dense",
+   "value": "0.5mR 2W",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_t",
+   "side": "F",
+   "at": [
+    -10.7,
+    -2.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U1",
+   "footprint": "lib:SOT-363_SC-70-6_Dense",
+   "value": "INA186A3",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_t",
+   "side": "F",
+   "at": [
+    -8.9,
+    0.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R2",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_t",
+   "side": "F",
+   "at": [
+    -10.55,
+    0.85,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R3",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_t",
+   "side": "F",
+   "at": [
+    -10.9,
+    0.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C5",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_t",
+   "side": "F",
+   "at": [
+    -10.3,
+    0.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C6",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "power_entry_t",
+   "side": "F",
+   "at": [
+    -10.55,
+    -0.85,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U2",
+   "footprint": "lib:TI_VQFN-HR-7_2x2mm_RWU",
+   "value": "TPS61022",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_b",
+   "side": "B",
+   "at": [
+    -6.3,
+    4.3,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "L1",
+   "footprint": "lib:IND-SMD_L2.5-W2.0_FTC252012",
+   "value": "0.68uH 6.5A",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_b",
+   "side": "B",
+   "at": [
+    -3.9,
+    6.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C7",
+   "footprint": "lib:C_0603_1608Metric_W",
+   "value": "22uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_b",
+   "side": "B",
+   "at": [
+    -6.3,
+    2.7,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C8",
+   "footprint": "lib:C_0603_1608Metric_W",
+   "value": "22uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_b",
+   "side": "B",
+   "at": [
+    -8.1,
+    3.35,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C9",
+   "footprint": "lib:C_0603_1608Metric_W",
+   "value": "22uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_b",
+   "side": "B",
+   "at": [
+    -3.85,
+    4.85,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C10",
+   "footprint": "lib:C_0603_1608Metric_W",
+   "value": "22uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_outer_b",
+   "side": "B",
+   "at": [
+    -11.2,
+    0.7,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C11",
+   "footprint": "lib:C_0603_1608Metric_W",
+   "value": "22uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_outer_b",
+   "side": "B",
+   "at": [
+    -5.4,
+    -3.3,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R4",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "47k",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_b",
+   "side": "B",
+   "at": [
+    -6.35,
+    5.7,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R5",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "6.2k",
+   "block": "power",
+   "bom_side": "B",
+   "region": "boost_b",
+   "side": "B",
+   "at": [
+    -4.75,
+    2.75,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U3",
+   "footprint": "lib:TI_SOT-583_DRL",
+   "value": "TPS2116",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_t",
+   "side": "F",
+   "at": [
+    -4.0,
+    2.2,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R7",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "27.4k",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_t",
+   "side": "F",
+   "at": [
+    -6.3,
+    5.6,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R8",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_outer_t",
+   "side": "F",
+   "at": [
+    -11.5,
+    0.7,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C12",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_t",
+   "side": "F",
+   "at": [
+    -5.6,
+    2.2,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C128",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_t",
+   "side": "F",
+   "at": [
+    -2.05,
+    2.05,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U24",
+   "footprint": "lib:WLCSP-6_L1.30-W0.94-P0.40_SGM40661",
+   "value": "SGM40661",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_b",
+   "side": "B",
+   "at": [
+    2.4,
+    5.2,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C131",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_b",
+   "side": "B",
+   "at": [
+    3.3,
+    5.2,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U4",
+   "footprint": "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense",
+   "value": "LP5912-3.3",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_t",
+   "side": "F",
+   "at": [
+    -4.6,
+    4.8,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C13",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_outer_t",
+   "side": "F",
+   "at": [
+    -4.6,
+    7.8,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C14",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_t",
+   "side": "F",
+   "at": [
+    -3.2,
+    4.8,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "FB1",
+   "footprint": "lib:L_0201_0603Metric_W",
+   "value": "120R@100MHz 0.9A",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_outer_t",
+   "side": "F",
+   "at": [
+    2.5,
+    7.2,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C15",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "power",
+   "bom_side": "B",
+   "region": "pwr_outer_t",
+   "side": "F",
+   "at": [
+    -6.6,
+    -3.9,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U5",
+   "footprint": "lib:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_Dense",
+   "value": "TPS22810",
+   "block": "power",
+   "bom_side": "F",
+   "region": "o4_b",
+   "side": "B",
+   "at": [
+    -2.3,
+    11.3,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C16",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "10nF",
+   "block": "power",
+   "bom_side": "F",
+   "region": "o4_b",
+   "side": "B",
+   "at": [
+    -4.35,
+    11.3,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R9",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "33k",
+   "block": "power",
+   "bom_side": "F",
+   "region": "o4_t",
+   "side": "F",
+   "at": [
+    -2.3,
+    12.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R10",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "18k",
+   "block": "power",
+   "bom_side": "F",
+   "region": "o4_t",
+   "side": "F",
+   "at": [
+    -3.15,
+    11.65,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "D2",
+   "footprint": "lib:Nexperia_SOD882D",
+   "value": "BAS16LD",
+   "block": "power",
+   "bom_side": "F",
+   "region": "o4_b",
+   "side": "B",
+   "at": [
+    -2.9,
+    9.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R11",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "2.4k",
+   "block": "power",
+   "bom_side": "F",
+   "region": "o4_t",
+   "side": "F",
+   "at": [
+    -1.45,
+    11.65,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R87",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "510k",
+   "block": "power",
+   "bom_side": "F",
+   "region": "o4_t",
+   "side": "F",
+   "at": [
+    -2.3,
+    12.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C129",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "power",
+   "bom_side": "F",
+   "region": "o4_t",
+   "side": "F",
+   "at": [
+    -2.3,
+    11.4,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U6",
+   "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51",
+   "value": "EFM8BB51F16I",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_b",
+   "side": "B",
+   "at": [
+    -0.3,
+    7.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "Q29",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_b",
+   "side": "B",
+   "at": [
+    4.1,
+    7.6,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "Q30",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_b",
+   "side": "B",
+   "at": [
+    1.9,
+    11.2,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "Q31",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    5.8,
+    9.3,
+    -90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C19",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_b",
+   "side": "B",
+   "at": [
+    -1.45,
+    5.0,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R12",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "2.4k",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_b",
+   "side": "B",
+   "at": [
+    3.6,
+    4.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R13",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    1.15,
+    7.2,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R14",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    1.4,
+    8.05,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R15",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    2.0,
+    8.05,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R16",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    1.4,
+    9.15,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R17",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    2.0,
+    9.15,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R18",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    2.6,
+    8.05,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C20",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    2.3,
+    10.1,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C21",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    6.1,
+    6.95,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C23",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_t",
+   "side": "F",
+   "at": [
+    3.6,
+    9.4,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "TP1",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "C2D",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_b",
+   "side": "B",
+   "at": [
+    -2.3,
+    5.0,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "TP2",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "C2CK",
+   "block": "esc1",
+   "bom_side": "F",
+   "region": "esc1_b",
+   "side": "B",
+   "at": [
+    3.9,
+    5.2,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U7",
+   "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51",
+   "value": "EFM8BB51F16I",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    7.0,
+    2.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "Q32",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    11.2,
+    1.9,
+    -90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "Q33",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    7.8,
+    7.5,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "Q34",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_t",
+   "side": "F",
+   "at": [
+    9.4,
+    7.2,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C25",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    4.6,
+    2.35,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R19",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "2.4k",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    8.7,
+    5.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R20",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    7.0,
+    0.2,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R21",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    7.0,
+    5.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R22",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    4.6,
+    3.45,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R23",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    5.9,
+    0.2,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R24",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    5.9,
+    5.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R25",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    8.1,
+    0.2,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C26",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    11.85,
+    -1.9,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C27",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_t",
+   "side": "F",
+   "at": [
+    9.05,
+    9.55,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C29",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_t",
+   "side": "F",
+   "at": [
+    9.5,
+    4.7,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "TP3",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "C2D",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    7.85,
+    5.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "TP4",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "C2CK",
+   "block": "esc2",
+   "bom_side": "B",
+   "region": "esc2_b",
+   "side": "B",
+   "at": [
+    4.6,
+    1.5,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U8",
+   "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51",
+   "value": "EFM8BB51F16I",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_b",
+   "side": "B",
+   "at": [
+    -7.3,
+    0.0,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "Q35",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_b",
+   "side": "B",
+   "at": [
+    -7.6,
+    -4.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "Q36",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_b",
+   "side": "B",
+   "at": [
+    -11.2,
+    -1.9,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "Q37",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -9.2,
+    -5.5,
+    180.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C31",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_b",
+   "side": "B",
+   "at": [
+    -9.7,
+    0.6,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R26",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "2.4k",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -6.45,
+    -2.8,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R27",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_b",
+   "side": "B",
+   "at": [
+    -4.9,
+    -1.3,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R28",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_b",
+   "side": "B",
+   "at": [
+    -4.9,
+    1.3,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R29",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -7.25,
+    1.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R30",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -6.15,
+    1.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R31",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -6.4,
+    1.85,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R32",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -7.3,
+    -2.35,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C32",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_b",
+   "side": "B",
+   "at": [
+    -4.8,
+    0.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C33",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -9.7,
+    -7.55,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C35",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -8.1,
+    -2.7,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "TP5",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "C2D",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -9.0,
+    3.7,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "TP6",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "C2CK",
+   "block": "esc3",
+   "bom_side": "F",
+   "region": "esc3_t",
+   "side": "F",
+   "at": [
+    -9.6,
+    3.7,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U9",
+   "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51",
+   "value": "EFM8BB51F16I",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    -2.5,
+    -7.3,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "Q38",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    -1.9,
+    -11.2,
+    180.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "Q39",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    -7.5,
+    -7.8,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "Q40",
+   "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+   "value": "AGM210MAP",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_t",
+   "side": "F",
+   "at": [
+    -7.0,
+    -9.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C37",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    -4.9,
+    -7.55,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R33",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "2.4k",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_t",
+   "side": "F",
+   "at": [
+    -6.5,
+    -7.2,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R34",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    -4.9,
+    -6.45,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R35",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    0.15,
+    -8.45,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R36",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    0.6,
+    -10.7,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R37",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    0.6,
+    -11.3,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R38",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    0.6,
+    -11.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R39",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_t",
+   "side": "F",
+   "at": [
+    -5.9,
+    -7.2,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C38",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_t",
+   "side": "F",
+   "at": [
+    -2.95,
+    -12.1,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C39",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_t",
+   "side": "F",
+   "at": [
+    -9.35,
+    -9.75,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C41",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_t",
+   "side": "F",
+   "at": [
+    -3.9,
+    -10.6,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "TP7",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "C2D",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_b",
+   "side": "B",
+   "at": [
+    0.4,
+    -12.5,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "TP8",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "C2CK",
+   "block": "esc4",
+   "bom_side": "B",
+   "region": "esc4_t",
+   "side": "F",
+   "at": [
+    -5.9,
+    -6.3,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U10",
+   "footprint": "lib:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_Dense",
+   "value": "RP2354A",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -1.2,
+    -6.3,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "X1",
+   "footprint": "lib:CRYSTAL-SMD_4P-L3.2-W2.5-BL_Dense",
+   "value": "12MHz",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    4.1,
+    -6.0,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C42",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "15pF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    4.1,
+    -4.55,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C43",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "15pF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_outer_t",
+   "side": "F",
+   "at": [
+    5.8,
+    -6.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R40",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    5.2,
+    -4.55,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "L2",
+   "footprint": "lib:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense",
+   "value": "3.3uH",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    2.1,
+    -7.8,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C44",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    -4.9,
+    -8.9,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C45",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    -4.55,
+    -4.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C46",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    -2.4,
+    -3.65,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C47",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    2.1,
+    -3.65,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C48",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    3.15,
+    -7.45,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C49",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    2.9,
+    -9.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C50",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -5.3,
+    -7.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C51",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    -2.35,
+    -4.25,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C52",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    3.15,
+    -8.05,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C54",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -1.65,
+    -10.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C56",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "4.7uF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    0.0,
+    -6.3,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C134",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "4.7uF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    -3.35,
+    -4.1,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C57",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "4.7uF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    1.35,
+    -9.65,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C58",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "4.7uF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    0.45,
+    -9.65,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R41",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "27R",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -2.8,
+    -11.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R42",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "27R",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -1.65,
+    -11.0,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R43",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "27R",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -1.65,
+    -11.6,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R44",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    3.35,
+    -9.25,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R45",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -6.7,
+    -6.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R46",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -6.7,
+    -5.1,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C59",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    -0.1,
+    -7.6,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R47",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -0.5,
+    -12.0,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C60",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    -2.35,
+    -4.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "Q26",
+   "footprint": "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W",
+   "value": "AP1606",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_b",
+   "side": "B",
+   "at": [
+    10.9,
+    -10.3,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R48",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "100k",
+   "block": "fc",
+   "bom_side": "B",
+   "region": "fc_t",
+   "side": "F",
+   "at": [
+    -1.6,
+    -12.2,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U11",
+   "footprint": "lib:LGA-14_L3.0-W2.5-P0.50-BR_W",
+   "value": "BMI270",
+   "block": "imu",
+   "bom_side": "F",
+   "region": "imu_t",
+   "side": "F",
+   "at": [
+    5.4,
+    -8.5,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U12",
+   "footprint": "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense",
+   "value": "TPS7A2018",
+   "block": "imu",
+   "bom_side": "F",
+   "region": "imu_t",
+   "side": "F",
+   "at": [
+    9.3,
+    -11.4,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C61",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "imu",
+   "bom_side": "F",
+   "region": "imu_b",
+   "side": "B",
+   "at": [
+    5.9,
+    -9.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C62",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "imu",
+   "bom_side": "F",
+   "region": "imu_t",
+   "side": "F",
+   "at": [
+    3.5,
+    -9.25,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R49",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "imu",
+   "bom_side": "F",
+   "region": "imu_b",
+   "side": "B",
+   "at": [
+    6.45,
+    -8.7,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U13",
+   "footprint": "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA",
+   "value": "PY25Q128HA-DFH-IR",
+   "block": "blackbox",
+   "bom_side": "F",
+   "region": "blackbox_t",
+   "side": "F",
+   "at": [
+    -4.7,
+    -0.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C65",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "blackbox",
+   "bom_side": "F",
+   "region": "blackbox_t",
+   "side": "F",
+   "at": [
+    -5.3,
+    -3.05,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R50",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "blackbox",
+   "bom_side": "F",
+   "region": "blackbox_t",
+   "side": "F",
+   "at": [
+    -6.85,
+    -1.25,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U14",
+   "footprint": "lib:X2SON-6_L1.0-W0.8-BL_Dense",
+   "value": "SN74LVC1G3157",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_b",
+   "side": "B",
+   "at": [
+    -0.4,
+    -4.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U15",
+   "footprint": "lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense",
+   "value": "TLV7031",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_b",
+   "side": "B",
+   "at": [
+    0.9,
+    -3.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "D3",
+   "footprint": "lib:X3-DFN0603-2_L0.6-W0.3-RD_W",
+   "value": "SDM02U30LP3",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_t",
+   "side": "F",
+   "at": [
+    0.3,
+    1.6,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R51",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "75R",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_outer_b",
+   "side": "B",
+   "at": [
+    5.9,
+    -0.7,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C66",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100pF",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_b",
+   "side": "B",
+   "at": [
+    2.1,
+    -4.25,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R52",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "820R",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_outer_b",
+   "side": "B",
+   "at": [
+    3.6,
+    2.9,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R53",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "2.4k",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_outer_b",
+   "side": "B",
+   "at": [
+    9.0,
+    -1.5,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R54",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "287R",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_outer_b",
+   "side": "B",
+   "at": [
+    4.5,
+    4.6,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R55",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "680R",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_t",
+   "side": "F",
+   "at": [
+    5.4,
+    1.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C67",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "470pF",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_outer_b",
+   "side": "B",
+   "at": [
+    3.8,
+    0.1,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C68",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_t",
+   "side": "F",
+   "at": [
+    -5.3,
+    -4.2,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C70",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "osd",
+   "bom_side": "B",
+   "region": "osd_t",
+   "side": "F",
+   "at": [
+    -5.9,
+    -4.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U16",
+   "footprint": "lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO",
+   "value": "ESP32-PICO-V3",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_b",
+   "side": "B",
+   "at": [
+    -0.6,
+    0.5,
+    180.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C133",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1.2pF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_outer_b",
+   "side": "B",
+   "at": [
+    8.0,
+    -12.25,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R88",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "0R",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_t",
+   "side": "F",
+   "at": [
+    7.45,
+    -12.05,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C132",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1.2pF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_outer_b",
+   "side": "B",
+   "at": [
+    4.8,
+    -9.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "AE2",
+   "footprint": "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2",
+   "value": "2450AT07A0100001T",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_outer_b",
+   "side": "B",
+   "at": [
+    6.1,
+    -12.05,
+    180.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R56",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_b",
+   "side": "B",
+   "at": [
+    3.8,
+    0.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C73",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_b",
+   "side": "B",
+   "at": [
+    3.55,
+    1.75,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C76",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_b",
+   "side": "B",
+   "at": [
+    3.55,
+    -1.0,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C82",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_b",
+   "side": "B",
+   "at": [
+    4.25,
+    -1.0,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "D4",
+   "footprint": "lib:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_Dense",
+   "value": "RGB WS2812",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_t",
+   "side": "F",
+   "at": [
+    -6.8,
+    6.6,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C83",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "rx_t",
+   "side": "F",
+   "at": [
+    -0.7,
+    1.6,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U18",
+   "footprint": "lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_Dense",
+   "value": "SX1281",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -7.7,
+    9.8,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "X3",
+   "footprint": "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense",
+   "value": "52MHz TCXO",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -8.6,
+    6.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C84",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -10.05,
+    6.4,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C85",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -10.3,
+    7.5,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C86",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "10nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -8.05,
+    12.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C87",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "470nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -4.85,
+    9.2,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C88",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "10nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -5.1,
+    11.15,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C89",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -5.1,
+    10.05,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C91",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -6.95,
+    12.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C92",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -9.15,
+    12.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "FL1",
+   "footprint": "lib:FILTER-SMD_4P-L1.0-W0.5-L_W",
+   "value": "2450FM07D0034T",
+   "block": "rx",
+   "bom_side": "B",
+   "region": "radio_t",
+   "side": "F",
+   "at": [
+    -10.7,
+    9.4,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "AE1",
+   "footprint": "lib:AE_WireHole_PTH0.5mm",
+   "value": "ANT 2.4G wire",
+   "block": "rx",
+   "bom_side": "F",
+   "region": "rx_t",
+   "side": "F",
+   "at": [
+    -12.3,
+    7.5,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U19",
+   "footprint": "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_Dense",
+   "value": "RTC6705",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    6.6,
+    -5.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "X4",
+   "footprint": "lib:CRYSTAL-SMD_4P-L3.2-W2.5-BL_Dense",
+   "value": "8MHz 10pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    9.0,
+    -10.2,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C94",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "15pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    7.3,
+    -9.35,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C95",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "15pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    10.7,
+    -9.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C96",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "470nF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    5.35,
+    -8.7,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C98",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    5.2,
+    -1.5,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C100",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    4.25,
+    -8.7,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C101",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100nF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_t",
+   "side": "F",
+   "at": [
+    9.3,
+    -7.4,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C102",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    10.2,
+    -2.85,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C103",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_t",
+   "side": "F",
+   "at": [
+    6.6,
+    -5.1,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R58",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1.2k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    10.8,
+    -3.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C104",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "33pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_t",
+   "side": "F",
+   "at": [
+    6.6,
+    -4.5,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R59",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "270R",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    11.4,
+    -4.9,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C105",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "4.7uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_t",
+   "side": "F",
+   "at": [
+    6.6,
+    -6.15,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R60",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1.2k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    11.0,
+    -7.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R61",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "510k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    11.4,
+    -3.8,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R62",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "560k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    11.6,
+    -6.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R63",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "100k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    10.1,
+    -1.2,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C106",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "1uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    6.5,
+    -1.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R64",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "47k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    11.6,
+    -7.1,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C107",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "4.7uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    10.3,
+    -7.3,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C108",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    8.1,
+    -0.8,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "L3",
+   "footprint": "lib:L_0201_0603Metric_W",
+   "value": "4.7nH",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    10.4,
+    -6.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R65",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10R",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    10.45,
+    -5.1,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C109",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "10nF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    10.8,
+    -4.25,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C110",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "10pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    7.85,
+    -1.5,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U20",
+   "footprint": "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L",
+   "value": "SE5004L",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    10.2,
+    -2.1,
+    180.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C111",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    9.95,
+    -4.75,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C112",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1nF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    10.2,
+    -3.95,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C113",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    10.45,
+    -0.35,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C114",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1nF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    11.3,
+    0.8,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C115",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    11.3,
+    -0.6,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C116",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1nF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    11.9,
+    -0.6,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R66",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    7.55,
+    -3.25,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C117",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "100pF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    11.05,
+    -4.75,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "TH1",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k NTC B3380",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    12.3,
+    0.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C118",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "10uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_b",
+   "side": "B",
+   "at": [
+    10.65,
+    -1.9,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "FL2",
+   "footprint": "lib:Walsin_RFBPF1608060K98Q1C",
+   "value": "BPF 5.15-5.95G",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    7.2,
+    -1.8,
+    -90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J1",
+   "footprint": "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+   "value": "U.FL",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    4.5,
+    -1.5,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R67",
+   "footprint": "lib:R_0402_Selector_3Pad",
+   "value": "0R",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_rf_t",
+   "side": "F",
+   "at": [
+    9.8,
+    0.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "U21",
+   "footprint": "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense",
+   "value": "LP5912-3.3",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_b",
+   "side": "B",
+   "at": [
+    1.6,
+    -5.8,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "C121",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_b",
+   "side": "B",
+   "at": [
+    0.6,
+    -7.6,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R68",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "100k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_b",
+   "side": "B",
+   "at": [
+    2.95,
+    -4.15,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "U22",
+   "footprint": "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense",
+   "value": "LP5907-2.85",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    10.5,
+    -7.8,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C122",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    10.5,
+    -8.7,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C123",
+   "footprint": "lib:C_0402_1005Metric_W",
+   "value": "4.7uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    10.5,
+    -6.8,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R70",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_b",
+   "side": "B",
+   "at": [
+    11.0,
+    -6.0,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "Q27",
+   "footprint": "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W",
+   "value": "BC857BM",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    10.5,
+    -5.8,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R71",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    11.55,
+    -6.9,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C124",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    9.55,
+    -5.8,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R72",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    12.05,
+    -5.8,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "C125",
+   "footprint": "lib:C_0201_0603Metric_W",
+   "value": "1uF",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    11.45,
+    -5.8,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R73",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "10R",
+   "block": "vtx",
+   "bom_side": "F",
+   "region": "vtx_pwr_t",
+   "side": "F",
+   "at": [
+    12.15,
+    -4.95,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "Q28",
+   "footprint": "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W",
+   "value": "AP1606",
+   "block": "vtx",
+   "bom_side": "B",
+   "region": "hd_gate_b",
+   "side": "B",
+   "at": [
+    1.1,
+    4.8,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R80",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "vtx",
+   "bom_side": "B",
+   "region": "vtx_rtc_outer_b",
+   "side": "B",
+   "at": [
+    4.8,
+    5.5,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R81",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "vtx",
+   "bom_side": "B",
+   "region": "vtx_rtc_b",
+   "side": "B",
+   "at": [
+    9.2,
+    -0.1,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R82",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "vtx",
+   "bom_side": "B",
+   "region": "vtx_rtc_outer_b",
+   "side": "B",
+   "at": [
+    -0.1,
+    4.65,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R84",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "1k",
+   "block": "vtx",
+   "bom_side": "B",
+   "region": "vtx_rtc_t",
+   "side": "F",
+   "at": [
+    6.5,
+    1.4,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "D5",
+   "footprint": "lib:LED_0402_1005Metric",
+   "value": "green",
+   "block": "led",
+   "bom_side": "B",
+   "region": "led_b",
+   "side": "B",
+   "at": [
+    -1.4,
+    -4.0,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "D6",
+   "footprint": "lib:LED_0402_1005Metric",
+   "value": "blue",
+   "block": "led",
+   "bom_side": "B",
+   "region": "led_t",
+   "side": "F",
+   "at": [
+    -4.9,
+    6.6,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "R85",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "150R",
+   "block": "led",
+   "bom_side": "B",
+   "region": "led_b",
+   "side": "B",
+   "at": [
+    -4.05,
+    -4.0,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "R86",
+   "footprint": "lib:R_0201_0603Metric_W",
+   "value": "150R",
+   "block": "led",
+   "bom_side": "B",
+   "region": "led_b",
+   "side": "B",
+   "at": [
+    5.0,
+    -0.6,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J2",
+   "footprint": "lib:BattPad_3.0x2.0mm_PTH1.1",
+   "value": "+",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -11.5,
+    2.35,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J3",
+   "footprint": "lib:BattPad_3.0x2.0mm_PTH1.1",
+   "value": "-",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -11.5,
+    4.67,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J4",
+   "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+   "value": "M1",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    6.89,
+    11.84,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J7",
+   "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+   "value": "M2",
+   "block": "io",
+   "bom_side": "B",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    11.8,
+    6.97,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "J10",
+   "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+   "value": "M3",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -11.8,
+    -6.87,
+    -90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J13",
+   "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+   "value": "M4",
+   "block": "io",
+   "bom_side": "B",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -6.91,
+    -11.77,
+    180.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "J16",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "TP0",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -3.4,
+    8.2,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J17",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "RP0",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -2.1,
+    8.2,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J18",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "5V",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -0.8,
+    8.8,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J19",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "GND",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    0.5,
+    8.2,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J20",
+   "footprint": "lib:SolderPad_1.0x1.2mm_Dense",
+   "value": "LED",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    0.0,
+    5.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J21",
+   "footprint": "lib:SolderPad_1.0x1.2mm_Dense",
+   "value": "5V",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    0.0,
+    4.3,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J22",
+   "footprint": "lib:SolderPad_1.0x1.2mm_Dense",
+   "value": "BZ-",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    0.0,
+    3.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J33",
+   "footprint": "lib:SolderPad_1.0x1.2mm_Dense",
+   "value": "GND",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    0.0,
+    6.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J23",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "CAM",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    4.9,
+    2.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J24",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "5V",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    6.2,
+    4.0,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J25",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "GND",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    7.5,
+    2.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J26",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "VHD",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -2.15,
+    0.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J27",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "GND",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -0.85,
+    0.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J28",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "TX1",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    0.45,
+    0.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J29",
+   "footprint": "lib:SolderPad_1.0x1.2mm",
+   "value": "RX1",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    1.75,
+    0.6,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J32",
+   "footprint": "lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal",
+   "value": "CAM",
+   "block": "io",
+   "bom_side": "F",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    2.5,
+    4.1,
+    90.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "J31",
+   "footprint": "lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB",
+   "value": "USB",
+   "block": "io",
+   "bom_side": "B",
+   "region": "pads_b",
+   "side": "B",
+   "at": [
+    -7.7,
+    8.6,
+    135.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "D7",
+   "footprint": "lib:TI_SOT-9X3-3_DRT",
+   "value": "TPD2EUSB30",
+   "block": "io",
+   "bom_side": "B",
+   "region": "pads_t",
+   "side": "F",
+   "at": [
+    -3.5,
+    6.6,
+    90.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "TP9",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "FCB",
+   "block": "io",
+   "bom_side": "B",
+   "region": "test_t",
+   "side": "F",
+   "at": [
+    -6.1,
+    -5.7,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "SW1",
+   "footprint": "lib:SW_Alps_SKUBAAE010_2.4x1.4mm",
+   "value": "SKUBAAE010",
+   "block": "rx",
+   "bom_side": "F",
+   "region": "rx_t",
+   "side": "F",
+   "at": [
+    0.4,
+    -10.9,
+    0.0
+   ],
+   "side_changed": false
+  },
+  {
+   "ref": "D8",
+   "footprint": "lib:X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3",
+   "value": "SDM02M30CLP3",
+   "block": "rx",
+   "bom_side": "F",
+   "region": "rx_outer_b",
+   "side": "B",
+   "at": [
+    2.4,
+    -9.2,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "TP12",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "CLK",
+   "block": "io",
+   "bom_side": "B",
+   "region": "test_t",
+   "side": "F",
+   "at": [
+    -5.8,
+    -5.1,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "TP13",
+   "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+   "value": "DIO",
+   "block": "io",
+   "bom_side": "B",
+   "region": "test_t",
+   "side": "F",
+   "at": [
+    -5.3,
+    -5.7,
+    0.0
+   ],
+   "side_changed": true
+  },
+  {
+   "ref": "H1",
+   "footprint": "lib:MountingHole_3.5mm_Ear_Flange5.2",
+   "value": "MountingHole 3.5",
+   "block": "io",
+   "bom_side": "F",
+   "region": "mount_holes",
+   "side": "F",
+   "at": null,
+   "note": "not placed: the holes are the spec 7 Edge.Cuts cut-outs drawn by setup_board.py (P2 choice)"
+  },
+  {
+   "ref": "H2",
+   "footprint": "lib:MountingHole_3.5mm_Ear_Flange5.2",
+   "value": "MountingHole 3.5",
+   "block": "io",
+   "bom_side": "F",
+   "region": "mount_holes",
+   "side": "F",
+   "at": null,
+   "note": "not placed: the holes are the spec 7 Edge.Cuts cut-outs drawn by setup_board.py (P2 choice)"
+  },
+  {
+   "ref": "H3",
+   "footprint": "lib:MountingHole_3.5mm_Ear_Flange5.2",
+   "value": "MountingHole 3.5",
+   "block": "io",
+   "bom_side": "F",
+   "region": "mount_holes",
+   "side": "F",
+   "at": null,
+   "note": "not placed: the holes are the spec 7 Edge.Cuts cut-outs drawn by setup_board.py (P2 choice)"
+  },
+  {
+   "ref": "LOGO1",
+   "footprint": "lib:incutec_logo_6.1x1.4mm",
+   "value": "incutec",
+   "block": "io",
+   "bom_side": "B",
+   "region": "art_t",
+   "side": "F",
+   "at": [
+    8.0,
+    -7.6,
+    90.0
+   ],
+   "side_changed": true
+  }
+ ],
+ "compaction_d66": {
+  "date": "2026-10-10",
+  "metric": "emptymap3: usable = Edge.Cuts shrunk 0.40 minus rule areas forbidding footprints and the d6 mating/RF zones; occupied = part extent + 0.20 (D70), U.FL + 0.70, silk boxes, reserved via sites + 0.20; empty patch = free area holding a 1.0 x 1.0 mm square",
+  "before": {
+   "F": {
+    "usable_mm2": 595.8,
+    "occupied_pct": 59.1,
+    "free_after_halo_mm2": 90.4,
+    "empty_patch_mm2": 40.1,
+    "patches_gt_1mm2": 9
+   },
+   "B": {
+    "usable_mm2": 536.6,
+    "occupied_pct": 64.0,
+    "free_after_halo_mm2": 63.3,
+    "empty_patch_mm2": 12.2,
+    "patches_gt_1mm2": 5
+   }
+  },
+  "after_part_moves_and_vias": {
+   "F": {
+    "usable_mm2": 595.8,
+    "occupied_pct": 59.5,
+    "free_after_halo_mm2": 82.7,
+    "empty_patch_mm2": 17.9,
+    "patches_gt_1mm2": 3
+   },
+   "B": {
+    "usable_mm2": 536.6,
+    "occupied_pct": 64.3,
+    "free_after_halo_mm2": 58.8,
+    "empty_patch_mm2": 3.2,
+    "patches_gt_1mm2": 2
+   }
+  },
+  "after": {
+   "F": {
+    "usable_mm2": 595.8,
+    "occupied_pct": 62.9,
+    "free_after_halo_mm2": 63.7,
+    "empty_patch_mm2": 0.0,
+    "patches_gt_1mm2": 0
+   },
+   "B": {
+    "usable_mm2": 536.6,
+    "occupied_pct": 64.9,
+    "free_after_halo_mm2": 54.6,
+    "empty_patch_mm2": 0.0,
+    "patches_gt_1mm2": 0
+   }
+  },
+  "moved": {
+   "C23": "hot-loop cap Q30: 3.86 -> 0.1 mm from the pin 1/3 midpoint",
+   "C20": "hot-loop cap Q29: 2.19 -> 0.82 mm",
+   "R87": "into the rear patch (anchor 1.30 -> 1.96 mm)"
+  },
+  "reserved_vias": [
+   {
+    "x": -10.34,
+    "y": -10.44,
+    "side": "F",
+    "tag": "GND cell Q40",
+    "edge_mm": 2.77
+   },
+   {
+    "x": 9.16,
+    "y": -10.24,
+    "side": "F",
+    "tag": "GND stitch",
+    "edge_mm": 2.46
+   },
+   {
+    "x": 10.06,
+    "y": -10.19,
+    "side": "F",
+    "tag": "GND stitch",
+    "edge_mm": 1.94
+   },
+   {
+    "x": 11.56,
+    "y": -10.19,
+    "side": "F",
+    "tag": "GND edge fence",
+    "edge_mm": 0.79
+   },
+   {
+    "x": 11.81,
+    "y": -8.94,
+    "side": "F",
+    "tag": "LDO",
+    "edge_mm": 1.13
+   },
+   {
+    "x": -12.59,
+    "y": -1.04,
+    "side": "F",
+    "tag": "+BATT cell Q36",
+    "edge_mm": 0.61
+   },
+   {
+    "x": 8.26,
+    "y": 0.76,
+    "side": "F",
+    "tag": "GND cell Q32",
+    "edge_mm": 4.94
+   },
+   {
+    "x": 2.66,
+    "y": 9.41,
+    "side": "F",
+    "tag": "GND cell Q29",
+    "edge_mm": 3.79
+   },
+   {
+    "x": 10.46,
+    "y": 9.81,
+    "side": "F",
+    "tag": "+BATT cell Q34",
+    "edge_mm": 2.74
+   },
+   {
+    "x": 9.31,
+    "y": 10.56,
+    "side": "F",
+    "tag": "GND cell Q33",
+    "edge_mm": 2.64
+   },
+   {
+    "x": -11.54,
+    "y": 9.71,
+    "side": "B",
+    "tag": "GND RF fence",
+    "edge_mm": 1.66
+   },
+   {
+    "x": 10.31,
+    "y": 10.41,
+    "side": "B",
+    "tag": "+BATT cell Q34",
+    "edge_mm": 2.8
+   },
+   {
+    "x": -5.59,
+    "y": 11.66,
+    "side": "B",
+    "tag": "GND stitch",
+    "edge_mm": 1.54
+   },
+   {
+    "x": 4.0,
+    "y": -9.763,
+    "side": "FB",
+    "tag": "GND via U11 pin 7",
+    "edge_mm": null
+   },
+   {
+    "x": -7.125,
+    "y": 5.7,
+    "side": "FB",
+    "tag": "GND via U2 pin 1",
+    "edge_mm": null
+   },
+   {
+    "x": 0.3,
+    "y": 12.8,
+    "side": "FB",
+    "tag": "GND via Q30 pin 1",
+    "edge_mm": null
+   },
+   {
+    "x": -9.7,
+    "y": -0.2,
+    "side": "FB",
+    "tag": "GND via Q36 pin 1",
+    "edge_mm": null
+   },
+   {
+    "x": -0.2,
+    "y": -12.7,
+    "side": "FB",
+    "tag": "GND via Q38 pin 1",
+    "edge_mm": null
+   },
+   {
+    "x": -9.2,
+    "y": 1.8,
+    "side": "FB",
+    "tag": "GND via U1 pin 2",
+    "edge_mm": null
+   },
+   {
+    "x": 2.8,
+    "y": 4.3,
+    "side": "FB",
+    "tag": "GND via U24 pin C2",
+    "edge_mm": null
+   }
+  ],
+  "reserved_vias_by_tag": {
+   "GND cell Q40": 1,
+   "GND stitch": 3,
+   "GND edge fence": 1,
+   "LDO": 1,
+   "+BATT cell Q36": 1,
+   "GND cell Q32": 1,
+   "GND cell Q29": 1,
+   "+BATT cell Q34": 2,
+   "GND cell Q33": 1,
+   "GND RF fence": 1,
+   "GND via U11 pin 7": 1,
+   "GND via U2 pin 1": 1,
+   "GND via Q30 pin 1": 1,
+   "GND via Q36 pin 1": 1,
+   "GND via Q38 pin 1": 1,
+   "GND via U1 pin 2": 1,
+   "GND via U24 pin C2": 1
+  },
+  "power_copper_landings": [
+   {
+    "side": "F",
+    "box": [
+     9.45,
+     1.05,
+     12.85,
+     4.25
+    ],
+    "area_mm2": 8.43,
+    "role": "power copper landing L1 (+BATT/GND pour of cell Q32B, via-in-pad in the cell pads)"
+   },
+   {
+    "side": "F",
+    "box": [
+     1.15,
+     9.65,
+     4.25,
+     12.85
+    ],
+    "area_mm2": 8.39,
+    "role": "power copper landing L1 (+BATT/GND pour of cell Q30B, via-in-pad in the cell pads)"
+   },
+   {
+    "side": "F",
+    "box": [
+     6.95,
+     3.45,
+     8.05,
+     4.65
+    ],
+    "area_mm2": 1.32,
+    "role": "power copper landing L1 (+BATT/GND pour of cell Q34F, via-in-pad in the cell pads)"
+   },
+   {
+    "side": "B",
+    "box": [
+     -9.05,
+     11.55,
+     -7.75,
+     12.85
+    ],
+    "area_mm2": 1.69,
+    "role": "GND pour landing L6"
+   },
+   {
+    "side": "B",
+    "box": [
+     -7.05,
+     11.35,
+     -5.95,
+     12.85
+    ],
+    "area_mm2": 1.65,
+    "role": "GND pour landing L6"
+   }
+  ],
+  "markers": "User.3: 0.35 mm circles = reserved through-via sites (0.35/0.20 filled+capped, tented), rectangles = reserved power/GND copper landings"
+ },
+ "rxfix_2026_10_10": {
+  "why": "critique BLOCKER: RX RF chain U18 pin22 -> FL1 -> AE1 not DRC-routable",
+  "moves": {
+   "FL1": [
+    103.55,
+    120.0,
+    180,
+    "F"
+   ],
+   "X3": [
+    106.3,
+    119.65,
+    0,
+    "F"
+   ],
+   "C85": [
+    104.6,
+    119.125,
+    180,
+    "F"
+   ],
+   "C84": [
+    102.65,
+    123.25,
+    0,
+    "F"
+   ],
+   "R7": [
+    102.9,
+    122.2,
+    90,
+    "F"
+   ],
+   "D4": [
+    115.3,
+    123.6,
+    0,
+    "F"
+   ]
+  },
+  "rules": {
+   "RF_RX_ANT": "rule area pours/pads/footprints only; DRU 'RF_RX_ANT: only the RF feed on L1' (net-aware, no vias)",
+   "RF_RX_FEED": "In1.Cu, FL1 OUT (102.975,120.0) -> AE1, r 0.4, GND vias only"
+  },
+  "reserved_routes": {
+   "RF_RFIO": [
+    [
+     105.25,
+     121.1
+    ],
+    [
+     105.25,
+     120.85
+    ],
+    [
+     104.425,
+     120.0
+    ],
+    [
+     104.125,
+     120.0
+    ]
+   ],
+   "RF_RX_ANT": [
+    [
+     102.975,
+     120.0
+    ],
+    [
+     102.275,
+     120.0
+    ],
+    [
+     101.575,
+     120.7
+    ],
+    [
+     100.9,
+     120.7
+    ]
+   ],
+   "TCXO_OUT_via_L1_L5": [
+    102.375,
+    123.6
+   ],
+   "TCXO_OUT_via_X3": [
+    107.1,
+    119.45
+   ],
+   "TCXO_OUT_layer": "In4.Cu (warning-level, reviewed)"
+  },
+  "notes": [
+   "D4 sits in the Q30 L1 power landing (landing shrinks ~1.9 mm2)",
+   "R7 is 7 mm from U3/R8 (U3_PR1 divider), nearest legal site"
+  ]
+ }
+}

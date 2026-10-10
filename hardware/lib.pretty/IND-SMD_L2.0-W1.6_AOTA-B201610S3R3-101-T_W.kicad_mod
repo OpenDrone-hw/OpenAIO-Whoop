@@ -1,0 +1,142 @@
+(footprint "IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Abracon AOTA-B201610S3R3-101-T 3.3 uH 2016. Land per ${OPENDRONE_LIB}/datasheet/AOTA-B201610S3R3-101-T.pdf (rev A 9/13/2024) p4 'Mechanical Specifications' (2.00 x 1.60, electrodes 0.60+-0.20) and 'Recommended Land Pattern' (1.00 x 1.60 lands, 1.00 gap). Corrected copy of OpenDrone:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W.json")
+	(tags "Abracon AOTA-B201610S3R3-101-T 3.3 uH 2016")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "e9877b1c-c1bd-4caf-bc96-3e9159a8fb5e")
+		(effects
+			(font
+				(size 0.64 0.64)
+				(thickness 0.096)
+			)
+		)
+	)
+	(property "Value" "IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_W"
+		(at 0 1.44 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bb9128c3-0510-4456-a1c8-852e7ae6efa4")
+		(effects
+			(font
+				(size 0.64 0.64)
+				(thickness 0.096)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3ae6720f-a5e1-4743-94f4-a100deb72776")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d6955f65-d4b4-4f2f-817e-977a0b0056a6")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.6 -0.9)
+		(end 1.6 0.9)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "3475f0e6-a5c8-4767-930f-ec94185cbef6")
+	)
+	(fp_line
+		(start -1 -0.55)
+		(end -0.75 -0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "e723006b-fe9b-48dd-bad2-949834b1bcfd")
+	)
+	(fp_line
+		(start -1 0.8)
+		(end -1 -0.55)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "7734e42d-38fb-400c-abd7-fc38d0cfccf0")
+	)
+	(fp_line
+		(start -0.75 -0.8)
+		(end 1 -0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "fa242f8f-df26-4517-9d7d-b5f3e9324ff6")
+	)
+	(fp_line
+		(start 1 -0.8)
+		(end 1 0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "fa91a6c1-3bae-4cd4-8e22-7f19732fff03")
+	)
+	(fp_line
+		(start 1 0.8)
+		(end -1 0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "0aacaa3b-f506-4418-b413-9d3756a9aa00")
+	)
+	(pad "1" smd rect
+		(at -1 0)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "c8575b31-d275-4281-bbba-bc7912af9e8d")
+	)
+	(pad "2" smd rect
+		(at 1 0)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "11cfe60c-92d1-42c4-8808-89f38e8a8f23")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/L_Murata_DFE201610P.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

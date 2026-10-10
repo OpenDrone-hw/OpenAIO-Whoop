@@ -1,0 +1,335 @@
+{
+ "footprint": "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_Dense",
+ "part": "RichWave RTC6705 (LCSC C913074), U19; area variant of QFN-40_6x6mm_P0.5mm_EP_RTC6705",
+ "datasheet": "RichWave RTC6705-DST-001 data sheet V0.2 (Sep 2007) [/tmp/claude-0/-home-user-OpenAIO-Whoop/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/verify04/ds/rtc6705.pdf; https://www.lcsc.com/datasheet/C913074.pdf]: p2 block diagram = top view (pin 1 top of the left column, 1-10 left, 11-20 bottom, 21-30 right, 31-40 top, counter-clockwise); p3-4 pin table (pins 2, 12, 18, 36, 37 'NC Not connected'); p11-12 package QFN-40: D=E 6 BSC, e 0.5 BSC, b 0.20/0.25/0.30, L 0.35/0.40/0.45, EP J=K 4.52/4.62/4.72. The data sheet gives NO land pattern",
+ "derivation": "Land copied from the OpenVTX library footprint QFN-40_L6.0-W6.0-P0.50-BL-EP (siblings/OpenVTX/hardware/lib.pretty; identical to EasyEDA C913074 within 0.005): pins 0.28 x 0.66 at 2.91 (inner edge 2.58 = lead heel at Lmax 2.55 + 0.03, outer edge 3.24 = 0.24 toe), EP land 4.42 (0.10 inside the EP minimum 4.52, 0.37 from the pin heels). Re-oriented from the EasyEDA 'BL' frame (pin 1 bottom-left) to pin 1 top-left (rotation -90 deg); the four 0.30 mm footprint vias of the OpenVTX EP are dropped (EP vias are placed on the board in P5, house through-via 0.35/0.20); EP paste 3 x 3 windows 1.20 on 1.45 pitch = 66 % instead of the OpenVTX 100 % (stencil not given in the data sheet). DENSE changes: (1) toe trimmed, outer land edge 3.24 -> 3.20 (0.20 past the body = IPC-7351B density L toe; land envelope 6.40 = area budget QFN40_6 6.4 x 6.4, DESIGN-SPEC 9.2 budget_v6, floorplan rectangle -1.8..4.6 / -7.85..-1.45); heel 2.58, width, EP and paste unchanged; (2) the five data-sheet NC pads removed (D21 trimmed_footprint)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -2.89,
+   "y": -2.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -2.89,
+   "y": -1.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -2.89,
+   "y": -0.75,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "5",
+   "x": -2.89,
+   "y": -0.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "6",
+   "x": -2.89,
+   "y": 0.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "7",
+   "x": -2.89,
+   "y": 0.75,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "8",
+   "x": -2.89,
+   "y": 1.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "9",
+   "x": -2.89,
+   "y": 1.75,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "10",
+   "x": -2.89,
+   "y": 2.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "11",
+   "x": -2.25,
+   "y": 2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "13",
+   "x": -1.25,
+   "y": 2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "14",
+   "x": -0.75,
+   "y": 2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "15",
+   "x": -0.25,
+   "y": 2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "16",
+   "x": 0.25,
+   "y": 2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "17",
+   "x": 0.75,
+   "y": 2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "19",
+   "x": 1.75,
+   "y": 2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "20",
+   "x": 2.25,
+   "y": 2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "21",
+   "x": 2.89,
+   "y": 2.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "22",
+   "x": 2.89,
+   "y": 1.75,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "23",
+   "x": 2.89,
+   "y": 1.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "24",
+   "x": 2.89,
+   "y": 0.75,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "25",
+   "x": 2.89,
+   "y": 0.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "26",
+   "x": 2.89,
+   "y": -0.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "27",
+   "x": 2.89,
+   "y": -0.75,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "28",
+   "x": 2.89,
+   "y": -1.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "29",
+   "x": 2.89,
+   "y": -1.75,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "30",
+   "x": 2.89,
+   "y": -2.25,
+   "w": 0.62,
+   "h": 0.28,
+   "shape": "rect"
+  },
+  {
+   "number": "31",
+   "x": 2.25,
+   "y": -2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "32",
+   "x": 1.75,
+   "y": -2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "33",
+   "x": 1.25,
+   "y": -2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "34",
+   "x": 0.75,
+   "y": -2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "35",
+   "x": 0.25,
+   "y": -2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "38",
+   "x": -1.25,
+   "y": -2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "39",
+   "x": -1.75,
+   "y": -2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "40",
+   "x": -2.25,
+   "y": -2.89,
+   "w": 0.28,
+   "h": 0.62,
+   "shape": "rect"
+  },
+  {
+   "number": "41",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 4.42,
+   "h": 4.42,
+   "shape": "rect"
+  }
+ ],
+ "exposed": [
+  "41"
+ ],
+ "removed_nc": [
+  {
+   "number": "2",
+   "reason": "pin 2 'NC, Not connected' in the RTC6705 DS V0.2 pin table p3-4 (no internal connection, not 'reserved'); trimmed for density, D21 trimmed_footprint"
+  },
+  {
+   "number": "12",
+   "reason": "pin 12 'NC, Not connected' in the RTC6705 DS V0.2 pin table p3-4 (no internal connection, not 'reserved'); trimmed for density, D21 trimmed_footprint"
+  },
+  {
+   "number": "18",
+   "reason": "pin 18 'NC, Not connected' in the RTC6705 DS V0.2 pin table p3-4 (no internal connection, not 'reserved'); trimmed for density, D21 trimmed_footprint"
+  },
+  {
+   "number": "36",
+   "reason": "pin 36 'NC, Not connected' in the RTC6705 DS V0.2 pin table p3-4 (no internal connection, not 'reserved'); trimmed for density, D21 trimmed_footprint"
+  },
+  {
+   "number": "37",
+   "reason": "pin 37 'NC, Not connected' in the RTC6705 DS V0.2 pin table p3-4 (no internal connection, not 'reserved'); trimmed for density, D21 trimmed_footprint"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8,
+  "min_windows": 2
+ },
+ "body": {
+  "w": 6.0,
+  "h": 6.0,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/vtx_osd/landspecs/QFN-40_6x6mm_P0.5mm_EP_RTC6705_Dense.json"
+}

@@ -1,0 +1,92 @@
+{
+ "footprint": "Package_SON:Diodes_PowerDI3333-8",
+ "footprint_note": "FPID of the OpenDrone DOY180N03T symbol; KiCad stock libs are not installed here, so the test uses the copy embedded in OpenESC-20x20 4in1-mini.kicad_pcb (pads renumbered S=1 x3, G=2, D=3 custom; no courtyard).",
+ "part": "DOY180N03T (LCSC C49441966), TDFN3333-8PL",
+ "datasheet": "KiCad-Library/datasheet/DOY180N03T.pdf V1.0 p6 'TDFN3333-8PL Package Information' (D=E=3.30, e=0.65, F=0.35 lead width, B=0.50 lead length, H1=0.35, EP H=2.15 x L=2.75, L1=0.675); pinout p1 (1-3 S, 4 G, 5-8 D).",
+ "derivation": "Datasheet has NO land pattern. IPC-7351B nominal (Jt=0.30, Jh=0, Js=-0.04, F=0.05, P=0.025, RMS S tolerance): Zmax=4.008, Gmin=2.122, Xmax=0.335 -> leads 0.94 x 0.33 centred at x=-1.530; drain = EP at max size (2.25 x 2.85) + 4 fingers to the same toe line. Rounded to 0.01.",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.53,
+   "y": -0.975,
+   "w": 0.94,
+   "h": 0.33,
+   "shape": "rect"
+  },
+  {
+   "number": "1",
+   "x": -1.53,
+   "y": -0.325,
+   "w": 0.94,
+   "h": 0.33,
+   "shape": "rect"
+  },
+  {
+   "number": "1",
+   "x": -1.53,
+   "y": 0.325,
+   "w": 0.94,
+   "h": 0.33,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -1.53,
+   "y": 0.975,
+   "w": 0.94,
+   "h": 0.33,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "shape": "custom",
+   "rects": [
+    {
+     "x": 0.275,
+     "y": 0.0,
+     "w": 2.25,
+     "h": 2.85
+    },
+    {
+     "x": 1.7,
+     "y": -0.975,
+     "w": 0.6,
+     "h": 0.33
+    },
+    {
+     "x": 1.7,
+     "y": -0.325,
+     "w": 0.6,
+     "h": 0.33
+    },
+    {
+     "x": 1.7,
+     "y": 0.325,
+     "w": 0.6,
+     "h": 0.33
+    },
+    {
+     "x": 1.7,
+     "y": 0.975,
+     "w": 0.6,
+     "h": 0.33
+    }
+   ]
+  }
+ ],
+ "removed_nc": [],
+ "exposed": [
+  "3"
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8,
+  "min_windows": 2
+ },
+ "body": {
+  "w": 3.3,
+  "h": 3.3
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1"
+}

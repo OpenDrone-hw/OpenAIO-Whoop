@@ -1,0 +1,66 @@
+{
+  "_comment": "OpenAIO-Whoop stackup (research/DESIGN-SPEC.md section 8.2): NextPCB library 6L-1.0mm-0.5oz-1080, 1 oz outer finished, 0.5 oz inner, FR-4 Dk 4.2 (NextPCB). Sum incl. masks 1.027 mm (0.997 mm without). Applied by setup_board.py (also readable by apply_stackup.py). JLC 1.0 mm equivalent: open (EQ item).",
+  "copper_layers": 6,
+  "copper_finish": "ENIG",
+  "layers": {
+    "F.Mask": {
+      "thickness": 0.015
+    },
+    "F.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 1": {
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
+      "epsilon_r": 4.2,
+      "loss_tangent": 0.02
+    },
+    "In1.Cu": {
+      "thickness": 0.0175
+    },
+    "dielectric 2": {
+      "type": "core",
+      "thickness": 0.3,
+      "material": "FR4",
+      "epsilon_r": 4.2,
+      "loss_tangent": 0.02
+    },
+    "In2.Cu": {
+      "thickness": 0.0175
+    },
+    "dielectric 3": {
+      "type": "prepreg",
+      "thickness": 0.103,
+      "material": "2313",
+      "epsilon_r": 4.2,
+      "loss_tangent": 0.02
+    },
+    "In3.Cu": {
+      "thickness": 0.0175
+    },
+    "dielectric 4": {
+      "type": "core",
+      "thickness": 0.3,
+      "material": "FR4",
+      "epsilon_r": 4.2,
+      "loss_tangent": 0.02
+    },
+    "In4.Cu": {
+      "thickness": 0.0175
+    },
+    "dielectric 5": {
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
+      "epsilon_r": 4.2,
+      "loss_tangent": 0.02
+    },
+    "B.Cu": {
+      "thickness": 0.035
+    },
+    "B.Mask": {
+      "thickness": 0.015
+    }
+  }
+}

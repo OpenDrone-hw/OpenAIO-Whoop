@@ -1,0 +1,418 @@
+{
+ "footprint": "lib:QFN-48_5x5mm_P0.35mm_EP_ESP32-D0WD",
+ "part": "Espressif ESP32-D0WD-V3 (LCSC C967021), U16",
+ "datasheet": "Espressif ESP32 Series Datasheet v5.3 (dl/esp32.pdf; https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf): Fig 6-2 QFN48 (5x5 mm) p59: D=E 5.00 (4.95-5.05), D2=E2 3.70 (3.65-3.75), b 0.18 (0.13-0.23), L 0.35 (0.30-0.40), e 0.35 BSC, pin-1 C0.35 on the EP; pin layout Fig 2-2 p13 (top view, ESP32-D0WD-V3 is QFN 5*5 per Table 1-1 p3): 14 pins on the left (1-14) and right (25-38) sides, 10 on the bottom (15-24) and top (39-48), pin 49 = GND EP; the data sheet gives NO land pattern",
+ "derivation": "IPC-7351B flat no-lead method with the datasheet tolerances (F 0.10, P 0.05): heel G = Smax(rms) - 0.206 = 4.18 -> 4.20 (inner pad edge 2.10, heel goal 0), toe at density L (J_T 0.20 at the body edge): Z = 5.40 = the area budget QFN48_5 5.4 x 5.4 (DESIGN-SPEC 9.2, budget_v6 / sketch_v5), pad width = b nominal 0.18 (DESIGN-SPEC 4.7/8.1: 0.18 mm pads; leaves 0.17 mm copper gap at 0.35 pitch, >= 0.15 SMD pad-pad rule); EP land = D2 nominal 3.70 (0.25 mm to the pin heels); EP paste 3x3 windows 1.00 mm on 1.25 mm pitch = 66 % (stencil 0.10 mm; pins 1:1, area ratio 0.71). Ganged solder-mask opening per pad row (F.Mask rectangle, pads + 0.04) because the mask web at 0.35 pitch would be 0.09 mm < 0.10 (DESIGN-SPEC 8.1/8.4, D43 rule fine_pitch_ganged_mask, active only after the O15 NextPCB EQ); footprint attribute allow_soldermask_bridges set",
+ "pads": [
+  {
+   "number": "1",
+   "x": -2.4,
+   "y": -2.275,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -2.4,
+   "y": -1.925,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -2.4,
+   "y": -1.575,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": -2.4,
+   "y": -1.225,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": -2.4,
+   "y": -0.875,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": -2.4,
+   "y": -0.525,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": -2.4,
+   "y": -0.175,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": -2.4,
+   "y": 0.175,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "9",
+   "x": -2.4,
+   "y": 0.525,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "10",
+   "x": -2.4,
+   "y": 0.875,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "11",
+   "x": -2.4,
+   "y": 1.225,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "12",
+   "x": -2.4,
+   "y": 1.575,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "13",
+   "x": -2.4,
+   "y": 1.925,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "14",
+   "x": -2.4,
+   "y": 2.275,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "15",
+   "x": -1.575,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "16",
+   "x": -1.225,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "17",
+   "x": -0.875,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "18",
+   "x": -0.525,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "19",
+   "x": -0.175,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "20",
+   "x": 0.175,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "21",
+   "x": 0.525,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "22",
+   "x": 0.875,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "23",
+   "x": 1.225,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "24",
+   "x": 1.575,
+   "y": 2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "25",
+   "x": 2.4,
+   "y": 2.275,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "26",
+   "x": 2.4,
+   "y": 1.925,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "27",
+   "x": 2.4,
+   "y": 1.575,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "28",
+   "x": 2.4,
+   "y": 1.225,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "29",
+   "x": 2.4,
+   "y": 0.875,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "30",
+   "x": 2.4,
+   "y": 0.525,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "31",
+   "x": 2.4,
+   "y": 0.175,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "32",
+   "x": 2.4,
+   "y": -0.175,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "33",
+   "x": 2.4,
+   "y": -0.525,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "34",
+   "x": 2.4,
+   "y": -0.875,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "35",
+   "x": 2.4,
+   "y": -1.225,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "36",
+   "x": 2.4,
+   "y": -1.575,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "37",
+   "x": 2.4,
+   "y": -1.925,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "38",
+   "x": 2.4,
+   "y": -2.275,
+   "w": 0.6,
+   "h": 0.18,
+   "shape": "roundrect"
+  },
+  {
+   "number": "39",
+   "x": 1.575,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "40",
+   "x": 1.225,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "41",
+   "x": 0.875,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "42",
+   "x": 0.525,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "43",
+   "x": 0.175,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "44",
+   "x": -0.175,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "45",
+   "x": -0.525,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "46",
+   "x": -0.875,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "47",
+   "x": -1.225,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "48",
+   "x": -1.575,
+   "y": -2.4,
+   "w": 0.18,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "49",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 3.7,
+   "h": 3.7,
+   "shape": "rect"
+  }
+ ],
+ "exposed": [
+  "49"
+ ],
+ "removed_nc": [],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8,
+  "min_windows": 2
+ },
+ "body": {
+  "w": 5.0,
+  "h": 5.0,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/rx/landspecs/QFN-48_5x5mm_P0.35mm_EP_ESP32-D0WD.json"
+}

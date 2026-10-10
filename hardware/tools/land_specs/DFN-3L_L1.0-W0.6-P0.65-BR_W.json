@@ -1,0 +1,54 @@
+{
+ "footprint": "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W",
+ "source": "OpenDrone:DFN-3L_L1.0-W0.6-P0.65-BR",
+ "part": "ALLPOWER AP1606 DFN-3L 1.0 x 0.6; Nexperia BC857BM,315 (D52 BR-02)",
+ "datasheet": "Nexperia SOT883 package information (20 May 2022) p2 outline DFN1006-3 (D 0.6 x E 1.0, e 0.35, e1 0.65) and p3 'Footprint information for reflow soldering' (lands 0.40 x 0.25 at 0.45 pitch, 0.40 x 0.70, 0.70 between columns, R0.05); p23/merge/od/dl/ap/SOT883.pdf",
+ "pads": [
+  {
+   "number": "1",
+   "x": 0.35,
+   "y": 0.225,
+   "w": 0.4,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": 0.35,
+   "y": -0.225,
+   "w": 0.4,
+   "h": 0.25,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -0.35,
+   "y": 0,
+   "w": 0.4,
+   "h": 0.7,
+   "shape": "roundrect"
+  }
+ ],
+ "body": {
+  "w": 1.0,
+  "h": 0.6
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "The AP1606 data sheet (${OPENDRONE_LIB}/datasheet/AP1606.pdf, also LCSC C2849580) has no package drawing; LCSC lists DFN-3L(0.6x1), i.e. the industry DFN1006-3 (SOT883, JEITA SC-101). Land = Nexperia's SOT883 reflow footprint drawn in the OpenDrone '-BR' frame (pins 1/2 right column, pin 1 lower right, pin 3 left), which keeps the pin numbering OpenDrone built with on OpenFC-Core/Lite/Lite-Mini (PARTS-USED.md). Inside the budget envelope DFN1006 1.1 x 0.7.",
+ "build": {
+  "radius": 0.05,
+  "courtyard": "polygon",
+  "model_from_source": true
+ },
+ "applies_to": [
+  {
+   "mpn": "Nexperia BC857BM,315 (PNP 45 V 100 mA, SOT883, LCSC C549525)",
+   "d52": "BR-02: Q27 PNP current-mode PA drive (new lib symbol BC857BM)",
+   "datasheet": "BC857M series product data sheet 2004 Mar 10 (LCSC C549525 PDF, p23/bomred_lib/dl/nx/bc857bm.pdf): p3 Pinning 1 base, 2 emitter, 3 collector and Fig 1 'Simplified outline (SOT883)', bottom view: pin 1 lower left, 2 upper left, 3 right = top view pin 1 lower right, 2 upper right, 3 left = this footprint; package SOT883 (same Nexperia land as cited above, p23/merge/od/dl/ap/SOT883.pdf p3 Fig 2)",
+   "fit": "same package and land; numbering checked against the BC857M pinning (AP1606 G/S/D = 1/2/3 on the same pads)"
+  }
+ ]
+}

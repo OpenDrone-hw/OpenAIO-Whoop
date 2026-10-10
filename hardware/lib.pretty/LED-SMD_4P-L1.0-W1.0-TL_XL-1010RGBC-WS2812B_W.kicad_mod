@@ -1,0 +1,156 @@
+(footprint "LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "XINGLIGHT XL-1010RGBC-WS2812B. Land per ${OPENDRONE_LIB}/datasheet/XL-1010RGBC-WS2812B.pdf p11 'Outline Dimension' (1.0 x 1.0, top view 1 DOUT top-left, 2 VDD top-right, 3 GND bottom-left, 4 DI bottom-right) and 'Recommended Soldering Pattern' (0.45 pads, 0.4 gaps). pad centres +-(0.2 + 0.225) = +-0.425. Corrected copy of OpenDrone:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W.json")
+	(tags "XINGLIGHT XL-1010RGBC-WS2812B")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "a67eda8b-8cf7-43b1-b3c7-bd8405c0eddd")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Value" "LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W"
+		(at 0 0.9 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "eabffb8a-8df3-477b-87a5-38f7c52611b4")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "efd49f59-d8c7-4f7e-a449-7feb96829914")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "93631dab-ae01-40bd-8b59-e4f126455c58")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.75 -0.75)
+		(end 0.75 0.75)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "566afa3e-d776-4cfd-a1a0-0cee21d297cd")
+	)
+	(fp_line
+		(start -0.5 -0.25)
+		(end -0.25 -0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "e36f6816-ec21-4c0f-8db0-4c996a0f9e39")
+	)
+	(fp_line
+		(start -0.5 0.5)
+		(end -0.5 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "2d82c28e-146d-4efd-a21e-41105249497e")
+	)
+	(fp_line
+		(start -0.25 -0.5)
+		(end 0.5 -0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "1fb9a975-a67c-412d-9f2e-23a81cfa5e27")
+	)
+	(fp_line
+		(start 0.5 -0.5)
+		(end 0.5 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3fd043b3-6457-4fb4-9a06-b4f44d1e80a8")
+	)
+	(fp_line
+		(start 0.5 0.5)
+		(end -0.5 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "c728440b-4a14-43be-8354-3af5c62c5a7c")
+	)
+	(pad "1" smd rect
+		(at -0.425 -0.425)
+		(size 0.45 0.45)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "973afa05-645e-45c3-ab52-4e71de2ac68f")
+	)
+	(pad "2" smd rect
+		(at 0.425 -0.425)
+		(size 0.45 0.45)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "9848e8dc-90a0-4590-8243-06002199ce13")
+	)
+	(pad "3" smd rect
+		(at -0.425 0.425)
+		(size 0.45 0.45)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "ef57e305-0605-4296-8011-ca4dea1788c8")
+	)
+	(pad "4" smd rect
+		(at 0.425 0.425)
+		(size 0.45 0.45)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "825e198d-be11-4442-9094-4f10a9441197")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B.wrl"
+		(offset
+			(xyz 0 -0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

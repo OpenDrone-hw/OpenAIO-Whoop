@@ -1,0 +1,53 @@
+{
+ "footprint": "lib:TestPoint_Via_D0.35mm_Drill0.2mm",
+ "datasheet": "/home/user/OpenAIO-Whoop/research/DECISIONS.md D67 ('mask-open filled-via test points, 0.35 mm via, no silk'); via 0.35 / 0.20 drill and annular 0.075 from /home/user/OpenAIO-Whoop/hardware/OpenAIO-Whoop.kicad_pro (D6, NextPCB-confirmed, CONTEXT 2026-10-07); fill + cap Type VII from OpenAIO-Whoop.kicad_dru comment 'every via that sits in a pad is filled ... and capped'; Heatsink-pad via convention from the same DRU ('D21 footprint_via_pads' rules)",
+ "derivation": "no maker part: the land is the board's standard through via. SMD land D0.36 (0.005 past the via ring: a coincident D0.35 land makes KiCad 10.0.6 read the via ring as 0.074999 in DRC) on F.Cu + F.Mask with the test-point property (mask opening D0.44 with the 0.04 board expansion, placement side only) + PTH pad D0.35 / drill 0.20 on all copper, no mask (far side tented), Heatsink property so the D21 footprint_via_pads rules (via ring 0.075, via hole clearance 0.20, same-net holes 0.20) apply; no paste (probe target, flat ENIG cap); body = land; single terminal, pin1 null",
+ "pads": [
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 0.36,
+   "h": 0.36,
+   "shape": "circle"
+  },
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 0.35,
+   "h": 0.35,
+   "shape": "circle"
+  }
+ ],
+ "holes": [
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 0.0,
+   "drill": 0.2,
+   "plated": true
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 0.36,
+  "h": 0.36,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": null,
+ "attrs": [
+  "smd",
+  "exclude_from_pos_files",
+  "exclude_from_bom"
+ ],
+ "pad_property": "testpoint",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "staged_from": "p2v3/integ4_work/stage/landspecs/TestPoint_Via_D0.35mm_Drill0.2mm.json"
+}

@@ -1,0 +1,116 @@
+(footprint "SolderPad_1.0x1.2mm"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "SMD wire solder pad 1.0 x 1.2 mm, rounded corners, no paste (hand-soldered ENIG), OpenAIO-Whoop spec 4.10 user/CAM/HD/LED pads; label is board silk, not part of the footprint")
+	(tags "solder pad wire connector")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "e804173c-8ff4-498b-a87d-bdf14f36a3b6")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Value" "SolderPad_1.0x1.2mm"
+		(at 0 1 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d0f040ba-6228-452c-aa4b-c9c549b12ff3")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.06)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a2f39080-dae3-4c85-bd6d-3e6c7fe24a73")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d6120f7e-f2dc-41ea-a233-9791c3849dc5")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.6 -0.7)
+		(end 0.6 0.7)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "8fcb5e20-a1b5-4522-91b2-9257931574e7")
+	)
+	(fp_line
+		(start -0.5 -0.6)
+		(end 0.5 -0.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "19b5c6dd-94c0-433b-965c-ad9c63362d3b")
+	)
+	(fp_line
+		(start -0.5 0.6)
+		(end -0.5 -0.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "330955a4-64fc-4bab-87f5-d5ff3c7876d8")
+	)
+	(fp_line
+		(start 0.5 -0.6)
+		(end 0.5 0.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "8e7d7b52-4b44-4f7c-8ef6-b6ef93ccf787")
+	)
+	(fp_line
+		(start 0.5 0.6)
+		(end -0.5 0.6)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "44c57366-e29b-4572-a302-74eb3d665750")
+	)
+	(pad "1" smd roundrect
+		(at 0 0)
+		(size 1 1.2)
+		(property pad_prop_testpoint)
+		(layers "F.Cu" "F.Mask")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "fe46b924-882d-47ff-9798-e2de2e8be89f")
+	)
+	(embedded_fonts no)
+)

@@ -1,0 +1,66 @@
+{
+ "footprint": "lib:Nexperia_DFN1010B-6_SOT1216",
+ "part": "Nexperia BC847QASZ (LCSC C549491), Q27, Q28",
+ "datasheet": "Nexperia SOT1216 package information (8 Sep 2022) [/tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/vtx_osd/dl/sot1216.pdf; https://assets.nexperia.com/documents/package-information/SOT1216.pdf] p2 Fig. 1 (D 1.10, E 1.00, e 0.35, b 0.18, L 0.155, collector tabs D1 x E1 not soldered) and p3 Fig. 2 reflow footprint: lands 0.2 x 0.25 at 0.35 pitch, rows 0.6 inner / 1.1 outer, paste 0.2 x 0.35 (1.2 outer), solder resist 0.3 x 0.35 per land; same figure in the BC847QAS data sheet (10 Sep 2018, /tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/vtx_osd/dl/bc847qas.pdf) p9 Fig. 12; pinning p2 Table 2 (transparent top view: 1 E1, 2 B1, 3 C2 down the left, 4 E2, 5 B2, 6 C1 up the right; 7/8 = collector tabs, no land)",
+ "derivation": "Figure rotated 90 deg so the pin rows run along y (pin 1 top-left, as the pinning top view): lands 0.25 (x) x 0.20 (y) at x +-0.425, y 0 / +-0.35. Paste = copper-less apertures 0.35 x 0.20 (Fig. 2, 0.05 past the land at both ends). Resist: one ganged opening per column (|x| 0.25..0.60, |y| <= 0.50 = the union of the Fig. 2 per-land openings) because the 0.05 webs at 0.35 pitch cannot be made (DESIGN-SPEC 8.4 'fine_pitch_ganged_mask', NextPCB EQ O15); allow_soldermask_bridges",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.425,
+   "y": -0.35,
+   "w": 0.25,
+   "h": 0.2,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -0.425,
+   "y": 0.0,
+   "w": 0.25,
+   "h": 0.2,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -0.425,
+   "y": 0.35,
+   "w": 0.25,
+   "h": 0.2,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": 0.425,
+   "y": 0.35,
+   "w": 0.25,
+   "h": 0.2,
+   "shape": "rect"
+  },
+  {
+   "number": "5",
+   "x": 0.425,
+   "y": 0.0,
+   "w": 0.25,
+   "h": 0.2,
+   "shape": "rect"
+  },
+  {
+   "number": "6",
+   "x": 0.425,
+   "y": -0.35,
+   "w": 0.25,
+   "h": 0.2,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 1.0,
+  "h": 1.1,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "removed_nc": [],
+ "staged_from": "p23/staging/vtx_osd/landspecs/Nexperia_DFN1010B-6_SOT1216.json"
+}

@@ -1,0 +1,99 @@
+{
+ "footprint": "lib:WSON-8_6x5mm_P1.27mm_NoEP",
+ "part": "W25Q128JVPIM (LCSC C2441427), U13",
+ "datasheet": "Winbond W25Q128JV Rev F (2018-03-27) [/tmp/claude-0/-home-user-OpenAIO-Whoop/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/research/05-dl/ds/w25q128jv.pdf; https://www.winbond.com/hq/product/code-storage-flash-memory/serial-nor-flash/?__locale=en&partNo=W25Q128JV]: p5 Figure 1b + 3.3 pad description (top view: 1 /CS, 2 DO(IO1), 3 /WP(IO2), 4 GND, 5 DI(IO0), 6 CLK, 7 /HOLD-/RESET(IO3), 8 VCC); p69 (pdf page 70) 10.3 8-pad WSON 6x5 package code P: D 5.90/6.00/6.10, E 4.90/5.00/5.10, D2 3.35/3.40/3.45, E2 4.25/4.30/4.35, b 0.35/0.40/0.48, L 0.55/0.60/0.65, e 1.27 BSC; note: centre metal pad not connected to any internal signal, may float, no exposed PCB vias under it",
+ "derivation": "Datasheet has NO land pattern. IPC-7351B nominal (Jt=0.30, Jh=0, Js=-0.04, F=0.05, P=0.025, RMS S tolerance), lead span = D (pads on the D=6.0 sides, pitch along E): Zmax=6.708, Gmin=4.671, Xmax=0.412 -> lands 1.02 x 0.41 centred at x=+-2.845; rounded to 0.01. Pin 1 top-left, 1-4 down the left side, 5-8 up the right (top view, counter-clockwise). Centre land (D2 x E2 nominal) listed as pad 9 only to document its removal.",
+ "pads": [
+  {
+   "number": "1",
+   "x": -2.845,
+   "y": -1.905,
+   "w": 1.02,
+   "h": 0.41,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -2.845,
+   "y": -0.635,
+   "w": 1.02,
+   "h": 0.41,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -2.845,
+   "y": 0.635,
+   "w": 1.02,
+   "h": 0.41,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -2.845,
+   "y": 1.905,
+   "w": 1.02,
+   "h": 0.41,
+   "shape": "rect"
+  },
+  {
+   "number": "5",
+   "x": 2.845,
+   "y": 1.905,
+   "w": 1.02,
+   "h": 0.41,
+   "shape": "rect"
+  },
+  {
+   "number": "6",
+   "x": 2.845,
+   "y": 0.635,
+   "w": 1.02,
+   "h": 0.41,
+   "shape": "rect"
+  },
+  {
+   "number": "7",
+   "x": 2.845,
+   "y": -0.635,
+   "w": 1.02,
+   "h": 0.41,
+   "shape": "rect"
+  },
+  {
+   "number": "8",
+   "x": 2.845,
+   "y": -1.905,
+   "w": 1.02,
+   "h": 0.41,
+   "shape": "rect"
+  },
+  {
+   "number": "9",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 3.4,
+   "h": 4.3,
+   "shape": "rect"
+  }
+ ],
+ "removed_nc": [
+  {
+   "number": "9",
+   "reason": "exposed metal pad is 'not connected to any internal electrical signals. It can be left floating' (W25Q128JV Rev F p69 note); no centre copper/paste per DESIGN-SPEC 4.9 (frees routing/vias under the body, tented); not a 'do not connect' or 'reserved' pin"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 6.0,
+  "h": 5.0,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/fc_imu_blackbox_led/landspecs/WSON-8_6x5mm_P1.27mm_NoEP.json"
+}

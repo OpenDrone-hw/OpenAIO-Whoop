@@ -1,0 +1,45 @@
+{
+ "datasheet": "/home/user/OpenAIO-Whoop/research/DESIGN-SPEC.md \u00a74.10 'RX antenna' row: plated hole \u00d8 0.5 mm at (-12.3, +6.5), insulated \u03bb/4 wire; \u00a710 / hardware/tools/setup_board.py RX_ANT_* (copper keepout r 1.6 on L1-L5 = 1.0 around the pad, feed on L6, part keepout r 3.0 at the bottom exit; selftest pad \u00d8 1.0 / 0.5); DRU 'PTH annular ring 0.20' and 'D21 rx_antenna_hole' (reference AE*)",
+ "derivation": "one plated pad '1': \u00d8 1.00 ring, drill 0.50 (annular 0.25), F.Cu and B.Cu only (inner rings removed: L2-L5 stay clear inside RF_RX_ANT); body = ring; single terminal (pin1 null)",
+ "pads": [
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 1.0,
+   "h": 1.0,
+   "shape": "circle"
+  }
+ ],
+ "holes": [
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 0.0,
+   "drill": 0.5,
+   "plated": true
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 1.0,
+  "h": 1.0,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": null,
+ "attrs": [
+  "through_hole",
+  "exclude_from_pos_files",
+  "exclude_from_bom"
+ ],
+ "b_courtyard": "same",
+ "footprint": "lib:AE_WireHole_PTH0.5mm",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "staged_from": "p23/staging/io_pads/landspecs/AE_WireHole_PTH0.5mm.json"
+}

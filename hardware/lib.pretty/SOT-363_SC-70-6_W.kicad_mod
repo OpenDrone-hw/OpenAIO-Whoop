@@ -1,0 +1,178 @@
+(footprint "SOT-363_SC-70-6_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "TI INA186A3IDCKR SC70-6 (DCK). Land per TI INA186 data sheet SBOS761 (www.ti.com/lit/ds/symlink/ina186.pdf, p23/merge/od/dl/ti/ina186.pdf) p42-44 DCK0006A (4214835/D): body 2.0 x 1.25 (D 1.85-2.15, E1 1.1-1.4), lead span E 1.8-2.4; land example 6X (0.9) x 6X (0.4), 4X (0.65) pitch, (2.2) row centres, (R0.05); pin 1 top-left. The bundled ${OPENDRONE_LIB}/datasheet/INA186A3IDCKR.pdf (2022) omits the DCK drawing. Corrected copy of OpenDrone:SOT-363_SC-70-6 (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/SOT-363_SC-70-6_W.json")
+	(tags "TI INA186A3IDCKR SC70-6 (DCK)")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "d29c022d-c620-49cc-8bc2-acab51e026d3")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(property "Value" "SOT-363_SC-70-6_W"
+		(at 0 1.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cd87859f-12db-459f-be9b-e86b75f77fff")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "74de91fa-fc29-4a5a-a151-ecafc505b3bd")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d6a3e4a1-2910-45a4-b231-bd76699ae3f3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_poly
+		(pts
+			(xy 0.73 -0.95) (xy 1.65 -0.95) (xy 1.65 0.95) (xy 0.73 0.95) (xy 0.73 1.1) (xy -0.73 1.1) (xy -0.73 0.95)
+			(xy -1.65 0.95) (xy -1.65 -0.95) (xy -0.73 -0.95) (xy -0.73 -1.1) (xy 0.73 -1.1)
+		)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "1cc27d0a-6d40-4daf-bdfa-4a39b550bbbe")
+	)
+	(fp_line
+		(start -0.625 -0.75)
+		(end -0.375 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "fb5ee066-fff1-407a-a33c-9a97f7656942")
+	)
+	(fp_line
+		(start -0.625 1)
+		(end -0.625 -0.75)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "814e71d2-9b91-41f2-8fb1-28635b426e77")
+	)
+	(fp_line
+		(start -0.375 -1)
+		(end 0.625 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "9d35c2f8-7c68-48e4-85b5-e080758d975f")
+	)
+	(fp_line
+		(start 0.625 -1)
+		(end 0.625 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "105b1253-9630-4b8f-b5a7-d5745a3f4caf")
+	)
+	(fp_line
+		(start 0.625 1)
+		(end -0.625 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "79610877-999f-4f0e-96b7-e886bb91ad96")
+	)
+	(pad "1" smd roundrect
+		(at -1.1 -0.65)
+		(size 0.9 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "beb883cb-2c63-40dc-a18b-f574ee9aa604")
+	)
+	(pad "2" smd roundrect
+		(at -1.1 0)
+		(size 0.9 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "d1f93c0d-2051-40a1-aedc-0f10dc335c43")
+	)
+	(pad "3" smd roundrect
+		(at -1.1 0.65)
+		(size 0.9 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "51410cad-769a-4778-b321-d015a67eb62d")
+	)
+	(pad "4" smd roundrect
+		(at 1.1 0.65)
+		(size 0.9 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "4fba716d-3b2c-4308-bb75-f19c347f8770")
+	)
+	(pad "5" smd roundrect
+		(at 1.1 0)
+		(size 0.9 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "5a4cfa87-bf33-4b03-8d22-4ad0ef1b286d")
+	)
+	(pad "6" smd roundrect
+		(at 1.1 -0.65)
+		(size 0.9 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "71171d66-235e-4d13-b5da-72eaab516b6d")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/SOT-363_SC-70-6.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

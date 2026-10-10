@@ -1,0 +1,34 @@
+{
+ "footprint": "lib:X3-DFN0603-2_L0.6-W0.3-RD_W",
+ "part": "Diodes SDM02U30LP3-7B (LCSC C151629), D3; corrected copy of the OpenDrone footprint",
+ "datasheet": "Diodes SDM02U30LP3 DS35774 Rev 6-2 [/home/user/OpenAIO-Whoop/hardware/KiCad-Library/datasheet/SDM02U30LP3-7B.pdf, ${OPENDRONE_LIB}/datasheet/SDM02U30LP3-7B.pdf] p4: Suggested Pad Layout C 0.380, X 0.230, X1 0.610, Y 0.300; package D 0.62, E 0.32 typ (pin 1 = cathode bar); same numbers as hardware/tools/land_specs/sdm02u30lp3_x3dfn0603.json",
+ "derivation": "lands 0.23 x 0.30 at +-0.19 exactly per the suggested layout",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.19,
+   "y": 0.0,
+   "w": 0.23,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.19,
+   "y": 0.0,
+   "w": 0.23,
+   "h": 0.3,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 0.62,
+  "h": 0.32,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "removed_nc": [],
+ "staged_from": "p23/staging/vtx_osd/landspecs/X3-DFN0603-2_L0.6-W0.3-RD_W.json"
+}

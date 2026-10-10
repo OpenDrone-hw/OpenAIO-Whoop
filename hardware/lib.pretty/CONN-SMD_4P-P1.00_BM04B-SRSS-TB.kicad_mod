@@ -1,0 +1,170 @@
+(footprint "CONN-SMD_4P-P1.00_BM04B-SRSS-TB"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "JST SH 1.0 mm 4-pin shrouded header, TOP entry (vertical) BM04B-SRSS-TB(LF)(SN), LCSC C160390; lands per JST eSH p1 (signal 0.6 x 1.55, tabs 1.2 x 1.8), body 6.0 x 2.9 x 4.25 (mated 6.3); pads 5/6 = solder tabs; no component silk")
+	(tags "JST SH 1.0mm BM04B-SRSS-TB top entry vertical USB")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "ea9e7e92-8ff2-422c-ac50-9d70163012b7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "CONN-SMD_4P-P1.00_BM04B-SRSS-TB"
+		(at 0 2.45 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "feb3ca4f-a6cf-4858-a745-b4a1d81631de")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c7cd47b3-8df5-495a-8ec5-bf6be9b5604c")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ff539784-31d9-4f08-b450-47e83e0aaf11")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -3.5 -2.27)
+		(end 3.5 2.14)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "9979643f-b502-430f-896b-b5ea2c13c290")
+	)
+	(fp_line
+		(start -3 -1.9625)
+		(end 3 -1.9625)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "5df4a147-952f-4301-826f-5e50734f689c")
+	)
+	(fp_line
+		(start -3 0.6375)
+		(end -3 -1.9625)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "269dcf44-9399-4cf3-b506-e07ae49bd158")
+	)
+	(fp_line
+		(start -2.7 0.9375)
+		(end -3 0.6375)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "e7028888-a858-4f9a-a4c4-87acf33405ee")
+	)
+	(fp_line
+		(start 3 -1.9625)
+		(end 3 0.9375)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "c6b4f8b7-85b3-4cc7-96a5-e6f281943199")
+	)
+	(fp_line
+		(start 3 0.9375)
+		(end -2.7 0.9375)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "4dbe66a9-289a-4517-8cf0-200380f6d623")
+	)
+	(pad "1" smd rect
+		(at -1.5 1.2625)
+		(size 0.6 1.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "81ecd7cd-7ce8-49d3-8c7c-b2c6b9642f4f")
+	)
+	(pad "2" smd rect
+		(at -0.5 1.2625)
+		(size 0.6 1.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "433d075a-f214-4eb0-9111-0643cf2f39ff")
+	)
+	(pad "3" smd rect
+		(at 0.5 1.2625)
+		(size 0.6 1.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "2e3740fb-27df-4b6b-9edf-aa3e65425f5d")
+	)
+	(pad "4" smd rect
+		(at 1.5 1.2625)
+		(size 0.6 1.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "483506b4-bfb5-4eaa-aeb2-1f72bfdca838")
+	)
+	(pad "5" smd rect
+		(at 2.8 -1.2625)
+		(size 1.2 1.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "632e14d0-e146-49ab-b626-8b1bd38ac37f")
+	)
+	(pad "6" smd rect
+		(at -2.8 -1.2625)
+		(size 1.2 1.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "25feddf3-2ec7-4230-acca-4a61809a9de6")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/JST_BM04B-SRSS-TB.step"
+		(offset
+			(xyz -1.5 0.85 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
