@@ -6324,11 +6324,11 @@
    "ref": "R68",
    "block": "vtx",
    "sheet": "vtx",
-   "value": "47k",
+   "value": "10k",
    "rating": null,
    "manufacturer": "Yageo",
-   "mpn": "RC0201FR-0747KL",
-   "lcsc": null,
+   "mpn": "RC0201FR-0710KL",
+   "lcsc": "C106225",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6342,7 +6342,7 @@
     "VTX_PWR_EN",
     "+3.3V"
    ],
-   "notes": "VTX_PWR_EN pull-up to +3.3V (stock ELRS runs the VTX); 47k (P4 critique r4, was 100k): EN stays >= LP5912 VEN(ON) 1.3 V against up to 42 uA of Q28 drain leakage (100k: 20 uA); AP1606 IDSS <= 1 uA at 25 C, <= 100 uA at 125 C (VDS 20 V), about 16 uA at 85 C; GPIO21 low through R84 1k still gives 0.07 V < VEN(OFF) 0.3 V; Q28 on sinks 70 uA; [PU]",
+   "notes": "VTX_PWR_EN pull-up to +3.3V (stock ELRS runs the VTX); 10k (fix2 2026-10-10, was 47k): VTX_PWR_CTL is ESP32 GPIO4 since D111, which keeps its weak pull-down (wpd, ~75 uA, about 44k at 3.3 V) at and after reset (ESP32 DS v5.3 App. A Table IO_MUX pin 24; App. A note 8), and stock ELRS never drives it: with 47k + R84 1k EN sat at 1.08-2.14 V for a 22k-88k wpd (1.60 V typ), inside the LP5912 undefined band 0.3-1.3 V (SNVSA77D 7.5). 10k + R84 270R: stock (wpd) EN 2.27-2.96 V, >= 2.16 V with 16 uA Q28 leakage at 85 C (VEN(ON) 1.3 V); GPIO4 driven low 0.09 V (VEN(OFF) 0.3 V max), 0.32 mA sink (ESP32 IOL 28 mA, DS v5.3 Table 5-3); Q28 on (HD) sinks 0.33 mA; hot margin: EN >= 1.3 V up to 141 uA of Q28 leakage at the strongest wpd (AP1606 IDSS <= 100 uA at 125 C); [PU]",
    "lib_work": []
   },
   {
@@ -6700,10 +6700,10 @@
    "ref": "R84",
    "block": "vtx",
    "sheet": "vtx",
-   "value": "1k",
+   "value": "270R",
    "rating": null,
    "manufacturer": "Yageo",
-   "mpn": "RC0201FR-071KL",
+   "mpn": "RC0201FR-07270RL",
    "lcsc": null,
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
@@ -6718,7 +6718,7 @@
     "/VTX/VTX_PWR_EN",
     "VTX_PWR_CTL"
    ],
-   "notes": "VTX_PWR_EN series from ESP32 GPIO21 (VTX_PWR_CTL, patched ELRS power-down hook); 1k so GPIO21 low holds EN at 0.07 V < LP5912 VEN(OFF) 0.3 V against R68 47k (0.07 V; was 10k = 0.30-0.33 V; ruling 2026-10-09, P4 integration 2026-10-09); GPIO21 high against the HD gate = 3.3 mA; [PU]",
+   "notes": "VTX_PWR_EN series from ESP32 GPIO4 (VTX_PWR_CTL, D111 map; patched-ELRS power-down hook); 270R (fix2 2026-10-10, was 1k) so GPIO4 low holds EN at 0.09 V < LP5912 VEN(OFF) 0.3 V against R68 10k; the patched build drives GPIO4 open-drain (low = VTX off, released = on); a push-pull high against the HD gate (Q28 on) would be 12 mA / 40 mW in this 0201 (fault case only, firmware rule in PINMAP 6); [PU]",
    "lib_work": []
   },
   {
@@ -7206,9 +7206,9 @@
    "exclude_from_pos": true,
    "silk": "TX1",
    "nets": [
-    "UART1_TX"
+    "UART0_TX"
    ],
-   "notes": "UART1 TX -> O4 RX (white), MSP DisplayPort; analog builds: free hardware UART1 TX (the one free UART since D89; I2C0 SDA via I2C-HD), no half duplex (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
+   "notes": "UART0 TX (net /UART0_TX = hardware and Betaflight UART0, GPIO16; silk TX1 per D89) -> O4 RX (white), MSP DisplayPort; analog builds: free hardware UART0 TX (the one free UART since D89; I2C0 SDA via I2C-HD), no half duplex (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7230,9 +7230,9 @@
    "exclude_from_pos": true,
    "silk": "RX1",
    "nets": [
-    "UART1_RX"
+    "UART0_RX"
    ],
-   "notes": "UART1 RX <- O4 TX (grey); yellow open (no SBUS input since D89); analog builds: free hardware UART1 RX (the one free UART since D89; I2C0 SCL via I2C-HD) (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
+   "notes": "UART0 RX (net /UART0_RX = hardware and Betaflight UART0, GPIO17; silk RX1 per D89) <- O4 TX (grey); yellow open (no SBUS input since D89); analog builds: free hardware UART0 RX (the one free UART since D89; I2C0 SCL via I2C-HD) (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {

@@ -386,7 +386,8 @@ difference is C41: the board still has it on the 0402 land, while D108 puts all 
 - **GPIO map (D71/D104):** the U10 and U16 pins follow the map solved against V4_B4 (PINMAP §2 and §6 notes).
   - One correction to that map: the framebuffer OSD W/EN/SYNC sits on the consecutive GPIO21/22/23, because
     Betaflight `osd_pico.c` requires consecutive pins. LED0 moves to GPIO10 and GYRO_CLKIN to GPIO13 (+1.4 mm in total).
-  - CRSF runs on hardware UART1 (GPIO8/9). The TX1/RX1 pads run on hardware UART0 (GPIO16/17). The net names stay.
+  - CRSF runs on hardware UART1 (GPIO8/9). The TX1/RX1 pads run on hardware UART0 (GPIO16/17). The net names stayed at
+    first; fix2 (below) renamed them to the hardware instance.
   - The ESP32 pins avoid straps and flash pins. GPIO2 and GPIO5 are now no-connect, and PA_DET moves to ADC1 (GPIO36).
 - **D100 oscillator:** X1 is a YXC OT201612MJBA4SL 12 MHz CMOS oscillator (symbol lib:OT201612MJBA4SL) driving XIN.
   EN is tied to +3.3V, and C42 is now its 100 nF VDD decoupling cap. C43 and R40 are removed, and XOUT is no-connect.
@@ -409,3 +410,29 @@ difference is C41: the board still has it on the 0402 land, while D108 puts all 
 - **Board sync:** the J2 / J3 paths change; sync_pcb relinks them by reference. The +BATT_IN copper moves to
   /POWER/CSA+, because the pad set is unchanged. +3V3 -> +3.3V is NOT a pure rename for sync_pcb: C42 pad 1 joins
   the rail (D100), so the layout stage moves the +3V3 copper to +3.3V explicitly.
+
+## fix2: UART net names, VTX_PWR_EN margin, doc fixes (2026-10-10)
+
+- **UART names = hardware instance.** RP2350 GPIO8/9 are UART1 TX/RX and GPIO16/17 are UART0 TX/RX (RP2350 DS Table 3,
+  Table 677, F2). The nets are now `/UART1_TX`, `/UART1_RX` (U10 pins 12/13 to ESP32 U16 pins 40/41, CRSF) and
+  `/UART0_TX`, `/UART0_RX` (U10 pins 27/28 to pads J28 TX1 / J29 RX1). The pad silk stays TX1/RX1 (D89 names); the
+  docs say "pad TX1/RX1 = Betaflight UART0" wherever the firmware is configured. Changed: the rp2350a, rx and pads
+  generators, sch_contract.json (4 nets, 8 sheet pins, fw strings), the root layout rows in tools/sch_root.py (the two
+  row tuples are swapped so each name keeps its sheet row), bom_plan J28/J29 nets, PINMAP §0/§2/§5.1/§6, IO-SET,
+  DESIGN-SPEC. No net-class pattern or DRU rule matches these names. Board sync map:
+  scratchpad p2v3/v4/lineup/fix2/net_rename.json (a swap: apply it as one simultaneous map).
+- **VTX_PWR_EN margin.** ESP32 GPIO4 (VTX_PWR_CTL since D111) keeps its weak pull-down at and after reset (ESP32 DS v5.3
+  App. A Table IO_MUX pin 24; ~75 uA, note 8), and stock ELRS never drives it. With R68 47k / R84 1k the LP5912 EN sat
+  at 1.08-2.14 V (22-88 kOhm pull-down), inside the undefined band between VEN(OFF) 0.3 V and VEN(ON) 1.3 V (SNVSA77D
+  §7.5). R68 is now 10k and R84 is 270R (both existing BOM lines; footprints unchanged). Stock ELRS gives 2.27-2.96 V
+  (>= 2.16 V with the AP1606 leakage at 85 C), and the patched build driving GPIO4 low gives 0.09 V at 0.32 mA. A resistor
+  change meets the margin, so no ESP32 pin moves. Reset-state table for every enable, chip-select and power-control pin:
+  PINMAP §6.1.
+- **Doc fixes:** PINMAP §6 called ESP32 GPIO20 a strap and GPIO21 a strap with a 45 kOhm pull-down. Neither is a strap
+  (DS Table 3-1: GPIO0/2/5/12/15). DESIGN-SPEC §4.8 now opens with the final D111 pin map and rationale, and the D53 plan
+  is kept as history. IO-SET rows 8 and 11, the EXT-HD-PADS and I2C-HD presets and the PINIO line carry the D111 numbers,
+  each with a "was:" note.
+- **Netlist vs git HEAD:** only the four renames (8 pins) and the R68 / R84 values (MPN, plus R68 LCSC C106225 of the
+  10k line). The pipeline is unchanged (fix2/regen.sh = the verify regen with its own log dir, run with --root). A baseline
+  regen was byte-identical to HEAD before the edits.
+

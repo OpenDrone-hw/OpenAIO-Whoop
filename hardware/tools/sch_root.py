@@ -137,7 +137,7 @@ BOX = {
     "PADS": (360.68, 30.48, 40.64, 172.72),
 }
 ROW = {}
-for i, n in enumerate(("UART0_TX", "UART0_RX", "FC_BOOT")):
+for i, n in enumerate(("UART1_TX", "UART1_RX", "FC_BOOT")):     # CRSF to the ESP32 = hardware UART1 (GPIO8/9)
     ROW[n] = 35.56 + i * G
 for i, n in enumerate(("VTX_SPI_CS", "VTX_SPI_CLK", "VTX_SPI_DATA", "PA_BIAS_PWM", "PA_EN", "VTX_PWR_CTL", "PA_DET",
                        "PA_NTC")):
@@ -152,7 +152,7 @@ for k in range(4):
     ROW["MOTOR%d" % (k + 1)] = y0
     for j, ph in enumerate("ABC"):
         ROW["/ESC%d/PHASE_%s" % (k + 1, ph)] = y0 + j * G
-for i, n in enumerate(("PIOUART0_TX", "PIOUART0_RX", "UART1_TX", "UART1_RX", "LED_STRIP", "BUZZER-", "USB_D_P",
+for i, n in enumerate(("PIOUART0_TX", "PIOUART0_RX", "UART0_TX", "UART0_RX", "LED_STRIP", "BUZZER-", "USB_D_P",
                        "USB_D_N")):
     ROW[n] = 175.26 + i * G
 ROW["VBUS"] = 198.12                      # channel row (PADS left pin); POWER pin is on its bottom edge

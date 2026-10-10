@@ -5154,8 +5154,8 @@
 		(uuid "7e8a6c6c-adb3-547f-89c8-9efb2e726002")
 	)
 	(rectangle
-		(start 15.24 119.38)
-		(end 134.62 186.95)
+		(start 15.24 125.73)
+		(end 134.62 193.3)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -5261,7 +5261,7 @@
 	)
 	(rectangle
 		(start 15.24 27.94)
-		(end 134.62 116.62)
+		(end 134.62 122.8)
 		(stroke
 			(width 0.508)
 			(type solid)
@@ -5630,7 +5630,7 @@
 	)
 	(text "PA REFERENCE LP5907-2.85"
 		(exclude_from_sim no)
-		(at 17.78 121.92 0)
+		(at 17.78 128.27 0)
 		(effects
 			(font
 				(size 2.54 2.54)
@@ -5687,7 +5687,7 @@
 	)
 	(text_box "U22 LP5907-2.85 from +3.3V_VTX (TI SNVS798): HD mode removes PA_VREF with the rail. EN = PA_EN straight from ESP32 GPIO21 (D111 map; the LP5907 1 MOhm EN pull-down holds it off until ELRS drives it). C123 4.7 uF 0402 (> 0.7 uF effective). CIN = C122 4.7 uF 0402 X5R at U22 IN (about 2.6 uF at 3.3 V, >= 2 uF at -20 % and hot): LP5907 DS 5.6 / 7.2.2.4 needs > 0.7 uF effective over all conditions within 1 cm; the 1 uF 0201 (about 0.45 uF) alone missed it (P4 critique r3).\nDEVIATIONS, bench-gated: (a) VREF window: 2.85 V +-2 % = 2.79-2.91 V vs SE5004L VREF H 2.80-2.90 V, and the +-2 % is specified only for VIN >= VOUT + 1 V (VIN here 3.3 V): V5 measures PA_VREF on several units, cold and hot. (b) HD switch-on with ELRS holding PA_EN high: +3.3V_VTX collapses before C123 discharges, so VOUT exceeds VIN + 0.3 V (LP5907 abs max, DS 5.1) by up to one body-diode drop (<= 0.7 V, < 1 ms, <= 10 uJ from C123): V9 scopes PA_VREF and +3.3V_VTX (< 0.5 V). Fallbacks: C123 down to 1 uF, or the patched ELRS drops PA_EN on HD_EN."
 		(exclude_from_sim no)
-		(at 20.32 158.75 0)
+		(at 20.32 165.1 0)
 		(size 111.76 25.66)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -5705,10 +5705,10 @@
 		)
 		(uuid "13f3de22-71bb-5e9f-bd38-b143648a6555")
 	)
-	(text_box "U21 LP5912-3.3 on +5V; CIN = the shared 10 uF C13 on POWER (BR-14) only if P5 puts C13 within 1 cm of the U21 IN pin (LP5912 DS 9.2.2.2; tools/check_p5_conditions.py), else U21 gets its own 10 uF 0402 CIN (GRM155C80J106ME11D). EN = VTX_PWR_EN: R68 47k to +3.3V (stock ELRS runs the VTX); R84 1k from ESP32 GPIO4 (patched-ELRS power-down hook): GPIO4 low gives VEN 0.07 V < VEN(OFF) 0.3 V; Q28 AP1606 drain = HD gate (HD_EN high: <= 220 mOhm at VGS 2.5 V sinks 70 uA, 3.3 mA with GPIO4 high, VEN < 1 mV). Hot margin (P4 r4, R68 was 100k): EN stays >= VEN(ON) 1.3 V max up to 42 uA of Q28 leakage (100k: 20 uA); AP1606 IDSS <= 1 uA at 25 C, <= 100 uA at 125 C (VDS 20 V), about 16 uA at 85 C. HD_EN before Betaflight drives PINIO1: <= 0.22 V vs VGS(th) 0.4 V min at 25 C (250 uA), about 0.25 V at 85 C (-2.5 mV/K): a hot low-Vth part may keep the VTX off until PINIO1 is driven low (V9 hot-soak boot check). COUT on +3.3V_VTX: C108 10u + C121 1u + C122 4.7u + 3x 100n + 2x 100p = 16.0 uF nominal, about 6.8 uF effective at 3.3 V typical (5.4-8.2 uF at -/+20 %; POWER-sheet DC-bias figures), inside the LP5912 0.7-10 uF window. C108 sits at the RTC6705 VCO pins 39/40 (VCO bulk). Load 0.10 A typical, about 0.17 A at the top PA step (root power table)."
+	(text_box "U21 LP5912-3.3 on +5V; CIN = the shared 10 uF C13 on POWER (BR-14) only if P5 puts C13 within 1 cm of the U21 IN pin (LP5912 DS 9.2.2.2; tools/check_p5_conditions.py), else U21 gets its own 10 uF 0402 CIN (GRM155C80J106ME11D). EN = VTX_PWR_EN: R68 10k to +3.3V (stock ELRS runs the VTX); R84 270R from ESP32 GPIO4 (patched-ELRS power-down hook, open-drain: low = off, released = on). GPIO4 keeps its weak pull-down (~75 uA, about 44k) at and after reset (ESP32 DS v5.3 App. A Table IO_MUX pin 24, note 8) and stock ELRS never drives it: EN 2.27-2.96 V for a 22k-88k wpd (47k + 1k gave 1.08-2.14 V, inside the LP5912 0.3-1.3 V gap, SNVSA77D 7.5; fix2). GPIO4 low gives VEN 0.09 V < VEN(OFF) 0.3 V (0.32 mA); Q28 AP1606 drain = HD gate (HD_EN high: <= 220 mOhm at VGS 2.5 V sinks 0.33 mA, VEN < 1 mV; a push-pull GPIO4 high would add 12 mA, fault case). Hot margin: EN stays >= VEN(ON) 1.3 V up to 141 uA of Q28 leakage at the strongest wpd (2.16 V at 16 uA, 85 C); AP1606 IDSS <= 1 uA at 25 C, <= 100 uA at 125 C (VDS 20 V), about 16 uA at 85 C. HD_EN before Betaflight drives PINIO1: <= 0.22 V vs VGS(th) 0.4 V min at 25 C (250 uA), about 0.25 V at 85 C (-2.5 mV/K): a hot low-Vth part may keep the VTX off until PINIO1 is driven low (V9 hot-soak boot check). COUT on +3.3V_VTX: C108 10u + C121 1u + C122 4.7u + 3x 100n + 2x 100p = 16.0 uF nominal, about 6.8 uF effective at 3.3 V typical (5.4-8.2 uF at -/+20 %; POWER-sheet DC-bias figures), inside the LP5912 0.7-10 uF window. C108 sits at the RTC6705 VCO pins 39/40 (VCO bulk). Load 0.10 A typical, about 0.17 A at the top PA step (root power table)."
 		(exclude_from_sim no)
 		(at 20.32 86.36 0)
-		(size 111.76 27.72)
+		(size 111.76 33.9)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -5785,7 +5785,7 @@
 		)
 		(uuid "6be002d0-840e-5af6-befc-ebe1955347e1")
 	)
-	(text_box "PNP PA DRIVE. ESP32 GPIO33 VTX_AMP_PWM (ELRS vtx_amp_pwm, 10 kHz) -> two RC poles (R71 / C124, R72 / C125, 1k / 1u each) -> BC857BM base; emitter R73 (Re) to +3.3V_VTX; collector Q27_C -> R65 10R -> PAOUT1_SUP -> L3 -> RTC6705 PAOUT1: it sets the RTC6705 output-stage current, not the SE5004L bias. Inverting, current mode. ngspice (Nexperia BC857BM model, PAOUT1 sink model): Re 10R gives 32-59 mA at the top step over hFE 220-475 and -20..85 C, Q27 <= 114 mW (Ptot 130 mW at 85 C), base ripple 2.1 mV p-p, settles in 8 ms (ELRS 20 ms loop). GPIO33 (D111 map) is an RTC pad that comes out of reset high impedance (ESP32 DS IO_MUX reset value: input disabled, no pull; inferred, check the DS table): after the RC caps charge the base current stops, so ngspice case 4 of the old GPIO13 map (internal pull-down, 10-19 mA at Re 10R) is the upper bound from reset until ELRS initialize() sets the pit count (stock vtxSPIPWM = MAX_PWM), and for as long as the ESP32 stays in ROM download mode (SW1 held, recovery); the PA stays off (PA_EN on GPIO21, LP5907 1 MOhm EN pull-down); V5 measures that boot leakage at the U.FL. HD mode: both junctions reverse-biased 3.3 V (VEBO 5 V). Steps per 6 dB at Re 10R: 11-13 at 1 mA, 16-19 at 2 mA, 25-32 at 4 mA; V8 measures the PAOUT1 current at 25 mW and V5 sets Re (27R gives >= 20 steps from 1.5 mA). Start value R73 = 10R.\nRATINGS AT THE TOP STEP (Re 10R, hFE 475, 85 C: 58.5 mA): R73 and R65 dissipate about 34 mW each, against the RC0201 derating (50 mW to 70 C, zero at 125 C: 36 mW at 85 C, 27 mW at 95 C) beside a 2 W PA; Q27 <= 114 mW against 130 mW at 85 C (12 % margin). V8 pass: top-step current and the board temperature at R73 / R65 / Q27 keep each part inside its derated rating; levers: cap the ELRS power-table top count so Ic <= 45 mA (P <= 20 mW), or Re 27R (26 mW in R73, 10 mW in R65) if V5 accepts the steps; 0402s only if V8 shows the top step is needed."
+	(text_box "PNP PA DRIVE. ESP32 GPIO33 VTX_AMP_PWM (ELRS vtx_amp_pwm, 10 kHz) -> two RC poles (R71 / C124, R72 / C125, 1k / 1u each) -> BC857BM base; emitter R73 (Re) to +3.3V_VTX; collector Q27_C -> R65 10R -> PAOUT1_SUP -> L3 -> RTC6705 PAOUT1: it sets the RTC6705 output-stage current, not the SE5004L bias. Inverting, current mode. ngspice (Nexperia BC857BM model, PAOUT1 sink model): Re 10R gives 32-59 mA at the top step over hFE 220-475 and -20..85 C, Q27 <= 114 mW (Ptot 130 mW at 85 C), base ripple 2.1 mV p-p, settles in 8 ms (ELRS 20 ms loop). GPIO33 (D111 map) is an RTC pad that comes out of reset high impedance (ESP32 DS v5.3 App. A Table IO_MUX pin 13: oe=0, ie=0, no pull at and after reset; verified fix2): after the RC caps charge the base current stops, so ngspice case 4 of the old GPIO13 map (internal pull-down, 10-19 mA at Re 10R) is the upper bound from reset until ELRS initialize() sets the pit count (stock vtxSPIPWM = MAX_PWM), and for as long as the ESP32 stays in ROM download mode (SW1 held, recovery); the PA stays off (PA_EN on GPIO21, LP5907 1 MOhm EN pull-down); V5 measures that boot leakage at the U.FL. HD mode: both junctions reverse-biased 3.3 V (VEBO 5 V). Steps per 6 dB at Re 10R: 11-13 at 1 mA, 16-19 at 2 mA, 25-32 at 4 mA; V8 measures the PAOUT1 current at 25 mW and V5 sets Re (27R gives >= 20 steps from 1.5 mA). Start value R73 = 10R.\nRATINGS AT THE TOP STEP (Re 10R, hFE 475, 85 C: 58.5 mA): R73 and R65 dissipate about 34 mW each, against the RC0201 derating (50 mW to 70 C, zero at 125 C: 36 mW at 85 C, 27 mW at 95 C) beside a 2 W PA; Q27 <= 114 mW against 130 mW at 85 C (12 % margin). V8 pass: top-step current and the board temperature at R73 / R65 / Q27 keep each part inside its derated rating; levers: cap the ELRS power-table top count so Ic <= 45 mA (P <= 20 mW), or Re 27R (26 mW in R73, 10 mW in R65) if V5 accepts the steps; 0402s only if V8 shows the top step is needed."
 		(exclude_from_sim no)
 		(at 139.7 232.15 0)
 		(size 160.02 31.84)
@@ -5924,7 +5924,7 @@
 		(uuid "056ca1f7-f9d1-53ee-b022-2b18dcf4cd98")
 	)
 	(junction
-		(at 80.01 152.4)
+		(at 80.01 158.75)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "09d1b84a-b961-5e0c-a9e4-d38a7ae7d652")
@@ -6044,7 +6044,7 @@
 		(uuid "6944aa39-b81d-5b86-9ac9-0c4ddac1f3f7")
 	)
 	(junction
-		(at 63.5 132.08)
+		(at 63.5 138.43)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "695e40e4-5e88-5591-99fa-16efdf86fc29")
@@ -6176,7 +6176,7 @@
 		(uuid "db5db4b2-6d00-50f8-9764-ea0891afb2cd")
 	)
 	(junction
-		(at 99.06 139.7)
+		(at 99.06 146.05)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "dfd3cf8d-3364-511e-85c5-7c9f4cf85c98")
@@ -6307,7 +6307,7 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 139.7) (xy 99.06 139.7)
+			(xy 91.44 146.05) (xy 99.06 146.05)
 		)
 		(stroke
 			(width 0)
@@ -6587,7 +6587,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 149.86) (xy 66.04 149.86)
+			(xy 68.58 156.21) (xy 66.04 156.21)
 		)
 		(stroke
 			(width 0)
@@ -6637,7 +6637,7 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 149.86) (xy 82.55 152.4)
+			(xy 82.55 156.21) (xy 82.55 158.75)
 		)
 		(stroke
 			(width 0)
@@ -6937,7 +6937,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 139.7) (xy 68.58 132.08)
+			(xy 68.58 146.05) (xy 68.58 138.43)
 		)
 		(stroke
 			(width 0)
@@ -7007,7 +7007,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 132.08) (xy 58.42 132.08)
+			(xy 68.58 138.43) (xy 58.42 138.43)
 		)
 		(stroke
 			(width 0)
@@ -7097,7 +7097,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 144.78) (xy 68.58 149.86)
+			(xy 68.58 151.13) (xy 68.58 156.21)
 		)
 		(stroke
 			(width 0)
@@ -7457,7 +7457,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 144.78) (xy 68.58 144.78)
+			(xy 71.12 151.13) (xy 68.58 151.13)
 		)
 		(stroke
 			(width 0)
@@ -7487,7 +7487,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 139.7) (xy 68.58 139.7)
+			(xy 71.12 146.05) (xy 68.58 146.05)
 		)
 		(stroke
 			(width 0)
@@ -7677,7 +7677,7 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 139.7) (xy 106.68 139.7)
+			(xy 99.06 146.05) (xy 106.68 146.05)
 		)
 		(stroke
 			(width 0)
@@ -7707,7 +7707,7 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 149.86) (xy 80.01 152.4)
+			(xy 80.01 156.21) (xy 80.01 158.75)
 		)
 		(stroke
 			(width 0)
@@ -7727,7 +7727,7 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 152.4) (xy 82.55 152.4)
+			(xy 80.01 158.75) (xy 82.55 158.75)
 		)
 		(stroke
 			(width 0)
@@ -8126,7 +8126,7 @@
 		(uuid "d669f98c-6d86-5875-b422-4429fa35c3a1")
 	)
 	(label "PA_VREF"
-		(at 106.68 139.7 0)
+		(at 106.68 146.05 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8190,7 +8190,7 @@
 	)
 	(hierarchical_label "PA_EN"
 		(shape input)
-		(at 66.04 149.86 180)
+		(at 66.04 156.21 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8342,7 +8342,7 @@
 	)
 	(symbol
 		(lib_id "lib:LP5907SNX-2.85")
-		(at 81.28 142.24 0)
+		(at 81.28 148.59 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8352,7 +8352,7 @@
 		(dnp no)
 		(uuid "00bf6503-9078-5b19-b380-41387068488c")
 		(property "Reference" "U22"
-			(at 73.66 135.89 0)
+			(at 73.66 142.24 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8362,7 +8362,7 @@
 			)
 		)
 		(property "Value" "LP5907-2.85"
-			(at 88.9 135.89 0)
+			(at 88.9 142.24 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8372,7 +8372,7 @@
 			)
 		)
 		(property "Footprint" "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense"
-			(at 81.28 142.24 0)
+			(at 81.28 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8383,7 +8383,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/lp5907.pdf"
-			(at 81.28 142.24 0)
+			(at 81.28 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8394,7 +8394,7 @@
 			)
 		)
 		(property "Description" "250 mA ultra-low-noise LDO, fixed 2.85 V +-2 %, VIN 2.2-5.5 V, EN with 1 M pull-down and 230 ohm active output discharge, X2SON-4 1x1 mm (DQN); EP (5) = thermal pad, GND or floating"
-			(at 81.28 142.24 0)
+			(at 81.28 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8405,7 +8405,7 @@
 			)
 		)
 		(property "LCSC" ""
-			(at 81.28 142.24 0)
+			(at 81.28 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8416,7 +8416,7 @@
 			)
 		)
 		(property "MPN" "LP5907SNX-2.85/NOPB"
-			(at 81.28 142.24 0)
+			(at 81.28 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8427,7 +8427,7 @@
 			)
 		)
 		(property "Manufacturer" "Texas Instruments"
-			(at 81.28 142.24 0)
+			(at 81.28 148.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9650,7 +9650,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 80.01 152.4 0)
+		(at 80.01 158.75 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9659,8 +9659,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "187e068d-2b41-5aee-8564-6d5409eea310")
-		(property "Reference" "#PWR228"
-			(at 80.01 158.75 0)
+		(property "Reference" "#PWR229"
+			(at 80.01 165.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9671,7 +9671,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 80.01 156.21 0)
+			(at 80.01 162.56 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9681,7 +9681,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 80.01 152.4 0)
+			(at 80.01 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9692,7 +9692,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 80.01 152.4 0)
+			(at 80.01 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9703,7 +9703,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 80.01 152.4 0)
+			(at 80.01 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9719,7 +9719,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR228")
+					(reference "#PWR229")
 					(unit 1)
 				)
 			)
@@ -9935,7 +9935,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "270R"
 			(at 38.1 59.714 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9989,7 +9989,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-071KL"
+		(property "MPN" "RC0201FR-07270RL"
 			(at 38.1 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -11733,7 +11733,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 99.06 147.32 0)
+		(at 99.06 153.67 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11742,8 +11742,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "4cb322d0-258d-51ee-b527-57890c1bab88")
-		(property "Reference" "#PWR225"
-			(at 99.06 153.67 0)
+		(property "Reference" "#PWR227"
+			(at 99.06 160.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11754,7 +11754,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 99.06 151.13 0)
+			(at 99.06 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11764,7 +11764,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 99.06 147.32 0)
+			(at 99.06 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11775,7 +11775,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 99.06 147.32 0)
+			(at 99.06 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11786,7 +11786,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 99.06 147.32 0)
+			(at 99.06 153.67 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11802,7 +11802,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR225")
+					(reference "#PWR227")
 					(unit 1)
 				)
 			)
@@ -11924,7 +11924,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 99.06 143.51 0)
+		(at 99.06 149.86 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11934,7 +11934,7 @@
 		(dnp no)
 		(uuid "4e270e63-6549-5bee-aade-5d5b7e46dfda")
 		(property "Reference" "C123"
-			(at 102.592 142.24 0)
+			(at 102.592 148.59 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11945,7 +11945,7 @@
 			)
 		)
 		(property "Value" "4.7uF"
-			(at 102.592 144.78 0)
+			(at 102.592 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11956,7 +11956,7 @@
 			)
 		)
 		(property "Footprint" "lib:C_0402_1005Metric_L"
-			(at 99.06 143.51 0)
+			(at 99.06 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11967,7 +11967,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 99.06 143.51 0)
+			(at 99.06 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11978,7 +11978,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 99.06 143.51 0)
+			(at 99.06 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11989,7 +11989,7 @@
 			)
 		)
 		(property "LCSC" "C23733"
-			(at 99.06 143.51 0)
+			(at 99.06 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12000,7 +12000,7 @@
 			)
 		)
 		(property "MPN" "CL05A475MP5NRNC"
-			(at 99.06 143.51 0)
+			(at 99.06 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12011,7 +12011,7 @@
 			)
 		)
 		(property "Manufacturer" "Samsung Electro-Mechanics"
-			(at 99.06 143.51 0)
+			(at 99.06 149.86 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15312,7 +15312,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "a4f3cf76-982f-54c7-bb19-2c10b8ff5444")
-		(property "Reference" "#PWR229"
+		(property "Reference" "#PWR228"
 			(at 393.7 160.02 0)
 			(hide yes)
 			(show_name no)
@@ -15372,7 +15372,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR229")
+					(reference "#PWR228")
 					(unit 1)
 				)
 			)
@@ -15771,7 +15771,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "adb56b2c-66b1-5786-a5ce-f76d0bd3d48a")
-		(property "Reference" "#PWR223"
+		(property "Reference" "#PWR222"
 			(at 350.52 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -15831,7 +15831,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR223")
+					(reference "#PWR222")
 					(unit 1)
 				)
 			)
@@ -16230,7 +16230,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b5548f22-6f21-5aea-910a-c2ea9ba71e91")
-		(property "Reference" "#PWR227"
+		(property "Reference" "#PWR226"
 			(at 204.47 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -16290,7 +16290,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR227")
+					(reference "#PWR226")
 					(unit 1)
 				)
 			)
@@ -16680,7 +16680,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 63.5 139.7 0)
+		(at 63.5 146.05 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16689,8 +16689,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b966ec2b-9b51-5a63-919d-8431955587a9")
-		(property "Reference" "#PWR222"
-			(at 63.5 146.05 0)
+		(property "Reference" "#PWR223"
+			(at 63.5 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16701,7 +16701,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 63.5 143.51 0)
+			(at 63.5 149.86 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16711,7 +16711,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 63.5 139.7 0)
+			(at 63.5 146.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16722,7 +16722,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 63.5 139.7 0)
+			(at 63.5 146.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16733,7 +16733,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 63.5 139.7 0)
+			(at 63.5 146.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16749,7 +16749,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR222")
+					(reference "#PWR223")
 					(unit 1)
 				)
 			)
@@ -17974,7 +17974,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 63.5 135.89 0)
+		(at 63.5 142.24 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17984,7 +17984,7 @@
 		(dnp no)
 		(uuid "e067f2b6-8ae8-5e0f-97eb-892ce7c044ef")
 		(property "Reference" "C122"
-			(at 59.968 134.62 0)
+			(at 59.968 140.97 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17995,7 +17995,7 @@
 			)
 		)
 		(property "Value" "4.7uF"
-			(at 59.968 137.16 0)
+			(at 59.968 143.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18006,7 +18006,7 @@
 			)
 		)
 		(property "Footprint" "lib:C_0402_1005Metric_L"
-			(at 63.5 135.89 0)
+			(at 63.5 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18017,7 +18017,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 63.5 135.89 0)
+			(at 63.5 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18028,7 +18028,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 63.5 135.89 0)
+			(at 63.5 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18039,7 +18039,7 @@
 			)
 		)
 		(property "LCSC" "C23733"
-			(at 63.5 135.89 0)
+			(at 63.5 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18050,7 +18050,7 @@
 			)
 		)
 		(property "MPN" "CL05A475MP5NRNC"
-			(at 63.5 135.89 0)
+			(at 63.5 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18061,7 +18061,7 @@
 			)
 		)
 		(property "Manufacturer" "Samsung Electro-Mechanics"
-			(at 63.5 135.89 0)
+			(at 63.5 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18286,7 +18286,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "e9aca885-5a59-5d25-b29c-35308119fa03")
-		(property "Reference" "#PWR226"
+		(property "Reference" "#PWR225"
 			(at 292.1 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -18346,7 +18346,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR226")
+					(reference "#PWR225")
 					(unit 1)
 				)
 			)
@@ -18363,7 +18363,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ea9b4190-7ab6-5732-815a-954c3a15f905")
-		(property "Reference" "#PWR220"
+		(property "Reference" "#PWR219"
 			(at 342.9 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -18423,7 +18423,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR220")
+					(reference "#PWR219")
 					(unit 1)
 				)
 			)
@@ -18431,7 +18431,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 58.42 132.08 0)
+		(at 58.42 138.43 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -18440,8 +18440,8 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "edccd8a5-63bd-5c1c-a983-b3b0c18065c8")
-		(property "Reference" "#PWR219"
-			(at 58.42 135.89 0)
+		(property "Reference" "#PWR220"
+			(at 58.42 142.24 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18452,7 +18452,7 @@
 			)
 		)
 		(property "Value" "+3.3V_VTX"
-			(at 58.42 128.524 0)
+			(at 58.42 134.874 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18462,7 +18462,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 58.42 132.08 0)
+			(at 58.42 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18473,7 +18473,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 58.42 132.08 0)
+			(at 58.42 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18484,7 +18484,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 58.42 132.08 0)
+			(at 58.42 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18500,7 +18500,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR219")
+					(reference "#PWR220")
 					(unit 1)
 				)
 			)
@@ -18528,7 +18528,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "47k"
+		(property "Value" "10k"
 			(at 53.316 54.61 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18572,7 +18572,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C106225"
 			(at 50.8 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -18583,7 +18583,7 @@
 				)
 			)
 		)
-		(property "MPN" "RC0201FR-0747KL"
+		(property "MPN" "RC0201FR-0710KL"
 			(at 50.8 53.34 0)
 			(hide yes)
 			(show_name no)

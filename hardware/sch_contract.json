@@ -707,41 +707,41 @@
    "note": "R50 10k pull-up on the BLACKBOX sheet"
   },
   {
-   "net": "/UART0_TX",
-   "root_label": "UART0_TX",
+   "net": "/UART1_TX",
+   "root_label": "UART1_TX",
    "class": "Default",
    "pins": [
     {
      "sheet": "RP2350A",
-     "pin": "UART0_TX",
+     "pin": "UART1_TX",
      "dir": "output"
     },
     {
      "sheet": "RX",
-     "pin": "UART0_TX",
+     "pin": "UART1_TX",
      "dir": "input"
     }
    ],
-   "fw": "UART1_TX_PIN PA8 (GPIO8); SERIALRX_UART UART1, CRSF (hardware UART1 since the D111 map; net name kept)",
+   "fw": "UART1_TX_PIN PA8 (GPIO8); SERIALRX_UART SERIAL_PORT_UART1, CRSF (net name = hardware UART1, fix2 rename; was /UART0_TX)",
    "note": "-> ESP32-PICO GPIO3 U0RXD (pin 40), ELRS serial_rx"
   },
   {
-   "net": "/UART0_RX",
-   "root_label": "UART0_RX",
+   "net": "/UART1_RX",
+   "root_label": "UART1_RX",
    "class": "Default",
    "pins": [
     {
      "sheet": "RX",
-     "pin": "UART0_RX",
+     "pin": "UART1_RX",
      "dir": "output"
     },
     {
      "sheet": "RP2350A",
-     "pin": "UART0_RX",
+     "pin": "UART1_RX",
      "dir": "input"
     }
    ],
-   "fw": "UART1_RX_PIN PA9 (GPIO9) (hardware UART1 since the D111 map; net name kept)",
+   "fw": "UART1_RX_PIN PA9 (GPIO9) (net name = hardware UART1, fix2 rename; was /UART0_RX)",
    "note": "<- ESP32-PICO GPIO1 U0TXD (pin 41), ELRS serial_tx"
   },
   {
@@ -935,42 +935,42 @@
    "note": "R33 2.4k at the EFM8 RTX pin (ESC sheet)"
   },
   {
-   "net": "/UART1_TX",
-   "root_label": "UART1_TX",
+   "net": "/UART0_TX",
+   "root_label": "UART0_TX",
    "class": "Default",
    "pins": [
     {
      "sheet": "RP2350A",
-     "pin": "UART1_TX",
+     "pin": "UART0_TX",
      "dir": "output"
     },
     {
      "sheet": "PADS",
-     "pin": "UART1_TX",
+     "pin": "UART0_TX",
      "dir": "input"
     }
    ],
-   "fw": "UART0_TX_PIN PA16 (GPIO16) (hardware UART0 since the D111 map; net name kept)",
-   "note": "pad J28 TX1"
+   "fw": "UART0_TX_PIN PA16 (GPIO16); MSP_DISPLAYPORT_UART SERIAL_PORT_UART0 (net name = hardware UART0, fix2 rename; was /UART1_TX); pad silk TX1 (D89 name) = Betaflight UART0 TX",
+   "note": "pad J28 TX1 (silk per D89) = hardware/Betaflight UART0 TX"
   },
   {
-   "net": "/UART1_RX",
-   "root_label": "UART1_RX",
+   "net": "/UART0_RX",
+   "root_label": "UART0_RX",
    "class": "Default",
    "pins": [
     {
      "sheet": "RP2350A",
-     "pin": "UART1_RX",
+     "pin": "UART0_RX",
      "dir": "input"
     },
     {
      "sheet": "PADS",
-     "pin": "UART1_RX",
+     "pin": "UART0_RX",
      "dir": "output"
     }
    ],
-   "fw": "UART0_RX_PIN PA17 (GPIO17) (hardware UART0 since the D111 map; net name kept)",
-   "note": "pad J29 RX1"
+   "fw": "UART0_RX_PIN PA17 (GPIO17) (net name = hardware UART0, fix2 rename; was /UART1_RX); pad silk RX1 (D89 name) = Betaflight UART0 RX",
+   "note": "pad J29 RX1 (silk per D89) = hardware/Betaflight UART0 RX"
   },
   {
    "net": "/LED_STRIP",
@@ -1160,7 +1160,7 @@
     }
    ],
    "fw": "ESP32 GPIO4, ELRS patched ELRS VTX power",
-   "note": "-> R84 1k -> VTX_PWR_EN (U21 EN, R68 47k pull-up)"
+   "note": "-> R84 270R -> VTX_PWR_EN (U21 EN, R68 10k pull-up; fix2: GPIO4 weak pull-down at reset, ESP32 DS v5.3 App. A Table IO_MUX)"
   },
   {
    "net": "/PA_DET",
@@ -2123,17 +2123,17 @@
      "class": "Analog"
     },
     {
-     "name": "UART0_TX",
+     "name": "UART1_TX",
      "dir": "output",
      "side": "right",
-     "net": "/UART0_TX",
+     "net": "/UART1_TX",
      "class": "Default"
     },
     {
-     "name": "UART0_RX",
+     "name": "UART1_RX",
      "dir": "input",
      "side": "right",
-     "net": "/UART0_RX",
+     "net": "/UART1_RX",
      "class": "Default"
     },
     {
@@ -2193,17 +2193,17 @@
      "class": "Default"
     },
     {
-     "name": "UART1_TX",
+     "name": "UART0_TX",
      "dir": "output",
      "side": "right",
-     "net": "/UART1_TX",
+     "net": "/UART0_TX",
      "class": "Default"
     },
     {
-     "name": "UART1_RX",
+     "name": "UART0_RX",
      "dir": "input",
      "side": "right",
-     "net": "/UART1_RX",
+     "net": "/UART0_RX",
      "class": "Default"
     },
     {
@@ -2654,17 +2654,17 @@
    ],
    "pins": [
     {
-     "name": "UART0_TX",
+     "name": "UART1_TX",
      "dir": "input",
      "side": "left",
-     "net": "/UART0_TX",
+     "net": "/UART1_TX",
      "class": "Default"
     },
     {
-     "name": "UART0_RX",
+     "name": "UART1_RX",
      "dir": "output",
      "side": "left",
-     "net": "/UART0_RX",
+     "net": "/UART1_RX",
      "class": "Default"
     },
     {
@@ -2841,7 +2841,7 @@
       "C108"
      ],
      "source": "D12 / D53 BR-03",
-     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 47k to +3.3V (P4 r4: hot AP1606 leakage margin), R84 1k from VTX_PWR_CTL (ruling 2026-10-09: EN < 0.3 V guaranteed), Q28 AP1606 drain; gate HD_EN)",
+     "notes": "U21 IN on +5V (CIN = C13 on POWER, BR-14), EN = VTX_PWR_EN (R68 10k to +3.3V, R84 270R from VTX_PWR_CTL (fix2 2026-10-10, were 47k / 1k: GPIO4 wpd at reset; stock 2.27-2.96 V, driven low 0.09 V < VEN(OFF) 0.3 V), Q28 AP1606 drain; gate HD_EN)",
      "p4": [
       "P4-4",
       "P4-12"
@@ -3320,17 +3320,17 @@
      "class": "Phase"
     },
     {
-     "name": "UART1_TX",
+     "name": "UART0_TX",
      "dir": "input",
      "side": "left",
-     "net": "/UART1_TX",
+     "net": "/UART0_TX",
      "class": "Default"
     },
     {
-     "name": "UART1_RX",
+     "name": "UART0_RX",
      "dir": "output",
      "side": "left",
-     "net": "/UART1_RX",
+     "net": "/UART0_RX",
      "class": "Default"
     },
     {

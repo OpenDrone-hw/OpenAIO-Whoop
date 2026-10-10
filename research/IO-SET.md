@@ -17,7 +17,7 @@ Anyone who regenerates `hardware/bom_plan.json` takes these, then bom_plan and t
   **J32 = camera plug** SM03B-SURS-TF(LF)(SN) (§3 calls it J31); **J33 = LED-strip GND pad** (§3 calls it J32).
 - **D89 user UART removed (2026-10-10):** row 7 (J16 TP0, J17 RP0, J18 5V, J19 GND; PIOUART0 on GPIO2/3) is
   gone from bom_plan, schematic and PINMAP; GPIO2/3 are no-connect spares. The HD pads J26-J29 VHD / GND / TX1 /
-  RX1 (hardware UART1) are the one free UART (analog builds; the O4 in HD builds), so analog builds have 1 free
+  RX1 (hardware UART1 then; hardware UART0 on GPIO16/17 since D111, nets UART0_TX/RX since fix2) are the one free UART (analog builds; the O4 in HD builds), so analog builds have 1 free
   UART, HD builds none. Void: the EXT-USER-PADS and I2C-USER presets (§2.3; SBUS needs a hardware UART: UART1 on
   RX1 in analog builds, none with the O4), the user-row 5V/GND (an EXT-HD-PADS device takes 5V/GND from the LED
   row), 'yellow -> RP0', the D27 sharing fallback of J33 and the README half-duplex note on TP0/RP0. The LED row
@@ -44,6 +44,8 @@ Tags: **V** = verified this session from a primary source or a measurement, eith
 ---
 
 > D111 GPIO map (2026-10-10): the FC and receiver pins of the IO set follow research/PINMAP.md sections 2 and 6 (map of the winning placement V4_B4; OSD on the consecutive GPIO21-23; CRSF on hardware UART1 GPIO8/9; TX1/RX1 pads on hardware UART0 GPIO16/17; LED_STRIP GPIO5; BEEPER GPIO25; LED0/LED1 GPIO10/24; HD_EN GPIO19; MOTOR1-4 GPIO4/6/18/20). Older GPIO numbers further down are history.
+>
+> fix2 (2026-10-10): rows 8 and 11, the EXT-HD-PADS and I2C-HD presets (§2.3) and the PINIO line (§4) now carry the D111 numbers; each keeps its old value as "was: ...". Net names follow the hardware UART instance: TX1/RX1 = nets `UART0_TX/RX` = hardware and Betaflight UART0 (pad silk TX1/RX1 kept, D89); CRSF = nets `UART1_TX/RX` = UART1.
 
 ## 0. Result
 
@@ -68,10 +70,10 @@ Area = occupied incl. the 0.1 mm halo, FLOORPLAN metric; "existing" = already in
 | 5 | RF | J1 Hirose U.FL-R-SMT-1(80) (VTX); AE1 plated Ø0.5 mm wire hole (RX); Wi-Fi chip antenna per D58 (v3 staging: Johanson 2450AT07A0100001T) | RF_UFL; RF_RX_ANT; ESP32 LNA_IN | ELRS auto Wi-Fi on (D58) | top / edge, D58 block | MUST, kept |
 | 6 | USB | JST BM04B-SRSS-TB(LF)(SN) (vertical; the v3 USB recommendation) or SM04B-SRSS-TB(LF)(SN) (side entry; the D57 lineup part) | 1 GND, 2 USB_D_N, 3 USB_D_P, 4 VBUS → SGM40661 OVP → +5V_USB; D± through TPD2EUSB30 + 27 Ω to pins 51/52 | VCP | bottom, D57 block (31-58 mm² incl. OVP, ESD and label) | MUST (D57; not an IO-set addition) |
 | 7 | User UART | J16 TP0, J17 RP0, J18 5V, J19 GND: lib:SolderPad_1.0x1.2mm | TP0 = GPIO2 (pin 4), RP0 = GPIO3 (pin 5); +5V; GND | PIOUART0: 8N1, inversion, half duplex (GPS, MSP, SmartAudio, Tramp, SmartPort). The CLI remaps it to **hardware UART0** for SBUS/CRSF receivers, or to I2C1 (§2.3) | top, existing (20.9 mm², V); D46 site | MUST, kept (D16) |
-| 8 | HD pads / 2nd UART | J26 VHD, J27 GND, J28 TX1, J29 RX1: lib:SolderPad_1.0x1.2mm | TX1 = GPIO4 (pin 7), RX1 = GPIO5 (pin 8), hardware UART1; VHD = +5V_HD (live only in HD mode) | HD builds: MSP DisplayPort to the O4. **Analog builds: a free hardware UART** (the analog preset leaves UART1 at 0, PINMAP §5.4); its device takes 5V from row 7 or row 9. No half duplex. The CLI can make it I2C0 | top, existing (21.4 mm², V) | MUST, kept; 2nd-UART role SHOULD (README) |
+| 8 | HD pads / 2nd UART | J26 VHD, J27 GND, J28 TX1, J29 RX1: lib:SolderPad_1.0x1.2mm | TX1 = GPIO16 (pin 27), RX1 = GPIO17 (pin 28), hardware UART0 = Betaflight `UART0`, nets `UART0_TX/RX` (D111 map, fix2 names; was: GPIO4 / GPIO5 pins 7 / 8, hardware UART1); VHD = +5V_HD (live only in HD mode) | HD builds: MSP DisplayPort to the O4. **Analog builds: a free hardware UART** (the analog preset leaves UART0 at 0, PINMAP §5.4; was: UART1); its device takes 5V from row 9 (row 7 removed, D89). No half duplex. The CLI can make it I2C0 | top, existing (21.4 mm², V) | MUST, kept; 2nd-UART role SHOULD (README) |
 | 9 | **LED strip + buzzer row** | **GND LED 5V BZ-**: J20 LED, J21 5V (relabelled from BZ+, same net), J22 BZ-, plus 1 new GND pad. lib:SolderPad_1.0x1.2mm_Dense | LED = GPIO8 (PIO1 WS2812, driven directly, D52 BR-04); 5V = +5V; BZ- = AP1606 drain (gate on GPIO17) | unchanged: `LED_STRIP_PIN PA8`, `PIO_LEDSTRIP_INDEX 1`, `BEEPER_PIN PA17` + `BEEPER_INVERTED` | top, inboard (§4.2); +4.8-5.4 mm² (V method) | SHOULD (reverses D27) |
 | 10 | **RX boot / bind button (new)** | SW1 **SHOU HAN TS2306A 240gf MSM 9** (LCSC C2976675; lineup part, PARTS-USED.md:20). 3.0 x 2.0 x 0.6 mm, DC 15 V 20 mA, -40..85 °C (V, datasheet §1) | `RX_BOOT` (ESP32 GPIO0, pin 23) to GND, in parallel with TP11 RXB | ELRS layout key `"button": 0` (already set). Hold 1.5 s = bind, 5 s = Wi-Fi, 12 s = reboot (V, devButton.cpp:19-22). Held at power-up = download mode. Ignored while linked (V, :92-95) | top preferred, at an edge (§4.2); about 9-10 mm², no silk | SHOULD (D63 names buttons; move, do not drop) |
-| 11 | Status LEDs | D5 green (GPIO7), D6 blue (GPIO26), D4 XL-1010RGBC (ESP32 GPIO22) | sink from +3.3V; WS2812 | `LED0_PIN`, `LED1_PIN`; ELRS `led_rgb` | existing | MUST, kept |
+| 11 | Status LEDs | D5 green (GPIO10), D6 blue (GPIO24), D4 XL-1010RGBC (ESP32 GPIO32) (D111 map; was: GPIO7, GPIO26, ESP32 GPIO22) | sink from +3.3V; WS2812 | `LED0_PIN`, `LED1_PIN`; ELRS `led_rgb` | existing | MUST, kept |
 | 12 | Test / programming points (D67) | TP1-TP8 C2D/C2CK (EFM8), TP9 FCB, TP12 CLK, TP13 DIO: lib:TestPoint_Via_D0.35mm_Drill0.2mm, mask-open filled vias, no silk, documented in the pinout | EFM8 C2, BOOT (QSPI_SS via 1 k), SWD | bench recovery only (NextPCB pre-programs Bluejay; RP2354A by USB BOOTSEL; ESP32 by Betaflight passthrough with SW1 held) | bottom, test vias | MUST as vias; TP10 GND and TP11 RXB removed (D67 overrides D54 OC-4/5) |
 | 13 | USB D-/D+ pads (new) | TP14 D-, TP15 D+: lib:TestPoint_Pad_D0.8mm | USB_D_N / USB_D_P on the connector side of the TPD2EUSB30 | none. README: "battery required, connect GND" | bottom, beside the USB connector, near a GND pad; 7-9 mm² | **COULD**: only if G2 shows bottom room; first to drop |
 
@@ -108,9 +110,9 @@ The proposal's net swap was rejected: user row to GPIO4/5 (UART1), O4 pads to GP
 
 | Preset | What it does | Resources | Notes |
 |---|---|---|---|
-| **EXT-HD-PADS** (analog builds) | external receiver on TX1/RX1 | none moved: RX_SERIAL on UART1, UART0 mask 0 | hardware UART, so CRSF at 420 kbaud is fine. Power from the user or LED row 5V |
+| **EXT-HD-PADS** (analog builds) | external receiver on TX1/RX1 | none moved: RX_SERIAL on UART0 (TX1/RX1 since D111), UART1 (CRSF) mask 0 (was: RX_SERIAL on UART1, UART0 mask 0) | hardware UART, so CRSF at 420 kbaud is fine. Power from the user or LED row 5V |
 | **EXT-USER-PADS** (any build; also O4 + DJI remote SBUS: yellow lead → RP0) | **hardware UART0 on the user pads** | UART0 TX A00→**A02**, RX A01→**A03**; PIOUART0 TX/RX → NONE; RX_SERIAL on UART0 | V: GPIO2/3 = UART0 TX/RX (F11, DS Table 677; uart_hw.c:59, :43; aux function picked at :252/:259). The exact `resource` lines are I and are checked in V9. ELRS passthrough needs the preset undone |
-| **I2C-USER** / **I2C-HD** | baro or mag on the user pads / on the HD pads (analog) | I2C1 SDA A02, SCL A03 (PIOUART0 → NONE) / I2C0 SDA A04, SCL A05 | V: pin rule (bus_i2c_pico.c:116-121). Internal pull-ups only (:455-456; RPU 32-86 kΩ, DS Table 1683), so the **module needs its own 2.2-4.7 kΩ pull-ups** (5 V pull-ups are fine on these 5 V-tolerant pads), and the I2C clock goes to 100-400 kHz (default 800 kHz, common_defaults_post.h:28) |
+| **I2C-USER** / **I2C-HD** | baro or mag on the user pads / on the HD pads (analog) | I2C-USER void (D89) / I2C0 SDA A16, SCL A17 (D111 map; was: I2C1 SDA A02, SCL A03 / I2C0 SDA A04, SCL A05) | V: pin rule (bus_i2c_pico.c:116-121). Internal pull-ups only (:455-456; RPU 32-86 kΩ, DS Table 1683), so the **module needs its own 2.2-4.7 kΩ pull-ups** (5 V pull-ups are fine on these 5 V-tolerant pads), and the I2C clock goes to 100-400 kHz (default 800 kHz, common_defaults_post.h:28) |
 
 Caveats for any external receiver (V):
 - Betaflight controls the onboard VTX only through RX_SERIAL + VTX_MSP on the CRSF port (vtx_msp.c:100; `isCrsfPortConfig` on 2026.6.2, PINMAP §5.4).
@@ -223,7 +225,7 @@ README items: the pad table (rows 7-9, half duplex only on TP0/RP0), the presets
 | 3V3 pad | 0/7 analog (GK1 only) | survey |
 | Extra VBAT pad | 1/7 (X14); the B+ hole serves | survey |
 | SBUS pad | 0/7 analog. The user pads with EXT-USER-PADS cover it (D16) | survey |
-| PINIO / camera-control pad | 0/7; the only PINIO is the internal HD line (GPIO27) | survey |
+| PINIO / camera-control pad | 0/7; the only PINIO is the internal HD line (GPIO19 since D111; was GPIO27) | survey |
 | VOUT pad | Happymodel habit only (4/7). It would put a stub on the OSD-to-VTX video node | survey |
 | HD SH1.0-6 plug | only on BetaFPV's separate HD board; the O4 pads cover it (D13) | survey |
 | RX / VTX cut jumpers | the ESP32 drives both, so a jumper isolates neither. The HD line already holds the VTX off (D17) | I |

@@ -2294,7 +2294,7 @@
 		)
 		(uuid "69a05841-5488-576d-9dc8-e8ff87250b46")
 	)
-	(text_box "Source: OpenFC-Lite-Mini hardware/pads.kicad_sch (digital video pads), new pad set (D13/D16).\n\nVHD = +5V_HD from U5 TPS22810 (on with HD_EN and cell >= 3.23-3.82 V, held down to 2.74-3.14 V; POWER P4-1, 1 % resistors), 1.20 A budget; O4 Lite input 3.7-13.2 V. TX1 = UART1_TX (GPIO16, hardware UART0) -> O4 RX, RX1 = UART1_RX (GPIO17) <- O4 TX: MSP DisplayPort; no SBUS pad (D16). Cut DJI cable: red -> VHD, black + brown -> GND, white -> TX1, grey -> RX1, yellow open (no SBUS input since D89).\n\nAnalog builds: TX1/RX1 are the free hardware UART (the only one since D89, no user UART pads), or I2C0 via the I2C-HD preset (IO-SET row 8).\n\nP4-11: the O4 stays unpowered until HD_EN, so its TX cannot drive RX1 before IOVDD (FT pads limited to 3.63 V unpowered, PINMAP F16). A device on TX1/RX1 in an analog build runs from a 5V pad (LED row), which comes up before +3.3V: 3.3 V logic only (a 5 V TX on RX1 can exceed 3.63 V during the ramp).\n\nCopper only (DNP, out of BOM and CPL, LINEUP A16)."
+	(text_box "Source: OpenFC-Lite-Mini hardware/pads.kicad_sch (digital video pads), new pad set (D13/D16).\n\nVHD = +5V_HD from U5 TPS22810 (on with HD_EN and cell >= 3.23-3.82 V, held down to 2.74-3.14 V; POWER P4-1, 1 % resistors), 1.20 A budget; O4 Lite input 3.7-13.2 V. TX1 = UART0_TX (GPIO16, hardware and Betaflight UART0; silk TX1 per D89) -> O4 RX, RX1 = UART0_RX (GPIO17) <- O4 TX: MSP DisplayPort; no SBUS pad (D16). Cut DJI cable: red -> VHD, black + brown -> GND, white -> TX1, grey -> RX1, yellow open (no SBUS input since D89).\n\nAnalog builds: TX1/RX1 are the free hardware UART (the only one since D89, no user UART pads), or I2C0 via the I2C-HD preset (IO-SET row 8).\n\nP4-11: the O4 stays unpowered until HD_EN, so its TX cannot drive RX1 before IOVDD (FT pads limited to 3.63 V unpowered, PINMAP F16). A device on TX1/RX1 in an analog build runs from a 5V pad (LED row), which comes up before +3.3V: 3.3 V logic only (a 5 V TX on RX1 can exceed 3.63 V during the ramp).\n\nCopper only (DNP, out of BOM and CPL, LINEUP A16)."
 		(exclude_from_sim no)
 		(at 223.52 172.72 0)
 		(size 93.98 60.96)
@@ -2374,7 +2374,7 @@
 		)
 		(uuid "ead189ca-2578-5179-a006-3d957446b2af")
 	)
-	(text_box "PADS: every off-board connection. Style from the OpenFC-Lite-Mini and OpenFC-Lite pads sheets (pads pin down, a rail symbol or a hierarchical label at the wire end, plug blocks in frames); the source of each block is in its note. References, values (pad codes = silk codes), footprints, MPN / Manufacturer / LCSC and the DNP / BOM / CPL attributes are hardware/bom_plan.json; solder pads are DNP and out of BOM and CPL (LINEUP A16), the motor header is a DNP BOM line.\n20 hierarchical labels = the PADS sheet pins (sch_contract.json): VIDEO_IN, M1_A..M4_C, UART1_TX/RX, LED_STRIP, BUZZER-, USB_D_P/N, VBUS. Rails by power symbol (+5V, +5V_CAM, +5V_HD, GND; sources on POWER); VBUS carries its PWR_FLAG here. Netclass directives: Phase (M1_A), USB (USB_D_P). No user UART group (D89): the free UART is the HD group TX1/RX1 (nets UART1_TX/RX, hardware UART0 since D111).\nOwed: J31 pin 1 = GND (gate V0-USB before the P5 freeze), J32 pin order (gate G1), motor-header temperature (V4)."
+	(text_box "PADS: every off-board connection. Style from the OpenFC-Lite-Mini and OpenFC-Lite pads sheets (pads pin down, a rail symbol or a hierarchical label at the wire end, plug blocks in frames); the source of each block is in its note. References, values (pad codes = silk codes), footprints, MPN / Manufacturer / LCSC and the DNP / BOM / CPL attributes are hardware/bom_plan.json; solder pads are DNP and out of BOM and CPL (LINEUP A16), the motor header is a DNP BOM line.\n20 hierarchical labels = the PADS sheet pins (sch_contract.json): VIDEO_IN, M1_A..M4_C, UART0_TX/RX, LED_STRIP, BUZZER-, USB_D_P/N, VBUS. Rails by power symbol (+5V, +5V_CAM, +5V_HD, GND; sources on POWER); VBUS carries its PWR_FLAG here. Netclass directives: Phase (M1_A), USB (USB_D_P). No user UART group (D89): the free UART is the HD group TX1/RX1 (nets UART0_TX/RX = hardware UART0; renamed fix2, were UART1_TX/RX).\nOwed: J31 pin 1 = GND (gate V0-USB before the P5 freeze), J32 pin order (gate G1), motor-header temperature (V4)."
 		(exclude_from_sim no)
 		(at 101.6 241.3 0)
 		(size 193.04 43.18)
@@ -2882,7 +2882,7 @@
 		)
 		(uuid "3a973afc-1726-5554-a2b9-1a947c96bcbd")
 	)
-	(hierarchical_label "UART1_TX"
+	(hierarchical_label "UART0_TX"
 		(shape input)
 		(at 259.08 152.4 270)
 		(effects
@@ -3047,7 +3047,7 @@
 		)
 		(uuid "f201537a-01db-5431-a7d7-0657ef1c97ae")
 	)
-	(hierarchical_label "UART1_RX"
+	(hierarchical_label "UART0_RX"
 		(shape output)
 		(at 269.24 152.4 270)
 		(effects
