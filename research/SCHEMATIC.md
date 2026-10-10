@@ -376,3 +376,32 @@ scripts/root_build.py HW ; HW/tools/sch_integrate.py HW ; scripts/pro_patterns.p
 kicad-cli sch export netlist ... ; scripts/bomplan_p4i.py HW nets NETLIST ; scripts/docs_p4i.py research/PINMAP.md research/DESIGN-SPEC.md
 kicad-cli sch erc ; HW/tools/check_netlist.py ; HW/tools/check_conventions.py ; sch_visual_check (KiCad 10 hide fix)
 ```
+
+## D111 final schematic (2026-10-10)
+
+The schematic now matches the winning placement V4_B4 (p2v3/v4/cons/pack4/V4_B4.kicad_pcb). Compared with that board
+plus the changes below, it has 0 pad-net differences and 0 footprint/symbol pin-set differences. The one footprint
+difference is C41: the board still has it on the 0402 land, while D108 puts all 12 hot-loop caps on 0603.
+
+- **GPIO map (D71/D104):** the U10 and U16 pins follow the map solved against V4_B4 (PINMAP §2 and §6 notes).
+  - One correction to that map: the framebuffer OSD W/EN/SYNC sits on the consecutive GPIO21/22/23, because
+    Betaflight `osd_pico.c` requires consecutive pins. LED0 moves to GPIO10 and GYRO_CLKIN to GPIO13 (+1.4 mm in total).
+  - CRSF runs on hardware UART1 (GPIO8/9). The TX1/RX1 pads run on hardware UART0 (GPIO16/17). The net names stay.
+  - The ESP32 pins avoid straps and flash pins. GPIO2 and GPIO5 are now no-connect, and PA_DET moves to ADC1 (GPIO36).
+- **D100 oscillator:** X1 is a YXC OT201612MJBA4SL 12 MHz CMOS oscillator (symbol lib:OT201612MJBA4SL) driving XIN.
+  EN is tied to +3.3V, and C42 is now its 100 nF VDD decoupling cap. C43 and R40 are removed, and XOUT is no-connect.
+- **Footprints:** every Footprint field equals the V4_B4 FPID, after the D113 library rename map
+  (p2v3/v4/lineup/library/fp_rename.json).
+- **RTC6705 pins:** the RTC6705 symbol carries its datasheet NC pins 2, 12, 18, 36 and 37 as no_connect pins (D101 full lands).
+- **Lineup power-net style (A11b, D113):** +3V3 becomes +3.3V, +3V3_VTX becomes +3.3V_VTX, +1V8 becomes +1.8V_GYRO
+  and +1V1 becomes +1.1V.
+  - The power symbol is power:+3.3V, with the rail name as its Value, in the OpenFC-Lite / OpenFC-Lite-Mini style.
+  - The .kicad_pro net-class patterns, setup_board.py, check_p5_conditions.py and check_netlist.py (dotted names)
+    follow the new names.
+  - +BATT_IN stays; it is the one remaining A11b warning (see the open item below).
+- **Notes:** the stale D77 hot-loop note on the power sheet now names the D108 22 uF 0603 part. The D92 boost note
+  names the V4_B4 side (F, L1 over L2). The GPIO numbers in the sheet notes and the ELRS layout follow the new map.
+- **Pipeline:** the generators in p2v3/v4/lineup/sch/gens run first, then scripts/imu_d113.py and
+  scripts/power_style.py (both kicad-skip), then tools/sch_integrate.py. Two runs give byte-identical sheets.
+- **Open:** renaming +BATT_IN to CSA+ (the lineup precedent) needs a root-level hierarchical net between PADS and POWER.
+  sch_root.py has no layout row for it, so either that tool gets an additive entry or J2 moves to the power sheet.

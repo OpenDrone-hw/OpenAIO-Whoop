@@ -631,3 +631,16 @@ pin numbers, names and fields are unchanged, the Description says which catalogu
 | `lib:DEA102700LT-6307A2` | all passive (RF filter) |
 
 Also: `lib:SDM02M30CLP3-7B` (D8) pin names hidden (they sat on the body; sch_visual_check pin_text_clash).
+
+## D111 final schematic: symbol changes (2026-10-10)
+
+- New symbol lib:OT201612MJBA4SL (YXC 12 MHz CMOS oscillator, D100).
+  - Its body and pin geometry are copied from lib:OW7EL89CENUNFAYLC-52M.
+  - Pins: 1 EN input, 2 GND power_in, 3 OUT output, 4 VDD power_in.
+  - It uses footprint lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense.
+- lib:RTC6705 now has its datasheet NC pins 2, 12, 18, 36 and 37 as no_connect pins. Every pad of the full-land
+  footprint therefore has a symbol pin (D101).
+- Audit item L5 (14 project symbols that duplicate OpenDrone catalogue symbols): all 14 stay in lib.kicad_sym.
+  - Pin numbers, names and positions are identical to the catalogue symbols.
+  - Pin types differ: the catalogue symbols use `unspecified`, the project copies the datasheet types. Re-pointing
+    them would weaken ERC (P4 ruling: project copies with correct pin types).
