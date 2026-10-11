@@ -1,10 +1,10 @@
 {
-  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6, D12, D18, D21), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB published limits (HDI 1+4+1, read 2026-10-11), Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias 0.35 / 0.15 (NextPCB ring 3.5 mil = 0.09, mechanical drill 0.15) and power 0.40 / 0.20; laser microvia 0.10 / 0.25, buried L2-L5; the RF width is the P1 field-solver value (impedance.json). Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name. Spec review round 3: RF_RX_ANT split into an L1-L5 area (tracks, vias, pads, footprints, zone fills kept out) and RF_RX_ANT_L6 (B.Cu: vias, footprints and zone fills kept out; the 2.4 GHz feed track is allowed); the antenna-hole footprint itself is exempted from both by a named, scoped DRU rule (D21), not by a looser area; RF_RX_EXIT (B.Cu) now keeps footprints out (no parts within 3 mm of the wire exit); RF_PAD_CUTOUT (In1.Cu zone-fill keepout under wide RF pads) gains RF_PAD_CUTOUT_L3 (In2.Cu track keepout; a GND zone there is the local reference); WIFI_STUB removed with the Wi-Fi stub (spec 4.7); SHUNT_CORRIDOR (B.Cu, named area for the battery-to-shunt corridor rule, D10), RF_RX_ROOT (all copper layers, named area r 3.0 around the antenna hole for the SPI0 rule, spec 4.9 / 11) and TAB_T1/T3/T4 (panel-tab part keepouts, spec 7) added. Positions of the RF, corridor and tab areas follow sketch v4 (spec 10) and move at P2, so only the RX antenna areas pin a bbox. setup_board.py writes all of it (P0 consolidation, 2026-10-07); its --selftest covers the DRU rules. DRU rules (In2/In3 class and name restrictions, RF via rules, D21 exceptions) are checked by check_rules.py, not here. Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the 1.1 battery, 0.5 wire and pogo alignment holes out of the hole list, spec 4.10) Expectations regenerated 2026-10-11 from the board after the D112 outline, the D114 sync and the D116 NextPCB rules (stackup per library 6L-1.0mm-0.5oz-1080, cores 0.265 dielectric).",
+  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6, D12, D18, D21), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB published limits (HDI 1+4+1, read 2026-10-11), Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias 0.35 / 0.15 (NextPCB ring 3.5 mil = 0.09, mechanical drill 0.15) and power 0.40 / 0.20; laser microvia 0.10 / 0.25, buried L2-L5; the RF width is the P1 field-solver value (impedance.json). Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name. Spec review round 3: RF_RX_ANT split into an L1-L5 area (tracks, vias, pads, footprints, zone fills kept out) and RF_RX_ANT_L6 (B.Cu: vias, footprints and zone fills kept out; the 2.4 GHz feed track is allowed); the antenna-hole footprint itself is exempted from both by a named, scoped DRU rule (D21), not by a looser area; RF_RX_EXIT (B.Cu) now keeps footprints out (no parts within 3 mm of the wire exit); RF_PAD_CUTOUT (In1.Cu zone-fill keepout under wide RF pads) gains RF_PAD_CUTOUT_L3 (In2.Cu track keepout; a GND zone there is the local reference); WIFI_STUB removed with the Wi-Fi stub (spec 4.7); SHUNT_CORRIDOR (B.Cu, named area for the battery-to-shunt corridor rule, D10), RF_RX_ROOT (all copper layers, named area r 3.0 around the antenna hole for the SPI0 rule, spec 4.9 / 11) and TAB_T1/T3/T4 (panel-tab part keepouts, spec 7) added. Positions of the RF, corridor and tab areas follow sketch v4 (spec 10) and move at P2, so only the RX antenna areas pin a bbox. setup_board.py writes all of it (P0 consolidation, 2026-10-07); its --selftest covers the DRU rules. DRU rules (In2/In3 class and name restrictions, RF via rules, D21 exceptions) are checked by check_rules.py, not here. Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the 1.1 battery, 0.5 wire and pogo alignment holes out of the hole list, spec 4.10) Expectations regenerated 2026-10-11 from the board after the D112 outline, the D114 sync and the D116 NextPCB rules (stackup NextPCB standard HDI 06101H03-1080).",
   "tolerance": 0.0005,
   "expect": {
     "copper_layers": 6,
     "thickness_mm": {
-      "value": 0.957,
+      "value": 1.046,
       "tol": 0.002
     },
     "stackup": {
@@ -42,9 +42,9 @@
         },
         {
           "layer": "dielectric 2",
-          "type": "core",
-          "material": "FR4",
-          "thickness_mm": 0.265
+          "type": "prepreg",
+          "material": "1080",
+          "thickness_mm": 0.077
         },
         {
           "layer": "In2.Cu",
@@ -54,9 +54,9 @@
         },
         {
           "layer": "dielectric 3",
-          "type": "prepreg",
-          "material": "2313",
-          "thickness_mm": 0.103
+          "type": "core",
+          "material": "FR4",
+          "thickness_mm": 0.568
         },
         {
           "layer": "In3.Cu",
@@ -66,9 +66,9 @@
         },
         {
           "layer": "dielectric 4",
-          "type": "core",
-          "material": "FR4",
-          "thickness_mm": 0.265
+          "type": "prepreg",
+          "material": "1080",
+          "thickness_mm": 0.077
         },
         {
           "layer": "In4.Cu",

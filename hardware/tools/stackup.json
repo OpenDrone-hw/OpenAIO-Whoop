@@ -1,5 +1,5 @@
 {
-  "_comment": "OpenAIO-Whoop stackup: NextPCB library 6L-1.0mm-0.5oz-1080 (nextpcb.com/impedance-control-stackups, read 2026-10-11) built as HDI 1+4+1 (laser L1-L2 and L5-L6 through the 1080, buried L2-L5 through the core / 2313 / core sub-lamination). Library dielectrics: 1080 0.077 / core 0.30 H/H / 2313 0.103 / core 0.30 H/H / 1080 0.077; the library core thickness includes its 0.5 oz copper, so each core dielectric is 0.265 here. Outer 1 oz finished, inner 0.5 oz, Dk 4.2. 6L HDI is a library entry only from 1.2 mm, so 1+4+1 at 1.0 mm is an engineered build on these dielectrics (NextPCB confirmation open). Applied by setup_board.py (also readable by apply_stackup.py).",
+  "_comment": "OpenAIO-Whoop stackup: NextPCB standard HDI stackup 06101H03-1080 (quote form /quote/recommendStackUp, 6L, 1.0 mm, inner 0.5 oz, HDI rank 1, read 2026-10-11), built as 1+4+1: L2-L5 sub-lamination = foil L2 / 1080 0.077 / core 0.6 (dielectric 0.568, copper L3 and L4) / 1080 0.077 / foil L5, drilled for the buried vias L2-L5, then 1080 0.077 build-up and foil L1 / L6 for the laser vias. Outer 1 oz finished, inner 0.5 oz, Dk 4.2. Each inner signal or plane layer sits 0.077 from its GND plane (In1, In4); In2 and In3 are 0.568 apart. NextPCB lists 0.9265 mm on base foil; finished about 1.0 mm. Applied by setup_board.py (also readable by apply_stackup.py).",
   "copper_layers": 6,
   "copper_finish": "ENIG",
   "layers": {
@@ -20,9 +20,9 @@
       "thickness": 0.0175
     },
     "dielectric 2": {
-      "type": "core",
-      "thickness": 0.265,
-      "material": "FR4",
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
       "epsilon_r": 4.2,
       "loss_tangent": 0.02
     },
@@ -30,9 +30,9 @@
       "thickness": 0.0175
     },
     "dielectric 3": {
-      "type": "prepreg",
-      "thickness": 0.103,
-      "material": "2313",
+      "type": "core",
+      "thickness": 0.568,
+      "material": "FR4",
       "epsilon_r": 4.2,
       "loss_tangent": 0.02
     },
@@ -40,9 +40,9 @@
       "thickness": 0.0175
     },
     "dielectric 4": {
-      "type": "core",
-      "thickness": 0.265,
-      "material": "FR4",
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
       "epsilon_r": 4.2,
       "loss_tangent": 0.02
     },
