@@ -889,11 +889,11 @@
    "nets": [
     "CURR_SENSE",
     "+3.3V",
-    "/POWER/SHUNT_SENSE_N_RC",
-    "/POWER/SHUNT_SENSE_P_RC",
+    "/POWER/SHUNT_SENSE_N",
+    "/POWER/SHUNT_SENSE_P",
     "GND"
    ],
-   "notes": "[PU] current amp gain 100, 50 mV/A with 0.5 mOhm, ibata_scale 500; REF to GND",
+   "notes": "[PU] current amp gain 100, 50 mV/A with 0.5 mOhm, ibata_scale 500; REF to GND; inputs straight from the R1 Kelvin taps, no RC (D114, INA186 DS 8.1.3: add a 0201 RC only if hover logs show current noise)",
    "lib_work": []
   },
   {
@@ -1455,7 +1455,7 @@
     "HD_EN",
     "GND"
    ],
-   "notes": "HD_EN (GPIO27) pull-down = analog mode at reset (F21); 2.4k per D52 BR-24 (DShot / OSD line)",
+   "notes": "HD_EN (GPIO19) pull-down = analog mode at reset (F21); 2.4k per D52 BR-24 (DShot / OSD line)",
    "lib_work": []
   },
   {
@@ -3613,7 +3613,7 @@
    "block": "fc",
    "sheet": "rp2350a",
    "value": "4.7uF",
-   "rating": "10V X5R",
+   "rating": "6.3V X5R",
    "manufacturer": "Murata",
    "mpn": "GRM035R60J475ME15D",
    "lcsc": "C335103",
@@ -5645,13 +5645,13 @@
    "silk": null,
    "nets": [
     "/VTX/PA_DET_RAW",
-    "/VTX/PA_VCC",
+    "+BATT",
     "/VTX/PA_VREF",
     "/VTX/RF_PA_IN",
     "/VTX/RF_PA_OUT",
     "GND"
    ],
-   "notes": "5 GHz PA on the cell (VCC 3.0-5.5 V), integrated input/output match and detector; rotated: VCC sides left/right, RFin down, RFout to the top edge; SP1/SP2 open; NextPCB turnkey sources it by MPN (D60); fallback QPA9501TR13 same footprint",
+   "notes": "5 GHz PA on the cell (VCC 3.0-5.5 V), integrated input/output match and detector; rotated: VCC sides left/right, RFin down, RFout to the top edge; SP1/SP2 open; NextPCB turnkey sources it by MPN (D60); fallback QPA9501TR13 same footprint; VCC on +BATT directly (D114, R67 removed)",
    "lib_work": []
   },
   {
@@ -6009,7 +6009,7 @@
    "block": "vtx",
    "sheet": "vtx",
    "value": "4.7uF",
-   "rating": "10V X5R",
+   "rating": "6.3V X5R",
    "manufacturer": "Murata",
    "mpn": "GRM035R60J475ME15D",
    "lcsc": "C335103",
@@ -6034,7 +6034,7 @@
    "block": "vtx",
    "sheet": "vtx",
    "value": "4.7uF",
-   "rating": "10V X5R",
+   "rating": "6.3V X5R",
    "manufacturer": "Murata",
    "mpn": "GRM035R60J475ME15D",
    "lcsc": "C335103",
@@ -6225,7 +6225,7 @@
     "VTX_PWR_EN",
     "GND"
    ],
-   "notes": "HD gate (D17, D53 BR-03): N-MOSFET, gate HD_EN (GPIO27), drain VTX_PWR_EN, source GND; HD mode drops +3.3V_VTX, so the VCO, PA reference and PA drive go off together",
+   "notes": "HD gate (D17, D53 BR-03): N-MOSFET, gate HD_EN (GPIO19), drain VTX_PWR_EN, source GND; HD mode drops +3.3V_VTX, so the VCO, PA reference and PA drive go off together",
    "lib_work": []
   },
   {
@@ -6742,7 +6742,7 @@
    "nets": [
     "+5V_BST"
    ],
-   "notes": "DJI O4 Lite supply (red) from the TPS22810; LINEUP A16: excluded from BOM, DNP",
+   "notes": "DJI O4 Lite supply (red) on +5V_BST directly, no load switch (D114); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {

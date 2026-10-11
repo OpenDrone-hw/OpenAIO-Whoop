@@ -66,6 +66,9 @@ Technical write-up, part list and layout constraints: [AGENTS.md](AGENTS.md).
   SX1281 design on an ESP32-PICO-V3 and talks CRSF to the FC; the same ESP32
   controls the VTX.
 - Passives 0201 and up, no 01005, so the board stays hand-reworkable.
+- No battery protection on the board: no reverse-polarity protection, no TVS
+  and no low-cell cutoff. The 5 V boost runs the cell down to about 1 V, so
+  unplug the battery after landing.
 - Assembly house chosen per release. Fab-ready manufacturing files are kept in
   a private Incutec production repository and are not published.
 
