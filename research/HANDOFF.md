@@ -13,9 +13,9 @@ yours.
 | Layout | `hardware/OpenAIO-Whoop.kicad_pcb` | placement, pours and rule areas; 0 tracks, 499 unrouted connections |
 | Library | `hardware/lib.kicad_sym`, `hardware/lib.pretty` (114 footprints), `hardware/lib.3dshapes`, `hardware/KiCad-Library` submodule (fdf8319) | every symbol, footprint and 3D model resolves from a fresh clone; see `research/LIBRARY.md` |
 | Rules | `hardware/OpenAIO-Whoop.kicad_pro` (net classes, HDI layer pairs), `hardware/OpenAIO-Whoop.kicad_dru` | both written by `hardware/tools/setup_board.py`; change the script and re-run it, do not hand-edit |
-| Renders | `images/front.png`, `images/back.png` | 3D renders of this board (8c6b06f8), with the optional motor headers shown fitted |
+| Renders | `images/front.png`, `images/back.png` | 3D renders of this board (4f845ba5), with the optional motor headers shown fitted |
 
-Placement facts (from the board, md5 8c6b06f8):
+Placement facts (from the board, md5 4f845ba5):
 
 - 266 footprints: 134 on the front, 132 on the back. 20 are DNP: the 4 motor
   headers J4/J7/J10/J13, the 13 battery and IO solder pads, the AE1 wire hole, and C132/C133
@@ -82,11 +82,12 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
 
 | Check | Result | Files |
 |---|---|---|
-| `kicad-cli pcb drc --severity-all --schematic-parity --refill-zones` | 0 errors, parity 0, 499 unconnected. Warnings: isolated_copper 1 (the L3_UFL_REF island), lib_footprint_mismatch 2 (J31, J33), solder_mask_bridge 8, via_dangling 11 | board 8c6b06f8, `.kicad_pro` 80000762, `.kicad_dru` 8462081f, sheets unchanged since 4444859 (root e3af3f97) |
-| Same DRC in a clean `git clone` (offline submodule, empty HOME) | identical: 0 errors, parity 0 | board f662dcd7 (sync stage), not re-run for 8c6b06f8 |
-| `kicad-cli sch erc --severity-all` | 0 errors, 2 pin_to_pin warnings (U13 WP and HOLD tied to the U4 LDO output, justified in `research/SCHEMATIC.md`) | sheets at 4444859 |
-| `hardware/tools/check_conventions.py --stage planned` | 39 ok, 1 FAIL (B7: 6 pad labels, open item 9), 2 warn, 3 skip | board 8c6b06f8 |
-| ESC plane solve (`plane.py`: In3 only, 0.5 oz at 80 C, 12 A per ESC) | ESC1 33.7, ESC2 38.8, ESC3 22.0, ESC4 31.5 mV (unchanged) | board 8c6b06f8 with `.kicad_pro` 80000762 beside it |
+| `kicad-cli pcb drc --severity-all --schematic-parity`, with and without `--refill-zones` | 0 errors, parity 0, 499 unconnected. Warnings: isolated_copper 1 (the L3_UFL_REF island), lib_footprint_mismatch 2 (J31, J33), solder_mask_bridge 8, via_dangling 11. The zone fills are saved in the board, so the result is the same without a refill | board 4f845ba5, `.kicad_pro` 80000762, `.kicad_dru` 8462081f, sheets at 0ed1abd (root 25149953) |
+| Same DRC and ERC in a clean `git clone` (offline submodule, empty HOME, KiCad's default symbol table) | identical: DRC 0 errors, parity 0; ERC 0 errors | board 4f845ba5, sheets at 0ed1abd |
+| `kicad-cli sch erc --severity-all` | 0 errors, 2 pin_to_pin warnings (U13 WP and HOLD tied to the U4 LDO output, justified in `research/SCHEMATIC.md`) | sheets at 0ed1abd |
+| `hardware/tools/check_conventions.py --stage planned` | 39 ok, 1 FAIL (B7: 6 pad labels, open item 9), 2 warn, 3 skip | board 4f845ba5 |
+| `check_netlist.py`, `check_rules.py`, `setup_board.py --check` | 7 ok / 0 FAIL; custom rules parsed; project files up to date | board 4f845ba5 |
+| ESC plane solve (`plane.py`, a work script that is not in the repo: In3 only, 0.5 oz at 80 C, 12 A per ESC) | ESC1 33.7, ESC2 38.8, ESC3 22.0, ESC4 31.5 mV (unchanged) | board 4f845ba5 with `.kicad_pro` 80000762 beside it |
 
 ## What the router has to do
 
@@ -216,7 +217,16 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
    away and re-check the mating clearance rule `USB_MATING`.
 9. **Pad labels (check_conventions B7): partly done.**
    - Every silk text outside the outline is deleted: 9 parked texts, `VTX`
-     included.
+     included. Two stray 0.29 mm silk circles about 40 mm left of the board
+     are deleted too.
+   - The Incutec logo LOGO1 (6.1 x 1.4 mm, F.Silkscreen) is still parked at
+     (189.7, 142.2), about 61 mm right of the board, so it is not on the
+     fabricated board. B3 passes because it only checks that the logo exists.
+     A search of the front (0.025 mm grid, 0 and 90 degrees, 0.15 mm from
+     pads, 0.20 mm from the edge and holes, 0.10 mm from other silk) found no
+     legal spot, even under part bodies. Owner's call: a smaller logo, the
+     back side, or room taken from the `OPENAIO WHOOP` / `REV1` texts. Do not
+     plot Gerbers with it parked off the board.
    - J25 GND and J28 TX1 now have aligned 0.8 mm labels.
    - Six pads on the hole webs still have none: J21 5V, J22 BZ-, J33 GND
      (right hole) and J26 VHD, J27 GND, J29 RX1 (left hole).
@@ -240,6 +250,12 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
     run `check_conventions.py --stage alpha`. It adds the DOC_* variables, the
     alpha README shape, and the Status, Shop, Discord, Video and OSHWA badges.
     There is no shop listing or OSHWA certification yet, so those badges wait.
+13. **Stale board spec.** `hardware/tools/board_spec.json` is still the P1
+    spec: the pre-v4 outline (30.55 mm, 696.6 mm2, holes on 25.75 mm), a
+    0.20 mm microvia land and the v3 rule areas. `check_board_setup.py --spec
+    hardware/tools/board_spec.json` reports 24 of 31 keys. Without `--spec` it
+    only reports and exits clean. Update the spec to the v4 outline and HDI
+    via set, or retire it.
 
 Not covered here: routing, the fabrication outputs (Gerbers, BOM, CPL), and
 manufacturer quotes.

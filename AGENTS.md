@@ -133,10 +133,12 @@ target are in [research/PINMAP.md](research/PINMAP.md); the pad set is in
   from them, no stacking. Vias sit inside same-net pads; a free-standing via
   takes board space and is avoided.
 - RF nets carry no vias and keep 50 ohm width on the outer layers. Inside the
-  `RF_VTX_UFL` rule area F.Cu holds only RF and GND copper; In1 is cut out under
-  the U.FL signal pad.
-- AE1, the RX wire, leaves through a plated D0.5 hole with a copper keep-out
-  on L1-L5 around it. AE2 has no all-layer keep-out but minimal copper around
+  `RF_VTX_STRIP` rule area (0.5 mm around the 5.8 GHz chain) only GND vias are
+  allowed, so In1 stays solid under the line; `RF_PAD_CUTOUT` cuts In1 out
+  under the U.FL signal pad.
+- AE1, the RX wire, leaves through a plated D0.5 hole. Inside the D2.0
+  `RF_RX_HOLE` area pours are kept out on all layers and the only copper is the
+  2.4 GHz feed on L1. AE2 has no all-layer keep-out but minimal copper around
   it, with parts on the opposite side.
 - The 5 V boost hot loop closes on the component layer with a direct ground
   return: no via in the loop, unbroken GND under it, a small switch node, away
