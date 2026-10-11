@@ -239,12 +239,13 @@
 # the ESP32-D0WD-V3 land, set as the footprint attribute 'allow soldermask bridges' on that footprint only
 # (P3). Not active until then.
 
-# Spec 8.2 / 11: L2 and L5 unbroken under every signal. A track on them cuts the plane; warn so each one
-# is reviewed (L2 under the 5.8 GHz chain is a hard keepout, rule area RF_VTX_CHAIN).
-(rule "In1 and In4 are solid GND planes"
+# Spec 8.2 / 11, D121: L2 unbroken under every signal (under the 5.8 GHz chain a hard keepout, RF_VTX_CHAIN).
+# L5 is a GND pour that carries the ESC gate and BEMF routing (B-side parts, one microvia); any other track
+# on L2 or L5 cuts a plane, so warn and review it.
+(rule "In1 solid GND; In4 GND pour with ESC routing only"
   (severity warning)
   (constraint disallow track)
-  (condition "A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu'"))
+  (condition "A.Layer == 'In1.Cu' || (A.Layer == 'In4.Cu' && A.NetName != '/ESC*')"))
 
 # Spec 8.2 / 11, relaxed by D85 for routing closure: video and sense (Analog) and RF stay on L1 over L2 or L6
 # over L5; the FET gates (Gate) may use In2 (L3) but not In3 (L4), which is the +BATT plane itself.

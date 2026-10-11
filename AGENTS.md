@@ -127,8 +127,9 @@ target are in [research/PINMAP.md](research/PINMAP.md); the pad set is in
 
 ## Layout rules
 
-- In1 and In4 are solid GND planes. In2 carries no analog or RF; In3 carries no
-  analog, RF, gate, gyro or VTX control nets. The DRU enforces this.
+- In1 is a solid GND plane. In4 is a GND pour that carries only ESC gate and BEMF
+  routing (D121). In2 carries no analog or RF; In3 carries no analog, RF, gate,
+  gyro or VTX control nets. The DRU enforces this.
 - HDI 1+4+1: laser microvias L1-L2 and L5-L6 only, buried vias L2-L5 staggered
   from them, no stacking. Vias sit inside same-net pads; a free-standing via
   takes board space and is avoided.

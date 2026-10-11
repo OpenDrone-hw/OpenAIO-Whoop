@@ -66,7 +66,7 @@ finished, inner copper 0.5 oz (`hardware/tools/stackup.json`).
 | prepreg 2313 | 103 um | | |
 | L4 In3.Cu | 17.5 um | +BATT plane (ESC feed) | +BATT, 616.8 mm2 filled |
 | core | 300 um | | |
-| L5 In4.Cu | 17.5 um | solid GND (bottom reference, ESC return) | GND, +BATT islands x8 under FETs |
+| L5 In4.Cu | 17.5 um | GND pour (bottom reference, ESC return) with the ESC gate and BEMF routing (D121) | GND, +BATT islands x8 under FETs |
 | prepreg 1080 | 77 um | | |
 | L6 B.Cu | 35 um | bottom parts, Wi-Fi feed, Kelvin pair | GND x8, +BATT x8 local |
 

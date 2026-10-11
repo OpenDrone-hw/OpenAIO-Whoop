@@ -151,7 +151,7 @@ NETCLASSES = [
     ("RF", None, 0.15, 0.35, 0.15, "rgb(200, 160, 0)", 0, {"tuning_profile": "RF50"}),
     ("USB", 0.12, 0.12, 0.35, 0.15, "rgb(30, 110, 255)", 1, {"diff_pair_width": 0.12, "diff_pair_gap": 0.12}),
     ("VBAT", 0.50, 0.15, 0.40, 0.20, "rgb(220, 40, 40)", 2, {}),
-    ("Phase", 0.50, 0.15, 0.40, 0.20, "rgb(200, 0, 200)", 3, {}),
+    ("Phase", 0.10, 0.09, 0.35, 0.15, "rgb(200, 0, 200)", 3, {}),   # D121: phases are zones; the net also carries the BEMF taps
     ("Gate", 0.15, 0.10, 0.35, 0.15, "rgb(120, 60, 220)", 4, {}),
     ("Analog", 0.10, 0.15, 0.35, 0.15, "rgb(0, 160, 160)", 5, {}),
     ("Power", 0.25, 0.09, 0.35, 0.15, "rgb(255, 140, 0)", 6, {}),
@@ -163,8 +163,8 @@ DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "
 # labels appear as "/NAME", sub-sheet ones as "/SHEET/NAME", power nets bare.
 NETCLASS_PATTERNS = [
     ("VBAT", ["+BATT", "+BATT_*", "/POWER/CSA+"]),                        # +BATT, CSA+ battery node (spec 4.1, D113)
-    ("Phase", ["/ESC?/PHASE_?", "/POWER/U2_SW"]),                         # in-sheet PHASE_A/B/C (spec 8.4); boost switch
-                                                                          # node U2_SW 2.8-3.4 A avg (P4 critique round 2)
+    ("Phase", ["/ESC?/PHASE_?", "/POWER/U2_SW"]),                         # PHASE_A/B/C and the boost switch node: drawn as
+                                                                          # zones, so the class sets colour and signal-size defaults (D121)
     ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
     ("Power", ["+5V", "+5V_BST", "+5V_USB", "+3.3V", "+3.3V_VTX", "+1.8V_GYRO", "+1.1V",
                "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS",            # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
@@ -440,11 +440,12 @@ RULES = [
       "the ESP32-D0WD-V3 land, set as the footprint attribute 'allow soldermask bridges' on that footprint only",
       "(P3). Not active until then."], None),
 
-    ("In1 and In4 are solid GND planes",
-     ["Spec 8.2 / 11: L2 and L5 unbroken under every signal. A track on them cuts the plane; warn so each one",
-      "is reviewed (L2 under the 5.8 GHz chain is a hard keepout, rule area RF_VTX_CHAIN)."],
+    ("In1 solid GND; In4 GND pour with ESC routing only",
+     ["Spec 8.2 / 11, D121: L2 unbroken under every signal (under the 5.8 GHz chain a hard keepout, RF_VTX_CHAIN).",
+      "L5 is a GND pour that carries the ESC gate and BEMF routing (B-side parts, one microvia); any other track",
+      "on L2 or L5 cuts a plane, so warn and review it."],
      "  (severity warning)\n  (constraint disallow track)\n"
-     "  (condition \"A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu'\")"),
+     "  (condition \"A.Layer == 'In1.Cu' || (A.Layer == 'In4.Cu' && A.NetName != '/ESC*')\")"),
 
     ("In2: no analog or RF; In3: no analog, RF or gate (D85)",
      ["Spec 8.2 / 11, relaxed by D85 for routing closure: video and sense (Analog) and RF stay on L1 over L2 or L6",
@@ -1348,7 +1349,7 @@ def build_board(path, P):
     ds = b.GetDesignSettings()
     if b.GetCopperLayerCount() != 6:
         b.SetCopperLayerCount(6)
-    for lname, kind in (("In1.Cu", P.LT_POWER), ("In4.Cu", P.LT_POWER), ("In3.Cu", P.LT_MIXED),
+    for lname, kind in (("In1.Cu", P.LT_POWER), ("In4.Cu", P.LT_MIXED), ("In3.Cu", P.LT_MIXED),
                         ("In2.Cu", P.LT_SIGNAL), ("F.Cu", P.LT_SIGNAL), ("B.Cu", P.LT_SIGNAL)):
         b.SetLayerType(b.GetLayerID(lname), kind)
     ds.m_HasStackup = True
@@ -1435,11 +1436,12 @@ def build_board(path, P):
         "   core 0.536   buried via L2-L5 0.15/0.35 (power 0.20/0.40)",
         "L4 In3   1 oz   +BATT plane, refs L5; no Analog / RF / gate / gyro",
         "   1080 0.077",
-        "L5 In4   1 oz*  solid GND plane, no tracks",
+        "L5 In4   1 oz*  GND pour + ESC gate/BEMF routing (B side, one microvia)",
         "   1080 0.077   laser microvia L5-L6 0.10/0.25, in pad",
         "L6 B.Cu  1 oz   parts, fan-out",
         "ROUTING  every via in a pad or under a body; no through or blind vias",
-        "  L1->L3: microvia + buried 0.25 mm staggered; L1->L6: micro + buried + micro",
+        "  L6->L5: one microvia; L1->L3/L5: microvia + buried 0.25 mm staggered",
+        "  L1->L6: micro + buried + micro; phases as zones, BEMF taps signal size",
         "  min track/space 0.09, annular 0.09 (laser 0.075), filled + capped vias"]),
              (0.0, 18.5), size=0.6, thick=0.08)
 
@@ -1734,7 +1736,7 @@ def selftest(P, rf):
     case("In1 track under the VTX chain (keepout RF_VTX_CHAIN)", KEEPOUT_HIT, (c0[0], c0[1] - 1.5), r=0.8)
     via(c0[0], c0[1] - 3.0, 0.35, 0.20, "/T/V8"); case("signal via in RF_VTX_CHAIN", "RF_VTX_CHAIN: GND vias only", (c0[0], c0[1] - 3.0), r=0.4)
     via(c1[0] + 0.6, c1[1], 0.35, 0.20, "GND"); case("GND via in RF_VTX_CHAIN", None, (c1[0] + 0.6, c1[1]), r=0.3)
-    trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 track (plane warning)", "In1 and In4 are solid GND planes", (-2.5, 3))
+    trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 non-ESC track (plane warning)", "In1 solid GND; In4 GND pour with ESC routing only", (-2.5, 3))
     ax, ay = RX_ANT_HOLE
     trk(ax + 0.2, ay - 1.1, ax + 1.0, ay - 1.1, 0.1, "/T/SIG4", "B.Cu"); case("signal track in RF_RX_ANT_L6", "RF_RX_ANT_L6: only the RF feed", (ax + 0.6, ay - 1.1))
     trk(ax + 0.2, ay + 0.9, ax + 1.0, ay + 0.9, W, "/RX/ANT_FEED", "B.Cu"); case("RF feed in RF_RX_ANT_L6", None, (ax + 0.6, ay + 0.9), r=0.3)
