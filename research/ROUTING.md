@@ -67,6 +67,16 @@ These connect the phase-voltage divider inputs and carry divider current.
 Motor-current copper stays on the outer faces. The exception rejects other
 nets, widths, layers, zones and any track extending beyond its named area.
 
+`OSD_LVL_LOCAL` permits only the OSD divider's 0.12 mm In1 link.
+`PA_DET_IN1_LOCAL` and `PA_DET_IN4_LOCAL` permit only the 0.12 mm detector
+route on their named layers. The In4 portion has a connected local In3 GND
+return; its shortened end preserves the ESC battery-entry widths. These
+exceptions reject other nets, widths, layers, zone fills and tracks outside
+their areas. Six local pad/launch reference qualifications are recorded in
+`hardware/validation/routing-checkpoint-2026-10-11.json`; they do not waive
+RF reference requirements.
+
+
 The nominal 1.0 mm stackup is in `hardware/tools/stackup.json`. Outer dielectric
 spacing is 0.077 mm. The stored RF starting geometry is 0.105 mm trace / 0.15 mm
 coplanar gap, and USB is 0.12 mm trace / 0.12 mm pair gap. These are design

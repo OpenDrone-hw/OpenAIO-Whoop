@@ -1,11 +1,11 @@
 {
-  "timestamp_utc": "2026-10-11T22:43:14.987396+00:00",
-  "purpose": "Native-verified partial routing: phase and battery distribution, ESC senses, FC local connections, RX RF, VTX controls and local OSD",
+  "timestamp_utc": "2026-10-11T23:49:47.336301+00:00",
+  "purpose": "Partial routing checkpoint: main RP/ESP/SX/gyro rails and real ground returns, ESC supply arrays, four DShot inputs, one DShot output, OSD level and PA detection, local RX SPI and controls",
   "manufacturing_ready": false,
   "source_sha256": {
-    "hardware/OpenAIO-Whoop.kicad_pcb": "aa51812ca8e532c1e3ebb6a19aea32f5d2dd624d320d92ab21837be90ab75a2c",
+    "hardware/OpenAIO-Whoop.kicad_pcb": "7be8cdd8226e98698dda30606629cb9781abcdcac34194c385b59cb3bfe20489",
     "hardware/OpenAIO-Whoop.kicad_pro": "6d48d6102d7f5c797745a21d238fd11c1429835165da21f26c78ba319efd768a",
-    "hardware/OpenAIO-Whoop.kicad_dru": "ce515d8f0bb07b6a86fc49a18a443845bf761447292d0bedcb7813774dcd70fd",
+    "hardware/OpenAIO-Whoop.kicad_dru": "462a6112bc74224538bc5d870b39d5edaeef37d4c68e5514c70b75194c107060",
     "hardware/rx_esp32_sx1281.kicad_sch": "276fe8e754209374774029edbbc381c6d2315b256fe348b105486bca2de3e3c7"
   },
   "native_drc": {
@@ -14,7 +14,7 @@
       "items_not_allowed": 4,
       "courtyards_overlap": 135
     },
-    "open_connections": 276,
+    "open_connections": 154,
     "schematic_parity_findings": 0
   },
   "native_erc": {
@@ -4049,22 +4049,988 @@
       ],
       "connected": true,
       "net": "/RX/XTA"
+    },
+    {
+      "name": "DShot_motor2",
+      "pads": [
+        [
+          "U10",
+          "9"
+        ],
+        [
+          "U24",
+          "4"
+        ]
+      ],
+      "connected": true,
+      "net": "/RP2350A/MOTOR2_FC"
+    },
+    {
+      "name": "DShot_motor1",
+      "pads": [
+        [
+          "U10",
+          "10"
+        ],
+        [
+          "U24",
+          "3"
+        ]
+      ],
+      "connected": true,
+      "net": "/RP2350A/MOTOR1_FC"
+    },
+    {
+      "name": "DShot_motor3",
+      "pads": [
+        [
+          "U10",
+          "8"
+        ],
+        [
+          "U24",
+          "5"
+        ]
+      ],
+      "connected": true,
+      "net": "/RP2350A/MOTOR3_FC"
+    },
+    {
+      "name": "DShot_motor4",
+      "pads": [
+        [
+          "U10",
+          "7"
+        ],
+        [
+          "U24",
+          "6"
+        ]
+      ],
+      "connected": true,
+      "net": "/RP2350A/MOTOR4_FC"
+    },
+    {
+      "name": "OSD_level",
+      "pads": [
+        [
+          "R52",
+          "2"
+        ],
+        [
+          "U14",
+          "1"
+        ],
+        [
+          "R53",
+          "1"
+        ],
+        [
+          "R54",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "/OSD/OSD_LVL"
+    },
+    {
+      "name": "ESC_supply_Q29_+BATT_local_cap",
+      "pads": [
+        [
+          "Q29",
+          "3"
+        ],
+        [
+          "C21",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q29_GND_local_cap",
+      "pads": [
+        [
+          "Q29",
+          "1"
+        ],
+        [
+          "C21",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q30_+BATT_local_cap",
+      "pads": [
+        [
+          "Q30",
+          "3"
+        ],
+        [
+          "C23",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q30_GND_local_cap",
+      "pads": [
+        [
+          "Q30",
+          "1"
+        ],
+        [
+          "C23",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q31_+BATT_local_cap",
+      "pads": [
+        [
+          "Q31",
+          "3"
+        ],
+        [
+          "C20",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q31_GND_local_cap",
+      "pads": [
+        [
+          "Q31",
+          "1"
+        ],
+        [
+          "C20",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q32_+BATT_local_cap",
+      "pads": [
+        [
+          "Q32",
+          "3"
+        ],
+        [
+          "C26",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q32_GND_local_cap",
+      "pads": [
+        [
+          "Q32",
+          "1"
+        ],
+        [
+          "C26",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q33_+BATT_local_cap",
+      "pads": [
+        [
+          "Q33",
+          "3"
+        ],
+        [
+          "C27",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q34_+BATT_local_cap",
+      "pads": [
+        [
+          "Q34",
+          "3"
+        ],
+        [
+          "C24",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q34_GND_local_cap",
+      "pads": [
+        [
+          "Q34",
+          "1"
+        ],
+        [
+          "C24",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q35_+BATT_local_cap",
+      "pads": [
+        [
+          "Q35",
+          "3"
+        ],
+        [
+          "C35",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q35_GND_local_cap",
+      "pads": [
+        [
+          "Q35",
+          "1"
+        ],
+        [
+          "C35",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q36_+BATT_local_cap",
+      "pads": [
+        [
+          "Q36",
+          "3"
+        ],
+        [
+          "C33",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q37_GND_local_cap",
+      "pads": [
+        [
+          "Q37",
+          "1"
+        ],
+        [
+          "C32",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q38_+BATT_local_cap",
+      "pads": [
+        [
+          "Q38",
+          "3"
+        ],
+        [
+          "C39",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q38_GND_local_cap",
+      "pads": [
+        [
+          "Q38",
+          "1"
+        ],
+        [
+          "C39",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q39_+BATT_local_cap",
+      "pads": [
+        [
+          "Q39",
+          "3"
+        ],
+        [
+          "C41",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q39_GND_local_cap",
+      "pads": [
+        [
+          "Q39",
+          "1"
+        ],
+        [
+          "C41",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "ESC_supply_Q40_+BATT_local_cap",
+      "pads": [
+        [
+          "Q40",
+          "3"
+        ],
+        [
+          "C38",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "+BATT"
+    },
+    {
+      "name": "ESC_supply_Q40_GND_local_cap",
+      "pads": [
+        [
+          "Q40",
+          "1"
+        ],
+        [
+          "C38",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "PA_detect",
+      "pads": [
+        [
+          "U16",
+          "5"
+        ],
+        [
+          "C117",
+          "1"
+        ],
+        [
+          "R66",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "/PA_DET"
+    },
+    {
+      "name": "MOTOR4_ESC",
+      "pads": [
+        [
+          "U24",
+          "9"
+        ],
+        [
+          "R33",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/MOTOR4"
+    },
+    {
+      "name": "RAIL_new_main3v3_rail",
+      "pads": [
+        [
+          "U4",
+          "1"
+        ],
+        [
+          "C14",
+          "1"
+        ],
+        [
+          "D11",
+          "2"
+        ],
+        [
+          "C76",
+          "1"
+        ],
+        [
+          "C82",
+          "1"
+        ],
+        [
+          "U16",
+          "1"
+        ],
+        [
+          "U16",
+          "3"
+        ],
+        [
+          "U16",
+          "4"
+        ],
+        [
+          "U16",
+          "19"
+        ],
+        [
+          "U16",
+          "37"
+        ],
+        [
+          "U16",
+          "43"
+        ],
+        [
+          "U16",
+          "46"
+        ],
+        [
+          "R56",
+          "1"
+        ],
+        [
+          "U18",
+          "11"
+        ],
+        [
+          "U18",
+          "15"
+        ],
+        [
+          "C89",
+          "1"
+        ],
+        [
+          "C91",
+          "1"
+        ],
+        [
+          "C85",
+          "1"
+        ],
+        [
+          "X3",
+          "4"
+        ],
+        [
+          "C61",
+          "1"
+        ],
+        [
+          "U12",
+          "3"
+        ],
+        [
+          "U12",
+          "4"
+        ],
+        [
+          "C137",
+          "1"
+        ],
+        [
+          "U11",
+          "5"
+        ],
+        [
+          "R49",
+          "2"
+        ],
+        [
+          "C42",
+          "1"
+        ],
+        [
+          "X1",
+          "1"
+        ],
+        [
+          "X1",
+          "4"
+        ],
+        [
+          "C44",
+          "1"
+        ],
+        [
+          "C45",
+          "1"
+        ],
+        [
+          "C46",
+          "1"
+        ],
+        [
+          "C47",
+          "1"
+        ],
+        [
+          "C48",
+          "1"
+        ],
+        [
+          "C49",
+          "1"
+        ],
+        [
+          "C54",
+          "1"
+        ],
+        [
+          "C58",
+          "1"
+        ],
+        [
+          "C143",
+          "1"
+        ],
+        [
+          "U24",
+          "2"
+        ],
+        [
+          "U24",
+          "8"
+        ]
+      ],
+      "connected": true,
+      "net": "+3.3V"
+    },
+    {
+      "name": "RAIL_new_local_bypass_ground",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C61",
+          "2"
+        ],
+        [
+          "C62",
+          "2"
+        ],
+        [
+          "C137",
+          "2"
+        ],
+        [
+          "C138",
+          "2"
+        ],
+        [
+          "U12",
+          "2"
+        ],
+        [
+          "U12",
+          "5"
+        ],
+        [
+          "U11",
+          "6"
+        ],
+        [
+          "U11",
+          "7"
+        ],
+        [
+          "C82",
+          "2"
+        ],
+        [
+          "C76",
+          "2"
+        ],
+        [
+          "U16",
+          "49"
+        ],
+        [
+          "U18",
+          "5"
+        ],
+        [
+          "U18",
+          "13"
+        ],
+        [
+          "U18",
+          "20"
+        ],
+        [
+          "U18",
+          "21"
+        ],
+        [
+          "U18",
+          "23"
+        ],
+        [
+          "U18",
+          "24"
+        ],
+        [
+          "U18",
+          "25"
+        ],
+        [
+          "C89",
+          "2"
+        ],
+        [
+          "C85",
+          "2"
+        ],
+        [
+          "C86",
+          "2"
+        ],
+        [
+          "C87",
+          "1"
+        ],
+        [
+          "C88",
+          "1"
+        ],
+        [
+          "C91",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "GND"
+    },
+    {
+      "name": "RAIL_gyro18",
+      "pads": [
+        [
+          "U12",
+          "1"
+        ],
+        [
+          "C62",
+          "1"
+        ],
+        [
+          "C138",
+          "1"
+        ],
+        [
+          "U11",
+          "8"
+        ]
+      ],
+      "connected": true,
+      "net": "+1.8V_GYRO"
+    },
+    {
+      "name": "RAIL_sx_VREG_RADIO",
+      "pads": [
+        [
+          "U18",
+          "2"
+        ],
+        [
+          "U18",
+          "12"
+        ],
+        [
+          "C87",
+          "2"
+        ],
+        [
+          "C88",
+          "2"
+        ]
+      ],
+      "connected": true,
+      "net": "/RX/VREG_RADIO"
+    },
+    {
+      "name": "RAIL_sx_VR_PA",
+      "pads": [
+        [
+          "U18",
+          "1"
+        ],
+        [
+          "C86",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/RX/VR_PA"
+    },
+    {
+      "name": "RAIL_PA_DET_import",
+      "pads": [
+        [
+          "U16",
+          "5"
+        ],
+        [
+          "C117",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/PA_DET"
+    },
+    {
+      "name": "RX_LOCAL_radio-miso",
+      "pads": [
+        [
+          "U16",
+          "20"
+        ],
+        [
+          "U18",
+          "16"
+        ]
+      ],
+      "connected": true,
+      "net": "/RX/RADIO_MISO"
+    },
+    {
+      "name": "RX_LOCAL_radio-mosi",
+      "pads": [
+        [
+          "U16",
+          "17"
+        ],
+        [
+          "U18",
+          "17"
+        ]
+      ],
+      "connected": true,
+      "net": "/RX/RADIO_MOSI"
+    },
+    {
+      "name": "RX_LOCAL_radio-sck",
+      "pads": [
+        [
+          "U16",
+          "16"
+        ],
+        [
+          "U18",
+          "18"
+        ]
+      ],
+      "connected": true,
+      "net": "/RX/RADIO_SCK"
+    },
+    {
+      "name": "RX_LOCAL_radio-nss",
+      "pads": [
+        [
+          "U16",
+          "15"
+        ],
+        [
+          "U18",
+          "19"
+        ]
+      ],
+      "connected": true,
+      "net": "/RX/RADIO_NSS"
+    },
+    {
+      "name": "RX_LOCAL_led0",
+      "pads": [
+        [
+          "D5",
+          "1"
+        ],
+        [
+          "R85",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/LED/D5_K"
+    },
+    {
+      "name": "RX_LOCAL_led1",
+      "pads": [
+        [
+          "D6",
+          "1"
+        ],
+        [
+          "R86",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/LED/D6_K"
+    },
+    {
+      "name": "RX_LOCAL_rx-boot-switch",
+      "pads": [
+        [
+          "D8",
+          "3"
+        ],
+        [
+          "SW1",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/RX/BOOT_SW"
+    },
+    {
+      "name": "RX_LOCAL_video-pad",
+      "pads": [
+        [
+          "J23",
+          "1"
+        ],
+        [
+          "R51",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/VIDEO_IN"
+    },
+    {
+      "name": "CONTROL__ESC1_C2D",
+      "pads": [
+        [
+          "U6",
+          "6"
+        ],
+        [
+          "TP1",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/ESC1/C2D"
+    },
+    {
+      "name": "CONTROL__RP2350A_BEEPER",
+      "pads": [
+        [
+          "R48",
+          "2"
+        ],
+        [
+          "Q26",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/RP2350A/BEEPER"
+    },
+    {
+      "name": "CONTROL__ESC1_C2CK",
+      "pads": [
+        [
+          "U6",
+          "5"
+        ],
+        [
+          "TP2",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/ESC1/C2CK"
+    },
+    {
+      "name": "CONTROL__ESC3_C2D",
+      "pads": [
+        [
+          "U8",
+          "6"
+        ],
+        [
+          "TP5",
+          "1"
+        ]
+      ],
+      "connected": true,
+      "net": "/ESC3/C2D"
     }
   ],
   "route_counts": {
     "footprints": 258,
-    "tracks": 623,
-    "vias": 324,
-    "rule_areas": 13,
-    "copper_zones": 25
+    "tracks": 1002,
+    "vias": 479,
+    "rule_areas": 16,
+    "copper_zones": 26
   },
   "via_process": {
-    "filled_capped_count": 324,
+    "filled_capped_count": 479,
     "allowed_spans": [
       "F.Cu-In1.Cu",
       "In1.Cu-In4.Cu",
       "In4.Cu-B.Cu"
-    ]
+    ],
+    "independent_hole_spacing": {
+      "holes": 494,
+      "overlapping_span_pairs": 97483,
+      "disjoint_span_pairs_ignored": 24288,
+      "violations": [],
+      "below_nominal_025mm_stagger": [],
+      "qualification": "Independent circle-drill geometry including same-net holes. Adjacent micro/buried spans share a landing layer and use the existing 0.10 mm special rule. Opposite-face non-overlapping blind spans excluded. 0.001 mm numerical tolerance. Nominal 0.25 mm micro/buried stagger reported separately from the existing edge-spacing rule."
+    }
   },
   "independent_review": {
     "physical_body_overlaps": 0,
@@ -4082,7 +5048,411 @@
     "Q34_corrected_phase_geometric_neck_mm": 1.2292,
     "geometric_necks_are_not_current_ratings": true,
     "inherited_J32_housing_to_J4_pin1_land_gap_mm": 0.19,
-    "placement_qualification": "J32 housing to J4.1 land has the same 0.190 mm gap as dafbb05, 0.010 mm below the 0.200 mm placement preference. No body overlap or native copper violation; connector geometry remains unchanged."
+    "placement_qualification": "J32 housing to J4.1 land has the same 0.190 mm gap as dafbb05, 0.010 mm below the 0.200 mm placement preference. No body overlap or native copper violation; connector geometry remains unchanged.",
+    "physical_connectivity": {
+      "groups": 286,
+      "failures": [],
+      "method": "Independent same-net planar copper union. Each filled polygon has a distinct node; different islands of the same zone are never assumed connected. Physical via and plated-pad nodes join their actual copper layers. Two-nanometre contact tolerance.",
+      "corrected_previous_method": "Earlier native BFS traversed whole zone objects and falsely joined four isolated RP ground returns. Actual filled-island geometry now verifies every listed group, and new buried returns close those four islands."
+    },
+    "reference": {
+      "candidate_sha256": "7be8cdd8226e98698dda30606629cb9781abcdcac34194c385b59cb3bfe20489",
+      "checks": [
+        {
+          "net": "/RX/RF_RX_ANT",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.8305516201422171,
+          "candidate_missing_mm2": 0.8305516201422171,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/RX/RF_WIFI_ANT",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.17774999999999463,
+          "candidate_missing_mm2": 0.17774999999999463,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VIDEO_OUT",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.04668829575461857,
+          "candidate_missing_mm2": 0.04668829575461857,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/PA_DET",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.038952062599999164,
+          "candidate_missing_mm2": 0.12260687646197509,
+          "new_missing_mm2": 0.08365456386197656
+        },
+        {
+          "net": "/RX/RF_WIFI",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/RP2350A/ADC_VBAT",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/RP2350A/ADC_CURR",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VIDEO_IN",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.3528777425900638,
+          "candidate_missing_mm2": 0.36483728250533437,
+          "new_missing_mm2": 0.01195905379437892
+        },
+        {
+          "net": "/OSD/VID_FILT",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.068801827357557,
+          "new_missing_mm2": 0.06880182735755702
+        },
+        {
+          "net": "/OSD/VID_DC",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/RX/TCXO_OUT",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/RX/XTA",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/RX/RF_RFIO",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/POWER/SHUNT_SENSE_P",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/POWER/SHUNT_SENSE_N",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/POWER/U2_FB",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/CURR_SENSE",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/OSD/OSD_LVL",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.05449780068751529,
+          "candidate_missing_mm2": 0.31578916616912595,
+          "new_missing_mm2": 0.26129130427278874
+        },
+        {
+          "net": "/RP2350A/XIN",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.5847012920295552,
+          "candidate_missing_mm2": 0.5847012903521267,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/OSD_SYNC",
+          "layer": "F.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0697475949999951,
+          "new_missing_mm2": 0.0697475949999951
+        },
+        {
+          "net": "/RX/RF_RX_ANT",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.7764574671200017,
+          "candidate_missing_mm2": 0.7764574671200017,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VIDEO_OUT",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.02549997822508197,
+          "candidate_missing_mm2": 0.025499967800356935,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/VT_MOD_N1",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/VT_MOD_N2",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/RTC_VT",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/RTC_LF",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/RF_PAOUT1",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/RF_PA_IN",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/PA_DET",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.043284714550086194,
+          "new_missing_mm2": 0.043284714550086194
+        },
+        {
+          "net": "/RP2350A/ADC_VBAT",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/RP2350A/ADC_CURR",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/U19_XTAL1",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/U19_XTAL2",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/RF_PA_OUT",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/RF_UFL",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/CURR_SENSE",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/VT_MOD",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/RTC_CP",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        },
+        {
+          "net": "/VTX/PA_DET_RAW",
+          "layer": "B.Cu",
+          "baseline_missing_mm2": 0.0,
+          "candidate_missing_mm2": 0.0,
+          "new_missing_mm2": 0.0
+        }
+      ],
+      "new_missing_mm2": 0.5387390588367825,
+      "accepted_local_reference_changes": [
+        {
+          "net": "/OSD/VID_FILT",
+          "layer": "F.Cu",
+          "maximum_new_missing_mm2": 0.068802
+        },
+        {
+          "net": "/OSD/OSD_LVL",
+          "layer": "F.Cu",
+          "maximum_new_missing_mm2": 0.261292
+        },
+        {
+          "net": "/OSD_SYNC",
+          "layer": "F.Cu",
+          "maximum_new_missing_mm2": 0.069748
+        },
+        {
+          "net": "/PA_DET",
+          "layer": "F.Cu",
+          "maximum_new_missing_mm2": 0.083655
+        },
+        {
+          "net": "/PA_DET",
+          "layer": "B.Cu",
+          "maximum_new_missing_mm2": 0.043285
+        },
+        {
+          "net": "/VIDEO_IN",
+          "layer": "F.Cu",
+          "maximum_new_missing_mm2": 0.01196
+        }
+      ],
+      "qualifications": [
+        "OSD level crossing and launches are bounded prototype tradeoffs; main video route reference unchanged.",
+        "PA transition apertures include a 0.007717 mm2 ADC source-pad fringe extension next to its own launch; PA traces remain referenced outside own transition apertures.",
+        "VIDEO_IN loss is only a 0.011960 mm2 fringe of the large J23 exposed camera solder pad near preserved ESC1 C_COM; no loss under an existing video trace.",
+        "A GPIO control via initially removed WiFi pad reference; its corrected route removes two buried vias and restores all RF pad coverage."
+      ]
+    },
+    "battery_geometric_widths": [
+      {
+        "destination": "Q29",
+        "before_pa_mm": 1.6915130615234375,
+        "parent_pending_pa_mm": 1.6914749145507812,
+        "repaired_mm": 1.6914749145507812
+      },
+      {
+        "destination": "Q30",
+        "before_pa_mm": 1.6345977783203125,
+        "parent_pending_pa_mm": 1.6345977783203125,
+        "repaired_mm": 1.6345977783203125
+      },
+      {
+        "destination": "Q31",
+        "before_pa_mm": 1.450042724609375,
+        "parent_pending_pa_mm": 1.450042724609375,
+        "repaired_mm": 1.450042724609375
+      },
+      {
+        "destination": "Q32",
+        "before_pa_mm": 1.6915130615234375,
+        "parent_pending_pa_mm": 1.6914749145507812,
+        "repaired_mm": 1.6914749145507812
+      },
+      {
+        "destination": "Q33",
+        "before_pa_mm": 1.6915130615234375,
+        "parent_pending_pa_mm": 1.6914749145507812,
+        "repaired_mm": 1.6914749145507812
+      },
+      {
+        "destination": "Q34",
+        "before_pa_mm": 1.5967559814453125,
+        "parent_pending_pa_mm": 1.5967559814453125,
+        "repaired_mm": 1.5967559814453125
+      },
+      {
+        "destination": "Q35",
+        "before_pa_mm": 1.5464019775390625,
+        "parent_pending_pa_mm": 1.5464019775390625,
+        "repaired_mm": 1.5464019775390625
+      },
+      {
+        "destination": "Q36",
+        "before_pa_mm": 1.9107818603515625,
+        "parent_pending_pa_mm": 1.9107818603515625,
+        "repaired_mm": 1.9107818603515625
+      },
+      {
+        "destination": "Q37",
+        "before_pa_mm": 1.192474365234375,
+        "parent_pending_pa_mm": 0.90545654296875,
+        "repaired_mm": 1.192474365234375
+      },
+      {
+        "destination": "Q38",
+        "before_pa_mm": 1.1643218994140625,
+        "parent_pending_pa_mm": 1.1643218994140625,
+        "repaired_mm": 1.1643218994140625
+      },
+      {
+        "destination": "Q39",
+        "before_pa_mm": 1.9107818603515625,
+        "parent_pending_pa_mm": 1.9107818603515625,
+        "repaired_mm": 1.9107818603515625
+      },
+      {
+        "destination": "Q40",
+        "before_pa_mm": 1.03973388671875,
+        "parent_pending_pa_mm": 1.03973388671875,
+        "repaired_mm": 1.03973388671875
+      }
+    ],
+    "battery_geometry_method": [
+      "Widths are geometric eroded-path diameters with 1 mm terminal neighborhoods exempted; no thermal or motor-current rating.",
+      "before_pa_mm is a native refill of exact combined context with the 16 PA copper additions and 3 zones removed; parent_pending/repaired share all other geometry.",
+      "The single signal-transition aperture is explicit; all remaining new B-finish and inner trace copper is checked against actual filled adjacent GND."
+    ],
+    "C26_change": "Same-face shift north0.30mm to121.8225,115.125 at180deg;0.50mm minimum body gap, shorter0.40mm BATT legs toQ32/Q34.",
+    "copper_clearance_pairs": 0
   },
   "antenna": {
     "reserved_area_before_mm2": 15,
@@ -4094,20 +5464,19 @@
     "qualification": "Compact window differs from manufacturer reference; ESP launch coplanar ground is not uniform."
   },
   "validation": [
-    "KiCad ERC: 0 errors, 11 existing off-grid warnings",
-    "KiCad DRC on native-filled source with schematic parity: 0 errors, 139 reviewed warnings, 276 opens",
-    "7 netlist checks passed",
-    "28 FC signal bindings checked",
-    "43 native rule behavior fixtures passed",
-    "240 distinct pad-group checks passed using native zone-aware connectivity",
-    "Independent copper geometry, placement, ground-reference and via-process review"
+    "Native source DRC with schematic parity:0 copper/geometry errors,139 inherited warnings,154 opens,0 parity findings",
+    "286 distinct pad groups passed actual filled-island connectivity; each separate zone island is an independent copper node",
+    "Independent494-hole audit:0 overlapping-span drill spacing or nominal-stagger violations",
+    "57 native rule behavior fixtures passed",
+    "Existing7 netlist/28 FC binding checks and0-error11-warning ERC remain unchanged; no schematic or pin-map edits in this checkpoint",
+    "Independent RF/analog pad and trace references checked with six explicit local launch/pad qualifications; no new RF reference loss"
   ],
   "remaining": [
-    "Main 3.3 V, gyro and receiver local rail/ground distribution",
-    "Twelve half-bridge supply/bypass loops and parallel battery/ground portals; current and thermal validation",
-    "PA_DET and OSD_LVL drive, camera input and remaining OSD/USB/DShot/UART/SPI/blackbox interfaces",
-    "Remaining ground returns, stitching, silkscreen and complete DRC",
-    "Prototype RF tuning and functional hardware tests"
+    "Three U24-to-ESC DShot outputs, UART/USB/blackbox/OSD control and camera connector interfaces",
+    "Remaining half-bridge supply arrays, ESC power and local capacitor returns",
+    "Auxiliary5V/3.3V/VTX/OSD/camera rails and connector/local ground stitching",
+    "Silkscreen and complete DRC;154 open connections remain",
+    "Prototype transient/current/thermal, RF tuning and functional hardware tests"
   ],
   "routing_decisions": [
     "ESC1 phase A and B sense pickups use bounded 0.12 mm In4 tracks; ESC1 C and ESC4 A use bounded In1 tracks. Exact-net, width, layer and area fixtures reject other use. High-current phase copper remains outer.",
@@ -4115,80 +5484,67 @@
     "D10 moved beside boost bulk and U4. Principal supply path is 10.702 mm; the old-position straight-line lower bound was 34.433 mm.",
     "U14 pin2 laser centre is 0.025 mm south of the triangular pad centre. Hole-to-other-copper clearance is 0.18465 mm; copper clearance is 0.10965 mm. No footprint move.",
     "ESP VTX DATA and CS laser lands use empty under-package space to avoid gyro CS and INT routing on In1. All normal drill/copper/mask limits remain.",
-    "Full In1/In4 GND zones supplement higher-priority local references. In2 remains continuous GND; In3 carries the battery plane."
+    "Full In1/In4 GND zones supplement higher-priority local references. In2 remains continuous GND; In3 carries the battery plane.",
+    "All geometry comparisons normalize native filled polygons with SHAPE_POLY_SET.Unfracture before measuring holes, width or connectivity. Zero-width fracture seams are not physical slots.",
+    "OSD_LVL uses two F/In1 lasers and a bounded0.12mm In1 corridor. PA_DET uses boundedIn1/In4 corridors, short B finish and localIn3GND return; repaired return strip preserves all12 before-PA battery-entry geometric widths.",
+    "U16.2 WiFi pad reference is restored by replacing HD_EN detour with6 In4 tracks and removing2 buried vias.",
+    "Receiver MISO/MOSI/SCK/NSS are short direct F routes between U16 and U18. J23-to-OSD video links locally; J32 connector video is still open."
   ],
   "unrouted_by_net": {
-    "GND": 91,
-    "+3.3V": 46,
-    "+BATT": 42,
-    "+3.3V_VTX": 8,
-    "+5V": 6,
-    "+5V_CAM": 3,
-    "/RP2350A/ADC_VBAT": 3,
-    "+1.8V_GYRO": 3,
-    "/RX/VREG_RADIO": 3,
-    "/VIDEO_IN": 2,
-    "+5V_BST": 2,
-    "/FLASH_CS": 2,
-    "/RP2350A/BEEPER": 2,
-    "/RP2350A/ADC_CURR": 2,
-    "/USB_D_P": 2,
-    "/RX/RX_EN": 2,
-    "/USB_D_N": 2,
-    "/OSD/OSD_LVL": 1,
+    "GND": 46,
+    "/VIDEO_IN": 1,
+    "+3.3V": 12,
     "/OSD_EN": 1,
     "/BUZZER-": 1,
+    "+5V_BST": 2,
     "/RP2350A/SWDIO": 1,
+    "+BATT": 26,
+    "+5V_CAM": 3,
     "/MOTOR3": 1,
     "/UART0_RX": 1,
     "/OSD_SYNC": 1,
     "/SPI0_MISO": 1,
+    "/FLASH_CS": 2,
     "/SPI0_SCK": 1,
     "/SPI0_MOSI": 1,
-    "/RP2350A/MOTOR4_FC": 1,
-    "/RP2350A/MOTOR3_FC": 1,
-    "/RP2350A/MOTOR2_FC": 1,
-    "/RP2350A/MOTOR1_FC": 1,
     "/LED0": 1,
     "/LED1": 1,
     "/GYRO_CLKIN": 1,
-    "/GYRO_CS": 1,
     "/RP2350A/SWCLK": 1,
     "/UART0_TX": 1,
     "/LED_STRIP": 1,
+    "/RP2350A/BEEPER": 1,
     "/OSD_W": 1,
     "/UART1_TX": 1,
     "/UART1_RX": 1,
+    "/RP2350A/ADC_CURR": 2,
+    "/RP2350A/ADC_VBAT": 3,
     "/RP2350A/U10_USB_D_N": 1,
     "/RP2350A/U10_USB_D_P": 1,
+    "/USB_D_P": 2,
     "/FC_BOOT": 1,
-    "/ESC3/C2D": 1,
-    "/MOTOR4": 1,
+    "+5V": 6,
     "/CURR_SENSE": 1,
     "/ESC4/C2CK": 1,
     "/ESC4/C2D": 1,
     "/MOTOR2": 1,
-    "/RX/VR_PA": 1,
     "/RX/RADIO_RST": 1,
     "/RX/RADIO_BUSY": 1,
     "/RX/RADIO_DIO1": 1,
-    "/RX/RADIO_MISO": 1,
-    "/RX/RADIO_MOSI": 1,
-    "/RX/RADIO_SCK": 1,
-    "/RX/RADIO_NSS": 1,
-    "/PA_DET": 1,
+    "/RX/RX_EN": 2,
     "/RX/RX_LED": 1,
     "/RX/RX_BOOT": 1,
     "/VBUS": 1,
     "/ESC2/C2CK": 1,
     "/ESC2/C2D": 1,
     "/ESC3/C2CK": 1,
-    "/LED/D5_K": 1,
-    "/RX/BOOT_SW": 1,
-    "/LED/D6_K": 1,
+    "/USB_D_N": 2,
+    "+3.3V_VTX": 8,
     "unconnected-(U13-EP-Pad9)": 1,
-    "/ESC1/C2D": 1,
-    "/ESC1/C2CK": 1,
     "/MOTOR1": 1
+  },
+  "preservation": {
+    "owner_starting_files_rechecked": 834,
+    "immutable_zip_sha256": "d7125b1cbb7d90254c8a9559ef19b0398ebf5646a273e394d0eeea7ab9f58f15"
   }
 }

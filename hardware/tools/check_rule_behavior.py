@@ -66,6 +66,20 @@ def main():
         ("sense B wrong layer", "track", "/ESC1/PHASE_B", pcb.In1_Cu, False),
         ("sense C wrong layer", "track", "/ESC1/PHASE_C", pcb.In4_Cu, False),
         ("sense phase zone", "zone", "/ESC1/PHASE_A", pcb.In4_Cu, False),
+        ("OSD level bounded", "track", "/OSD/OSD_LVL", pcb.In1_Cu, True),
+        ("OSD wrong width", "track", "/OSD/OSD_LVL", pcb.In1_Cu, False),
+        ("OSD wrong net", "track", "/VIDEO_IN", pcb.In1_Cu, False),
+        ("OSD outside area", "track", "/OSD/OSD_LVL", pcb.In1_Cu, False),
+        ("OSD wrong layer", "track", "/OSD/OSD_LVL", pcb.In4_Cu, False),
+        ("OSD analog zone", "zone", "/OSD/OSD_LVL", pcb.In1_Cu, False),
+        ("PA detector In1", "track", "/PA_DET", pcb.In1_Cu, True),
+        ("PA detector In4", "track", "/PA_DET", pcb.In4_Cu, True),
+        ("PA wrong width", "track", "/PA_DET", pcb.In1_Cu, False),
+        ("PA wrong net", "track", "/VIDEO_IN", pcb.In1_Cu, False),
+        ("PA outside area", "track", "/PA_DET", pcb.In1_Cu, False),
+        ("PA wrong layer", "track", "/PA_DET", pcb.In4_Cu, False),
+        ("PA wrong area", "track", "/PA_DET", pcb.In1_Cu, False),
+        ("PA analog zone", "zone", "/PA_DET", pcb.In1_Cu, False),
     ]
     board = pcb.BOARD()
     board.SetCopperLayerCount(6)
@@ -118,6 +132,38 @@ def main():
             if kind == "track":
                 item.SetWidth(pcb.FromMM(.20 if name == "sense wrong width" else .12))
                 if name == "sense outside area": item.SetEnd(pos(3, 0))
+        if name.startswith("OSD "):
+            area = pcb.ZONE(board); area.SetIsRuleArea(True)
+            area.SetZoneName("OSD_LVL_LOCAL")
+            layers = pcb.LSET(); layers.AddLayer(pcb.F_Cu); layers.AddLayer(pcb.In1_Cu)
+            area.SetLayerSet(layers)
+            area.SetNet(nets["GND"])
+            area.SetDoNotAllowTracks(False); area.SetDoNotAllowVias(False)
+            area.SetDoNotAllowPads(False); area.SetDoNotAllowFootprints(False)
+            area.SetDoNotAllowZoneFills(False)
+            outline = area.Outline(); outline.NewOutline()
+            for dx, dy in [(-.2, -.2), (2.2, -.2), (2.2, .2), (-.2, .2)]:
+                point = pos(dx, dy); outline.Append(point.x, point.y)
+            board.Add(area)
+            if kind == "track":
+                item.SetWidth(pcb.FromMM(.10 if name == "OSD wrong width" else .12))
+                if name == "OSD outside area": item.SetEnd(pos(3, 0))
+        if name.startswith("PA "):
+            suffix = "PA_DET_IN4_LOCAL" if name in ("PA detector In4", "PA wrong area") else "PA_DET_IN1_LOCAL"
+            area = pcb.ZONE(board); area.SetIsRuleArea(True); area.SetZoneName(suffix)
+            layers = pcb.LSET(); layers.AddLayer(pcb.F_Cu)
+            layers.AddLayer(pcb.In4_Cu if suffix == "PA_DET_IN4_LOCAL" else pcb.In1_Cu)
+            area.SetLayerSet(layers); area.SetNet(nets["GND"])
+            area.SetDoNotAllowTracks(False); area.SetDoNotAllowVias(False)
+            area.SetDoNotAllowPads(False); area.SetDoNotAllowFootprints(False)
+            area.SetDoNotAllowZoneFills(False)
+            outline = area.Outline(); outline.NewOutline()
+            for dx, dy in [(-.2, -.2), (2.2, -.2), (2.2, .2), (-.2, .2)]:
+                point = pos(dx, dy); outline.Append(point.x, point.y)
+            board.Add(area)
+            if kind == "track":
+                item.SetWidth(pcb.FromMM(.10 if name == "PA wrong width" else .12))
+                if name == "PA outside area": item.SetEnd(pos(3, 0))
         item.SetNet(nets[netname]); board.Add(item)
         objects.append((name, str(item.m_Uuid.AsString()), allowed))
     stacked_ids = set()

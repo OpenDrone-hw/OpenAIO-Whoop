@@ -464,10 +464,10 @@ RULES = [
 
     ("Inner signal layers: no battery phase RF or sensitive analog",
      ["In1/In4 carry signals. Phase power stays outer; four bounded .12 mm In1/In4 pickups carry divider current.",
-      "Video, Kelvin, regulator feedback, oscillator and RF nets remain on an outer face over local ground."],
+      "Main video, Kelvin, regulator feedback, oscillator and RF nets stay outer. OSD_LVL and PA_DET use only their bounded .12 mm corridors over checked local GND."],
      "  (constraint disallow track zone)\n"
      "  (condition \"(A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu') && "
-     "(A.NetClass == 'VBAT' || (A.NetClass == 'Phase' && !(A.Type == 'Track' && A.Width == 0.12mm && ((A.Layer == 'In1.Cu' && ((A.NetName == '/ESC1/PHASE_C' && A.enclosedByArea('ESC1_PHASE_C_SENSE')) || (A.NetName == '/ESC4/PHASE_A' && A.enclosedByArea('ESC4_PHASE_A_SENSE')))) || (A.Layer == 'In4.Cu' && ((A.NetName == '/ESC1/PHASE_A' && A.enclosedByArea('ESC1_PHASE_A_SENSE')) || (A.NetName == '/ESC1/PHASE_B' && A.enclosedByArea('ESC1_PHASE_B_SENSE'))))))) || A.NetClass == 'RF' || A.NetClass == 'Analog')\")"),
+     "(A.NetClass == 'VBAT' || (A.NetClass == 'Phase' && !(A.Type == 'Track' && A.Width == 0.12mm && ((A.Layer == 'In1.Cu' && ((A.NetName == '/ESC1/PHASE_C' && A.enclosedByArea('ESC1_PHASE_C_SENSE')) || (A.NetName == '/ESC4/PHASE_A' && A.enclosedByArea('ESC4_PHASE_A_SENSE')))) || (A.Layer == 'In4.Cu' && ((A.NetName == '/ESC1/PHASE_A' && A.enclosedByArea('ESC1_PHASE_A_SENSE')) || (A.NetName == '/ESC1/PHASE_B' && A.enclosedByArea('ESC1_PHASE_B_SENSE'))))))) || A.NetClass == 'RF' || (A.NetClass == 'Analog' && !(A.Type == 'Track' && A.Width == 0.12mm && ((A.NetName == '/OSD/OSD_LVL' && A.Layer == 'In1.Cu' && A.enclosedByArea('OSD_LVL_LOCAL')) || (A.NetName == '/PA_DET' && ((A.Layer == 'In1.Cu' && A.enclosedByArea('PA_DET_IN1_LOCAL')) || (A.Layer == 'In4.Cu' && A.enclosedByArea('PA_DET_IN4_LOCAL'))))))))\")"),
 
     ("Regulator switch nodes: outer layers only",
      ["The RP core buck switch node and boost switch node stay inside their component-side hot loops."],
