@@ -131,7 +131,7 @@
 			(dielectric_constraints yes)
 		)
 		(pad_to_mask_clearance 0.04)
-		(solder_mask_min_width 0.1)
+		(solder_mask_min_width 0.09)
 		(allow_soldermask_bridges_in_footprints no)
 		(tenting
 			(front yes)
@@ -61435,7 +61435,7 @@
 	(via buried
 		(at 110.582 106.238)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "065652c0-fcbe-40c5-9f6c-2fdcc58fdfeb")
@@ -61443,7 +61443,7 @@
 	(via buried
 		(at 110.582 105.642)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "1b16edc8-c0a7-4839-9a0f-b481dd530928")
@@ -61451,7 +61451,7 @@
 	(via buried
 		(at 106.198 112.822)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "20672370-9bd1-49be-8f05-8dbeeae2d40a")
@@ -61459,7 +61459,7 @@
 	(via buried
 		(at 120.538 115.728)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "324edac0-ac6a-46c5-abf4-b581f724419c")
@@ -61467,7 +61467,7 @@
 	(via buried
 		(at 119.942 115.728)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "380111a3-76f0-43c3-8308-682ae78b6312")
@@ -61475,7 +61475,7 @@
 	(via buried
 		(at 112.928 120.998)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "6a9def9b-fd7b-4f7d-a2df-f724b097b5d9")
@@ -61483,7 +61483,7 @@
 	(via buried
 		(at 112.332 120.402)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "79f766c2-38e0-41f3-9c50-56b6c700eee6")
@@ -61491,7 +61491,7 @@
 	(via buried
 		(at 120.538 115.132)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "ab56ea55-055e-4594-a3e7-6eec3ce38a12")
@@ -61499,7 +61499,7 @@
 	(via buried
 		(at 111.178 105.642)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "b129da26-6591-4849-8fa1-0220518377e8")
@@ -61507,7 +61507,7 @@
 	(via buried
 		(at 112.332 120.998)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "b5ab52f8-4f76-4f17-8b59-fd92b26ab438")
@@ -61515,7 +61515,7 @@
 	(via buried
 		(at 105.602 113.418)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "c3eb4017-3fc7-4ae2-ae47-ffadbd194d02")
@@ -61523,7 +61523,7 @@
 	(via buried
 		(at 119.942 115.132)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "cdfeb065-8881-4441-bd76-8eafd6cecabb")
@@ -61531,7 +61531,7 @@
 	(via buried
 		(at 106.198 113.418)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "ecdbc370-438a-4152-824a-7d75025a6c7f")
@@ -61539,7 +61539,7 @@
 	(via buried
 		(at 112.928 120.402)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "fb85b5a9-8243-449c-9a3d-38945be61f7c")
@@ -61547,7 +61547,7 @@
 	(via buried
 		(at 105.602 112.822)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "fd5d546c-696d-431b-87e6-1b721728bd32")
@@ -61555,7 +61555,7 @@
 	(via buried
 		(at 111.178 106.238)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "GND")
 		(uuid "feb95255-955e-43c7-8b3b-029bbceed563")
@@ -62915,7 +62915,7 @@
 	(via buried
 		(at 106.75 115.105)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -62925,7 +62925,7 @@
 	(via buried
 		(at 105.925 115.075)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -62935,7 +62935,7 @@
 	(via buried
 		(at 107.55 115.105)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -62945,7 +62945,7 @@
 	(via buried
 		(at 105.55 115.341506)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -62955,7 +62955,7 @@
 	(via buried
 		(at 113.065 123.825)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -62965,7 +62965,7 @@
 	(via buried
 		(at 108.35 114.595)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -62975,7 +62975,7 @@
 	(via buried
 		(at 108.605 105.265)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -62985,7 +62985,7 @@
 	(via buried
 		(at 107.15 115.36)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -62995,7 +62995,7 @@
 	(via buried
 		(at 108.35 115.105)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63005,7 +63005,7 @@
 	(via buried
 		(at 110.835 111.65)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "+BATT")
 		(uuid "10045ca0-0220-44eb-9292-a59e42b792d7")
@@ -63013,7 +63013,7 @@
 	(via buried
 		(at 122.555 118.795)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63023,7 +63023,7 @@
 	(via buried
 		(at 113.385 102.575)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63033,7 +63033,7 @@
 	(via buried
 		(at 103.94 103.493444)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63043,7 +63043,7 @@
 	(via buried
 		(at 107.95 115.87)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63053,7 +63053,7 @@
 	(via buried
 		(at 112.515 123.913544)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63063,7 +63063,7 @@
 	(via buried
 		(at 106.225 115.425)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63073,7 +63073,7 @@
 	(via buried
 		(at 108.939659 109.399546)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63083,7 +63083,7 @@
 	(via buried
 		(at 109.840341 111.725454)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63093,7 +63093,7 @@
 	(via buried
 		(at 113.809659 102.880454)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63103,7 +63103,7 @@
 	(via buried
 		(at 105.624659 114.475454)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63113,7 +63113,7 @@
 	(via buried
 		(at 108.655 106.265)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63123,7 +63123,7 @@
 	(via buried
 		(at 106.224659 115.875454)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63133,7 +63133,7 @@
 	(via buried
 		(at 105.225341 114.875454)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63143,7 +63143,7 @@
 	(via buried
 		(at 101.975 113.495)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63153,7 +63153,7 @@
 	(via buried
 		(at 105.808494 115.85)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63163,7 +63163,7 @@
 	(via buried
 		(at 106.374659 114.424546)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63173,7 +63173,7 @@
 	(via buried
 		(at 117.635 119.205)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63183,7 +63183,7 @@
 	(via buried
 		(at 101.388569 113.834705)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63193,7 +63193,7 @@
 	(via buried
 		(at 109.440341 111.675454)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63203,7 +63203,7 @@
 	(via buried
 		(at 116.215 123.115)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63213,7 +63213,7 @@
 	(via buried
 		(at 107.425 109.975)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63223,7 +63223,7 @@
 	(via buried
 		(at 101.925 112.645)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63233,7 +63233,7 @@
 	(via buried
 		(at 112.865 124.475)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63243,7 +63243,7 @@
 	(via buried
 		(at 108.605 105.865)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63253,7 +63253,7 @@
 	(via buried
 		(at 107.55 114.595)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63263,7 +63263,7 @@
 	(via buried
 		(at 105.005 110.385)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63273,7 +63273,7 @@
 	(via buried
 		(at 104.605 110.435)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63283,7 +63283,7 @@
 	(via buried
 		(at 121.125 118.015)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63293,7 +63293,7 @@
 	(via buried
 		(at 113.985 102.075)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63303,7 +63303,7 @@
 	(via buried
 		(at 109.339659 109.799546)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63313,7 +63313,7 @@
 	(via buried
 		(at 104.755 110.035)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63323,7 +63323,7 @@
 	(via buried
 		(at 107.15 115.87)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63333,7 +63333,7 @@
 	(via buried
 		(at 124.475 113.495)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63343,7 +63343,7 @@
 	(via buried
 		(at 121.469659 118.415454)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63353,7 +63353,7 @@
 	(via buried
 		(at 107.625 109.325)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63363,7 +63363,7 @@
 	(via buried
 		(at 101.325 112.645)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63373,7 +63373,7 @@
 	(via buried
 		(at 107.55 115.615)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63383,7 +63383,7 @@
 	(via buried
 		(at 117.135 118.355)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63393,7 +63393,7 @@
 	(via buried
 		(at 124.875 111.845)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63403,7 +63403,7 @@
 	(via buried
 		(at 116.985 118.755)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63413,7 +63413,7 @@
 	(via buried
 		(at 115.815 122.315)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63423,7 +63423,7 @@
 	(via buried
 		(at 106.239705 114.816481)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63433,7 +63433,7 @@
 	(via buried
 		(at 109.39 109.15)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(net "+BATT")
 		(uuid "a100a8fd-ecef-4a0d-a413-736502bffb7d")
@@ -63441,7 +63441,7 @@
 	(via buried
 		(at 122.405 117.295)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63451,7 +63451,7 @@
 	(via buried
 		(at 108.540341 108.999546)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63461,7 +63461,7 @@
 	(via buried
 		(at 107.95 115.36)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63471,7 +63471,7 @@
 	(via buried
 		(at 112.465 124.325)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63481,7 +63481,7 @@
 	(via buried
 		(at 107.15 114.34)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63491,7 +63491,7 @@
 	(via buried
 		(at 107.975 109.886456)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63501,7 +63501,7 @@
 	(via buried
 		(at 101.325 113.295)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63511,7 +63511,7 @@
 	(via buried
 		(at 104.205 110.235)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63521,7 +63521,7 @@
 	(via buried
 		(at 101.775 113.995)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63531,7 +63531,7 @@
 	(via buried
 		(at 116.015 122.715)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63541,7 +63541,7 @@
 	(via buried
 		(at 125.075 113.495)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63551,7 +63551,7 @@
 	(via buried
 		(at 125.475 112.495)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63561,7 +63561,7 @@
 	(via buried
 		(at 101.925 113.095)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63571,7 +63571,7 @@
 	(via buried
 		(at 120.975 117.565)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63581,7 +63581,7 @@
 	(via buried
 		(at 108.025 109.475)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63591,7 +63591,7 @@
 	(via buried
 		(at 107.95 114.85)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63601,7 +63601,7 @@
 	(via buried
 		(at 105.208494 114.45)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63611,7 +63611,7 @@
 	(via buried
 		(at 115.415 123.565)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63621,7 +63621,7 @@
 	(via buried
 		(at 124.625 112.195)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63631,7 +63631,7 @@
 	(via buried
 		(at 110.239659 111.325454)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63641,7 +63641,7 @@
 	(via buried
 		(at 116.215 123.565)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63651,7 +63651,7 @@
 	(via buried
 		(at 103.915 103.915)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63661,7 +63661,7 @@
 	(via buried
 		(at 108.35 115.615)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63671,7 +63671,7 @@
 	(via buried
 		(at 108.255 105.615)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63681,7 +63681,7 @@
 	(via buried
 		(at 106.75 115.615)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63691,7 +63691,7 @@
 	(via buried
 		(at 109.840341 111.024546)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63701,7 +63701,7 @@
 	(via buried
 		(at 104.515 104.415)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63711,7 +63711,7 @@
 	(via buried
 		(at 121.955 118.795)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63721,7 +63721,7 @@
 	(via buried
 		(at 107.15 114.85)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63731,7 +63731,7 @@
 	(via buried
 		(at 113.585 101.925)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63741,7 +63741,7 @@
 	(via buried
 		(at 124.425 112.645)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63751,7 +63751,7 @@
 	(via buried
 		(at 104.155 110.635)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63761,7 +63761,7 @@
 	(via buried
 		(at 122.455 117.845)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63771,7 +63771,7 @@
 	(via buried
 		(at 115.815 123.515)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)
@@ -63781,7 +63781,7 @@
 	(via buried
 		(at 107.15 113.83)
 		(size 0.35)
-		(drill 0.2)
+		(drill 0.15)
 		(layers "In1.Cu" "In4.Cu")
 		(locked yes)
 		(free yes)

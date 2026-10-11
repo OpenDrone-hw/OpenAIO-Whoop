@@ -10,8 +10,8 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
 
 ## Architecture
 
-One cell feeds everything. The battery pads, with a TVS across them, feed
-`+BATT` through a Kelvin shunt (`power`). Each ESC channel (`esc_channel`,
+One cell feeds everything. The battery pads feed `+BATT` through a Kelvin
+shunt (`power`). Each ESC channel (`esc_channel`,
 one sheet placed four times as ESC1 to ESC4) is an EFM8BB51 running Bluejay
 that drives three AGM210MAP P+N half-bridges straight from its port pins. There is no gate
 driver, because at 1S the cell voltage is the gate drive. A BEMF divider per
@@ -30,18 +30,18 @@ a PWM pin, the SE5004L PA enable and the PA power detector. Betaflight sets chan
 over MSP-VTX through CRSF. The VTX hangs off the receiver because Betaflight
 on RP2350 has no RTC6705 driver.
 
-`HD_EN` (GPIO19) chooses the video path. High, it switches `+5V_HD` on to the
-DJI O4 Lite pads and Q28 holds the analog VTX LDO off. Low, the analog VTX
-runs. `pads` carries the plugs, motor lands, solder pads and USB ESD; `led`
+`HD_EN` (GPIO19) chooses the video path. High, Q28 holds the analog VTX LDO
+off for the DJI O4 Lite on the pads; low, the analog VTX runs. The VHD pad is
+on `+5V_BST` directly, with no load switch. `pads` carries the plugs, motor lands, solder pads and USB ESD; `led`
 carries the two status LEDs.
 
 ## Power
 
 ```
-J2/J3 battery pads ─► D1 TVS ─► R1 0.5 mOhm Kelvin shunt (U1 INA186 ─► ADC_CURR) ─► +BATT
+J2/J3 battery pads ─► R1 0.5 mOhm Kelvin shunt (U1 INA186 ─► ADC_CURR) ─► +BATT
 +BATT ─┬─► Q29-Q40 AGM210MAP half-bridges, U6-U9 EFM8 VDD
-       ├─► R67 0R selector ─► SE5004L PA VCC (+5V position unfitted)
-       └─► U2 TPS61022 boost ─► +5V_BST ─┬─► U5 TPS22810 (HD_EN) ─► +5V_HD ─► VHD pad
+       ├─► SE5004L PA VCC
+       └─► U2 TPS61022 boost ─► +5V_BST ─┬─► VHD pad (O4 Lite)
                                          └─► U3 TPS2116 VIN2
 J31 VBUS ─► U24 SGM40661 inlet switch ─► +5V_USB ─► U3 TPS2116 VIN1 (priority)
 U3 ─► +5V ─┬─► U4 LP5912-3.3 ─► +3.3V ─┬─► RP2354A ─► internal SMPS + L2 ─► +1.1V core
@@ -54,9 +54,10 @@ U3 ─► +5V ─┬─► U4 LP5912-3.3 ─► +3.3V ─┬─► RP2354A ─�
 ```
 
 USB has priority on `+5V`, so a board on USB alone runs the FC, RX and OSD
-without the boost. `+5V_HD` comes from the boost side only, so USB never
-powers an O4. There is no reverse-polarity protection: a reversed battery
-lead shorts the cell through the TVS and the FET body diodes.
+without the boost. The VHD pad sits on the boost side, so USB never powers an
+O4, and an O4 is powered whenever the cell is. There is no reverse-polarity
+protection: a reversed battery lead shorts the cell through the FET body
+diodes.
 
 ## Key parts
 
@@ -74,14 +75,13 @@ lead shorts the cell through the TVS and the FET body diodes.
 | 5 V mux | U3 | TPS2116 | C3235557 | USB over boost, priority mode |
 | 3.3 V LDO | U4 | LP5912-3.3DRVR | C524780 | FC and RX rail |
 | Gyro LDO | U12 | TPS7A2018 | C36996449 | +1.8V_GYRO |
-| HD switch | U5 | TPS22810 | | +5V_HD for the O4 pads |
 | RX MCU | U16 | ESP32-PICO-V3 SiP | C967022 | ELRS and VTX control |
 | 2.4 GHz radio | U18 | SX1281 | C2151551 | LDO mode, X3 52 MHz TCXO, FL1 filter |
 | VTX synthesiser | U19 | RTC6705, QFN-40 | C913074 | X4 8 MHz crystal |
 | VTX PA | U20 | SE5004L | C210263 | FL2 harmonic band-pass, J1 U.FL |
 | VTX LDOs | U21, U22 | LP5912-3.3, LP5907-2.85 | C524780 (U21) | +3.3V_VTX and PA_VREF, both switched |
 | OSD | U14, U15, D3 | SN74LVC1G3157, TLV7031, SDM02U30LP3 | C2673087, C2876045, C151629 | level switch, sync comparator, clamp |
-| Protection | D1, D7 | SMF5.0A, TPD2EUSB30 | C151296, C97502 | battery TVS, USB ESD |
+| Protection | D7 | TPD2EUSB30 | C97502 | USB ESD |
 
 Passives are 0201 and up, no 01005.
 
@@ -159,8 +159,11 @@ target are in [research/PINMAP.md](research/PINMAP.md); the pad set is in
   RP2354A in USB BOOTSEL, then copy the UF2 onto it.
 - RX: [ExpressLRS](https://github.com/ExpressLRS/ExpressLRS) stock
   `Unified_ESP32_2400_RX` with the board's layout JSON, flashed through
-  Betaflight serial passthrough. SW1 at power-up also latches the ESP32 into
-  download mode, which recovers a broken ELRS image.
+  Betaflight serial passthrough. A broken ELRS image is recovered from ROM
+  download mode: hold SW1 while powering up (the RP2354A also enters BOOTSEL
+  and the ESP32 latches download mode), release SW1, start Betaflight by
+  copying its UF2 or with `picotool reboot` (the ESP32 is not reset), then run
+  `BFinitPassthrough.py -nr`.
 - ESC: stock [Bluejay](https://github.com/bird-sanctuary/bluejay), layout BB51
   "A". The EFM8s are programmed over C2 before assembly; the C2 test points are
   the recovery path, and Betaflight 4-way passthrough updates them.
@@ -178,7 +181,7 @@ target are in [research/PINMAP.md](research/PINMAP.md); the pad set is in
 | Shared library | `hardware/KiCad-Library/`, submodule of [OpenDrone-hw/KiCad-Library](https://github.com/OpenDrone-hw/KiCad-Library), nickname `OpenDrone`; 3D models and exact component datasheets resolve through the project text variable `OPENDRONE_LIB` |
 | Design rules | `hardware/OpenAIO-Whoop.kicad_dru`, canonical block plus HDI via rules, inner-layer net rules, RF areas and the motor-land and PTH rules |
 | Fab config | `hardware/fabrication-toolkit-options.json` |
-| Board setup | 6 layers, 0.09 mm clearance and track; through via 0.35 on 0.20; laser microvia 0.25 on 0.10; buried via 0.35 on 0.20 |
+| Board setup | 6 layers HDI 1+4+1 for NextPCB, 0.09 mm clearance and track; laser microvia 0.25 on 0.10 (L1-L2, L5-L6); buried via 0.35 on 0.15 (L2-L5), power via 0.40 on 0.20; no through vias; annular ring 0.09 |
 | Design notes | `research/`: DESIGN-SPEC.md, DECISIONS.md, PINMAP.md, IO-SET.md |
 | License | CERN-OHL-S-2.0 |
 

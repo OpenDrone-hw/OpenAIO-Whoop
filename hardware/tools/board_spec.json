@@ -1,5 +1,5 @@
 {
-  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6, D12, D18, D21), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB/JLCPCB rule intersection, Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias follow D6 (OpenDrone 0.35 / 0.20, annular 0.075, minimum through hole 0.20 so DRC enforces the standard via); the RF width is the P1 field-solver value (impedance.json). Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name. Spec review round 3: RF_RX_ANT split into an L1-L5 area (tracks, vias, pads, footprints, zone fills kept out) and RF_RX_ANT_L6 (B.Cu: vias, footprints and zone fills kept out; the 2.4 GHz feed track is allowed); the antenna-hole footprint itself is exempted from both by a named, scoped DRU rule (D21), not by a looser area; RF_RX_EXIT (B.Cu) now keeps footprints out (no parts within 3 mm of the wire exit); RF_PAD_CUTOUT (In1.Cu zone-fill keepout under wide RF pads) gains RF_PAD_CUTOUT_L3 (In2.Cu track keepout; a GND zone there is the local reference); WIFI_STUB removed with the Wi-Fi stub (spec 4.7); SHUNT_CORRIDOR (B.Cu, named area for the battery-to-shunt corridor rule, D10), RF_RX_ROOT (all copper layers, named area r 3.0 around the antenna hole for the SPI0 rule, spec 4.9 / 11) and TAB_T1/T3/T4 (panel-tab part keepouts, spec 7) added. Positions of the RF, corridor and tab areas follow sketch v4 (spec 10) and move at P2, so only the RX antenna areas pin a bbox. setup_board.py writes all of it (P0 consolidation, 2026-10-07); its --selftest covers the DRU rules. DRU rules (In2/In3 class and name restrictions, RF via rules, D21 exceptions) are checked by check_rules.py, not here. Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the 1.1 battery, 0.5 wire and pogo alignment holes out of the hole list, spec 4.10)",
+  "_comment": "OpenAIO-Whoop P1 board setup (research/DESIGN-SPEC.md 7, 8, 10; DECISIONS.md D6, D12, D18, D21), applied by hardware/tools/setup_board.py. 6L 1.0 mm NextPCB-library build 6L-1.0mm-0.5oz-1080, through vias only, NextPCB published limits (HDI 1+4+1, read 2026-10-11), Matrix-envelope outline with the body centred at (113.2, 113.2). Thickness is the KiCad stackup sum incl. both 15 um masks (0.997 mm dielectric + copper). Vias 0.35 / 0.15 (NextPCB ring 3.5 mil = 0.09, mechanical drill 0.15) and power 0.40 / 0.20; laser microvia 0.10 / 0.25, buried L2-L5; the RF width is the P1 field-solver value (impedance.json). Microvia minimums stay at the template values; micro/blind/buried vias are disallowed by a custom rule. Keepouts: rule areas by name. Spec review round 3: RF_RX_ANT split into an L1-L5 area (tracks, vias, pads, footprints, zone fills kept out) and RF_RX_ANT_L6 (B.Cu: vias, footprints and zone fills kept out; the 2.4 GHz feed track is allowed); the antenna-hole footprint itself is exempted from both by a named, scoped DRU rule (D21), not by a looser area; RF_RX_EXIT (B.Cu) now keeps footprints out (no parts within 3 mm of the wire exit); RF_PAD_CUTOUT (In1.Cu zone-fill keepout under wide RF pads) gains RF_PAD_CUTOUT_L3 (In2.Cu track keepout; a GND zone there is the local reference); WIFI_STUB removed with the Wi-Fi stub (spec 4.7); SHUNT_CORRIDOR (B.Cu, named area for the battery-to-shunt corridor rule, D10), RF_RX_ROOT (all copper layers, named area r 3.0 around the antenna hole for the SPI0 rule, spec 4.9 / 11) and TAB_T1/T3/T4 (panel-tab part keepouts, spec 7) added. Positions of the RF, corridor and tab areas follow sketch v4 (spec 10) and move at P2, so only the RX antenna areas pin a bbox. setup_board.py writes all of it (P0 consolidation, 2026-10-07); its --selftest covers the DRU rules. DRU rules (In2/In3 class and name restrictions, RF via rules, D21 exceptions) are checked by check_rules.py, not here. Run: $KPY hardware/tools/check_board_setup.py --min-hole 2.0 --spec hardware/tools/board_spec.json (mounting holes are the outline cut-outs; --min-hole 2.0 keeps the 1.1 battery, 0.5 wire and pogo alignment holes out of the hole list, spec 4.10)",
   "tolerance": 0.0005,
   "expect": {
     "copper_layers": 6,
@@ -96,12 +96,12 @@
     "rules.track_mm": 0.09,
     "rules.connection_mm": 0.09,
     "rules.via_dia_mm": 0.35,
-    "rules.via_drill_mm": 0.2,
-    "rules.via_annular_mm": 0.075,
+    "rules.via_drill_mm": 0.15,
+    "rules.via_annular_mm": 0.09,
     "rules.microvia_dia_mm": 0.2,
     "rules.microvia_drill_mm": 0.1,
     "rules.hole_to_hole_mm": 0.2,
-    "rules.hole_clearance_mm": 0.2,
+    "rules.hole_clearance_mm": 0.18,
     "rules.copper_edge_mm": 0.2,
     "presets.track_mm": [
       0.1,
@@ -115,7 +115,7 @@
     "presets.via_mm": [
       [
         0.35,
-        0.2
+        0.15
       ],
       [
         0.4,
@@ -126,7 +126,7 @@
       "clearance_mm": 0.09,
       "track_mm": 0.09,
       "via_dia_mm": 0.35,
-      "via_drill_mm": 0.2,
+      "via_drill_mm": 0.15,
       "uvia_dia_mm": 0.3,
       "uvia_drill_mm": 0.1,
       "dp_width_mm": 0.2,
@@ -148,31 +148,31 @@
       "clearance_mm": 0.1,
       "track_mm": 0.15,
       "via_dia_mm": 0.35,
-      "via_drill_mm": 0.2
+      "via_drill_mm": 0.15
     },
     "netclasses.Power": {
       "clearance_mm": 0.09,
       "track_mm": 0.25,
       "via_dia_mm": 0.35,
-      "via_drill_mm": 0.2
+      "via_drill_mm": 0.15
     },
     "netclasses.Analog": {
       "clearance_mm": 0.15,
       "track_mm": 0.1,
       "via_dia_mm": 0.35,
-      "via_drill_mm": 0.2
+      "via_drill_mm": 0.15
     },
     "netclasses.RF": {
       "clearance_mm": 0.15,
       "track_mm": 0.105,
       "via_dia_mm": 0.35,
-      "via_drill_mm": 0.2
+      "via_drill_mm": 0.15
     },
     "netclasses.USB": {
       "clearance_mm": 0.12,
       "track_mm": 0.12,
       "via_dia_mm": 0.35,
-      "via_drill_mm": 0.2,
+      "via_drill_mm": 0.15,
       "dp_width_mm": 0.12,
       "dp_gap_mm": 0.12
     },

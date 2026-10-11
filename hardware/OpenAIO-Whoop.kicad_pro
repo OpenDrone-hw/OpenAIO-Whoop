@@ -155,7 +155,7 @@
         "min_connection": 0.09,
         "min_copper_edge_clearance": 0.2,
         "min_groove_width": 0.0,
-        "min_hole_clearance": 0.2,
+        "min_hole_clearance": 0.18,
         "min_hole_to_hole": 0.2,
         "min_microvia_diameter": 0.25,
         "min_microvia_drill": 0.1,
@@ -163,9 +163,9 @@
         "min_silk_clearance": 0.0,
         "min_text_height": 0.8,
         "min_text_thickness": 0.13,
-        "min_through_hole_diameter": 0.2,
+        "min_through_hole_diameter": 0.15,
         "min_track_width": 0.09,
-        "min_via_annular_width": 0.075,
+        "min_via_annular_width": 0.09,
         "min_via_diameter": 0.35,
         "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
@@ -257,7 +257,7 @@
         },
         {
           "diameter": 0.35,
-          "drill": 0.2
+          "drill": 0.15
         },
         {
           "diameter": 0.4,
@@ -277,22 +277,22 @@
     },
     "layer_pairs": [
       {
-        "topLayer": 4,
         "bottomLayer": 10,
         "enabled": true,
-        "name": "Buried L2-L5"
+        "name": "Buried L2-L5",
+        "topLayer": 4
       },
       {
-        "topLayer": 0,
         "bottomLayer": 4,
         "enabled": true,
-        "name": "Micro L1-L2"
+        "name": "Micro L1-L2",
+        "topLayer": 0
       },
       {
-        "topLayer": 10,
         "bottomLayer": 2,
         "enabled": true,
-        "name": "Micro L5-L6"
+        "name": "Micro L5-L6",
+        "topLayer": 10
       }
     ],
     "layer_presets": [],
@@ -303,25 +303,24 @@
     "assignments": [
       {
         "component_class": "PASSIVE_0201",
-        "conditions_operator": "ANY",
         "conditions": {
           "FOOTPRINT": {
             "primary": "*0201*"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "PASSIVE_0402",
-        "conditions_operator": "ANY",
         "conditions": {
           "FOOTPRINT": {
             "primary": "*0402*"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "TALL",
-        "conditions_operator": "ANY",
         "conditions": {
           "FOOTPRINT": {
             "primary": "*U.FL*"
@@ -341,11 +340,11 @@
           "FOOTPRINT-5": {
             "primary": "*_2520*"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "POWER_FET",
-        "conditions_operator": "ANY",
         "conditions": {
           "FOOTPRINT": {
             "primary": "*CSD25310Q2*"
@@ -359,11 +358,11 @@
           "FOOTPRINT-3": {
             "primary": "*AGM210*"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "SOLDER_PAD",
-        "conditions_operator": "ANY",
         "conditions": {
           "FOOTPRINT": {
             "primary": "*small_pad*"
@@ -386,11 +385,11 @@
           "FOOTPRINT-6": {
             "primary": "*BT2*"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "MOTOR_PAD",
-        "conditions_operator": "ANY",
         "conditions": {
           "FOOTPRINT": {
             "primary": "*MotorPad*"
@@ -398,11 +397,11 @@
           "FOOTPRINT-1": {
             "primary": "*motor_pad*"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "BLACKBOX",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C65"
@@ -413,11 +412,11 @@
           "REFERENCE-2": {
             "primary": "U13"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "ESC1",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C19"
@@ -425,56 +424,56 @@
           "REFERENCE-1": {
             "primary": "C20"
           },
-          "REFERENCE-2": {
-            "primary": "C21"
-          },
-          "REFERENCE-3": {
+          "REFERENCE-10": {
             "primary": "C23"
           },
-          "REFERENCE-4": {
+          "REFERENCE-11": {
             "primary": "Q29"
           },
-          "REFERENCE-5": {
+          "REFERENCE-12": {
             "primary": "Q30"
           },
-          "REFERENCE-6": {
+          "REFERENCE-13": {
             "primary": "Q31"
           },
-          "REFERENCE-7": {
+          "REFERENCE-14": {
             "primary": "R12"
           },
-          "REFERENCE-8": {
+          "REFERENCE-15": {
             "primary": "R13"
           },
-          "REFERENCE-9": {
+          "REFERENCE-16": {
             "primary": "R14"
           },
-          "REFERENCE-10": {
+          "REFERENCE-2": {
             "primary": "R15"
           },
-          "REFERENCE-11": {
+          "REFERENCE-3": {
             "primary": "R16"
           },
-          "REFERENCE-12": {
+          "REFERENCE-4": {
             "primary": "R17"
           },
-          "REFERENCE-13": {
+          "REFERENCE-5": {
             "primary": "R18"
           },
-          "REFERENCE-14": {
+          "REFERENCE-6": {
             "primary": "TP1"
           },
-          "REFERENCE-15": {
+          "REFERENCE-7": {
             "primary": "TP2"
           },
-          "REFERENCE-16": {
+          "REFERENCE-8": {
             "primary": "U6"
+          },
+          "REFERENCE-9": {
+            "primary": "C21"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "ESC2",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C25"
@@ -482,56 +481,56 @@
           "REFERENCE-1": {
             "primary": "C26"
           },
-          "REFERENCE-2": {
-            "primary": "C27"
-          },
-          "REFERENCE-3": {
+          "REFERENCE-10": {
             "primary": "C29"
           },
-          "REFERENCE-4": {
+          "REFERENCE-11": {
             "primary": "Q32"
           },
-          "REFERENCE-5": {
+          "REFERENCE-12": {
             "primary": "Q33"
           },
-          "REFERENCE-6": {
+          "REFERENCE-13": {
             "primary": "Q34"
           },
-          "REFERENCE-7": {
+          "REFERENCE-14": {
             "primary": "R19"
           },
-          "REFERENCE-8": {
+          "REFERENCE-15": {
             "primary": "R20"
           },
-          "REFERENCE-9": {
+          "REFERENCE-16": {
             "primary": "R21"
           },
-          "REFERENCE-10": {
+          "REFERENCE-2": {
             "primary": "R22"
           },
-          "REFERENCE-11": {
+          "REFERENCE-3": {
             "primary": "R23"
           },
-          "REFERENCE-12": {
+          "REFERENCE-4": {
             "primary": "R24"
           },
-          "REFERENCE-13": {
+          "REFERENCE-5": {
             "primary": "R25"
           },
-          "REFERENCE-14": {
+          "REFERENCE-6": {
             "primary": "TP3"
           },
-          "REFERENCE-15": {
+          "REFERENCE-7": {
             "primary": "TP4"
           },
-          "REFERENCE-16": {
+          "REFERENCE-8": {
             "primary": "U7"
+          },
+          "REFERENCE-9": {
+            "primary": "C27"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "ESC3",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C31"
@@ -539,56 +538,56 @@
           "REFERENCE-1": {
             "primary": "C32"
           },
-          "REFERENCE-2": {
-            "primary": "C33"
-          },
-          "REFERENCE-3": {
+          "REFERENCE-10": {
             "primary": "C35"
           },
-          "REFERENCE-4": {
+          "REFERENCE-11": {
             "primary": "Q35"
           },
-          "REFERENCE-5": {
+          "REFERENCE-12": {
             "primary": "Q36"
           },
-          "REFERENCE-6": {
+          "REFERENCE-13": {
             "primary": "Q37"
           },
-          "REFERENCE-7": {
+          "REFERENCE-14": {
             "primary": "R26"
           },
-          "REFERENCE-8": {
+          "REFERENCE-15": {
             "primary": "R27"
           },
-          "REFERENCE-9": {
+          "REFERENCE-16": {
             "primary": "R28"
           },
-          "REFERENCE-10": {
+          "REFERENCE-2": {
             "primary": "R29"
           },
-          "REFERENCE-11": {
+          "REFERENCE-3": {
             "primary": "R30"
           },
-          "REFERENCE-12": {
+          "REFERENCE-4": {
             "primary": "R31"
           },
-          "REFERENCE-13": {
+          "REFERENCE-5": {
             "primary": "R32"
           },
-          "REFERENCE-14": {
+          "REFERENCE-6": {
             "primary": "TP5"
           },
-          "REFERENCE-15": {
+          "REFERENCE-7": {
             "primary": "TP6"
           },
-          "REFERENCE-16": {
+          "REFERENCE-8": {
             "primary": "U8"
+          },
+          "REFERENCE-9": {
+            "primary": "C33"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "ESC4",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C37"
@@ -596,56 +595,56 @@
           "REFERENCE-1": {
             "primary": "C38"
           },
-          "REFERENCE-2": {
-            "primary": "C39"
-          },
-          "REFERENCE-3": {
+          "REFERENCE-10": {
             "primary": "C41"
           },
-          "REFERENCE-4": {
+          "REFERENCE-11": {
             "primary": "Q38"
           },
-          "REFERENCE-5": {
+          "REFERENCE-12": {
             "primary": "Q39"
           },
-          "REFERENCE-6": {
+          "REFERENCE-13": {
             "primary": "Q40"
           },
-          "REFERENCE-7": {
+          "REFERENCE-14": {
             "primary": "R33"
           },
-          "REFERENCE-8": {
+          "REFERENCE-15": {
             "primary": "R34"
           },
-          "REFERENCE-9": {
+          "REFERENCE-16": {
             "primary": "R35"
           },
-          "REFERENCE-10": {
+          "REFERENCE-2": {
             "primary": "R36"
           },
-          "REFERENCE-11": {
+          "REFERENCE-3": {
             "primary": "R37"
           },
-          "REFERENCE-12": {
+          "REFERENCE-4": {
             "primary": "R38"
           },
-          "REFERENCE-13": {
+          "REFERENCE-5": {
             "primary": "R39"
           },
-          "REFERENCE-14": {
+          "REFERENCE-6": {
             "primary": "TP7"
           },
-          "REFERENCE-15": {
+          "REFERENCE-7": {
             "primary": "TP8"
           },
-          "REFERENCE-16": {
+          "REFERENCE-8": {
             "primary": "U9"
+          },
+          "REFERENCE-9": {
+            "primary": "C39"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "IMU",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C61"
@@ -662,11 +661,11 @@
           "REFERENCE-4": {
             "primary": "U12"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "LED",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "D5"
@@ -680,11 +679,11 @@
           "REFERENCE-3": {
             "primary": "R86"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "OSD",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C66"
@@ -692,41 +691,41 @@
           "REFERENCE-1": {
             "primary": "C67"
           },
-          "REFERENCE-2": {
-            "primary": "C68"
-          },
-          "REFERENCE-3": {
-            "primary": "C70"
-          },
-          "REFERENCE-4": {
-            "primary": "D3"
-          },
-          "REFERENCE-5": {
-            "primary": "R51"
-          },
-          "REFERENCE-6": {
-            "primary": "R52"
-          },
-          "REFERENCE-7": {
-            "primary": "R53"
-          },
-          "REFERENCE-8": {
+          "REFERENCE-10": {
             "primary": "R54"
           },
-          "REFERENCE-9": {
+          "REFERENCE-11": {
             "primary": "R55"
           },
-          "REFERENCE-10": {
+          "REFERENCE-2": {
             "primary": "U14"
           },
-          "REFERENCE-11": {
+          "REFERENCE-3": {
             "primary": "U15"
+          },
+          "REFERENCE-4": {
+            "primary": "C68"
+          },
+          "REFERENCE-5": {
+            "primary": "C70"
+          },
+          "REFERENCE-6": {
+            "primary": "D3"
+          },
+          "REFERENCE-7": {
+            "primary": "R51"
+          },
+          "REFERENCE-8": {
+            "primary": "R52"
+          },
+          "REFERENCE-9": {
+            "primary": "R53"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "PADS",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "D7"
@@ -734,62 +733,62 @@
           "REFERENCE-1": {
             "primary": "J10"
           },
-          "REFERENCE-2": {
-            "primary": "J13"
-          },
-          "REFERENCE-3": {
-            "primary": "J20"
-          },
-          "REFERENCE-4": {
-            "primary": "J21"
-          },
-          "REFERENCE-5": {
-            "primary": "J22"
-          },
-          "REFERENCE-6": {
-            "primary": "J23"
-          },
-          "REFERENCE-7": {
-            "primary": "J24"
-          },
-          "REFERENCE-8": {
-            "primary": "J25"
-          },
-          "REFERENCE-9": {
-            "primary": "J26"
-          },
           "REFERENCE-10": {
-            "primary": "J27"
+            "primary": "LOGO1"
           },
           "REFERENCE-11": {
-            "primary": "J28"
+            "primary": "J13"
           },
           "REFERENCE-12": {
-            "primary": "J29"
+            "primary": "J20"
           },
           "REFERENCE-13": {
-            "primary": "J31"
+            "primary": "J21"
           },
           "REFERENCE-14": {
-            "primary": "J32"
+            "primary": "J22"
           },
           "REFERENCE-15": {
-            "primary": "J33"
+            "primary": "J23"
           },
           "REFERENCE-16": {
-            "primary": "J4"
+            "primary": "J24"
           },
           "REFERENCE-17": {
-            "primary": "J7"
+            "primary": "J25"
           },
           "REFERENCE-18": {
-            "primary": "LOGO1"
+            "primary": "J26"
+          },
+          "REFERENCE-2": {
+            "primary": "J27"
+          },
+          "REFERENCE-3": {
+            "primary": "J28"
+          },
+          "REFERENCE-4": {
+            "primary": "J29"
+          },
+          "REFERENCE-5": {
+            "primary": "J31"
+          },
+          "REFERENCE-6": {
+            "primary": "J32"
+          },
+          "REFERENCE-7": {
+            "primary": "J33"
+          },
+          "REFERENCE-8": {
+            "primary": "J4"
+          },
+          "REFERENCE-9": {
+            "primary": "J7"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "POWER",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C1"
@@ -797,125 +796,92 @@
           "REFERENCE-1": {
             "primary": "C10"
           },
-          "REFERENCE-2": {
-            "primary": "C11"
-          },
-          "REFERENCE-3": {
-            "primary": "C12"
-          },
-          "REFERENCE-4": {
-            "primary": "C128"
-          },
-          "REFERENCE-5": {
-            "primary": "C129"
-          },
-          "REFERENCE-6": {
-            "primary": "C13"
-          },
-          "REFERENCE-7": {
-            "primary": "C131"
-          },
-          "REFERENCE-8": {
-            "primary": "C14"
-          },
-          "REFERENCE-9": {
-            "primary": "C15"
-          },
           "REFERENCE-10": {
-            "primary": "C16"
-          },
-          "REFERENCE-11": {
-            "primary": "C2"
-          },
-          "REFERENCE-12": {
-            "primary": "C5"
-          },
-          "REFERENCE-13": {
-            "primary": "C6"
-          },
-          "REFERENCE-14": {
-            "primary": "C7"
-          },
-          "REFERENCE-15": {
-            "primary": "C8"
-          },
-          "REFERENCE-16": {
-            "primary": "C9"
-          },
-          "REFERENCE-17": {
-            "primary": "D1"
-          },
-          "REFERENCE-18": {
-            "primary": "D2"
-          },
-          "REFERENCE-19": {
-            "primary": "FB1"
-          },
-          "REFERENCE-20": {
-            "primary": "J2"
-          },
-          "REFERENCE-21": {
-            "primary": "J3"
-          },
-          "REFERENCE-22": {
-            "primary": "L1"
-          },
-          "REFERENCE-23": {
             "primary": "R1"
           },
-          "REFERENCE-24": {
-            "primary": "R10"
-          },
-          "REFERENCE-25": {
+          "REFERENCE-11": {
             "primary": "R11"
           },
-          "REFERENCE-26": {
-            "primary": "R2"
+          "REFERENCE-12": {
+            "primary": "C11"
           },
-          "REFERENCE-27": {
-            "primary": "R3"
-          },
-          "REFERENCE-28": {
+          "REFERENCE-13": {
             "primary": "R4"
           },
-          "REFERENCE-29": {
+          "REFERENCE-14": {
             "primary": "R5"
           },
-          "REFERENCE-30": {
+          "REFERENCE-15": {
             "primary": "R7"
           },
-          "REFERENCE-31": {
+          "REFERENCE-16": {
             "primary": "R8"
           },
-          "REFERENCE-32": {
-            "primary": "R87"
-          },
-          "REFERENCE-33": {
-            "primary": "R9"
-          },
-          "REFERENCE-34": {
+          "REFERENCE-17": {
             "primary": "U1"
           },
-          "REFERENCE-35": {
+          "REFERENCE-18": {
             "primary": "U2"
           },
-          "REFERENCE-36": {
+          "REFERENCE-19": {
             "primary": "U24"
           },
-          "REFERENCE-37": {
+          "REFERENCE-2": {
+            "primary": "C6"
+          },
+          "REFERENCE-20": {
             "primary": "U3"
           },
-          "REFERENCE-38": {
+          "REFERENCE-21": {
             "primary": "U4"
           },
-          "REFERENCE-39": {
-            "primary": "U5"
+          "REFERENCE-22": {
+            "primary": "C12"
+          },
+          "REFERENCE-23": {
+            "primary": "C128"
+          },
+          "REFERENCE-24": {
+            "primary": "C13"
+          },
+          "REFERENCE-25": {
+            "primary": "C131"
+          },
+          "REFERENCE-26": {
+            "primary": "C14"
+          },
+          "REFERENCE-27": {
+            "primary": "C15"
+          },
+          "REFERENCE-28": {
+            "primary": "C2"
+          },
+          "REFERENCE-3": {
+            "primary": "C7"
+          },
+          "REFERENCE-4": {
+            "primary": "C8"
+          },
+          "REFERENCE-5": {
+            "primary": "C9"
+          },
+          "REFERENCE-6": {
+            "primary": "FB1"
+          },
+          "REFERENCE-7": {
+            "primary": "J2"
+          },
+          "REFERENCE-8": {
+            "primary": "J3"
+          },
+          "REFERENCE-9": {
+            "primary": "L1"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "RP2350A",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C134"
@@ -923,101 +889,101 @@
           "REFERENCE-1": {
             "primary": "C42"
           },
-          "REFERENCE-2": {
-            "primary": "C44"
-          },
-          "REFERENCE-3": {
-            "primary": "C45"
-          },
-          "REFERENCE-4": {
-            "primary": "C46"
-          },
-          "REFERENCE-5": {
-            "primary": "C47"
-          },
-          "REFERENCE-6": {
-            "primary": "C48"
-          },
-          "REFERENCE-7": {
-            "primary": "C49"
-          },
-          "REFERENCE-8": {
-            "primary": "C50"
-          },
-          "REFERENCE-9": {
-            "primary": "C51"
-          },
           "REFERENCE-10": {
-            "primary": "C52"
-          },
-          "REFERENCE-11": {
-            "primary": "C54"
-          },
-          "REFERENCE-12": {
-            "primary": "C56"
-          },
-          "REFERENCE-13": {
-            "primary": "C57"
-          },
-          "REFERENCE-14": {
-            "primary": "C58"
-          },
-          "REFERENCE-15": {
-            "primary": "C59"
-          },
-          "REFERENCE-16": {
-            "primary": "C60"
-          },
-          "REFERENCE-17": {
-            "primary": "L2"
-          },
-          "REFERENCE-18": {
             "primary": "Q26"
           },
-          "REFERENCE-19": {
+          "REFERENCE-11": {
             "primary": "R41"
           },
-          "REFERENCE-20": {
+          "REFERENCE-12": {
+            "primary": "C44"
+          },
+          "REFERENCE-13": {
             "primary": "R42"
           },
-          "REFERENCE-21": {
+          "REFERENCE-14": {
             "primary": "R43"
           },
-          "REFERENCE-22": {
+          "REFERENCE-15": {
             "primary": "R44"
           },
-          "REFERENCE-23": {
+          "REFERENCE-16": {
             "primary": "R45"
           },
-          "REFERENCE-24": {
+          "REFERENCE-17": {
             "primary": "R46"
           },
-          "REFERENCE-25": {
+          "REFERENCE-18": {
             "primary": "R47"
           },
-          "REFERENCE-26": {
+          "REFERENCE-19": {
             "primary": "R48"
           },
-          "REFERENCE-27": {
+          "REFERENCE-2": {
+            "primary": "C52"
+          },
+          "REFERENCE-20": {
             "primary": "TP12"
           },
-          "REFERENCE-28": {
+          "REFERENCE-21": {
             "primary": "TP13"
           },
-          "REFERENCE-29": {
+          "REFERENCE-22": {
             "primary": "TP9"
           },
-          "REFERENCE-30": {
+          "REFERENCE-23": {
+            "primary": "C45"
+          },
+          "REFERENCE-24": {
             "primary": "U10"
           },
-          "REFERENCE-31": {
+          "REFERENCE-25": {
             "primary": "X1"
+          },
+          "REFERENCE-26": {
+            "primary": "C46"
+          },
+          "REFERENCE-27": {
+            "primary": "C47"
+          },
+          "REFERENCE-28": {
+            "primary": "C48"
+          },
+          "REFERENCE-29": {
+            "primary": "C49"
+          },
+          "REFERENCE-3": {
+            "primary": "C54"
+          },
+          "REFERENCE-30": {
+            "primary": "C50"
+          },
+          "REFERENCE-31": {
+            "primary": "C51"
+          },
+          "REFERENCE-4": {
+            "primary": "C56"
+          },
+          "REFERENCE-5": {
+            "primary": "C57"
+          },
+          "REFERENCE-6": {
+            "primary": "C58"
+          },
+          "REFERENCE-7": {
+            "primary": "C59"
+          },
+          "REFERENCE-8": {
+            "primary": "C60"
+          },
+          "REFERENCE-9": {
+            "primary": "L2"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "RX",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "AE1"
@@ -1025,80 +991,77 @@
           "REFERENCE-1": {
             "primary": "AE2"
           },
-          "REFERENCE-2": {
-            "primary": "C132"
-          },
-          "REFERENCE-3": {
-            "primary": "C133"
-          },
-          "REFERENCE-4": {
-            "primary": "C73"
-          },
-          "REFERENCE-5": {
-            "primary": "C76"
-          },
-          "REFERENCE-6": {
-            "primary": "C82"
-          },
-          "REFERENCE-7": {
-            "primary": "C83"
-          },
-          "REFERENCE-8": {
-            "primary": "C84"
-          },
-          "REFERENCE-9": {
-            "primary": "C85"
-          },
           "REFERENCE-10": {
-            "primary": "C86"
-          },
-          "REFERENCE-11": {
-            "primary": "C87"
-          },
-          "REFERENCE-12": {
-            "primary": "C88"
-          },
-          "REFERENCE-13": {
-            "primary": "C89"
-          },
-          "REFERENCE-14": {
-            "primary": "C91"
-          },
-          "REFERENCE-15": {
-            "primary": "C92"
-          },
-          "REFERENCE-16": {
-            "primary": "D4"
-          },
-          "REFERENCE-17": {
-            "primary": "D8"
-          },
-          "REFERENCE-18": {
-            "primary": "FL1"
-          },
-          "REFERENCE-19": {
             "primary": "R56"
           },
-          "REFERENCE-20": {
+          "REFERENCE-11": {
             "primary": "R88"
           },
-          "REFERENCE-21": {
+          "REFERENCE-12": {
+            "primary": "C132"
+          },
+          "REFERENCE-13": {
             "primary": "SW1"
           },
-          "REFERENCE-22": {
+          "REFERENCE-14": {
             "primary": "U16"
           },
-          "REFERENCE-23": {
+          "REFERENCE-15": {
             "primary": "U18"
           },
-          "REFERENCE-24": {
+          "REFERENCE-16": {
             "primary": "X3"
+          },
+          "REFERENCE-17": {
+            "primary": "C133"
+          },
+          "REFERENCE-18": {
+            "primary": "C73"
+          },
+          "REFERENCE-19": {
+            "primary": "C76"
+          },
+          "REFERENCE-2": {
+            "primary": "C86"
+          },
+          "REFERENCE-20": {
+            "primary": "C82"
+          },
+          "REFERENCE-21": {
+            "primary": "C83"
+          },
+          "REFERENCE-22": {
+            "primary": "C84"
+          },
+          "REFERENCE-23": {
+            "primary": "C85"
+          },
+          "REFERENCE-3": {
+            "primary": "C87"
+          },
+          "REFERENCE-4": {
+            "primary": "C88"
+          },
+          "REFERENCE-5": {
+            "primary": "C89"
+          },
+          "REFERENCE-6": {
+            "primary": "C91"
+          },
+          "REFERENCE-7": {
+            "primary": "D4"
+          },
+          "REFERENCE-8": {
+            "primary": "D8"
+          },
+          "REFERENCE-9": {
+            "primary": "FL1"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       },
       {
         "component_class": "VTX",
-        "conditions_operator": "ANY",
         "conditions": {
           "REFERENCE": {
             "primary": "C100"
@@ -1106,175 +1069,161 @@
           "REFERENCE-1": {
             "primary": "C101"
           },
-          "REFERENCE-2": {
-            "primary": "C102"
-          },
-          "REFERENCE-3": {
-            "primary": "C103"
-          },
-          "REFERENCE-4": {
-            "primary": "C104"
-          },
-          "REFERENCE-5": {
-            "primary": "C105"
-          },
-          "REFERENCE-6": {
-            "primary": "C106"
-          },
-          "REFERENCE-7": {
-            "primary": "C107"
-          },
-          "REFERENCE-8": {
-            "primary": "C108"
-          },
-          "REFERENCE-9": {
-            "primary": "C109"
-          },
           "REFERENCE-10": {
-            "primary": "C110"
-          },
-          "REFERENCE-11": {
-            "primary": "C111"
-          },
-          "REFERENCE-12": {
-            "primary": "C112"
-          },
-          "REFERENCE-13": {
-            "primary": "C113"
-          },
-          "REFERENCE-14": {
-            "primary": "C114"
-          },
-          "REFERENCE-15": {
-            "primary": "C115"
-          },
-          "REFERENCE-16": {
-            "primary": "C116"
-          },
-          "REFERENCE-17": {
-            "primary": "C117"
-          },
-          "REFERENCE-18": {
             "primary": "C118"
           },
-          "REFERENCE-19": {
-            "primary": "C121"
-          },
-          "REFERENCE-20": {
+          "REFERENCE-11": {
             "primary": "C122"
           },
-          "REFERENCE-21": {
+          "REFERENCE-12": {
+            "primary": "C102"
+          },
+          "REFERENCE-13": {
             "primary": "C123"
           },
-          "REFERENCE-22": {
+          "REFERENCE-14": {
             "primary": "C124"
           },
-          "REFERENCE-23": {
+          "REFERENCE-15": {
             "primary": "C125"
           },
-          "REFERENCE-24": {
+          "REFERENCE-16": {
             "primary": "C94"
           },
-          "REFERENCE-25": {
+          "REFERENCE-17": {
             "primary": "C95"
           },
-          "REFERENCE-26": {
+          "REFERENCE-18": {
             "primary": "C96"
           },
-          "REFERENCE-27": {
+          "REFERENCE-19": {
             "primary": "C98"
           },
-          "REFERENCE-28": {
+          "REFERENCE-2": {
+            "primary": "C110"
+          },
+          "REFERENCE-20": {
             "primary": "FL2"
           },
-          "REFERENCE-29": {
+          "REFERENCE-21": {
             "primary": "J1"
           },
-          "REFERENCE-30": {
+          "REFERENCE-22": {
             "primary": "L3"
           },
-          "REFERENCE-31": {
+          "REFERENCE-23": {
+            "primary": "C103"
+          },
+          "REFERENCE-24": {
             "primary": "Q27"
           },
-          "REFERENCE-32": {
+          "REFERENCE-25": {
             "primary": "Q28"
           },
-          "REFERENCE-33": {
+          "REFERENCE-26": {
             "primary": "R58"
           },
-          "REFERENCE-34": {
+          "REFERENCE-27": {
             "primary": "R59"
           },
-          "REFERENCE-35": {
+          "REFERENCE-28": {
             "primary": "R60"
           },
-          "REFERENCE-36": {
+          "REFERENCE-29": {
             "primary": "R61"
           },
-          "REFERENCE-37": {
+          "REFERENCE-3": {
+            "primary": "C111"
+          },
+          "REFERENCE-30": {
             "primary": "R62"
           },
-          "REFERENCE-38": {
+          "REFERENCE-31": {
             "primary": "R63"
           },
-          "REFERENCE-39": {
+          "REFERENCE-32": {
             "primary": "R64"
           },
-          "REFERENCE-40": {
+          "REFERENCE-33": {
             "primary": "R65"
           },
-          "REFERENCE-41": {
+          "REFERENCE-34": {
+            "primary": "C104"
+          },
+          "REFERENCE-35": {
             "primary": "R66"
           },
-          "REFERENCE-42": {
-            "primary": "R67"
-          },
-          "REFERENCE-43": {
+          "REFERENCE-36": {
             "primary": "R68"
           },
-          "REFERENCE-44": {
-            "primary": "R70"
-          },
-          "REFERENCE-45": {
+          "REFERENCE-37": {
             "primary": "R71"
           },
-          "REFERENCE-46": {
+          "REFERENCE-38": {
             "primary": "R72"
           },
-          "REFERENCE-47": {
+          "REFERENCE-39": {
             "primary": "R73"
           },
-          "REFERENCE-48": {
+          "REFERENCE-4": {
+            "primary": "C112"
+          },
+          "REFERENCE-40": {
             "primary": "R80"
           },
-          "REFERENCE-49": {
+          "REFERENCE-41": {
             "primary": "R81"
           },
-          "REFERENCE-50": {
+          "REFERENCE-42": {
             "primary": "R82"
           },
-          "REFERENCE-51": {
-            "primary": "R84"
-          },
-          "REFERENCE-52": {
-            "primary": "TH1"
-          },
-          "REFERENCE-53": {
+          "REFERENCE-43": {
             "primary": "U19"
           },
-          "REFERENCE-54": {
+          "REFERENCE-44": {
             "primary": "U20"
           },
-          "REFERENCE-55": {
+          "REFERENCE-45": {
+            "primary": "C105"
+          },
+          "REFERENCE-46": {
             "primary": "U21"
           },
-          "REFERENCE-56": {
+          "REFERENCE-47": {
             "primary": "U22"
           },
-          "REFERENCE-57": {
+          "REFERENCE-48": {
             "primary": "X4"
+          },
+          "REFERENCE-49": {
+            "primary": "C106"
+          },
+          "REFERENCE-5": {
+            "primary": "C113"
+          },
+          "REFERENCE-50": {
+            "primary": "C107"
+          },
+          "REFERENCE-51": {
+            "primary": "C108"
+          },
+          "REFERENCE-52": {
+            "primary": "C109"
+          },
+          "REFERENCE-6": {
+            "primary": "C114"
+          },
+          "REFERENCE-7": {
+            "primary": "C115"
+          },
+          "REFERENCE-8": {
+            "primary": "C116"
+          },
+          "REFERENCE-9": {
+            "primary": "C117"
           }
-        }
+        },
+        "conditions_operator": "ANY"
       }
     ],
     "meta": {
@@ -1538,7 +1487,7 @@
         "track_width": 0.09,
         "tuning_profile": "",
         "via_diameter": 0.35,
-        "via_drill": 0.2,
+        "via_drill": 0.15,
         "wire_width": 6
       },
       {
@@ -1550,52 +1499,52 @@
         "line_style": 0,
         "microvia_diameter": 0.25,
         "microvia_drill": 0.1,
-        "name": "RF",
-        "pcb_color": "rgb(200, 160, 0)",
-        "priority": 0,
-        "schematic_color": "rgb(200, 160, 0)",
-        "track_width": 0.105,
-        "tuning_profile": "RF50",
-        "via_diameter": 0.35,
-        "via_drill": 0.2,
-        "wire_width": 6
-      },
-      {
-        "bus_width": 12,
-        "clearance": 0.12,
-        "diff_pair_gap": 0.12,
-        "diff_pair_via_gap": 0.25,
-        "diff_pair_width": 0.12,
-        "line_style": 0,
-        "microvia_diameter": 0.25,
-        "microvia_drill": 0.1,
-        "name": "USB",
-        "pcb_color": "rgb(30, 110, 255)",
-        "priority": 1,
-        "schematic_color": "rgb(30, 110, 255)",
-        "track_width": 0.12,
+        "name": "Analog",
+        "pcb_color": "rgb(0, 160, 160)",
+        "priority": 5,
+        "schematic_color": "rgb(0, 160, 160)",
+        "track_width": 0.1,
         "tuning_profile": "",
         "via_diameter": 0.35,
-        "via_drill": 0.2,
+        "via_drill": 0.15,
         "wire_width": 6
       },
       {
         "bus_width": 12,
-        "clearance": 0.15,
+        "clearance": 0.09,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
         "line_style": 0,
         "microvia_diameter": 0.25,
         "microvia_drill": 0.1,
-        "name": "VBAT",
-        "pcb_color": "rgb(220, 40, 40)",
-        "priority": 2,
-        "schematic_color": "rgb(220, 40, 40)",
-        "track_width": 0.5,
+        "name": "GND",
+        "pcb_color": "rgb(130, 130, 130)",
+        "priority": 7,
+        "schematic_color": "rgb(130, 130, 130)",
+        "track_width": 0.2,
         "tuning_profile": "",
         "via_diameter": 0.4,
         "via_drill": 0.2,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.1,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "Gate",
+        "pcb_color": "rgb(120, 60, 220)",
+        "priority": 4,
+        "schematic_color": "rgb(120, 60, 220)",
+        "track_width": 0.15,
+        "tuning_profile": "",
+        "via_diameter": 0.35,
+        "via_drill": 0.15,
         "wire_width": 6
       },
       {
@@ -1619,44 +1568,6 @@
       },
       {
         "bus_width": 12,
-        "clearance": 0.1,
-        "diff_pair_gap": 0.25,
-        "diff_pair_via_gap": 0.25,
-        "diff_pair_width": 0.2,
-        "line_style": 0,
-        "microvia_diameter": 0.25,
-        "microvia_drill": 0.1,
-        "name": "Gate",
-        "pcb_color": "rgb(120, 60, 220)",
-        "priority": 4,
-        "schematic_color": "rgb(120, 60, 220)",
-        "track_width": 0.15,
-        "tuning_profile": "",
-        "via_diameter": 0.35,
-        "via_drill": 0.2,
-        "wire_width": 6
-      },
-      {
-        "bus_width": 12,
-        "clearance": 0.15,
-        "diff_pair_gap": 0.25,
-        "diff_pair_via_gap": 0.25,
-        "diff_pair_width": 0.2,
-        "line_style": 0,
-        "microvia_diameter": 0.25,
-        "microvia_drill": 0.1,
-        "name": "Analog",
-        "pcb_color": "rgb(0, 160, 160)",
-        "priority": 5,
-        "schematic_color": "rgb(0, 160, 160)",
-        "track_width": 0.1,
-        "tuning_profile": "",
-        "via_diameter": 0.35,
-        "via_drill": 0.2,
-        "wire_width": 6
-      },
-      {
-        "bus_width": 12,
         "clearance": 0.09,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
@@ -1671,23 +1582,61 @@
         "track_width": 0.25,
         "tuning_profile": "",
         "via_diameter": 0.35,
-        "via_drill": 0.2,
+        "via_drill": 0.15,
         "wire_width": 6
       },
       {
         "bus_width": 12,
-        "clearance": 0.09,
+        "clearance": 0.15,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
         "line_style": 0,
         "microvia_diameter": 0.25,
         "microvia_drill": 0.1,
-        "name": "GND",
-        "pcb_color": "rgb(130, 130, 130)",
-        "priority": 7,
-        "schematic_color": "rgb(130, 130, 130)",
-        "track_width": 0.2,
+        "name": "RF",
+        "pcb_color": "rgb(200, 160, 0)",
+        "priority": 0,
+        "schematic_color": "rgb(200, 160, 0)",
+        "track_width": 0.105,
+        "tuning_profile": "RF50",
+        "via_diameter": 0.35,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.12,
+        "diff_pair_gap": 0.12,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.12,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "USB",
+        "pcb_color": "rgb(30, 110, 255)",
+        "priority": 1,
+        "schematic_color": "rgb(30, 110, 255)",
+        "track_width": 0.12,
+        "tuning_profile": "",
+        "via_diameter": 0.35,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.15,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "VBAT",
+        "pcb_color": "rgb(220, 40, 40)",
+        "priority": 2,
+        "schematic_color": "rgb(220, 40, 40)",
+        "track_width": 0.5,
         "tuning_profile": "",
         "via_diameter": 0.4,
         "via_drill": 0.2,
@@ -1697,7 +1646,7 @@
     "meta": {
       "version": 5
     },
-    "net_colors": {},
+    "net_colors": null,
     "netclass_assignments": null,
     "netclass_patterns": [
       {
@@ -2052,30 +2001,30 @@
     },
     "tuning_profiles_impedance_geometric": [
       {
-        "profile_name": "RF50",
-        "type": 0,
-        "target_impedance": 50.0,
         "enable_time_domain_tuning": false,
-        "via_prop_delay": 0,
         "layer_entries": [
           {
+            "bottom_reference_layer": "In1.Cu",
+            "delay": 0,
+            "diff_pair_gap": 0,
             "signal_layer": "F.Cu",
             "top_reference_layer": "UNDEFINED",
-            "bottom_reference_layer": "In1.Cu",
-            "width": 105000,
-            "diff_pair_gap": 0,
-            "delay": 0
+            "width": 105000
           },
           {
+            "bottom_reference_layer": "UNDEFINED",
+            "delay": 0,
+            "diff_pair_gap": 0,
             "signal_layer": "B.Cu",
             "top_reference_layer": "In4.Cu",
-            "bottom_reference_layer": "UNDEFINED",
-            "width": 105000,
-            "diff_pair_gap": 0,
-            "delay": 0
+            "width": 105000
           }
         ],
-        "via_overrides": []
+        "profile_name": "RF50",
+        "target_impedance": 50.0,
+        "type": 0,
+        "via_overrides": [],
+        "via_prop_delay": 0
       }
     ]
   }
