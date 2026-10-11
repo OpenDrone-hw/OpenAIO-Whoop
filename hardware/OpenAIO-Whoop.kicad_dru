@@ -158,7 +158,7 @@
   (condition "A.Type == 'Footprint' && A.intersectsArea('PART_EDGE_BAND') && !A.hasComponentClass('SOLDER_PAD')"))
 
 # Spec 8.4 / D2 body rule: courtyards are drawn at max(body, land) + 0.10 (P3 normalises the library), so
-# touching courtyards are 0.20 mm body to body. courtyards_overlap is an error in the .kicad_pro.
+# touching courtyards are 0.20 mm body to body. courtyards_overlap is a warning in the .kicad_pro (owner).
 (rule "courtyards: touching allowed, overlap is an error"
   (constraint courtyard_clearance (min 0mm)))
 

@@ -130,7 +130,7 @@ VIA_FILL_CAP = True                              # spec 8: IPC-4761 type VII fil
 
 # D7: the 16 checks hardware-template ignores, re-enabled before placement.
 SEVERITIES = {
-    "copper_edge_clearance": "error", "courtyards_overlap": "error", "missing_courtyard": "error",
+    "copper_edge_clearance": "error", "courtyards_overlap": "warning", "missing_courtyard": "error",  # courtyards: owner, 2026-10-11
     "malformed_courtyard": "error", "npth_inside_courtyard": "error", "pth_inside_courtyard": "error",
     "silk_edge_clearance": "error", "silk_over_copper": "error", "text_height": "error",
     "text_thickness": "error", "footprint_type_mismatch": "error", "tuning_profile_track_geometries": "error",
@@ -356,7 +356,7 @@ RULES = [
 
     ("courtyards: touching allowed, overlap is an error",
      ["Spec 8.4 / D2 body rule: courtyards are drawn at max(body, land) + 0.10 (P3 normalises the library), so",
-      "touching courtyards are 0.20 mm body to body. courtyards_overlap is an error in the .kicad_pro."],
+      "touching courtyards are 0.20 mm body to body. courtyards_overlap is a warning in the .kicad_pro (owner)."],
      "  (constraint courtyard_clearance (min 0mm))"),
 
     ("0402 to 0402: +0.05",
@@ -1178,6 +1178,7 @@ def write_pro(path, rf):
         c.update(extra)
         classes.append(c)
     ns["classes"] = classes
+    ns["netclass_assignments"] = None                    # KiCad's per-net cache; the patterns are the source
     ns["netclass_patterns"] = [{"netclass": n, "pattern": pat} for n, pats in NETCLASS_PATTERNS for pat in pats]
     ns["net_colors"] = {}            # template per-net colours (+3.3V, +10V, ...) would override the class colours
     wnm = int(round(rf["w"] * 1e6))
@@ -1859,9 +1860,13 @@ def selftest(P, rf):
 # ==============================================================================================================
 # 6. Main
 # ==============================================================================================================
-def run(check=False, recompute_fd=False, do_selftest=False, dru_only=False):
+def run(check=False, recompute_fd=False, do_selftest=False, dru_only=False, pro_only=False):
     rec = impedance(recompute_fd, write=not check)
     rf = rf_values(rec)
+    if pro_only:                                                # KiCad closed: project file only, board untouched
+        write_pro(PRO, rf)
+        print("wrote " + PRO)
+        return 0
     if dru_only:                                                # KiCad may stay open: board and project untouched
         text = dru_text(rf, open(DRU).read())
         changed = text != open(DRU).read()
@@ -1939,7 +1944,7 @@ def main():
             print(impedance_report(rec))
         return 0
     return run(check="--check" in a, recompute_fd="--fd" in a, do_selftest="--selftest" in a,
-               dru_only="--dru-only" in a)
+               dru_only="--dru-only" in a, pro_only="--pro-only" in a)
 
 
 if __name__ == "__main__":
