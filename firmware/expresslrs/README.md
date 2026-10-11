@@ -16,7 +16,7 @@ No firmware binary or RF power calibration is supplied here.
 
 | Function | ESP32 GPIO | Connection |
 |---|---|---|
-| CRSF RX / TX | 3 / 1 | RP2354 GPIO8 TX / GPIO9 RX |
+| CRSF RX / TX | 3 / 1 | RP2354 GPIO24 TX / GPIO25 RX |
 | SX1281 SCK / MOSI / MISO | 27 / 14 / 13 | Dedicated radio SPI |
 | SX1281 NSS / RESET | 26 / 25 | Active low |
 | SX1281 BUSY / DIO1 | 39 / 34 | Input-only ESP32 pins |

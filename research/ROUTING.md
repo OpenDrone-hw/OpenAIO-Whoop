@@ -76,7 +76,15 @@ use the actual finished copper and laminate construction.
 | 5 | FC and gyro | Place U10 centrally enough to reach the ESCs and peripherals. Place U11 away from boost, PA and motor current, with local C137/C138 and U12/C61/C62. Record the sensor orientation before building final firmware |
 | 6 | Receiver and clocks | Keep U16 near U18 with short SPI. Keep X3 and its coupling parts beside U18. Keep X4/C94/C95 beside U19. Keep X1 beside U10 XIN. Preserve antenna clearance rather than using it as spare placement space |
 | 7 | Video | Place R51/C66 at camera entry; U14 close to the VTX video network. Place U15 with R55/C67/C68/D3 as a compact sync branch; C70 must sit between U14 and U15 with short supply/ground connections. Keep video and sync inputs away from SW, phase copper and ESP clock routes |
-| 8 | Remaining support | Put U24 near U10 and its motor escape fanout; C143/C144 at its rail pins. Put U4/C13/C14/D11 together. Place blackbox U13 and decoupling near SPI0; finish indicators, boot button and test access |
+| 8 | Remaining support | Put U24 north of U10 at 0 degrees so A0–A3 face GPIO7/6/5/4; C143/C144 at its rail pins. Check clearance to C46/C51. Put U4 and its fitted bypass parts/D11 together. Place blackbox U13 and decoupling near SPI0; finish indicators, boot button and test access |
+
+For the saved U10 front-side rotation of -90 degrees, keep U13 east, U11 west,
+and OSD/U16 south. The [pin map](PINMAP.md#5-peripheral-allocation) groups each
+interface toward these endpoints. Preserve the gyro's MOSI11/MISO12/SCK14/CS15
+order: it follows U11's actual pad arrangement. Receiver UART1 uses GPIO24/25
+on the south edge. GPIO4–7 carry all four motor signals, in reverse motor
+number order to align with U24. Moving or rotating U10 substantially changes
+these placement advantages.
 
 The component index groups every reference by schematic block. Schematic
 proximity is not PCB proximity: each named local bypass must reach its device

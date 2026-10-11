@@ -1093,7 +1093,7 @@
 		)
 		(uuid "601b62a3-3d74-5520-86fb-8903209dd21b")
 	)
-	(text_box "+3.3V -> LED -> 150R -> GPIO, the pin sinks (low = on). LED0 GPIO10 green, LED1 GPIO24 blue, about 2-3 mA.\nThe LEDs may glow faintly during reset: cosmetic."
+	(text_box "+3.3V -> LED -> 150R -> GPIO, the pin sinks (low = on). LED0 GPIO8 green, LED1 GPIO9 blue, about 2-3 mA.\nThe LEDs may glow faintly during reset: cosmetic."
 		(exclude_from_sim no)
 		(at 88.9 25.4 0)
 		(size 107.95 15.24)

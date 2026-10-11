@@ -1,0 +1,133 @@
+{
+  "schema": "fc-io-review-v1",
+  "date": "2026-10-11",
+  "board": "OpenAIO-Whoop",
+  "baseline_revision": "f91adae",
+  "basis": "Saved owner placement: U10 F.Cu at -90 degrees, gyro west, blackbox northeast, ESP and OSD south.",
+  "gpio": {
+    "0": "SPI0_MISO",
+    "1": "FLASH_CS",
+    "2": "SPI0_SCK",
+    "3": "SPI0_MOSI",
+    "4": "MOTOR4_FC",
+    "5": "MOTOR3_FC",
+    "6": "MOTOR2_FC",
+    "7": "MOTOR1_FC",
+    "8": "LED0",
+    "9": "LED1",
+    "10": "GYRO_INT",
+    "11": "SPI1_MOSI",
+    "12": "SPI1_MISO",
+    "13": "GYRO_CLKIN",
+    "14": "SPI1_SCK",
+    "15": "GYRO_CS",
+    "16": "UART0_TX",
+    "17": "UART0_RX",
+    "18": "LED_STRIP",
+    "19": "HD_EN",
+    "20": "BEEPER",
+    "21": "OSD_W",
+    "22": "OSD_EN",
+    "23": "OSD_SYNC",
+    "24": "UART1_TX",
+    "25": "UART1_RX",
+    "26": "ADC_CURR",
+    "27": "ADC_VBAT",
+    "28": null,
+    "29": null
+  },
+  "changed_u10_gpio_count": 10,
+  "firmware_gpio_count": 28,
+  "schematic_net_count": 262,
+  "all_other_schematic_pin_connections_unchanged": true,
+  "cached_and_library_rp2354a_pin_definitions_match": true,
+  "motor_channel_identity": "MOTOR1..4 remain U24 A0..A3/B0..B3 to ESC1..4; FC GPIO7/6/5/4.",
+  "placement": "Every retained footprint location, side and orientation preserved; U24 remains parked. North of U10 at 0 degrees is the recommended placement, subject to C46/C51 clearance.",
+  "pcb_sync_removed_stale_footprints": [
+    "C22",
+    "C24",
+    "C28",
+    "C30",
+    "C34",
+    "C36",
+    "C40",
+    "C43"
+  ],
+  "pcb_sync_reason": "These eight footprints were already absent from the owner baseline schematic. Synchronization removes the eight inherited parity findings.",
+  "checks": {
+    "board": {
+      "baseline": {
+        "drc_findings": 286,
+        "unconnected": 499,
+        "schematic_parity": 8
+      },
+      "remapped": {
+        "drc_findings": 282,
+        "unconnected": 499,
+        "schematic_parity": 0
+      }
+    },
+    "erc_warnings": [
+      {
+        "type": "endpoint_off_grid",
+        "severity": "warning",
+        "description": "Symbol pin or wire end off connection grid"
+      },
+      {
+        "type": "endpoint_off_grid",
+        "severity": "warning",
+        "description": "Symbol pin or wire end off connection grid"
+      },
+      {
+        "type": "endpoint_off_grid",
+        "severity": "warning",
+        "description": "Symbol pin or wire end off connection grid"
+      },
+      {
+        "type": "multiple_net_names",
+        "severity": "warning",
+        "description": "Both RF_WIFI and RF_WIFI_ANT are attached to the same items; RF_WIFI will be used in the netlist"
+      }
+    ],
+    "new_erc_warnings": 0,
+    "netlist_checks": "7 pass",
+    "fc_io_check": "28 schematic/firmware assignments; mux, ADC, OSD order and separate PIO blocks pass",
+    "fc_io_negative_control": "Swapped OSD W/EN rejected",
+    "custom_rules": "Parser probe and 22 behavior cases pass",
+    "independent_review": "All 61 RP symbol pins, 28 firmware GPIOs, 10 changed pad connections and U24/ESC channel identities checked independently."
+  },
+  "firmware_build": {
+    "betaflight_commit": "e0b7bb01b17b21351057e9ead2d1ab39dd44fa16",
+    "gcc": "13.3.1",
+    "result": "success",
+    "flash_bytes": 428736,
+    "ram_bytes": 471868,
+    "orientation_inputs": [
+      "CW0_DEG",
+      "0"
+    ],
+    "orientation_note": "Explicit compilation placeholders, not approved flight orientation.",
+    "released_binary": false
+  },
+  "limits": [
+    "No routing completed or trace length claimed.",
+    "Four inherited ERC warnings remain: three off-grid OSD cap/power endpoints and duplicate Wi-Fi net names.",
+    "PCB layout DRC and unconnected items remain.",
+    "No motor, RF, thermal, sensor, video or flight tests."
+  ],
+  "sources": {
+    "RP2350": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
+    "Betaflight": "https://github.com/betaflight/betaflight/tree/e0b7bb01b17b21351057e9ead2d1ab39dd44fa16/src/platform/PICO"
+  },
+  "source_sha256": {
+    "hardware/rp2350a.kicad_sch": "a43998219e01e6663887d73377131152b090a18e1e4dca4dafe3ddce389c669d",
+    "hardware/lib.kicad_sym": "7c1cb9af38ca170daf547e917423553a6300b67b988f3fb8bc905688f2adccac",
+    "hardware/OpenAIO-Whoop.kicad_pcb": "9e04bc895c348b30e2df5af05370c089a4b7b4ef5b0406e1133899dbcaf5e5df",
+    "hardware/led.kicad_sch": "b34e94352d4bf6ce3ce42b4e2f3e34b75ac799858e61a815d332f76ad4bd94c2",
+    "hardware/pads.kicad_sch": "0a0ba99e136dfb2e648bc45fa7a08029103c6aae340e8293d9f16556d7f8ce8f",
+    "firmware/betaflight/configs/OPENAIO_WHOOP/config.h": "364186625628286a88534deebd37ed410fed11bbd873b0ca078502ec7116998a",
+    "firmware/betaflight/configs/OPENAIO_WHOOP/config.c": "bd112ee85e3eb047e9b2206de90c58347b48501b829620fe0b1663eca7e32284",
+    "hardware/tools/check_fc_io.py": "01a140a7434cbd47c127cd4ba6c6b33a3827228820afab112a67a2a8f9405645",
+    "research/PINMAP.md": "bbee254a565b41465d3f233a75b0f511cf41d2c6375d8e3c7eaaf976847ff54e"
+  }
+}

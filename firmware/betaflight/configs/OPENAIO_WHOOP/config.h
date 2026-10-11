@@ -29,7 +29,7 @@
 #define SPI1_SDO_PIN PA11
 #define GYRO_1_SPI_INSTANCE SPI1
 #define GYRO_1_CS_PIN PA15
-#define GYRO_1_EXTI_PIN PA7
+#define GYRO_1_EXTI_PIN PA10
 
 // Only enable this for an ICM-42688-P assembly with its matching bypass parts.
 #ifdef OPENAIO_IMU_ICM42688P
@@ -52,10 +52,10 @@
 #define DEFAULT_BLACKBOX_DEVICE BLACKBOX_DEVICE_FLASH
 
 // Bluejay EFM8BB51, one bidirectional DShot state machine per motor on PIO0.
-#define MOTOR1_PIN PA4
+#define MOTOR1_PIN PA7
 #define MOTOR2_PIN PA6
-#define MOTOR3_PIN PA18
-#define MOTOR4_PIN PA20
+#define MOTOR3_PIN PA5
+#define MOTOR4_PIN PA4
 #define DEFAULT_MOTOR_DSHOT_SPEED PWM_TYPE_DSHOT600
 #define DEFAULT_DSHOT_TELEMETRY DSHOT_TELEMETRY_ON
 #define PIO_DSHOT_INDEX 0
@@ -63,8 +63,8 @@
 // UART1 is the onboard ExpressLRS receiver. UART0 goes to the HD video pads.
 #define UART0_TX_PIN PA16
 #define UART0_RX_PIN PA17
-#define UART1_TX_PIN PA8
-#define UART1_RX_PIN PA9
+#define UART1_TX_PIN PA24
+#define UART1_RX_PIN PA25
 #define USE_SERIALRX
 #define USE_SERIALRX_CRSF
 #define USE_TELEMETRY
@@ -105,12 +105,12 @@
 
 // Keep LED strip instructions away from the 31-instruction OSD program.
 #define USE_LED_STRIP
-#define LED_STRIP_PIN PA5
+#define LED_STRIP_PIN PA18
 #define PIO_LEDSTRIP_INDEX 1
-#define LED0_PIN PA10
-#define LED1_PIN PA24
+#define LED0_PIN PA8
+#define LED1_PIN PA9
 #define USE_BEEPER
-#define BEEPER_PIN PA25
+#define BEEPER_PIN PA20
 #define BEEPER_INVERTED
 
 #define ADC_VBAT_PIN PA27

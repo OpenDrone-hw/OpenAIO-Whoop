@@ -2314,7 +2314,7 @@
 		)
 		(uuid "6faaff37-4c41-503d-a2e5-8c533365b63a")
 	)
-	(text_box "Row GND LED 5V BZ-. LED = LED_STRIP straight from GPIO5 (3.3 V logic). 5V feeds strip and buzzer; BZ- = drain of Q26. Copper only (DNP)."
+	(text_box "Row GND LED 5V BZ-. LED = LED_STRIP straight from GPIO18 (3.3 V logic). 5V feeds strip and buzzer; BZ- = drain of Q26. Copper only (DNP)."
 		(exclude_from_sim no)
 		(at 17.78 147.32 0)
 		(size 76.2 12.7)

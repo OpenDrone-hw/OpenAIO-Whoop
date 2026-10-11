@@ -10,16 +10,29 @@ manufacturer identifier until an identifier is registered.
 | Resource | Configuration |
 | --- | --- |
 | MCU / boot flash | RP2354A / 2MB in-package flash |
-| BMI270 | SPI1: SCK14, MISO12, MOSI11, CS15, INT7 |
+| BMI270 | SPI1: SCK14, MISO12, MOSI11, CS15, INT10 |
 | Blackbox | SPI0: SCK2, MISO0, MOSI3, CS1; Puya 16MB |
-| Motors 1 to 4 | GPIO4, 6, 18, 20; PIO0 bidirectional DShot |
-| ExpressLRS | UART1: TX8, RX9; CRSF with MSP-VTX |
+| Motors 1 to 4 | GPIO7, 6, 5, 4; PIO0 bidirectional DShot |
+| ExpressLRS | UART1: TX24, RX25; CRSF with MSP-VTX |
 | HD pads | UART0: TX16, RX17; disabled in the default serial profile |
 | Analog OSD | W21, EN22, SYNC23; PIO2 |
 | Analog VTX permission | GPIO19; high permits power, low forces it off |
-| LED strip | GPIO5; PIO1 |
-| Status / beeper | LEDs10/24, beeper25 |
+| LED strip | GPIO18; PIO1 |
+| Status / beeper | LEDs8/9, beeper20 |
 | Analog inputs | VBAT27, current26 |
+| Spare GPIOs | 28, 29 |
+
+The pin groups follow the RP2354A package edges: blackbox GPIO0–3, motor
+outputs GPIO4–7, status LEDs GPIO8–9, and gyro GPIO10–15. HD UART0 stays on
+GPIO16–17; LED strip, VTX permission and beeper use GPIO18–20. The consecutive
+OSD group stays on GPIO21–23, followed by receiver UART1 on GPIO24–25 and the
+two analog inputs on GPIO26–27. Final component placement must preserve these
+short local groups.
+
+GPIO20 shares hardware PWM slice 2 with GPIO4 and GPIO5. The default motor
+protocol is PIO DShot600, so it does not consume that PWM slice. Do not switch
+the motors to legacy PWM while using the PWM beeper on GPIO20 without
+reassigning the conflicting resources.
 
 `config.c` uses the supported `USE_TARGET_CONFIG` reset hook. It preserves
 CRSF while adding MSP-VTX on UART1 and selects analog AUTO OSD, with SD

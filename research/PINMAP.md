@@ -9,11 +9,11 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | Function | Binding |
 | --- | --- |
 | Flight controller | [Betaflight target](../firmware/betaflight/README.md), pinned 2026.6.2 |
-| Motor signals | GPIO4/6/18/20 through U24, bidirectional 3.3 V to battery-level DShot |
+| Motor signals | Motors 1–4 on GPIO7/6/5/4 through U24, bidirectional 3.3 V to battery-level DShot |
 | Analog video | W21, EN22, active-low SYNC23; PIO2 |
 | Analog permission | GPIO19 high enables U21, low disables it; PINIO default 129 |
 | HD port | UART0 GPIO16/17; VHD remains battery-boost powered |
-| Receiver | UART1 GPIO8/9, CRSF plus MSP-VTX; ESP32 controls the RTC6705 and PA |
+| Receiver | UART1 GPIO24/25, CRSF plus MSP-VTX; ESP32 controls the RTC6705 and PA |
 | Gyro | BMI270 default; final physical orientation must be set after placement |
 
 ## 2. RP2354A signal pins
@@ -24,13 +24,13 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 3 | GPIO1 | `FLASH_CS` |
 | 4 | GPIO2 | `SPI0_SCK` |
 | 5 | GPIO3 | `SPI0_MOSI` |
-| 7 | GPIO4 | `MOTOR1_FC` |
-| 8 | GPIO5 | `LED_STRIP` |
+| 7 | GPIO4 | `MOTOR4_FC` |
+| 8 | GPIO5 | `MOTOR3_FC` |
 | 9 | GPIO6 | `MOTOR2_FC` |
-| 10 | GPIO7 | `GYRO_INT` |
-| 12 | GPIO8 | `UART1_TX` |
-| 13 | GPIO9 | `UART1_RX` |
-| 14 | GPIO10 | `LED0` |
+| 10 | GPIO7 | `MOTOR1_FC` |
+| 12 | GPIO8 | `LED0` |
+| 13 | GPIO9 | `LED1` |
+| 14 | GPIO10 | `GYRO_INT` |
 | 15 | GPIO11 | `SPI1_MOSI` |
 | 16 | GPIO12 | `SPI1_MISO` |
 | 17 | GPIO13 | `GYRO_CLKIN` |
@@ -38,14 +38,14 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 19 | GPIO15 | `GYRO_CS` |
 | 27 | GPIO16 | `UART0_TX` |
 | 28 | GPIO17 | `UART0_RX` |
-| 29 | GPIO18 | `MOTOR3_FC` |
+| 29 | GPIO18 | `LED_STRIP` |
 | 31 | GPIO19 | `HD_EN` |
-| 32 | GPIO20 | `MOTOR4_FC` |
+| 32 | GPIO20 | `BEEPER` |
 | 33 | GPIO21 | `OSD_W` |
 | 34 | GPIO22 | `OSD_EN` |
 | 35 | GPIO23 | `OSD_SYNC` |
-| 36 | GPIO24 | `LED1` |
-| 37 | GPIO25 | `BEEPER` |
+| 36 | GPIO24 | `UART1_TX` |
+| 37 | GPIO25 | `UART1_RX` |
 | 40 | GPIO26_ADC0 | `ADC_CURR` |
 | 41 | GPIO27_ADC1 | `ADC_VBAT` |
 | 42 | GPIO28_ADC2 | - |
@@ -102,6 +102,36 @@ the analog synthesizer supply; U22 controls the PA reference. VHD is independent
 PIO0 serves the four motor state machines. PIO1 drives the LED strip. PIO2
 serves the analog OSD. SPI0 serves the external 16 MB blackbox, while SPI1
 serves the IMU. The RP2354A boot flash is the separate 2 MB in-package device.
+
+The GPIO allocation follows U10's saved front-side placement at -90 degrees.
+North/south below refer to the PCB editor, not the aircraft's flight direction.
+
+| Device group | GPIOs | Physical escape |
+| --- | --- | --- |
+| Blackbox U13 | 0–3 | North edge, east end, toward U13 |
+| Motor translator U24 | 7, 6, 5, 4 for motors 1–4 | North edge, left-to-right in this order |
+| Status LEDs | 8–9 | North edge; low-priority traces |
+| Gyro U11 | INT10, MOSI11, MISO12, CLK13, SCK14, CS15 | Northwest corner and west edge |
+| HD UART0 | TX16, RX17 | West edge |
+| Auxiliary outputs | LED strip18, analog permission19, beeper20 | Southwest corner |
+| OSD | W21, EN22, SYNC23 | South edge beside U14/U15 |
+| Receiver UART1 | TX24, RX25 | South edge beside the bottom-side U16 UART pins |
+| ADC | Current26, battery27; 28–29 unused | South edge beside the input filters |
+
+The gyro SPI order is deliberately retained. U11's east-side pads run MOSI,
+SCK, CS from north to south; exchanging MOSI11 and CS15 to make a numerical
+quartet would introduce a crossing. All six gyro signals occupy one local
+group. INT10 escapes north toward BMI270 INT1; CLK13 is reserved for the
+optional ICM assembly.
+
+Place U24 north of U10 at 0 degrees so A0–A3 face GPIO7/6/5/4 without a
+channel-order reversal. U24 is still parked; check its footprint and C143/C144
+against C46/C51 before committing placement. Motor numbering at the ESCs is
+unchanged. The firmware target follows the new GPIO assignment.
+
+USB, QSPI boot flash, SWD and the oscillator use dedicated pins and are not
+part of the GPIO reassignment. `hardware/tools/check_fc_io.py` checks the
+schematic against the target and verifies SPI/UART mux, ADC and PIO constraints.
 
 ## 6. Receiver MCU pin plan
 
@@ -161,10 +191,10 @@ serves the IMU. The RP2354A boot flash is the separate 2 MB in-package device.
 
 | Motor | FC GPIO | U24 A / B pins | ESC MCU | MCU DShot pin |
 | --- | --- | --- | --- | --- |
-| 1 | 4 | 3 / 12 | U6 | 17 |
+| 1 | 7 | 3 / 12 | U6 | 17 |
 | 2 | 6 | 4 / 11 | U7 | 17 |
-| 3 | 18 | 5 / 10 | U8 | 17 |
-| 4 | 20 | 6 / 9 | U9 | 17 |
+| 3 | 5 | 5 / 10 | U8 | 17 |
+| 4 | 4 | 6 / 9 | U9 | 17 |
 
 The shared ESC sheet is instantiated four times. The following table shows
 ESC1 local nets; the same pins apply to U7, U8 and U9.

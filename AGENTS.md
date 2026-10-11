@@ -87,6 +87,7 @@ kicad-cli pcb drc --schematic-parity --refill-zones hardware/OpenAIO-Whoop.kicad
 python3 hardware/tools/export_bom_plan.py
 python3 hardware/tools/export_interfaces.py
 python3 hardware/tools/check_netlist.py -v
+python3 hardware/tools/check_fc_io.py
 $KPY hardware/tools/check_rules.py hardware/OpenAIO-Whoop.kicad_pcb
 $KPY hardware/tools/check_rule_behavior.py hardware/OpenAIO-Whoop.kicad_pcb
 
