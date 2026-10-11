@@ -31,6 +31,17 @@
 # /advanced-pcb-capabilities, /pcb-product/hdi-6layers). D21: every deliberate break of a conservative rule
 # is a rule named 'D21 <name>' with its reason; nothing is ignored globally.
 
+# D122 (owner: "put all of the copper to copper stuff at a minimum"): one copper clearance, the NextPCB 0.09 minimum,
+# for every net and item. Custom rules override net class clearances; the rules below it are the only exceptions
+# (RF CPWG gap, plated-hole copper).
+(rule "copper clearance 0.09 everywhere"
+  (constraint clearance (min 0.09mm)))
+
+# Spec 8.2: the 0.15 gap sets the 50 ohm CPWG impedance, so RF copper keeps it to every other net.
+(rule "RF: CPWG gap 0.15"
+  (constraint clearance (min 0.15mm))
+  (condition "(A.NetClass == 'RF' || B.NetClass == 'RF') && A.Net != B.Net"))
+
 # Owner decision D97 (HDI): NextPCB 1+4+1 (HDI I), laser microvias L1-L2 and L6-L5 in the 1080 build-up, mechanical
 # buried vias L2-L5 in the core sub-lamination, through vias as before. No mechanical blind vias (another press cycle).
 (rule "HDI 1+4+1: no mechanical blind vias"
@@ -126,12 +137,6 @@
 (rule "NPTH at least 0.40"
   (constraint hole_size (min 0.40mm))
   (condition "A.Type == 'Pad' && !A.isPlated()"))
-
-# 0.04 mask expansion + 0.09 mask dam (NextPCB green 3.5 mil) = 0.13 from pad to track. Pours are copper too, so the
-# zone fill keeps the same distance (spec text names tracks; zones added for the same reason).
-(rule "SMD pad to track and pour 0.13"
-  (constraint clearance (min 0.13mm))
-  (condition "A.Type == 'Pad' && A.Pad_Type == 'SMD' && (B.Type == 'Track' || B.Type == 'Arc' || B.Type == 'Zone') && A.Net != B.Net"))
 
 # Silk clipped at the routed edge or a hole is lost (line silk rule, pcb-agent-commons). KiCad 10.0.6
 # tests silk against Edge.Cuts with the silk_clearance constraint, not edge_clearance.

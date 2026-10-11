@@ -149,11 +149,11 @@ TEXT_DEFAULTS = {"silk_line_width": 0.13, "silk_text_size_h": 0.8, "silk_text_si
 # (name, track, clearance, via dia, via drill, colour, priority, extra)  track None = computed RF width
 NETCLASSES = [
     ("RF", None, 0.15, 0.35, 0.15, "rgb(200, 160, 0)", 0, {"tuning_profile": "RF50"}),
-    ("USB", 0.12, 0.12, 0.35, 0.15, "rgb(30, 110, 255)", 1, {"diff_pair_width": 0.12, "diff_pair_gap": 0.12}),
-    ("VBAT", 0.50, 0.15, 0.40, 0.20, "rgb(220, 40, 40)", 2, {}),
+    ("USB", 0.12, 0.09, 0.35, 0.15, "rgb(30, 110, 255)", 1, {"diff_pair_width": 0.12, "diff_pair_gap": 0.12}),
+    ("VBAT", 0.50, 0.09, 0.40, 0.20, "rgb(220, 40, 40)", 2, {}),
     ("Phase", 0.10, 0.09, 0.35, 0.15, "rgb(200, 0, 200)", 3, {}),   # D121: phases are zones; the net also carries the BEMF taps
-    ("Gate", 0.15, 0.10, 0.35, 0.15, "rgb(120, 60, 220)", 4, {}),
-    ("Analog", 0.10, 0.15, 0.35, 0.15, "rgb(0, 160, 160)", 5, {}),
+    ("Gate", 0.15, 0.09, 0.35, 0.15, "rgb(120, 60, 220)", 4, {}),
+    ("Analog", 0.10, 0.09, 0.35, 0.15, "rgb(0, 160, 160)", 5, {}),
     ("Power", 0.25, 0.09, 0.35, 0.15, "rgb(255, 140, 0)", 6, {}),
     ("GND", 0.20, 0.09, 0.40, 0.20, "rgb(130, 130, 130)", 7, {}),
 ]
@@ -231,6 +231,16 @@ RULES = [
       "board needs on top of them, from the NextPCB published limits (HDI 1+4+1, nextpcb.com/pcb-capabilities,",
       "/advanced-pcb-capabilities, /pcb-product/hdi-6layers). D21: every deliberate break of a conservative rule",
       "is a rule named 'D21 <name>' with its reason; nothing is ignored globally."], None),
+
+    ("copper clearance 0.09 everywhere",
+     ["D122 (owner: \"put all of the copper to copper stuff at a minimum\"): one copper clearance, the NextPCB 0.09 minimum,",
+      "for every net and item. Custom rules override net class clearances; the rules below it are the only exceptions",
+      "(RF CPWG gap, plated-hole copper)."],
+     "  (constraint clearance (min 0.09mm))"),
+
+    ("RF: CPWG gap 0.15",
+     ["Spec 8.2: the 0.15 gap sets the 50 ohm CPWG impedance, so RF copper keeps it to every other net."],
+     "  (constraint clearance (min 0.15mm))\n  (condition \"(A.NetClass == 'RF' || B.NetClass == 'RF') && A.Net != B.Net\")"),
 
     ("HDI 1+4+1: no mechanical blind vias",
      ["Owner decision D97 (HDI): NextPCB 1+4+1 (HDI I), laser microvias L1-L2 and L6-L5 in the 1080 build-up, mechanical",
@@ -323,13 +333,6 @@ RULES = [
     ("NPTH at least 0.40",
      ["NextPCB 0.40 minimum non-plated hole. The mounting holes are Edge.Cuts cut-outs, not pads."],
      "  (constraint hole_size (min 0.40mm))\n  (condition \"A.Type == 'Pad' && !A.isPlated()\")"),
-
-    ("SMD pad to track and pour 0.13",
-     ["0.04 mask expansion + 0.09 mask dam (NextPCB green 3.5 mil) = 0.13 from pad to track. Pours are copper too, so the",
-      "zone fill keeps the same distance (spec text names tracks; zones added for the same reason)."],
-     "  (constraint clearance (min 0.13mm))\n"
-     "  (condition \"A.Type == 'Pad' && A.Pad_Type == 'SMD' && (B.Type == 'Track' || B.Type == 'Arc' || "
-     "B.Type == 'Zone') && A.Net != B.Net\")"),
 
     ("silk 0.20 from the edge and holes",
      ["Silk clipped at the routed edge or a hole is lost (line silk rule, pcb-agent-commons). KiCad 10.0.6",
@@ -1856,9 +1859,16 @@ def selftest(P, rf):
 # ==============================================================================================================
 # 6. Main
 # ==============================================================================================================
-def run(check=False, recompute_fd=False, do_selftest=False):
+def run(check=False, recompute_fd=False, do_selftest=False, dru_only=False):
     rec = impedance(recompute_fd, write=not check)
     rf = rf_values(rec)
+    if dru_only:                                                # KiCad may stay open: board and project untouched
+        text = dru_text(rf, open(DRU).read())
+        changed = text != open(DRU).read()
+        if changed and not check:
+            open(DRU, "w").write(text)
+        print(("would change " if check else "wrote ") + DRU if changed else "DRU up to date")
+        return 1 if (check and changed) else 0
     print(impedance_report(rec))
     P = quiet_pcbnew()
     tmp = tempfile.mkdtemp(prefix="setup_board_")
@@ -1928,7 +1938,8 @@ def main():
         if "--json-only" not in a:
             print(impedance_report(rec))
         return 0
-    return run(check="--check" in a, recompute_fd="--fd" in a, do_selftest="--selftest" in a)
+    return run(check="--check" in a, recompute_fd="--fd" in a, do_selftest="--selftest" in a,
+               dru_only="--dru-only" in a)
 
 
 if __name__ == "__main__":
