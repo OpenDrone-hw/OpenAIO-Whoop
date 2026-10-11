@@ -17,6 +17,7 @@ yours.
 
 Placement facts (from the board, md5 4f845ba5):
 
+- Superseded by the 2026-10-11 schematic trim (D114): after the board sync the board holds 249 footprints (125 front, 124 back); the counts below are the pre-trim placement.
 - 266 footprints: 134 on the front, 132 on the back. 20 are DNP: the 4 motor
   headers J4/J7/J10/J13, the 13 battery and IO solder pads, the AE1 wire hole, and C132/C133
   (Wi-Fi tuning, 1.2 pF).
@@ -72,7 +73,7 @@ finished, inner copper 0.5 oz (`hardware/tools/stackup.json`).
 HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
 
 - Laser microvias 0.10 / 0.25 mm, L1-L2 and L6-L5, copper filled, in pad.
-- Buried vias 0.20 / 0.35 mm, L2-L5, plated over (POFV), staggered 0.25 mm
+- Buried vias 0.15 / 0.35 mm (D116, re-drilled from 0.20), L2-L5, plated over (POFV), staggered 0.25 mm
   from their microvia. No stacking.
 - Through vias are allowed but should be a last resort.
 - D107: every microvia goes in a same-net pad and every buried via under a part
