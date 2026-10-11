@@ -3572,12 +3572,6 @@
 		(uuid "f156f9e1-c2d7-5bfd-8d3b-4488ec0ec2ba")
 	)
 	(junction
-		(at 170.18 45.72)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "05ce988e-e2a3-5a36-a149-2c72e4ab5d31")
-	)
-	(junction
 		(at 203.2 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3596,28 +3590,10 @@
 		(uuid "25142bf2-7395-5921-9551-2e3939590c0d")
 	)
 	(junction
-		(at 170.18 53.34)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4f7a7775-2aae-5c71-a79c-07a0511685d4")
-	)
-	(junction
 		(at 318.77 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "526032bf-1316-5b5b-9fea-ebcd6ce0b68d")
-	)
-	(junction
-		(at 231.14 137.16)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "61e19cc2-5d4f-5509-b803-2d2d92d6941a")
-	)
-	(junction
-		(at 43.18 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "66b53d26-fa36-5c91-b01f-5f2799132bc0")
 	)
 	(junction
 		(at 40.64 124.46)
@@ -3638,12 +3614,6 @@
 		(uuid "960b055d-d816-5197-b516-de5d2117ac5e")
 	)
 	(junction
-		(at 63.5 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "985b33de-0b9b-5b41-b46c-3255ee8560d6")
-	)
-	(junction
 		(at 83.82 127)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3654,12 +3624,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9b671bfc-82e9-5960-9d11-b62b46c1ce7e")
-	)
-	(junction
-		(at 53.34 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b2265ac8-82ef-5024-81c4-00de0e0cb42c")
 	)
 	(junction
 		(at 114.3 127)
@@ -3731,16 +3695,6 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 198.12) (xy 60.96 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "107053f6-a736-548a-a486-aa5bf735a12a")
-	)
-	(wire
-		(pts
 			(xy 203.2 40.64) (xy 203.2 25.4)
 		)
 		(stroke
@@ -3748,16 +3702,6 @@
 			(type default)
 		)
 		(uuid "1d7d3889-5c03-5e18-ae74-b2a73af9b19c")
-	)
-	(wire
-		(pts
-			(xy 30.48 38.1) (xy 43.18 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1ea654bc-65a6-53c0-9df2-db6d19697190")
 	)
 	(wire
 		(pts
@@ -3771,7 +3715,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 53.34) (xy 153.67 53.34)
+			(xy 124.46 53.34) (xy 193.04 53.34)
 		)
 		(stroke
 			(width 0)
@@ -3781,7 +3725,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 198.12) (xy 81.28 198.12)
+			(xy 71.12 198.12) (xy 93.98 198.12)
 		)
 		(stroke
 			(width 0)
@@ -3851,16 +3795,6 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 53.34) (xy 161.29 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "338188d6-6179-4983-a686-6242432230d9")
-	)
-	(wire
-		(pts
 			(xy 60.96 139.7) (xy 60.96 142.24)
 		)
 		(stroke
@@ -3871,16 +3805,6 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 53.34) (xy 170.18 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "43556ca0-8c83-5961-9d68-17e75ea8ab8a")
-	)
-	(wire
-		(pts
 			(xy 295.91 41.91) (xy 293.37 41.91)
 		)
 		(stroke
@@ -3888,16 +3812,6 @@
 			(type default)
 		)
 		(uuid "437a90c7-bb98-5080-b506-6313394928de")
-	)
-	(wire
-		(pts
-			(xy 170.18 45.72) (xy 187.96 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "47c3b8a6-c813-5558-9d1d-3ac334e70d45")
 	)
 	(wire
 		(pts
@@ -3951,26 +3865,6 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 45.72) (xy 53.34 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "68ff2794-dbce-56fb-b26b-88c3c3c87c3e")
-	)
-	(wire
-		(pts
-			(xy 43.18 38.1) (xy 53.34 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69907abc-5c3c-5214-97b4-6522b9cdee62")
-	)
-	(wire
-		(pts
 			(xy 213.36 45.72) (xy 223.52 45.72)
 		)
 		(stroke
@@ -4001,7 +3895,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 198.12) (xy 45.72 198.12)
+			(xy 30.48 198.12) (xy 60.96 198.12)
 		)
 		(stroke
 			(width 0)
@@ -4071,16 +3965,6 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 198.12) (xy 93.98 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8817a8b1-b502-5736-bcb5-799c785b8bc3")
-	)
-	(wire
-		(pts
 			(xy 25.4 124.46) (xy 30.48 124.46)
 		)
 		(stroke
@@ -4141,16 +4025,6 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 45.72) (xy 170.18 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99fd6a2c-0239-5a58-9a71-3bb6dad30810")
-	)
-	(wire
-		(pts
 			(xy 45.72 124.46) (xy 50.8 124.46)
 		)
 		(stroke
@@ -4161,7 +4035,7 @@
 	)
 	(wire
 		(pts
-			(xy 318.77 39.37) (xy 326.39 39.37)
+			(xy 318.77 39.37) (xy 336.55 39.37)
 		)
 		(stroke
 			(width 0)
@@ -4181,7 +4055,7 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 45.72) (xy 153.67 45.72)
+			(xy 129.54 45.72) (xy 187.96 45.72)
 		)
 		(stroke
 			(width 0)
@@ -4251,7 +4125,7 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 38.1) (xy 76.2 38.1)
+			(xy 30.48 38.1) (xy 76.2 38.1)
 		)
 		(stroke
 			(width 0)
@@ -4271,26 +4145,6 @@
 	)
 	(wire
 		(pts
-			(xy 326.39 39.37) (xy 336.55 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cdc53528-1410-5442-a8e3-1863e90263bb")
-	)
-	(wire
-		(pts
-			(xy 63.5 45.72) (xy 63.5 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d0a5a868-2422-57c5-a2f6-92e8024cf3a0")
-	)
-	(wire
-		(pts
 			(xy 295.91 34.29) (xy 293.37 34.29)
 		)
 		(stroke
@@ -4298,16 +4152,6 @@
 			(type default)
 		)
 		(uuid "d9f88129-5922-5855-89cd-bac003a9fc28")
-	)
-	(wire
-		(pts
-			(xy 153.67 45.72) (xy 161.29 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dc863977-e157-4722-9d35-1ccd68be9348")
 	)
 	(wire
 		(pts
@@ -4391,16 +4235,6 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 53.34) (xy 193.04 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ea7c0853-d508-51df-916f-ea1a8e616d8c")
-	)
-	(wire
-		(pts
 			(xy 45.72 129.54) (xy 45.72 124.46)
 		)
 		(stroke
@@ -4448,16 +4282,6 @@
 			(type default)
 		)
 		(uuid "f885f943-86bd-50f9-940d-866482cd04a3")
-	)
-	(wire
-		(pts
-			(xy 53.34 38.1) (xy 63.5 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f8b242d1-ccd0-5d5a-9bf4-80fe81645beb")
 	)
 	(wire
 		(pts
@@ -6527,83 +6351,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 53.34 48.26 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "47d619fa-7cd7-5d37-8601-938ed16aad00")
-		(property "Reference" "#PWR12"
-			(at 53.34 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 53.34 52.07 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 53.34 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 53.34 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 53.34 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e3cf873a-cf7d-5365-aa5b-453e39710959")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 231.14 140.97 0)
 		(unit 1)
@@ -8580,83 +8327,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 63.5 48.26 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "8c5bac8f-1040-5803-9af0-7f92e79b504b")
-		(property "Reference" "#PWR13"
-			(at 63.5 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 63.5 52.07 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 63.5 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 63.5 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 63.5 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "747865d1-2f7b-59d9-a6fc-1a8d97184f8d")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR13")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 60.96 142.24 0)
 		(unit 1)
 		(body_style 1)
@@ -9387,7 +9057,8 @@
 	)
 	(symbol
 		(lib_id "lib:R_Shunt_Kelvin")
-		(at 127 35.56 270)
+		(at 127 35.56 90)
+		(mirror x)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9395,8 +9066,8 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "bd2405fa-006b-5a87-8530-9c802288bb7f")
-		(property "Reference" "R1"
+		(uuid "bba82dd5-e3cb-46d8-af3e-cfb57b2e436e")
+		(property "Reference" "R2"
 			(at 127 31.115 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9483,21 +9154,21 @@
 			)
 		)
 		(pin "1"
-			(uuid "b4e183c4-f2cb-51d3-8b98-a65a29bb5d84")
+			(uuid "5bd45120-eacd-4f34-b50c-26c55c4ac06a")
 		)
 		(pin "2"
-			(uuid "fb87adad-56f4-593d-9223-fe3fd4e81b1b")
+			(uuid "b210c629-a9b9-4af1-8ceb-7cc210d1b7da")
 		)
 		(pin "3"
-			(uuid "3d565210-03ce-5415-ad1e-1cc62354951c")
+			(uuid "ea5613e0-0689-4924-bdca-f49940e7f419")
 		)
 		(pin "4"
-			(uuid "eaa3981c-6ce4-5ecd-94fd-79455a9c24a6")
+			(uuid "d6ff2317-f2d1-4672-866f-c552fd91e956")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "R1")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -9687,120 +9358,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "#PWR30")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 53.34 41.91 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d19c07cb-8e9a-5f3d-803a-e2e180389334")
-		(property "Reference" "C1"
-			(at 55.245 40.64 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "22uF"
-			(at 55.245 43.18 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:C_0603_1608Metric_L"
-			(at 53.34 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 53.34 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 53.34 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C2762594"
-			(at 53.34 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "CL10A226MO7JZNC"
-			(at 53.34 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Samsung Electro-Mechanics"
-			(at 53.34 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "76ee0cb5-0c6d-5f9c-8567-89a24b650640")
-		)
-		(pin "2"
-			(uuid "da7fa578-d1b8-5103-8f8f-1cc580fbde15")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -10300,120 +9857,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "#FLG05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 63.5 41.91 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e0d5acdc-99d5-5aef-8c3b-eeca2cf05644")
-		(property "Reference" "C2"
-			(at 65.405 40.64 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "22uF"
-			(at 65.405 43.18 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:C_0603_1608Metric_L"
-			(at 63.5 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 63.5 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 63.5 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C2762594"
-			(at 63.5 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "CL10A226MO7JZNC"
-			(at 63.5 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Samsung Electro-Mechanics"
-			(at 63.5 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "a12e7c9a-b9fc-5b65-9295-b0d3f2198ca6")
-		)
-		(pin "2"
-			(uuid "bf90b49e-789d-5ceb-812f-5adeff23f551")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "C2")
 					(unit 1)
 				)
 			)
