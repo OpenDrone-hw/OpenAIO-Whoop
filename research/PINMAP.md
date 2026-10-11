@@ -103,31 +103,25 @@ PIO0 serves the four motor state machines. PIO1 drives the LED strip. PIO2
 serves the analog OSD. SPI0 serves the external 16 MB blackbox, while SPI1
 serves the IMU. The RP2354A boot flash is the separate 2 MB in-package device.
 
-The GPIO allocation follows U10's saved front-side placement at -90 degrees.
-North/south below refer to the PCB editor, not the aircraft's flight direction.
+U10 is on F.Cu at (109.45, 109.30) mm, rotation 0 degrees. The table
+uses north/south in the PCB editor, not the aircraft's flight direction.
 
-| Device group | GPIOs | Physical escape |
+| Device group | GPIOs | Package escape on the saved board |
 | --- | --- | --- |
-| Blackbox U13 | 0–3 | North edge, east end, toward U13 |
-| Motor translator U24 | 7, 6, 5, 4 for motors 1–4 | North edge, left-to-right in this order |
-| Status LEDs | 8–9 | North edge; low-priority traces |
-| Gyro U11 | INT10, MOSI11, MISO12, CLK13, SCK14, CS15 | Northwest corner and west edge |
-| HD UART0 | TX16, RX17 | West edge |
-| Auxiliary outputs | LED strip18, analog permission19, beeper20 | Southwest corner |
-| OSD | W21, EN22, SYNC23 | South edge beside U14/U15 |
-| Receiver UART1 | TX24, RX25 | South edge beside the bottom-side U16 UART pins |
-| ADC | Current26, battery27; 28–29 unused | South edge beside the input filters |
+| Blackbox U13 | 0–3 | West edge, upper four signal pads |
+| Motor translator U24 | 7, 6, 5, 4 for motors 1–4 | West edge, GPIO4 to GPIO7 from north to south |
+| Status LEDs | 8–9 | West edge, below the motor signals |
+| Gyro U11 | INT10, MOSI11, MISO12, CLK13, SCK14, CS15 | Southwest corner and south edge |
+| HD UART0 | TX16, RX17 | South edge, east of SWD |
+| Auxiliary outputs | LED strip18, analog permission19, beeper20 | Southeast corner |
+| OSD | W21, EN22, SYNC23 | East edge, below UART1 |
+| Receiver UART1 | TX24, RX25 | East edge, beside the IOVDD38 group |
+| ADC | Current26, battery27; 28–29 unused | East edge, upper half |
 
-The gyro SPI order is deliberately retained. U11's east-side pads run MOSI,
-SCK, CS from north to south; exchanging MOSI11 and CS15 to make a numerical
-quartet would introduce a crossing. All six gyro signals occupy one local
-group. INT10 escapes north toward BMI270 INT1; CLK13 is reserved for the
-optional ICM assembly.
-
-Place U24 north of U10 at 0 degrees so A0–A3 face GPIO7/6/5/4 without a
-channel-order reversal. U24 is still parked; check its footprint and C143/C144
-against C46/C51 before committing placement. Motor numbering at the ESCs is
-unchanged. The firmware target follows the new GPIO assignment.
+The four gyro SPI signals use short In1 routes above the continuous In2
+GND plane. GPIO13 remains the optional ICM assembly clock binding.
+U24 is on B.Cu at (108.00, 107.75) mm, rotation 0 degrees. The motor
+numbering and firmware bindings are unchanged by these placement coordinates.
 
 USB, QSPI boot flash, SWD and the oscillator use dedicated pins and are not
 part of the GPIO reassignment. `hardware/tools/check_fc_io.py` checks the

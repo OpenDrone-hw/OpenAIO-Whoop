@@ -15,7 +15,7 @@ instantiated four times.
 | File or folder | Purpose |
 | --- | --- |
 | `hardware/OpenAIO-Whoop.kicad_sch` and all child `.kicad_sch` files | Complete hierarchical schematic |
-| `hardware/OpenAIO-Whoop.kicad_pcb` | Synchronized placement starting board |
+| `hardware/OpenAIO-Whoop.kicad_pcb` | Synchronized placement and routed copper |
 | `hardware/OpenAIO-Whoop.kicad_pro` | Electrical rules, classes, presets and library path variables |
 | `hardware/OpenAIO-Whoop.kicad_dru` | Custom layer, RF and HDI rules; keep beside the project |
 | `hardware/lib.kicad_sym` | Project component symbols |
@@ -60,6 +60,13 @@ switching traces beneath a gyro, oscillator or analog input. Use local GND
 regions on L4 where a bottom inner signal needs a quiet nearby reference;
 keep signal returns away from split supply boundaries.
 
+Four named areas permit only 0.12 mm phase-sense pickup tracks:
+`ESC1_PHASE_A_SENSE` and `ESC1_PHASE_B_SENSE` on In4, and
+`ESC1_PHASE_C_SENSE` and `ESC4_PHASE_A_SENSE` on In1.
+These connect the phase-voltage divider inputs and carry divider current.
+Motor-current copper stays on the outer faces. The exception rejects other
+nets, widths, layers, zones and any track extending beyond its named area.
+
 The nominal 1.0 mm stackup is in `hardware/tools/stackup.json`. Outer dielectric
 spacing is 0.077 mm. The stored RF starting geometry is 0.105 mm trace / 0.15 mm
 coplanar gap, and USB is 0.12 mm trace / 0.12 mm pair gap. These are design
@@ -71,19 +78,19 @@ use the actual finished copper and laminate construction.
 | Order | Block | Placement requirements |
 | --- | --- | --- |
 | 1 | Mechanical interfaces | Keep the 25.5 mm three-ear pattern and outline. Position motor lands J4/J7/J10/J13, USB J31, battery J2/J3, camera J32 and antenna interfaces for cable access. Reserve connector mating volumes on both faces |
-| 2 | Four ESC cells | For each U6/U7/U8/U9, keep its three AGM210MAP packages and their 22 uF capacitors together on one face. Capacitors bridge source supply and ground at the package lead side. Keep gate loops short; phase copper exits toward the motor lands |
+| 2 | Four ESC cells | Keep each AGM210MAP and its 22 uF capacitor on the same face, with the three bridges grouped around their U6/U7/U8/U9 controller. Capacitors bridge source supply and ground at the package lead side. Keep gate loops short; phase copper exits toward the motor lands |
 | 3 | Battery shunt and boost | J2 to R2 to the battery distribution should be short and wide. Take both sense traces from the Kelvin lands, outside load-current copper. Place U2/L1/input-output capacitors as a compact loop; keep SW copper small |
 | 4 | Two RF chains | Keep U18 to FL1 to AE1 on one face with no RF vias. Keep U19/C110 to U20 to FL2 to J1 on one face. Rotate the whole chain for straight short links; do not retain a parked opposite-face U.FL position |
 | 5 | FC and gyro | Place U10 centrally enough to reach the ESCs and peripherals. Place U11 away from boost, PA and motor current, with local C137/C138 and U12/C61/C62. Record the sensor orientation before building final firmware |
 | 6 | Receiver and clocks | Keep U16 near U18 with short SPI. Keep X3 and its coupling parts beside U18. Keep X4/C94/C95 beside U19. Keep X1 beside U10 XIN. Optimize the Wi-Fi antenna pocket and feed for density; compact trial clearances need measured tuning and Wi-Fi verification |
-| 7 | Video | Place R51/C66 at camera entry; U14 close to the VTX video network. Place U15 with R55/C67/C68/D3 as a compact sync branch; C70 must sit between U14 and U15 with short supply/ground connections. Keep video and sync inputs away from SW, phase copper and ESP clock routes |
-| 8 | Remaining support | Put U24 north of U10 at 0 degrees so A0–A3 face GPIO7/6/5/4; C143/C144 at its rail pins. Check clearance to C46/C51. Put U4 and its fitted bypass parts/D11 together. Place blackbox U13 and decoupling near SPI0; finish indicators, boot button and test access |
+| 7 | Video | Place R51/C66 at camera entry; U14 close to the VTX video network. Place U15 with R55/C67/C68/D3 as a compact sync branch; C70 bypasses U14 and C71 bypasses U15, each with short supply/ground connections. Keep video and sync inputs away from SW, phase copper and ESP clock routes |
+| 8 | Remaining support | Retain U24 north of U10 on B.Cu with C143/C144 at its rail pins; route its four ordered channels to the mapped GPIOs. Put U4 and its fitted bypass parts/D11 together; D10 connects the boost bulk capacitors to this local regulator input. Place blackbox U13 and decoupling near SPI0; finish indicators, boot button and test access |
 
 Read device rotations and pad coordinates from the saved board. The
 [pin map](PINMAP.md#5-peripheral-allocation) groups each interface.
 Preserve the gyro's MOSI11/MISO12/SCK14/CS15
 order: it follows U11's actual pad arrangement. Receiver UART1 uses GPIO24/25
-on the south edge. GPIO4–7 carry all four motor signals, in reverse motor
+on the east edge. GPIO4–7 carry all four motor signals, in reverse motor
 number order to align with U24. Moving or rotating U10 substantially changes
 these placement advantages.
 
@@ -118,6 +125,14 @@ geometry was checked with KiCad connectivity and DRC. Keep the drills
 staggered; the laser has its own landing and does not drill into the buried
 hole. Beyond 0.30 mm centers the two circular lands no longer overlap.
 
+U14 ground pin 2 uses a laser centre 0.025 mm south of the triangular pad
+centre, with its buried mate 0.25 mm north. The checked hole-to-neighbour
+copper gap is 0.18465 mm; the copper gap is 0.10965 mm. This small same-net
+land extension avoids moving the comparator or routing a long ground return.
+The ESP VTX DATA and CS signals use two filled laser lands inside the
+package pad-ring gap because in-pad launches collide with the saved gyro
+routes on In1. These exceptions keep the normal via diameters and clearances.
+
 Check adjacent pad clearance and soldermask separately. A valid overlapping
 via pair does not justify enlarging every fine-pitch pad. High-current paths
 require several such connections or a deliberately sized copper transition,
@@ -141,7 +156,7 @@ remaining local reservations before routing through them:
   mounting-grommet and board-edge part clearance.
 
 `hardware/tools/board_spec.json` retains legacy area geometry as a historical
-placement reference. Do not apply those coordinates to this parked board.
+placement reference. Do not apply those coordinates to the saved board.
 Update the area specification to the accepted placement, then run the full
 board-setup check. `setup_board.py` contains old floorplan coordinates and must
 not be used to regenerate the board over a manual placement.
@@ -150,9 +165,9 @@ not be used to regenerate the board over a manual placement.
 
 Route local supply/bypass loops first, then RF, gyro/video/Kelvin signals and
 USB, then clocks/SPI, DShot and other digital signals. Finish battery/phase
-copper and ground stitching with thermal and return-path review. Move the
-existing escape vias with their device groups; the inherited PCB includes
-obsolete spans and overlaps that are not accepted routing primitives.
+copper and ground stitching with thermal and return-path review. Recheck the
+existing escape vias and their reference copper after any device movement.
+Saved checkpoint checks apply only to the recorded board hash.
 
 After placement, use KiCad's schematic-to-PCB update, refill zones and run DRC
 with schematic parity enabled. Resolve out-of-outline pads, courtyard clashes,

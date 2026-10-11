@@ -55,6 +55,17 @@ def main():
         ("buried core", "buried", "GND", (pcb.In1_Cu, pcb.In4_Cu), True),
         ("illegal blind", "blind", "GND", (pcb.F_Cu, pcb.In4_Cu), False),
         ("through via", "through", "GND", (pcb.F_Cu, pcb.B_Cu), False),
+        ("sense ESC1 A", "track", "/ESC1/PHASE_A", pcb.In4_Cu, True),
+        ("sense ESC1 B", "track", "/ESC1/PHASE_B", pcb.In4_Cu, True),
+        ("sense ESC1 C", "track", "/ESC1/PHASE_C", pcb.In1_Cu, True),
+        ("sense ESC4 A", "track", "/ESC4/PHASE_A", pcb.In1_Cu, True),
+        ("sense wrong width", "track", "/ESC1/PHASE_A", pcb.In4_Cu, False),
+        ("sense wrong net", "track", "/ESC1/PHASE_B", pcb.In4_Cu, False),
+        ("sense outside area", "track", "/ESC1/PHASE_A", pcb.In4_Cu, False),
+        ("sense wrong layer", "track", "/ESC1/PHASE_A", pcb.In1_Cu, False),
+        ("sense B wrong layer", "track", "/ESC1/PHASE_B", pcb.In1_Cu, False),
+        ("sense C wrong layer", "track", "/ESC1/PHASE_C", pcb.In4_Cu, False),
+        ("sense phase zone", "zone", "/ESC1/PHASE_A", pcb.In4_Cu, False),
     ]
     board = pcb.BOARD()
     board.SetCopperLayerCount(6)
@@ -84,6 +95,29 @@ def main():
             item.SetLayerPair(*layer)
             item.SetWidth(pcb.FromMM(0.25 if kind == "micro" else 0.35))
             item.SetDrill(pcb.FromMM(0.10 if kind == "micro" else 0.15))
+        if name.startswith("sense "):
+            # Named areas bound the exact track, not any crossing or nearby track.
+            suffix = {"sense ESC1 B": "ESC1_PHASE_B_SENSE",
+                      "sense B wrong layer": "ESC1_PHASE_B_SENSE",
+                      "sense C wrong layer": "ESC1_PHASE_C_SENSE",
+                      "sense ESC1 C": "ESC1_PHASE_C_SENSE",
+                      "sense ESC4 A": "ESC4_PHASE_A_SENSE"}.get(name, "ESC1_PHASE_A_SENSE")
+            area = pcb.ZONE(board); area.SetIsRuleArea(True)
+            area.SetZoneName(suffix)
+            layers = pcb.LSET(); layers.AddLayer(pcb.F_Cu)
+            layers.AddLayer(pcb.In4_Cu if suffix in ("ESC1_PHASE_A_SENSE", "ESC1_PHASE_B_SENSE") else pcb.In1_Cu)
+            area.SetLayerSet(layers)
+            area.SetNet(nets["GND"])
+            area.SetDoNotAllowTracks(False); area.SetDoNotAllowVias(False)
+            area.SetDoNotAllowPads(False); area.SetDoNotAllowFootprints(False)
+            area.SetDoNotAllowZoneFills(False)
+            outline = area.Outline(); outline.NewOutline()
+            for dx, dy in [(-.2, -.2), (2.2, -.2), (2.2, .2), (-.2, .2)]:
+                point = pos(dx, dy); outline.Append(point.x, point.y)
+            board.Add(area)
+            if kind == "track":
+                item.SetWidth(pcb.FromMM(.20 if name == "sense wrong width" else .12))
+                if name == "sense outside area": item.SetEnd(pos(3, 0))
         item.SetNet(nets[netname]); board.Add(item)
         objects.append((name, str(item.m_Uuid.AsString()), allowed))
     stacked_ids = set()

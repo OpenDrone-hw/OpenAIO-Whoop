@@ -111,7 +111,7 @@ V4_BOARD = True
 V4_AREAS = ("MOUNT_LEFT", "MOUNT_REAR", "MOUNT_RIGHT", "MOUNT_PAD_LEFT", "MOUNT_PAD_REAR", "MOUNT_PAD_RIGHT",
             "PART_EDGE_BAND", "RF_RX_HOLE", "RF_RX_FEED", "RF_RX_ROOT", "RF_VTX_STRIP", "RF_PAD_CUTOUT",
             "RF_PAD_CUTOUT_L3", "SHUNT_CORRIDOR", "WIFI_VOID_V1", "WIFI_VOID_V2_L2", "WIFI_VOID_V2_L3", "WIFI_FAR_F",
-            "WIFI_GND_LINK", "BOOST_GND_L5", "USB_MATING", "TAB_T1", "TAB_T3", "TAB_T4")
+            "WIFI_GND_LINK", "BOOST_GND_L5", "ESC1_PHASE_A_SENSE", "ESC1_PHASE_B_SENSE", "ESC1_PHASE_C_SENSE", "ESC4_PHASE_A_SENSE", "USB_MATING", "TAB_T1", "TAB_T3", "TAB_T4")
 
 # spec 8.1 / 8.4 + NextPCB published limits (nextpcb.com/pcb-capabilities, read 2026-10-11): board minimums (the
 # .kicad_pro "rules" block). Annular ring 3.5 mil (0.09) for 1 oz, mechanical drill 0.15 (boards <= 1.2 mm), via
@@ -463,11 +463,11 @@ RULES = [
      "  (condition \"A.Layer == 'In3.Cu' && A.NetName != 'GND' && A.NetClass != 'VBAT' && A.NetClass != 'Power'\")"),
 
     ("Inner signal layers: no battery phase RF or sensitive analog",
-     ["In1/In4 carry digital signals and local ESC gates/BEMF. Battery and phase copper stays off them.",
+     ["In1/In4 carry signals. Phase power stays outer; four bounded .12 mm In1/In4 pickups carry divider current.",
       "Video, Kelvin, regulator feedback, oscillator and RF nets remain on an outer face over local ground."],
      "  (constraint disallow track zone)\n"
      "  (condition \"(A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu') && "
-     "(A.NetClass == 'VBAT' || A.NetClass == 'Phase' || A.NetClass == 'RF' || A.NetClass == 'Analog')\")"),
+     "(A.NetClass == 'VBAT' || (A.NetClass == 'Phase' && !(A.Type == 'Track' && A.Width == 0.12mm && ((A.Layer == 'In1.Cu' && ((A.NetName == '/ESC1/PHASE_C' && A.enclosedByArea('ESC1_PHASE_C_SENSE')) || (A.NetName == '/ESC4/PHASE_A' && A.enclosedByArea('ESC4_PHASE_A_SENSE')))) || (A.Layer == 'In4.Cu' && ((A.NetName == '/ESC1/PHASE_A' && A.enclosedByArea('ESC1_PHASE_A_SENSE')) || (A.NetName == '/ESC1/PHASE_B' && A.enclosedByArea('ESC1_PHASE_B_SENSE'))))))) || A.NetClass == 'RF' || A.NetClass == 'Analog')\")"),
 
     ("Regulator switch nodes: outer layers only",
      ["The RP core buck switch node and boost switch node stay inside their component-side hot loops."],
