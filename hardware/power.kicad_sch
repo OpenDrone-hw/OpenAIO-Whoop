@@ -3592,12 +3592,6 @@
 		(uuid "f156f9e1-c2d7-5bfd-8d3b-4488ec0ec2ba")
 	)
 	(junction
-		(at 170.18 45.72)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "05ce988e-e2a3-5a36-a149-2c72e4ab5d31")
-	)
-	(junction
 		(at 203.2 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3616,28 +3610,10 @@
 		(uuid "25142bf2-7395-5921-9551-2e3939590c0d")
 	)
 	(junction
-		(at 170.18 53.34)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4f7a7775-2aae-5c71-a79c-07a0511685d4")
-	)
-	(junction
 		(at 318.77 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "526032bf-1316-5b5b-9fea-ebcd6ce0b68d")
-	)
-	(junction
-		(at 231.14 137.16)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "61e19cc2-5d4f-5509-b803-2d2d92d6941a")
-	)
-	(junction
-		(at 43.18 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "66b53d26-fa36-5c91-b01f-5f2799132bc0")
 	)
 	(junction
 		(at 40.64 124.46)
@@ -3751,16 +3727,6 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 198.12) (xy 60.96 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "107053f6-a736-548a-a486-aa5bf735a12a")
-	)
-	(wire
-		(pts
 			(xy 203.2 40.64) (xy 203.2 25.4)
 		)
 		(stroke
@@ -3771,7 +3737,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 38.1) (xy 43.18 38.1)
+			(xy 30.48 38.1) (xy 53.34 38.1)
 		)
 		(stroke
 			(width 0)
@@ -3791,7 +3757,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 53.34) (xy 153.67 53.34)
+			(xy 124.46 53.34) (xy 193.04 53.34)
 		)
 		(stroke
 			(width 0)
@@ -3801,7 +3767,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 198.12) (xy 81.28 198.12)
+			(xy 71.12 198.12) (xy 93.98 198.12)
 		)
 		(stroke
 			(width 0)
@@ -3871,16 +3837,6 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 53.34) (xy 161.29 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "338188d6-6179-4983-a686-6242432230d9")
-	)
-	(wire
-		(pts
 			(xy 60.96 139.7) (xy 60.96 142.24)
 		)
 		(stroke
@@ -3891,16 +3847,6 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 53.34) (xy 170.18 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "43556ca0-8c83-5961-9d68-17e75ea8ab8a")
-	)
-	(wire
-		(pts
 			(xy 295.91 41.91) (xy 293.37 41.91)
 		)
 		(stroke
@@ -3908,16 +3854,6 @@
 			(type default)
 		)
 		(uuid "437a90c7-bb98-5080-b506-6313394928de")
-	)
-	(wire
-		(pts
-			(xy 170.18 45.72) (xy 187.96 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "47c3b8a6-c813-5558-9d1d-3ac334e70d45")
 	)
 	(wire
 		(pts
@@ -3981,16 +3917,6 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 38.1) (xy 53.34 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69907abc-5c3c-5214-97b4-6522b9cdee62")
-	)
-	(wire
-		(pts
 			(xy 213.36 45.72) (xy 223.52 45.72)
 		)
 		(stroke
@@ -4021,7 +3947,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 198.12) (xy 45.72 198.12)
+			(xy 30.48 198.12) (xy 60.96 198.12)
 		)
 		(stroke
 			(width 0)
@@ -4091,16 +4017,6 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 198.12) (xy 93.98 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8817a8b1-b502-5736-bcb5-799c785b8bc3")
-	)
-	(wire
-		(pts
 			(xy 25.4 124.46) (xy 30.48 124.46)
 		)
 		(stroke
@@ -4161,16 +4077,6 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 45.72) (xy 170.18 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99fd6a2c-0239-5a58-9a71-3bb6dad30810")
-	)
-	(wire
-		(pts
 			(xy 45.72 124.46) (xy 50.8 124.46)
 		)
 		(stroke
@@ -4181,7 +4087,7 @@
 	)
 	(wire
 		(pts
-			(xy 318.77 39.37) (xy 326.39 39.37)
+			(xy 318.77 39.37) (xy 336.55 39.37)
 		)
 		(stroke
 			(width 0)
@@ -4201,7 +4107,7 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 45.72) (xy 153.67 45.72)
+			(xy 129.54 45.72) (xy 187.96 45.72)
 		)
 		(stroke
 			(width 0)
@@ -4291,16 +4197,6 @@
 	)
 	(wire
 		(pts
-			(xy 326.39 39.37) (xy 336.55 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cdc53528-1410-5442-a8e3-1863e90263bb")
-	)
-	(wire
-		(pts
 			(xy 63.5 45.72) (xy 63.5 48.26)
 		)
 		(stroke
@@ -4318,16 +4214,6 @@
 			(type default)
 		)
 		(uuid "d9f88129-5922-5855-89cd-bac003a9fc28")
-	)
-	(wire
-		(pts
-			(xy 153.67 45.72) (xy 161.29 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dc863977-e157-4722-9d35-1ccd68be9348")
 	)
 	(wire
 		(pts
@@ -4408,16 +4294,6 @@
 			(type default)
 		)
 		(uuid "e987f316-6bb5-5e21-97f9-9d6dd19814d5")
-	)
-	(wire
-		(pts
-			(xy 170.18 53.34) (xy 193.04 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ea7c0853-d508-51df-916f-ea1a8e616d8c")
 	)
 	(wire
 		(pts
@@ -8205,6 +8081,124 @@
 		)
 	)
 	(symbol
+		(lib_id "lib:R_Shunt_Kelvin")
+		(at 127 35.56 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "79b7d408-debc-49d2-9c3d-2aa1837a9774")
+		(property "Reference" "R1"
+			(at 127 31.115 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "0.5mR 2W"
+			(at 127 33.02 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_L"
+			(at 127 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 127 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Shunt resistor with Kelvin connections, 4-pad 1206 land; pins 1/2 current, 3/4 sense (Device:R_Shunt graphics)"
+			(at 127 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C346511"
+			(at 127 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "HCS1206FTL500"
+			(at 127 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Stackpole"
+			(at 127 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d659d9e7-eec8-4c3f-b81a-66fe55b5ee82")
+		)
+		(pin "2"
+			(uuid "71fa3d40-2d5c-46f7-a5f3-5b525a236000")
+		)
+		(pin "3"
+			(uuid "4164ba0e-a93e-4539-9dba-c7ac34deb21d")
+		)
+		(pin "4"
+			(uuid "9c29d6a7-497e-4c44-8d13-2c1592d36016")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "lib:INA186A3IDCKR")
 		(at 203.2 50.8 0)
 		(unit 1)
@@ -9400,125 +9394,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "#PWR20")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "lib:R_Shunt_Kelvin")
-		(at 127 35.56 90)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "bd2405fa-006b-5a87-8530-9c802288bb7f")
-		(property "Reference" "R1"
-			(at 127 31.115 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0.5mR 2W"
-			(at 127 33.02 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_L"
-			(at 127 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 127 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Shunt resistor with Kelvin connections, 4-pad 1206 land; pins 1/2 current, 3/4 sense (Device:R_Shunt graphics)"
-			(at 127 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C346511"
-			(at 127 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "HCS1206FTL500"
-			(at 127 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Stackpole"
-			(at 127 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b4e183c4-f2cb-51d3-8b98-a65a29bb5d84")
-		)
-		(pin "2"
-			(uuid "fb87adad-56f4-593d-9223-fe3fd4e81b1b")
-		)
-		(pin "3"
-			(uuid "3d565210-03ce-5415-ad1e-1cc62354951c")
-		)
-		(pin "4"
-			(uuid "eaa3981c-6ce4-5ecd-94fd-79455a9c24a6")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "R1")
 					(unit 1)
 				)
 			)
