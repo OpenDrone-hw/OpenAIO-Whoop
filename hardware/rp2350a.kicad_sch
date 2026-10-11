@@ -457,7 +457,7 @@
 					)
 				)
 			)
-			(property "Footprint" "OpenDrone:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T"
+			(property "Footprint" "lib:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense"
 				(at 0 -7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -629,7 +629,7 @@
 					)
 				)
 			)
-			(property "Footprint" "OpenDrone:DFN-3L_L1.0-W0.6-P0.65-BR"
+			(property "Footprint" "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W"
 				(at 0 -15.24 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -971,7 +971,7 @@
 					)
 				)
 			)
-			(property "Footprint" "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense"
+			(property "Footprint" "lib:OSC-SMD_4P-L2.0-W1.6-BL_YXC_YSO110TR_Dense"
 				(at 0 -8.89 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1139,7 +1139,7 @@
 					)
 				)
 			)
-			(property "Footprint" "OpenDrone:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4"
+			(property "Footprint" "lib:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_L"
 				(at 0 -67.31 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -12014,7 +12014,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense"
+		(property "Footprint" "lib:OSC-SMD_4P-L2.0-W1.6-BL_YXC_YSO110TR_Dense"
 			(at 143.51 172.72 0)
 			(hide yes)
 			(show_name no)

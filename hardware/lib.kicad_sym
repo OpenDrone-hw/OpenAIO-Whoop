@@ -37,7 +37,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2"
+		(property "Footprint" "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100"
 			(at 0 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -534,7 +534,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP"
+		(property "Footprint" "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L"
 			(at 5.08 -1.905 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1137,7 +1137,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T"
+		(property "Footprint" "lib:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense"
 			(at 0 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1309,7 +1309,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:DFN-3L_L1.0-W0.6-P0.65-BR"
+		(property "Footprint" "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W"
 			(at 0 -15.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2155,7 +2155,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:LGA-14_L3.0-W2.5-P0.50-BR"
+		(property "Footprint" "lib:LGA-14_L3.0-W2.5-P0.50-BR_W"
 			(at 0 -15.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2527,7 +2527,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51"
+		(property "Footprint" "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L"
 			(at 0 20.32 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3038,7 +3038,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO"
+		(property "Footprint" "lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO_L"
 			(at 0 -33.02 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4043,7 +4043,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:SOT-363_SC-70-6"
+		(property "Footprint" "lib:SOT-363_SC-70-6_Dense"
 			(at 0 -17.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4532,7 +4532,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm"
+		(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L"
 			(at 0 -11.43 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4794,7 +4794,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:IND-SMD_L2.5-W2.0_FTC252012"
+		(property "Footprint" "lib:IND-SMD_L2.5-W2.0_FTC252012_L"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5174,7 +5174,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense"
+		(property "Footprint" "lib:OSC-SMD_4P-L2.0-W1.6-BL_YXC_YSO110TR_Dense"
 			(at 0 -8.89 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5342,7 +5342,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z"
+		(property "Footprint" "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense"
 			(at 0 -8.89 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5512,7 +5512,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA"
+		(property "Footprint" "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA_L"
 			(at 0 -12.7 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6011,7 +6011,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4"
+		(property "Footprint" "lib:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_L"
 			(at 0 -67.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7229,7 +7229,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_Dense"
+		(property "Footprint" "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_L"
 			(at 0 -33.02 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8091,7 +8091,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_Dense"
+		(property "Footprint" "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_L"
 			(at -1.778 0 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8649,7 +8649,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:X3-DFN0603-2_L0.6-W0.3-RD"
+		(property "Footprint" "lib:X3-DFN0603-2_L0.6-W0.3-RD_W"
 			(at 0 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8785,7 +8785,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L"
+		(property "Footprint" "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L_L"
 			(at 0 -17.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9947,7 +9947,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:X2SON-6_L1.0-W0.8-BL"
+		(property "Footprint" "lib:X2SON-6_L1.0-W0.8-BL_Dense"
 			(at 0 -10.16 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10151,7 +10151,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_Dense"
+		(property "Footprint" "lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_L"
 			(at 0 -21.59 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10848,7 +10848,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:X2SON-4_L0.8-W0.8-P0.48-TL-A"
+		(property "Footprint" "lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense"
 			(at 0 -10.16 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11069,7 +11069,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:TI_SOT-9X3-3_DRT"
+		(property "Footprint" "lib:TI_SOT-9X3-3_DRT_L"
 			(at 0 -10.16 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11256,7 +11256,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:TI_SOT-583_DRL"
+		(property "Footprint" "lib:TI_SOT-583_DRL_L"
 			(at 0 -12.7 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11534,7 +11534,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:TI_VQFN-HR-7_2x2mm_RWU"
+		(property "Footprint" "lib:TI_VQFN-HR-7_2x2mm_RWU_L"
 			(at 0 -12.7 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12003,7 +12003,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical"
+		(property "Footprint" "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical_L"
 			(at 0 -12.7 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12188,7 +12188,7 @@
 				)
 			)
 		)
-		(property "Footprint" "OpenDrone:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B"
+		(property "Footprint" "lib:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_Dense"
 			(at 0 -16.51 0)
 			(show_name no)
 			(do_not_autoplace no)

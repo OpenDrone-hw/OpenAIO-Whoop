@@ -3270,7 +3270,7 @@
    "mpn": "OT201612MJBA4SL",
    "lcsc": "C669076",
    "package": "2016",
-   "footprint": "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense",
+   "footprint": "lib:OSC-SMD_4P-L2.0-W1.6-BL_YXC_YSO110TR_Dense",
    "symbol": "lib:OT201612MJBA4SL",
    "side": "F",
    "region": "fc_xtal",
@@ -3283,7 +3283,7 @@
     "GND",
     "XIN"
    ],
-   "notes": "12 MHz CMOS oscillator on RP2354A XIN (D99(a)/D100, research/OSCILLATOR-O3.md): pin 1 EN tied to +3.3V, pin 2 GND, pin 3 OUT -> XIN (U10 pin 21), pin 4 VDD +3.3V with C42 100 nF; U10 XOUT (pin 22) no-connect. Replaces the ABM8-272-T3 crystal + C43 + R40 (D78 superseded); within 3 mm of U10 pin 21",
+   "notes": "12 MHz CMOS oscillator on RP2354A XIN (D99(a)/D100, research/OSCILLATOR-O3.md): pin 1 EN tied to +3.3V, pin 2 GND, pin 3 OUT -> XIN (U10 pin 21), pin 4 VDD +3.3V with C42 100 nF; U10 XOUT (pin 22) no-connect. Replaces the ABM8-272-T3 crystal + C43 + R40 (D78 superseded); within 3 mm of U10 pin 21; land from the YSO110TR sheet (critique 2026-10-11: the shared TCXO land covered about 65 % of each terminal)",
    "lib_work": []
   },
   {
