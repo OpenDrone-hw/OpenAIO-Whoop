@@ -33,6 +33,13 @@ For an ICM-42688-P population, use its own local network: 10 nF on VDDIO and
 The fitted BOM and target use BMI270. A shared land pattern does not make the
 bypass population interchangeable.
 
+C44–C48 provide local 100 nF bypass for IOVDD pins 1, 11, 20, 30 and 38.
+C49 serves the adjacent ADC_AVDD 44 and IOVDD 45 pins; C54 serves the
+adjacent USB_OTP_VDD 53 and QSPI_IOVDD 54 pins. Each shared pair joins
+locally at its capacitor with short stubs and a nearby ground return. The
+Raspberry Pi hardware guide explicitly shares pins 53/54 in its example.
+C42 belongs to the separate oscillator.
+
 C52 and C56 provide the RP core's two nominal 4.7 uF bulk positions; C50/C51
 remain 100 nF. C52 belongs by DVDD pin 23. Do not reinstate the removed C134
 merely because an old drawing mentions it.

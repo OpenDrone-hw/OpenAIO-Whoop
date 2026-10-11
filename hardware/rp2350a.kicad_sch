@@ -4008,10 +4008,10 @@
 		)
 		(uuid "4e00430a-625d-503e-9d2e-2ace2c7f02f1")
 	)
-	(text_box "100 nF 0201 per supply pin; C49 at ADC_AVDD 44, C54 <= 1 mm from QSPI_IOVDD 54."
+	(text_box "100 nF local bypass: C49 shares ADC44 / IOVDD45; C54 shares USB53 / QSPI54. Short pin stubs, local GND."
 		(exclude_from_sim no)
 		(at 91.44 73.66 0)
-		(size 129.54 7.62)
+		(size 144.78 7.62)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)

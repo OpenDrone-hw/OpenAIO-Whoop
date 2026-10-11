@@ -9,7 +9,8 @@
    "y": -2.8,
    "w": 0.56,
    "h": 0.18,
-   "shape": "rect"
+   "shape": "roundrect",
+   "roundrect_rratio": 0.25
   },
   {
    "number": "2",
@@ -121,7 +122,8 @@
    "y": 2.8,
    "w": 0.56,
    "h": 0.18,
-   "shape": "rect"
+   "shape": "roundrect",
+   "roundrect_rratio": 0.25
   },
   {
    "number": "16",
@@ -129,7 +131,8 @@
    "y": 3.28,
    "w": 0.18,
    "h": 0.56,
-   "shape": "rect"
+   "shape": "roundrect",
+   "roundrect_rratio": 0.25
   },
   {
    "number": "17",
@@ -241,7 +244,8 @@
    "y": 3.28,
    "w": 0.18,
    "h": 0.56,
-   "shape": "rect"
+   "shape": "roundrect",
+   "roundrect_rratio": 0.25
   },
   {
    "number": "31",
@@ -249,7 +253,8 @@
    "y": 2.8,
    "w": 0.56,
    "h": 0.18,
-   "shape": "rect"
+   "shape": "roundrect",
+   "roundrect_rratio": 0.25
   },
   {
    "number": "32",
@@ -361,7 +366,8 @@
    "y": -2.8,
    "w": 0.56,
    "h": 0.18,
-   "shape": "rect"
+   "shape": "roundrect",
+   "roundrect_rratio": 0.25
   },
   {
    "number": "46",
@@ -369,7 +375,8 @@
    "y": -3.28,
    "w": 0.18,
    "h": 0.56,
-   "shape": "rect"
+   "shape": "roundrect",
+   "roundrect_rratio": 0.25
   },
   {
    "number": "47",
@@ -481,7 +488,8 @@
    "y": -3.28,
    "w": 0.18,
    "h": 0.56,
-   "shape": "rect"
+   "shape": "roundrect",
+   "roundrect_rratio": 0.25
   },
   {
    "number": "61",
@@ -503,5 +511,6 @@
  "derivation": "IPC-7351 least density (L) variant of lib:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_Dense (D109, D101 full land set): toe 3.56 (D 7 BSC, aaa 0.05 -> 3.525 + 0.035), heel 3.00 kept (Fig 144 inner 6.00; IPC L heel 0 at Smin = 7.0 - 0.05 - 2 x 0.45; the builder had trimmed it to 3.05, verifier restored 3.00), width 0.18 = b nom (0.13/0.18/0.23), EP 3.40/paste unchanged. Rule: outer land edge = max(terminal end nominal + 0.05, terminal end at max package tolerance + 0.03), capped at nominal + 0.15; heel kept unless it ran past D/2 - Lmax; side = max(IPC-7351B L X, b nominal), never wider than the original; courtyard = max(body, lands) + 0.10. Origin, pad numbers, EP/paste/mask and 3D model unchanged. Base derivation: Figure 144 land with the toe trimmed (heel edge 3.00 kept); EP and paste as _W",
  "exposed": [
   "61"
- ]
+ ],
+ "corner_pad_shape_derivation": "Only the eight corner-facing peripheral pads 1,15,16,30,31,45,46,60 use rounded rectangles, radius 0.045 mm (25% of 0.18 mm short side), following KiCad KLC F6.3 / IPC-7351C radius guidance. Centres, bounding extents, toe, heel, pitch and mask expansion are unchanged. This removes the four internal mask-web violations at the retained 0.04 mm expansion and 0.09 mm minimum web. It is a local land-pattern engineering adaptation, not a manufacturer-specified mask pattern."
 }

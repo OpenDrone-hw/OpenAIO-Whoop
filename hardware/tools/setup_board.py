@@ -311,9 +311,9 @@ RULES = [
      "B.Pad_Type == 'Through-hole' && A.Net != B.Net && A.Fabrication_Property != 'Heatsink pad' && "
      "B.Fabrication_Property != 'Heatsink pad'\")"),
 
-    ("D65 plug-ready motor land: PicoBlade rings 0.35 apart",
-     ["D65 / D21: the Molex 53047 PicoBlade header fixes the 1.25 mm pitch; 0.90 rings (0.50 drill + 0.20 ring)",
-      "leave 0.35 mm copper between neighbouring holes (NextPCB 0.40 general value; the BetaFPV Matrix 1S 5IN1 II",
+    ("D65 plug-ready motor land: PicoBlade rings 0.33 apart",
+     ["D65 / D21: the Molex 53047 PicoBlade header fixes the 1.25 mm pitch; 0.92 rings (0.50 drill + 0.21 ring)",
+      "leave 0.33 mm copper between neighbouring holes (NextPCB 0.40 general value; the BetaFPV Matrix 1S 5IN1 II",
       "ships the same 1.25 mm plated land). Scoped to MotorPad_PicoBlade pads (the four lands are far apart); NextPCB EQ item."],
      "  (constraint clearance (min 0.30mm))\n"
      "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('*:MotorPad_PicoBlade*') && "
@@ -564,7 +564,7 @@ RULES = [
 
     ("USB: length match",
      ["Spec 8.2: length-matched pair; 0.5 mm is about 3 ps, far inside the 12 Mbit/s budget."],
-     "  (constraint skew (max 0.5mm))\n  (condition \"A.NetClass == 'USB'\")"),
+     "  (constraint skew (max 0.5mm) (within_diff_pairs))\n  (condition \"A.NetClass == 'USB'\")"),
 
     ("D21 Analog X2SON land gaps (U14, U15)",
      ["D21 / route sync 2026-10-10: the Analog class clearance (0.15) also hits pad pairs inside the 1.0 x 0.8 X2SON",
@@ -1144,6 +1144,32 @@ def configure_v4(spec):
         RULES = v4_rules(RULES)
     return V4
 
+
+# Floorplan rule areas are saved natively on the board. These rules retain their
+# electrical restrictions when the DRU is regenerated. Footprint intersections
+# use conservative courtyards and are separate from the component-body audit.
+RULES.extend([
+    ("RX hole: no other footprints", [],
+     "  (severity warning)\n  (constraint disallow footprint)\n"
+     "  (condition \"A.Type == 'Footprint' && A.intersectsArea('RF_RX_HOLE') && A.Reference != 'AE1'\")"),
+    ("WiFi window: no vias", [],
+     "  (constraint disallow via)\n  (condition \"A.intersectsArea('WIFI_FULL_WINDOW')\")"),
+    ("WiFi window: no other component pads", [],
+     "  (constraint disallow pad)\n"
+     "  (condition \"A.Type == 'Pad' && A.intersectsArea('WIFI_FULL_WINDOW') && !A.memberOfFootprint('AE2')\")"),
+    ("WiFi window: no other footprints", [],
+     "  (severity warning)\n  (constraint disallow footprint)\n"
+     "  (condition \"A.Type == 'Footprint' && A.intersectsArea('WIFI_FULL_WINDOW') && A.Reference != 'AE2'\")"),
+    ("WiFi front: only feed and ground strip", [],
+     "  (constraint disallow track)\n"
+     "  (condition \"A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && !(A.NetName == '/RX/RF_WIFI' || (A.NetName == 'GND' && !A.intersectsArea('WIFI_FRONT_VOID')))\")"),
+    ("WiFi front: only ground zone in terminal strip", [],
+     "  (constraint disallow zone)\n"
+     "  (condition \"A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && A.NetName != 'GND'\")"),
+    ("VTX adjacent reference: ground zones only", [],
+     "  (constraint disallow zone)\n"
+     "  (condition \"A.Layer == 'In4.Cu' && A.intersectsArea('VTX_IN4_REFERENCE') && A.NetName != 'GND'\")"),
+])
 
 if V4_BOARD:                                                # the repo board is v4: the DRU carries the v4 rules
     RULES = v4_rules(RULES)

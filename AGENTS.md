@@ -35,12 +35,14 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   takes board space and is avoided.
 - RF nets carry no vias and keep 50 ohm width on the outer layers. Inside the
   `RF_VTX_STRIP` rule area (0.5 mm around the 5.8 GHz chain) only GND vias are
-  allowed, so In1 stays solid under the line; `RF_PAD_CUTOUT` cuts In1 out
-  under the U.FL signal pad.
+  allowed. Keep the adjacent GND reference continuous: In1 below F.Cu RF,
+  In4 above B.Cu RF. Any U.FL signal-pad cutout uses that adjacent layer and
+  requires an explicit check of the next reference plane.
 - AE1, the RX wire, leaves through a plated D0.5 hole. Inside the D2.0
   `RF_RX_HOLE` area pours are kept out on all layers and the only copper is the
-  2.4 GHz feed on L1. AE2 has no all-layer keep-out but minimal copper around
-  it, with parts on the opposite side.
+  2.4 GHz feed on L1. AE2 uses the manufacturer antenna window on every
+  copper layer, with only its specified F.Cu ground strip and feed permitted;
+  components stay outside the window on both faces.
 - The 5 V boost hot loop closes on the component layer with a direct ground
   return: no via in the loop, unbroken GND under it, a small switch node, away
   from the gyro, the crystals and the antennas.

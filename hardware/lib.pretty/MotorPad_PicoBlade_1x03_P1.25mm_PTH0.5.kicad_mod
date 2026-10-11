@@ -3,12 +3,12 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.049). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
+	(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.92) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.30 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.049). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
 	(tags "motor solder pad PicoBlade 53047 1.25mm plug-ready whoop JST1.25")
 	(property "Reference" "REF**"
 		(at 0 0.3 0)
 		(layer "F.Fab")
-		(uuid "f3a11dfb-c530-40fe-9aa6-c9a13c46af1c")
+		(uuid "5ca61b6e-7d20-4573-b771-8c734b592247")
 		(effects
 			(font
 				(size 0.4 0.4)
@@ -20,7 +20,7 @@
 		(at 0 1.7 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "5a9d4126-66cb-4e1a-87e4-474f3114433c")
+		(uuid "01a7f0e5-450b-477d-80d4-12b1e172c544")
 		(effects
 			(font
 				(size 0.4 0.4)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "2c686e1b-52c1-4424-93c5-11d39f959feb")
+		(uuid "ca5db0d2-c222-4bc6-97a2-b10b6db21ee6")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "0c1531a0-adb8-4f53-9005-555477b36707")
+		(uuid "0ea32718-7e89-4d81-bf61-6da8c54790ba")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -184,7 +184,7 @@
 	)
 	(pad "1" thru_hole circle
 		(at -1.25 0)
-		(size 0.9 0.9)
+		(size 0.92 0.92)
 		(drill 0.5)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers yes)
@@ -193,7 +193,7 @@
 	)
 	(pad "2" thru_hole circle
 		(at 0 0)
-		(size 0.9 0.9)
+		(size 0.92 0.92)
 		(drill 0.5)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers yes)
@@ -210,7 +210,7 @@
 	)
 	(pad "3" thru_hole circle
 		(at 1.25 0)
-		(size 0.9 0.9)
+		(size 0.92 0.92)
 		(drill 0.5)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers yes)

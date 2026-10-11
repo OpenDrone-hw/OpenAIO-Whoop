@@ -110,10 +110,10 @@
   (constraint clearance (min 0.40mm))
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Pad_Type == 'Through-hole' && A.Net != B.Net && A.Fabrication_Property != 'Heatsink pad' && B.Fabrication_Property != 'Heatsink pad'"))
 
-# D65 / D21: the Molex 53047 PicoBlade header fixes the 1.25 mm pitch; 0.90 rings (0.50 drill + 0.20 ring)
-# leave 0.35 mm copper between neighbouring holes (NextPCB 0.40 general value; the BetaFPV Matrix 1S 5IN1 II
+# D65 / D21: the Molex 53047 PicoBlade header fixes the 1.25 mm pitch; 0.92 rings (0.50 drill + 0.21 ring)
+# leave 0.33 mm copper between neighbouring holes (NextPCB 0.40 general value; the BetaFPV Matrix 1S 5IN1 II
 # ships the same 1.25 mm plated land). Scoped to MotorPad_PicoBlade pads (the four lands are far apart); NextPCB EQ item.
-(rule "D65 plug-ready motor land: PicoBlade rings 0.35 apart"
+(rule "D65 plug-ready motor land: PicoBlade rings 0.33 apart"
   (constraint clearance (min 0.30mm))
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && A.memberOfFootprint('*:MotorPad_PicoBlade*') && B.memberOfFootprint('*:MotorPad_PicoBlade*')"))
 
@@ -338,7 +338,7 @@
 
 # Spec 8.2: length-matched pair; 0.5 mm is about 3 ps, far inside the 12 Mbit/s budget.
 (rule "USB: length match"
-  (constraint skew (max 0.5mm))
+  (constraint skew (max 0.5mm) (within_diff_pairs))
   (condition "A.NetClass == 'USB'"))
 
 # D21 / route sync 2026-10-10: the Analog class clearance (0.15) also hits pad pairs inside the 1.0 x 0.8 X2SON
@@ -347,6 +347,36 @@
 (rule "D21 Analog X2SON land gaps (U14, U15)"
   (constraint clearance (min 0.09mm))
   (condition "A.Type == 'Pad' && B.Type == 'Pad' && ((A.memberOfFootprint('lib:X2SON-6_L1.0-W0.8-BL_Dense') && B.memberOfFootprint('lib:X2SON-6_L1.0-W0.8-BL_Dense')) || (A.memberOfFootprint('lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense') && B.memberOfFootprint('lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense')))"))
+
+(rule "RX hole: no other footprints"
+  (severity warning)
+  (constraint disallow footprint)
+  (condition "A.Type == 'Footprint' && A.intersectsArea('RF_RX_HOLE') && A.Reference != 'AE1'"))
+
+(rule "WiFi window: no vias"
+  (constraint disallow via)
+  (condition "A.intersectsArea('WIFI_FULL_WINDOW')"))
+
+(rule "WiFi window: no other component pads"
+  (constraint disallow pad)
+  (condition "A.Type == 'Pad' && A.intersectsArea('WIFI_FULL_WINDOW') && !A.memberOfFootprint('AE2')"))
+
+(rule "WiFi window: no other footprints"
+  (severity warning)
+  (constraint disallow footprint)
+  (condition "A.Type == 'Footprint' && A.intersectsArea('WIFI_FULL_WINDOW') && A.Reference != 'AE2'"))
+
+(rule "WiFi front: only feed and ground strip"
+  (constraint disallow track)
+  (condition "A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && !(A.NetName == '/RX/RF_WIFI' || (A.NetName == 'GND' && !A.intersectsArea('WIFI_FRONT_VOID')))"))
+
+(rule "WiFi front: only ground zone in terminal strip"
+  (constraint disallow zone)
+  (condition "A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && A.NetName != 'GND'"))
+
+(rule "VTX adjacent reference: ground zones only"
+  (constraint disallow zone)
+  (condition "A.Layer == 'In4.Cu' && A.intersectsArea('VTX_IN4_REFERENCE') && A.NetName != 'GND'"))
 
 # v4 / spec 7: grommet flange D5.2 bars part bodies; edge solder pads may enter (their copper stays out of D4.6,
 # rule areas MOUNT_PAD_*). Motor headers (MOTOR_PAD) are not exempt: their DNP PicoBlade body is a part.
