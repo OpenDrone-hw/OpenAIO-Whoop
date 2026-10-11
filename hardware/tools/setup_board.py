@@ -167,13 +167,15 @@ NETCLASS_PATTERNS = [
                                                                           # node U2_SW 2.8-3.4 A avg (P4 critique round 2)
     ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
     ("Power", ["+5V", "+5V_BST", "+5V_USB", "+3.3V", "+3.3V_VTX", "+1.8V_GYRO", "+1.1V",
-               "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS"]),          # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
+               "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS",            # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
+               "/RP2350A/VREG_LX"]),                                    # RP2354A core SMPS switch node (critique 2026-10-11)
     ("GND", ["GND"]),
     ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", 
                 "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*",      # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
-                "*/VT_MOD*", "*/RTC_*", "*/U19_XTAL*", "*/TCXO_OUT", "*/XTA"]),  # RTC6705 video input, PLL loop filter, 8/52 MHz refs (P4 critique)
+                "*/VT_MOD*", "*/RTC_*", "*/U19_XTAL*", "*/TCXO_OUT", "*/XTA",
+                "*/U2_FB*"]),                                               # boost feedback divider node (critique 2026-10-11)  # RTC6705 video input, PLL loop filter, 8/52 MHz refs (P4 critique)
     ("RF", ["*/RF_*", "*/ANT*", "*/RFIO*", "*/RFOUT*", "*/RFIN*"]),
-    ("USB", ["*/USB_D_P", "*/USB_D_N"]),                                  # _P/_N: KiCad pairs them (spec 8.2)
+    ("USB", ["*/USB_D_P", "*/USB_D_N", "*/U10_USB_DP", "*/U10_USB_DM"]),  # _P/_N: KiCad pairs them (spec 8.2); MCU side of the 27R
 ]
 # Component classes for the spec 8.4 spacing rules, by footprint name (P3 checks these against the real names).
 COMPONENT_CLASSES = [
@@ -406,6 +408,12 @@ RULES = [
       "their own footprints in the project library (P3), so lib_footprint_mismatch stays an error and never",
       "fires for them; no rule is needed and none is relaxed."], None),
 
+    ("Boost output: +5V_BST and +5V at least 0.30 wide",
+     ["The TPS61022 output carries 2-3 A with a DJI O4 Lite on VHD (D114 removed the load switch); pours preferred.",
+      "Warning severity so the necks into 0201 and QFN pads stay legal."],
+     "  (severity warning)\n  (constraint track_width (min 0.30mm))\n"
+     "  (condition \"A.NetName == '+5V_BST' || A.NetName == '+5V'\")"),
+
     ("D21 footprint_via_pads annular",
      ["D21 / spec 8.3: through vias drawn inside a footprint land as PTH pads with the Heatsink fabrication property",
       "(EFM8BB51 EP array) are 0.35/0.15 Type VII vias, not component holes: the via annular ring 0.09 (NextPCB",
@@ -442,14 +450,14 @@ RULES = [
 
     ("In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)",
      ["Spec 8.2 / 8.4, relaxed by D85: the gyro bus (SPI1, GYRO_*), VTX SPI and the digital PA controls may use In2",
-      "but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET, PA_NTC) stay off both inner",
+      "but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET) stay off both inner",
       "signal layers. Net names compared with wildcards; '.' is literal; underscore forms of the buses matched too."],
      "  (constraint disallow track)\n"
      "  (condition \"(A.Layer == 'In3.Cu' && (A.NetName == '*SPI1.*' || "
      "A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || "
      "A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')) || "
      "((A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SHUNT_SENSE_*' || "
-     "A.NetName == '*/PA_DET*' || A.NetName == '*/PA_NTC*'))\")"),
+     "A.NetName == '*/PA_DET*'))\")"),
 
     ("RF: no vias",
      ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.",

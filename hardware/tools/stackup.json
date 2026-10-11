@@ -1,5 +1,5 @@
 {
-  "_comment": "OpenAIO-Whoop stackup for NextPCB HDI 1+4+1 (laser L1-L2 and L5-L6 through the 1080 build-up, buried vias L2-L5 through the core / 2313 / core sub-lamination), 1.0 mm. Layer values unchanged from the applied stackup. Verified on nextpcb.com: 1080 prepreg 0.077 mm and 2313/2116 prepreg types, prepreg Dk 4.2 (pcb-capabilities), 1.0 mm 6-layer offered with 1080 (tech-center/pcb-layer-stack-up), 1 oz outer / 0.5 oz inner finished copper. NOT verifiable on a public page: core 0.30 mm thickness, the 2313 0.103 mm central prepreg for this build and the library entry 6L-1.0mm-0.5oz-1080 (stackup selector is dynamic); NextPCB must confirm them with the order. Loss tangent 0.02 is not published by NextPCB. Pressed thickness is 10-15 um below nominal per a NextPCB article (search summary, not re-read). Sum incl. masks 1.027 mm (0.997 mm without). Applied by setup_board.py (also readable by apply_stackup.py).",
+  "_comment": "OpenAIO-Whoop stackup: NextPCB library 6L-1.0mm-0.5oz-1080 (nextpcb.com/impedance-control-stackups, read 2026-10-11) built as HDI 1+4+1 (laser L1-L2 and L5-L6 through the 1080, buried L2-L5 through the core / 2313 / core sub-lamination). Library dielectrics: 1080 0.077 / core 0.30 H/H / 2313 0.103 / core 0.30 H/H / 1080 0.077; the library core thickness includes its 0.5 oz copper, so each core dielectric is 0.265 here. Outer 1 oz finished, inner 0.5 oz, Dk 4.2. 6L HDI is a library entry only from 1.2 mm, so 1+4+1 at 1.0 mm is an engineered build on these dielectrics (NextPCB confirmation open). Applied by setup_board.py (also readable by apply_stackup.py).",
   "copper_layers": 6,
   "copper_finish": "ENIG",
   "layers": {
@@ -21,7 +21,7 @@
     },
     "dielectric 2": {
       "type": "core",
-      "thickness": 0.3,
+      "thickness": 0.265,
       "material": "FR4",
       "epsilon_r": 4.2,
       "loss_tangent": 0.02
@@ -41,7 +41,7 @@
     },
     "dielectric 4": {
       "type": "core",
-      "thickness": 0.3,
+      "thickness": 0.265,
       "material": "FR4",
       "epsilon_r": 4.2,
       "loss_tangent": 0.02

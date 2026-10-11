@@ -206,6 +206,13 @@
 # their own footprints in the project library (P3), so lib_footprint_mismatch stays an error and never
 # fires for them; no rule is needed and none is relaxed.
 
+# The TPS61022 output carries 2-3 A with a DJI O4 Lite on VHD (D114 removed the load switch); pours preferred.
+# Warning severity so the necks into 0201 and QFN pads stay legal.
+(rule "Boost output: +5V_BST and +5V at least 0.30 wide"
+  (severity warning)
+  (constraint track_width (min 0.30mm))
+  (condition "A.NetName == '+5V_BST' || A.NetName == '+5V'"))
+
 # D21 / spec 8.3: through vias drawn inside a footprint land as PTH pads with the Heatsink fabrication property
 # (EFM8BB51 EP array) are 0.35/0.15 Type VII vias, not component holes: the via annular ring 0.09 (NextPCB
 # 3.5 mil) applies instead of the 0.20 PTH component-hole ring (LIBRARY.md item).
@@ -241,11 +248,11 @@
   (condition "(A.Layer == 'In2.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF')) || (A.Layer == 'In3.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate'))"))
 
 # Spec 8.2 / 8.4, relaxed by D85: the gyro bus (SPI1, GYRO_*), VTX SPI and the digital PA controls may use In2
-# but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET, PA_NTC) stay off both inner
+# but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET) stay off both inner
 # signal layers. Net names compared with wildcards; '.' is literal; underscore forms of the buses matched too.
 (rule "In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)"
   (constraint disallow track)
-  (condition "(A.Layer == 'In3.Cu' && (A.NetName == '*SPI1.*' || A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')) || ((A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SHUNT_SENSE_*' || A.NetName == '*/PA_DET*' || A.NetName == '*/PA_NTC*'))"))
+  (condition "(A.Layer == 'In3.Cu' && (A.NetName == '*SPI1.*' || A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')) || ((A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SHUNT_SENSE_*' || A.NetName == '*/PA_DET*'))"))
 
 # Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.
 # D21 / FLOORPLAN Open: the RTC6705 (bottom) feeds the PA (top), so RF_PA_IN carries the one RF via,

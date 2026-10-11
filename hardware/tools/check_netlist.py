@@ -256,15 +256,15 @@ for ref, label in (("U10", "RP2354A"), ("U16", "ESP32-PICO-V3")):
 # ------------------------------------------------------------------------------------------------ N6
 RULES = [  # (net pattern, class) - first match wins; the role each class stands for (spec 8.2/8.4, setup_board)
     ("GND", "GND"), ("+BATT", "VBAT"), ("+BATT_*", "VBAT"), ("/POWER/CSA+", "VBAT"), ("+*", "Power"),
-    ("/VBUS", "Power"),
+    ("/VBUS", "Power"), ("/RP2350A/VREG_LX", "Power"),
     ("/ESC?/PHASE_?", "Phase"), ("/POWER/U2_SW", "Phase"), ("/ESC?/?_COM", "Gate"), ("/ESC?/?_PWM", "Gate"),
     # /POWER/U2_SW: boost switch node, 2.8-3.4 A average (P4 critique round 2)
-    ("*/RF_*", "RF"), ("*/USB_D_P", "USB"), ("*/USB_D_N", "USB"),
+    ("*/RF_*", "RF"), ("*/USB_D_P", "USB"), ("*/USB_D_N", "USB"), ("*/U10_USB_DP", "USB"), ("*/U10_USB_DM", "USB"),
     ("*CURR_SENSE*", "Analog"), ("*ADC_CURR*", "Analog"), ("*ADC_VBAT*", "Analog"), ("*SHUNT_SENSE*", "Analog"),
     ("*VIDEO*", "Analog"), ("*/VID_*", "Analog"), ("*/OSD_LVL", "Analog"), ("*/OSD_SYNC", "Analog"),
     ("*/PA_DET*", "Analog"),
     ("*/VT_MOD*", "Analog"), ("*/RTC_*", "Analog"), ("*/U19_XTAL*", "Analog"), ("*/TCXO_OUT", "Analog"),
-    ("*/XTA", "Analog"),                     # RTC6705 video input, PLL loop filter, 8 / 52 MHz references (P4 critique)
+    ("*/XTA", "Analog"), ("*/U2_FB*", "Analog"),                     # RTC6705 video input, PLL loop filter, 8 / 52 MHz references (P4 critique)
 ]
 # the board's view: KiCad assigns board net classes from the .kicad_pro patterns only (sync_pcb.py writes no
 # netclass_assignments), so a class that only a schematic directive label gives would be lost on the board

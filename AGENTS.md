@@ -181,7 +181,7 @@ target are in [research/PINMAP.md](research/PINMAP.md); the pad set is in
 | Shared library | `hardware/KiCad-Library/`, submodule of [OpenDrone-hw/KiCad-Library](https://github.com/OpenDrone-hw/KiCad-Library), nickname `OpenDrone`; 3D models and exact component datasheets resolve through the project text variable `OPENDRONE_LIB` |
 | Design rules | `hardware/OpenAIO-Whoop.kicad_dru`, canonical block plus HDI via rules, inner-layer net rules, RF areas and the motor-land and PTH rules |
 | Fab config | `hardware/fabrication-toolkit-options.json` |
-| Board setup | 6 layers HDI 1+4+1 for NextPCB, 0.09 mm clearance and track; laser microvia 0.25 on 0.10 (L1-L2, L5-L6); buried via 0.35 on 0.15 (L2-L5), power via 0.40 on 0.20; no through vias; annular ring 0.09 |
+| Board setup | 6 layers HDI 1+4+1 for NextPCB on library stackup 6L-1.0mm-0.5oz-1080 (D117), 0.09 mm clearance and track; laser microvia 0.25 on 0.10 (L1-L2, L5-L6); buried via 0.35 on 0.15 (L2-L5), power via 0.40 on 0.20; no through vias; annular ring 0.09 |
 | Design notes | `research/`: DESIGN-SPEC.md, DECISIONS.md, PINMAP.md, IO-SET.md |
 | License | CERN-OHL-S-2.0 |
 
