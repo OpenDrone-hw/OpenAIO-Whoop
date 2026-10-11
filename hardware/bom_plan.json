@@ -6646,7 +6646,7 @@
    "ref": "J28",
    "block": "io",
    "sheet": "pads",
-   "value": "TX1",
+   "value": "TX0",
    "rating": null,
    "manufacturer": null,
    "mpn": null,
@@ -6659,18 +6659,18 @@
    "dnp": true,
    "exclude_from_bom": true,
    "exclude_from_pos": true,
-   "silk": "TX1",
+   "silk": "TX0",
    "nets": [
     "UART0_TX"
    ],
-   "notes": "UART0 TX (net /UART0_TX = hardware and Betaflight UART0, GPIO16; silk TX1 per D89) -> O4 RX (white), MSP DisplayPort; analog builds: free hardware UART0 TX (the one free UART since D89; I2C0 SDA via I2C-HD), no half duplex (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
+   "notes": "UART0 TX (net /UART0_TX = hardware and Betaflight UART0, GPIO16; silk TX1 per D89) -> O4 RX (white), MSP DisplayPort; analog builds: free hardware UART0 TX (the one free UART since D89; I2C0 SDA via I2C-HD), no half duplex (IO-SET row 8); LINEUP A16: excluded from BOM, DNP; silk TX0/RX0 = hardware UART0, the name Betaflight shows in the Ports tab (D119)",
    "lib_work": []
   },
   {
    "ref": "J29",
    "block": "io",
    "sheet": "pads",
-   "value": "RX1",
+   "value": "RX0",
    "rating": null,
    "manufacturer": null,
    "mpn": null,
@@ -6683,11 +6683,11 @@
    "dnp": true,
    "exclude_from_bom": true,
    "exclude_from_pos": true,
-   "silk": "RX1",
+   "silk": "RX0",
    "nets": [
     "UART0_RX"
    ],
-   "notes": "UART0 RX (net /UART0_RX = hardware and Betaflight UART0, GPIO17; silk RX1 per D89) <- O4 TX (grey); yellow open (no SBUS input since D89); analog builds: free hardware UART0 RX (the one free UART since D89; I2C0 SCL via I2C-HD) (IO-SET row 8); LINEUP A16: excluded from BOM, DNP",
+   "notes": "UART0 RX (net /UART0_RX = hardware and Betaflight UART0, GPIO17; silk RX1 per D89) <- O4 TX (grey); yellow open (no SBUS input since D89); analog builds: free hardware UART0 RX (the one free UART since D89; I2C0 SCL via I2C-HD) (IO-SET row 8); LINEUP A16: excluded from BOM, DNP; silk TX0/RX0 = hardware UART0, the name Betaflight shows in the Ports tab (D119)",
    "lib_work": []
   },
   {
@@ -7028,6 +7028,106 @@
     "+5V_BST"
    ],
    "notes": "boost -> +5V Schottky (D118): replaces the TPS2116 mux; diode-OR with D9, +5V about 4.85 V at 0.5 A",
+   "lib_work": []
+  },
+  {
+   "ref": "R89",
+   "block": "vtx",
+   "sheet": "vtx",
+   "value": "51R",
+   "rating": null,
+   "manufacturer": "Yageo",
+   "mpn": "RC0201FR-0751RL",
+   "lcsc": "C163499",
+   "package": "0201",
+   "footprint": "lib:R_0201_0603Metric_L",
+   "symbol": "Device:R",
+   "side": "F",
+   "region": "vtx_pwr",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "+3.3V_VTX",
+    "U19_LDD2V5"
+   ],
+   "notes": "RTC6705 pin 40 LDD2V5 series feed (OpenOSD-X R28 51R; VTX check 2026-10-11, D119)",
+   "lib_work": []
+  },
+  {
+   "ref": "C135",
+   "block": "vtx",
+   "sheet": "vtx",
+   "value": "1uF",
+   "rating": "10V X5R",
+   "manufacturer": "Murata",
+   "mpn": "GRM033R61A105ME44D",
+   "lcsc": "C76935",
+   "package": "0201",
+   "footprint": "lib:C_0201_0603Metric_L",
+   "symbol": "Device:C",
+   "side": "F",
+   "region": "vtx_pwr",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "U19_LDD2V5",
+    "GND"
+   ],
+   "notes": "RTC6705 pin 40 LDD2V5 filter cap at the pin (OpenOSD-X C24; D119)",
+   "lib_work": []
+  },
+  {
+   "ref": "R90",
+   "block": "vtx",
+   "sheet": "vtx",
+   "value": "3.3k",
+   "rating": null,
+   "manufacturer": "Yageo",
+   "mpn": "RC0201FR-073K3L",
+   "lcsc": "C274874",
+   "package": "0201",
+   "footprint": "lib:R_0201_0603Metric_L",
+   "symbol": "Device:R",
+   "side": "F",
+   "region": "vtx_pwr",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "U19_AVDD65",
+    "U19_AVDD65_RC"
+   ],
+   "notes": "RTC6705 pin 17 AVDD_6.5 RC to GND, series R (OpenOSD-X R13; D119)",
+   "lib_work": []
+  },
+  {
+   "ref": "C136",
+   "block": "vtx",
+   "sheet": "vtx",
+   "value": "1uF",
+   "rating": "10V X5R",
+   "manufacturer": "Murata",
+   "mpn": "GRM033R61A105ME44D",
+   "lcsc": "C76935",
+   "package": "0201",
+   "footprint": "lib:C_0201_0603Metric_L",
+   "symbol": "Device:C",
+   "side": "F",
+   "region": "vtx_pwr",
+   "dnp": false,
+   "exclude_from_bom": false,
+   "exclude_from_pos": false,
+   "silk": null,
+   "nets": [
+    "U19_AVDD65_RC",
+    "GND"
+   ],
+   "notes": "RTC6705 pin 17 AVDD_6.5 RC to GND, cap (OpenOSD-X C16; D119)",
    "lib_work": []
   }
  ],
