@@ -2,7 +2,7 @@
  "footprint": "lib:SOT-363_SC-70-6_Dense",
  "source": "OpenDrone:SOT-363_SC-70-6",
  "part": "TI INA186A3IDCKR SC70-6 (DCK)",
- "datasheet": "TI INA186 data sheet SBOS761 (www.ti.com/lit/ds/symlink/ina186.pdf, p23/merge/od/dl/ti/ina186.pdf) p42-44 DCK0006A (4214835/D): body 2.0 x 1.25 (D 1.85-2.15, E1 1.1-1.4), lead span E 1.8-2.4; land example 6X (0.9) x 6X (0.4), 4X (0.65) pitch, (2.2) row centres, (R0.05); pin 1 top-left. The bundled ${OPENDRONE_LIB}/datasheet/INA186A3IDCKR.pdf (2022) omits the DCK drawing",
+ "datasheet": "TI INA186 data sheet SBOS761 (www.ti.com/lit/ds/symlink/ina186.pdf, p23/merge/od/dl/ti/ina186.pdf) p42-44 DCK0006A (4214835/D): body 2.0 x 1.25 (D 1.85-2.15, E1 1.1-1.4), lead span E 1.8-2.4; land example 6X (0.9) x 6X (0.4), 4X (0.65) pitch, (2.2) row centres, (R0.05); pin 1 top-left. The bundled hardware/KiCad-Library/datasheet/INA186A3IDCKR.pdf (ZH SBOS761, 2022) omits the DCK drawing (its Fig 5-1 p4 pin map 1 REF, 2 GND, 3 VS, 4 IN+, 5 IN-, 6 OUT re-read 2026-10-11; the p42-44 drawing numbers were not re-read)",
  "pads": [
   {
    "number": "1",

@@ -8,7 +8,7 @@
    "x": -0.24,
    "y": 0,
    "w": 0.26,
-   "h": 0.28,
+   "h": 0.3,
    "shape": "roundrect"
   },
   {
@@ -16,7 +16,7 @@
    "x": 0.24,
    "y": 0,
    "w": 0.26,
-   "h": 0.28,
+   "h": 0.3,
    "shape": "roundrect"
   }
  ],
@@ -28,7 +28,7 @@
  "pin1": "1",
  "y_axis": "down",
  "view": "top",
- "derivation": "0201 (0603 metric, 0.6 x 0.3 mm) BLM03 ferrite bead / LQP03 inductor. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50.",
+ "derivation": "0201 (0603 metric, 0.6 x 0.3 mm) BLM03 ferrite bead / LQP03 inductor. IPC-7351C least density (D109): lands 0.26 x 0.30 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.30). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.30 = W nominal (side 0; Murata GRM03 Table 2 c min 0.30 for the +-0.05 / +-0.09 chip rows, e.g. GRM033R71A103KA01-01A p25). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.30). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50 (land and body both 0.30 high).",
  "derived_from": "lib:L_0201_0603Metric_W (spec hardware/tools/land_specs/L_0201_0603Metric_W.json)",
  "density": "IPC-7351C least (L), D109",
  "staged_from": "p2v3/v4/fpL/passives/land_specs/L_0201_0603Metric_L.json"

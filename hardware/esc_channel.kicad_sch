@@ -2489,7 +2489,7 @@
 		)
 		(uuid "eb43d776-4cf2-52c0-a80a-c87375483dcb")
 	)
-	(text_box "AGM210MAP P+N pair per phase (D23 pinout check): S1 = GND, G1 = x_PWM, S2 = +BATT, G2 = x_COM, both drains = PHASE_x (joined only by the phase island: never split it). Gates driven straight from the EFM8, no resistors (Matrix II practice).\nHot loop (D77, D108): one 22 uF 0603 per FET from S2 to S1 at the pins, microvias in both pads. Bluejay dead time A_X_10_96 at first power-up, A_X_5_96 after the V2 shoot-through check."
+	(text_box "AGM210MAP P+N per phase: S1 GND, S2 +BATT, drains = PHASE_x (keep the island whole).\nHot loop: 22 uF 0603 per FET from S2 to S1 at the pins."
 		(exclude_from_sim no)
 		(at 19.05 176.53 0)
 		(size 154.94 12.7)
@@ -2509,7 +2509,7 @@
 		)
 		(uuid "1bd4460a-1a52-590f-9773-19722374a13b")
 	)
-	(text_box "ESC channel, one file placed 4x; refs drawn are ESC1's, the root offsets them per instance:\nESC1 M1 rear right: U6, Q29-Q31, TP1/TP2\nESC2 M2 front right: U7, Q32-Q34, TP3/TP4\nESC3 M3 rear left: U8, Q35-Q37, TP5/TP6\nESC4 M4 front left: U9, Q38-Q40, TP7/TP8\nDSHOT in from the FC (GPIO4/6/18/20), PHASE_A/B/C out to the motor lands. Adapted from OpenAIO esc_channel: EFM8BB51 + 3x AGM210MAP (tinyPEPPER direct drive, D56)."
+	(text_box "ESC channel placed 4x (refs shown are ESC1):\nESC1 U6 M1 rear right, ESC2 U7 M2 front right, ESC3 U8 M3 rear left, ESC4 U9 M4 front left."
 		(exclude_from_sim no)
 		(at 203.2 15.24 0)
 		(size 81.28 24.13)
@@ -2529,7 +2529,7 @@
 		)
 		(uuid "6b855792-3656-5d17-b4fb-d67deaac2a82")
 	)
-	(text_box "Power-up: the EFM8 runs from the cell before the FC's 3.3 V is up; its weak pull-up can put <= 60 uA on the FC DShot pad (0.72 V over the unpowered-FT limit, current-limited). Accepted on Matrix parity; V9 scopes it.\nUSB only: DShot idle-high back-feeds +BATT through the EFM8 I/O diode (about 1 mA per channel)."
+	(text_box "Power-up: the EFM8 pull-up can put <= 60 uA on the FC DShot pad (accepted).\nUSB only: DShot idle-high back-feeds +BATT through the EFM8 (about 1 mA per channel)."
 		(exclude_from_sim no)
 		(at 203.2 41.91 0)
 		(size 81.28 15.24)
@@ -2549,7 +2549,7 @@
 		)
 		(uuid "6ebdb997-59d5-5f1c-9369-59619f208b43")
 	)
-	(text_box "Pins per Bluejay BB51 layout A: P0.1-P0.3 B/C/A comparator, P0.4 neutral, P0.5 RTX (DShot), P1.0-P1.5 x_PWM (N gate, active high) / x_COM (P gate, active low), P2.0 C2D. Unused pins no-connect.\nVDD on +BATT with C19 100 nF at pin 4; the phase B hot-loop cap C23 is its bulk (D108); no ESC3 extra cap (D77). R12 2.4k limits the DShot clamp current at a low cell. C2D/C2CK on test vias TP1/TP2 (D67)."
+	(text_box "EFM8 pins per Bluejay BB51 layout A. VDD on +BATT, C19 100 nF at pin 4.\nR12 2.4k limits the DShot clamp current. C2D/C2CK on test vias."
 		(exclude_from_sim no)
 		(at 19.05 88.9 0)
 		(size 105.41 15.24)
@@ -2569,7 +2569,7 @@
 		)
 		(uuid "8b062139-85aa-51e0-8d9b-606774df1f6e")
 	)
-	(text_box "BEMF network from tinyPEPPER: 10k from each phase to its comparator input, 1k from each phase to the virtual neutral (P0.4). No leg to GND at 1S; the 10k keeps the input clamp current < 0.1 mA."
+	(text_box "BEMF: 10k phase to comparator, 1k phase to neutral (P0.4). No GND leg at 1S."
 		(exclude_from_sim no)
 		(at 132.08 83.82 0)
 		(size 66.04 12.7)
@@ -5430,7 +5430,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:TestPoint_Pad_D0.30mm_MicroVia_L"
+		(property "Footprint" "lib:TestPoint_Pad_D0.8mm"
 			(at 106.68 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -5518,7 +5518,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:TestPoint_Pad_D0.30mm_MicroVia_L"
+		(property "Footprint" "lib:TestPoint_Pad_D0.8mm"
 			(at 45.72 50.8 0)
 			(hide yes)
 			(show_name no)

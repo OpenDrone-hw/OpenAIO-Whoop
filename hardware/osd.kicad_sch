@@ -1873,7 +1873,7 @@
 		)
 		(uuid "06c52541-0f72-58e1-8520-47fb4f9ac4d0")
 	)
-	(text "Resistor divider lets the OSD_W GPIO select\nwhite (high: 1.05 V) or black (low: 0.27 V)"
+	(text "OSD_W selects white (high) or black (low) through the divider"
 		(exclude_from_sim no)
 		(at 44.958 88.392 0)
 		(effects
@@ -1955,7 +1955,7 @@
 		)
 		(uuid "ab9d7f67-eb9c-5b2a-93dc-989d07cea47d")
 	)
-	(text "U15 V+ (2) is decoupled by C70 in the switch cell,\none 100n shared with U14 (BR-13)"
+	(text "U15 V+ (2) is decoupled by C70, shared with U14"
 		(exclude_from_sim no)
 		(at 163.83 35.56 0)
 		(effects
@@ -1965,7 +1965,7 @@
 		)
 		(uuid "aee98a4f-282b-5dbc-9295-a2f8da170768")
 	)
-	(text "Sync detection, VID_DC sync tips\nclamped to -VF (about -0.1..-0.2 V)"
+	(text "Sync detection: sync tips clamped to -VF"
 		(exclude_from_sim no)
 		(at 157.988 20.828 0)
 		(effects
@@ -2055,7 +2055,7 @@
 		)
 		(uuid "fb3b328d-14d1-5f31-b706-4c096ac027f1")
 	)
-	(text "Comparator: OSD_SYNC low during sync,\nread by RP2354A PIO2 (GPIO23)"
+	(text "Comparator: OSD_SYNC low during sync (GPIO23, PIO2)"
 		(exclude_from_sim no)
 		(at 164.338 74.676 0)
 		(effects
@@ -2065,7 +2065,7 @@
 		)
 		(uuid "fc12c387-5649-531c-b753-a8d508df7a86")
 	)
-	(text_box "Placement: C70 is the one supply cap of U14 and U15, place it between them. Video entry parts R51/C66 at the CAM pad line; video on L1/L6 over GND, never L3; away from the boost (D69). Analog class on the video nets; OSD_W / OSD_EN Default."
+	(text_box "C70 is the one supply cap of U14 and U15: place it between them. R51/C66 at the CAM pad line; video on L1/L6 over GND, away from the boost."
 		(exclude_from_sim no)
 		(at 15.24 149.86 0)
 		(size 152.4 7.62)
@@ -2085,7 +2085,7 @@
 		)
 		(uuid "1a4996ab-ad95-5ab2-b2e9-baa3c6b20ecc")
 	)
-	(text_box "Copied from OpenFC-Lite-Mini osd (flown): 75R termination, 680R/470p chroma filter, sync-tip clamp, TLV7031 sync comparator, SN74LVC1G3157 camera/OSD switch. Changed: COS8051 buffer deleted, divider R52-R54 about 5x lower (P4-10), one shared C70 (D52).\nOperation: OSD_EN low (reset) -> camera passes through; OSD_EN high -> OSD_W high = white, low = black. No OSD without camera sync. OSD_W/EN/SYNC = GPIO21/22/23 (PIO2).\nC68 X5R carries <= 0.6 V DC, no DC-bias loss (D69)."
+	(text_box "OSD_EN low (reset): camera passes through. OSD_EN high: OSD_W high = white, low = black. No OSD without camera sync.\nOSD_W/EN/SYNC = GPIO21/22/23 (PIO2)."
 		(exclude_from_sim no)
 		(at 200.66 17.78 0)
 		(size 85.09 21.59)
@@ -2105,7 +2105,7 @@
 		)
 		(uuid "58e79308-e6ca-568b-a0bc-0b58c69303f4")
 	)
-	(text_box "VIDEO_OUT drives the VTX video network directly (house buffer deleted). Loaded OSD levels: black about 0.24 V, white about 0.92 V; OSD text slightly softer than the camera, accepted. V9 checks on a monitor; fallback: rescale R52-R54 within the 3 mA OSD_W budget."
+	(text_box "VIDEO_OUT drives the VTX video network directly. Loaded levels: black about 0.24 V, white about 0.92 V."
 		(exclude_from_sim no)
 		(at 133.35 86.36 0)
 		(size 62.23 15.24)

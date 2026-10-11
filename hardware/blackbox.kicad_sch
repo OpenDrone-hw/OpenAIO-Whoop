@@ -1433,7 +1433,7 @@
 		)
 		(uuid "e3c9fa92-bcb0-5f24-b696-b908788a85f6")
 	)
-	(text "SPI NOR PY25Q128HA: 16 MB blackbox on SPI0 (U13 C65 R50)"
+	(text "SPI NOR 16 MB BLACKBOX"
 		(exclude_from_sim no)
 		(at 15.24 17.78 0)
 		(effects
@@ -1445,7 +1445,7 @@
 		)
 		(uuid "dfdfc503-9aae-5738-91a5-a464359db22e")
 	)
-	(text_box "Placement: U13, SPI0 and FLASH_CS >= 3 mm from the RX antenna hole (SPI0 harmonics fall in the ELRS band, V7 measures desense). C65 at pin 8.\nSourcing by MPN (D60); same-pinout fallbacks PY25Q128HA-QVH-IR, GD25Q128EQIGR."
+	(text_box "Keep U13, SPI0 and FLASH_CS >= 3 mm from the RX antenna hole (SPI0 harmonics hit the ELRS band). C65 at pin 8."
 		(exclude_from_sim no)
 		(at 12.7 90.17 0)
 		(size 76.2 12.7)
@@ -1465,7 +1465,7 @@
 		)
 		(uuid "01ce9a0d-41ce-570b-9418-94a5b1f85e88")
 	)
-	(text_box "From OpenFC-Lite-Mini blackbox: microSD replaced by a 16 MB SPI NOR (D66). Betaflight m25p16 driver (JEDEC 85 20 18); SPI0 runs 75 MHz, reads are outside the guaranteed timing: gate F7 / V9 (full log CRC), fallback a lower read clock.\nWP# and HOLD#/RESET# tied to +3.3V (pin 7 must not float); the ERC pin_to_pin warning on pins 3/7 is this deliberate tie.\nR50 10k keeps CS# high through reset. EP tabs: no-connect, no vias."
+	(text_box "WP# and HOLD# tied to +3.3V (pin 7 must not float): the ERC pin_to_pin warning is this tie.\nR50 10k holds CS# high through reset. EP tabs no-connect."
 		(exclude_from_sim no)
 		(at 118.11 21.59 0)
 		(size 78.74 19.05)

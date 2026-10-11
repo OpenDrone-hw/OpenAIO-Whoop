@@ -2156,7 +2156,7 @@
 		)
 		(uuid "23f21164-19b5-5b03-b1e7-4452b2844dba")
 	)
-	(text "Motor lands M1-M4: plug-ready, Molex PicoBlade header DNP"
+	(text "MOTOR LANDS M1-M4"
 		(exclude_from_sim no)
 		(at 160.02 21.59 0)
 		(effects
@@ -2234,7 +2234,7 @@
 		)
 		(uuid "d97c04ad-13c5-5dce-b2ff-2e19ae07060e")
 	)
-	(text_box "Camera: JST SUR 0.8 mm plug J32 and pads CAM / GND / 5V in parallel (D63, D64), one mating zone (D72). VIDEO_IN -> OSD sheet (Analog class); +5V_CAM via FB1 on POWER, 0.12 A.\nGate G1 open: plug pin order provisional until a C03 lead is measured (a mirrored footprint puts 5 V on the camera's video output)."
+	(text_box "J32 JST SUR 0.8 mm plug and CAM / GND / 5V pads in parallel. VIDEO_IN (Analog class); +5V_CAM via FB1, 0.12 A.\nPlug pin order unverified: a mirrored plug puts 5 V on the video pin."
 		(exclude_from_sim no)
 		(at 104.14 147.32 0)
 		(size 109.22 12.7)
@@ -2254,7 +2254,7 @@
 		)
 		(uuid "16c1832b-1fcc-545a-ba1e-b0edbad236d3")
 	)
-	(text_box "H1-H3: 25.5 mm M1.4 pattern (D73) cut in Edge.Cuts; symbols excluded from board, BOM and CPL, no net."
+	(text_box "H1-H3: 25.5 mm M1.4 pattern cut in Edge.Cuts; no net, not in BOM or CPL."
 		(exclude_from_sim no)
 		(at 17.78 203.2 0)
 		(size 76.2 7.62)
@@ -2274,7 +2274,7 @@
 		)
 		(uuid "6901b8ab-f643-5e9f-b8f1-b9fd2b87c3cb")
 	)
-	(text_box "USB: J31 JST SH 4-pin vertical (D76; D72 side-entry withdrawn), BetaFPV order 1 GND, 2 D-, 3 D+, 4 VBUS. Pin 1 = GND is inferred: gate V0-USB before the P5 freeze (a mirrored plug puts -5 V on the OVP input).\nD7 TPD2EUSB30 ESD at J31, ahead of the 27R at the MCU. USB pair 90 Ohm, length-matched (D33). VBUS -> POWER (U24 OVP, D57); PWR_FLAG here."
+	(text_box "J31 JST SH 4-pin: 1 GND, 2 D-, 3 D+, 4 VBUS. Pin 1 = GND is unverified: check before freeze.\nD7 ESD at J31. USB pair 90 Ohm, length-matched. VBUS -> POWER."
 		(exclude_from_sim no)
 		(at 254 73.66 0)
 		(size 149.86 10.16)
@@ -2294,7 +2294,7 @@
 		)
 		(uuid "69a05841-5488-576d-9dc8-e8ff87250b46")
 	)
-	(text_box "HD pads for the DJI O4 Lite (D13, D16): VHD = +5V_BST (boost output, no load switch, D114), TX1/RX1 = UART0 GPIO16/17 (silk per D89) for MSP DisplayPort; no SBUS pad.\nAnalog builds: TX1/RX1 are the only free UART (D89). 3.3 V logic only: a 5 V TX on RX1 would exceed the unpowered pad limit during the ramp. Copper only (DNP, A16)."
+	(text_box "VHD = +5V_BST, TX0/RX0 = UART0 GPIO16/17 for MSP DisplayPort. 3.3 V logic only. Copper only (DNP)."
 		(exclude_from_sim no)
 		(at 223.52 147.32 0)
 		(size 93.98 12.7)
@@ -2314,7 +2314,7 @@
 		)
 		(uuid "6faaff37-4c41-503d-a2e5-8c533365b63a")
 	)
-	(text_box "Row GND LED 5V BZ- (D63, D64; own GND pad J33 supersedes D27). LED = LED_STRIP straight from GPIO5, no translator (D52); a dead first LED is the level-problem symptom (V9). 5V feeds the strip and the buzzer, BZ- = drain of Q26 (RP2350A sheet). Copper only (DNP, A16)."
+	(text_box "Row GND LED 5V BZ-. LED = LED_STRIP straight from GPIO5 (3.3 V logic). 5V feeds strip and buzzer; BZ- = drain of Q26. Copper only (DNP)."
 		(exclude_from_sim no)
 		(at 17.78 147.32 0)
 		(size 76.2 12.7)
@@ -2334,7 +2334,7 @@
 		)
 		(uuid "a579dd9f-e3a6-5b42-9352-66d81a91eea9")
 	)
-	(text_box "Battery pads J2 (+, CSA+) / J3 (-, GND) are drawn on the POWER sheet (D113): D1.7 mm plated pads (D101) for a user-fitted BT2.0 pigtail, >= 12 power vias each (D72). 1S only, 3.0-4.35 V (D14). Copper only (DNP, A16)."
+	(text_box "Battery pads J2 (+) / J3 (-) are drawn on POWER: 1.7 mm plated pads, >= 12 power vias each. 1S only, 3.0-4.35 V. Copper only (DNP)."
 		(exclude_from_sim no)
 		(at 17.78 25.4 0)
 		(size 48.26 15.24)
@@ -2354,7 +2354,7 @@
 		)
 		(uuid "d9604d41-3957-5eb9-a496-8e9027dc020d")
 	)
-	(text_box "Motor lands (D65, Matrix 1S 5IN1 II style): one PicoBlade land per motor, pads 1/2/3 = PHASE_C/B/A; phase order is free, Bluejay sets the direction. On the top side, mouths facing out (D72).\nSolder the motor wires (default) or fit the DNP Molex 53047-0310 header: its 1.0 A contact rating is below the motor current, plugged motors run at the user's risk (README); V4 records the header temperature.\nM1 rear right, M2 front right, M3 rear left, M4 front left (Betaflight quad-X)."
+	(text_box "One PicoBlade land per motor, pads 1/2/3 = PHASE_C/B/A (order free, Bluejay sets direction). Top side, mouths facing out.\nSolder the wires or fit the DNP header 53047-0310 (1.0 A contact, below motor current)."
 		(exclude_from_sim no)
 		(at 76.2 53.34 0)
 		(size 167.64 15.24)
@@ -2374,7 +2374,7 @@
 		)
 		(uuid "ead189ca-2578-5179-a006-3d957446b2af")
 	)
-	(text_box "PADS: every off-board connection, style from the OpenFC-Lite(-Mini) pads sheets. Solder pads are DNP and out of BOM / CPL (LINEUP A16); the motor header is a DNP BOM line. 20 hierarchical labels = the sheet pins. TX1/RX1 = UART0, the only free UART (D89).\nOwed: J31 pin 1 = GND (V0-USB), J32 pin order (G1), motor-header temperature (V4)."
+	(text_box "PADS: every off-board connection. Solder pads are DNP and out of BOM / CPL.\nOpen: J31 pin 1 = GND, J32 pin order, motor-header temperature."
 		(exclude_from_sim no)
 		(at 101.6 182.88 0)
 		(size 193.04 10.16)
@@ -3119,7 +3119,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0470b14b-5f91-5cd0-b157-77d0173ff073")
-		(property "Reference" "#PWR220"
+		(property "Reference" "#PWR223"
 			(at 30.48 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -3179,7 +3179,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR220")
+					(reference "#PWR223")
 					(unit 1)
 				)
 			)
@@ -3458,7 +3458,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "23351a0b-872a-5dba-8e61-69a94ae0089c")
-		(property "Reference" "#PWR218"
+		(property "Reference" "#PWR221"
 			(at 367.03 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -3518,7 +3518,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR218")
+					(reference "#PWR221")
 					(unit 1)
 				)
 			)
@@ -3744,7 +3744,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 40.64 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -3820,7 +3820,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 238.76 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -3876,7 +3876,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "3c8ebcd5-3b67-586a-b4ff-fea35585feb1")
-		(property "Reference" "#PWR224"
+		(property "Reference" "#PWR227"
 			(at 167.64 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -3936,7 +3936,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR224")
+					(reference "#PWR227")
 					(unit 1)
 				)
 			)
@@ -3963,7 +3963,7 @@
 				)
 			)
 		)
-		(property "Value" "TX1"
+		(property "Value" "TX0"
 			(at 259.08 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3973,7 +3973,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 259.08 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -4151,7 +4151,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "537578aa-d5b8-5e29-9aff-9a963915c54b")
-		(property "Reference" "#PWR225"
+		(property "Reference" "#PWR228"
 			(at 173.99 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -4211,7 +4211,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR225")
+					(reference "#PWR228")
 					(unit 1)
 				)
 			)
@@ -4248,7 +4248,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 129.54 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -4304,7 +4304,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5977d0c5-eae4-5279-9d2b-fb69e61a010a")
-		(property "Reference" "#PWR226"
+		(property "Reference" "#PWR229"
 			(at 238.76 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -4364,7 +4364,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR226")
+					(reference "#PWR229")
 					(unit 1)
 				)
 			)
@@ -4381,7 +4381,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5b8951d6-0a42-5fd9-91f0-b8368872322d")
-		(property "Reference" "#FLG08"
+		(property "Reference" "#FLG09"
 			(at 382.27 56.515 0)
 			(hide yes)
 			(show_name no)
@@ -4441,7 +4441,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#FLG08")
+					(reference "#FLG09")
 					(unit 1)
 				)
 			)
@@ -4458,7 +4458,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5c2f38a5-6dcb-53d2-916f-234e58ccbfad")
-		(property "Reference" "#PWR223"
+		(property "Reference" "#PWR226"
 			(at 139.7 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -4518,7 +4518,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR223")
+					(reference "#PWR226")
 					(unit 1)
 				)
 			)
@@ -4555,7 +4555,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 30.48 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -4989,7 +4989,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 248.92 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -5045,7 +5045,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "976197ee-edf5-5efc-9505-6cdb6ad212ea")
-		(property "Reference" "#PWR219"
+		(property "Reference" "#PWR222"
 			(at 379.73 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -5105,7 +5105,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR219")
+					(reference "#PWR222")
 					(unit 1)
 				)
 			)
@@ -5122,7 +5122,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "9aa6664d-f3ef-5a79-95e4-9e2f53f32f31")
-		(property "Reference" "#PWR217"
+		(property "Reference" "#PWR220"
 			(at 347.98 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -5182,7 +5182,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR217")
+					(reference "#PWR220")
 					(unit 1)
 				)
 			)
@@ -5219,7 +5219,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 60.96 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -5295,7 +5295,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 50.8 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -5361,7 +5361,7 @@
 				)
 			)
 		)
-		(property "Value" "RX1"
+		(property "Value" "RX0"
 			(at 269.24 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5371,7 +5371,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 269.24 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -5427,7 +5427,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "caa82f5c-2761-5ce2-8ae1-6ac357fa2997")
-		(property "Reference" "#PWR222"
+		(property "Reference" "#PWR225"
 			(at 129.54 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -5487,7 +5487,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR222")
+					(reference "#PWR225")
 					(unit 1)
 				)
 			)
@@ -5620,7 +5620,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "e4803243-619c-5a5d-aae1-8e37de8b2b2f")
-		(property "Reference" "#PWR221"
+		(property "Reference" "#PWR224"
 			(at 50.8 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -5680,7 +5680,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR221")
+					(reference "#PWR224")
 					(unit 1)
 				)
 			)
@@ -5717,7 +5717,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 119.38 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -5793,7 +5793,7 @@
 				)
 			)
 		)
-		(property "Footprint" "lib:SolderPad_0.8x1.0mm"
+		(property "Footprint" "lib:SolderPad_1.0x1.2mm"
 			(at 139.7 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -5849,7 +5849,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f53d7a8e-7d04-5d01-bd35-74e157a3940e")
-		(property "Reference" "#PWR227"
+		(property "Reference" "#PWR230"
 			(at 248.92 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -5909,7 +5909,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR227")
+					(reference "#PWR230")
 					(unit 1)
 				)
 			)
@@ -5926,7 +5926,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f86b1469-06da-5f83-834a-d1f59ede5bc5")
-		(property "Reference" "#PWR228"
+		(property "Reference" "#PWR231"
 			(at 170.18 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -5986,7 +5986,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR228")
+					(reference "#PWR231")
 					(unit 1)
 				)
 			)

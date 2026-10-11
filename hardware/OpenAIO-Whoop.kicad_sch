@@ -767,7 +767,7 @@
 		)
 		(uuid "f3161c53-5c53-5331-8c22-5fd030367c25")
 	)
-	(text_box "Generated from hardware/sch_contract.json by hardware/tools/sch_root.py: do not edit by hand.\nRoot wires carry the project-wide net names (root label = net /NAME). Motor phases are named by the ESC sheets (/ESCn/PHASE_x). Rails are power symbols (table); VBUS is a hierarchical net.\nESC1-ESC4 drive M1 rear right, M2 front right, M3 rear left, M4 front left (Betaflight quad-X); FC pin map: research/PINMAP.md."
+	(text_box "Generated: do not edit by hand. Root labels are the project net names.\nESC1-4 = M1 rear right, M2 front right, M3 rear left, M4 front left (Betaflight quad-X)."
 		(exclude_from_sim no)
 		(at 302.26 212.09 0)
 		(size 104.14 30.48)

@@ -3523,7 +3523,7 @@
 		)
 		(uuid "521bd6bf-5f0c-53b4-a98a-0ba3ba8fb806")
 	)
-	(text "decoupling caps, place close to IC, one is enough when 2 pins are next to each other"
+	(text "decoupling caps close to the IC"
 		(exclude_from_sim no)
 		(at 177.8 71.12 0)
 		(effects
@@ -3584,7 +3584,7 @@
 		)
 		(uuid "d8249efb-5cad-502f-9374-e128a185a4aa")
 	)
-	(text "RP2354A: Smaller variant with integrated flash (2MB)"
+	(text "RP2354A: in-package flash"
 		(exclude_from_sim no)
 		(at 199.644 27.686 0)
 		(effects
@@ -3597,7 +3597,7 @@
 		)
 		(uuid "ec152c38-ddcc-5176-8dc0-7fefe2e1c39d")
 	)
-	(text "12 MHz CMOS oscillator on XIN, XOUT open (D100)"
+	(text "12 MHz CMOS oscillator on XIN, XOUT open"
 		(exclude_from_sim no)
 		(at 145.415 148.59 0)
 		(effects
@@ -3610,7 +3610,7 @@
 		)
 		(uuid "edbd6199-6d35-54cb-95e1-5ff8ec806079")
 	)
-	(text_box "GPIO map (D111, placement V4_B4; research/PINMAP.md):\nSPI0 blackbox GPIO0 MISO / 2 SCK / 3 MOSI, FLASH_CS GPIO1. SPI1 gyro GPIO11 MOSI / 12 MISO / 14 SCK, GYRO_CS 15, GYRO_INT 7, GYRO_CLKIN 13.\nUART1 GPIO8/9 = CRSF to the ESP32; UART0 GPIO16/17 = TX1/RX1 pads (O4 MSP, D89).\nDShot MOTOR1-4 GPIO4/6/18/20 (PIO0). LED_STRIP 5, LED0 10, LED1 24, BEEPER 25. HD_EN 19 (PINIO1, high = O4 on). OSD W/EN/SYNC 21/22/23 (PIO2). ADC_CURR 26, ADC_VBAT 27. GPIO28/29 no-connect."
+	(text_box "SPI0 blackbox GPIO0-3. SPI1 gyro 11/12/14, CS 15, INT 7, CLKIN 13. UART1 8/9 CRSF, UART0 16/17 TX0/RX0 pads.\nDShot 4/6/18/20. LED 5/10/24, BEEPER 25, HD_EN 19, OSD 21-23, ADC 26/27, GPIO28/29 NC."
 		(exclude_from_sim no)
 		(at 353.06 129.54 0)
 		(size 66.04 26.67)
@@ -3630,7 +3630,7 @@
 		)
 		(uuid "4a64edc7-b119-5a35-a9e1-d9549d50452e")
 	)
-	(text_box "R44 1k QSPI_SS -> FC_BOOT: the shared button SW1 (RX sheet, D65) pulls it low through D8, low at reset = BOOTSEL. Keep the QSPI_SS-to-R44 stub <= 1 mm.\nTP9 FCB, TP12 SWCLK, TP13 SWDIO: filled test vias (D67), out of the BOM."
+	(text_box "R44 1k QSPI_SS -> FC_BOOT: SW1 (RX sheet) pulls it low through D8 = BOOTSEL. Keep the QSPI_SS-to-R44 stub <= 1 mm.\nTP9, TP12, TP13: filled test vias."
 		(exclude_from_sim no)
 		(at 144.78 192.405 0)
 		(size 53.34 17.78)
@@ -3650,7 +3650,7 @@
 		)
 		(uuid "4e00430a-625d-503e-9d2e-2ace2c7f02f1")
 	)
-	(text_box "100 nF X6S 0201 per supply pin: DVDD C50-C52, IOVDD C44-C48; C49 at ADC_AVDD 44 (also IOVDD 45), C54 <= 1 mm from QSPI_IOVDD 54 (also USB_OTP_VDD 53)."
+	(text_box "100 nF 0201 per supply pin; C49 at ADC_AVDD 44, C54 <= 1 mm from QSPI_IOVDD 54."
 		(exclude_from_sim no)
 		(at 91.44 73.66 0)
 		(size 129.54 7.62)
@@ -3670,27 +3670,7 @@
 		)
 		(uuid "afcffe38-47c4-5389-9f35-cd6721d2cbfe")
 	)
-	(text_box "RP2350A sheet, copied block by block from OpenFC-Lite-Mini rp2350a (flown Rev2). Changes: USB on J31 (PADS) with 27R R42/R43 here (D52); no I2C pull-ups, no WS2812 inverter; LEDs on the LED sheet; boot via R44 + FC_BOOT; SWD on test vias (D67); 12 MHz CMOS oscillator (D100); GPIO map D111. Betaflight config: PINMAP 5."
-		(exclude_from_sim no)
-		(at 424.18 99.06 0)
-		(size 81.28 15.24)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width -0.0001)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "bc103280-b02e-552c-9fee-f44891fa1257")
-	)
-	(text_box "X1 12 MHz CMOS oscillator drives XIN (pin 21); XOUT stays open, no trace (D99, D100 replace the D78 crystal). C42 at X1 VDD; X1 within 3 mm of pin 21."
+	(text_box "X1 12 MHz CMOS oscillator on XIN (pin 21), XOUT open. C42 at X1 VDD; X1 within 3 mm of pin 21."
 		(exclude_from_sim no)
 		(at 93.98 150.495 0)
 		(size 101.6 7.62)
@@ -3710,7 +3690,7 @@
 		)
 		(uuid "bf17e8e5-a29f-500a-bb8f-a804259060f6")
 	)
-	(text_box "R42/R43 27R within 1-2 mm of pins 52/51. USB_D_P/N: 90 Ohm pair over solid GND, length-matched (D33)."
+	(text_box "R42/R43 27R within 1-2 mm of pins 52/51. USB_D_P/N: 90 Ohm pair over solid GND, length-matched."
 		(exclude_from_sim no)
 		(at 198.12 104.14 0)
 		(size 33.02 12.7)
@@ -3730,7 +3710,7 @@
 		)
 		(uuid "cb1b841b-eca3-5e94-883e-6b98e80bc8bb")
 	)
-	(text_box "Q26 AP1606 low-side buzzer switch (from OpenFC-Lite-Mini): GPIO25 high = on (BEEPER_INVERTED, active buzzer); R48 100k holds it off through reset. BZ- pad on PADS."
+	(text_box "Q26 AP1606 buzzer low-side switch: GPIO25 high = on. R48 100k holds it off through reset."
 		(exclude_from_sim no)
 		(at 387.35 78.74 0)
 		(size 60.96 10.16)
@@ -3750,7 +3730,7 @@
 		)
 		(uuid "d984666e-30d4-5581-9f61-599362eca66d")
 	)
-	(text_box "1.1 V SMPS: follow RP2350 DS 6.3.8 placement. C58 CIN, L2, C56 COUT on U10's side within 3 mm of pins 49/48/50/46, VREG_FB from the C56 pad, one-point GND to VREG_PGND, no copper under L2 on the next layer. L2 is polarity-marked (pin 2 = VREG_LX). C134 = 2nd 4.7 uF at DVDD pin 23. R41 + C57 filter VREG_AVDD."
+	(text_box "1.1 V SMPS per RP2350 DS 6.3.8: C58, L2, C56 within 3 mm of pins 49/48/50/46; VREG_FB from the C56 pad, one-point GND to VREG_PGND, no copper under L2 on the next layer.\nL2 pin 2 = VREG_LX; C134 4.7 uF at DVDD pin 23."
 		(exclude_from_sim no)
 		(at 223.52 215.9 0)
 		(size 86.36 12.7)
@@ -3770,7 +3750,7 @@
 		)
 		(uuid "de618c95-3f80-5156-ba0a-a58045ed86a1")
 	)
-	(text_box "Power-up and 5 V-tolerant pads (PINMAP 4.5, F16): an FT pad takes <= 3.63 V while IOVDD is off.\n- MOTOR1-4: the EFM8 pull-ups reach the pads through 2.4k before +3.3V (<= 60 uA, current-limited); Matrix parity, V9 scope.\n- HD_EN (GPIO19): R11 2.4k holds it low through reset, so the O4 stays off and the analog VTX on (V9 hot-soak boot check).\n- TX1/RX1 as the free UART (D89): 3.3 V peripherals only; a 5 V TX would exceed 3.63 V at power-up.\n- GPIO28/29 spare, no-connect (D111 map)."
+	(text_box "Power-up: FT pads take <= 3.63 V while IOVDD is off. MOTOR1-4 pull-ups reach the pads through 2.4k (<= 60 uA); R11 holds HD_EN low.\nTX0/RX0: 3.3 V peripherals only."
 		(exclude_from_sim no)
 		(at 424.18 132.08 0)
 		(size 81.28 24.13)
@@ -3790,7 +3770,7 @@
 		)
 		(uuid "e67a47db-1474-58ed-a05d-1a752f76f099")
 	)
-	(text_box "VBAT: R45/R46 10k/10k, 4.35 V -> 2.18 V on GPIO27 (ADC1), vbat_scale 200/100. CURR: R47 1k + C60 100 nF on GPIO26 (ADC0), ibata_scale 500."
+	(text_box "VBAT: R45/R46 10k/10k, 4.35 V -> 2.18 V on GPIO27. CURR: R47 1k + C60 100 nF on GPIO26."
 		(exclude_from_sim no)
 		(at 91.44 135.255 0)
 		(size 106.68 7.62)

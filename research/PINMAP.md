@@ -91,8 +91,8 @@ Net names follow LINEUP-CONVENTIONS rule 12.
 | 17 | GPIO13 | `GYRO_CLKIN` | IMU pin 9: CLKIN on TDK parts (32 kHz), INT2 on BMI270 (left disabled) | `GYRO_1_CLKIN_PIN PA13` | PWM slice 6 B (F13), only with ICM-42688-P | none | B |
 | 18 | GPIO14 | `SPI1_SCK` | IMU SCK (LGA pin 13) | `SPI1_SCK_PIN PA14` | SPI1 SCK (F1) | none | B |
 | 19 | GPIO15 | `GYRO_CS` | IMU CSB (LGA pin 12) | `GYRO_1_CS_PIN PA15` | SIO (software CS) | **10 kΩ pull-up** to +3.3V (OpenFC R49) | B |
-| 27 | GPIO16 | `UART0_TX` | HD pad **TX1** → O4 RX (white) (hardware UART0 since D111; net renamed from `UART1_TX`, fix2; pad silk TX1 per D89 = Betaflight UART0) | `UART0_TX_PIN PA16` | UART0 TX (F20) | pad | B |
-| 28 | GPIO17 | `UART0_RX` | HD pad **RX1** ← O4 TX (grey) (hardware UART0 since D111; net renamed from `UART1_RX`, fix2; pad silk RX1 per D89 = Betaflight UART0) | `UART0_RX_PIN PA17` | UART0 RX (F20) | pad | B |
+| 27 | GPIO16 | `UART0_TX` | HD pad **TX0** → O4 RX (white) (hardware UART0 since D111; net renamed from `UART1_TX`, fix2; pad silk TX1 per D89 = Betaflight UART0) | `UART0_TX_PIN PA16` | UART0 TX (F20) | pad | B |
+| 28 | GPIO17 | `UART0_RX` | HD pad **RX0** ← O4 TX (grey) (hardware UART0 since D111; net renamed from `UART1_RX`, fix2; pad silk RX1 per D89 = Betaflight UART0) | `UART0_RX_PIN PA17` | UART0 RX (F20) | pad | B |
 | 29 | GPIO18 | `MOTOR3` | DShot M3, rear-left | `MOTOR3_PIN PA18` | PIO0 SM | same | B |
 | 31 | GPIO19 | `HD_EN` | HD line: high = O4 supply on and analog VTX held off (D15, D17) | `PINIO1_PIN PA19` | SIO (PINIO1) | TPS22810 EN/UVLO through a Nexperia BAS16LD PN diode (pull-down only; not a Schottky: its hot leakage would defeat the cell threshold, spec §4.2; the EN node also carries the 100 nF filter and the 510 kΩ hysteresis resistor from +5V_HD, which the diode discharges; divider 33k/18k, D53 BR-22); gate of the AP1606 HD gate (D53 BR-03, no resistor); a **2.4 kΩ pull-down** (Ralec RTT012401FTH, BR-24) keeps it low (analog) at reset, on USB and in SD builds (the RP2350's own reset pull-down is too weak against the EN divider current); about 1.4 mA when driven high, all of it in the pull-down (F21) | R |
 | 32 | GPIO20 | `MOTOR4` | DShot M4, front-left | `MOTOR4_PIN PA20` | PIO0 SM | 2.4 kΩ series at the EFM8 end (§7) | R |
@@ -179,7 +179,7 @@ load and loop overruns with the ICM-42688-P at 8 kHz, FB OSD and blackbox togeth
 
 | Peripheral | Pins | Check against the allowed-pin tables in the source (V) |
 |---|---|---|
-| UART0 | TX GPIO16, RX GPIO17 (TX1/RX1 pads, D111) | `uart_hw.c`: TX in {0,2,12,14,16,18,28,…}, RX in {1,3,13,15,17,19,29,…}: OK |
+| UART0 | TX GPIO16, RX GPIO17 (TX0/RX0 pads, D119) | `uart_hw.c`: TX in {0,2,12,14,16,18,28,…}, RX in {1,3,13,15,17,19,29,…}: OK |
 | UART1 | TX GPIO8, RX GPIO9 (CRSF to the ESP32, D111) | TX in {4,6,8,10,20,…}, RX in {5,7,9,11,21,…}: OK |
 | PIOUART0 | not used (D89: user pads removed; GPIO28/29 are the no-connect spares since D111) | - |
 | PINIO1 | GPIO19 | any GPIO; `USE_PINIO` unconditional (`common_pre.h`), MADFLIGHT_FC3 uses PINIO on RP2350 upstream: OK |
@@ -258,7 +258,7 @@ upstream RP2350 configs in §1; every define name was checked against master `49
 #define GYRO_1_CS_PIN        PA15
 #define GYRO_1_EXTI_PIN      PA7
 #define GYRO_1_CLKIN_PIN     PA13           // PWM slice 6B
-#define GYRO_1_ALIGN         CW0_DEG       // set at P5 from the placed LGA orientation
+#define GYRO_1_ALIGN         CW0_DEG       // set at P5 from the placed LGA orientation; U11 on B.Cu needs a _FLIP alignment (candidate CW180_DEG_FLIP), confirm on the bench
 #define DEFAULT_ALIGN_BOARD_YAW  -45       // diamond mount (as BETAFPVG473_V3); sign confirmed at P4/P5
 
 // ---- Blackbox: 16 MB SPI NOR (PY25Q128HA-DFH-IR, JEDEC 0x852018, m25p16 driver) on SPI0 ----
@@ -280,8 +280,8 @@ upstream RP2350 configs in §1; every define name was checked against master `49
 // DShot speed left at the build default (DShot600); bench gate V9 decides 300 vs 600.
 
 // ---- Serial ----
-#define UART0_TX_PIN         PA16          // HD pad TX1 -> O4 RX (white); net UART0_TX (D111 map, fix2 name)
-#define UART0_RX_PIN         PA17          // HD pad RX1 <- O4 TX (grey); net UART0_RX
+#define UART0_TX_PIN         PA16          // HD pad TX0 -> O4 RX (white); net UART0_TX (D111 map, fix2 name)
+#define UART0_RX_PIN         PA17          // HD pad RX0 <- O4 TX (grey); net UART0_RX
 #define UART1_TX_PIN         PA8           // -> ESP32 GPIO3 (U0RXD); net UART1_TX (D111 map, fix2 name)
 #define UART1_RX_PIN         PA9           // <- ESP32 GPIO1 (U0TXD); net UART1_RX
 // No PIOUART0: the user UART pads were removed (D89); GPIO28/29 (PA28/PA29) are no-connect spares (D111).

@@ -98,7 +98,7 @@ Passives are 0201 and up, no 01005.
 | Wi-Fi antenna | AE2 | 2450AT07A0100001T chip antenna | ELRS Wi-Fi updates |
 | Solder pads | J20-J22, J33 | pads | LED strip and buzzer: LED, 5V, BZ-, GND |
 | Solder pads | J23-J25 | pads | camera: CAM, 5V, GND |
-| Solder pads | J26-J29 | pads | DJI O4 Lite: VHD, GND, TX1, RX1 (Betaflight UART0) |
+| Solder pads | J26-J29 | pads | DJI O4 Lite: VHD, GND, TX0, RX0 (Betaflight UART0) |
 | Button | SW1 | SKUBAAE010 | shared boot and bind: RP2354A BOOTSEL and ESP32 boot through D8 |
 | Test points | TP1-TP8, TP9, TP12, TP13 | mask-open filled vias | EFM8 C2D/C2CK, RP2354A boot (FCB), SWD CLK/DIO |
 
@@ -114,7 +114,7 @@ Passives are 0201 and up, no 01005.
 | 8, 9 | UART1 TX, RX: CRSF to the ESP32 |
 | 10, 24 | Status LED0, LED1 |
 | 11, 12, 14 | SPI1 MOSI, MISO, SCK (gyro) |
-| 16, 17 | UART0 TX, RX: pads TX1, RX1 |
+| 16, 17 | UART0 TX, RX: pads TX0, RX0 |
 | 19 | HD_EN (PINIO) |
 | 21, 22, 23 | OSD W, EN, SYNC (consecutive, as the PIO OSD requires) |
 | 25 | Beeper FET Q26 |

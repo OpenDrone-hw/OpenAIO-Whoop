@@ -4506,7 +4506,7 @@
 		)
 		(uuid "6b6b222c-82b4-53d6-b13f-01555e02a6c6")
 	)
-	(text "Wi-Fi CHIP ANTENNA (D58)"
+	(text "WI-FI CHIP ANTENNA"
 		(exclude_from_sim no)
 		(at 148.59 181.61 0)
 		(effects
@@ -4519,7 +4519,7 @@
 		)
 		(uuid "6dd2d319-57d0-513b-9c88-9d768adf547b")
 	)
-	(text "BOOT / BIND BUTTON (D65)"
+	(text "BOOT / BIND BUTTON"
 		(exclude_from_sim no)
 		(at 207.01 49.53 0)
 		(effects
@@ -4532,7 +4532,7 @@
 		)
 		(uuid "9bfbe080-8c52-52f4-84c3-ee663fb923f6")
 	)
-	(text_box "RFIO -> FL1 2450FM07D0034T filter (DC-blocked) -> RF_RX_ANT 50 Ohm -> AE1 lambda/4 wire (about 28-29 mm, trimmed in V7), DNP. RF class."
+	(text_box "RFIO -> FL1 filter (DC-blocked) -> 50 Ohm RF_RX_ANT -> AE1 lambda/4 wire (about 28-29 mm), DNP. RF class."
 		(exclude_from_sim no)
 		(at 172.72 127 0)
 		(size 29.21 17.78)
@@ -4552,7 +4552,7 @@
 		)
 		(uuid "3eba8ec1-da1d-5276-ac64-c4883ab8ffe9")
 	)
-	(text_box "Shared boot / bind button (D65): SW1 to GND, D8 dual Schottky to FC_BOOT (RP2354A QSPI_SS via R44) and RX_BOOT (ESP32 GPIO0). Released, the diodes isolate the two straps.\nHeld at power-up: RP2354A BOOTSEL + ESP32 download mode (recovery, D67). Pressed while running: ELRS bind / Wi-Fi / reboot, the FC keeps running."
+	(text_box "SW1 to GND, D8 dual Schottky to FC_BOOT and RX_BOOT: released, the diodes isolate the two straps.\nHeld at power-up: RP2354A BOOTSEL + ESP32 download. Pressed while running: ELRS bind / Wi-Fi."
 		(exclude_from_sim no)
 		(at 294.64 50.8 0)
 		(size 109.22 12.7)
@@ -4572,7 +4572,7 @@
 		)
 		(uuid "a4737001-9488-536c-bcdf-5cec22bc5356")
 	)
-	(text_box "ESP32-PICO-V3 (D55): all supplies on +3.3V, C82 + C76 at VDDA3P3; flash, crystal and SDIO cap are inside the SiP. EN = RX_EN with R56 10k + C73 1 uF.\nStraps (D111 map): GPIO0 = RX_BOOT; GPIO2, 5, 12, 15 not connected (internal defaults). PA_EN on GPIO21, PA_DET on GPIO36 (ADC1). GPIO4 and GPIO37 not connected (D114).\nELRS layout JSON (D53, D81): see research/PINMAP.md 6; vtx_miso must be written as -1.\nWi-Fi TX peaks 370 mA (bench mode only); +3.3V budget on POWER. SiP site per floorplan (D61), no halo rule (D69)."
+	(text_box "ESP32-PICO-V3: supplies on +3.3V, C82 + C76 at VDDA3P3; flash and crystal are in the SiP. EN = RX_EN with R56 10k + C73 1 uF.\nGPIO0 = RX_BOOT, PA_EN GPIO21, PA_DET GPIO36. Wi-Fi TX peaks 370 mA."
 		(exclude_from_sim no)
 		(at 284.48 100.33 0)
 		(size 119.38 21.59)
@@ -4592,7 +4592,7 @@
 		)
 		(uuid "a67da568-1ba2-5605-9f34-846f99e3a14c")
 	)
-	(text_box "SX1281 from OpenRX-Lite-UFL (D52, D53): LDO mode (DCC_SW open, no inductor), VREG_RADIO with C87 + C88, decoupling per DS Table 15-1. Pin 5 is GND and is grounded here. 52 MHz TCXO X3 AC-coupled by C84 into XTA."
+	(text_box "SX1281: LDO mode (DCC_SW open, no inductor), VREG_RADIO C87 + C88. Pin 5 is GND. 52 MHz TCXO X3 AC-coupled by C84 into XTA."
 		(exclude_from_sim no)
 		(at 38.1 139.7 0)
 		(size 111.76 7.62)
@@ -4612,7 +4612,7 @@
 		)
 		(uuid "ac67a7a4-0b4f-5da1-88c7-1df2eb9f96d9")
 	)
-	(text_box "Wi-Fi (D58): LNA_IN -> RF_WIFI 50 Ohm (<= 8 mm, D69) -> pi match C133 (DNP) / R88 0R / C132 (DNP) -> AE2 chip antenna; values from V7 tuning. Keep-out per DRU (D21)."
+	(text_box "LNA_IN -> RF_WIFI 50 Ohm (<= 8 mm) -> pi match C133 (DNP) / R88 0R / C132 (DNP) -> AE2 chip antenna. Keep-out per DRU."
 		(exclude_from_sim no)
 		(at 152.4 208.28 0)
 		(size 50.8 12.7)
@@ -4632,7 +4632,7 @@
 		)
 		(uuid "ce9670f5-fb5a-5477-b092-f0191b365196")
 	)
-	(text_box "D4 RGB LED (ELRS led_rgb GPIO32) from OpenRX-Lite-UFL. P4-15 DECIDED: keep on +3.3V as the house RX boards do (0.2 V under the datasheet VDD minimum; on +5V the DIN level would be short). Bench V-LED; fallback VDD to +5V."
+	(text_box "D4 RGB LED (GPIO32) on +3.3V, 0.2 V under the datasheet VDD minimum: bench-check; fallback VDD to +5V."
 		(exclude_from_sim no)
 		(at 38.1 215.9 0)
 		(size 104.14 10.16)
@@ -4651,26 +4651,6 @@
 			(justify left top)
 		)
 		(uuid "ea2a5274-4758-57ab-ad11-3d3ea093761a")
-	)
-	(text_box "RX sheet: radio, TCXO, RGB LED and Wi-Fi match copied from OpenRX-Lite-UFL (D52, D53, D58); ESP32-PICO-V3 block new from Espressif Fig. 11 (D55); shared boot / bind button new (D65). Pin plan research/PINMAP.md 6, parts hardware/bom_plan.json, +3.3V from POWER."
-		(exclude_from_sim no)
-		(at 205.74 27.94 0)
-		(size 198.12 7.62)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width -0.0001)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "faf337cf-67f9-59c4-83d7-ed2066aab511")
 	)
 	(junction
 		(at 91.44 81.28)

@@ -37,7 +37,7 @@
  "pin1": "1",
  "y_axis": "down",
  "view": "top",
- "derivation": "The AP1606 data sheet (${OPENDRONE_LIB}/datasheet/AP1606.pdf, also LCSC C2849580) has no package drawing; LCSC lists DFN-3L(0.6x1), i.e. the industry DFN1006-3 (SOT883, JEITA SC-101). Land = Nexperia's SOT883 reflow footprint drawn in the OpenDrone '-BR' frame (pins 1/2 right column, pin 1 lower right, pin 3 left), which keeps the pin numbering OpenDrone built with on OpenFC-Core/Lite/Lite-Mini (PARTS-USED.md). Inside the budget envelope DFN1006 1.1 x 0.7.",
+ "derivation": "The AP1606 data sheet (${OPENDRONE_LIB}/datasheet/AP1606.pdf, also LCSC C2849580) has no package drawing; LCSC lists DFN-3L(0.6x1), i.e. the industry DFN1006-3 (SOT883, JEITA SC-101). Land = Nexperia's SOT883 reflow footprint drawn in the OpenDrone '-BR' frame (pins 1/2 right column, pin 1 lower right, pin 3 left), which keeps the pin numbering OpenDrone built with on OpenFC-Core/Lite/Lite-Mini (PARTS-USED.md). Inside the budget envelope DFN1006 1.1 x 0.7. Pin order re-verified 2026-10-11: BC857BM (NXP SOT883 outline, bottom view) pin 1 base lower left, 2 emitter upper left, 3 collector right; AP1606 DS p1 bottom view shows D on the left, G upper right, S lower right = D right, G lower left, S upper left after a 180 deg in-plane turn, so G/S/D = 1/2/3 sit on the same pads as B/E/C. The AP1606 sheet gives no pin numbers or package drawing. SOT883 terminals: body 0.95-1.02 x 0.55-0.62, small terminals 0.12-0.20 wide at e 0.35, large 0.47-0.55, length 0.22-0.30; land outer edge 0.55 is 0.04 past the 0.51 maximum.",
  "build": {
   "radius": 0.05,
   "courtyard": "polygon",
