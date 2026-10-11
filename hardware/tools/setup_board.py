@@ -1425,8 +1425,23 @@ def build_board(path, P):
     add_text(eco2, "eco2/text", "FRONT", (17.0, -18.2), size=1.0, thick=0.15)
     for name, (sx, sy) in HOLES.items():
         add_shape("circle", u1, "user1/" + name, (sx * HOLE_HALF, sy * HOLE_HALF), FLANGE_D / 2, width=0.05)
-    add_text(cmts, "cmts/layers", "F.Cu sig | In1 GND | In2 sig | In3 +BATT/PWR | In4 GND | B.Cu sig",
-             (0.0, 18.5), size=0.8, thick=0.1)
+    add_text(cmts, "cmts/layers", "\n".join([
+        "STACKUP  NextPCB 06101103-1080, 6L HDI 1+4+1, 1.0 mm, FR-4 Dk 4.2",
+        "L1 F.Cu  1 oz   parts, RF 50R CPWG 0.105/0.15, hot loops, fan-out",
+        "   1080 0.077   laser microvia L1-L2 0.10/0.25, in pad",
+        "L2 In1   1 oz*  solid GND plane, no tracks",
+        "   1080 0.077   (* plated foil)",
+        "L3 In2   1 oz   signal layer, refs L2; no Analog / RF",
+        "   core 0.536   buried via L2-L5 0.15/0.35 (power 0.20/0.40)",
+        "L4 In3   1 oz   +BATT plane, refs L5; no Analog / RF / gate / gyro",
+        "   1080 0.077",
+        "L5 In4   1 oz*  solid GND plane, no tracks",
+        "   1080 0.077   laser microvia L5-L6 0.10/0.25, in pad",
+        "L6 B.Cu  1 oz   parts, fan-out",
+        "ROUTING  every via in a pad or under a body; no through or blind vias",
+        "  L1->L3: microvia + buried 0.25 mm staggered; L1->L6: micro + buried + micro",
+        "  min track/space 0.09, annular 0.09 (laser 0.075), filled + capped vias"]),
+             (0.0, 18.5), size=0.6, thick=0.08)
 
     # outline polygon for clipping and the band, from the analytic geometry (deterministic: the board's own
     # polygon can still see the deleted arcs, whose re-loaded mid points differ by a nanometre)
