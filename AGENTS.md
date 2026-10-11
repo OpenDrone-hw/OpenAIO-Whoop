@@ -38,7 +38,7 @@ carries the two status LEDs.
 ## Power
 
 ```
-J2/J3 battery pads ─► R1 0.5 mOhm Kelvin shunt (U1 INA186 ─► ADC_CURR) ─► +BATT
+J2/J3 battery pads ─► R2 0.5 mOhm Kelvin shunt (U1 INA186 ─► ADC_CURR) ─► +BATT
 +BATT ─┬─► Q29-Q40 AGM210MAP half-bridges, U6-U9 EFM8 VDD
        ├─► SE5004L PA VCC
        └─► U2 TPS61022 boost ─► +5V_BST ─┬─► VHD pad (O4 Lite)
@@ -69,7 +69,7 @@ diodes.
 | Blackbox | U13 | PY25Q128HA-DFH-IR, 16 MB SPI NOR | | SPI0 |
 | ESC MCU | U6-U9 | EFM8BB51F16I-C-QFN20R | | Bluejay, layout BB51 "A" |
 | Half-bridge | Q29-Q40 | AGM210MAP, P+N in PDFN-8 3.3 x 3.3 | C7431169 | one per phase, 22 uF 0603 cap across each supply pair |
-| Battery shunt | R1 | HCS1206FTL500, 0.5 mOhm 1206 | C346511 | four-pad Kelvin land |
+| Battery shunt | R2 | HCS1206FTL500, 0.5 mOhm 1206 | C346511 | four-pad Kelvin land |
 | Current amp | U1 | INA186A3, gain 100 | C2058245 | 50 mV/A |
 | 5 V boost | U2 | TPS61022 | C915088 | 1 MHz forced PWM, L1 0.68 uH |
 | 5 V diode OR | D9, D10 | MS2A40LDF, DFN1610-2 | C7380000 | VBUS and boost to +5V, 0.3 V drop at 0.5 A |
@@ -145,8 +145,8 @@ target are in [research/PINMAP.md](research/PINMAP.md); the pad set is in
   return: no via in the loop, unbroken GND under it, a small switch node, away
   from the gyro, the crystals and the antennas.
 - Each AGM210MAP keeps its 22 uF hot-loop cap directly across its supply pair.
-  The battery path from the pads through R1 to each ESC cell stays short and
-  symmetric; R1's sense taps stay Kelvin, off In2 and In3.
+  The battery path from the pads through R2 to each ESC cell stays short and
+  symmetric; R2's sense taps stay Kelvin, off In2 and In3.
 - The motor plugs, the twelve half-bridges, the USB plug at the rear hole, the
   battery pads and the camera plug sit where the BetaFPV Matrix 1S 5IN1 II has
   them, so motor leads, battery lead and camera cable reach as they do on that

@@ -792,57 +792,7 @@
  },
  "parts": [
   {
-   "ref": "C1",
-   "block": "power",
-   "sheet": "power",
-   "value": "22uF",
-   "rating": "16V X5R",
-   "manufacturer": "Samsung Electro-Mechanics",
-   "mpn": "CL10A226MO7JZNC",
-   "lcsc": "C2762594",
-   "package": "0603",
-   "footprint": "lib:C_0603_1608Metric_L",
-   "symbol": "Device:C",
-   "side": "F",
-   "region": "power_entry_bulk",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "CSA+",
-    "GND"
-   ],
-   "notes": "pad bulk 1/2 on CSA+ (§4.1); [PU]; outside the ESC quarters",
-   "lib_work": []
-  },
-  {
-   "ref": "C2",
-   "block": "power",
-   "sheet": "power",
-   "value": "22uF",
-   "rating": "16V X5R",
-   "manufacturer": "Samsung Electro-Mechanics",
-   "mpn": "CL10A226MO7JZNC",
-   "lcsc": "C2762594",
-   "package": "0603",
-   "footprint": "lib:C_0603_1608Metric_L",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "power_entry_bulk",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "CSA+",
-    "GND"
-   ],
-   "notes": "pad bulk 2/2 on CSA+ (§4.1); [PU]; outside the ESC quarters",
-   "lib_work": []
-  },
-  {
-   "ref": "R1",
+   "ref": "R2",
    "block": "power",
    "sheet": "power",
    "value": "0.5mR 2W",
@@ -3479,31 +3429,6 @@
     "GND"
    ],
    "notes": "+1.1V rail at VREG_FB (PINMAP §3; house sheet has two); [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V); P5 condition (RP2350 DS 6.3.8.1 'Don't place any of CIN/LX/COUT on the opposite side'): on U10's side within 3 mm of its pin (C58 49, L2 48, C56 50, C57 46), checked by tools/check_p5_conditions.py SMPS (floorplan v3 has them on B: placement stage moves them to F with SW1 / D8)",
-   "lib_work": []
-  },
-  {
-   "ref": "C134",
-   "block": "fc",
-   "sheet": "rp2350a",
-   "value": "4.7uF",
-   "rating": "6.3V X5R",
-   "manufacturer": "Murata",
-   "mpn": "GRM035R60J475ME15D",
-   "lcsc": "C335103",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_L",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "fc_core",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+1.1V",
-    "GND"
-   ],
-   "notes": "second +1.1V 4.7 uF at DVDD pin 23 (RP2350 DS 6.3.8 recommendation, house OpenFC-Lite-Mini fits two; ruling 2026-10-09, P4 integration 2026-10-09); place at pin 23 on the U10 side; [PU]; 0402 for DC bias 0402->0201 (owner review 2026-10-11, DC-bias margin at <=3.3 V).",
    "lib_work": []
   },
   {
