@@ -3,12 +3,12 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.027). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
+	(descr "Plug-ready motor land (D65, BetaFPV Matrix 1S 5IN1 II arrangement): 3 plated holes D0.50 (ring D0.90) at the Molex PicoBlade 1.25 mm pitch for an OPTIONAL vertical THT header Molex 53047-0310 (DNP by default, fitted from the back = header side, pins soldered on the front), and front solder areas for direct motor wires (no paste): pads 1/3 1.65 x 1.50, pad 2 0.90 x 1.50. +y = toward the board edge (header wall 1.20 from the pin row on that side). 3D model = Molex 53047-0310 (LCSC C122442 STEP; KiCad packages3D has no 53047 model) flipped about X, body under the board (offset z = -board thickness 1.049). Header datasheet: Molex SD-53047-xxx https://www.molex.com/pdm_docs/sd/530470310_sd.pdf")
 	(tags "motor solder pad PicoBlade 53047 1.25mm plug-ready whoop JST1.25")
 	(property "Reference" "REF**"
 		(at 0 0.3 0)
 		(layer "F.Fab")
-		(uuid "448efa03-8c28-4ce5-aeaa-5665a300e875")
+		(uuid "82382355-bd2d-4069-b9d1-2e70ed435d54")
 		(effects
 			(font
 				(size 0.4 0.4)
@@ -20,7 +20,7 @@
 		(at 0 1.7 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "0578ddd1-5c01-4aa0-b2d9-350460a1a1b1")
+		(uuid "a071f354-429f-45ba-99a6-2b3d1bd0cecd")
 		(effects
 			(font
 				(size 0.4 0.4)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "8cf28150-bc02-4218-afda-b8676f4b379e")
+		(uuid "626f46c3-e7f3-4300-9252-b054491ea796")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "6312590a-0510-4da0-bd5a-66bbeb81742a")
+		(uuid "05191a68-92a5-4df9-bef9-be79fa5f59aa")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -61,7 +61,7 @@
 		)
 		(fill no)
 		(layer "B.CrtYd")
-		(uuid "5b6b8d7c-20c9-4f12-b0d1-33e27289fd8e")
+		(uuid "5a0abb6a-626e-43fd-bc5b-e133010fad99")
 	)
 	(fp_rect
 		(start -2.55 -0.55)
@@ -72,7 +72,7 @@
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "fbb5b13e-d053-47a9-99df-581bc0b0d356")
+		(uuid "8197383e-bb3f-4bd8-93c7-7ab19dc28f64")
 	)
 	(fp_line
 		(start -2.8 -1.6)
@@ -82,7 +82,7 @@
 			(type default)
 		)
 		(layer "B.Fab")
-		(uuid "27f8679d-08c4-4dbe-800f-268007812fa1")
+		(uuid "5ce96f83-a7db-46c4-abdf-f8e920972138")
 	)
 	(fp_line
 		(start -2.8 1.2)
@@ -92,7 +92,7 @@
 			(type default)
 		)
 		(layer "B.Fab")
-		(uuid "4c1b6fac-b720-4ec6-ab39-12fc7d41a3aa")
+		(uuid "16aa0d0c-dc02-4dc9-a77b-a39ab0e3f3f6")
 	)
 	(fp_line
 		(start -2.3 -2.1)
@@ -102,7 +102,7 @@
 			(type default)
 		)
 		(layer "B.Fab")
-		(uuid "64746d8f-1393-4f4f-b331-95258603f8e2")
+		(uuid "4add6698-5a18-447e-bd74-ff4dd011b8f7")
 	)
 	(fp_line
 		(start 2.8 -2.1)
@@ -112,7 +112,7 @@
 			(type default)
 		)
 		(layer "B.Fab")
-		(uuid "576a1463-f8d7-4501-a057-1edd7cd69d8a")
+		(uuid "1c0519ab-6d04-4e23-b530-03a9937c5b0f")
 	)
 	(fp_line
 		(start 2.8 1.2)
@@ -122,7 +122,7 @@
 			(type default)
 		)
 		(layer "B.Fab")
-		(uuid "b56ece28-3ef6-4e65-8f1f-cca1c6c1cdce")
+		(uuid "d39e535e-641a-452a-a584-d50014088c69")
 	)
 	(fp_line
 		(start -2.45 -0.15)
@@ -132,7 +132,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "d0f60ea8-c560-4f7b-95b6-c4eee188bf6e")
+		(uuid "83ea6e17-e7dc-41aa-bf84-5b7f8bf95353")
 	)
 	(fp_line
 		(start -2.45 1.05)
@@ -142,7 +142,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "0d0beddc-f361-408c-9a1b-918eeeafd812")
+		(uuid "87ff2c60-5f3f-4ec8-9c14-53131647ccce")
 	)
 	(fp_line
 		(start -2.15 -0.45)
@@ -152,7 +152,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "176a0c9e-0485-4859-a15f-2c9f27da87d4")
+		(uuid "6dd1d243-115b-4b9c-bd1e-d43567e9318a")
 	)
 	(fp_line
 		(start 2.45 -0.45)
@@ -162,7 +162,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "d48bb047-b6d6-43ac-be90-6e8d338d96e4")
+		(uuid "9adbb3e0-4b2c-42ff-8c08-cf43efe154ae")
 	)
 	(fp_line
 		(start 2.45 1.05)
@@ -172,14 +172,14 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "e69f0fad-bf6e-436d-ad48-a9ca6d2fd123")
+		(uuid "e0b00188-938a-4368-a296-25eab626ae76")
 	)
 	(pad "1" smd rect
 		(at -1.625 0.3)
 		(size 1.65 1.5)
 		(layers "F.Cu" "F.Mask")
 		(thermal_bridge_angle 45)
-		(uuid "24e2fff4-b5b6-49c4-9cd1-01d1f2d247cc")
+		(uuid "96832521-7c0b-446e-99b9-84eaf674fba5")
 	)
 	(pad "1" thru_hole circle
 		(at -1.25 0)
@@ -188,7 +188,7 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers yes)
 		(keep_end_layers yes)
-		(uuid "a9e5aff1-ad6e-43ed-8df5-353b4114abf9")
+		(uuid "09950841-7852-46b2-bfdc-4f5f6e482a2d")
 	)
 	(pad "2" thru_hole circle
 		(at 0 0)
@@ -197,14 +197,14 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers yes)
 		(keep_end_layers yes)
-		(uuid "633125eb-cdb3-486d-850e-673d087562fa")
+		(uuid "5dacf82f-421f-4b15-87f1-f15b73a0b0c5")
 	)
 	(pad "2" smd rect
 		(at 0 0.3)
 		(size 0.9 1.5)
 		(layers "F.Cu" "F.Mask")
 		(thermal_bridge_angle 45)
-		(uuid "4e13d568-7d96-4800-9c65-e9edaa762d2d")
+		(uuid "2ae930d9-8f14-4528-8cbc-58288b12a5f7")
 	)
 	(pad "3" thru_hole circle
 		(at 1.25 0)
@@ -213,19 +213,19 @@
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers yes)
 		(keep_end_layers yes)
-		(uuid "87e8e052-2b40-4a6f-bac1-8cd6041cbd91")
+		(uuid "228309b8-a05f-4dcc-b927-ca95f8c59b06")
 	)
 	(pad "3" smd rect
 		(at 1.625 0.3)
 		(size 1.65 1.5)
 		(layers "F.Cu" "F.Mask")
 		(thermal_bridge_angle 45)
-		(uuid "15c13cb0-1dc5-434b-a361-c4caa6d92e2f")
+		(uuid "ad508aef-6815-423c-9035-6e0f01d9ff3c")
 	)
 	(embedded_fonts no)
 	(model "${KIPRJMOD}/lib.3dshapes/Molex_PicoBlade_53047-0310_1x03_P1.25mm_Vertical.step"
 		(offset
-			(xyz 0 0 -1.027)
+			(xyz 0 0 -1.049)
 		)
 		(scale
 			(xyz 1 1 1)
