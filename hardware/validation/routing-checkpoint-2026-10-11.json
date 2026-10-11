@@ -1,0 +1,2180 @@
+{
+  "timestamp_utc": "2026-10-11T21:47:25.198724+00:00",
+  "purpose": "Local routing and compact Wi-Fi antenna prototype checkpoint",
+  "manufacturing_ready": false,
+  "source_sha256": {
+    "hardware/OpenAIO-Whoop.kicad_pcb": "de0920c68c587e98e66acab7281a325545cc9325ff7fac0341f70f608c91c64b",
+    "hardware/OpenAIO-Whoop.kicad_pro": "6d48d6102d7f5c797745a21d238fd11c1429835165da21f26c78ba319efd768a",
+    "hardware/OpenAIO-Whoop.kicad_dru": "ad538df7cdbb7a885317d2fdf79b4a720ba82235a6b84e5f13e408749f876a4c",
+    "hardware/rx_esp32_sx1281.kicad_sch": "276fe8e754209374774029edbbc381c6d2315b256fe348b105486bca2de3e3c7"
+  },
+  "native_drc": {
+    "copper_or_geometry_errors": 0,
+    "warnings_by_type": {
+      "items_not_allowed": 4,
+      "courtyards_overlap": 134
+    },
+    "open_connections": 468,
+    "schematic_parity_findings": 0
+  },
+  "native_erc": {
+    "errors": 0,
+    "warnings": 11
+  },
+  "connection_groups": [
+    {
+      "name": "ESC1_A_COM",
+      "pads": [
+        [
+          "U6",
+          "13"
+        ],
+        [
+          "Q29",
+          "4"
+        ]
+      ],
+      "net": "/ESC1/A_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC1_A_PWM",
+      "pads": [
+        [
+          "U6",
+          "14"
+        ],
+        [
+          "Q29",
+          "2"
+        ]
+      ],
+      "net": "/ESC1/A_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC1_BEMF_A",
+      "pads": [
+        [
+          "U6",
+          "19"
+        ],
+        [
+          "R13",
+          "2"
+        ]
+      ],
+      "net": "/ESC1/BEMF_A",
+      "connected": true
+    },
+    {
+      "name": "ESC1_phase_pair_A",
+      "pads": [
+        [
+          "R13",
+          "1"
+        ],
+        [
+          "R16",
+          "1"
+        ]
+      ],
+      "net": "/ESC1/PHASE_A",
+      "connected": true
+    },
+    {
+      "name": "ESC1_B_COM",
+      "pads": [
+        [
+          "U6",
+          "10"
+        ],
+        [
+          "Q30",
+          "4"
+        ]
+      ],
+      "net": "/ESC1/B_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC1_B_PWM",
+      "pads": [
+        [
+          "U6",
+          "11"
+        ],
+        [
+          "Q30",
+          "2"
+        ]
+      ],
+      "net": "/ESC1/B_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC1_BEMF_B",
+      "pads": [
+        [
+          "U6",
+          "1"
+        ],
+        [
+          "R14",
+          "2"
+        ]
+      ],
+      "net": "/ESC1/BEMF_B",
+      "connected": true
+    },
+    {
+      "name": "ESC1_phase_pair_B",
+      "pads": [
+        [
+          "R14",
+          "1"
+        ],
+        [
+          "R17",
+          "1"
+        ]
+      ],
+      "net": "/ESC1/PHASE_B",
+      "connected": true
+    },
+    {
+      "name": "ESC1_C_COM",
+      "pads": [
+        [
+          "U6",
+          "8"
+        ],
+        [
+          "Q31",
+          "4"
+        ]
+      ],
+      "net": "/ESC1/C_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC1_C_PWM",
+      "pads": [
+        [
+          "U6",
+          "9"
+        ],
+        [
+          "Q31",
+          "2"
+        ]
+      ],
+      "net": "/ESC1/C_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC1_BEMF_C",
+      "pads": [
+        [
+          "U6",
+          "20"
+        ],
+        [
+          "R15",
+          "2"
+        ]
+      ],
+      "net": "/ESC1/BEMF_C",
+      "connected": true
+    },
+    {
+      "name": "ESC1_phase_pair_C",
+      "pads": [
+        [
+          "R15",
+          "1"
+        ],
+        [
+          "R18",
+          "1"
+        ]
+      ],
+      "net": "/ESC1/PHASE_C",
+      "connected": true
+    },
+    {
+      "name": "ESC1_neutral",
+      "pads": [
+        [
+          "U6",
+          "18"
+        ],
+        [
+          "R16",
+          "2"
+        ],
+        [
+          "R17",
+          "2"
+        ],
+        [
+          "R18",
+          "2"
+        ]
+      ],
+      "net": "/ESC1/NEUTRAL",
+      "connected": true
+    },
+    {
+      "name": "ESC1_RTX",
+      "pads": [
+        [
+          "U6",
+          "17"
+        ],
+        [
+          "R12",
+          "2"
+        ]
+      ],
+      "net": "/ESC1/RTX",
+      "connected": true
+    },
+    {
+      "name": "ESC2_A_COM",
+      "pads": [
+        [
+          "U7",
+          "13"
+        ],
+        [
+          "Q32",
+          "4"
+        ]
+      ],
+      "net": "/ESC2/A_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC2_A_PWM",
+      "pads": [
+        [
+          "U7",
+          "14"
+        ],
+        [
+          "Q32",
+          "2"
+        ]
+      ],
+      "net": "/ESC2/A_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC2_BEMF_A",
+      "pads": [
+        [
+          "U7",
+          "19"
+        ],
+        [
+          "R20",
+          "2"
+        ]
+      ],
+      "net": "/ESC2/BEMF_A",
+      "connected": true
+    },
+    {
+      "name": "ESC2_phase_pair_A",
+      "pads": [
+        [
+          "R20",
+          "1"
+        ],
+        [
+          "R23",
+          "1"
+        ]
+      ],
+      "net": "/ESC2/PHASE_A",
+      "connected": true
+    },
+    {
+      "name": "ESC2_B_COM",
+      "pads": [
+        [
+          "U7",
+          "10"
+        ],
+        [
+          "Q33",
+          "4"
+        ]
+      ],
+      "net": "/ESC2/B_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC2_B_PWM",
+      "pads": [
+        [
+          "U7",
+          "11"
+        ],
+        [
+          "Q33",
+          "2"
+        ]
+      ],
+      "net": "/ESC2/B_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC2_BEMF_B",
+      "pads": [
+        [
+          "U7",
+          "1"
+        ],
+        [
+          "R21",
+          "2"
+        ]
+      ],
+      "net": "/ESC2/BEMF_B",
+      "connected": true
+    },
+    {
+      "name": "ESC2_phase_pair_B",
+      "pads": [
+        [
+          "R21",
+          "1"
+        ],
+        [
+          "R24",
+          "1"
+        ]
+      ],
+      "net": "/ESC2/PHASE_B",
+      "connected": true
+    },
+    {
+      "name": "ESC2_C_COM",
+      "pads": [
+        [
+          "U7",
+          "8"
+        ],
+        [
+          "Q34",
+          "4"
+        ]
+      ],
+      "net": "/ESC2/C_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC2_C_PWM",
+      "pads": [
+        [
+          "U7",
+          "9"
+        ],
+        [
+          "Q34",
+          "2"
+        ]
+      ],
+      "net": "/ESC2/C_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC2_BEMF_C",
+      "pads": [
+        [
+          "U7",
+          "20"
+        ],
+        [
+          "R22",
+          "2"
+        ]
+      ],
+      "net": "/ESC2/BEMF_C",
+      "connected": true
+    },
+    {
+      "name": "ESC2_phase_pair_C",
+      "pads": [
+        [
+          "R22",
+          "1"
+        ],
+        [
+          "R25",
+          "1"
+        ]
+      ],
+      "net": "/ESC2/PHASE_C",
+      "connected": true
+    },
+    {
+      "name": "ESC2_neutral",
+      "pads": [
+        [
+          "U7",
+          "18"
+        ],
+        [
+          "R23",
+          "2"
+        ],
+        [
+          "R24",
+          "2"
+        ],
+        [
+          "R25",
+          "2"
+        ]
+      ],
+      "net": "/ESC2/NEUTRAL",
+      "connected": true
+    },
+    {
+      "name": "ESC2_RTX",
+      "pads": [
+        [
+          "U7",
+          "17"
+        ],
+        [
+          "R19",
+          "2"
+        ]
+      ],
+      "net": "/ESC2/RTX",
+      "connected": true
+    },
+    {
+      "name": "ESC3_A_COM",
+      "pads": [
+        [
+          "U8",
+          "13"
+        ],
+        [
+          "Q35",
+          "4"
+        ]
+      ],
+      "net": "/ESC3/A_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC3_A_PWM",
+      "pads": [
+        [
+          "U8",
+          "14"
+        ],
+        [
+          "Q35",
+          "2"
+        ]
+      ],
+      "net": "/ESC3/A_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC3_BEMF_A",
+      "pads": [
+        [
+          "U8",
+          "19"
+        ],
+        [
+          "R27",
+          "2"
+        ]
+      ],
+      "net": "/ESC3/BEMF_A",
+      "connected": true
+    },
+    {
+      "name": "ESC3_phase_pair_A",
+      "pads": [
+        [
+          "R27",
+          "1"
+        ],
+        [
+          "R30",
+          "1"
+        ]
+      ],
+      "net": "/ESC3/PHASE_A",
+      "connected": true
+    },
+    {
+      "name": "ESC3_B_COM",
+      "pads": [
+        [
+          "U8",
+          "10"
+        ],
+        [
+          "Q36",
+          "4"
+        ]
+      ],
+      "net": "/ESC3/B_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC3_B_PWM",
+      "pads": [
+        [
+          "U8",
+          "11"
+        ],
+        [
+          "Q36",
+          "2"
+        ]
+      ],
+      "net": "/ESC3/B_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC3_BEMF_B",
+      "pads": [
+        [
+          "U8",
+          "1"
+        ],
+        [
+          "R28",
+          "2"
+        ]
+      ],
+      "net": "/ESC3/BEMF_B",
+      "connected": true
+    },
+    {
+      "name": "ESC3_phase_pair_B",
+      "pads": [
+        [
+          "R28",
+          "1"
+        ],
+        [
+          "R31",
+          "1"
+        ]
+      ],
+      "net": "/ESC3/PHASE_B",
+      "connected": true
+    },
+    {
+      "name": "ESC3_C_COM",
+      "pads": [
+        [
+          "U8",
+          "8"
+        ],
+        [
+          "Q37",
+          "4"
+        ]
+      ],
+      "net": "/ESC3/C_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC3_C_PWM",
+      "pads": [
+        [
+          "U8",
+          "9"
+        ],
+        [
+          "Q37",
+          "2"
+        ]
+      ],
+      "net": "/ESC3/C_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC3_BEMF_C",
+      "pads": [
+        [
+          "U8",
+          "20"
+        ],
+        [
+          "R29",
+          "2"
+        ]
+      ],
+      "net": "/ESC3/BEMF_C",
+      "connected": true
+    },
+    {
+      "name": "ESC3_phase_pair_C",
+      "pads": [
+        [
+          "R29",
+          "1"
+        ],
+        [
+          "R32",
+          "1"
+        ]
+      ],
+      "net": "/ESC3/PHASE_C",
+      "connected": true
+    },
+    {
+      "name": "ESC3_neutral",
+      "pads": [
+        [
+          "U8",
+          "18"
+        ],
+        [
+          "R30",
+          "2"
+        ],
+        [
+          "R31",
+          "2"
+        ],
+        [
+          "R32",
+          "2"
+        ]
+      ],
+      "net": "/ESC3/NEUTRAL",
+      "connected": true
+    },
+    {
+      "name": "ESC3_RTX",
+      "pads": [
+        [
+          "U8",
+          "17"
+        ],
+        [
+          "R26",
+          "2"
+        ]
+      ],
+      "net": "/ESC3/RTX",
+      "connected": true
+    },
+    {
+      "name": "ESC4_A_COM",
+      "pads": [
+        [
+          "U9",
+          "13"
+        ],
+        [
+          "Q38",
+          "4"
+        ]
+      ],
+      "net": "/ESC4/A_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC4_A_PWM",
+      "pads": [
+        [
+          "U9",
+          "14"
+        ],
+        [
+          "Q38",
+          "2"
+        ]
+      ],
+      "net": "/ESC4/A_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC4_BEMF_A",
+      "pads": [
+        [
+          "U9",
+          "19"
+        ],
+        [
+          "R34",
+          "2"
+        ]
+      ],
+      "net": "/ESC4/BEMF_A",
+      "connected": true
+    },
+    {
+      "name": "ESC4_phase_pair_A",
+      "pads": [
+        [
+          "R34",
+          "1"
+        ],
+        [
+          "R37",
+          "1"
+        ]
+      ],
+      "net": "/ESC4/PHASE_A",
+      "connected": true
+    },
+    {
+      "name": "ESC4_B_COM",
+      "pads": [
+        [
+          "U9",
+          "10"
+        ],
+        [
+          "Q39",
+          "4"
+        ]
+      ],
+      "net": "/ESC4/B_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC4_B_PWM",
+      "pads": [
+        [
+          "U9",
+          "11"
+        ],
+        [
+          "Q39",
+          "2"
+        ]
+      ],
+      "net": "/ESC4/B_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC4_BEMF_B",
+      "pads": [
+        [
+          "U9",
+          "1"
+        ],
+        [
+          "R35",
+          "2"
+        ]
+      ],
+      "net": "/ESC4/BEMF_B",
+      "connected": true
+    },
+    {
+      "name": "ESC4_phase_pair_B",
+      "pads": [
+        [
+          "R35",
+          "1"
+        ],
+        [
+          "R38",
+          "1"
+        ]
+      ],
+      "net": "/ESC4/PHASE_B",
+      "connected": true
+    },
+    {
+      "name": "ESC4_C_COM",
+      "pads": [
+        [
+          "U9",
+          "8"
+        ],
+        [
+          "Q40",
+          "4"
+        ]
+      ],
+      "net": "/ESC4/C_COM",
+      "connected": true
+    },
+    {
+      "name": "ESC4_C_PWM",
+      "pads": [
+        [
+          "U9",
+          "9"
+        ],
+        [
+          "Q40",
+          "2"
+        ]
+      ],
+      "net": "/ESC4/C_PWM",
+      "connected": true
+    },
+    {
+      "name": "ESC4_BEMF_C",
+      "pads": [
+        [
+          "U9",
+          "20"
+        ],
+        [
+          "R36",
+          "2"
+        ]
+      ],
+      "net": "/ESC4/BEMF_C",
+      "connected": true
+    },
+    {
+      "name": "ESC4_phase_pair_C",
+      "pads": [
+        [
+          "R36",
+          "1"
+        ],
+        [
+          "R39",
+          "1"
+        ]
+      ],
+      "net": "/ESC4/PHASE_C",
+      "connected": true
+    },
+    {
+      "name": "ESC4_neutral",
+      "pads": [
+        [
+          "U9",
+          "18"
+        ],
+        [
+          "R37",
+          "2"
+        ],
+        [
+          "R38",
+          "2"
+        ],
+        [
+          "R39",
+          "2"
+        ]
+      ],
+      "net": "/ESC4/NEUTRAL",
+      "connected": true
+    },
+    {
+      "name": "ESC4_RTX",
+      "pads": [
+        [
+          "U9",
+          "17"
+        ],
+        [
+          "R33",
+          "2"
+        ]
+      ],
+      "net": "/ESC4/RTX",
+      "connected": true
+    },
+    {
+      "name": "ESC1_bypass_4",
+      "pads": [
+        [
+          "U6",
+          "4"
+        ],
+        [
+          "C19",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "ESC1_bypass_3",
+      "pads": [
+        [
+          "U6",
+          "3"
+        ],
+        [
+          "C19",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "ESC2_bypass_4",
+      "pads": [
+        [
+          "U7",
+          "4"
+        ],
+        [
+          "C25",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "ESC2_bypass_3",
+      "pads": [
+        [
+          "U7",
+          "3"
+        ],
+        [
+          "C25",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "ESC3_bypass_4",
+      "pads": [
+        [
+          "U8",
+          "4"
+        ],
+        [
+          "C31",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "ESC3_bypass_3",
+      "pads": [
+        [
+          "U8",
+          "3"
+        ],
+        [
+          "C31",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "VTX_0",
+      "pads": [
+        [
+          "U19",
+          "35"
+        ],
+        [
+          "C110",
+          1
+        ]
+      ],
+      "net": "/VTX/RF_PAOUT1",
+      "connected": true
+    },
+    {
+      "name": "VTX_1",
+      "pads": [
+        [
+          "L3",
+          "2"
+        ],
+        [
+          "C110",
+          1
+        ]
+      ],
+      "net": "/VTX/RF_PAOUT1",
+      "connected": true
+    },
+    {
+      "name": "VTX_2",
+      "pads": [
+        [
+          "C110",
+          "2"
+        ],
+        [
+          "U20",
+          3
+        ]
+      ],
+      "net": "/VTX/RF_PA_IN",
+      "connected": true
+    },
+    {
+      "name": "VTX_3",
+      "pads": [
+        [
+          "U20",
+          "13"
+        ],
+        [
+          "FL2",
+          1
+        ]
+      ],
+      "net": "/VTX/RF_PA_OUT",
+      "connected": true
+    },
+    {
+      "name": "VTX_4",
+      "pads": [
+        [
+          "FL2",
+          "3"
+        ],
+        [
+          "J1",
+          1
+        ]
+      ],
+      "net": "/VTX/RF_UFL",
+      "connected": true
+    },
+    {
+      "name": "VTX_5",
+      "pads": [
+        [
+          "C111",
+          "1"
+        ],
+        [
+          "U20",
+          8
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_6",
+      "pads": [
+        [
+          "C112",
+          "1"
+        ],
+        [
+          "U20",
+          9
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_7",
+      "pads": [
+        [
+          "C113",
+          "1"
+        ],
+        [
+          "U20",
+          18
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_8",
+      "pads": [
+        [
+          "C115",
+          "1"
+        ],
+        [
+          "U20",
+          20
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_9",
+      "pads": [
+        [
+          "C114",
+          "1"
+        ],
+        [
+          "C113",
+          1
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_10",
+      "pads": [
+        [
+          "C113",
+          "1"
+        ],
+        [
+          "C115",
+          1
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_11",
+      "pads": [
+        [
+          "C116",
+          "1"
+        ],
+        [
+          "C115",
+          1
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_12",
+      "pads": [
+        [
+          "U20",
+          "19"
+        ],
+        [
+          "C115",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_13",
+      "pads": [
+        [
+          "C118",
+          "1"
+        ],
+        [
+          "C111",
+          1
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_14",
+      "pads": [
+        [
+          "C111",
+          "1"
+        ],
+        [
+          "C112",
+          1
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "VTX_15",
+      "pads": [
+        [
+          "U20",
+          "10"
+        ],
+        [
+          "R66",
+          1
+        ]
+      ],
+      "net": "/VTX/PA_DET_RAW",
+      "connected": true
+    },
+    {
+      "name": "VTX_16",
+      "pads": [
+        [
+          "R66",
+          "2"
+        ],
+        [
+          "C117",
+          1
+        ]
+      ],
+      "net": "/PA_DET",
+      "connected": true
+    },
+    {
+      "name": "VTX_17",
+      "pads": [
+        [
+          "C98",
+          "1"
+        ],
+        [
+          "U19",
+          8
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_18",
+      "pads": [
+        [
+          "C102",
+          "1"
+        ],
+        [
+          "U19",
+          9
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_19",
+      "pads": [
+        [
+          "C100",
+          "1"
+        ],
+        [
+          "U19",
+          22
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_20",
+      "pads": [
+        [
+          "C96",
+          "1"
+        ],
+        [
+          "U19",
+          23
+        ]
+      ],
+      "net": "/VTX/U19_REG1D8",
+      "connected": true
+    },
+    {
+      "name": "VTX_21",
+      "pads": [
+        [
+          "C135",
+          "1"
+        ],
+        [
+          "U19",
+          40
+        ]
+      ],
+      "net": "/VTX/U19_LDD2V5",
+      "connected": true
+    },
+    {
+      "name": "VTX_22",
+      "pads": [
+        [
+          "C101",
+          "1"
+        ],
+        [
+          "U19",
+          31
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_23",
+      "pads": [
+        [
+          "U19",
+          "31"
+        ],
+        [
+          "U19",
+          32
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_24",
+      "pads": [
+        [
+          "C101",
+          "1"
+        ],
+        [
+          "U19",
+          30
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_25",
+      "pads": [
+        [
+          "C103",
+          "1"
+        ],
+        [
+          "U19",
+          39
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_26",
+      "pads": [
+        [
+          "C135",
+          "1"
+        ],
+        [
+          "R89",
+          2
+        ]
+      ],
+      "net": "/VTX/U19_LDD2V5",
+      "connected": true
+    },
+    {
+      "name": "VTX_27",
+      "pads": [
+        [
+          "X4",
+          "1"
+        ],
+        [
+          "U19",
+          24
+        ]
+      ],
+      "net": "/VTX/U19_XTAL1",
+      "connected": true
+    },
+    {
+      "name": "VTX_28",
+      "pads": [
+        [
+          "C94",
+          "1"
+        ],
+        [
+          "U19",
+          24
+        ]
+      ],
+      "net": "/VTX/U19_XTAL1",
+      "connected": true
+    },
+    {
+      "name": "VTX_29",
+      "pads": [
+        [
+          "X4",
+          "3"
+        ],
+        [
+          "U19",
+          25
+        ]
+      ],
+      "net": "/VTX/U19_XTAL2",
+      "connected": true
+    },
+    {
+      "name": "VTX_30",
+      "pads": [
+        [
+          "C95",
+          "1"
+        ],
+        [
+          "X4",
+          3
+        ]
+      ],
+      "net": "/VTX/U19_XTAL2",
+      "connected": true
+    },
+    {
+      "name": "VTX_31",
+      "pads": [
+        [
+          "R63",
+          "1"
+        ],
+        [
+          "U19",
+          27
+        ]
+      ],
+      "net": "/VTX/RTC_CP",
+      "connected": true
+    },
+    {
+      "name": "VTX_32",
+      "pads": [
+        [
+          "R63",
+          "2"
+        ],
+        [
+          "C106",
+          1
+        ]
+      ],
+      "net": "/VTX/RTC_VT",
+      "connected": true
+    },
+    {
+      "name": "VTX_33",
+      "pads": [
+        [
+          "C106",
+          "1"
+        ],
+        [
+          "U19",
+          29
+        ]
+      ],
+      "net": "/VTX/RTC_VT",
+      "connected": true
+    },
+    {
+      "name": "VTX_34",
+      "pads": [
+        [
+          "R64",
+          "1"
+        ],
+        [
+          "C106",
+          1
+        ]
+      ],
+      "net": "/VTX/RTC_VT",
+      "connected": true
+    },
+    {
+      "name": "VTX_35",
+      "pads": [
+        [
+          "R64",
+          "2"
+        ],
+        [
+          "C107",
+          1
+        ]
+      ],
+      "net": "/VTX/RTC_LF",
+      "connected": true
+    },
+    {
+      "name": "VTX_36",
+      "pads": [
+        [
+          "U21",
+          "1"
+        ],
+        [
+          "C122",
+          1
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_37",
+      "pads": [
+        [
+          "C122",
+          "1"
+        ],
+        [
+          "C108",
+          1
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_38",
+      "pads": [
+        [
+          "C122",
+          "2"
+        ],
+        [
+          "C108",
+          2
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "VTX_39",
+      "pads": [
+        [
+          "U21",
+          "6"
+        ],
+        [
+          "C128",
+          1
+        ]
+      ],
+      "net": "+5V",
+      "connected": true
+    },
+    {
+      "name": "VTX_40",
+      "pads": [
+        [
+          "U21",
+          "4"
+        ],
+        [
+          "R68",
+          2
+        ]
+      ],
+      "net": "/HD_EN",
+      "connected": true
+    },
+    {
+      "name": "VTX_41",
+      "pads": [
+        [
+          "R58",
+          "2"
+        ],
+        [
+          "C104",
+          2
+        ]
+      ],
+      "net": "/VTX/VT_MOD_N1",
+      "connected": true
+    },
+    {
+      "name": "VTX_42",
+      "pads": [
+        [
+          "R58",
+          "1"
+        ],
+        [
+          "C104",
+          1
+        ]
+      ],
+      "net": "/VIDEO_OUT",
+      "connected": true
+    },
+    {
+      "name": "VTX_43",
+      "pads": [
+        [
+          "C104",
+          "2"
+        ],
+        [
+          "C105",
+          1
+        ]
+      ],
+      "net": "/VTX/VT_MOD_N1",
+      "connected": true
+    },
+    {
+      "name": "VTX_44",
+      "pads": [
+        [
+          "C105",
+          "1"
+        ],
+        [
+          "R59",
+          1
+        ]
+      ],
+      "net": "/VTX/VT_MOD_N1",
+      "connected": true
+    },
+    {
+      "name": "VTX_45",
+      "pads": [
+        [
+          "C105",
+          "2"
+        ],
+        [
+          "R60",
+          1
+        ]
+      ],
+      "net": "/VTX/VT_MOD_N2",
+      "connected": true
+    },
+    {
+      "name": "VTX_46",
+      "pads": [
+        [
+          "R60",
+          "2"
+        ],
+        [
+          "U19",
+          10
+        ]
+      ],
+      "net": "/VTX/VT_MOD",
+      "connected": true
+    },
+    {
+      "name": "VTX_47",
+      "pads": [
+        [
+          "R60",
+          "2"
+        ],
+        [
+          "R61",
+          2
+        ]
+      ],
+      "net": "/VTX/VT_MOD",
+      "connected": true
+    },
+    {
+      "name": "VTX_48",
+      "pads": [
+        [
+          "R61",
+          "2"
+        ],
+        [
+          "R62",
+          1
+        ]
+      ],
+      "net": "/VTX/VT_MOD",
+      "connected": true
+    },
+    {
+      "name": "VTX_49",
+      "pads": [
+        [
+          "C123",
+          "1"
+        ],
+        [
+          "U22",
+          1
+        ]
+      ],
+      "net": "/VTX/PA_VREF",
+      "connected": true
+    },
+    {
+      "name": "VTX_50",
+      "pads": [
+        [
+          "R71",
+          "2"
+        ],
+        [
+          "C124",
+          1
+        ]
+      ],
+      "net": "/VTX/PA_RC1",
+      "connected": true
+    },
+    {
+      "name": "VTX_51",
+      "pads": [
+        [
+          "C124",
+          "1"
+        ],
+        [
+          "R72",
+          1
+        ]
+      ],
+      "net": "/VTX/PA_RC1",
+      "connected": true
+    },
+    {
+      "name": "VTX_52",
+      "pads": [
+        [
+          "R72",
+          "2"
+        ],
+        [
+          "Q27",
+          1
+        ]
+      ],
+      "net": "/VTX/Q27_B",
+      "connected": true
+    },
+    {
+      "name": "VTX_53",
+      "pads": [
+        [
+          "Q27",
+          "1"
+        ],
+        [
+          "C125",
+          1
+        ]
+      ],
+      "net": "/VTX/Q27_B",
+      "connected": true
+    },
+    {
+      "name": "VTX_54",
+      "pads": [
+        [
+          "R73",
+          "2"
+        ],
+        [
+          "Q27",
+          2
+        ]
+      ],
+      "net": "/VTX/Q27_E",
+      "connected": true
+    },
+    {
+      "name": "VTX_55",
+      "pads": [
+        [
+          "Q27",
+          "3"
+        ],
+        [
+          "R65",
+          1
+        ]
+      ],
+      "net": "/VTX/Q27_C",
+      "connected": true
+    },
+    {
+      "name": "VTX_56",
+      "pads": [
+        [
+          "R65",
+          "2"
+        ],
+        [
+          "C109",
+          1
+        ]
+      ],
+      "net": "/VTX/PAOUT1_SUP",
+      "connected": true
+    },
+    {
+      "name": "VTX_57",
+      "pads": [
+        [
+          "U22",
+          "4"
+        ],
+        [
+          "R73",
+          1
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
+    },
+    {
+      "name": "VTX_58",
+      "pads": [
+        [
+          "U19",
+          "17"
+        ],
+        [
+          "R90",
+          1
+        ]
+      ],
+      "net": "/VTX/U19_AVDD65",
+      "connected": true
+    },
+    {
+      "name": "VTX_59",
+      "pads": [
+        [
+          "R90",
+          "2"
+        ],
+        [
+          "C136",
+          1
+        ]
+      ],
+      "net": "/VTX/U19_AVDD65_RC",
+      "connected": true
+    },
+    {
+      "name": "VTX_60",
+      "pads": [
+        [
+          "R80",
+          "2"
+        ],
+        [
+          "U19",
+          6
+        ]
+      ],
+      "net": "/VTX/U19_SPILE",
+      "connected": true
+    },
+    {
+      "name": "VTX_61",
+      "pads": [
+        [
+          "R81",
+          "2"
+        ],
+        [
+          "U19",
+          7
+        ]
+      ],
+      "net": "/VTX/U19_SPICLK",
+      "connected": true
+    },
+    {
+      "name": "VTX_62",
+      "pads": [
+        [
+          "R82",
+          "2"
+        ],
+        [
+          "U19",
+          5
+        ]
+      ],
+      "net": "/VTX/U19_SPIDATA",
+      "connected": true
+    },
+    {
+      "name": "VTX_63",
+      "pads": [
+        [
+          "C109",
+          "1"
+        ],
+        [
+          "L3",
+          1
+        ]
+      ],
+      "net": "/VTX/PAOUT1_SUP",
+      "connected": true
+    },
+    {
+      "name": "VTX_64",
+      "pads": [
+        [
+          "C123",
+          "1"
+        ],
+        [
+          "U20",
+          5
+        ]
+      ],
+      "net": "/VTX/PA_VREF",
+      "connected": true
+    },
+    {
+      "name": "VTX_65",
+      "pads": [
+        [
+          "R58",
+          "1"
+        ],
+        [
+          "U14",
+          4
+        ]
+      ],
+      "net": "/VIDEO_OUT",
+      "connected": true
+    },
+    {
+      "name": "WiFi_source",
+      "pads": [
+        [
+          "U16",
+          "2"
+        ],
+        [
+          "R88",
+          "2"
+        ],
+        [
+          "C133",
+          "1"
+        ]
+      ],
+      "net": "/RX/RF_WIFI",
+      "connected": true
+    },
+    {
+      "name": "WiFi_antenna",
+      "pads": [
+        [
+          "R88",
+          "1"
+        ],
+        [
+          "C132",
+          "1"
+        ],
+        [
+          "AE2",
+          "1"
+        ],
+        [
+          "AE2",
+          "4"
+        ]
+      ],
+      "net": "/RX/RF_WIFI_ANT",
+      "connected": true
+    },
+    {
+      "name": "WiFi_ground",
+      "pads": [
+        [
+          "AE2",
+          "2"
+        ],
+        [
+          "AE2",
+          "3"
+        ],
+        [
+          "C132",
+          "2"
+        ],
+        [
+          "C133",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Boost_0",
+      "pads": [
+        [
+          "U2",
+          "3"
+        ],
+        [
+          "C8",
+          "1"
+        ]
+      ],
+      "net": "+5V_BST",
+      "connected": true
+    },
+    {
+      "name": "Boost_1",
+      "pads": [
+        [
+          "U2",
+          "1"
+        ],
+        [
+          "C8",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Boost_2",
+      "pads": [
+        [
+          "L1",
+          "2"
+        ],
+        [
+          "U2",
+          "2"
+        ]
+      ],
+      "net": "/POWER/U2_SW",
+      "connected": true
+    },
+    {
+      "name": "Boost_3",
+      "pads": [
+        [
+          "U2",
+          "6"
+        ],
+        [
+          "C9",
+          "1"
+        ]
+      ],
+      "net": "+5V_BST",
+      "connected": true
+    },
+    {
+      "name": "Boost_4",
+      "pads": [
+        [
+          "U2",
+          "4"
+        ],
+        [
+          "R4",
+          "2"
+        ]
+      ],
+      "net": "/POWER/U2_FB",
+      "connected": true
+    },
+    {
+      "name": "Boost_5",
+      "pads": [
+        [
+          "R4",
+          "2"
+        ],
+        [
+          "R5",
+          "1"
+        ]
+      ],
+      "net": "/POWER/U2_FB",
+      "connected": true
+    }
+  ],
+  "route_counts": {
+    "footprints": 258,
+    "tracks": 322,
+    "vias": 156
+  },
+  "via_process": {
+    "filled_capped_count": 156,
+    "allowed_spans": [
+      "F.Cu-In1.Cu",
+      "In1.Cu-In4.Cu",
+      "In4.Cu-B.Cu"
+    ]
+  },
+  "independent_review": {
+    "physical_body_overlaps": 0,
+    "new_matching_body_gap_min_mm": 0.25,
+    "new_matching_body_or_land_gap_min_mm": 0.23,
+    "rf_full_width_reference_checked_segments": 20,
+    "rf_missing_reference_area_outside_antenna_window_mm2": 0,
+    "VT_MOD_N2_and_R58_C104_full_width_reference": true
+  },
+  "antenna": {
+    "reserved_area_before_mm2": 15,
+    "reserved_area_after_mm2": 2.0925,
+    "main_feed_before_mm": 10.7739,
+    "main_feed_after_mm": 7.4021,
+    "matching": "R88 fitted0R; C132/C133 DNP tuning lands",
+    "performance_measured": false,
+    "qualification": "Compact window differs from manufacturer reference; ESP launch coplanar ground is not uniform."
+  },
+  "validation": [
+    "KiCad ERC",
+    "KiCad DRC with schematic parity and zone refill",
+    "7 netlist checks passed",
+    "28 FC signal bindings checked",
+    "32 rule behavior fixtures passed",
+    "Native connection traversal including filled zones",
+    "Independent placement, ground reference and via-process review"
+  ],
+  "remaining": [
+    "Motor phase-to-divider pickups and ESC4 bypass",
+    "Battery and regulated-rail distribution, power current/thermal validation",
+    "RP2354A and receiver digital routing and decoupling",
+    "PA_DET, remaining VTX controls and power",
+    "Final copper planes, ground returns, silkscreen and complete DRC",
+    "Prototype antenna tuning and functional hardware tests"
+  ]
+}

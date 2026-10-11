@@ -4612,7 +4612,7 @@
 		)
 		(uuid "ac67a7a4-0b4f-5da1-88c7-1df2eb9f96d9")
 	)
-	(text_box "LNA_IN -> RF_WIFI 50 Ohm (<= 8 mm) -> pi match C133 (DNP) / R88 0R / C132 (DNP) -> AE2 chip antenna. Keep-out per DRU."
+	(text_box "Wi-Fi antenna tuning: C133 DNP / R88 0R / C132 DNP. Compact PCB trial window; measure antenna match and Wi-Fi operation on the assembled board before release."
 		(exclude_from_sim no)
 		(at 152.4 208.28 0)
 		(size 50.8 12.7)
@@ -4663,6 +4663,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "08d7f8c0-dc68-53c2-ab08-fd3b00ef3164")
+	)
+	(junction
+		(at 175.26 193.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3cef6864-6cde-450c-ba4f-3ff6db939390")
 	)
 	(junction
 		(at 91.44 71.12)
@@ -4753,6 +4759,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "eb78ea31-64de-50c9-aa7e-d58a7dc78b42")
+	)
+	(junction
+		(at 195.58 193.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f5a46b77-dab3-4a07-a071-145afbc64814")
 	)
 	(junction
 		(at 109.22 52.07)
@@ -4984,16 +4996,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 193.04) (xy 220.98 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1efadbac-531a-5503-a7c9-250b311cfa47")
-	)
-	(wire
-		(pts
 			(xy 143.51 128.27) (xy 170.18 128.27)
 		)
 		(stroke
@@ -5001,6 +5003,16 @@
 			(type default)
 		)
 		(uuid "22b86b8f-72f8-51cb-9c7d-960be9b25c6f")
+	)
+	(wire
+		(pts
+			(xy 195.58 193.04) (xy 195.58 194.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27628dc2-a3e4-496a-a1eb-41fc4c363f2c")
 	)
 	(wire
 		(pts
@@ -5091,6 +5103,16 @@
 			(type default)
 		)
 		(uuid "3cd9a782-6fb1-54c6-aa88-2cb25d1784c8")
+	)
+	(wire
+		(pts
+			(xy 162.56 193.04) (xy 175.26 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3d771b64-9f1f-46f1-b191-1a0ca55a9df2")
 	)
 	(wire
 		(pts
@@ -5224,6 +5246,16 @@
 	)
 	(wire
 		(pts
+			(xy 191.77 193.04) (xy 195.58 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "608923f3-6eb1-4646-9c4b-1b1d2772c518")
+	)
+	(wire
+		(pts
 			(xy 107.95 71.12) (xy 91.44 71.12)
 		)
 		(stroke
@@ -5251,6 +5283,16 @@
 			(type default)
 		)
 		(uuid "69272b51-ded6-5f8c-a19f-01e4fcf92fab")
+	)
+	(wire
+		(pts
+			(xy 195.58 201.93) (xy 195.58 203.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "698fe31a-4df4-4920-9ac9-085cc0b40b0d")
 	)
 	(wire
 		(pts
@@ -5381,6 +5423,16 @@
 			(type default)
 		)
 		(uuid "973ec9f9-5833-5535-a009-9172a7a89886")
+	)
+	(wire
+		(pts
+			(xy 195.58 193.04) (xy 220.98 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99f2181e-b2f7-4364-b954-2c2a028f2c96")
 	)
 	(wire
 		(pts
@@ -5534,6 +5586,16 @@
 	)
 	(wire
 		(pts
+			(xy 175.26 193.04) (xy 175.26 194.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c18fb317-7638-4434-b7c1-96561a112944")
+	)
+	(wire
+		(pts
 			(xy 233.68 243.84) (xy 233.68 246.38)
 		)
 		(stroke
@@ -5624,6 +5686,16 @@
 	)
 	(wire
 		(pts
+			(xy 175.26 193.04) (xy 184.15 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e844ed68-624a-41ab-9b30-bc79364df832")
+	)
+	(wire
+		(pts
 			(xy 101.6 119.38) (xy 107.95 119.38)
 		)
 		(stroke
@@ -5691,6 +5763,16 @@
 			(type default)
 		)
 		(uuid "f53b973c-d3ad-52dd-917c-7b7203acc063")
+	)
+	(wire
+		(pts
+			(xy 175.26 201.93) (xy 175.26 203.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7657212-2f8d-429f-8b96-b70f7d9a5fce")
 	)
 	(wire
 		(pts
@@ -6812,7 +6894,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.johansontechnology.com/datasheets/antennas/2450AT07A0100.pdf"
+		(property "Datasheet" "https://www.johansontechnology.com/docs/4417/Antenna-2450AT07A0100001T.pdf"
 			(at 160.02 195.58 0)
 			(hide yes)
 			(show_name no)
@@ -8116,6 +8198,120 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
 					(reference "#PWR154")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 187.96 193.04 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5eca0e7f-c27e-4eef-80e0-0c98c1310dad")
+		(property "Reference" "R88"
+			(at 186.69 189.23 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0R"
+			(at 187.96 196.85 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:R_0201_0603Metric_L"
+			(at 187.96 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0201JR-070RL"
+			(at 187.96 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 187.96 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" ""
+			(at 187.96 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "RC0201JR-070RL"
+			(at 187.96 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Yageo"
+			(at 187.96 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3ef7a6be-b953-4d15-a14d-2e788788ed24")
+		)
+		(pin "2"
+			(uuid "522ad5b7-34a1-4cd0-adfc-7751251cec84")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
+					(reference "R88")
 					(unit 1)
 				)
 			)
@@ -9439,6 +9635,197 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 175.26 203.2 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "994fe427-bb51-496e-9f42-79a4cec404a3")
+		(property "Reference" "#PWR9901"
+			(at 175.26 209.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 175.26 207.01 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 175.26 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 175.26 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 175.26 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5f91296b-3729-4a24-a569-f7c12e4f53b4")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
+					(reference "#PWR9901")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 195.58 198.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp yes)
+		(uuid "995de598-150b-40c4-ada5-8441a2ac18c2")
+		(property "Reference" "C133"
+			(at 198.12 196.85 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "DNP"
+			(at 198.12 199.39 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:C_0201_0603Metric_L"
+			(at 195.58 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 195.58 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 195.58 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" ""
+			(at 195.58 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" ""
+			(at 195.58 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 195.58 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f0b092cf-715a-4c09-8a9f-247e9645731a")
+		)
+		(pin "2"
+			(uuid "7e6206ca-dba4-4c8c-8337-4d76db515214")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
+					(reference "C133")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:Antenna")
 		(at 196.85 111.76 0)
 		(unit 1)
@@ -9709,6 +10096,120 @@
 	)
 	(symbol
 		(lib_id "Device:C")
+		(at 175.26 198.12 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp yes)
+		(uuid "c4d98ed4-dff7-484e-8d76-b2ef77dfe22d")
+		(property "Reference" "C132"
+			(at 177.8 196.85 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "DNP"
+			(at 177.8 199.39 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:C_0201_0603Metric_L"
+			(at 175.26 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 175.26 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 175.26 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" ""
+			(at 175.26 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" ""
+			(at 175.26 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" ""
+			(at 175.26 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9074d51c-71ae-4c42-b198-2f45459162a9")
+		)
+		(pin "2"
+			(uuid "a24c3013-a310-4447-8733-f80c66ed3e15")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
+					(reference "C132")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
 		(at 83.82 71.12 90)
 		(unit 1)
 		(body_style 1)
@@ -9814,6 +10315,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
 					(reference "C88")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 195.58 203.2 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "d0826f94-e6b6-47f4-87bc-20892d573de2")
+		(property "Reference" "#PWR9902"
+			(at 195.58 209.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 195.58 207.01 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 195.58 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 195.58 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 195.58 203.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "eec48011-6b24-4b97-98c4-a610b5892078")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
+					(reference "#PWR9902")
 					(unit 1)
 				)
 			)

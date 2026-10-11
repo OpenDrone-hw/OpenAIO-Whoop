@@ -1,10 +1,9 @@
 # OpenAIO-Whoop placement and routing reference
 
 The schematic is the electrical source. The PCB contains the matching components,
-net assignments, outline, stackup and global rules. It is a placement starting
-point: many parts are parked outside the outline, existing escape vias need to
-follow the final placement, and local rule areas must be created before routing.
-The preserved board is not a routed or manufacturing-ready layout.
+net assignments, outline, stackup, local RF areas and routing rules. Inspect its
+saved copper and native DRC before continuing a route; a floorplan or a local
+route proof does not establish complete routing or manufacturing readiness.
 
 ## Open the project
 
@@ -76,13 +75,13 @@ use the actual finished copper and laminate construction.
 | 3 | Battery shunt and boost | J2 to R2 to the battery distribution should be short and wide. Take both sense traces from the Kelvin lands, outside load-current copper. Place U2/L1/input-output capacitors as a compact loop; keep SW copper small |
 | 4 | Two RF chains | Keep U18 to FL1 to AE1 on one face with no RF vias. Keep U19/C110 to U20 to FL2 to J1 on one face. Rotate the whole chain for straight short links; do not retain a parked opposite-face U.FL position |
 | 5 | FC and gyro | Place U10 centrally enough to reach the ESCs and peripherals. Place U11 away from boost, PA and motor current, with local C137/C138 and U12/C61/C62. Record the sensor orientation before building final firmware |
-| 6 | Receiver and clocks | Keep U16 near U18 with short SPI. Keep X3 and its coupling parts beside U18. Keep X4/C94/C95 beside U19. Keep X1 beside U10 XIN. Preserve antenna clearance rather than using it as spare placement space |
+| 6 | Receiver and clocks | Keep U16 near U18 with short SPI. Keep X3 and its coupling parts beside U18. Keep X4/C94/C95 beside U19. Keep X1 beside U10 XIN. Optimize the Wi-Fi antenna pocket and feed for density; compact trial clearances need measured tuning and Wi-Fi verification |
 | 7 | Video | Place R51/C66 at camera entry; U14 close to the VTX video network. Place U15 with R55/C67/C68/D3 as a compact sync branch; C70 must sit between U14 and U15 with short supply/ground connections. Keep video and sync inputs away from SW, phase copper and ESP clock routes |
 | 8 | Remaining support | Put U24 north of U10 at 0 degrees so A0–A3 face GPIO7/6/5/4; C143/C144 at its rail pins. Check clearance to C46/C51. Put U4 and its fitted bypass parts/D11 together. Place blackbox U13 and decoupling near SPI0; finish indicators, boot button and test access |
 
-For the saved U10 front-side rotation of -90 degrees, keep U13 east, U11 west,
-and OSD/U16 south. The [pin map](PINMAP.md#5-peripheral-allocation) groups each
-interface toward these endpoints. Preserve the gyro's MOSI11/MISO12/SCK14/CS15
+Read device rotations and pad coordinates from the saved board. The
+[pin map](PINMAP.md#5-peripheral-allocation) groups each interface.
+Preserve the gyro's MOSI11/MISO12/SCK14/CS15
 order: it follows U11's actual pad arrangement. Receiver UART1 uses GPIO24/25
 on the south edge. GPIO4–7 carry all four motor signals, in reverse motor
 number order to align with U24. Moving or rotating U10 substantially changes
@@ -126,14 +125,16 @@ not one minimum-size laser hole.
 
 ## Local areas before routing
 
-The source board has no placement-dependent rule areas. Global `.kicad_dru`
-rules are active. Conditions using `intersectsArea(...)` become effective only
-when their named area exists. Create and inspect these around the final parts:
+Global `.kicad_dru` rules and the saved native RF areas work together.
+Conditions using `intersectsArea(...)` become effective only when their named
+area exists. Recheck the existing areas after any component move, and add the
+remaining local reservations before routing through them:
 
 - RF reference corridors beneath both chains, extending at least 0.5 mm beyond
   the RF copper/pads; keep reference-plane traces and non-GND vias out.
-- The AE1 wire-root and exit clearance, plus AE2's manufacturer antenna layout
-  and tuning clearance. Keep other parts, switching copper and SPI0 away.
+- The AE1 wire-root and exit clearance, plus AE2's selected trial window,
+  ground terminal strip and tuning access. Antenna clearance may be reduced
+  for density; RF performance requires a measurement on the assembled board.
 - U.FL signal-pad reference cutout only where justified by its pad geometry;
   do not remove the whole RF ground plane.
 - Boost inductor/SW clearance, Kelvin shunt corridor, connector mating areas,

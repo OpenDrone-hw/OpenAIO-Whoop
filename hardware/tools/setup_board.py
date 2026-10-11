@@ -1162,7 +1162,7 @@ RULES.extend([
      "  (condition \"A.Type == 'Footprint' && A.intersectsArea('WIFI_FULL_WINDOW') && A.Reference != 'AE2'\")"),
     ("WiFi front: only feed and ground strip", [],
      "  (constraint disallow track)\n"
-     "  (condition \"A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && !(A.NetName == '/RX/RF_WIFI' || (A.NetName == 'GND' && !A.intersectsArea('WIFI_FRONT_VOID')))\")"),
+     "  (condition \"A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && !(A.NetName == '/RX/RF_WIFI' || A.NetName == '/RX/RF_WIFI_ANT' || (A.NetName == 'GND' && !A.intersectsArea('WIFI_FRONT_VOID')))\")"),
     ("WiFi front: only ground zone in terminal strip", [],
      "  (constraint disallow zone)\n"
      "  (condition \"A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && A.NetName != 'GND'\")"),

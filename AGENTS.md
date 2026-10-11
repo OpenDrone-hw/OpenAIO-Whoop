@@ -17,8 +17,9 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   [research/ROUTING.md](research/ROUTING.md) for placement, layers and file paths.
 - Firmware bindings live in `firmware/betaflight/` and `firmware/expresslrs/`.
   Do not copy obsolete configuration snippets from historical design proposals.
-- The board has parked parts and inherited escape vias. Local rule areas and
-  placement are unfinished; do not describe it as DRC-clean or manufactured.
+- Read placement and routing from the saved board. Saved local route proofs
+  establish only their checked connections; they do not establish a fully
+  routed or manufactured board.
 - `bom_plan.json` and `sch_contract.json` are generated readbacks. Refresh them
   with `export_bom_plan.py` and `export_interfaces.py`; never use legacy circuit
   generators to overwrite the owner schematic from these exports.
@@ -28,8 +29,8 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
 - F/In1/In4/B carry signals. In2 is a solid GND plane without tracks; In3
   carries supply and GND distribution only. In1/In4 ground pours must remain
   unbroken below outer RF, USB and video routes. RF, video, Kelvin and switch
-  nodes stay on the component face. The DRU enforces global layer restrictions. Named local areas are absent
-  until placement; create them using research/ROUTING.md before routing.
+  nodes stay on the component face. The DRU enforces global layer restrictions.
+  Preserve and check the board's named local RF areas before routing.
 - HDI 1+4+1: laser microvias L1-L2 and L5-L6 only, buried vias L2-L5 staggered
   from them, no stacking. Vias sit inside same-net pads; a free-standing via
   takes board space and is avoided.
@@ -40,19 +41,20 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   requires an explicit check of the next reference plane.
 - AE1, the RX wire, leaves through a plated D0.5 hole. Inside the D2.0
   `RF_RX_HOLE` area pours are kept out on all layers and the only copper is the
-  2.4 GHz feed on L1. AE2 uses the manufacturer antenna window on every
-  copper layer, with only its specified F.Cu ground strip and feed permitted;
-  components stay outside the window on both faces.
+  2.4 GHz feed on L1. Optimize AE2's antenna position and clearance for density,
+  using compact trial windows when they improve routing. Record the departure
+  from the manufacturer's reference layout and require measured RF verification;
+  do not claim range from clearance geometry alone (founder, 2026-10-11).
 - The 5 V boost hot loop closes on the component layer with a direct ground
   return: no via in the loop, unbroken GND under it, a small switch node, away
   from the gyro, the crystals and the antennas.
 - Each AGM210MAP keeps its 22 uF hot-loop cap directly across its supply pair.
   The battery path from the pads through R2 to each ESC cell stays short and
   symmetric; R2's sense taps stay Kelvin, off In2 and In3.
-- The motor plugs, the twelve half-bridges, the USB plug at the rear hole, the
-  battery pads and the camera plug sit where the BetaFPV Matrix 1S 5IN1 II has
-  them, so motor leads, battery lead and camera cable reach as they do on that
-  board. Moving them breaks that fit.
+- Use the saved owner ESC grouping and connector positions as the starting
+  point. Changes are authorized with a preserved save file and must improve
+  power loops, routing or cable access. Check the actual mating volumes and
+  lead paths; a competitor photograph does not prove mechanical fit.
 
 ## Parts and datasheets
 

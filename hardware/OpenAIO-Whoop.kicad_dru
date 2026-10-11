@@ -368,7 +368,7 @@
 
 (rule "WiFi front: only feed and ground strip"
   (constraint disallow track)
-  (condition "A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && !(A.NetName == '/RX/RF_WIFI' || (A.NetName == 'GND' && !A.intersectsArea('WIFI_FRONT_VOID')))"))
+  (condition "A.Layer == 'F.Cu' && A.intersectsArea('WIFI_FULL_WINDOW') && !(A.NetName == '/RX/RF_WIFI' || A.NetName == '/RX/RF_WIFI_ANT' || (A.NetName == 'GND' && !A.intersectsArea('WIFI_FRONT_VOID')))"))
 
 (rule "WiFi front: only ground zone in terminal strip"
   (constraint disallow zone)

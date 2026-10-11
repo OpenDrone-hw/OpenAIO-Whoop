@@ -13,7 +13,7 @@
       "pads.kicad_sch": "0a0ba99e136dfb2e648bc45fa7a08029103c6aae340e8293d9f16556d7f8ce8f",
       "power.kicad_sch": "6c78a97ddf3292121de16818839e9be743ca2d5aa93315922074a8bb6b7c3b75",
       "rp2350a.kicad_sch": "c3bfa2a79a3ad1a1f860b700057faa2c6d8020367cec76d6e7876125c71fb3a2",
-      "rx_esp32_sx1281.kicad_sch": "90cdcd9a3ffd95072f7825981a6989aa810c6a2004dee7a213194ce9607055d5",
+      "rx_esp32_sx1281.kicad_sch": "276fe8e754209374774029edbbc381c6d2315b256fe348b105486bca2de3e3c7",
       "vtx.kicad_sch": "4516e5bf733c71b9f1642b0cb62d79238a9fdf2ce882bfda19aa088d424ce760"
     }
   },
@@ -50,10 +50,10 @@
       "exclude_from_bom": false,
       "exclude_from_board": false,
       "nets": [
-        "/RX/RF_WIFI",
+        "/RX/RF_WIFI_ANT",
         "GND"
       ],
-      "datasheet": "https://www.johansontechnology.com/datasheets/antennas/2450AT07A0100.pdf"
+      "datasheet": "https://www.johansontechnology.com/docs/4417/Antenna-2450AT07A0100001T.pdf"
     },
     {
       "ref": "C6",
@@ -1875,6 +1875,44 @@
       "exclude_from_board": false,
       "nets": [
         "+5V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C132",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "DNP",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": true,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_WIFI_ANT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C133",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "DNP",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": true,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_WIFI",
         "GND"
       ],
       "datasheet": ""
@@ -4247,6 +4285,25 @@
       "datasheet": ""
     },
     {
+      "ref": "R88",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "0R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201JR-070RL",
+      "lcsc": "",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_WIFI",
+        "/RX/RF_WIFI_ANT"
+      ],
+      "datasheet": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0201JR-070RL"
+    },
+    {
       "ref": "R89",
       "block": "vtx",
       "sheet": "vtx",
@@ -5098,9 +5155,9 @@
     }
   ],
   "summary": {
-    "parts_total": 257,
-    "bom_parts": 226,
-    "bom_lines": 76,
+    "parts_total": 260,
+    "bom_parts": 227,
+    "bom_lines": 77,
     "by_block": {
       "blackbox": 3,
       "esc1": 19,
@@ -5113,7 +5170,7 @@
       "osd": 13,
       "pads": 21,
       "power": 23,
-      "rx": 21,
+      "rx": 24,
       "vtx": 56
     }
   }
