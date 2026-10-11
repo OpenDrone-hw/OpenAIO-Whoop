@@ -4671,12 +4671,6 @@
 		(uuid "62d6010e-d257-5be3-b06b-67195f5f71cc")
 	)
 	(junction
-		(at 200.66 193.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "71152e56-b559-5650-a861-67dcff7319e8")
-	)
-	(junction
 		(at 228.6 167.64)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4765,12 +4759,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f5c6d80c-a3b1-5a36-b272-764ec3e37eb2")
-	)
-	(junction
-		(at 180.34 193.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f6b708f5-2591-522c-a696-7237facc0332")
 	)
 	(no_connect
 		(at 107.95 196.85)
@@ -4996,7 +4984,7 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 193.04) (xy 162.56 193.04)
+			(xy 162.56 193.04) (xy 220.98 193.04)
 		)
 		(stroke
 			(width 0)
@@ -5406,16 +5394,6 @@
 	)
 	(wire
 		(pts
-			(xy 185.42 193.04) (xy 180.34 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9d429fd9-1de4-55fe-a9a7-b39948f581e2")
-	)
-	(wire
-		(pts
 			(xy 233.68 167.64) (xy 238.76 167.64)
 		)
 		(stroke
@@ -5556,16 +5534,6 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 193.04) (xy 200.66 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bdd2884e-921c-5972-a053-e5c91ad7d275")
-	)
-	(wire
-		(pts
 			(xy 233.68 243.84) (xy 233.68 246.38)
 		)
 		(stroke
@@ -5623,16 +5591,6 @@
 			(type default)
 		)
 		(uuid "d6558d89-f75e-5ec6-bbfe-95802ceec25f")
-	)
-	(wire
-		(pts
-			(xy 200.66 193.04) (xy 193.04 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d88f0d1e-28ed-510b-bdc8-3cbf570d5b54")
 	)
 	(wire
 		(pts
@@ -6729,118 +6687,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
 					(reference "C76")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 189.23 193.04 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "1aabd192-a241-510c-9aa9-3c3f8c8c47be")
-		(property "Reference" "R88"
-			(at 189.23 190.5 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0R"
-			(at 189.23 195.58 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 189.23 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 189.23 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 189.23 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C106228"
-			(at 189.23 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "RC0201JR-070RL"
-			(at 189.23 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Yageo"
-			(at 189.23 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ea61329a-374d-5167-9579-4621fcf67dcc")
-		)
-		(pin "2"
-			(uuid "7aeeadb0-1bac-5ad4-9b03-98e5addaa79a")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "R88")
 					(unit 1)
 				)
 			)
@@ -9288,120 +9134,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 200.66 196.85 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp yes)
-		(uuid "892d4f18-59cd-5c87-8284-7116e6592528")
-		(property "Reference" "C133"
-			(at 198.12 195.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1.2pF"
-			(at 198.12 198.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "lib:C_0201_0603Metric_L"
-			(at 200.66 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 200.66 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 200.66 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C85895"
-			(at 200.66 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "GRM0335C1H1R2BA01D"
-			(at 200.66 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 200.66 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9f43ce80-754a-5683-9564-2820dfbb736b")
-		)
-		(pin "2"
-			(uuid "64830d5c-cb65-5cd5-ae9f-06e8a96e6963")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "C133")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3.3V")
 		(at 213.36 170.18 0)
 		(unit 1)
@@ -9707,120 +9439,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 180.34 196.85 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp yes)
-		(uuid "98ca5698-baf9-594c-a2ac-ba62576a1341")
-		(property "Reference" "C132"
-			(at 177.8 195.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1.2pF"
-			(at 177.8 198.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "lib:C_0201_0603Metric_L"
-			(at 180.34 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 180.34 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 180.34 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C85895"
-			(at 180.34 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "GRM0335C1H1R2BA01D"
-			(at 180.34 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 180.34 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0e58650a-c844-50f0-b6fa-7d7d76e96c7b")
-		)
-		(pin "2"
-			(uuid "d90a96b2-5e6d-515c-9092-9b7a864b89da")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "C132")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:Antenna")
 		(at 196.85 111.76 0)
 		(unit 1)
@@ -10084,83 +9702,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
 					(reference "#PWR144")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 200.66 200.66 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "adb6d5d6-2397-56ae-8721-3131d9e86487")
-		(property "Reference" "#PWR165"
-			(at 200.66 207.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 200.66 204.47 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 200.66 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 200.66 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "cf60b93e-a565-5c3d-b087-def5ec91e839")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR165")
 					(unit 1)
 				)
 			)
@@ -10963,83 +10504,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
 					(reference "C87")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 180.34 200.66 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "fce2171b-9c70-5d7e-acdd-1bb0c0848164")
-		(property "Reference" "#PWR164"
-			(at 180.34 207.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 180.34 204.47 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 180.34 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 180.34 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 180.34 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0e00c4e0-db6a-5da2-92f8-b38dc6266efc")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/73d8a02c-e770-5e7b-9535-3e34b447ded8"
-					(reference "#PWR164")
 					(unit 1)
 				)
 			)
