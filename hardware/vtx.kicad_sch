@@ -4945,7 +4945,7 @@
 		)
 		(uuid "2c0eab51-0081-5739-8e4d-004e421f2cc5")
 	)
-	(text "RTC6705 VTX: 8 MHz CRYSTAL, SPI, VIDEO, PLL, PA DRIVE, PAOUT1 FEED"
+	(text "RTC6705 VTX"
 		(exclude_from_sim no)
 		(at 139.7 30.48 0)
 		(effects
@@ -5080,7 +5080,7 @@
 		)
 		(uuid "a6bd0c95-d099-5aa4-8e57-757eab9ddf68")
 	)
-	(text "Decoupling at the RTC6705 supply pins (pin numbers next to each capacitor):"
+	(text "RTC6705 decoupling (pin numbers by each cap)"
 		(exclude_from_sim no)
 		(at 147.32 38.1 0)
 		(effects
@@ -5198,7 +5198,7 @@
 		)
 		(uuid "fa8cf270-c9c1-54b3-a251-bfcda8e015a1")
 	)
-	(text_box "U22 LP5907-2.85 PA reference from +3.3V_VTX: EN = PA_EN (ESP32 GPIO21, D111 map); its 1 MOhm EN pull-down holds the PA off until ELRS drives it. C122 4.7 uF CIN within 1 cm, C123 4.7 uF out.\nBench-gated: the VREF window vs the SE5004L (V5) and the HD switch-on excursion of PA_VREF (V9); fallback C123 1 uF or patched ELRS drops PA_EN on HD_EN."
+	(text_box "U22 LP5907-2.85 PA reference from +3.3V_VTX, EN = PA_EN (GPIO21) with a 1 MOhm pull-down.\nC122 4.7 uF CIN within 1 cm, C123 4.7 uF out."
 		(exclude_from_sim no)
 		(at 20.32 149.86 0)
 		(size 111.76 13.3)
@@ -5218,7 +5218,7 @@
 		)
 		(uuid "13f3de22-71bb-5e9f-bd38-b143648a6555")
 	)
-	(text_box "U21 LP5912-3.3 VTX supply on +5V; CIN = shared C13 on POWER if within 1 cm, else its own 10 uF.\nEN = VTX_PWR_EN: R68 10k to +3.3V keeps the VTX on (no ESP32 control, D114).\nQ28 AP1606 on HD_EN pulls EN low in HD mode (VTX off). +3.3V_VTX COUT about 6.8 uF effective; C108 at the RTC6705 VCO pins 39/40."
+	(text_box "U21 LP5912-3.3 on +5V, CIN = C13 on POWER if within 1 cm. EN = VTX_PWR_EN: R68 10k to +3.3V holds the VTX on, Q28 pulls it low in HD mode.\nC108 at VCO pins 39/40."
 		(exclude_from_sim no)
 		(at 20.32 86.36 0)
 		(size 111.76 19.48)
@@ -5238,7 +5238,7 @@
 		)
 		(uuid "2dab5148-fcea-596e-bbc5-a92175f5e2e5")
 	)
-	(text_box "PA_DET: DET -> R66 1k / C117 100p -> ESP32 GPIO36 (ADC1); keep the RC at the ESP32 end. FL2 BPF on the PA side; J1 U.FL with L2 cut out under the signal pad, >= 4 GND vias."
+	(text_box "PA_DET: DET -> R66 1k / C117 100p -> ESP32 GPIO36, RC at the ESP32 end. J1 U.FL with the L2 plane cut out under the signal pad, >= 4 GND vias."
 		(exclude_from_sim no)
 		(at 307.34 198.89 0)
 		(size 170.18 7.12)
@@ -5258,7 +5258,7 @@
 		)
 		(uuid "3aaaa757-c5be-52bc-9e4f-5bd5a60a8d95")
 	)
-	(text_box "SE5004L PA (EK1 layout): RFout has an internal DC shunt, so RFout -> FL2 directly, no match parts. VCC on +BATT directly (D114). EK1 decoupling at 8/9, 18/19 and 20 + C118 10 uF. EP and GND pins to a via field."
+	(text_box "SE5004L (EK1 layout): RFout -> FL2 directly, no match parts. VCC on +BATT; decoupling at pins 8/9, 18/19, 20 + C118 10 uF. EP and GND pins to a via field."
 		(exclude_from_sim no)
 		(at 307.34 190.5 0)
 		(size 170.18 7.12)
@@ -5278,7 +5278,7 @@
 		)
 		(uuid "676f6fac-2d4f-53de-ab5a-f4091824023a")
 	)
-	(text_box "Video modulation and PLL loop filter as OpenOSD-X v1.01: VIDEO_OUT -> R58 || C104, R59, C105, R60 -> VT_MOD with R61/R62 bias. Loop filter CP -> R63 -> VT, C106, R64 + C107. RTC_CP / RTC_VT / RTC_LF / VT_MOD are high-impedance (Analog class): short copper, >= 5 mm from the boost and ESC phases."
+	(text_box "VIDEO_OUT -> R58 || C104, R59, C105, R60 -> VT_MOD with R61/R62 bias; loop filter CP -> R63 -> VT, C106, R64 + C107.\nHigh-impedance (Analog class): short copper, >= 5 mm from boost and ESC phases."
 		(exclude_from_sim no)
 		(at 139.7 207.28 0)
 		(size 160.02 7.12)
@@ -5298,7 +5298,7 @@
 		)
 		(uuid "6be002d0-840e-5af6-befc-ebe1955347e1")
 	)
-	(text_box "PNP PA drive: ESP32 GPIO33 VTX_AMP_PWM (ELRS vtx_amp_pwm, D111 map) -> 2 RC poles -> Q27 BC857 with emitter R73 -> PAOUT1 supply: sets the RTC6705 output-stage current (not the SE5004L bias). GPIO33 is high-impedance from reset and the PA stays off (PA_EN), so boot leakage is bounded (V5).\nStart value R73 = 10R; at the top step R73/R65/Q27 run near their derated ratings: V8 measures, levers 27R or a capped ELRS power table."
+	(text_box "ESP32 GPIO33 VTX_AMP_PWM -> 2 RC poles -> Q27 BC857 with emitter R73 -> PAOUT1 supply: sets the RTC6705 output-stage current.\nR73 10R; at the top step R73/R65/Q27 run near derated ratings."
 		(exclude_from_sim no)
 		(at 139.7 215.67 0)
 		(size 160.02 11.24)
@@ -5318,7 +5318,7 @@
 		)
 		(uuid "9f627506-f93b-5e1c-9d3e-c71fbe308da2")
 	)
-	(text_box "RTC6705 checked pin by pin against OpenOSD-X v1.01: decoupling per pin as drawn (numbers next to each cap); REG1D8, AVDD_6.5 and RF_VT2 open (V5 spur checks). X4 8 MHz exactly (ELRS R = 400), CL 10 pF."
+	(text_box "RTC6705 pin 40 fed via R89 51R + C135 1u; pin 17 via R90 3.3k + C136 1u to GND. X4 8 MHz exactly, CL 10 pF."
 		(exclude_from_sim no)
 		(at 139.7 190.5 0)
 		(size 160.02 7.12)
@@ -5338,7 +5338,7 @@
 		)
 		(uuid "a5e93d82-e7fa-5aa0-925a-f594761d4565")
 	)
-	(text_box "PAOUT1 feed: L3 4.7 nH choke from PAOUT1_SUP (C109), C110 10 pF DC block into the PA input ('DC block required'). Only L3, C109, C110 between pin 35 and the PA: 50 Ohm CPWG < 5 mm, RF class."
+	(text_box "PAOUT1 feed: L3 4.7 nH choke from PAOUT1_SUP (C109), C110 10 pF DC block into the PA input. Only these between pin 35 and the PA: 50 Ohm CPWG < 5 mm, RF class."
 		(exclude_from_sim no)
 		(at 139.7 228.18 0)
 		(size 160.02 7.12)
@@ -5358,7 +5358,7 @@
 		)
 		(uuid "b0089bc5-e8a3-5b94-8575-d9ad95b9ab53")
 	)
-	(text_box "VTX SPI: R80/R81/R82 1k in series, PLACED AT THE ESP32 END: they limit back-feed into the unpowered RTC6705 in HD mode. 1 MHz, the RC is far below the timing limits; SPIDATA is bidirectional (3-wire reads)."
+	(text_box "R80/R81/R82 1k in series on the SPI lines, placed at the ESP32 end: they limit back-feed into the unpowered RTC6705 in HD mode."
 		(exclude_from_sim no)
 		(at 139.7 198.89 0)
 		(size 160.02 7.12)
@@ -5377,46 +5377,6 @@
 			(justify left top)
 		)
 		(uuid "c5df5b8d-aec0-5f2a-b47a-9f31da2999f5")
-	)
-	(text_box "VTX sheet, generated by gen_vtx.py. No sibling exists: circuit per the OpenOSD-X v1.01 reference, the SE5004L datasheet + EK1 and DESIGN-SPEC 4.8. Flow: ESP32 controls (RX sheet) left, RTC6705 middle, PA, BPF and U.FL right."
-		(exclude_from_sim no)
-		(at 485.14 34.29 0)
-		(size 93.98 9.18)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width -0.0001)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "d4a04ddf-be76-56bc-ae36-0bf4ca2c2975")
-	)
-	(text_box "BENCH ITEMS: RF_VT2 spur (V5); PA drive Re (V5/V8); PA_VREF window and HD switch-on (V5/V9); OSD contrast (V9); X4 start-up margin (V5); top-step temperature of Q27/R73/R65 (V5/V8)."
-		(exclude_from_sim no)
-		(at 485.14 44.74 0)
-		(size 93.98 9.18)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width -0.0001)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "e1fe0f24-2271-5eb5-b94d-ef619e078154")
 	)
 	(junction
 		(at 363.22 107.95)

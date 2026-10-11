@@ -1731,7 +1731,7 @@
 		)
 		(uuid "f3472e13-f231-5273-ac09-77852f8f3fa7")
 	)
-	(text "Universal IMU wiring and LGA-14 land (BMI270, ICM-42688-P)"
+	(text "IMU: BMI270 / ICM-42688-P LGA-14 land"
 		(exclude_from_sim no)
 		(at 93.98 31.115 0)
 		(effects
@@ -1741,7 +1741,7 @@
 		)
 		(uuid "9a96920b-9965-54a4-8dc0-fa0bdee462ad")
 	)
-	(text_box "GYRO BMI270 (U11) on the universal LGA-14 land from OpenFC-Lite-Mini; ICM-42688-P qualified on the same land (V10 fly-off).\nASDx/ASCx and OCSB/OSDO no-connect (never GND for the BMI270). VDDIO = +3.3V, VDD = +1.8V_GYRO. GYRO_CLKIN (GPIO13) used only with the TDK part.\nR49 10k keeps CSB high while GPIO15 resets with its pull-down on. GYRO_1_ALIGN from the placed orientation."
+	(text_box "BMI270 U11 on a universal LGA-14 land (ICM-42688-P fits). ASDx/ASCx and OCSB/OSDO no-connect. VDDIO +3.3V, VDD +1.8V_GYRO.\nR49 10k holds CSB high at reset."
 		(exclude_from_sim no)
 		(at 127 36.83 0)
 		(size 69.85 19.05)
@@ -1761,7 +1761,7 @@
 		)
 		(uuid "0ed8f934-d911-5f7f-a5c1-e76654bf6ef5")
 	)
-	(text_box "+1.8V_GYRO LDO U12 TPS7A2018 from +3.3V (D52), load < 1 mA. C61 = CIN at gyro VDDIO pin 5, C62 = COUT <= 1.5 mm from VDD pin 8; no separate 100 nF."
+	(text_box "U12 TPS7A2018 1.8 V from +3.3V, load < 1 mA. C61 at VDDIO pin 5; C62 <= 1.5 mm from VDD pin 8."
 		(exclude_from_sim no)
 		(at 12.7 99.06 0)
 		(size 74.93 10.16)

@@ -1080,7 +1080,7 @@
 		)
 		(uuid "f6da4da5-58b0-58f0-85df-fa65f4e32616")
 	)
-	(text "status LEDs"
+	(text "STATUS LEDS"
 		(exclude_from_sim no)
 		(at 44.45 33.02 0)
 		(effects
@@ -1093,7 +1093,7 @@
 		)
 		(uuid "601b62a3-3d74-5520-86fb-8903209dd21b")
 	)
-	(text_box "Status LEDs from OpenFC-Lite-Mini: +3.3V -> LED -> 150R -> GPIO, the pin sinks (low = on, Betaflight default). LED0 = GPIO10 green D5, LED1 = GPIO24 blue D6.\nAbout 2-3 mA, ceiling 6 mA: LED, resistor and GPIO well inside ratings. The LEDs may glow faintly from the reset pull-downs until Betaflight drives the pins: cosmetic, accepted. Slow signal, R at either end (D33)."
+	(text_box "+3.3V -> LED -> 150R -> GPIO, the pin sinks (low = on). LED0 GPIO10 green, LED1 GPIO24 blue, about 2-3 mA.\nThe LEDs may glow faintly during reset: cosmetic."
 		(exclude_from_sim no)
 		(at 88.9 25.4 0)
 		(size 107.95 15.24)

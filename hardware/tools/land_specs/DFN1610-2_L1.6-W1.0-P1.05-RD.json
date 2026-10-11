@@ -3,7 +3,7 @@
  "source": "easyeda2kicad C7380000 via import_part.py, courtyard and silk to house convention",
  "part": "MSKSEMI MS2A40LDF Schottky 40 V 2 A, DFN1610-2",
  "datasheet": "MSKSEMI MS2A40LDF (LCSC C7380000, datasheet.lcsc.com .../b245d311027883dd26c3826404872d47.pdf) p5: body D 1.60 x E 1.00, terminals L 0.40 x b 0.80, e 1.10; suggested pads 0.625 x 1.00 at 1.22 pitch; band (cathode) on the left in the top view",
- "derivation": "EasyEDA land 0.60 x 0.90 at +-0.52 (gap 0.44) kept: covers the terminals x 0.35-0.75 with 0.07 toe and 0.03 heel; narrower than the suggested 1.22 pitch per D109 least density",
+ "derivation": "EasyEDA land 0.60 x 0.90 at +-0.52 (gap 0.44) kept: covers the terminals x 0.35-0.75 with 0.07 toe (land outer 0.82, terminal outer 0.75 nominal, body 0.80) and the land inner edge 0.13 inside the terminal inner edge 0.35 (re-read 2026-10-11: bottom view p5 shows the terminals inset about 0.05 from the body outline and a chamfer on the right terminal in bottom view = cathode on the left in top view, symbol pin 1 = K); narrower than the suggested 1.22 pitch per D109 least density",
  "pads": [
   {"number": "1", "x": -0.52, "y": 0, "w": 0.6, "h": 0.9, "shape": "rect"},
   {"number": "2", "x": 0.52, "y": 0, "w": 0.6, "h": 0.9, "shape": "rect"}
