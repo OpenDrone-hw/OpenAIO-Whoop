@@ -36,6 +36,11 @@
 (rule "HDI 1+4+1: no mechanical blind vias"
   (constraint disallow blind_via))
 
+# D107 / D116: the board has no through vias; every via is a laser microvia in a pad or a buried L2-L5 via under
+# a body. A through via (KiCad 'V') blocks all six layers and is an error here; use Place Microvia / Place Blind/Buried.
+(rule "HDI 1+4+1: no through vias"
+  (constraint disallow through_via))
+
 # Laser vias span one 1080 layer only (NextPCB laser AR 1:1 max, 0.75:1 recommended); no skip vias.
 (rule "HDI 1+4+1: microvias L1-L2 and L5-L6 only"
   (constraint disallow micro_via)

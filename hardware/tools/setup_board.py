@@ -237,6 +237,11 @@ RULES = [
       "buried vias L2-L5 in the core sub-lamination, through vias as before. No mechanical blind vias (another press cycle)."],
      "  (constraint disallow blind_via)"),
 
+    ("HDI 1+4+1: no through vias",
+     ["D107 / D116: the board has no through vias; every via is a laser microvia in a pad or a buried L2-L5 via under",
+      "a body. A through via (KiCad 'V') blocks all six layers and is an error here; use Place Microvia / Place Blind/Buried."],
+     "  (constraint disallow through_via)"),
+
     ("HDI 1+4+1: microvias L1-L2 and L5-L6 only",
      ["Laser vias span one 1080 layer only (NextPCB laser AR 1:1 max, 0.75:1 recommended); no skip vias."],
      "  (constraint disallow micro_via)\n"
