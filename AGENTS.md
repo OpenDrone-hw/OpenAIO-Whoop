@@ -42,9 +42,9 @@ J2/J3 battery pads ─► R1 0.5 mOhm Kelvin shunt (U1 INA186 ─► ADC_CURR) �
 +BATT ─┬─► Q29-Q40 AGM210MAP half-bridges, U6-U9 EFM8 VDD
        ├─► SE5004L PA VCC
        └─► U2 TPS61022 boost ─► +5V_BST ─┬─► VHD pad (O4 Lite)
-                                         └─► U3 TPS2116 VIN2
-J31 VBUS ─► U24 SGM40661 inlet switch ─► +5V_USB ─► U3 TPS2116 VIN1 (priority)
-U3 ─► +5V ─┬─► U4 LP5912-3.3 ─► +3.3V ─┬─► RP2354A ─► internal SMPS + L2 ─► +1.1V core
+                                         └─► D10 Schottky ─┐
+J31 VBUS ─► D9 Schottky ─────────────────────────────────┴─► +5V (diode OR, about 4.85 V)
++5V ──────┬─► U4 LP5912-3.3 ─► +3.3V ─┬─► RP2354A ─► internal SMPS + L2 ─► +1.1V core
            │                           ├─► ESP32-PICO-V3, SX1281, NOR flash, OSD, INA186
            │                           └─► U12 TPS7A2018 ─► +1.8V_GYRO ─► BMI270 VDD
            ├─► U21 LP5912-3.3 (VTX_PWR_EN) ─► +3.3V_VTX ─┬─► RTC6705, PA drive stage
@@ -53,8 +53,9 @@ U3 ─► +5V ─┬─► U4 LP5912-3.3 ─► +3.3V ─┬─► RP2354A ─�
            └─► 5V pad J21 (LED strip, buzzer)
 ```
 
-USB has priority on `+5V`, so a board on USB alone runs the FC, RX and OSD
-without the boost. The VHD pad sits on the boost side, so USB never powers an
+D9 and D10 diode-OR VBUS and the boost onto `+5V`: with a cell the boost
+(5.15 V) carries the load, and a board on USB alone runs the FC, RX and OSD
+from VBUS without the boost. No USB over-voltage switch (D118). The VHD pad sits on the boost side, so USB never powers an
 O4, and an O4 is powered whenever the cell is. There is no reverse-polarity
 protection: a reversed battery lead shorts the cell through the FET body
 diodes.
@@ -71,8 +72,7 @@ diodes.
 | Battery shunt | R1 | HCS1206FTL500, 0.5 mOhm 1206 | C346511 | four-pad Kelvin land |
 | Current amp | U1 | INA186A3, gain 100 | C2058245 | 50 mV/A |
 | 5 V boost | U2 | TPS61022 | C915088 | 1 MHz forced PWM, L1 0.68 uH |
-| USB inlet | U24 | SGM40661 | | VBUS hot-plug and over-voltage switch |
-| 5 V mux | U3 | TPS2116 | C3235557 | USB over boost, priority mode |
+| 5 V diode OR | D9, D10 | MS2A40LDF, DFN1610-2 | C7380000 | VBUS and boost to +5V, 0.3 V drop at 0.5 A |
 | 3.3 V LDO | U4 | LP5912-3.3DRVR | C524780 | FC and RX rail |
 | Gyro LDO | U12 | TPS7A2018 | C36996449 | +1.8V_GYRO |
 | RX MCU | U16 | ESP32-PICO-V3 SiP | C967022 | ELRS and VTX control |

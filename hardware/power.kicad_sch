@@ -1183,6 +1183,186 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "lib:MS2A40LDF"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "MS2A40LDF"
+				(at 0 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "lib:DFN1610-2_L1.6-W1.0-P1.05-RD"
+				(at 0 -7.62 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.lcsc.com/datasheet/C7380000.pdf"
+				(at 0 -10.16 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Schottky diode 40 V 2 A, VF 0.37 V at 1 A, DFN1610-2 (MSKSEMI MS2A40LDF)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "MSKSEMI"
+				(at 0 -12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "MS2A40LDF"
+				(at 0 -15.24 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part" "C7380000"
+				(at 0 -17.78 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "MS2A40LDF_0_1"
+				(polyline
+					(pts
+						(xy -1.78 1.27) (xy -1.78 1.78) (xy -1.27 1.78) (xy -1.27 -1.78) (xy -0.76 -1.78) (xy -0.76 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.78) (xy -1.27 0) (xy 1.27 -1.78) (xy 1.27 1.78)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "lib:R_Shunt_Kelvin"
 			(pin_names
 				(offset 0)
@@ -1381,249 +1561,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "lib:SGM40661YG"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at -7.62 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "SGM40661"
-				(at 7.62 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Footprint" "lib:WLCSP-6_L1.30-W0.94-P0.40_SGM40661"
-				(at 0 -10.16 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.sg-micro.com/rect/assets/0153aec8-7dcf-4f2e-bc6e-389b3d6ac0a0/SGM40659_SGM40660_SGM40661.pdf"
-				(at 0 -12.7 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "SG Micro SGM40661 OVP load switch, WLCSP-6: IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), OVLO tied to GND = internal 5.75-6.12 V trip, 3 A continuous (recommended operating), 4 A abs max, 27/45 mOhm (SGM40659/60/61 DS REV.A, absolute maximum ratings and recommended operating conditions)"
-				(at 0 -15.24 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "SG Micro"
-				(at 0 -17.78 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "SGM40661YG/TR"
-				(at 0 -20.32 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC" "n/a"
-				(at 0 -22.86 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "OVP over-voltage protection switch USB VBUS 28V 4A WLCSP"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "*WLCSP*6*SGM4066*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "SGM40661YG_0_1"
-				(rectangle
-					(start -7.62 5.08)
-					(end 7.62 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "SGM40661YG_1_1"
-				(pin power_out line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(name "OUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "A1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(name "IN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "A2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(hide yes)
-					(name "OUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "B1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(hide yes)
-					(name "IN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "B2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "C1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 -2.54 0)
-					(length 2.54)
-					(name "OVLO"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "C2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "lib:SolderPad_01x01"
 			(pin_names
 				(offset 1.016)
@@ -1743,284 +1680,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "lib:TPS2116DRLR"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at -7.62 8.89 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "TPS2116"
-				(at 7.62 8.89 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Footprint" "lib:TI_SOT-583_DRL_L"
-				(at 0 -12.7 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps2116.pdf"
-				(at 0 -15.24 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "2:1 power mux, 1.6-5.5 V, 2.5 A, 40 mOhm, priority (MODE = VIN1) or manual mode, reverse-current blocking, open-drain status ST; SOT-583 (DRL0008A) 2.1 x 1.2 mm; VOUT pins 2 and 7 both carry current"
-				(at 0 -17.78 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "Texas Instruments"
-				(at 0 -20.32 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "TPS2116DRLR"
-				(at 0 -22.86 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC" "C3235557"
-				(at 0 -25.4 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "power mux multiplexer priority switchover 2.5A SOT-583 DRL"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "*SOT*583*DRL*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "TPS2116DRLR_0_1"
-				(rectangle
-					(start -7.62 7.62)
-					(end 7.62 -7.62)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "TPS2116DRLR_1_1"
-				(pin power_in line
-					(at 0 -10.16 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_out line
-					(at 10.16 5.08 180)
-					(length 2.54)
-					(name "VOUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -10.16 5.08 0)
-					(length 2.54)
-					(name "VIN1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 -2.54 0)
-					(length 2.54)
-					(name "PR1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 -5.08 0)
-					(length 2.54)
-					(name "MODE"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(name "VIN2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 5.08 180)
-					(length 2.54)
-					(hide yes)
-					(name "VOUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin open_collector line
-					(at 10.16 -5.08 180)
-					(length 2.54)
-					(name "ST"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3648,7 +3307,7 @@
 		)
 		(uuid "0cf7cd52-694d-5dcc-811c-fb02c238ba9e")
 	)
-	(text "O4 LITE HD SUPPLY SWITCH TPS22810"
+	(text "HD_EN PULL-DOWN"
 		(exclude_from_sim no)
 		(at 149.86 99.06 0)
 		(effects
@@ -3700,7 +3359,7 @@
 		)
 		(uuid "6d9b0429-f5a9-591d-a87b-7b1d327de108")
 	)
-	(text "USB INLET OVP SGM40661"
+	(text "USB VBUS SCHOTTKY"
 		(exclude_from_sim no)
 		(at 17.78 185.42 0)
 		(effects
@@ -3726,7 +3385,7 @@
 		)
 		(uuid "8d8db542-6c13-5af4-b7a4-78ca32e5f7dc")
 	)
-	(text "5 V POWER MUX TPS2116"
+	(text "5 V DIODE OR"
 		(exclude_from_sim no)
 		(at 121.92 185.42 0)
 		(effects
@@ -3739,7 +3398,7 @@
 		)
 		(uuid "e0567aea-dee4-5129-a4a7-d6b7b2df8932")
 	)
-	(text "BATTERY INPUT AND TVS"
+	(text "BATTERY INPUT"
 		(exclude_from_sim no)
 		(at 17.78 17.78 0)
 		(effects
@@ -3792,7 +3451,7 @@
 		)
 		(uuid "432733bd-b3fe-5aab-802f-ae68600f9301")
 	)
-	(text_box "Battery entry from OpenAIO (D113): CSA+ = pad J2 (+) node before the shunt, J3 (-) = GND, 1S 3.0-4.35 V. PWR_FLAGs here because the pads are passive. No reverse-polarity FET (spec 4.1).\nD1 SMF5.0A takes one motor's regen pulse on a battery disconnect (fallback SMAJ5.0A); C1/C2 22 uF at the pads. Hot-plug overshoot vs the TPS61022 4.8 V start-up limit is bench item V3c."
+	(text_box "Battery entry from OpenAIO (D113): CSA+ = pad J2 (+) node before the shunt, J3 (-) = GND, 1S 3.0-4.35 V. PWR_FLAGs here because the pads are passive. No reverse-polarity FET and no TVS (D114: a 5 V TVS clamps above every IC abs max on +BATT).\nC1/C2 22 uF at the pads. Hot-plug overshoot is bench item V3c."
 		(exclude_from_sim no)
 		(at 16.51 55.88 0)
 		(size 83.82 17.78)
@@ -3852,7 +3511,7 @@
 		)
 		(uuid "81012877-ff3f-5e4c-b48d-b382fb601fb3")
 	)
-	(text_box "Shunt + INA186A3 from OpenAIO; input RC 0201, common-mode caps deleted (D52). R1 0.5 mOhm Kelvin land: route SHUNT_SENSE_P/N as a pair on L1 or L6, class Analog; every load taps +BATT after R1.\nR2/R3 1k + C5 1 uF: 80 Hz. Gain 100 -> 50 mV/A (Betaflight ibata_scale 500), about 65 A full scale. Output RC sits at the ADC pin (RP2350A sheet)."
+	(text_box "Shunt + INA186A3 from OpenAIO. R1 0.5 mOhm Kelvin land: route SHUNT_SENSE_P/N as a pair on L1 or L6, class Analog; every load taps +BATT after R1.\nNo input RC (D114): place U1 next to R1. Gain 100 -> 50 mV/A (Betaflight ibata_scale 500), about 65 A full scale. Output RC sits at the ADC pin (RP2350A sheet)."
 		(exclude_from_sim no)
 		(at 102.87 71.12 0)
 		(size 149.86 12.7)
@@ -3912,7 +3571,7 @@
 		)
 		(uuid "e2b137f3-25e3-54c6-9aac-a456f419c8c5")
 	)
-	(text_box "TPS22810 O4 supply switch (D15, D34, D53, D83): VIN on +5V_BST ahead of the mux, so USB never reaches the O4; C8-C11 are its input caps (C17 deleted). C16 10 nF soft start, QOD empties +5V_HD when off.\nEN/UVLO = R9/R10 divider from +BATT with R87 hysteresis: on at 3.27-3.77 V, shed at 2.78-3.10 V. HD_EN (GPIO19) low or floating pulls EN below VENF through D2 + R11: O4 off; high: O4 on."
+	(text_box "HD_EN (GPIO19) pull-down: R11 2.4k holds HD_EN low at reset, so Q28 leaves the analog VTX on. The O4 Lite VHD pad sits on +5V_BST directly, no load switch (D114)."
 		(exclude_from_sim no)
 		(at 148.59 152.4 0)
 		(size 187.96 12.7)
@@ -3957,12 +3616,6 @@
 		(uuid "25142bf2-7395-5921-9551-2e3939590c0d")
 	)
 	(junction
-		(at 154.94 205.74)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3f62c5c1-6182-5a8d-8427-455d594ea1b4")
-	)
-	(junction
 		(at 170.18 53.34)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3991,18 +3644,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6e6b64a4-81de-57b2-a17d-f0bdaa7dc4e2")
-	)
-	(junction
-		(at 213.36 198.12)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7b97d78a-a90e-5b6e-8a4f-028750e42110")
-	)
-	(junction
-		(at 45.72 198.12)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "818885c4-1896-5fb0-b82f-e3361dc0893c")
 	)
 	(junction
 		(at 139.7 35.56)
@@ -4073,10 +3714,6 @@
 	(no_connect
 		(at 313.69 36.83)
 		(uuid "4e7aa9b3-8df0-5be4-b5f5-d40b36f9a7db")
-	)
-	(no_connect
-		(at 205.74 208.28)
-		(uuid "72eac583-11d9-5944-961e-9cf44dd6e3c1")
 	)
 	(no_connect
 		(at 313.69 34.29)
@@ -4164,6 +3801,16 @@
 	)
 	(wire
 		(pts
+			(xy 71.12 198.12) (xy 81.28 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "233a0068-3f39-4bad-9ac4-7e89b6f97025")
+	)
+	(wire
+		(pts
 			(xy 76.2 114.3) (xy 76.2 124.46)
 		)
 		(stroke
@@ -4234,16 +3881,6 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 203.2) (xy 55.88 203.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3be31f6f-9539-5feb-9ed0-2186904da051")
-	)
-	(wire
-		(pts
 			(xy 60.96 139.7) (xy 60.96 142.24)
 		)
 		(stroke
@@ -4274,16 +3911,6 @@
 	)
 	(wire
 		(pts
-			(xy 185.42 208.28) (xy 182.88 208.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "45a93954-8339-57e5-8db8-de48b58b7bc4")
-	)
-	(wire
-		(pts
 			(xy 170.18 45.72) (xy 187.96 45.72)
 		)
 		(stroke
@@ -4301,16 +3928,6 @@
 			(type default)
 		)
 		(uuid "493f12dd-2745-5700-9215-c730db4246ac")
-	)
-	(wire
-		(pts
-			(xy 185.42 205.74) (xy 154.94 205.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4c5d57cd-d53f-53d0-a710-62e55f406f5f")
 	)
 	(wire
 		(pts
@@ -4431,6 +4048,16 @@
 			(type default)
 		)
 		(uuid "78033424-53cb-54e8-b9fc-288eaa8275a4")
+	)
+	(wire
+		(pts
+			(xy 213.36 200.66) (xy 213.36 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a17fd82-6840-4faf-82c6-6fdd792d17a1")
 	)
 	(wire
 		(pts
@@ -4604,16 +4231,6 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 198.12) (xy 180.34 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b12b8a55-e70b-5e17-88a0-59f37bfe50c7")
-	)
-	(wire
-		(pts
 			(xy 40.64 124.46) (xy 45.72 124.46)
 		)
 		(stroke
@@ -4644,16 +4261,6 @@
 	)
 	(wire
 		(pts
-			(xy 182.88 215.9) (xy 175.26 215.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c3cc49ce-7249-51f0-b304-e05837013579")
-	)
-	(wire
-		(pts
 			(xy 187.96 45.72) (xy 187.96 48.26)
 		)
 		(stroke
@@ -4671,16 +4278,6 @@
 			(type default)
 		)
 		(uuid "c57cabf9-3bc1-5a4f-b598-4439085ef730")
-	)
-	(wire
-		(pts
-			(xy 182.88 208.28) (xy 182.88 215.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c74b690a-6ab0-5c07-a4b6-ad8ed6d8c0e2")
 	)
 	(wire
 		(pts
@@ -4704,16 +4301,6 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 198.12) (xy 154.94 195.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ce5e81e5-41eb-5fa5-98ba-7e9dbb35492c")
-	)
-	(wire
-		(pts
 			(xy 63.5 45.72) (xy 63.5 48.26)
 		)
 		(stroke
@@ -4721,16 +4308,6 @@
 			(type default)
 		)
 		(uuid "d0a5a868-2422-57c5-a2f6-92e8024cf3a0")
-	)
-	(wire
-		(pts
-			(xy 195.58 213.36) (xy 195.58 215.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d7bba1cb-2704-52b4-9194-0714cf7829ef")
 	)
 	(wire
 		(pts
@@ -4751,16 +4328,6 @@
 			(type default)
 		)
 		(uuid "dc863977-e157-4722-9d35-1ccd68be9348")
-	)
-	(wire
-		(pts
-			(xy 185.42 198.12) (xy 180.34 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e06370cf-12f3-5079-991c-adeb10b0f7eb")
 	)
 	(wire
 		(pts
@@ -4824,13 +4391,13 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 208.28) (xy 71.12 210.82)
+			(xy 195.58 200.66) (xy 213.36 200.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e8b1f4c5-c703-530f-b61e-0d0cde023b5d")
+		(uuid "e82364ee-7f87-4b41-92da-66ac65f2b20b")
 	)
 	(wire
 		(pts
@@ -4851,16 +4418,6 @@
 			(type default)
 		)
 		(uuid "ea7c0853-d508-51df-916f-ea1a8e616d8c")
-	)
-	(wire
-		(pts
-			(xy 205.74 198.12) (xy 213.36 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ea83aa16-2f9a-51b8-bc6f-0a94767534ec")
 	)
 	(wire
 		(pts
@@ -4991,16 +4548,6 @@
 			(justify left bottom)
 		)
 		(uuid "53c1b655-4a10-5af7-8fa7-1f2b3835d082")
-	)
-	(label "U3_PR1"
-		(at 160.02 205.74 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "5befdf8b-e7eb-5424-842a-b1eb43c4b744")
 	)
 	(label "SHUNT_SENSE_P"
 		(at 137.16 53.34 0)
@@ -5625,83 +5172,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 154.94 213.36 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "19ea8e83-17a7-5817-885b-3b95e0228bc5")
-		(property "Reference" "#PWR42"
-			(at 154.94 219.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 154.94 217.17 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 154.94 213.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 154.94 213.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 154.94 213.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2911e984-c710-5964-9512-d7cbe7d0cbed")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR42")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "lib:SolderPad_01x01")
 		(at 30.48 33.02 90)
 		(unit 1)
@@ -6037,83 +5507,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 45.72 205.74 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "247c075f-c9cd-5d91-8f91-96d6d55f8f4f")
-		(property "Reference" "#PWR38"
-			(at 45.72 212.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 45.72 209.55 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 45.72 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 45.72 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 45.72 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "7829afbd-3e47-5377-8845-e24790761ac7")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR38")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 139.7 127 0)
 		(unit 1)
@@ -6201,7 +5594,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "26d99183-75cf-5ff3-9fbf-1c400094aa13")
-		(property "Reference" "#PWR35"
+		(property "Reference" "#PWR33"
 			(at 93.98 201.93 0)
 			(hide yes)
 			(show_name no)
@@ -6212,7 +5605,7 @@
 				)
 			)
 		)
-		(property "Value" "+5V_USB"
+		(property "Value" "+5V"
 			(at 93.98 194.564 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6261,84 +5654,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR35")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 195.58 215.9 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "292d9076-c9f9-518a-a040-479c28ce3ee3")
-		(property "Reference" "#PWR44"
-			(at 195.58 222.25 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 195.58 219.71 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 195.58 215.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 195.58 215.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 195.58 215.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "adc1a096-48e0-5272-be43-154fa2d69d96")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR44")
+					(reference "#PWR33")
 					(unit 1)
 				)
 			)
@@ -6453,213 +5769,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "R5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "lib:TPS2116DRLR")
-		(at 195.58 203.2 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2f2ba0cd-4bd2-58fc-927a-6fd0efcb3750")
-		(property "Reference" "U3"
-			(at 187.96 193.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "TPS2116"
-			(at 203.2 193.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:TI_SOT-583_DRL_L"
-			(at 195.58 203.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps2116.pdf"
-			(at 195.58 203.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "2:1 power mux, 1.6-5.5 V, 2.5 A, 40 mOhm, priority (MODE = VIN1) or manual mode, reverse-current blocking, open-drain status ST; SOT-583 (DRL0008A) 2.1 x 1.2 mm; VOUT pins 2 and 7 both carry current"
-			(at 195.58 203.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C3235557"
-			(at 195.58 203.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "TPS2116DRLR"
-			(at 195.58 203.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Texas Instruments"
-			(at 195.58 203.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4cd5825d-83bc-5498-b1f7-3f969fa4afda")
-		)
-		(pin "2"
-			(uuid "283ea6eb-a6b3-5f63-8acb-12867f46a11c")
-		)
-		(pin "3"
-			(uuid "0927da0b-3ece-5926-8dde-e197cb787974")
-		)
-		(pin "4"
-			(uuid "58a1c716-523f-551a-be7b-13e1c04d4596")
-		)
-		(pin "5"
-			(uuid "ffe29020-616d-563d-90fd-e8451de039cb")
-		)
-		(pin "6"
-			(uuid "02952f3c-f0ff-5620-8183-cc3cafeb2294")
-		)
-		(pin "7"
-			(uuid "288fa6a3-2d72-55de-b16b-a50f8c05b273")
-		)
-		(pin "8"
-			(uuid "5af55a9d-4720-5266-973b-a70f9f472767")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "U3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 154.94 195.58 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "2fef4b50-c319-5ed9-880a-ec60d4f30c73")
-		(property "Reference" "#PWR34"
-			(at 154.94 199.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_USB"
-			(at 154.94 192.024 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 154.94 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 154.94 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 154.94 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6581a4ca-371f-5cd5-9283-c535eead54ce")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR34")
 					(unit 1)
 				)
 			)
@@ -6790,7 +5899,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "33f88d89-9d82-5f21-a2b1-2114e77d14b4")
-		(property "Reference" "#PWR36"
+		(property "Reference" "#PWR34"
 			(at 223.52 201.93 0)
 			(hide yes)
 			(show_name no)
@@ -6850,7 +5959,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR36")
+					(reference "#PWR34")
 					(unit 1)
 				)
 			)
@@ -6981,7 +6090,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "37e74e95-1224-54ab-928c-1edbcc0ca5b6")
-		(property "Reference" "#PWR40"
+		(property "Reference" "#PWR36"
 			(at 213.36 212.09 0)
 			(hide yes)
 			(show_name no)
@@ -7041,7 +6150,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR40")
+					(reference "#PWR36")
 					(unit 1)
 				)
 			)
@@ -7323,120 +6432,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "U2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 45.72 201.93 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "3f2bd88c-fe31-54c5-b016-2277308be24b")
-		(property "Reference" "C131"
-			(at 47.625 200.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100nF"
-			(at 47.625 203.2 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:C_0201_0603Metric_L"
-			(at 45.72 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 45.72 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 45.72 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C181047"
-			(at 45.72 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "GRM033C81E104KE14D"
-			(at 45.72 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 45.72 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "197114e0-9473-5a16-a497-79c52845a263")
-		)
-		(pin "2"
-			(uuid "0509b31d-7ec3-51bc-83c8-00d8e33a0f1d")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "C131")
 					(unit 1)
 				)
 			)
@@ -7978,6 +6973,120 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "C7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "lib:MS2A40LDF")
+		(at 190.5 200.66 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4fc71f6d-d34e-49f0-a67e-2274ded74240")
+		(property "Reference" "D10"
+			(at 188.59 199.39 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "MS2A40LDF"
+			(at 188.59 201.93 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "lib:DFN1610-2_L1.6-W1.0-P1.05-RD"
+			(at 190.5 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 190.5 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 190.5 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C7380000"
+			(at 190.5 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MS2A40LDF"
+			(at 190.5 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "MSKSEMI"
+			(at 190.5 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "97ad43bd-d018-4eb3-bd52-316dc5700e62")
+		)
+		(pin "2"
+			(uuid "6b5fbe1e-44fa-40cf-99be-b10f2750eebd")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "D10")
 					(unit 1)
 				)
 			)
@@ -8942,130 +8051,6 @@
 		)
 	)
 	(symbol
-		(lib_id "lib:SGM40661YG")
-		(at 71.12 200.66 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "779b5338-277f-517d-97c2-73799859b432")
-		(property "Reference" "U24"
-			(at 63.5 193.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SGM40661"
-			(at 78.74 193.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:WLCSP-6_L1.30-W0.94-P0.40_SGM40661"
-			(at 71.12 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.sg-micro.com/rect/assets/0153aec8-7dcf-4f2e-bc6e-389b3d6ac0a0/SGM40659_SGM40660_SGM40661.pdf"
-			(at 71.12 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "SG Micro SGM40661 OVP load switch, WLCSP-6: IN 28 V abs max, 2.7-20 V recommended (feature list: 40 V surge immunity), OVLO tied to GND = internal 5.75-6.12 V trip, 3 A continuous (recommended operating), 4 A abs max, 27/45 mOhm (SGM40659/60/61 DS REV.A, absolute maximum ratings and recommended operating conditions)"
-			(at 71.12 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C3294703"
-			(at 71.12 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "SGM40661YG/TR"
-			(at 71.12 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "SG Micro"
-			(at 71.12 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "A1"
-			(uuid "89634876-1dbd-530d-9d17-b6e969c6fdac")
-		)
-		(pin "A2"
-			(uuid "b52cd364-e56d-51e7-a73a-3d7d0ea16e6a")
-		)
-		(pin "B1"
-			(uuid "69c18640-1bc7-5eee-a553-44a1dbfdcfae")
-		)
-		(pin "B2"
-			(uuid "3a28e70b-054b-5677-b5dc-c0cbaf9e48a3")
-		)
-		(pin "C1"
-			(uuid "561be1d1-db22-5488-b1d7-bce8e8ec091b")
-		)
-		(pin "C2"
-			(uuid "32d9acfd-27dc-5294-9cfc-09536c2f4328")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "U24")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 384.81 116.84 0)
 		(unit 1)
@@ -9423,83 +8408,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 71.12 210.82 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "7de1734e-f231-5738-aa70-0876d9c57913")
-		(property "Reference" "#PWR41"
-			(at 71.12 217.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 71.12 214.63 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 71.12 210.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 71.12 210.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 71.12 210.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ea5167c1-5797-5be6-aa13-0edfcb5050ae")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR41")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+BATT")
 		(at 25.4 124.46 0)
 		(unit 1)
@@ -9577,39 +8485,40 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 55.88 203.2 0)
+		(lib_id "lib:MS2A40LDF")
+		(at 66.04 198.12 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
-		(in_pos_files no)
+		(in_pos_files yes)
 		(dnp no)
-		(uuid "8944916c-9e26-5ca6-9adf-564c3f9b7fdc")
-		(property "Reference" "#PWR37"
-			(at 55.88 209.55 0)
-			(hide yes)
+		(uuid "8611fa12-5277-4749-ba5d-d90b13a88464")
+		(property "Reference" "D9"
+			(at 64.14 196.85 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Value" "GND"
-			(at 55.88 207.01 0)
+		(property "Value" "MS2A40LDF"
+			(at 64.14 199.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Footprint" ""
-			(at 55.88 203.2 0)
+		(property "Footprint" "lib:DFN1610-2_L1.6-W1.0-P1.05-RD"
+			(at 66.04 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9620,7 +8529,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 55.88 203.2 0)
+			(at 66.04 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9630,8 +8539,41 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 55.88 203.2 0)
+		(property "Description" "Resistor"
+			(at 66.04 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C7380000"
+			(at 66.04 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MS2A40LDF"
+			(at 66.04 198.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "MSKSEMI"
+			(at 66.04 198.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9642,12 +8584,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "187abd8d-827d-5f69-8964-935bb441db3d")
+			(uuid "f341e584-1c81-41b0-96b9-975ce78b8542")
+		)
+		(pin "2"
+			(uuid "eb3c3e68-1fd2-49ce-a407-2dfc0719e65b")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR37")
+					(reference "D9")
 					(unit 1)
 				)
 			)
@@ -9999,83 +8944,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 175.26 215.9 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "a5ef13db-b981-5ae6-8421-a665ad5ecce7")
-		(property "Reference" "#PWR43"
-			(at 175.26 219.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_USB"
-			(at 175.26 212.344 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 175.26 215.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 175.26 215.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 175.26 215.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e332af1a-5dc0-5483-bf54-211df1f62d7d")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR43")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 124.46 142.24 0)
 		(unit 1)
@@ -10317,7 +9185,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "a8f1e90b-a57d-5627-b173-329163d90290")
-		(property "Reference" "#PWR39"
+		(property "Reference" "#PWR35"
 			(at 129.54 212.09 0)
 			(hide yes)
 			(show_name no)
@@ -10377,7 +9245,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR39")
+					(reference "#PWR35")
 					(unit 1)
 				)
 			)
@@ -10532,83 +9400,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "#PWR20")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 180.34 193.04 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "b697e453-6a41-595a-a683-c903e5520c61")
-		(property "Reference" "#PWR32"
-			(at 180.34 196.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V_USB"
-			(at 180.34 189.484 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 180.34 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 180.34 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 180.34 193.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "86a84a24-2841-55e9-8f8d-d4637c1b2b77")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR32")
 					(unit 1)
 				)
 			)
@@ -11047,7 +9838,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "d1f79e8b-4709-51e8-bb21-42af57959606")
-		(property "Reference" "#PWR33"
+		(property "Reference" "#PWR32"
 			(at 129.54 199.39 0)
 			(hide yes)
 			(show_name no)
@@ -11058,7 +9849,7 @@
 				)
 			)
 		)
-		(property "Value" "+5V_USB"
+		(property "Value" "+5V"
 			(at 129.54 192.024 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11107,7 +9898,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR33")
+					(reference "#PWR32")
 					(unit 1)
 				)
 			)
@@ -11459,6 +10250,83 @@
 		)
 	)
 	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 213.36 200.66 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "e0c56fb3-5f2a-4c32-a8d1-0a2de1139238")
+		(property "Reference" "#FLG05"
+			(at 213.36 198.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 213.36 196.85 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 213.36 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 213.36 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 213.36 200.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b8ec1adf-19b6-485d-957c-bdc27492b4bd")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#FLG05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 63.5 41.91 0)
 		(unit 1)
@@ -11567,120 +10435,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "C2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 154.94 209.55 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e866ef58-2ac6-5010-893f-81dc93f7465e")
-		(property "Reference" "R8"
-			(at 153.035 208.28 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10k"
-			(at 153.035 210.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 154.94 209.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 154.94 209.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 154.94 209.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C106225"
-			(at 154.94 209.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "RC0201FR-0710KL"
-			(at 154.94 209.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Yageo"
-			(at 154.94 209.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "603cb0b3-9fde-54f1-bbf0-b5e61e03e829")
-		)
-		(pin "2"
-			(uuid "5acbed4a-940c-5dd8-a198-69cbede0e45c")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -12026,120 +10780,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "#PWR27")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 154.94 201.93 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f8f15e24-2e32-5450-9d3a-0f356aab2efc")
-		(property "Reference" "R7"
-			(at 153.035 200.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "27.4k"
-			(at 153.035 203.2 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 154.94 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 154.94 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 154.94 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C273316"
-			(at 154.94 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "RC0201FR-0727K4L"
-			(at 154.94 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Yageo"
-			(at 154.94 201.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "76f74e99-336e-5121-9da4-cd0767329a0d")
-		)
-		(pin "2"
-			(uuid "98ea36e9-d0ce-53fe-9535-c7e505ed49f0")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "R7")
 					(unit 1)
 				)
 			)
