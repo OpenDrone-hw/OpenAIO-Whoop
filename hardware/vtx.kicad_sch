@@ -1373,218 +1373,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "lib:LP5907SNX-2.85"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at -7.62 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "LP5907-2.85"
-				(at 7.62 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Footprint" "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense"
-				(at 0 -10.16 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/lp5907.pdf"
-				(at 0 -12.7 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "250 mA ultra-low-noise LDO, fixed 2.85 V +-2 %, VIN 2.2-5.5 V, EN with 1 M pull-down and 230 ohm active output discharge, X2SON-4 1x1 mm (DQN); EP (5) = thermal pad, GND or floating"
-				(at 0 -15.24 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "Texas Instruments"
-				(at 0 -17.78 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "LP5907SNX-2.85/NOPB"
-				(at 0 -20.32 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC" ""
-				(at 0 -22.86 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "LDO regulator 2.85V 250mA low noise X2SON LP5907"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "LP5907SNX-2.85_0_1"
-				(rectangle
-					(start -7.62 5.08)
-					(end 7.62 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "LP5907SNX-2.85_1_1"
-				(pin power_out line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(name "OUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -1.27 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 -2.54 0)
-					(length 2.54)
-					(name "EN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(name "IN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 1.27 -7.62 90)
-					(length 2.54)
-					(name "EP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "lib:LP5912-3.3DRVR"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -3417,6 +3205,218 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "lib:TPS7A20285PDQN"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -7.62 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "TPS7A20285"
+				(at 7.62 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify right)
+				)
+			)
+			(property "Footprint" "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense"
+				(at 0 -10.16 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps7a20.pdf"
+				(at 0 -12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "300 mA low-noise LDO, fixed 2.85 V, +/-1.5% at VIN >= 3.15 V and IOUT >= 1 mA, X2SON-4 1x1 mm (DQN); EP pin 5 to GND"
+				(at 0 -15.24 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Texas Instruments"
+				(at 0 -17.78 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "TPS7A20285PDQNR"
+				(at 0 -20.32 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C3748388"
+				(at 0 -22.86 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "LDO 2.85V 300mA low noise X2SON DQN"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "TPS7A20285PDQN_0_1"
+				(rectangle
+					(start -7.62 5.08)
+					(end 7.62 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "TPS7A20285PDQN_1_1"
+				(pin power_out line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -1.27 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 2.54 0)
+					(length 2.54)
+					(name "IN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 1.27 -7.62 90)
+					(length 2.54)
+					(name "EP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "lib:U.FL-R-SMT-1(80)"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -5141,7 +5141,7 @@
 		)
 		(uuid "d4c7280d-a782-56a4-9441-f1d2dfd1c1eb")
 	)
-	(text "PA REFERENCE LP5907-2.85"
+	(text "PA REFERENCE TPS7A20-2.85"
 		(exclude_from_sim no)
 		(at 17.78 113.03 0)
 		(effects
@@ -5198,7 +5198,7 @@
 		)
 		(uuid "fa8cf270-c9c1-54b3-a251-bfcda8e015a1")
 	)
-	(text_box "U22 LP5907-2.85 PA reference from +3.3V_VTX, EN = PA_EN (GPIO21) with a 1 MOhm pull-down.\nC122 4.7 uF CIN within 1 cm, C123 4.7 uF out."
+	(text_box "U22 TPS7A20285: 2.85 V +/-1.5% from +3.3V_VTX; EN = PA_EN (GPIO21), internal pull-down.\nVIN >= 3.15 V; PA internal 2k load meets IOUT >= 1 mA. C122/C123 4.7 uF local bypass."
 		(exclude_from_sim no)
 		(at 20.32 149.86 0)
 		(size 111.76 13.3)
@@ -5218,7 +5218,7 @@
 		)
 		(uuid "13f3de22-71bb-5e9f-bd38-b143648a6555")
 	)
-	(text_box "U21 LP5912-3.3 on +5V, CIN = C13 on POWER if within 1 cm. EN = VTX_PWR_EN: R68 10k to +3.3V holds the VTX on, Q28 pulls it low in HD mode.\nC108 at VCO pins 39/40."
+	(text_box "U21 LP5912-3.3 on +5V, CIN = C13 on POWER if within 1 cm. EN = RP2354 GPIO19 (HD_EN).\nHigh = analog enabled; low = HD / analog off. R68 10k holds analog on during reset. C108 at VCO supply."
 		(exclude_from_sim no)
 		(at 20.32 86.36 0)
 		(size 111.76 19.48)
@@ -6116,6 +6116,16 @@
 	)
 	(wire
 		(pts
+			(xy 40.64 62.23) (xy 50.8 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3d22af62-beef-4c94-9dff-2cf67cdcbed9")
+	)
+	(wire
+		(pts
 			(xy 459.74 115.57) (xy 459.74 110.49)
 		)
 		(stroke
@@ -6476,7 +6486,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 135.89) (xy 68.58 140.97)
+			(xy 68.58 133.35) (xy 68.58 140.97)
 		)
 		(stroke
 			(width 0)
@@ -6786,16 +6796,6 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 67.31) (xy 50.8 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bd732bd3-852d-5b8b-8cd1-086c478c598e")
-	)
-	(wire
-		(pts
 			(xy 167.64 138.43) (xy 167.64 130.81)
 		)
 		(stroke
@@ -6806,7 +6806,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 135.89) (xy 68.58 135.89)
+			(xy 71.12 133.35) (xy 68.58 133.35)
 		)
 		(stroke
 			(width 0)
@@ -7013,16 +7013,6 @@
 			(type default)
 		)
 		(uuid "de5d1b10-34f6-59b2-99ee-c8fad994a2e2")
-	)
-	(wire
-		(pts
-			(xy 43.18 72.39) (xy 40.64 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "de8794d1-9fd6-5bb6-869a-69a6d5132516")
 	)
 	(wire
 		(pts
@@ -7255,7 +7245,7 @@
 		(uuid "2010d11d-ffa0-5db2-9693-f3cbab91d327")
 	)
 	(label "U19_AVDD65_RC"
-		(at 248.285 40.005 270)
+		(at 248.92 40.64 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7275,7 +7265,7 @@
 		(uuid "2387d5bf-3249-56fe-a799-6d0f7e6f88fd")
 	)
 	(label "U19_LDD2V5"
-		(at 233.045 40.005 270)
+		(at 233.68 40.64 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7365,7 +7355,7 @@
 		(uuid "624319aa-d5b4-57ea-8b68-f0a0d3f7a381")
 	)
 	(label "U19_LDD2V5"
-		(at 240.665 32.385 90)
+		(at 241.3 33.02 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7384,16 +7374,6 @@
 		)
 		(uuid "6efe44d4-fabb-5037-bb57-baace385f584")
 	)
-	(label "VTX_PWR_EN"
-		(at 53.34 62.23 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "73ae6162-7918-51fa-acd7-65d50d66e513")
-	)
 	(label "RF_UFL"
 		(at 443.23 115.57 0)
 		(effects
@@ -7405,7 +7385,7 @@
 		(uuid "754fcb9c-6659-5bc2-bb9b-92fb52fa654e")
 	)
 	(label "U19_AVDD65_RC"
-		(at 255.905 32.385 90)
+		(at 256.54 33.02 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7525,7 +7505,7 @@
 		(uuid "eeb02bc4-4ce1-54b2-bcf4-c9a837dfb7f9")
 	)
 	(label "U19_AVDD65"
-		(at 248.285 32.385 90)
+		(at 248.92 33.02 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7536,7 +7516,7 @@
 	)
 	(hierarchical_label "HD_EN"
 		(shape input)
-		(at 40.64 72.39 180)
+		(at 40.64 62.23 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7673,7 +7653,7 @@
 		)
 	)
 	(symbol
-		(lib_id "lib:LP5907SNX-2.85")
+		(lib_id "lib:TPS7A20285PDQN")
 		(at 81.28 133.35 0)
 		(unit 1)
 		(body_style 1)
@@ -7693,7 +7673,7 @@
 				)
 			)
 		)
-		(property "Value" "LP5907-2.85"
+		(property "Value" "TPS7A20285"
 			(at 88.9 127 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7714,7 +7694,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/lp5907.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps7a20.pdf"
 			(at 81.28 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -7725,7 +7705,7 @@
 				)
 			)
 		)
-		(property "Description" "250 mA ultra-low-noise LDO, fixed 2.85 V +-2 %, VIN 2.2-5.5 V, EN with 1 M pull-down and 230 ohm active output discharge, X2SON-4 1x1 mm (DQN); EP (5) = thermal pad, GND or floating"
+		(property "Description" "300 mA low-noise LDO, fixed 2.85 V, +/-1.5% at VIN >= 3.15 V and IOUT >= 1 mA, X2SON-4 1x1 mm (DQN); EP pin 5 to GND"
 			(at 81.28 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -7736,7 +7716,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2872477"
+		(property "LCSC" "C3748388"
 			(at 81.28 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -7747,7 +7727,7 @@
 				)
 			)
 		)
-		(property "MPN" "LP5907SNX-2.85/NOPB"
+		(property "MPN" "TPS7A20285PDQNR"
 			(at 81.28 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -8637,7 +8617,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 248.285 36.195 0)
+		(at 248.92 36.83 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8647,7 +8627,7 @@
 		(dnp no)
 		(uuid "12425f37-39ce-4541-a027-4ba74894d6c8")
 		(property "Reference" "R90"
-			(at 250.805 34.925 0)
+			(at 251.44 35.56 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8658,7 +8638,7 @@
 			)
 		)
 		(property "Value" "3.3k"
-			(at 250.805 37.465 0)
+			(at 251.44 38.1 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8669,7 +8649,7 @@
 			)
 		)
 		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 248.285 36.195 0)
+			(at 248.92 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8680,7 +8660,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.285 36.195 0)
+			(at 248.92 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8691,7 +8671,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 248.285 36.195 0)
+			(at 248.92 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8702,7 +8682,7 @@
 			)
 		)
 		(property "LCSC" "C274874"
-			(at 248.285 36.195 0)
+			(at 248.92 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8713,7 +8693,7 @@
 			)
 		)
 		(property "MPN" "RC0201FR-073K3L"
-			(at 248.285 36.195 0)
+			(at 248.92 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8724,7 +8704,7 @@
 			)
 		)
 		(property "Manufacturer" "Yageo"
-			(at 248.285 36.195 0)
+			(at 248.92 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9818,7 +9798,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 233.045 32.385 0)
+		(at 233.68 33.02 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9828,7 +9808,7 @@
 		(dnp no)
 		(uuid "2d3973b4-4cbe-461b-8415-d6c5f2bc0b37")
 		(property "Reference" "#PWR169"
-			(at 233.045 36.195 0)
+			(at 233.68 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9839,7 +9819,7 @@
 			)
 		)
 		(property "Value" "+3.3V_VTX"
-			(at 233.045 28.825 0)
+			(at 233.68 29.46 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9849,7 +9829,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 233.045 32.385 0)
+			(at 233.68 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9860,7 +9840,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 233.045 32.385 0)
+			(at 233.68 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9871,7 +9851,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 233.045 32.385 0)
+			(at 233.68 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11978,83 +11958,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 50.8 80.01 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "648afa5d-636e-5a84-a0e6-a18c8ba004fe")
-		(property "Reference" "#PWR188"
-			(at 50.8 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 50.8 83.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 50.8 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 50.8 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 50.8 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4e107493-4069-59f6-9962-d25519122347")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR188")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 398.78 95.25 0)
 		(unit 1)
@@ -13044,123 +12947,6 @@
 		)
 	)
 	(symbol
-		(lib_id "lib:AP1606")
-		(at 50.8 72.39 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7fa1271c-514d-5fcf-9180-c629a52bf960")
-		(property "Reference" "Q28"
-			(at 55.88 71.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "AP1606"
-			(at 55.88 73.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "${OPENDRONE_LIB}/datasheet/AP1606.pdf"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "20 V N-channel MOSFET in DFN-3L package. [project copy of OpenDrone:AP1606 with datasheet pin types, P4 integration 2026-10-09]"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C2849580"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "AP1606"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "ALLPOWER"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "7af5e2f8-c9d2-586a-b6d6-a901eab1d5d6")
-		)
-		(pin "2"
-			(uuid "be348838-bcff-5b40-9b85-0d70909cdf2a")
-		)
-		(pin "3"
-			(uuid "77ae73f9-d954-5c77-8e6c-d87624904e44")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "Q28")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 67.31 77.47 0)
 		(unit 1)
@@ -14141,7 +13927,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 240.665 32.385 0)
+		(at 241.3 33.02 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14151,7 +13937,7 @@
 		(dnp no)
 		(uuid "a4a1213a-2ce2-4bdb-ada1-cff3b25950c4")
 		(property "Reference" "#FLG08"
-			(at 240.665 30.475 0)
+			(at 241.3 31.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14162,7 +13948,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 240.665 28.575 0)
+			(at 241.3 29.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14172,7 +13958,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 240.665 32.385 0)
+			(at 241.3 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14183,7 +13969,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 240.665 32.385 0)
+			(at 241.3 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14194,7 +13980,7 @@
 			)
 		)
 		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 240.665 32.385 0)
+			(at 241.3 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14791,7 +14577,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 255.905 36.195 0)
+		(at 256.54 36.83 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14801,7 +14587,7 @@
 		(dnp no)
 		(uuid "aea981c1-f740-4175-89ac-a7caf64e8e63")
 		(property "Reference" "C136"
-			(at 259.435 34.925 0)
+			(at 260.07 35.56 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14812,7 +14598,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 259.435 37.465 0)
+			(at 260.07 38.1 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14823,7 +14609,7 @@
 			)
 		)
 		(property "Footprint" "lib:C_0201_0603Metric_L"
-			(at 255.905 36.195 0)
+			(at 256.54 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14834,7 +14620,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 255.905 36.195 0)
+			(at 256.54 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14845,7 +14631,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 255.905 36.195 0)
+			(at 256.54 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14856,7 +14642,7 @@
 			)
 		)
 		(property "LCSC" "C76935"
-			(at 255.905 36.195 0)
+			(at 256.54 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14867,7 +14653,7 @@
 			)
 		)
 		(property "MPN" "GRM033R61A105ME44D"
-			(at 255.905 36.195 0)
+			(at 256.54 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14878,7 +14664,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 255.905 36.195 0)
+			(at 256.54 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15935,7 +15721,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 240.665 40.005 0)
+		(at 241.3 40.64 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15945,7 +15731,7 @@
 		(dnp no)
 		(uuid "c8108601-e850-4704-ad8d-37e56791bd07")
 		(property "Reference" "#PWR170"
-			(at 240.665 46.355 0)
+			(at 241.3 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15956,7 +15742,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 240.665 43.815 0)
+			(at 241.3 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15966,7 +15752,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 240.665 40.005 0)
+			(at 241.3 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15977,7 +15763,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 240.665 40.005 0)
+			(at 241.3 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15988,7 +15774,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 240.665 40.005 0)
+			(at 241.3 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16546,7 +16332,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 233.045 36.195 0)
+		(at 233.68 36.83 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16556,7 +16342,7 @@
 		(dnp no)
 		(uuid "d012518b-bce5-410d-96c6-177b9159b1fe")
 		(property "Reference" "R89"
-			(at 235.565 34.925 0)
+			(at 236.2 35.56 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16567,7 +16353,7 @@
 			)
 		)
 		(property "Value" "51R"
-			(at 235.565 37.465 0)
+			(at 236.2 38.1 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16578,7 +16364,7 @@
 			)
 		)
 		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 233.045 36.195 0)
+			(at 233.68 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16589,7 +16375,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 233.045 36.195 0)
+			(at 233.68 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16600,7 +16386,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 233.045 36.195 0)
+			(at 233.68 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16611,7 +16397,7 @@
 			)
 		)
 		(property "LCSC" "C163499"
-			(at 233.045 36.195 0)
+			(at 233.68 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16622,7 +16408,7 @@
 			)
 		)
 		(property "MPN" "RC0201FR-0751RL"
-			(at 233.045 36.195 0)
+			(at 233.68 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16633,7 +16419,7 @@
 			)
 		)
 		(property "Manufacturer" "Yageo"
-			(at 233.045 36.195 0)
+			(at 233.68 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17266,7 +17052,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 240.665 36.195 0)
+		(at 241.3 36.83 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17276,7 +17062,7 @@
 		(dnp no)
 		(uuid "e2ca9761-09c9-483a-ba72-f3ef6b748d25")
 		(property "Reference" "C135"
-			(at 244.195 34.925 0)
+			(at 244.83 35.56 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17287,7 +17073,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 244.195 37.465 0)
+			(at 244.83 38.1 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17298,7 +17084,7 @@
 			)
 		)
 		(property "Footprint" "lib:C_0201_0603Metric_L"
-			(at 240.665 36.195 0)
+			(at 241.3 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17309,7 +17095,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 240.665 36.195 0)
+			(at 241.3 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17320,7 +17106,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 240.665 36.195 0)
+			(at 241.3 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17331,7 +17117,7 @@
 			)
 		)
 		(property "LCSC" "C76935"
-			(at 240.665 36.195 0)
+			(at 241.3 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17342,7 +17128,7 @@
 			)
 		)
 		(property "MPN" "GRM033R61A105ME44D"
-			(at 240.665 36.195 0)
+			(at 241.3 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17353,7 +17139,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 240.665 36.195 0)
+			(at 241.3 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17457,7 +17243,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 255.905 40.005 0)
+		(at 256.54 40.64 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -17467,7 +17253,7 @@
 		(dnp no)
 		(uuid "e8f78b21-c313-47c4-95a2-362567bf3e36")
 		(property "Reference" "#PWR171"
-			(at 255.905 46.355 0)
+			(at 256.54 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17478,7 +17264,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 255.905 43.815 0)
+			(at 256.54 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17488,7 +17274,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 255.905 40.005 0)
+			(at 256.54 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17499,7 +17285,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 255.905 40.005 0)
+			(at 256.54 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17510,7 +17296,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 255.905 40.005 0)
+			(at 256.54 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

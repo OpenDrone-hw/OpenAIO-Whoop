@@ -4632,7 +4632,7 @@
 		)
 		(uuid "ce9670f5-fb5a-5477-b092-f0191b365196")
 	)
-	(text_box "D4 RGB LED (GPIO32) on +3.3V, 0.2 V under the datasheet VDD minimum: bench-check; fallback VDD to +5V."
+	(text_box "D4 RGB LED (GPIO32): +5V supply, C83 100nF local bypass. Specified DIN VIH = 2.8V; direct 3.3V data is valid. Place C83 beside D4 VDD/GND."
 		(exclude_from_sim no)
 		(at 38.1 215.9 0)
 		(size 104.14 10.16)
@@ -8673,7 +8673,7 @@
 				)
 			)
 		)
-		(property "Description" "ESP32-PICO-V3 SiP: ESP32 (chip rev v3) + 4 MB in-package SPI flash + 40 MHz crystal + RF match and bypass capacitors, Wi-Fi + Bluetooth, LGA-48 7 x 7 mm, 0.5 mm pitch, EP 49 = GND; -40..85 C ambient (in-package flash). In-package flash \n\n(datasheet v1.3 Table 5, Fig 8): CMD/IO11 (30) and CLK/IO6 (31) are wired to it, leave them unconnected (no-connect flag, Fig 11 note); GPIO16/17/18/23 drive it inside the SiP and are not exposed. NC pins 25, 35, 36, 44, 45, 47, 48 (Table 4). VDD_SDIO (26) powers the flash internally: leave unconnected (Fig 11). MTDI/IO12 must read 0 at reset (3.3 V flash, Fig 11 note). I34-I39 input only. Alternate ESP32-PICO-V3-02 (same pinout; pins 28/29 then drive in-package PSRAM)"
+		(property "Description" "ESP32-PICO-V3 SiP: ESP32 (chip rev v3) + 4 MB in-package SPI flash + 40 MHz crystal + RF match and bypass capacitors, Wi-Fi + Bluetooth, LGA-48 7 x 7 mm, 0.5 mm pitch, EP 49 = GND; -40..85 C ambient (in-package flash). In-package flash \n\n\n\n(datasheet v1.3 Table 5, Fig 8): CMD/IO11 (30) and CLK/IO6 (31) are wired to it, leave them unconnected (no-connect flag, Fig 11 note); GPIO16/17/18/23 drive it inside the SiP and are not exposed. NC pins 25, 35, 36, 44, 45, 47, 48 (Table 4). VDD_SDIO (26) powers the flash internally: leave unconnected (Fig 11). MTDI/IO12 must read 0 at reset (3.3 V flash, Fig 11 note). I34-I39 input only. Alternate ESP32-PICO-V3-02 (same pinout; pins 28/29 then drive in-package PSRAM)"
 			(at 243.84 215.9 0)
 			(hide yes)
 			(show_name no)
@@ -10703,7 +10703,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
+		(lib_id "power:+5V")
 		(at 71.12 196.85 0)
 		(unit 1)
 		(body_style 1)
@@ -10724,7 +10724,7 @@
 				)
 			)
 		)
-		(property "Value" "+3.3V"
+		(property "Value" "+5V"
 			(at 71.12 193.294 0)
 			(show_name no)
 			(do_not_autoplace no)

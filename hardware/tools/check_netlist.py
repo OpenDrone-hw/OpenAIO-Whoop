@@ -259,7 +259,7 @@ RULES = [  # (net pattern, class) - first match wins; the role each class stands
     ("/VBUS", "Power"), ("/RP2350A/VREG_LX", "Power"),
     ("/ESC?/PHASE_?", "Phase"), ("/POWER/U2_SW", "Phase"), ("/ESC?/?_COM", "Gate"), ("/ESC?/?_PWM", "Gate"),
     # /POWER/U2_SW: boost switch node, 2.8-3.4 A average (P4 critique round 2)
-    ("*/RF_*", "RF"), ("*/USB_D_P", "USB"), ("*/USB_D_N", "USB"), ("*/U10_USB_DP", "USB"), ("*/U10_USB_DM", "USB"),
+    ("*/RF_*", "RF"), ("*/USB_D_P", "USB"), ("*/USB_D_N", "USB"), ("*/U10_USB_D_P", "USB"), ("*/U10_USB_D_N", "USB"),
     ("*CURR_SENSE*", "Analog"), ("*ADC_CURR*", "Analog"), ("*ADC_VBAT*", "Analog"), ("*SHUNT_SENSE*", "Analog"),
     ("*VIDEO*", "Analog"), ("*/VID_*", "Analog"), ("*/OSD_LVL", "Analog"), ("*/OSD_SYNC", "Analog"),
     ("*/PA_DET*", "Analog"),
@@ -281,7 +281,12 @@ for name in sorted(nets):
     if got != want:
         bad.append("%s is %s, needs %s" % (name, got, want))
     hits = sorted({c for c, pat in PATS if fnmatch.fnmatchcase(name, pat)})
-    board = ASSIGNED.get(name) or (hits[0] if len(hits) == 1 else ("Default" if not hits else "/".join(hits)))
+    # KiCad 10 stores explicit assignments as a list, including single-class
+    # directive assignments. Compare class names, not a list against a string.
+    assigned = ASSIGNED.get(name)
+    if isinstance(assigned, list):
+        assigned = "/".join(sorted(set(assigned)))
+    board = assigned or (hits[0] if len(hits) == 1 else ("Default" if not hits else "/".join(hits)))
     if board != got:
         bad.append("%s: netlist %s, board patterns give %s" % (name, got, board))
 want_flags = collections.Counter()

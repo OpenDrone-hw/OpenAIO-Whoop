@@ -62,7 +62,7 @@ def quiet_import_pcbnew():
 P = quiet_import_pcbnew()
 KICAD_CLI = sb.KICAD_CLI
 # Fields KiCad keeps elsewhere on a footprint, not as user fields.
-NOT_FIELDS = {"Reference", "Value", "Footprint", "ki_keywords", "ki_fp_filters", "ki_description"}
+NOT_FIELDS = {"Reference", "Value", "Footprint"}
 
 
 def fp_lib_paths(project_dir, extra_vars=None):

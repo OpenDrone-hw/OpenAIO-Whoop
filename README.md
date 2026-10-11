@@ -51,7 +51,17 @@ manufactured yet.
 | USB | JST SH 1.0 mm 4-pin |
 | Camera | JST SUR 0.8 mm 3-pin plug and solder pads |
 
-Technical write-up, part list and layout constraints: [AGENTS.md](AGENTS.md).
+Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10. Keep the complete hardware folder together.
+
+- [Placement, layer use and file guide](research/ROUTING.md)
+- [Electrical design reference](research/DESIGN-SPEC.md)
+- [Exact pin map](research/PINMAP.md)
+- [Betaflight target and build instructions](firmware/betaflight/README.md)
+- [ExpressLRS binding](firmware/expresslrs/README.md)
+
+The board is synchronized to the schematic, with inherited component positions
+and escape vias retained. Placement and routing are unfinished. The images above
+are earlier design views, not a manufacturing release.
 
 ## Constraints
 

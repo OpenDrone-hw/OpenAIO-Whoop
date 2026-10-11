@@ -2234,7 +2234,7 @@
 		)
 		(uuid "d97c04ad-13c5-5dce-b2ff-2e19ae07060e")
 	)
-	(text_box "J32 JST SUR 0.8 mm plug and CAM / GND / 5V pads in parallel. VIDEO_IN (Analog class); +5V_CAM via FB1, 0.12 A.\nPlug pin order unverified: a mirrored plug puts 5 V on the video pin."
+	(text_box "J32 JST SUR: pin 1 VIDEO_IN, pin 2 GND, pin 3 +5V_CAM; tabs to GND. CAM / GND / 5V pads in parallel.\nNumbering follows the JST drawing. Verify the mating camera cable follows this pinout."
 		(exclude_from_sim no)
 		(at 104.14 147.32 0)
 		(size 109.22 12.7)
@@ -2274,7 +2274,7 @@
 		)
 		(uuid "6901b8ab-f643-5e9f-b8f1-b9fd2b87c3cb")
 	)
-	(text_box "J31 JST SH 4-pin: 1 GND, 2 D-, 3 D+, 4 VBUS. Pin 1 = GND is unverified: check before freeze.\nD7 ESD at J31. USB pair 90 Ohm, length-matched. VBUS -> POWER."
+	(text_box "J31 JST SH: pin 1 GND, pin 2 D-, pin 3 D+, pin 4 VBUS; tabs to GND. Numbering follows JST drawing.\nD7 ESD at J31. USB pair 90 Ohm, length-matched. Mating cable must match this pinout."
 		(exclude_from_sim no)
 		(at 254 73.66 0)
 		(size 149.86 10.16)
@@ -2374,7 +2374,7 @@
 		)
 		(uuid "ead189ca-2578-5179-a006-3d957446b2af")
 	)
-	(text_box "PADS: every off-board connection. Solder pads are DNP and out of BOM / CPL.\nOpen: J31 pin 1 = GND, J32 pin order, motor-header temperature."
+	(text_box "PADS: every off-board connection. Solder pads are DNP and out of BOM / CPL.\nConnector pin numbering verified against JST drawings; cable pinouts and motor-header heating need physical checks."
 		(exclude_from_sim no)
 		(at 101.6 182.88 0)
 		(size 193.04 10.16)

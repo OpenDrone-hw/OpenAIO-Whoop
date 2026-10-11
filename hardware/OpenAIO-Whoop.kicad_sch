@@ -683,7 +683,7 @@
 		)
 		(uuid "5fa9655b-38d3-5c7d-8e2e-dd47a2f52774")
 	)
-	(text "BATTERY PADS\nSHUNT\nINA186 CURRENT\n5V BOOST\nUSB + 5V DIODE OR\n3V3 LDO\nCAM 5V FILTER\nHD_EN PULL-DOWN"
+	(text "BATTERY PADS\nSHUNT\nINA186 CURRENT\n5V BOOST\nUSB + 5V DIODE OR\n3V3 LDO\nCAM 5V FILTER\nREVERSE BYPASS"
 		(exclude_from_sim no)
 		(at 20.32 34.29 0)
 		(effects
@@ -767,7 +767,7 @@
 		)
 		(uuid "f3161c53-5c53-5331-8c22-5fd030367c25")
 	)
-	(text_box "Generated: do not edit by hand. Root labels are the project net names.\nESC1-4 = M1 rear right, M2 front right, M3 rear left, M4 front left (Betaflight quad-X)."
+	(text_box "Root labels are the project net names. Load estimates require prototype verification.\nESC1-4 = M1 rear right, M2 front right, M3 rear left, M4 front left (Betaflight quad-X)."
 		(exclude_from_sim no)
 		(at 302.26 212.09 0)
 		(size 104.14 30.48)
@@ -787,12 +787,6 @@
 		)
 		(uuid "37d56fc6-4941-5b0e-9cc0-e34dd4d6fdb0")
 	)
-	(junction
-		(at 170.18 22.86)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b1db9189-1178-5c4a-a7a5-eecd6f8f6a07")
-	)
 	(wire
 		(pts
 			(xy 198.12 96.52) (xy 223.52 96.52)
@@ -802,16 +796,6 @@
 			(type default)
 		)
 		(uuid "09fc456e-9893-564c-b300-9d1e8b7c0cb1")
-	)
-	(wire
-		(pts
-			(xy 55.88 22.86) (xy 170.18 22.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0acb2734-d993-55c9-a0ba-39ce57161b2e")
 	)
 	(wire
 		(pts
@@ -952,16 +936,6 @@
 			(type default)
 		)
 		(uuid "54ce7e64-228b-5922-9d03-4abbab58bbe9")
-	)
-	(wire
-		(pts
-			(xy 55.88 22.86) (xy 55.88 30.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "57a88ee0-d305-51ec-980a-c13701599b9e")
 	)
 	(wire
 		(pts
@@ -1441,7 +1415,7 @@
 				)
 				(uuid "12f700e6-2d75-5601-b410-427325ad3080")
 			)
-			(table_cell "Budget (spec 5)"
+			(table_cell "Estimated load"
 				(exclude_from_sim no)
 				(at 119.38 212.09 0)
 				(size 50.8 3.81)
@@ -1545,7 +1519,7 @@
 				)
 				(uuid "3715b85d-b3e5-59fd-a300-9469576faad8")
 			)
-			(table_cell "pad bulk, shunt R1"
+			(table_cell "pad bulk, shunt R2"
 				(exclude_from_sim no)
 				(at 170.18 215.9 0)
 				(size 116.84 3.81)
@@ -1579,7 +1553,7 @@
 				)
 				(uuid "348bedd8-1a25-5217-a1e9-c803e1218a07")
 			)
-			(table_cell "shunt R1 0.5 mOhm"
+			(table_cell "shunt R2 0.5 mOhm"
 				(exclude_from_sim no)
 				(at 40.64 219.71 0)
 				(size 55.88 3.81)
@@ -1715,7 +1689,7 @@
 				)
 				(uuid "29f02392-3b7b-5c5f-b07e-eb23bd958458")
 			)
-			(table_cell "U24 OVP"
+			(table_cell "D9 to +5V"
 				(exclude_from_sim no)
 				(at 170.18 223.52 0)
 				(size 116.84 3.81)
@@ -1800,7 +1774,7 @@
 				)
 				(uuid "ba4b8c28-e989-524a-af4f-b96e7bb4a042")
 			)
-			(table_cell "U3 VIN1, PR1 divider"
+			(table_cell "+5V diode OR"
 				(exclude_from_sim no)
 				(at 170.18 227.33 0)
 				(size 116.84 3.81)
@@ -2174,7 +2148,7 @@
 				)
 				(uuid "0c409a05-6a7a-5fad-b4a5-c92acbf9ed97")
 			)
-			(table_cell "U4 LP5912-3.3"
+			(table_cell "U4 TLV75733"
 				(exclude_from_sim no)
 				(at 40.64 246.38 0)
 				(size 55.88 3.81)
@@ -2599,7 +2573,7 @@
 				)
 				(uuid "f179b2e3-7b69-56e0-97fd-7626a7286b49")
 			)
-			(table_cell "U22 LP5907-2.85 (EN = PA_EN, off in HD)"
+			(table_cell "U22 TPS7A20285 (EN = PA_EN, off in HD)"
 				(exclude_from_sim no)
 				(at 40.64 265.43 0)
 				(size 55.88 3.81)
@@ -3619,16 +3593,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
-			)
-		)
-		(pin "HD_EN" input
-			(at 55.88 30.48 90)
-			(uuid "3d8bb317-75df-5cb2-a56a-90dc02945f8e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 		(pin "CURR_SENSE" output
@@ -4852,5 +4816,4 @@
 			(page "1")
 		)
 	)
-	(embedded_fonts no)
 )

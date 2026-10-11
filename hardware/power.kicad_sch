@@ -1220,7 +1220,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/C7380000.pdf"
+			(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/b245d311027883dd26c3826404872d47.pdf"
 				(at 0 -10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1231,7 +1231,7 @@
 					)
 				)
 			)
-			(property "Description" "Schottky diode 40 V 2 A, VF 0.37 V at 1 A, DFN1610-2 (MSKSEMI MS2A40LDF)"
+			(property "Description" "2 A 40 V Schottky diode; DFN1610; pin 1 cathode, pin 2 anode"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1680,6 +1680,261 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "lib:TLV75733PDRVR"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 8.89 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TLV75733"
+				(at 0 -8.89 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L"
+				(at 0 -11.43 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv757p.pdf"
+				(at 0 -13.97 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "1 A 3.3 V LDO; DRV WSON-6; COUT 1 to 200 uF; NC pins 2/5, exposed pad to GND"
+				(at 0 -13.97 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Texas Instruments"
+				(at 0 -16.51 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C2868428"
+				(at 0 -26.67 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "TLV75733PDRVR"
+				(at 0 -19.05 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "Linear Voltage Regulators (LDO)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "TLV75733PDRVR_0_1"
+				(rectangle
+					(start -6.35 6.35)
+					(end 6.35 -6.35)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(circle
+					(center -5.08 5.08)
+					(radius 0.38)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin power_out line
+					(at -8.89 1.27 0)
+					(length 2.54)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at -8.89 -1.27 0)
+					(length 2.54)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 8.89 -1.27 180)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 8.89 -3.81 180)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at -8.89 -3.81 0)
+					(length 2.54)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 8.89 1.27 180)
+					(length 2.54)
+					(name "IN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 8.89 3.81 180)
+					(length 2.54)
+					(name "EP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3307,7 +3562,7 @@
 		)
 		(uuid "0cf7cd52-694d-5dcc-811c-fb02c238ba9e")
 	)
-	(text "HD_EN PULL-DOWN"
+	(text "LDO REVERSE-CURRENT BYPASS"
 		(exclude_from_sim no)
 		(at 149.86 99.06 0)
 		(effects
@@ -3451,7 +3706,7 @@
 		)
 		(uuid "432733bd-b3fe-5aab-802f-ae68600f9301")
 	)
-	(text_box "CSA+ = J2 (+) node before the shunt, J3 (-) = GND, 1S 3.0-4.35 V. PWR_FLAGs because the pads are passive. No reverse FET, no TVS.\nC1/C2 22 uF at the pads."
+	(text_box "CSA+ = J2 (+) node before the shunt, J3 (-) = GND, 1S 3.0-4.35 V. PWR_FLAGs because the pads are passive. No reverse FET, no TVS.\nPlace the shared battery bulk close to the input pads."
 		(exclude_from_sim no)
 		(at 16.51 55.88 0)
 		(size 83.82 17.78)
@@ -3511,7 +3766,7 @@
 		)
 		(uuid "81012877-ff3f-5e4c-b48d-b382fb601fb3")
 	)
-	(text_box "R1 0.5 mOhm Kelvin land: route SHUNT_SENSE_P/N as a pair on L1 or L6 (Analog class); every load taps +BATT after R1.\nINA186A3 gain 100 = 50 mV/A: place U1 next to R1."
+	(text_box "R2 0.5 mOhm Kelvin land: route SHUNT_SENSE_P/N as a pair on L1 or L6 (Analog class); every load taps +BATT after R2.\nINA186A3 gain 100 = 50 mV/A: place U1 next to R2."
 		(exclude_from_sim no)
 		(at 102.87 71.12 0)
 		(size 149.86 12.7)
@@ -3531,10 +3786,10 @@
 		)
 		(uuid "90dcf120-2814-5959-81e6-f5d5512ba8df")
 	)
-	(text_box "LP5912-3.3 U4: EN on +5V, EP to GND. C13 10 uF is the shared CIN of U4 and U21: place it between the two IN pins."
+	(text_box "TLV75733 U4: EN on +5V; GND pin 3 and EP pin 7 grounded; NC pins 2/5. C13 10 uF input, C14 4.7 uF local output.\nU4 permits 1-200 uF COUT; D11 bypasses reverse current during input collapse. Keep the bypass loop short."
 		(exclude_from_sim no)
 		(at 255.27 63.5 0)
-		(size 148.59 10.16)
+		(size 148.59 12.7)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -3551,10 +3806,10 @@
 		)
 		(uuid "c77933a6-3d3b-5ec8-8491-53bb2cca6627")
 	)
-	(text_box "R11 2.4k pulls HD_EN (GPIO19) low at reset: Q28 leaves the analog VTX on. The O4 VHD pad sits on +5V_BST, no load switch."
+	(text_box "D11 anode on +3.3V / U4 OUT, cathode on +5V / U4 IN. TI TLV757P Fig 7-3 reverse-current bypass.\nPlace beside U4 with a short, wide loop. D9/D10 isolate the upstream USB and boost sources.\nThis bypass protects U4 when +5V falls before the +3.3V output capacitors discharge."
 		(exclude_from_sim no)
-		(at 148.59 152.4 0)
-		(size 187.96 12.7)
+		(at 148.59 134.62 0)
+		(size 187.96 22.86)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -3842,6 +4097,16 @@
 			(type default)
 		)
 		(uuid "57dc752f-0dbd-5be6-98ba-64b521c6c997")
+	)
+	(wire
+		(pts
+			(xy 172.72 116.84) (xy 185.42 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "58950c94-6773-4936-9351-6d7e43c38394")
 	)
 	(wire
 		(pts
@@ -4155,6 +4420,16 @@
 	)
 	(wire
 		(pts
+			(xy 195.58 116.84) (xy 218.44 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dcb103d7-7cfa-49a5-945f-f69cfbad83ec")
+	)
+	(wire
+		(pts
 			(xy 83.82 127) (xy 93.98 127)
 		)
 		(stroke
@@ -4182,16 +4457,6 @@
 			(type default)
 		)
 		(uuid "e623e56f-9a67-5580-9e25-1f637bbe7603")
-	)
-	(wire
-		(pts
-			(xy 231.14 137.16) (xy 243.84 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e7219f74-e4ea-5cd0-a99e-19b9a4be16a8")
 	)
 	(wire
 		(pts
@@ -4404,17 +4669,6 @@
 			(justify right)
 		)
 		(uuid "4f56c630-493e-5912-8498-67f4faceaed8")
-	)
-	(hierarchical_label "HD_EN"
-		(shape input)
-		(at 243.84 137.16 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "ae440bf1-9663-5268-ae48-1d9e35dc9a8e")
 	)
 	(netclass_flag ""
 		(length 2.54)
@@ -4893,6 +5147,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "C13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 218.44 116.84 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "16681cde-3094-4c00-b107-9f6cbbbd71fc")
+		(property "Reference" "#PWR9202"
+			(at 218.44 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V"
+			(at 218.44 113.284 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 218.44 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 218.44 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 218.44 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bd63c25a-bc42-4a6f-8145-eb8a82660189")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR9202")
 					(unit 1)
 				)
 			)
@@ -6351,121 +6682,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 231.14 140.97 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "494d2299-5a97-5a60-942a-dd8a71b282d0")
-		(property "Reference" "R11"
-			(at 229.235 139.7 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "2.4k"
-			(at 229.235 142.24 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 231.14 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 231.14 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 231.14 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C166281"
-			(at 231.14 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "RTT012401FTH"
-			(at 231.14 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Ralec"
-			(at 231.14 140.97 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9c8995fb-1547-5a99-a81d-70274b7dab52")
-		)
-		(pin "2"
-			(uuid "0c1fd485-f094-5248-9174-80b9a4ce9b1e")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "R11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "lib:LP5912-3.3DRVR")
+		(lib_id "lib:TLV75733PDRVR")
 		(at 304.8 38.1 180)
 		(unit 1)
 		(body_style 1)
@@ -6485,7 +6702,7 @@
 				)
 			)
 		)
-		(property "Value" "LP5912-3.3"
+		(property "Value" "TLV75733"
 			(at 304.8 46.99 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6506,7 +6723,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "${OPENDRONE_LIB}/datasheet/LP5912.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv757p.pdf"
 			(at 304.8 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -6517,7 +6734,7 @@
 				)
 			)
 		)
-		(property "Description" "500 mA low-noise 3.3 V LDO regulator. [project copy of OpenDrone:LP5912-3.3DRVR with datasheet pin types, P4 integration 2026-10-09]"
+		(property "Description" "1 A 3.3 V LDO; DRV WSON-6; COUT 1 to 200 uF; NC pins 2/5, exposed pad to GND"
 			(at 304.8 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -6528,7 +6745,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C524780"
+		(property "LCSC" "C2868428"
 			(at 304.8 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -6539,7 +6756,7 @@
 				)
 			)
 		)
-		(property "MPN" "LP5912-3.3DRVR"
+		(property "MPN" "TLV75733PDRVR"
 			(at 304.8 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -6717,7 +6934,7 @@
 		(dnp no)
 		(uuid "4fc71f6d-d34e-49f0-a67e-2274ded74240")
 		(property "Reference" "D10"
-			(at 188.59 199.39 0)
+			(at 190.5 195.58 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6728,7 +6945,7 @@
 			)
 		)
 		(property "Value" "MS2A40LDF"
-			(at 188.59 201.93 0)
+			(at 190.5 205.74 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6749,7 +6966,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/b245d311027883dd26c3826404872d47.pdf"
 			(at 190.5 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -6760,7 +6977,7 @@
 				)
 			)
 		)
-		(property "Description" "Resistor"
+		(property "Description" "2 A 40 V Schottky diode; DFN1610; pin 1 cathode, pin 2 anode"
 			(at 190.5 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -7685,7 +7902,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1uF"
+		(property "Value" "4.7uF"
 			(at 320.675 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7707,7 +7924,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GRM035R60J475ME15%23"
 			(at 318.77 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -7729,7 +7946,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C76935"
+		(property "LCSC" "C335103"
 			(at 318.77 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -7740,7 +7957,7 @@
 				)
 			)
 		)
-		(property "MPN" "GRM033R61A105ME44D"
+		(property "MPN" "GRM035R60J475ME15D"
 			(at 318.77 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -8213,7 +8430,7 @@
 	)
 	(symbol
 		(lib_id "lib:MS2A40LDF")
-		(at 66.04 198.12 180)
+		(at 190.5 116.84 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8221,9 +8438,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "8611fa12-5277-4749-ba5d-d90b13a88464")
-		(property "Reference" "D9"
-			(at 64.14 196.85 0)
+		(uuid "84645551-065a-4f37-98ef-27dae508bfc0")
+		(property "Reference" "D11"
+			(at 190.5 111.76 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8234,7 +8451,121 @@
 			)
 		)
 		(property "Value" "MS2A40LDF"
-			(at 64.14 199.39 0)
+			(at 190.5 121.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "lib:DFN1610-2_L1.6-W1.0-P1.05-RD"
+			(at 190.5 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/b245d311027883dd26c3826404872d47.pdf"
+			(at 190.5 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "2 A 40 V Schottky diode; DFN1610; pin 1 cathode, pin 2 anode"
+			(at 190.5 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C7380000"
+			(at 190.5 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MS2A40LDF"
+			(at 190.5 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "MSKSEMI"
+			(at 190.5 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "17b33c1b-efc4-43cb-a7df-dd027d78eebf")
+		)
+		(pin "2"
+			(uuid "ae089c40-6948-4f05-8bf2-acbe9e379c81")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "D11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "lib:MS2A40LDF")
+		(at 66.04 198.12 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8611fa12-5277-4749-ba5d-d90b13a88464")
+		(property "Reference" "D9"
+			(at 66.04 193.04 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "MS2A40LDF"
+			(at 66.04 203.2 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8255,7 +8586,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/b245d311027883dd26c3826404872d47.pdf"
 			(at 66.04 198.12 0)
 			(hide yes)
 			(show_name no)
@@ -8266,7 +8597,7 @@
 				)
 			)
 		)
-		(property "Description" "Resistor"
+		(property "Description" "2 A 40 V Schottky diode; DFN1610; pin 1 cathode, pin 2 anode"
 			(at 66.04 198.12 0)
 			(hide yes)
 			(show_name no)
@@ -9175,6 +9506,83 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3.3V")
+		(at 172.72 116.84 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "bdbcf93d-1f26-4fdb-8356-b111aa5a492a")
+		(property "Reference" "#PWR9201"
+			(at 172.72 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 172.72 113.284 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 172.72 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 172.72 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 172.72 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cfe57209-4b48-4c99-abef-820dc136e78a")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
+					(reference "#PWR9201")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "lib:L_FTC252012")
 		(at 60.96 114.3 90)
 		(unit 1)
@@ -9281,83 +9689,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
 					(reference "L1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 231.14 144.78 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "d194e5fa-b50e-5dfd-a94e-a656fbf7dade")
-		(property "Reference" "#PWR30"
-			(at 231.14 151.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 231.14 148.59 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 231.14 144.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 231.14 144.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 231.14 144.78 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "925dd410-a82b-549d-81ea-5c4fa765b71d")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/41417550-e292-5308-8e83-617f301e47b8"
-					(reference "#PWR30")
 					(unit 1)
 				)
 			)

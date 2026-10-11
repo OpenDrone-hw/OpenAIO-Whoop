@@ -244,33 +244,36 @@
 # the ESP32-D0WD-V3 land, set as the footprint attribute 'allow soldermask bridges' on that footprint only
 # (P3). Not active until then.
 
-# Spec 8.2 / 11, D121: L2 unbroken under every signal (under the 5.8 GHz chain a hard keepout, RF_VTX_CHAIN).
-# L5 is a GND pour that carries the ESC gate and BEMF routing (B-side parts, one microvia); any other track
-# on L2 or L5 cuts a plane, so warn and review it.
-(rule "In1 solid GND; In4 GND pour with ESC routing only"
-  (severity warning)
+# L2 is the continuous GND reference. L5 allows short ESC gate and BEMF escapes in GND.
+# Phase power, DShot and programming nets do not qualify just because they are in an ESC sheet.
+(rule "In1 solid GND; In4 only ESC gates and BEMF"
   (constraint disallow track)
-  (condition "A.Layer == 'In1.Cu' || (A.Layer == 'In4.Cu' && A.NetName != '/ESC*')"))
+  (condition "A.Layer == 'In1.Cu' || (A.Layer == 'In4.Cu' && !(A.NetName == '/ESC?/?_PWM' || A.NetName == '/ESC?/?_COM' || A.NetName == '/ESC?/BEMF_?' || A.NetName == '/ESC?/NEUTRAL'))"))
+
+# Both reference planes carry only GND zones. L5 ESC escapes are tracks, not phase pours.
+# Through pads and legal via antipads remain allowed.
+(rule "In1 and In4 GND zones only"
+  (constraint disallow zone)
+  (condition "(A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu') && A.NetName != 'GND'"))
 
 # Spec 8.2 / 11, relaxed by D85 for routing closure: video and sense (Analog) and RF stay on L1 over L2 or L6
 # over L5; the FET gates (Gate) may use In2 (L3) but not In3 (L4), which is the +BATT plane itself.
 (rule "In2: no analog or RF; In3: no analog, RF or gate (D85)"
-  (constraint disallow track)
+  (constraint disallow track zone)
   (condition "(A.Layer == 'In2.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF')) || (A.Layer == 'In3.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate'))"))
 
 # Spec 8.2 / 8.4, relaxed by D85: the gyro bus (SPI1, GYRO_*), VTX SPI and the digital PA controls may use In2
 # but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET) stay off both inner
 # signal layers. Net names compared with wildcards; '.' is literal; underscore forms of the buses matched too.
 (rule "In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)"
-  (constraint disallow track)
+  (constraint disallow track zone)
   (condition "(A.Layer == 'In3.Cu' && (A.NetName == '*SPI1.*' || A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')) || ((A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SHUNT_SENSE_*' || A.NetName == '*/PA_DET*'))"))
 
-# Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.
-# D21 / FLOORPLAN Open: the RTC6705 (bottom) feeds the PA (top), so RF_PA_IN carries the one RF via,
-# fenced by GND vias at <= 1 mm (route/prep); every other RF net stays via-free.
+# Keep each RF chain on one outer face over its GND reference.
+# The former cross-face PA-input exception is removed; the 1+4+1 via stack is not a verified RF launch.
 (rule "RF: no vias"
   (constraint disallow via)
-  (condition "A.NetClass == 'RF' && A.NetName != '/VTX/RF_PA_IN'"))
+  (condition "A.NetClass == 'RF'"))
 
 # Spec 8.2: CPWG, gap 0.15 mm (the RF clearance), L1 over L2 and L6 over L5, 50 ohm +- 10 %.
 # Width 0.105 mm from the 2-D field solver with solder mask (setup_board.py, impedance.json):
@@ -286,10 +289,10 @@
   (condition "A.intersectsArea('RF_RX_FEED') && A.NetName != 'GND'"))
 
 # v4 K5 (replaces RF_VTX_CHAIN): no non-GND via inside the 0.5 mm strip around the 5.8 GHz chain, so L2 stays solid
-# under the line. The one RF_PA_IN via of 'RF: no vias' (M3: RTC6705 and PA on opposite sides) is the exception.
+# under the line. All RF signal nets stay via-free.
 (rule "RF_VTX_STRIP: GND vias only (K5)"
   (constraint disallow via)
-  (condition "A.intersectsArea('RF_VTX_STRIP') && A.NetName != 'GND' && A.NetName != '/VTX/RF_PA_IN'"))
+  (condition "A.intersectsArea('RF_VTX_STRIP') && A.NetName != 'GND'"))
 
 # v4 K2 (replaces RF_RX_ANT / _L6 / RF_RX_EXIT): inside the D2.0 circle at the RX wire hole AE1 (all layers; pours
 # kept out by the rule area) the only copper is the 2.4 GHz feed /RX/RF_RX_ANT on L1 into the AE1 pad; no vias.
