@@ -13,11 +13,11 @@ yours.
 | Layout | `hardware/OpenAIO-Whoop.kicad_pcb` | placement, pours and rule areas; 0 tracks, 499 unrouted connections |
 | Library | `hardware/lib.kicad_sym`, `hardware/lib.pretty` (114 footprints), `hardware/lib.3dshapes`, `hardware/KiCad-Library` submodule (fdf8319) | every symbol, footprint and 3D model resolves from a fresh clone; see `research/LIBRARY.md` |
 | Rules | `hardware/OpenAIO-Whoop.kicad_pro` (net classes, HDI layer pairs), `hardware/OpenAIO-Whoop.kicad_dru` | both written by `hardware/tools/setup_board.py`; change the script and re-run it, do not hand-edit |
-| Renders | `images/front.png`, `images/back.png` | 3D renders of this board (f662dcd7), with the optional motor headers shown fitted |
+| Renders | `images/front.png`, `images/back.png` | 3D renders of this board (8c6b06f8), with the optional motor headers shown fitted |
 
-Placement facts (from the board, md5 f662dcd7):
+Placement facts (from the board, md5 8c6b06f8):
 
-- 266 footprints: 136 on the front, 130 on the back. 20 are DNP: the 4 motor
+- 266 footprints: 134 on the front, 132 on the back. 20 are DNP: the 4 motor
   headers J4/J7/J10/J13, the 13 battery and IO solder pads, the AE1 wire hole, and C132/C133
   (Wi-Fi tuning, 1.2 pF).
 - Outline: 30.35 x 30.35 mm bounding box, 673.42 mm2. That is the 26.4 mm body,
@@ -29,6 +29,11 @@ Placement facts (from the board, md5 f662dcd7):
   - 0 through vias.
   - Exceptions to D107 (open item 3): 18 +BATT microvias and 5 +BATT buried
     vias stand free in the R1 battery-feed field.
+- Every RF net now has all its pads on one side (open item 0, done). The
+  Wi-Fi pi network R88/C132/C133 is on the back with U16 and AE2. AE2 moved
+  1.50 mm along the chamfer, and its five WIFI_* rule areas moved with it. C110
+  is on the front with U19, L3 and U20. R44 and C117 (back) moved 0.32 and
+  1.13 mm to make room. No other part, via or outline segment changed.
 
 ## Opening it
 
@@ -77,11 +82,11 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
 
 | Check | Result | Files |
 |---|---|---|
-| `kicad-cli pcb drc --severity-all --schematic-parity --refill-zones` | 0 errors, parity 0, 499 unconnected. Warnings: isolated_copper 1 (the L3_UFL_REF island), lib_footprint_mismatch 2 (J31, J33), solder_mask_bridge 8, via_dangling 11 | board f662dcd7, `.kicad_pro` 80000762, `.kicad_dru` 8462081f, sheets at commit 4444859 (root e3af3f97) |
-| Same DRC in a clean `git clone` (offline submodule, empty HOME) | identical: 0 errors, parity 0 | same md5s (sync stage) |
+| `kicad-cli pcb drc --severity-all --schematic-parity --refill-zones` | 0 errors, parity 0, 499 unconnected. Warnings: isolated_copper 1 (the L3_UFL_REF island), lib_footprint_mismatch 2 (J31, J33), solder_mask_bridge 8, via_dangling 11 | board 8c6b06f8, `.kicad_pro` 80000762, `.kicad_dru` 8462081f, sheets unchanged since 4444859 (root e3af3f97) |
+| Same DRC in a clean `git clone` (offline submodule, empty HOME) | identical: 0 errors, parity 0 | board f662dcd7 (sync stage), not re-run for 8c6b06f8 |
 | `kicad-cli sch erc --severity-all` | 0 errors, 2 pin_to_pin warnings (U13 WP and HOLD tied to the U4 LDO output, justified in `research/SCHEMATIC.md`) | sheets at 4444859 |
-| `hardware/tools/check_conventions.py --stage planned` | 39 ok, 1 FAIL (B7: 8 pad labels, open item 9), 2 warn, 3 skip | working tree |
-| ESC plane solve (`plane.py`: In3 only, 0.5 oz at 80 C, 12 A per ESC) | ESC1 33.7, ESC2 38.8, ESC3 22.0, ESC4 31.5 mV | board f662dcd7 with `.kicad_pro` 80000762 beside it |
+| `hardware/tools/check_conventions.py --stage planned` | 39 ok, 1 FAIL (B7: 6 pad labels, open item 9), 2 warn, 3 skip | board 8c6b06f8 |
+| ESC plane solve (`plane.py`: In3 only, 0.5 oz at 80 C, 12 A per ESC) | ESC1 33.7, ESC2 38.8, ESC3 22.0, ESC4 31.5 mV (unchanged) | board 8c6b06f8 with `.kicad_pro` 80000762 beside it |
 
 ## What the router has to do
 
@@ -98,13 +103,20 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
    - RX 2.4 GHz, all on L1: U18 pin 22 (RFIO) to FL1 is 19.3 mm pad to pad
      (open item 7), then FL1 to the AE1 wire hole is 2.5 mm, inside the
      `RF_RX_FEED` / `RF_RX_HOLE` areas.
-   - VTX 5.8 GHz: U19 pin 35 to L3 (front) and C110 (back), 1.05 mm. C110 to
-     the U20 PA (front) is 3.5 mm. U20 to FL2 is 1.3 mm and FL2 to the J1 U.FL
-     is 2.6 mm, both on the front.
-   - Wi-Fi: U16 pin 2 (back) to R88/C133 (front), then R88/C132 (front) to AE2
-     (back). 0.6 + 0.8 mm.
-   - Two of these feeds change sides, so they cannot be routed DRC-clean as
-     placed (open item 0).
+   - VTX 5.8 GHz, all on the front: U19 pin 35 to L3 is 0.65 mm, L3 to C110
+     is 0.74 mm. C110 to the U20 PA is 2.8 mm pad to pad. Route it through
+     the 0.49 mm channel between the U22 pads and the U19 pin column. That
+     channel passes `/PA_EN` and `+3.3V_VTX` pins, so keep the 0.15 mm RF gap.
+     It is too narrow for a GND fence, so fence the line above and below the
+     channel. U20 to FL2 is 1.3 mm and FL2 to the J1 U.FL is
+     2.6 mm. `/VTX/RF_PA_IN` keeps its DRU via exception but no longer needs
+     a via. The DRU comment still says the RTC6705 is on the bottom; that is
+     out of date. C110's pad is 0.05 mm inside the left edge of
+     `RF_VTX_STRIP`.
+   - Wi-Fi, all on the back (L6 over L5): U16 pin 2 to R88 is 0.95 mm, R88
+     to the AE2 feed is 0.60 mm (pad centres). The C133 and C132 shunts sit
+     0.60 and 0.52 mm from the R88 pads. Their GND pads are outside
+     `WIFI_VOID_V1`.
 3. **ESC power path** (D103). The path runs from the battery pads to the R1
    shunt, onto the L4 +BATT plane, through buried vias into the In1/In4
    islands, and up microvias into each AGM210MAP +BATT pad and its 22 uF cap.
@@ -121,21 +133,24 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
 
 ## Open items
 
-0. **RF parts on the wrong side (fix before routing).** The RF class takes no
-   vias except `/VTX/RF_PA_IN`, but three RF nets have pads on both sides:
-   - `/VTX/RF_PAOUT1`: U19 and L3 are on the front, C110 on the back.
-   - `/RX/RF_WIFI`: U16 is on the back, R88 and C133 on the front.
-   - `/RX/RF_WIFI_ANT`: R88 and C132 are on the front, AE2 on the back.
-
-   Options:
-   - Flip C110 to the front between U19 and U20 if a spot opens there. That
-     makes the whole VTX chain via-free; the DRU comment from v3 still assumes
-     the RTC6705 on the back.
-   - Move R88, C132 and C133 to the back between U16 and AE2. Mind the D90
-     void and the `WIFI_GND_LINK` area.
-   - Or scope a DRU exception with a GND-fenced via for each net, as
-     `RF_PA_IN` has, and accept the via in a 2.4 GHz match.
-
+0. **RF parts on the wrong side: done.** All three nets are now one-sided,
+   with no new DRU exception:
+   - `/VTX/RF_PAOUT1`: C110 moved to the front (112.925, 106.375), beside L3.
+     The whole 5.8 GHz chain is now on the front. That leaves `/VTX/RF_PA_IN`
+     with both pads on the front, so its via exception is no longer needed.
+   - `/RX/RF_WIFI` and `/RX/RF_WIFI_ANT`: R88, C132 and C133 moved to the back,
+     between U16 pin 2 and AE2.
+     - There was only 0.73 mm between U16 pin 2 and the AE2 feed pad.
+     - AE2 could not move toward the chamfer: its pads are 0.65 mm from the
+       edge and the limit is 0.30 mm plus the edge band.
+     - So AE2 moved 1.50 mm along the chamfer (down and right). The
+       WIFI_VOID_V1, _V2_L2, _V2_L3, WIFI_FAR_F and WIFI_GND_LINK areas moved
+       with it, so the D90 void keeps its shape.
+     - R44 moved 0.32 mm and C117 1.13 mm to make room.
+   - Lengths are pad centre to pad centre, before routing (the earlier
+     numbers crossed sides):
+     - Wi-Fi: 0.95 + 0.60 mm.
+     - VTX: 0.65 + 0.74 mm, then 2.8 mm from C110 to U20.
 1. **ESC power drop margin.** The worst ESC (ESC2) drops 38.8 mV against the
    40 mV budget, a 1.2 mV (3 %) margin with only L4 counted. Options:
    - Order 1 oz on In3. The same solve at 1 oz gives 19.4 mV.
@@ -170,9 +185,17 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
      so check each one.
    - C94/C95 (RTC6705 crystal loads) and C103 have `check_p5_conditions.py`
      limits.
-5. **U18 over Q32.** The SX1281 (front) overlaps the AGM210MAP Q32 (back) by
-   0.47 mm2 in projection. Two GND planes sit between them, but a switching FET
-   under the RX front end is worth a 0.5 mm nudge of U18 or Q32 before routing.
+5. **U18 over Q32 (not changed).** The SX1281 (front) still overlaps the
+   AGM210MAP Q32 (back) by 0.47 mm2 of courtyard. The package bodies overlap
+   by about 0.10 mm2. No legal nudge of 0.6 mm or less exists:
+   - Clearing the courtyard overlap needs U18 to move up 0.58 mm, or left
+     1.07 mm.
+   - U18 already touches the U19 courtyard above it. Even a 0.15 mm move up
+     overlaps U19, R62 and C88.
+   - The J1 courtyard touches U18 on the left.
+   - Q32 is a frame part.
+   Two GND planes (L2, L5) sit between U18 and Q32. Fixing this means moving
+   U19 or J1, which is a placement change for the owner.
 6. **ESP32 behind the VTX chain.** U16 (back) sits under U19 (28.1 mm2), J1
    (4.4 mm2) and U20 (1.35 mm2). This goes back to the B4 placement. L2 and L5
    GND lie between them. Options:
@@ -191,12 +214,20 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
    still face the hole, inside the D4.6 grommet flange keep-out. If the plug
    must sit closer (Matrix style), rotate J31 180 degrees so the leads face
    away and re-check the mating clearance rule `USB_MATING`.
-9. **Pad labels (check_conventions B7).** Eight pad codes have no legal
-   aligned silk spot and are parked off the board: J21 5V, J22 BZ-, J25/J27/J33
-   GND, J26 VHD, J28 TX1, J29 RX1. VTX is also parked. Options:
-   - Back-side labels.
-   - Smaller codes (0.8 mm minimum, B11).
-   - Shift a pad on its hole web.
+9. **Pad labels (check_conventions B7): partly done.**
+   - Every silk text outside the outline is deleted: 9 parked texts, `VTX`
+     included.
+   - J25 GND and J28 TX1 now have aligned 0.8 mm labels.
+   - Six pads on the hole webs still have none: J21 5V, J22 BZ-, J33 GND
+     (right hole) and J26 VHD, J27 GND, J29 RX1 (left hole).
+   - A search tried every label position within 1 mm, at 0/45/90/135 degrees
+     and the pad angle, with text widths 0.6/0.5/0.4 mm. Every position broke
+     either the 0.20 mm silk-to-edge or hole rule or the 0.15 mm silk-to-pad
+     rule (neighbour pads and motor headers J4/J7/J13).
+   - B7 only counts labels on the pad's own side, so back silk does not help.
+   - Options:
+     - Shift these frame pads on their hole webs (owner's call).
+     - Or relax B7 for hole-web pads in the lineup check.
 10. **Tokyo font.** The silkscreen uses the KiCad font (B12 warns). The lineup
     font is Tokyo. Check that its licence allows embedding and redistribution
     in an open-hardware repo, then embed the font file (KiCad 10 embedded fonts)

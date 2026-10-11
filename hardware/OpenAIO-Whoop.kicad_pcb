@@ -4676,6 +4676,204 @@
 			)
 		)
 	)
+	(footprint "lib:C_0201_0603Metric_L"
+		(layer "F.Cu")
+		(uuid "3506b84a-e2b7-4158-9077-ac986f72d259")
+		(at 112.925 106.375 -90)
+		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335 MLCC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:C_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0201_0603Metric_L.json")
+		(tags "0201 (0603 metric 0.6 x 0.3")
+		(property "Reference" "C110"
+			(at 0 0 90)
+			(layer "F.Fab")
+			(uuid "21202204-53da-4725-9b32-2ff01694ea76")
+			(effects
+				(font
+					(size 0.2 0.2)
+					(thickness 0.03)
+				)
+			)
+		)
+		(property "Value" "10pF"
+			(at 0 0.35 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "70362a09-9a8e-4b62-b176-fe323d68bbf6")
+			(effects
+				(font
+					(size 0.2 0.2)
+					(thickness 0.03)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d26399ad-b7bd-4de7-bac2-b288d6128ab7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 0 0 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "15199f62-1be3-451d-bcca-c4b23da7e17b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Function" "C110 10pF VTX DC block"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "fa3dc661-d1f9-45ea-baa0-db34c79fd15e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "LCSC" "C76921"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "94c907d5-09c1-4360-94fb-f35fbf4069e0")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "MPN" "GRM0335C1H100JA01D"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8a77461a-971b-49b5-93b3-38a5349cb992")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3aec1719-7a25-4803-9f0b-d52533c729ce")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(path "/11edd549-3d5f-5e16-86ba-6970b46b0a92/c5ae1076-cd14-5f8e-b2e4-32e2d7ea6654")
+		(sheetname "/VTX/")
+		(sheetfile "vtx.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_rect
+			(start -0.47 -0.25)
+			(end 0.47 0.25)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "84cd00d1-b4da-47aa-9f39-532b43fe8ab0")
+		)
+		(fp_line
+			(start -0.3 0.15)
+			(end -0.3 -0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "05d4b93d-664a-4d8f-ac58-79b628e44d9b")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end -0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "88a06f73-4792-48cf-a1be-960dacc33711")
+		)
+		(fp_line
+			(start -0.3 -0.075)
+			(end -0.225 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "410edf56-44f1-425e-99ff-fdc0e7bd09eb")
+		)
+		(fp_line
+			(start -0.225 -0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "12ea8d28-5d79-4a41-9c73-b1892aabd002")
+		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "c796c405-2adc-446c-999f-30eb813be23d")
+		)
+		(pad "1" smd roundrect
+			(at -0.24 0 270)
+			(size 0.26 0.28)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.25)
+			(net "/VTX/RF_PAOUT1")
+			(pintype "passive")
+			(thermal_bridge_angle 45)
+			(uuid "15558380-94b9-4c41-9fb3-c94050ab09c2")
+		)
+		(pad "2" smd roundrect
+			(at 0.24 0 270)
+			(size 0.26 0.28)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.25)
+			(net "/VTX/RF_PA_IN")
+			(pintype "passive")
+			(thermal_bridge_angle 45)
+			(uuid "4b1469bc-5608-4fd1-ac53-c61dbb316765")
+		)
+		(embedded_fonts no)
+		(model "${OPENDRONE_LIB}/3dmodel/C_0201_0603Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(footprint "lib:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_L"
 		(locked yes)
 		(layer "F.Cu")
@@ -14883,205 +15081,6 @@
 		)
 		(embedded_fonts no)
 	)
-	(footprint "lib:R_0201_0603Metric_L"
-		(layer "F.Cu")
-		(uuid "8d302390-aacb-435f-8508-58afa9d89df4")
-		(at 122.265588 105.152645 -135)
-		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/RTT01/NCP03 chip resistor / NTC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:R_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/R_0201_0603Metric_L.json")
-		(tags "0201 (0603 metric 0.6 x 0.3")
-		(property "Reference" "R88"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(uuid "6e8d4c06-2d35-4f06-a33d-b1bba21bce8c")
-			(effects
-				(font
-					(size 0.2 0.2)
-					(thickness 0.03)
-				)
-			)
-		)
-		(property "Value" "0R"
-			(at 0 0.349999 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "629b6840-dec2-473f-be3d-e736efb2eeb0")
-			(effects
-				(font
-					(size 0.2 0.2)
-					(thickness 0.03)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "8b46ea32-481f-4dd4-a142-fc7d085f5fb8")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "f335faf4-81f1-40c4-8740-a641b8177535")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Function" "R88 0R Wi-Fi ant"
-			(at 0 0 135)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e80fd561-e7b2-4b57-9a17-9445bd67ab9d")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "LCSC" ""
-			(at 0 0 135)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "6b9c8b3e-f38d-4585-9fa3-32c2c5359947")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "MPN" "RC0201JR-070RL"
-			(at 0 0 135)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4cbd6792-9f82-4a68-82b2-c7379e7826ea")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Manufacturer" "Yageo"
-			(at 0 0 135)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "c14c2c8b-d4ff-4cda-be17-27ace45d90be")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(path "/73d8a02c-e770-5e7b-9535-3e34b447ded8/1aabd192-a241-510c-9aa9-3c3f8c8c47be")
-		(sheetname "/RX/")
-		(sheetfile "rx_esp32_sx1281.kicad_sch")
-		(attr smd)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_poly
-			(pts
-				(xy -0.47 0.25) (xy -0.47 -0.25) (xy 0.47 -0.25) (xy 0.47 0.25)
-			)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "cf0d45d3-0403-4c1e-843e-78632e7bb606")
-		)
-		(fp_line
-			(start 0.3 0.15)
-			(end -0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "1773b0b9-7bc9-430b-ae2b-8e08f1ed9084")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "23ccff12-510a-4086-beb6-173bfae61ef9")
-		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "dbb78d5d-3628-4c78-9e1c-2aa348516e2f")
-		)
-		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "b6d5668e-a65e-47fa-8fe3-26fda6b2c47d")
-		)
-		(fp_line
-			(start -0.225 -0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "6e20a5cd-5a27-4786-aead-192ac7aadabd")
-		)
-		(pad "1" smd roundrect
-			(at -0.240001 0 225)
-			(size 0.26 0.28)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "/RX/RF_WIFI_ANT")
-			(pintype "passive")
-			(thermal_bridge_angle 45)
-			(uuid "e89f600d-f9b9-47bb-97eb-bd4d31392bc1")
-		)
-		(pad "2" smd roundrect
-			(at 0.240001 0 225)
-			(size 0.26 0.28)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "/RX/RF_WIFI")
-			(pintype "passive")
-			(thermal_bridge_angle 45)
-			(uuid "a314d6b2-3340-47ae-95e2-258c785969c0")
-		)
-		(embedded_fonts no)
-		(model "${OPENDRONE_LIB}/3dmodel/R_0201_0603Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
 	(footprint "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L"
 		(locked yes)
 		(layer "F.Cu")
@@ -17069,205 +17068,6 @@
 		)
 		(embedded_fonts no)
 		(model "${OPENDRONE_LIB}/3dmodel/R_0201_0603Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint "lib:C_0201_0603Metric_L"
-		(layer "F.Cu")
-		(uuid "9d31838a-04a4-4adf-9ff0-485eb57632fc")
-		(at 121.912035 104.799091 45)
-		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335 MLCC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:C_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0201_0603Metric_L.json")
-		(tags "0201 (0603 metric 0.6 x 0.3")
-		(property "Reference" "C133"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(uuid "ce4be9f6-0a74-4b61-bfdb-f3d480480a97")
-			(effects
-				(font
-					(size 0.2 0.2)
-					(thickness 0.03)
-				)
-			)
-		)
-		(property "Value" "1.2pF"
-			(at 0 0.349999 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0570f818-c080-4bdc-b4dc-73a71275b1f2")
-			(effects
-				(font
-					(size 0.2 0.2)
-					(thickness 0.03)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "053325f3-b19b-46ac-96ef-618f037a1d6a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "770ce78b-1d66-4ca8-8415-e31e38ab1e5c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Function" "C133 1.2pF Wi-Fi ant"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "345a17dc-067d-4a5f-9a45-07b434fb0916")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "LCSC" "C85895"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d23f95b4-b9d8-4d50-83d6-b31fb55f0b79")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "MPN" "GRM0335C1H1R2BA01D"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "91d3903d-2882-41fa-855a-5ecad9fce1fe")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "404c2876-64a6-4b29-9046-c82f292efd7a")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(path "/73d8a02c-e770-5e7b-9535-3e34b447ded8/892d4f18-59cd-5c87-8284-7116e6592528")
-		(sheetname "/RX/")
-		(sheetfile "rx_esp32_sx1281.kicad_sch")
-		(attr smd dnp)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_poly
-			(pts
-				(xy 0.47 -0.25) (xy 0.47 0.25) (xy -0.47 0.25) (xy -0.47 -0.25)
-			)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "7f4a8171-1b90-49fa-8f4d-63bb2477692b")
-		)
-		(fp_line
-			(start -0.225 -0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "68ff57f0-7d87-49b4-ae4f-836dd71da5d1")
-		)
-		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "fbff9f0d-436e-4f25-82af-09be3197229b")
-		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "526c1bdc-57bf-4d87-ba9d-b07e4dee7431")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "5a6b7293-a149-444b-878f-c95fb931dc1b")
-		)
-		(fp_line
-			(start 0.3 0.15)
-			(end -0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "71a07134-1c90-4061-8b5a-6fe7105c5060")
-		)
-		(pad "1" smd roundrect
-			(at -0.240001 0 45)
-			(size 0.26 0.28)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "/RX/RF_WIFI")
-			(pintype "passive")
-			(thermal_bridge_angle 45)
-			(uuid "5f93480e-c4a6-4bab-a0ff-09c37847f499")
-		)
-		(pad "2" smd roundrect
-			(at 0.240001 0 45)
-			(size 0.26 0.28)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "GND")
-			(pintype "passive")
-			(thermal_bridge_angle 45)
-			(uuid "205896cd-23b9-48b0-b97d-12fcd8ecca9c")
-		)
-		(embedded_fonts no)
-		(model "${OPENDRONE_LIB}/3dmodel/C_0201_0603Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -22334,205 +22134,6 @@
 			(uuid "f1a65d66-8a46-4acf-90e2-8bcaf1d0bbc0")
 		)
 		(embedded_fonts no)
-	)
-	(footprint "lib:C_0201_0603Metric_L"
-		(layer "F.Cu")
-		(uuid "cf61168d-9398-439b-bf59-0a3e5e7244a3")
-		(at 122.619142 105.506198 -135)
-		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335 MLCC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:C_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0201_0603Metric_L.json")
-		(tags "0201 (0603 metric 0.6 x 0.3")
-		(property "Reference" "C132"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(uuid "1ce75be4-e0f5-41c0-88a9-d5cce3725798")
-			(effects
-				(font
-					(size 0.2 0.2)
-					(thickness 0.03)
-				)
-			)
-		)
-		(property "Value" "1.2pF"
-			(at 0 0.349999 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "39b338c0-90b6-4249-b22e-00a5994e429e")
-			(effects
-				(font
-					(size 0.2 0.2)
-					(thickness 0.03)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "2c1b6b99-fb04-4520-b506-61dc7f138d2a")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d98896df-68e9-48fd-9e42-7a49a24bad9c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Function" "C132 1.2pF Wi-Fi ant"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e6a1befa-71c1-41b6-86ed-d46a024ecb0a")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "LCSC" "C85895"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "3eff7aef-1c6d-41ec-984e-b9497569d16e")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "MPN" "GRM0335C1H1R2BA01D"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0bac21c5-0abb-46ff-995c-1ad1fda515eb")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 0 0 45)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "18e8ea96-f80d-43d2-812a-c8240f93429e")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
-		(path "/73d8a02c-e770-5e7b-9535-3e34b447ded8/98ca5698-baf9-594c-a2ac-ba62576a1341")
-		(sheetname "/RX/")
-		(sheetfile "rx_esp32_sx1281.kicad_sch")
-		(attr smd dnp)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_poly
-			(pts
-				(xy -0.47 0.25) (xy -0.47 -0.25) (xy 0.47 -0.25) (xy 0.47 0.25)
-			)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "F.CrtYd")
-			(uuid "14bc947a-bdf2-4b03-be71-79b16beed6d7")
-		)
-		(fp_line
-			(start 0.3 0.15)
-			(end -0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "a56579bc-0cc6-4efd-94c7-141ad4f7e38f")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "ce59ed49-e8c0-49bc-a944-0562579da03d")
-		)
-		(fp_line
-			(start -0.3 0.15)
-			(end -0.3 -0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "3d65553f-759e-42a4-be31-91b10aacf0e6")
-		)
-		(fp_line
-			(start -0.3 -0.075)
-			(end -0.225 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "920498e8-8c7a-4232-8d3f-de58cedee1f7")
-		)
-		(fp_line
-			(start -0.225 -0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "F.Fab")
-			(uuid "e51f00d9-b6ed-4fdc-8ff5-51f9563c25b8")
-		)
-		(pad "1" smd roundrect
-			(at -0.240001 0 225)
-			(size 0.26 0.28)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "/RX/RF_WIFI_ANT")
-			(pintype "passive")
-			(thermal_bridge_angle 45)
-			(uuid "54fe0cb0-b140-4bb9-929f-2219d858aaab")
-		)
-		(pad "2" smd roundrect
-			(at 0.240001 0 225)
-			(size 0.26 0.28)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net "GND")
-			(pintype "passive")
-			(thermal_bridge_angle 45)
-			(uuid "b2a8b93a-c1d1-4c73-ac72-b14a0f78200d")
-		)
-		(embedded_fonts no)
-		(model "${OPENDRONE_LIB}/3dmodel/C_0201_0603Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
 	)
 	(footprint "lib:C_0201_0603Metric_L"
 		(layer "F.Cu")
@@ -30848,11 +30449,11 @@
 	(footprint "lib:R_0201_0603Metric_L"
 		(layer "B.Cu")
 		(uuid "110c402d-063f-4ba4-a64b-eaf4523b7823")
-		(at 122.575 106.1 180)
+		(at 122.375 106.35 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/RTT01/NCP03 chip resistor / NTC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:R_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/R_0201_0603Metric_L.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "R44"
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "5241c4cc-85cf-4a5a-8326-47b767b7be64")
 			(effects
@@ -30864,7 +30465,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 0 -0.35 0)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "49b2a898-2510-4742-841e-8e8109e9ba9e")
@@ -30877,7 +30478,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "01f15a77-67a8-4da2-b894-fcf501d55fef")
@@ -30889,7 +30490,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "940c3b9d-f9f4-4fee-bfbf-de4aef50edd2")
@@ -30901,7 +30502,7 @@
 			)
 		)
 		(property "Function" "R44 1k FC"
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "28003c6c-d304-42f9-a186-a0b6ad6ed55b")
@@ -30914,7 +30515,7 @@
 			)
 		)
 		(property "LCSC" ""
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f80ce3e6-bfc4-4df9-a0c1-5c00337f149b")
@@ -30927,7 +30528,7 @@
 			)
 		)
 		(property "MPN" "RC0201FR-071KL"
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "4e8e9f4c-da0f-452e-97a2-5a757a5b5da9")
@@ -30940,7 +30541,7 @@
 			)
 		)
 		(property "Manufacturer" "Yageo"
-			(at 0 0 90)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "6c8e92c7-ee25-4d35-89c0-555c9bda5c7d")
@@ -30969,16 +30570,6 @@
 			(uuid "7ff888cc-d068-4c5b-bd1f-c5deaf9222a1")
 		)
 		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "37614f4a-9e77-4082-ae41-c686477c42dc")
-		)
-		(fp_line
 			(start 0.3 -0.15)
 			(end -0.3 -0.15)
 			(stroke
@@ -30989,14 +30580,14 @@
 			(uuid "9b5a6f24-ef7a-4a14-b9dd-c3d6d625cd2b")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
+			(start -0.3 -0.15)
+			(end -0.3 0.075)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "B.Fab")
-			(uuid "223ec462-431b-42ac-988f-c2af2586a7d5")
+			(uuid "52caa8ab-0db6-479c-9ad1-6b5a2e0d9f51")
 		)
 		(fp_line
 			(start -0.3 0.075)
@@ -31009,17 +30600,27 @@
 			(uuid "abbddf25-908e-491b-bbe9-90c463d6ffa2")
 		)
 		(fp_line
-			(start -0.3 -0.15)
-			(end -0.3 0.075)
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(layer "B.Fab")
-			(uuid "52caa8ab-0db6-479c-9ad1-6b5a2e0d9f51")
+			(uuid "37614f4a-9e77-4082-ae41-c686477c42dc")
+		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "223ec462-431b-42ac-988f-c2af2586a7d5")
 		)
 		(pad "1" smd roundrect
-			(at -0.24 0 180)
+			(at -0.24 0 90)
 			(size 0.26 0.28)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -31029,7 +30630,7 @@
 			(uuid "bd6089f7-3e2b-4407-8aeb-9e4be45cb2f2")
 		)
 		(pad "2" smd roundrect
-			(at 0.24 0 180)
+			(at 0.24 0 90)
 			(size 0.26 0.28)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -35215,212 +34816,6 @@
 	)
 	(footprint "lib:C_0201_0603Metric_L"
 		(layer "B.Cu")
-		(uuid "3506b84a-e2b7-4158-9077-ac986f72d259")
-		(at 114.47 105.82 -90)
-		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335 MLCC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:C_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0201_0603Metric_L.json")
-		(tags "0201 (0603 metric 0.6 x 0.3")
-		(property "Reference" "C110"
-			(at 0 0 270)
-			(layer "B.Fab")
-			(uuid "21202204-53da-4725-9b32-2ff01694ea76")
-			(effects
-				(font
-					(size 0.2 0.2)
-					(thickness 0.03)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "10pF"
-			(at 0 -0.35 270)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "70362a09-9a8e-4b62-b176-fe323d68bbf6")
-			(effects
-				(font
-					(size 0.2 0.2)
-					(thickness 0.03)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 270)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "d26399ad-b7bd-4de7-bac2-b288d6128ab7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 0 0 270)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "15199f62-1be3-451d-bcca-c4b23da7e17b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Function" "C110 10pF VTX DC block"
-			(at 0 0 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "fa3dc661-d1f9-45ea-baa0-db34c79fd15e")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
-		(property "LCSC" "C76921"
-			(at 0 0 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "94c907d5-09c1-4360-94fb-f35fbf4069e0")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
-		(property "MPN" "GRM0335C1H100JA01D"
-			(at 0 0 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "8a77461a-971b-49b5-93b3-38a5349cb992")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 0 0 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "3aec1719-7a25-4803-9f0b-d52533c729ce")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
-		(path "/11edd549-3d5f-5e16-86ba-6970b46b0a92/c5ae1076-cd14-5f8e-b2e4-32e2d7ea6654")
-		(sheetname "/VTX/")
-		(sheetfile "vtx.kicad_sch")
-		(attr smd)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_rect
-			(start -0.47 0.25)
-			(end 0.47 -0.25)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(fill no)
-			(layer "B.CrtYd")
-			(uuid "84cd00d1-b4da-47aa-9f39-532b43fe8ab0")
-		)
-		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "12ea8d28-5d79-4a41-9c73-b1892aabd002")
-		)
-		(fp_line
-			(start 0.3 0.15)
-			(end 0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "c796c405-2adc-446c-999f-30eb813be23d")
-		)
-		(fp_line
-			(start -0.3 0.075)
-			(end -0.225 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "410edf56-44f1-425e-99ff-fdc0e7bd09eb")
-		)
-		(fp_line
-			(start -0.3 -0.15)
-			(end -0.3 0.075)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "05d4b93d-664a-4d8f-ac58-79b628e44d9b")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "88a06f73-4792-48cf-a1be-960dacc33711")
-		)
-		(pad "1" smd roundrect
-			(at -0.24 0 270)
-			(size 0.26 0.28)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.25)
-			(net "/VTX/RF_PAOUT1")
-			(pintype "passive")
-			(thermal_bridge_angle 45)
-			(uuid "15558380-94b9-4c41-9fb3-c94050ab09c2")
-		)
-		(pad "2" smd roundrect
-			(at 0.24 0 270)
-			(size 0.26 0.28)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.25)
-			(net "/VTX/RF_PA_IN")
-			(pintype "passive")
-			(thermal_bridge_angle 45)
-			(uuid "4b1469bc-5608-4fd1-ac53-c61dbb316765")
-		)
-		(embedded_fonts no)
-		(model "${OPENDRONE_LIB}/3dmodel/C_0201_0603Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
-	)
-	(footprint "lib:C_0201_0603Metric_L"
-		(layer "B.Cu")
 		(uuid "35f8ef21-7e80-4509-89ff-fdcc8f003434")
 		(at 113.625 102.975 -90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335 MLCC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:C_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0201_0603Metric_L.json")
@@ -37044,11 +36439,11 @@
 	(footprint "lib:C_0201_0603Metric_L"
 		(layer "B.Cu")
 		(uuid "47c48850-f9fa-4757-b992-06d1ed2682de")
-		(at 122.568 106.638)
+		(at 123.318 107.488 90)
 		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335 MLCC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:C_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0201_0603Metric_L.json")
 		(tags "0201 (0603 metric 0.6 x 0.3")
 		(property "Reference" "C117"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "cd203f74-49dd-49b4-a6a9-f19b7277443e")
 			(effects
@@ -37060,7 +36455,7 @@
 			)
 		)
 		(property "Value" "100pF"
-			(at 0 -0.35 180)
+			(at 0 -0.35 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c63823cf-1d98-42ac-bf88-f8b614a9e32e")
@@ -37073,7 +36468,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "b8c0ffd0-0841-426b-a32f-59d2ca69c6ef")
@@ -37085,7 +36480,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c2881365-c197-4ee1-99a0-47f0fd07aa75")
@@ -37097,7 +36492,7 @@
 			)
 		)
 		(property "Function" "C117 100pF VTX PA"
-			(at 0 0 90)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "93f65226-6280-44f9-88e9-f6092a026ee8")
@@ -37110,7 +36505,7 @@
 			)
 		)
 		(property "LCSC" ""
-			(at 0 0 90)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "995faf01-179f-4725-a711-d5e8f60517e6")
@@ -37123,7 +36518,7 @@
 			)
 		)
 		(property "MPN" "GRM0335C1H101JA01D"
-			(at 0 0 90)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "91904a61-9f6e-4647-9f9c-ffa10cf5f72b")
@@ -37136,7 +36531,7 @@
 			)
 		)
 		(property "Manufacturer" "Murata"
-			(at 0 0 90)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "38476ae8-2f38-4df5-91f2-9b4735a2c043")
@@ -37165,6 +36560,16 @@
 			(uuid "a91b43a4-16ca-4095-8757-9094cf0d457a")
 		)
 		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "2199b876-452b-46d8-825f-b8187e5e8a62")
+		)
+		(fp_line
 			(start -0.3 -0.15)
 			(end -0.3 0.075)
 			(stroke
@@ -37185,26 +36590,6 @@
 			(uuid "df5402fe-6706-4e2d-b280-1ed5d50bdb4d")
 		)
 		(fp_line
-			(start -0.225 0.15)
-			(end 0.3 0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "d1be1828-2993-412c-b288-d1e86b1cb165")
-		)
-		(fp_line
-			(start 0.3 -0.15)
-			(end -0.3 -0.15)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "B.Fab")
-			(uuid "2199b876-452b-46d8-825f-b8187e5e8a62")
-		)
-		(fp_line
 			(start 0.3 0.15)
 			(end 0.3 -0.15)
 			(stroke
@@ -37214,8 +36599,18 @@
 			(layer "B.Fab")
 			(uuid "ba6a645d-c477-4c37-8ce3-a1eda968bc63")
 		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "d1be1828-2993-412c-b288-d1e86b1cb165")
+		)
 		(pad "1" smd roundrect
-			(at -0.24 0)
+			(at -0.24 0 90)
 			(size 0.26 0.28)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -37225,7 +36620,7 @@
 			(uuid "fca4f1ad-5def-4516-ad47-c23ceeae921b")
 		)
 		(pad "2" smd roundrect
-			(at 0.24 0)
+			(at 0.24 0 90)
 			(size 0.26 0.28)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -43492,6 +42887,213 @@
 			)
 		)
 	)
+	(footprint "lib:R_0201_0603Metric_L"
+		(layer "B.Cu")
+		(uuid "8d302390-aacb-435f-8508-58afa9d89df4")
+		(at 122.775 105.65 135)
+		(descr "0201 (0603 metric, 0.6 x 0.3 mm) RC0201/RTT01/NCP03 chip resistor / NTC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:R_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/R_0201_0603Metric_L.json")
+		(tags "0201 (0603 metric 0.6 x 0.3")
+		(property "Reference" "R88"
+			(at 0 0 315)
+			(layer "B.Fab")
+			(uuid "6e8d4c06-2d35-4f06-a33d-b1bba21bce8c")
+			(effects
+				(font
+					(size 0.2 0.2)
+					(thickness 0.03)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "0R"
+			(at 0 -0.349999 315)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "629b6840-dec2-473f-be3d-e736efb2eeb0")
+			(effects
+				(font
+					(size 0.2 0.2)
+					(thickness 0.03)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 315)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "8b46ea32-481f-4dd4-a142-fc7d085f5fb8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 0 0 315)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "f335faf4-81f1-40c4-8740-a641b8177535")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Function" "R88 0R Wi-Fi ant"
+			(at 0 0 225)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e80fd561-e7b2-4b57-9a17-9445bd67ab9d")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" ""
+			(at 0 0 225)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "6b9c8b3e-f38d-4585-9fa3-32c2c5359947")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "MPN" "RC0201JR-070RL"
+			(at 0 0 225)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "4cbd6792-9f82-4a68-82b2-c7379e7826ea")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Manufacturer" "Yageo"
+			(at 0 0 225)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "c14c2c8b-d4ff-4cda-be17-27ace45d90be")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/73d8a02c-e770-5e7b-9535-3e34b447ded8/1aabd192-a241-510c-9aa9-3c3f8c8c47be")
+		(sheetname "/RX/")
+		(sheetfile "rx_esp32_sx1281.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_poly
+			(pts
+				(xy -0.47 -0.25) (xy -0.47 0.25) (xy 0.47 0.25) (xy 0.47 -0.25)
+			)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "cf0d45d3-0403-4c1e-843e-78632e7bb606")
+		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "1773b0b9-7bc9-430b-ae2b-8e08f1ed9084")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "23ccff12-510a-4086-beb6-173bfae61ef9")
+		)
+		(fp_line
+			(start -0.3 -0.15)
+			(end -0.3 0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "dbb78d5d-3628-4c78-9e1c-2aa348516e2f")
+		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "6e20a5cd-5a27-4786-aead-192ac7aadabd")
+		)
+		(fp_line
+			(start -0.3 0.075)
+			(end -0.225 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "b6d5668e-a65e-47fa-8fe3-26fda6b2c47d")
+		)
+		(pad "1" smd roundrect
+			(at -0.240001 0 135)
+			(size 0.26 0.28)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net "/RX/RF_WIFI_ANT")
+			(pintype "passive")
+			(thermal_bridge_angle 45)
+			(uuid "e89f600d-f9b9-47bb-97eb-bd4d31392bc1")
+		)
+		(pad "2" smd roundrect
+			(at 0.240001 0 135)
+			(size 0.26 0.28)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net "/RX/RF_WIFI")
+			(pintype "passive")
+			(thermal_bridge_angle 45)
+			(uuid "a314d6b2-3340-47ae-95e2-258c785969c0")
+		)
+		(embedded_fonts no)
+		(model "${OPENDRONE_LIB}/3dmodel/R_0201_0603Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(footprint "lib:C_0201_0603Metric_L"
 		(layer "B.Cu")
 		(uuid "8f40600a-0b4d-4b72-b666-0f9f49e5ccfb")
@@ -46394,6 +45996,213 @@
 			)
 		)
 	)
+	(footprint "lib:C_0201_0603Metric_L"
+		(layer "B.Cu")
+		(uuid "9d31838a-04a4-4adf-9ff0-485eb57632fc")
+		(at 122.35 104.7 90)
+		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335 MLCC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:C_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0201_0603Metric_L.json")
+		(tags "0201 (0603 metric 0.6 x 0.3")
+		(property "Reference" "C133"
+			(at 0 0 90)
+			(layer "B.Fab")
+			(uuid "ce4be9f6-0a74-4b61-bfdb-f3d480480a97")
+			(effects
+				(font
+					(size 0.2 0.2)
+					(thickness 0.03)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1.2pF"
+			(at 0 -0.349999 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "0570f818-c080-4bdc-b4dc-73a71275b1f2")
+			(effects
+				(font
+					(size 0.2 0.2)
+					(thickness 0.03)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "053325f3-b19b-46ac-96ef-618f037a1d6a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 0 0 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "770ce78b-1d66-4ca8-8415-e31e38ab1e5c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Function" "C133 1.2pF Wi-Fi ant"
+			(at 0 0 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "345a17dc-067d-4a5f-9a45-07b434fb0916")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C85895"
+			(at 0 0 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "d23f95b4-b9d8-4d50-83d6-b31fb55f0b79")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "MPN" "GRM0335C1H1R2BA01D"
+			(at 0 0 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "91d3903d-2882-41fa-855a-5ecad9fce1fe")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 0 0 90)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "404c2876-64a6-4b29-9046-c82f292efd7a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/73d8a02c-e770-5e7b-9535-3e34b447ded8/892d4f18-59cd-5c87-8284-7116e6592528")
+		(sheetname "/RX/")
+		(sheetfile "rx_esp32_sx1281.kicad_sch")
+		(attr smd dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_poly
+			(pts
+				(xy 0.47 0.25) (xy 0.47 -0.25) (xy -0.47 -0.25) (xy -0.47 0.25)
+			)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "7f4a8171-1b90-49fa-8f4d-63bb2477692b")
+		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "71a07134-1c90-4061-8b5a-6fe7105c5060")
+		)
+		(fp_line
+			(start -0.3 -0.15)
+			(end -0.3 0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "526c1bdc-57bf-4d87-ba9d-b07e4dee7431")
+		)
+		(fp_line
+			(start -0.3 0.075)
+			(end -0.225 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "fbff9f0d-436e-4f25-82af-09be3197229b")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "5a6b7293-a149-444b-878f-c95fb931dc1b")
+		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "68ff57f0-7d87-49b4-ae4f-836dd71da5d1")
+		)
+		(pad "1" smd roundrect
+			(at -0.240001 0 90)
+			(size 0.26 0.28)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net "/RX/RF_WIFI")
+			(pintype "passive")
+			(thermal_bridge_angle 45)
+			(uuid "5f93480e-c4a6-4bab-a0ff-09c37847f499")
+		)
+		(pad "2" smd roundrect
+			(at 0.240001 0 90)
+			(size 0.26 0.28)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net "GND")
+			(pintype "passive")
+			(thermal_bridge_angle 45)
+			(uuid "205896cd-23b9-48b0-b97d-12fcd8ecca9c")
+		)
+		(embedded_fonts no)
+		(model "${OPENDRONE_LIB}/3dmodel/C_0201_0603Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(footprint "lib:C_0402_1005Metric_L"
 		(layer "B.Cu")
 		(uuid "9f52a8ae-294c-42c4-849e-77395bb85473")
@@ -49170,7 +48979,7 @@
 		(locked yes)
 		(layer "B.Cu")
 		(uuid "bae0b092-74cf-4336-9ff4-6f162df59f42")
-		(at 122.760563 105.081934 45)
+		(at 123.821223 106.142594 45)
 		(descr "Johanson 2450AT07A0100001T 2.4 GHz chip antenna, 1.00 x 0.50 x 0.37 mm, 4 terminals (1 Feed, 2 GND, 3 GND, 4 Feed), DS Ver 3.1 test-board lands 0.20 x 0.30. D90 variant (floorplan v4): no edge strip, no all-layer keep-out; the board carries the D90 voids as rule areas WIFI_VOID_V1 (B/In4/In3, 2.6 x 1.6, starts 0.30 mm beside pins 2/3), WIFI_VOID_V2_L2/_L3 (In1/In2, body + 0.3), WIFI_FAR_F, and WIFI_GND_LINK (<= 0.3 mm B.Cu GND link from pins 2/3 to the V1 edge, GND vias just outside V1), research/ANTENNA-WIFI.md 6.4 and 9. GND row toward the board edge, feed inboard.")
 		(tags "antenna chip 2.4GHz WiFi Johanson 2450AT07A0100 0402 ELRS D90")
 		(property "Reference" "AE2"
@@ -52198,6 +52007,213 @@
 			)
 			(scale
 				(xyz 1 1 0.8545)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
+	(footprint "lib:C_0201_0603Metric_L"
+		(layer "B.Cu")
+		(uuid "cf61168d-9398-439b-bf59-0a3e5e7244a3")
+		(at 123.3 106.475 -45)
+		(descr "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335 MLCC. IPC-7351C least density (D109): lands 0.26 x 0.28 at +-0.24 (pitch 0.48, gap 0.22, overall 0.74 x 0.28). Chip 0.60+-0.03 x 0.30+-0.03 (Murata GRM03 / LQP03 / BLM03, Yageo RC0201, Ralec RTT01): toe 0.07 past the nominal end, 0.055 at L max 0.63; land inner edge 0.11 (terminal inner edge >= 0.10 at the longest terminal e 0.20 / I2 0.20, heel -0.01); width 0.28 vs W 0.30 (side -0.01). Inside every Murata GR*03 Table 2 reflow range (a 0.20-0.30 -> 0.22, b 0.20-0.35 -> 0.26, c 0.20-0.40 -> 0.28). A 0.25 mm HDI microvia land (0.10 laser) fits inside each land (D107). Courtyard max(body, land) + 0.10 = 0.94 x 0.50. Derived from lib:C_0201_0603Metric_W (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/C_0201_0603Metric_L.json")
+		(tags "0201 (0603 metric 0.6 x 0.3")
+		(property "Reference" "C132"
+			(at 0 0 135)
+			(layer "B.Fab")
+			(uuid "1ce75be4-e0f5-41c0-88a9-d5cce3725798")
+			(effects
+				(font
+					(size 0.2 0.2)
+					(thickness 0.03)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Value" "1.2pF"
+			(at 0 -0.349999 135)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "39b338c0-90b6-4249-b22e-00a5994e429e")
+			(effects
+				(font
+					(size 0.2 0.2)
+					(thickness 0.03)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 135)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "2c1b6b99-fb04-4520-b506-61dc7f138d2a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 0 0 135)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "d98896df-68e9-48fd-9e42-7a49a24bad9c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Function" "C132 1.2pF Wi-Fi ant"
+			(at 0 0 135)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "e6a1befa-71c1-41b6-86ed-d46a024ecb0a")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "LCSC" "C85895"
+			(at 0 0 135)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "3eff7aef-1c6d-41ec-984e-b9497569d16e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "MPN" "GRM0335C1H1R2BA01D"
+			(at 0 0 135)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "0bac21c5-0abb-46ff-995c-1ad1fda515eb")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 0 0 135)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "18e8ea96-f80d-43d2-812a-c8240f93429e")
+			(effects
+				(font
+					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
+		(path "/73d8a02c-e770-5e7b-9535-3e34b447ded8/98ca5698-baf9-594c-a2ac-ba62576a1341")
+		(sheetname "/RX/")
+		(sheetfile "rx_esp32_sx1281.kicad_sch")
+		(attr smd dnp)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_poly
+			(pts
+				(xy -0.47 -0.25) (xy -0.47 0.25) (xy 0.47 0.25) (xy 0.47 -0.25)
+			)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill no)
+			(layer "B.CrtYd")
+			(uuid "14bc947a-bdf2-4b03-be71-79b16beed6d7")
+		)
+		(fp_line
+			(start -0.3 0.075)
+			(end -0.225 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "920498e8-8c7a-4232-8d3f-de58cedee1f7")
+		)
+		(fp_line
+			(start -0.225 0.15)
+			(end 0.3 0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "e51f00d9-b6ed-4fdc-8ff5-51f9563c25b8")
+		)
+		(fp_line
+			(start -0.3 -0.15)
+			(end -0.3 0.075)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "3d65553f-759e-42a4-be31-91b10aacf0e6")
+		)
+		(fp_line
+			(start 0.3 0.15)
+			(end 0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "ce59ed49-e8c0-49bc-a944-0562579da03d")
+		)
+		(fp_line
+			(start 0.3 -0.15)
+			(end -0.3 -0.15)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "a56579bc-0cc6-4efd-94c7-141ad4f7e38f")
+		)
+		(pad "1" smd roundrect
+			(at -0.240001 0 315)
+			(size 0.26 0.28)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net "/RX/RF_WIFI_ANT")
+			(pintype "passive")
+			(thermal_bridge_angle 45)
+			(uuid "54fe0cb0-b140-4bb9-929f-2219d858aaab")
+		)
+		(pad "2" smd roundrect
+			(at 0.240001 0 315)
+			(size 0.26 0.28)
+			(layers "B.Cu" "B.Mask" "B.Paste")
+			(roundrect_rratio 0.25)
+			(net "GND")
+			(pintype "passive")
+			(thermal_bridge_angle 45)
+			(uuid "b2a8b93a-c1d1-4c73-ac72-b14a0f78200d")
+		)
+		(embedded_fonts no)
+		(model "${OPENDRONE_LIB}/3dmodel/C_0201_0603Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
 			)
 			(rotate
 				(xyz 0 0 0)
@@ -60492,6 +60508,17 @@
 			)
 		)
 	)
+	(gr_text "GND"
+		(at 119.65 117.586665 0)
+		(layer "F.SilkS")
+		(uuid "d3d3a5d0-c9c7-497c-bfb7-87969f9eb19a")
+		(effects
+			(font
+				(size 0.8 0.6)
+				(thickness 0.13)
+			)
+		)
+	)
 	(gr_text "5V"
 		(at 120 119.55 0)
 		(layer "F.SilkS")
@@ -60514,18 +60541,6 @@
 			)
 		)
 	)
-	(gr_text "BZ-"
-		(at 67.653382 116.236665 0)
-		(layer "F.SilkS")
-		(uuid "20dba549-cf90-4b8e-b903-048c877f4c03")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
-			(justify right)
-		)
-	)
 	(gr_text "LED"
 		(at 123.664001 122.690936 0)
 		(layer "F.SilkS")
@@ -60536,83 +60551,6 @@
 				(thickness 0.13)
 			)
 			(justify right)
-		)
-	)
-	(gr_text "VHD"
-		(at 66.05 112 90)
-		(layer "F.SilkS")
-		(uuid "6855857f-0872-4e52-962f-e125ff5636bd")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
-		)
-	)
-	(gr_text "GND"
-		(at 67.35 112 90)
-		(layer "F.SilkS")
-		(uuid "e2b332c5-7272-4043-a3f8-cd4d6ec349b5")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
-		)
-	)
-	(gr_text "TX1"
-		(at 68.65 112 90)
-		(layer "F.SilkS")
-		(uuid "02839f54-74fd-4cc5-b5a1-6521cb85a946")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
-		)
-	)
-	(gr_text "GND"
-		(at 68.7 123.2 90)
-		(layer "F.SilkS")
-		(uuid "236ddbad-0718-457d-b7a0-4c507f4c755e")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
-		)
-	)
-	(gr_text "RX1"
-		(at 69.95 112 90)
-		(layer "F.SilkS")
-		(uuid "24a26332-81bb-4204-a3e2-552e3e2acbdd")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
-		)
-	)
-	(gr_text "5V"
-		(at 74.4 119 90)
-		(layer "F.SilkS")
-		(uuid "c9c53804-29c2-4d8f-b785-e45f41c3f02a")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
-		)
-	)
-	(gr_text "VTX"
-		(at 75 113.2 90)
-		(layer "F.SilkS")
-		(uuid "02e2b036-04cf-47e8-87dd-73dcfec4e9c0")
-		(effects
-			(font
-				(size 0.8 0.6)
-				(thickness 0.13)
-			)
 		)
 	)
 	(gr_text "M3"
@@ -60626,10 +60564,10 @@
 			)
 		)
 	)
-	(gr_text "GND"
-		(at 76.9 116.399999 270)
+	(gr_text "TX1"
+		(at 102.567665 104.632429 90)
 		(layer "F.SilkS")
-		(uuid "5ef1dd9f-3d76-49b0-99b5-49897b7b0853")
+		(uuid "23848f3e-29ae-4769-b41a-512da76179cc")
 		(effects
 			(font
 				(size 0.8 0.6)
@@ -64355,7 +64293,7 @@
 		)
 		(polygon
 			(pts
-				(xy 123.726471 105.813082) (xy 123.329784 106.209769) (xy 122.198413 105.078398) (xy 122.5951 104.681712)
+				(xy 124.787131 106.873742) (xy 124.390444 107.270429) (xy 123.259073 106.139058) (xy 123.65576 105.742372)
 			)
 		)
 	)
@@ -65508,7 +65446,7 @@
 		)
 		(polygon
 			(pts
-				(xy 123.337562 105.777727) (xy 123.117652 105.997637) (xy 122.834809 105.714795) (xy 123.054719 105.494884)
+				(xy 124.398222 106.838387) (xy 124.178312 107.058297) (xy 123.895469 106.775455) (xy 124.115379 106.555544)
 			)
 		)
 	)
@@ -65893,7 +65831,7 @@
 		)
 		(polygon
 			(pts
-				(xy 124.893197 104.858488) (xy 123.43585 106.315835) (xy 122.304479 105.184464) (xy 123.761826 103.727117)
+				(xy 125.953857 105.919148) (xy 124.49651 107.376495) (xy 123.365139 106.245124) (xy 124.822486 104.787777)
 			)
 		)
 	)
@@ -67675,7 +67613,7 @@
 		)
 		(polygon
 			(pts
-				(xy 123.726471 105.813082) (xy 123.329784 106.209769) (xy 122.198413 105.078398) (xy 122.5951 104.681712)
+				(xy 124.787131 106.873742) (xy 124.390444 107.270429) (xy 123.259073 106.139058) (xy 123.65576 105.742372)
 			)
 		)
 	)
@@ -67868,7 +67806,7 @@
 		)
 		(polygon
 			(pts
-				(xy 123.726471 105.813082) (xy 123.329784 106.209769) (xy 122.198413 105.078398) (xy 122.5951 104.681712)
+				(xy 124.787131 106.873742) (xy 124.390444 107.270429) (xy 123.259073 106.139058) (xy 123.65576 105.742372)
 			)
 		)
 	)
