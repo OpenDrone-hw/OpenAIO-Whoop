@@ -855,16 +855,6 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 53.34) (xy 294.64 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "105099b2-f9d8-50f0-b303-9ecb9d7deada")
-	)
-	(wire
-		(pts
 			(xy 139.7 35.56) (xy 142.24 35.56)
 		)
 		(stroke
@@ -1225,16 +1215,6 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 53.34) (xy 297.18 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8161eac7-79fc-5454-8e04-6435ba48969e")
-	)
-	(wire
-		(pts
 			(xy 63.5 101.6) (xy 66.04 101.6)
 		)
 		(stroke
@@ -1475,16 +1455,6 @@
 	)
 	(wire
 		(pts
-			(xy 274.32 48.26) (xy 276.86 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b8d929d5-3e07-5887-b5a5-fcc36670d543")
-	)
-	(wire
-		(pts
 			(xy 200.66 137.16) (xy 223.52 137.16)
 		)
 		(stroke
@@ -1672,16 +1642,6 @@
 			(type default)
 		)
 		(uuid "dad4ddd8-029e-55c8-ae0f-35f2e3477342")
-	)
-	(wire
-		(pts
-			(xy 276.86 48.26) (xy 297.18 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dd6efca8-fba4-56de-bb0a-31452d99c658")
 	)
 	(wire
 		(pts
@@ -3324,16 +3284,6 @@
 		)
 		(uuid "6f5ec5ba-293f-5459-ac7b-aaa50958ac13")
 	)
-	(label "VTX_PWR_CTL"
-		(at 276.86 48.26 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "702db581-5ee2-58eb-a4a0-502e534954c7")
-	)
 	(label "VTX_SPI_DATA"
 		(at 276.86 40.64 0)
 		(effects
@@ -3453,16 +3403,6 @@
 			(justify right bottom)
 		)
 		(uuid "b12f9719-2345-5276-831b-cf771e196631")
-	)
-	(label "PA_NTC"
-		(at 294.64 53.34 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "b44cc5c6-2b06-5dea-afb7-f6bc10281d58")
 	)
 	(label "VIDEO_IN"
 		(at 358.14 88.9 180)
@@ -3995,29 +3935,9 @@
 				(justify left)
 			)
 		)
-		(pin "VTX_PWR_CTL" input
-			(at 297.18 48.26 180)
-			(uuid "fdfad41c-d563-589d-82b5-1dda84706acc")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "PA_DET" output
 			(at 297.18 50.8 180)
 			(uuid "d5f9aede-906c-51a7-b0ce-25f2dc111794")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "PA_NTC" output
-			(at 297.18 53.34 180)
-			(uuid "08295962-e02a-54f2-916d-c9277b3ec721")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4323,29 +4243,9 @@
 				(justify right)
 			)
 		)
-		(pin "VTX_PWR_CTL" output
-			(at 274.32 48.26 0)
-			(uuid "de625001-6582-5322-8b88-063f980088dd")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "PA_DET" input
 			(at 274.32 50.8 0)
 			(uuid "a1fe34f1-1d04-5a80-b517-0eb14bc81f9f")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "PA_NTC" input
-			(at 274.32 53.34 0)
-			(uuid "998750b9-a163-5d0a-9469-38a2a37e3c2d")
 			(effects
 				(font
 					(size 1.27 1.27)

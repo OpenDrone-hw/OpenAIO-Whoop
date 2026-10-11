@@ -166,10 +166,8 @@ NETCLASS_PATTERNS = [
     ("Phase", ["/ESC?/PHASE_?", "/POWER/U2_SW"]),                         # in-sheet PHASE_A/B/C (spec 8.4); boost switch
                                                                           # node U2_SW 2.8-3.4 A avg (P4 critique round 2)
     ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
-    ("Power", ["+5V", "+5V_BST", "+5V_USB", "+5V_HD", "+3.3V", "+3.3V_VTX", "+1.8V_GYRO", "+1.1V",
-               "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS",             # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
-               "/VTX/PA_VCC"]),                                         # SE5004L VCC feed 0.65-0.8 A: the board ignores the
-                                                                          # schematic directive label (P4 critique round 2)
+    ("Power", ["+5V", "+5V_BST", "+5V_USB", "+3.3V", "+3.3V_VTX", "+1.8V_GYRO", "+1.1V",
+               "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS"]),          # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
     ("GND", ["GND"]),
     ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", 
                 "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*",      # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
@@ -1787,7 +1785,7 @@ def selftest(P, rf):
     # netclass patterns
     sample = {"+BATT": "VBAT", "/POWER/CSA+": "VBAT", "/ESC1/PHASE_A": "Phase", "/ESC3/B_COM": "Gate",
               "/ESC2/C_PWM": "Gate", "+3.3V_VTX": "Power", "+5V": "Power", "+5V_USB": "Power", "+5V_BST": "Power",
-              "+5V_HD": "Power", "+1.8V_GYRO": "Power", "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog",
+              "+1.8V_GYRO": "Power", "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog",
               "/SHUNT_SENSE_P": "Analog", "/POWER/SHUNT_SENSE_N": "Analog", "/VTX/RF_OUT": "RF",
               "/RX/ANT_FEED": "RF", "/USB_D_P": "USB", "/USB_D_N": "USB", "/MOTOR1": "Default",
               "/SPI0.SCK": "Default", "/ESC1/VDD": "Default"}

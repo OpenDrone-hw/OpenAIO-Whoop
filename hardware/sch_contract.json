@@ -82,10 +82,6 @@
     "pattern": "*ADC_CURR*"
    },
    {
-    "class": "Power",
-    "pattern": "/VTX/PA_VCC"
-   },
-   {
     "class": "Phase",
     "pattern": "/POWER/U2_SW"
    }
@@ -160,11 +156,6 @@
     "sheet": "vtx.kicad_sch",
     "class": "RF",
     "on": "RF_PAOUT1"
-   },
-   {
-    "sheet": "vtx.kicad_sch",
-    "class": "Power",
-    "on": "PA_VCC (the board takes the class from the pattern /VTX/PA_VCC in setup_board.py / .kicad_pro; this flag mirrors it)"
    },
    {
     "sheet": "vtx.kicad_sch",

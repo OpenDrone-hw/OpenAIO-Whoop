@@ -11,20 +11,20 @@
    "house sheets: OpenFC-Lite-Mini rp2350a/imu/osd/blackbox, OpenRX-Lite RF section, OpenAIO root current sense",
    "OpenOSD-X RTC6705 reference values (track 04)",
    "tinyPEPPER BEMF network (track 08)",
-   "research/DECISIONS.md D52-D60; research/BOM-REDUCTION.md \u00a73",
+   "research/DECISIONS.md D52-D60; research/BOM-REDUCTION.md §3",
    "staging p2v3/staging/agm (AGM210MAP part + ESC cell), usb (JST BM04B, SGM40661, TPD2EUSB30), wifi (Johanson 2450AT07A0100001T), merged into hardware/lib.* on 2026-10-09",
-   "research/IO-SET.md \u00a71, \u00a73, \u00a74.2 (D63/D64)",
+   "research/IO-SET.md §1, §3, §4.2 (D63/D64)",
    "research/DECISIONS.md D65-D67; staging p2v3/staging/io2 (Molex 53047-0310 plug-ready land, Alps SKUBAAE010, Diodes SDM02M30CLP3-7B), p2v3/staging/flash (Puya PY25Q128HA-DFH-IR), test via built in p2v3/integ4_work"
   ],
   "conventions": {
-   "refs": "project-wide sequential per prefix (LINEUP A15), sheet order power, ESC1..ESC4, rp2354a, imu, blackbox, osd, rx_esp32_sx1281, vtx, led, pads; prefixes C R L D U Q X J SW TP AE FL FB TH H LOGO; new parts take the next free number above every ref of any committed plan (C130 of the withdrawn \u00a75.1 fallback is skipped)",
+   "refs": "project-wide sequential per prefix (LINEUP A15), sheet order power, ESC1..ESC4, rp2354a, imu, blackbox, osd, rx_esp32_sx1281, vtx, led, pads; prefixes C R L D U Q X J SW TP AE FL FB TH H LOGO; new parts take the next free number above every ref of any committed plan (C130 of the withdrawn §5.1 fallback is skipped)",
    "footprint": "OpenDrone:<name> = hardware/KiCad-Library footprint that passes check_footprint.py against its datasheet spec; lib:<name> = project library hardware/lib.pretty (P3 merge 2026-10-09; _W = corrected copy of an OpenDrone footprint, _Dense = area-budget variant); land specs in hardware/tools/land_specs/<name>.json",
    "symbol": "OpenDrone:<name> / KiCad stock (Device, Connector, Connector_Generic, Mechanical) / lib:<name> = hardware/lib.kicad_sym (P3 merge 2026-10-09)",
    "coordinates": "regions: KiCad top view, mm from the board-body centre (113.2, 113.2), +x right, +y down, front corner (+x,-y); side F/B",
    "pads": "solder pads Connector_Generic:Conn_01x01 ref J, dnp + exclude_from_bom (LINEUP A16); test points Connector:TestPoint ref TP, out of BOM; silk = the <=3-character pad code (0.8 mm Tokyo, D12) shared by schematic value, silk, pinout and docs",
-   "passives": "0201 default (owner rule); 0402/0603 only where DC bias or power needs it (noted per line); X6S in ESC quarters and at the PA, X5R elsewhere (spec \u00a74 temperature grades)",
+   "passives": "0201 default (owner rule); 0402/0603 only where DC bias or power needs it (noted per line); X6S in ESC quarters and at the PA, X5R elsewhere (spec §4 temperature grades)",
    "lcsc": "LCSC number where one was read (informational); null where none was found. D60: NextPCB turnkey sources every part by Manufacturer + MPN, stock gates and consigned lines no longer apply",
-   "values": "'start value' notes mark circuit values closed in the P4 critique loop (spec \u00a715.5, D22)"
+   "values": "'start value' notes mark circuit values closed in the P4 critique loop (spec §15.5, D22)"
   },
   "not_parts": "silk labels, product name OPEN/AIO/WHOOP, REV1, '1S', 'HD' frame are drawn by the generator, not footprints; the Wi-Fi keep-out is part of the AE2 footprint (rule area), not a separate item",
   "library": "P3 merge 2026-10-09: staged libraries merged (research/LIBRARY.md); footprint ids switched to the checked _W/_Dense variants; the 17 OpenDrone footprints used without staged work failed check_footprint against their datasheet lands and were replaced by checked lib _W/_Dense copies in the same frame; D1 SMF5.0A (unidirectional) moved from the bidirectional Device:D_TVS (A1/A2) to Device:D_Zener (1 = K, 2 = A) so the cathode pad 1 is unambiguous | 2026-10-09 D56-D58 merge: AGM210MAP, BM04B-SRSS-TB, SM04B-SRSS-TB (alternate), SGM40661YG, TPD2EUSB30DRTR, 2450AT07A0100001T symbols + footprints + 3D + land specs added (research/LIBRARY.md); lib_work flags cleared after the full resolve + check_footprint run | 2026-10-09 D63 IO set: SM03B-SURS-TF (camera plug), TS2306A240GFMSM9 (button) symbols; JST SUR SM03B-SURS-TF, SH SM03B-SRSS-TB _W (camera fallback), TS2306A _W footprints + land specs + SUR 3D | 2026-10-09 D65-D67: PY25Q128HA-DFH-IR, Molex_53047-0310, SKUBAAE010, SDM02M30CLP3-7B symbols; USON-8 3x3 PY25Q128HA, MotorPad_PicoBlade_1x03, SW_Alps_SKUBAAE010, X2-DFN1006-3 SDM02M30CLP3, TestPoint_Via_D0.35mm_Drill0.2mm footprints + land specs + 4 STEP",
@@ -82,7 +82,7 @@
    }
   ],
   "io_set": {
-   "source": "research/IO-SET.md \u00a71 (D63/D64) as amended by D65-D67; every row is in this plan",
+   "source": "research/IO-SET.md §1 (D63/D64) as amended by D65-D67; every row is in this plan",
    "rows": {
     "1 battery": "J2 J3",
     "2 motor outputs": "J4 J7 J10 J13 (D65 plug-ready lands, Molex 53047-0310 header DNP)",
@@ -98,7 +98,7 @@
     "12 test / programming pads": "TP1-TP9 TP12 TP13 (D67 via test points; TP10 TP11 removed)",
     "13 USB D-/D+ pads": "none (dropped, D67)"
    },
-   "placement_priority": "camera plug J32 -> LED-row GND pad J33 + SW1/D8 (G2); motor lands per ESC cell (D65); trade ladder IO-SET \u00a74.1",
+   "placement_priority": "camera plug J32 -> LED-row GND pad J33 + SW1/D8 (G2); motor lands per ESC cell (D65); trade ladder IO-SET §4.1",
    "gates": "G1 camera pitch + pin 1 before the P3 footprint freeze and P4; G2 area on the v3 board; G3 H1/H3 sites for J32 and SW1 (or a logged scoped exemption + V8); D65: motor header H1 exemption + V4 thermocouple, DRU 'D21 motor_plug_1p25_pth', hole 0.50 vs 0.60 from Molex SD-53047",
    "pin_changes": "none on the MCUs (RP2354A 30/30 at D65): QSPI_SS -> R44 -> FC_BOOT -> D8.A1, ESP32 GPIO0 RX_BOOT -> D8.A2, D8.K BOOT_SW -> SW1 -> GND (D65); J21 BZ+ -> 5V same net; D89: GPIO2/3 (PIOUART0) freed, no-connect (RP2354A 28/30 used)"
   }
@@ -114,7 +114,7 @@
     -6.95,
     -2.95
    ],
-   "src": "spec \u00a710 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
+   "src": "spec §10 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc3_mcu": {
    "side": "F",
@@ -126,7 +126,7 @@
     -2.75,
     1.25
    ],
-   "src": "spec \u00a710 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
+   "src": "spec §10 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc1_mcu": {
    "side": "F",
@@ -138,7 +138,7 @@
     2.95,
     6.95
    ],
-   "src": "spec \u00a710 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
+   "src": "spec §10 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc2_mcu": {
    "side": "B",
@@ -150,7 +150,7 @@
     -1.25,
     2.75
    ],
-   "src": "spec \u00a710 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
+   "src": "spec §10 (sketch v4) | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans"
   },
   "esc4_bemf": {
    "side": "B",
@@ -210,7 +210,7 @@
     -6.95,
     -2.95
    ],
-   "src": "bottom projection of the EFM8 (P2 places, spec \u00a710 'at each EFM8') | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans | D67: C2D / C2CK as 0.35/0.20 test vias at the EFM8 (bench recovery only)"
+   "src": "bottom projection of the EFM8 (P2 places, spec §10 'at each EFM8') | D56: side follows the AGM cell; x/y from the pre-v3 sketch, floorplan v3 re-plans | D67: C2D / C2CK as 0.35/0.20 test vias at the EFM8 (bench recovery only)"
   },
   "esc3_c2": {
    "side": "F",
@@ -258,7 +258,7 @@
     -12.9,
     -11.1
    ],
-   "src": "spec \u00a710 (sketch v4) | D65: one plug-ready land J13 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC4 FET side (B), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
+   "src": "spec §10 (sketch v4) | D65: one plug-ready land J13 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC4 FET side (B), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
    "size_mm": [
     5.1,
     1.7
@@ -274,7 +274,7 @@
     -7.0,
     -3.0
    ],
-   "src": "spec \u00a710 (sketch v4) | D65: one plug-ready land J10 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC3 FET side (F), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
+   "src": "spec §10 (sketch v4) | D65: one plug-ready land J10 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC3 FET side (F), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
    "size_mm": [
     5.1,
     1.7
@@ -290,7 +290,7 @@
     11.1,
     12.9
    ],
-   "src": "spec \u00a710 (sketch v4) | D65: one plug-ready land J4 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC1 FET side (F), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
+   "src": "spec §10 (sketch v4) | D65: one plug-ready land J4 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC1 FET side (F), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
    "size_mm": [
     5.1,
     1.7
@@ -306,7 +306,7 @@
     4.5,
     8.5
    ],
-   "src": "spec \u00a710 (sketch v4) | D65: one plug-ready land J7 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC2 FET side (B), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
+   "src": "spec §10 (sketch v4) | D65: one plug-ready land J7 (lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5) on the ESC2 FET side (B), centred on the middle package, hole row at cell Y +2.80; land-side courtyard 5.1 x 1.7, far-side DNP header reservation 5.8 x 3.5 (cell X +-2.90, Y 0.60..4.10); x/y from the pre-v3 sketch, floorplan v3 re-plans",
    "size_mm": [
     5.1,
     1.7
@@ -322,7 +322,7 @@
     10.4,
     12.4
    ],
-   "src": "spec \u00a710: B+ x -7.6..-4.6, B- x -4.0..-1.0, THT both sides"
+   "src": "spec §10: B+ x -7.6..-4.6, B- x -4.0..-1.0, THT both sides"
   },
   "vtx_rtc": {
    "side": "F",
@@ -334,7 +334,7 @@
     -7.85,
     -1.45
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "vtx_xtal": {
    "side": "F",
@@ -346,7 +346,7 @@
     -11.6,
     -8.3
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "vtx_pa": {
    "side": "F",
@@ -358,7 +358,7 @@
     -10.8,
     -6.4
    ],
-   "src": "spec \u00a710: PA + both 1.0 mm VCC rings"
+   "src": "spec §10: PA + both 1.0 mm VCC rings"
   },
   "vtx_dcblock": {
    "side": "F",
@@ -370,7 +370,7 @@
     -6.4,
     -4.0
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "vtx_bpf": {
    "side": "F",
@@ -382,7 +382,7 @@
     -12.5,
     -11.6
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "vtx_ufl": {
    "side": "F",
@@ -394,7 +394,7 @@
     -12.5,
     -8.5
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "vtx_pwr": {
    "side": "F",
@@ -406,7 +406,7 @@
     -6.2,
     -1.75
    ],
-   "src": "spec \u00a710: VTX LDO, PA reference, drive stage (right edge front)"
+   "src": "spec §10: VTX LDO, PA reference, drive stage (right edge front)"
   },
   "nor": {
    "side": "F",
@@ -418,7 +418,7 @@
     4.7,
     10.1
    ],
-   "src": "spec \u00a710 (sketch v4) | D66: U13 PY25Q128HA-DFH-IR USON-8 3x3 (courtyard 3.70 x 3.20) + C65 at pin 8 + R50; on SPI0 next to the RP2354A, >= 3 mm from the RX antenna hole; floorplan v3 re-plans"
+   "src": "spec §10 (sketch v4) | D66: U13 PY25Q128HA-DFH-IR USON-8 3x3 (courtyard 3.70 x 3.20) + C65 at pin 8 + R50; on SPI0 next to the RP2354A, >= 3 mm from the RX antenna hole; floorplan v3 re-plans"
   },
   "imu": {
    "side": "F",
@@ -430,7 +430,7 @@
     1.45,
     4.05
    ],
-   "src": "spec \u00a710: gyro + 1.8 V LDO"
+   "src": "spec §10: gyro + 1.8 V LDO"
   },
   "o4_switch": {
    "side": "F",
@@ -442,7 +442,7 @@
     7.85,
     10.1
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "pads_user": {
    "side": "F",
@@ -454,7 +454,7 @@
     -1.25,
     1.25
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "pads_hd": {
    "side": "F",
@@ -466,7 +466,7 @@
     4.25,
     7.65
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "pads_cam": {
    "side": "F",
@@ -478,7 +478,7 @@
     -0.8,
     3.2
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "pads_ledbz": {
    "side": "F",
@@ -490,7 +490,7 @@
     10.4,
     12.9
    ],
-   "src": "spec \u00a710 (sketch v4) | D63: row GND LED 5V BZ- (4 pads with J33), inboard near the HD column, >= 6 mm from AE1; floorplan v3 resizes and places it"
+   "src": "spec §10 (sketch v4) | D63: row GND LED 5V BZ- (4 pads with J33), inboard near the HD column, >= 6 mm from AE1; floorplan v3 resizes and places it"
   },
   "ant_hole": {
    "side": "F",
@@ -502,7 +502,7 @@
     6.5,
     6.5
    ],
-   "src": "spec \u00a74.10/\u00a710: hole centre; copper keepout r 1.6 L1-L5, bottom part keepout r 3.0"
+   "src": "spec §4.10/§10: hole centre; copper keepout r 1.6 L1-L5, bottom part keepout r 3.0"
   },
   "mount_left": {
    "side": "F",
@@ -514,7 +514,7 @@
     -12.875,
     -12.875
    ],
-   "src": "spec \u00a77 hole centre"
+   "src": "spec §7 hole centre"
   },
   "mount_rear": {
    "side": "F",
@@ -526,7 +526,7 @@
     12.875,
     12.875
    ],
-   "src": "spec \u00a77 hole centre"
+   "src": "spec §7 hole centre"
   },
   "mount_right": {
    "side": "F",
@@ -538,7 +538,7 @@
     12.875,
     12.875
    ],
-   "src": "spec \u00a77 hole centre"
+   "src": "spec §7 hole centre"
   },
   "fc_core": {
    "side": "B",
@@ -550,7 +550,7 @@
     -2.25,
     5.15
    ],
-   "src": "spec \u00a710: RP2354A land; its passives, LEDs and the translator pack around it (preview fc_b -3.2..9.05 / -5.2..9.05)"
+   "src": "spec §10: RP2354A land; its passives, LEDs and the translator pack around it (preview fc_b -3.2..9.05 / -5.2..9.05)"
   },
   "fc_xtal": {
    "side": "B",
@@ -562,7 +562,7 @@
     -4.65,
     -2.55
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "rx_mcu": {
    "side": "B",
@@ -574,7 +574,7 @@
     -12.6,
     -7.2
    ],
-   "src": "spec \u00a710: ESP32 land; passives pack around it (preview rx_b 1.2..8.1 / -12.95..-2.7)"
+   "src": "spec §10: ESP32 land; passives pack around it (preview rx_b 1.2..8.1 / -12.95..-2.7)"
   },
   "radio": {
    "side": "B",
@@ -586,7 +586,7 @@
     1.75,
     6.15
    ],
-   "src": "spec \u00a710: SX1280 land; passives pack around it (preview radio_b -9.3..-2.6 / -0.4..8.0)"
+   "src": "spec §10: SX1280 land; passives pack around it (preview radio_b -9.3..-2.6 / -0.4..8.0)"
   },
   "radio_tcxo": {
    "side": "B",
@@ -598,7 +598,7 @@
     5.35,
     7.05
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "radio_lpf": {
    "side": "B",
@@ -610,7 +610,7 @@
     3.5,
     4.6
    ],
-   "src": "spec \u00a710 (sketch v4)"
+   "src": "spec §10 (sketch v4)"
   },
   "hd_gate": {
    "side": "B",
@@ -622,7 +622,7 @@
     -7.0,
     -4.0
    ],
-   "src": "spec \u00a710: under the RTC6705"
+   "src": "spec §10: under the RTC6705"
   },
   "boost": {
    "side": "B",
@@ -634,7 +634,7 @@
     -4.4,
     -1.75
    ],
-   "src": "spec \u00a710: TPS61022 + 2520 L + 5 caps; >= 2 mm from ESC2 groups (H2)"
+   "src": "spec §10: TPS61022 + 2520 L + 5 caps; >= 2 mm from ESC2 groups (H2)"
   },
   "pwr_mux": {
    "side": "B",
@@ -646,7 +646,7 @@
     -6.9,
     -2.45
    ],
-   "src": "spec \u00a710: mux, +3.3V LDO, +5V cap, camera filter"
+   "src": "spec §10: mux, +3.3V LDO, +5V cap, camera filter"
   },
   "power_entry": {
    "side": "B",
@@ -658,7 +658,7 @@
     8.1,
     10.1
    ],
-   "src": "spec \u00a710: shunt + INA186 inboard of the battery pads"
+   "src": "spec §10: shunt + INA186 inboard of the battery pads"
   },
   "power_entry_bulk": {
    "side": "B",
@@ -670,7 +670,7 @@
     9.8,
     12.1
    ],
-   "src": "spec \u00a710: TVS / pad bulk"
+   "src": "spec §10: TVS / pad bulk"
   },
   "osd": {
    "side": "B",
@@ -682,7 +682,7 @@
     5.5,
     9.05
    ],
-   "src": "P2 decides near the video path (spec \u00a710); preview packing region (scratchpad preview/parts.py)"
+   "src": "P2 decides near the video path (spec §10); preview packing region (scratchpad preview/parts.py)"
   },
   "test_fc": {
    "side": "B",
@@ -694,7 +694,7 @@
     -9.05,
     9.05
    ],
-   "src": "P2: near the MCU / ESP32 (spec \u00a710); preview packing region (scratchpad preview/parts.py) | D67: TP9 FCB, TP12 CLK, TP13 DIO as 0.35/0.20 test vias (courtyard 0.56), no silk; TP10 GND and TP11 RXB removed"
+   "src": "P2: near the MCU / ESP32 (spec §10); preview packing region (scratchpad preview/parts.py) | D67: TP9 FCB, TP12 CLK, TP13 DIO as 0.35/0.20 test vias (courtyard 0.56), no silk; TP10 GND and TP11 RXB removed"
   },
   "art": {
    "side": "B",
@@ -777,7 +777,7 @@
     5.6,
     3.5
    ],
-   "src": "D63/D64 IO-SET \u00a74.2: interior top site (front-right, between the ESC4 / ESC2 zones and the nose); H1/H3: >= 2 mm in 2D projection from every AGM package, phase island and motor pad on either side, no heat source under it (85 C part) or a logged scoped exemption (G3); >= 1 mm from the 5.8 GHz line, outside RF_VTX_UFL and the Wi-Fi keep-out, >= 6 mm from AE1; mating face (+y of the footprint) toward the nose with a CAM_PLUG_ZONE rule area in front of it (plug width x about 2 mm; SUR mated length 3.9 mm from the tail end) that bars every footprint except the CAM pads; silk 'CAM' + pin-1 mark inside the zone; floorplan v3 sets the position (placement priority 1 of the IO set, G2)"
+   "src": "D63/D64 IO-SET §4.2: interior top site (front-right, between the ESC4 / ESC2 zones and the nose); H1/H3: >= 2 mm in 2D projection from every AGM package, phase island and motor pad on either side, no heat source under it (85 C part) or a logged scoped exemption (G3); >= 1 mm from the 5.8 GHz line, outside RF_VTX_UFL and the Wi-Fi keep-out, >= 6 mm from AE1; mating face (+y of the footprint) toward the nose with a CAM_PLUG_ZONE rule area in front of it (plug width x about 2 mm; SUR mated length 3.9 mm from the tail end) that bars every footprint except the CAM pads; silk 'CAM' + pin-1 mark inside the zone; floorplan v3 sets the position (placement priority 1 of the IO set, G2)"
   },
   "rx_button": {
    "side": "F",
@@ -791,31 +791,6 @@
   }
  },
  "parts": [
-  {
-   "ref": "D1",
-   "block": "power",
-   "sheet": "power",
-   "value": "SMF5.0A",
-   "rating": null,
-   "manufacturer": "Littelfuse",
-   "mpn": "SMF5.0A",
-   "lcsc": "C151296",
-   "package": "SOD-123FL",
-   "footprint": "lib:SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense",
-   "symbol": "lib:SMF5.0A",
-   "side": "F",
-   "region": "power_entry_bulk",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "CSA+",
-    "GND"
-   ],
-   "notes": "TVS on CSA+ at the pads, VBR 6.40-7.07 V, 200 W (\u00a74.1); fallback SMAJ5.0A (SMA) after V3b",
-   "lib_work": []
-  },
   {
    "ref": "C1",
    "block": "power",
@@ -838,7 +813,7 @@
     "CSA+",
     "GND"
    ],
-   "notes": "pad bulk 1/2 on CSA+ (\u00a74.1); [PU]; outside the ESC quarters",
+   "notes": "pad bulk 1/2 on CSA+ (§4.1); [PU]; outside the ESC quarters",
    "lib_work": []
   },
   {
@@ -863,7 +838,7 @@
     "CSA+",
     "GND"
    ],
-   "notes": "pad bulk 2/2 on CSA+ (\u00a74.1); [PU]; outside the ESC quarters",
+   "notes": "pad bulk 2/2 on CSA+ (§4.1); [PU]; outside the ESC quarters",
    "lib_work": []
   },
   {
@@ -919,76 +894,6 @@
     "GND"
    ],
    "notes": "[PU] current amp gain 100, 50 mV/A with 0.5 mOhm, ibata_scale 500; REF to GND",
-   "lib_work": []
-  },
-  {
-   "ref": "R2",
-   "block": "power",
-   "sheet": "power",
-   "value": "1k",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0201FR-071KL",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:R_0201_0603Metric_L",
-   "symbol": "Device:R",
-   "side": "F",
-   "region": "power_entry",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "SHUNT_SENSE_P"
-   ],
-   "notes": "INA186 IN+ series (matched input RC, OpenAIO root / OpenESC values moved to 0201)",
-   "lib_work": []
-  },
-  {
-   "ref": "R3",
-   "block": "power",
-   "sheet": "power",
-   "value": "1k",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0201FR-071KL",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:R_0201_0603Metric_L",
-   "symbol": "Device:R",
-   "side": "F",
-   "region": "power_entry",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "SHUNT_SENSE_N"
-   ],
-   "notes": "INA186 IN- series (matched input RC)",
-   "lib_work": []
-  },
-  {
-   "ref": "C5",
-   "block": "power",
-   "sheet": "power",
-   "value": "1uF",
-   "rating": "10V X5R",
-   "manufacturer": "Murata",
-   "mpn": "GRM033R61A105ME44D",
-   "lcsc": "C76935",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_L",
-   "symbol": "Device:C",
-   "side": "F",
-   "region": "power_entry",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [],
-   "notes": "INA186 differential IN+/IN- (input RC); [PU]",
    "lib_work": []
   },
   {
@@ -1194,7 +1099,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-0747KL",
-   "lcsc": null,
+   "lcsc": "C138139",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -1218,7 +1123,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-076K2L",
-   "lcsc": null,
+   "lcsc": "C295814",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -1266,7 +1171,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-0727K4L",
-   "lcsc": null,
+   "lcsc": "C273316",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -1330,7 +1235,7 @@
     "+5V",
     "GND"
    ],
-   "notes": "+5V hold-up at the mux output (P4-3); X6S -55..105 C, one 10 uF line for the whole board (spec \u00a74.8)",
+   "notes": "+5V hold-up at the mux output (P4-3); X6S -55..105 C, one 10 uF line for the whole board (spec §4.8)",
    "lib_work": []
   },
   {
@@ -1355,7 +1260,7 @@
     "+5V_USB",
     "GND"
    ],
-   "notes": "TPS2116 VIN1 (+5V_USB) input cap at the VIN1 pin (spec \u00a74.2, D24); 10 uF X6S 0402 per D52 BR-20 (U3 sat 1.6 mm from an ESC4 FET on the v2 floorplan: X6S); D57: +5V_USB is now the SGM40661 (U24) output, so VIN1 only sees the 2 ms soft turn-on (cap stays at the VIN1 pin per TI \u00a710)",
+   "notes": "TPS2116 VIN1 (+5V_USB) input cap at the VIN1 pin (spec §4.2, D24); 10 uF X6S 0402 per D52 BR-20 (U3 sat 1.6 mm from an ESC4 FET on the v2 floorplan: X6S); D57: +5V_USB is now the SGM40661 (U24) output, so VIN1 only sees the 2 ms soft turn-on (cap stays at the VIN1 pin per TI §10)",
    "lib_work": []
   },
   {
@@ -1366,7 +1271,7 @@
    "rating": "28V OVP 4A",
    "manufacturer": "SG Micro",
    "mpn": "SGM40661YG/TR",
-   "lcsc": null,
+   "lcsc": "C3294703",
    "package": "WLCSP-6 1.30x0.94 P0.40",
    "footprint": "lib:WLCSP-6_L1.30-W0.94-P0.40_SGM40661",
    "symbol": "lib:SGM40661YG",
@@ -1486,7 +1391,7 @@
    "rating": null,
    "manufacturer": "Murata",
    "mpn": "BLM03PX121SN1D",
-   "lcsc": null,
+   "lcsc": "C525479",
    "package": "0201",
    "footprint": "lib:L_0201_0603Metric_L",
    "symbol": "Device:FerriteBead",
@@ -1525,132 +1430,7 @@
     "+5V_CAM",
     "GND"
    ],
-   "notes": "camera 5 V after the ferrite (CAM 5V pad); X6S -55..105 C, one 10 uF line for the whole board (spec \u00a74.8)",
-   "lib_work": []
-  },
-  {
-   "ref": "U5",
-   "block": "power",
-   "sheet": "power",
-   "value": "TPS22810",
-   "rating": null,
-   "manufacturer": "Texas Instruments",
-   "mpn": "TPS22810DRVR",
-   "lcsc": null,
-   "package": "WSON-6 2x2 (DRV)",
-   "footprint": "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L",
-   "symbol": "lib:TPS22810DRVR",
-   "side": "B",
-   "region": "o4_switch",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+5V_BST",
-    "+5V_HD",
-    "/POWER/U5_CT",
-    "/POWER/U5_EN",
-    "GND"
-   ],
-   "notes": "O4 Lite load switch +5V_BST -> +5V_HD (D53 BR-10: ahead of the TPS2116, USB cannot reach the O4 by topology); QOD tied to VOUT; EN = FC GPIO27 AND the cell threshold (R9/R10/R87/C129); CIN: C17 deleted (P4 critique): the boost output caps C8-C11 (20-28 uF effective) are the input capacitor (TPS22810 DS 10.3, CIN optional, 1 uF usually sufficient) under the P5 placement condition: U5 VIN within 3 mm of C8-C11 or U3 VIN2 on the +5V_BST copper (tools/check_p5_conditions.py; floorplan v3: 6.1 mm, so P5 moves U5 or puts back a 1 uF 0201 CIN, GRM033R61A105ME44D); P4 critique r4 (D83): DRV WSON-6 2x2 replaces the DBV SOT-23-6 by the smallest-package rule (the only reason to keep the DBV was stock, and D60 removed stock gates; TI orderable table: TPS22810DRVR Active): IMAX 3 A vs 2 A at TA 65 C (DS 7.3), RthJA 74.6 vs 182 C/W (DS 7.4; 0.11-0.17 W O4 loss -> +8-13 K instead of +20-31 K), about 4 mm2 less footprint on the bottom. Same die, same EN/UVLO, CT and QOD figures: the O4 enable math is unchanged. Pins 1 VOUT, 2 QOD, 3 CT, 4 GND, 5 EN/UVLO, 6 VIN (DS section 6); EP pin 7 tied to GND as on TI's TPS22810EVM (SLVUAY7B Fig. 1: U2 TPS22810DRV PAD 7 to GND 4). Same land as U21 LP5912-3.3DRVR (DRV0006A). Board: footprint swap at the next sync_pcb (the WSON fits inside the DBV site)",
-   "lib_work": []
-  },
-  {
-   "ref": "C16",
-   "block": "power",
-   "sheet": "power",
-   "value": "10nF",
-   "rating": "10V X7R",
-   "manufacturer": "Murata",
-   "mpn": "GRM033R71A103KA01D",
-   "lcsc": "C76941",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_L",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "o4_switch",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [],
-   "notes": "TPS22810 CT slew 10 nF (~4.7 V/ms); X7R per spec \u00a74.2 (CT)",
-   "lib_work": []
-  },
-  {
-   "ref": "R9",
-   "block": "power",
-   "sheet": "power",
-   "value": "33k",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0201FR-0733KL",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:R_0201_0603Metric_L",
-   "symbol": "Device:R",
-   "side": "F",
-   "region": "o4_switch",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+BATT",
-    "/POWER/U5_EN"
-   ],
-   "notes": "EN/UVLO divider top from +BATT (D52 BR-22): shed 2.80-3.09 V falling",
-   "lib_work": []
-  },
-  {
-   "ref": "R10",
-   "block": "power",
-   "sheet": "power",
-   "value": "18k",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0201FR-0718KL",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:R_0201_0603Metric_L",
-   "symbol": "Device:R",
-   "side": "F",
-   "region": "o4_switch",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "GND",
-    "/POWER/U5_EN"
-   ],
-   "notes": "EN/UVLO divider bottom (D52 BR-22)",
-   "lib_work": []
-  },
-  {
-   "ref": "D2",
-   "block": "power",
-   "sheet": "power",
-   "value": "BAS16LD",
-   "rating": null,
-   "manufacturer": "Nexperia",
-   "mpn": "BAS16LD,315",
-   "lcsc": "C841775",
-   "package": "SOD882D 1.0x0.6",
-   "footprint": "lib:Nexperia_SOD882D_L",
-   "symbol": "lib:D_BAS16LD",
-   "side": "B",
-   "region": "o4_switch",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "HD_EN",
-    "/POWER/U5_EN"
-   ],
-   "notes": "PINIO1 term, anode on O4_EN, cathode on HD_EN (GPIO27): pull-down only; low-leakage PN, not a Schottky (\u00a74.2)",
+   "notes": "camera 5 V after the ferrite (CAM 5V pad); X6S -55..105 C, one 10 uF line for the whole board (spec §4.8)",
    "lib_work": []
   },
   {
@@ -1679,56 +1459,6 @@
    "lib_work": []
   },
   {
-   "ref": "R87",
-   "block": "power",
-   "sheet": "power",
-   "value": "510k",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0201FR-07510KL",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:R_0201_0603Metric_L",
-   "symbol": "Device:R",
-   "side": "F",
-   "region": "o4_switch",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+5V_HD",
-    "/POWER/U5_EN"
-   ],
-   "notes": "O4 EN/UVLO hysteresis from +5V_HD (D34); 510k per D52 BR-22 (shed 2.80-3.09 V, on 3.27-3.77 V, hysteresis 0.333 V)",
-   "lib_work": []
-  },
-  {
-   "ref": "C129",
-   "block": "power",
-   "sheet": "power",
-   "value": "100nF",
-   "rating": "25V X6S",
-   "manufacturer": "Murata",
-   "mpn": "GRM033C81E104KE14D",
-   "lcsc": "C181047",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_L",
-   "symbol": "Device:C",
-   "side": "F",
-   "region": "o4_switch",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "GND",
-    "/POWER/U5_EN"
-   ],
-   "notes": "O4 EN/UVLO filter 100 nF (D34; tau 1.1 ms with the BR-22 divider)",
-   "lib_work": []
-  },
-  {
    "ref": "U6",
    "block": "esc1",
    "sheet": "esc_channel (ESC1)",
@@ -1736,7 +1466,7 @@
    "rating": null,
    "manufacturer": "Silicon Labs",
    "mpn": "EFM8BB51F16I-C-QFN20R",
-   "lcsc": null,
+   "lcsc": "C3232998",
    "package": "QFN-20 3x3",
    "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L",
    "symbol": "lib:EFM8BB51F16I-C-QFN20R",
@@ -1763,7 +1493,7 @@
     "/ESC1/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP1 C2D / TP2 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C23 within 4 mm of VDD pin 4 through the +BATT plane, C19 at the pin",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP §7.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP1 C2D / TP2 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C23 within 4 mm of VDD pin 4 through the +BATT plane, C19 at the pin",
    "lib_work": []
   },
   {
@@ -1872,7 +1602,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
+   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec §4.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
    "lib_work": []
   },
   {
@@ -1983,7 +1713,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -2008,7 +1738,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -2033,7 +1763,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -2181,7 +1911,7 @@
    "rating": null,
    "manufacturer": "Silicon Labs",
    "mpn": "EFM8BB51F16I-C-QFN20R",
-   "lcsc": null,
+   "lcsc": "C3232998",
    "package": "QFN-20 3x3",
    "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L",
    "symbol": "lib:EFM8BB51F16I-C-QFN20R",
@@ -2208,7 +1938,7 @@
     "/ESC2/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP3 C2D / TP4 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C29 within 4 mm of VDD pin 4 through the +BATT plane, C25 at the pin",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP §7.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP3 C2D / TP4 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C29 within 4 mm of VDD pin 4 through the +BATT plane, C25 at the pin",
    "lib_work": []
   },
   {
@@ -2317,7 +2047,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
+   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec §4.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
    "lib_work": []
   },
   {
@@ -2428,7 +2158,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -2453,7 +2183,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -2478,7 +2208,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -2626,7 +2356,7 @@
    "rating": null,
    "manufacturer": "Silicon Labs",
    "mpn": "EFM8BB51F16I-C-QFN20R",
-   "lcsc": null,
+   "lcsc": "C3232998",
    "package": "QFN-20 3x3",
    "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L",
    "symbol": "lib:EFM8BB51F16I-C-QFN20R",
@@ -2653,7 +2383,7 @@
     "/ESC3/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP5 C2D / TP6 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C35 within 4 mm of VDD pin 4 through the +BATT plane, C31 at the pin",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP §7.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP5 C2D / TP6 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C35 within 4 mm of VDD pin 4 through the +BATT plane, C31 at the pin",
    "lib_work": []
   },
   {
@@ -2762,7 +2492,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
+   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec §4.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
    "lib_work": []
   },
   {
@@ -2873,7 +2603,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -2898,7 +2628,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -2923,7 +2653,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -3071,7 +2801,7 @@
    "rating": null,
    "manufacturer": "Silicon Labs",
    "mpn": "EFM8BB51F16I-C-QFN20R",
-   "lcsc": null,
+   "lcsc": "C3232998",
    "package": "QFN-20 3x3",
    "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L",
    "symbol": "lib:EFM8BB51F16I-C-QFN20R",
@@ -3098,7 +2828,7 @@
     "/ESC4/RTX",
     "GND"
    ],
-   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP \u00a77.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP7 C2D / TP8 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C41 within 4 mm of VDD pin 4 through the +BATT plane, C37 at the pin",
+   "notes": "ESC MCU, I grade (TA/TJ 125 C), Bluejay BB51 layout A; LCSC = none (Digi-Key 7,228); land lib:QFN-20_3x3mm_P0.5mm_EFM8BB51 (P3, EFM8BB51 Table 7.2); pads of unused P0.0/P0.6/P0.7/P1.6 may be trimmed (PINMAP §7.3); EP Type VII via-in-pad; D56 cell: same side as its three AGM210MAP, rot 0 at cell (-1.60, -5.90), pins 7-10 toward the cell; gate fan-in slot L C_COM/C_PWM pins 8/9, M B_COM/B_PWM 10/11, R A_COM/A_PWM 13/14 (0.15 mm, package layer, no crossings); NextPCB turnkey sources it by MPN (D60); D67: NextPCB pre-programs Bluejay (BB51 layout A release hex) before reflow; C2 test vias TP7 C2D / TP8 C2CK for bench recovery only; BR-05 (amended): the slot-M hot-loop cap C41 within 4 mm of VDD pin 4 through the +BATT plane, C37 at the pin",
    "lib_work": []
   },
   {
@@ -3207,7 +2937,7 @@
     "+BATT",
     "GND"
    ],
-   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec \u00a74.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
+   "notes": "EFM8 VDD bypass at the pin; X6S -55..105 C (ESC quarters, PA); spec §4.3; D56 cell: 100 nF at VDD pin 4 / GND pin 3 with in-pad vias, cell (-4.05, -5.90)",
    "lib_work": []
   },
   {
@@ -3318,7 +3048,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -3343,7 +3073,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -3368,7 +3098,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -3527,7 +3257,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "[PU] FC MCU, 2 MB in-package flash; NextPCB turnkey sources it by MPN (D60); EP Type VII via-in-pad; order stepping A3 or later (RP2350-E9 pad leakage, fixed in A3: the boot-state table and the inverted-RX pull-down rely on it; IO-SET \u00a72.2)",
+   "notes": "[PU] FC MCU, 2 MB in-package flash; NextPCB turnkey sources it by MPN (D60); EP Type VII via-in-pad; order stepping A3 or later (RP2350-E9 pad leakage, fixed in A3: the boot-state table and the inverted-RX pull-down rely on it; IO-SET §2.2)",
    "lib_work": []
   },
   {
@@ -3750,7 +3480,7 @@
     "+3.3V",
     "GND"
    ],
-   "notes": "IOVDD pin 45 + ADC_AVDD pin 44 (D52 BR-08): at pin 44 (RP2350 DS \u00a76.1.5)",
+   "notes": "IOVDD pin 45 + ADC_AVDD pin 44 (D52 BR-08): at pin 44 (RP2350 DS §6.1.5)",
    "lib_work": []
   },
   {
@@ -3875,7 +3605,7 @@
     "+1.1V",
     "GND"
    ],
-   "notes": "+1.1V rail at VREG_FB (PINMAP \u00a73; house sheet has two); [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V); P5 condition (RP2350 DS 6.3.8.1 'Don't place any of CIN/LX/COUT on the opposite side'): on U10's side within 3 mm of its pin (C58 49, L2 48, C56 50, C57 46), checked by tools/check_p5_conditions.py SMPS (floorplan v3 has them on B: placement stage moves them to F with SW1 / D8)",
+   "notes": "+1.1V rail at VREG_FB (PINMAP §3; house sheet has two); [PU]; 0402 for DC bias (0201 4.7 uF keeps ~30-40 % at 3.3 V); P5 condition (RP2350 DS 6.3.8.1 'Don't place any of CIN/LX/COUT on the opposite side'): on U10's side within 3 mm of its pin (C58 49, L2 48, C56 50, C57 46), checked by tools/check_p5_conditions.py SMPS (floorplan v3 has them on B: placement stage moves them to F with SW1 / D8)",
    "lib_work": []
   },
   {
@@ -3884,11 +3614,11 @@
    "sheet": "rp2350a",
    "value": "4.7uF",
    "rating": "10V X5R",
-   "manufacturer": "Samsung Electro-Mechanics",
-   "mpn": "CL05A475MP5NRNC",
-   "lcsc": "C23733",
-   "package": "0402",
-   "footprint": "lib:C_0402_1005Metric_L",
+   "manufacturer": "Murata",
+   "mpn": "GRM035R60J475ME15D",
+   "lcsc": "C335103",
+   "package": "0201",
+   "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
    "side": "B",
    "region": "fc_core",
@@ -3900,7 +3630,7 @@
     "+1.1V",
     "GND"
    ],
-   "notes": "second +1.1V 4.7 uF at DVDD pin 23 (RP2350 DS 6.3.8 recommendation, house OpenFC-Lite-Mini fits two; ruling 2026-10-09, P4 integration 2026-10-09); place at pin 23 on the U10 side; [PU]; 0402 for DC bias",
+   "notes": "second +1.1V 4.7 uF at DVDD pin 23 (RP2350 DS 6.3.8 recommendation, house OpenFC-Lite-Mini fits two; ruling 2026-10-09, P4 integration 2026-10-09); place at pin 23 on the U10 side; [PU]; 0402 for DC bias 0402->0201 (owner review 2026-10-11, DC-bias margin at <=3.3 V).",
    "lib_work": []
   },
   {
@@ -3961,7 +3691,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-0727RL",
-   "lcsc": null,
+   "lcsc": "C273268",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -3986,7 +3716,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-0727RL",
-   "lcsc": null,
+   "lcsc": "C273268",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -3999,7 +3729,7 @@
    "nets": [
     "USB_D_P"
    ],
-   "notes": "USB_DP series near pin 52 -> J31 pin 3 D+ through the D7 ESD array (net USB_D_P); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design \u00a75.1), 90 Ohm diff pair over unbroken ground, length-matched (D33); P5 condition scripted (tools/check_p5_conditions.py USB: R42 / R43 within 2 mm of pins 52 / 51)",
+   "notes": "USB_DP series near pin 52 -> J31 pin 3 D+ through the D7 ESD array (net USB_D_P); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design §5.1), 90 Ohm diff pair over unbroken ground, length-matched (D33); P5 condition scripted (tools/check_p5_conditions.py USB: R42 / R43 within 2 mm of pins 52 / 51)",
    "lib_work": []
   },
   {
@@ -4010,7 +3740,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-0727RL",
-   "lcsc": null,
+   "lcsc": "C273268",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -4023,7 +3753,7 @@
    "nets": [
     "USB_D_N"
    ],
-   "notes": "USB_DM series near pin 51 -> J31 pin 2 D- through the D7 ESD array (net USB_D_N); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design \u00a75.1), 90 Ohm diff pair over unbroken ground, length-matched (D33); P5 condition scripted (tools/check_p5_conditions.py USB: R42 / R43 within 2 mm of pins 52 / 51)",
+   "notes": "USB_DM series near pin 51 -> J31 pin 2 D- through the D7 ESD array (net USB_D_N); 27 R within 1-2 mm of the RP2354A pin (RP2350 HW design §5.1), 90 Ohm diff pair over unbroken ground, length-matched (D33); P5 condition scripted (tools/check_p5_conditions.py USB: R42 / R43 within 2 mm of pins 52 / 51)",
    "lib_work": []
   },
   {
@@ -4034,7 +3764,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -4134,7 +3864,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -4246,7 +3976,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "[PU] gyro on the universal LGA-14 land (pins 2/3/10/11 NC: BMI270 DS Table 22 forbids GND on ASDx/ASCx, ICM-42688-P pins 2/3/10/11 RESV; pin 9 GPIO6); ICM-42688-P (TDK, C1850418) qualified on the same land for the 5+5 fly-off; rotated 90 deg; >= 4 mm from FET groups, >= 5 mm from boost and ripple MLCCs (\u00a711)",
+   "notes": "[PU] gyro on the universal LGA-14 land (pins 2/3/10/11 NC: BMI270 DS Table 22 forbids GND on ASDx/ASCx, ICM-42688-P pins 2/3/10/11 RESV; pin 9 GPIO6); ICM-42688-P (TDK, C1850418) qualified on the same land for the 5+5 fly-off; rotated 90 deg; >= 4 mm from FET groups, >= 5 mm from boost and ripple MLCCs (§11)",
    "lib_work": []
   },
   {
@@ -4351,7 +4081,7 @@
    "rating": "2.7-3.6 V, fC 133 MHz (READ 80 MHz), -40..85 C",
    "manufacturer": "Puya",
    "mpn": "PY25Q128HA-DFH-IR",
-   "lcsc": null,
+   "lcsc": "C53467986",
    "package": "USON-8 3x3x0.55 P0.8",
    "footprint": "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA_L",
    "symbol": "lib:PY25Q128HA-DFH-IR",
@@ -4521,7 +4251,7 @@
    "rating": "50V C0G",
    "manufacturer": "Murata",
    "mpn": "GRM0335C1H101JA01D",
-   "lcsc": null,
+   "lcsc": "C76922",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
@@ -4535,7 +4265,7 @@
     "VIDEO_IN",
     "GND"
    ],
-   "notes": "100 pF shunt at the video entry (CAM pad), layout rule \u00a711",
+   "notes": "100 pF shunt at the video entry (CAM pad), layout rule §11",
    "lib_work": []
   },
   {
@@ -4546,7 +4276,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-07820RL",
-   "lcsc": null,
+   "lcsc": "C155736",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -4596,7 +4326,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-07270RL",
-   "lcsc": null,
+   "lcsc": "C295793",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -4732,7 +4462,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "ELRS RX MCU + VTX control (devVTXSPI/MSPVTX); SiP with 4 MB flash, 40 MHz crystal and CAP network inside (D52 BR-01); -40..85 C (no placement halo, D69); alternate ESP32-PICO-V3-02; pins per PINMAP \u00a76 (vtx_mosi GPIO14, vtx_amp_pwm GPIO13, D53); 0.5 mm pitch, no fine-pitch EQ; D58: LNA_IN (pin 2) -> RF_WIFI 50 Ohm CPW (<= 8 mm) -> pi network C133 / R88 / C132 -> AE2 chip antenna; stock ELRS auto Wi-Fi (D25 --no-auto-wifi reversed); Wi-Fi TX peak 370 mA (DS Table 19) on the shared LP5912: accepted (ruling 2026-10-09: bench-only Wi-Fi mode, +3.3V peak about 0.48 A inside 500 mA; root power table, README)",
+   "notes": "ELRS RX MCU + VTX control (devVTXSPI/MSPVTX); SiP with 4 MB flash, 40 MHz crystal and CAP network inside (D52 BR-01); -40..85 C (no placement halo, D69); alternate ESP32-PICO-V3-02; pins per PINMAP §6 (vtx_mosi GPIO14, vtx_amp_pwm GPIO13, D53); 0.5 mm pitch, no fine-pitch EQ; D58: LNA_IN (pin 2) -> RF_WIFI 50 Ohm CPW (<= 8 mm) -> pi network C133 / R88 / C132 -> AE2 chip antenna; stock ELRS auto Wi-Fi (D25 --no-auto-wifi reversed); Wi-Fi TX peak 370 mA (DS Table 19) on the shared LP5912: accepted (ruling 2026-10-09: bench-only Wi-Fi mode, +3.3V peak about 0.48 A inside 500 mA; root power table, README)",
    "lib_work": []
   },
   {
@@ -4768,7 +4498,7 @@
    "rating": "jumper",
    "manufacturer": "Yageo",
    "mpn": "RC0201JR-070RL",
-   "lcsc": null,
+   "lcsc": "C106228",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -4818,7 +4548,7 @@
    "rating": "2.4 GHz chip antenna",
    "manufacturer": "Johanson Technology",
    "mpn": "2450AT07A0100001T",
-   "lcsc": null,
+   "lcsc": "C17531353",
    "package": "1.0x0.5x0.37 (0402) 4-term",
    "footprint": "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100",
    "symbol": "lib:2450AT07A0100001T",
@@ -4955,7 +4685,7 @@
    "silk": null,
    "nets": [
     "RX_LED",
-    "+3.3V"
+    "+5V"
    ],
    "notes": "[PU] ELRS status LED on ESP32 GPIO22 (RX_LED), -20..85 C",
    "lib_work": []
@@ -5202,31 +4932,6 @@
     "GND"
    ],
    "notes": "SX1280 VBAT_IO pin 11; [PU]",
-   "lib_work": []
-  },
-  {
-   "ref": "C92",
-   "block": "rx",
-   "sheet": "rx_esp32_sx1281",
-   "value": "1uF",
-   "rating": "10V X5R",
-   "manufacturer": "Murata",
-   "mpn": "GRM033R61A105ME44D",
-   "lcsc": "C76935",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_L",
-   "symbol": "Device:C",
-   "side": "F",
-   "region": "radio",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "+3.3V",
-    "GND"
-   ],
-   "notes": "radio +3.3V local; [PU]",
    "lib_work": []
   },
   {
@@ -5479,7 +5184,7 @@
    "rating": "50V C0G",
    "manufacturer": "Murata",
    "mpn": "GRM0335C1H101JA01D",
-   "lcsc": null,
+   "lcsc": "C76922",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
@@ -5504,7 +5209,7 @@
    "rating": "50V C0G",
    "manufacturer": "Murata",
    "mpn": "GRM0335C1H101JA01D",
-   "lcsc": null,
+   "lcsc": "C76922",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
@@ -5529,7 +5234,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071K2L",
-   "lcsc": null,
+   "lcsc": "C327393",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -5554,7 +5259,7 @@
    "rating": "50V C0G",
    "manufacturer": "Murata",
    "mpn": "GRM0335C1H330JA01D",
-   "lcsc": null,
+   "lcsc": "C76925",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
@@ -5579,7 +5284,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-07270RL",
-   "lcsc": null,
+   "lcsc": "C295793",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -5629,7 +5334,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071K2L",
-   "lcsc": null,
+   "lcsc": "C327393",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -5653,7 +5358,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-07510KL",
-   "lcsc": null,
+   "lcsc": "C295805",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -5678,7 +5383,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-07560KL",
-   "lcsc": null,
+   "lcsc": "C295807",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -5753,7 +5458,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-0747KL",
-   "lcsc": null,
+   "lcsc": "C138139",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -5817,7 +5522,7 @@
     "+3.3V_VTX",
     "GND"
    ],
-   "notes": "+3.3V_VTX bulk at the RTC6705; X6S -55..105 C, one 10 uF line for the whole board (spec \u00a74.8)",
+   "notes": "+3.3V_VTX bulk at the RTC6705; X6S -55..105 C, one 10 uF line for the whole board (spec §4.8)",
    "lib_work": []
   },
   {
@@ -5957,7 +5662,7 @@
    "rating": "50V C0G",
    "manufacturer": "Murata",
    "mpn": "GRM0335C1H101JA01D",
-   "lcsc": null,
+   "lcsc": "C76922",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
@@ -6007,7 +5712,7 @@
    "rating": "50V C0G",
    "manufacturer": "Murata",
    "mpn": "GRM0335C1H101JA01D",
-   "lcsc": null,
+   "lcsc": "C76922",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
@@ -6057,7 +5762,7 @@
    "rating": "50V C0G",
    "manufacturer": "Murata",
    "mpn": "GRM0335C1H101JA01D",
-   "lcsc": null,
+   "lcsc": "C76922",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
@@ -6107,7 +5812,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6132,7 +5837,7 @@
    "rating": "50V C0G",
    "manufacturer": "Murata",
    "mpn": "GRM0335C1H101JA01D",
-   "lcsc": null,
+   "lcsc": "C76922",
    "package": "0201",
    "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
@@ -6147,31 +5852,6 @@
     "GND"
    ],
    "notes": "PA DET RC cap",
-   "lib_work": []
-  },
-  {
-   "ref": "TH1",
-   "block": "vtx",
-   "sheet": "vtx",
-   "value": "10k NTC B3380",
-   "rating": null,
-   "manufacturer": "Murata",
-   "mpn": "NCP03XH103F05RL",
-   "lcsc": "C98098",
-   "package": "0201",
-   "footprint": "lib:R_0201_0603Metric_L",
-   "symbol": "Device:Thermistor_NTC",
-   "side": "F",
-   "region": "vtx_pa",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PA_NTC",
-    "GND"
-   ],
-   "notes": "PA temperature (ESP32 GPIO34, PA_NTC) in the PA ring; -40..125 C",
    "lib_work": []
   },
   {
@@ -6196,7 +5876,7 @@
     "PA_VCC",
     "GND"
    ],
-   "notes": "PA VCC shared bulk, no ferrite (\u00a74.8); X6S -55..105 C, one 10 uF line for the whole board (spec \u00a74.8)",
+   "notes": "PA VCC shared bulk, no ferrite (§4.8); X6S -55..105 C, one 10 uF line for the whole board (spec §4.8)",
    "lib_work": []
   },
   {
@@ -6247,32 +5927,6 @@
    "lib_work": []
   },
   {
-   "ref": "R67",
-   "block": "vtx",
-   "sheet": "vtx",
-   "value": "0R",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0402JR-070RL",
-   "lcsc": "C60485",
-   "package": "0402 on 3-pad land",
-   "footprint": "lib:R_0402_Selector_3Pad_L",
-   "symbol": "lib:R_Selector_3Pin",
-   "side": "F",
-   "region": "vtx_pwr",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PA_VCC",
-    "+BATT",
-    "+5V"
-   ],
-   "notes": "PA VCC selector: one 0402 0 R between the centre (PA_VCC) and +BATT (default) or +5V; a single 0402 cannot bridge both sides (\u00a74.2); footprint anchor at the pad 1-2 midpoint (P4 critique): the KiCad CPL centres the 0402 across pads 1-2 (+BATT, default); fitting 2-3 (+5V) is a hand rework",
-   "lib_work": []
-  },
-  {
    "ref": "U21",
    "block": "vtx",
    "sheet": "vtx",
@@ -6296,28 +5950,6 @@
     "VTX_PWR_EN"
    ],
    "notes": "[PU] +3.3V_VTX for the RTC6705 and the drive stage (D12); EN = VTX_PWR_EN",
-   "lib_work": []
-  },
-  {
-   "ref": "C121",
-   "block": "vtx",
-   "sheet": "vtx",
-   "value": "1uF",
-   "rating": "10V X5R",
-   "manufacturer": "Murata",
-   "mpn": "GRM033R61A105ME44D",
-   "lcsc": "C76935",
-   "package": "0201",
-   "footprint": "lib:C_0201_0603Metric_L",
-   "symbol": "Device:C",
-   "side": "B",
-   "region": "vtx_pwr",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [],
-   "notes": "LP5912 (+3.3V_VTX) output; [PU]",
    "lib_work": []
   },
   {
@@ -6353,7 +5985,7 @@
    "rating": null,
    "manufacturer": "Texas Instruments",
    "mpn": "LP5907SNX-2.85/NOPB",
-   "lcsc": null,
+   "lcsc": "C2872477",
    "package": "X2SON-4 1x1",
    "footprint": "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense",
    "symbol": "lib:LP5907SNX-2.85",
@@ -6378,11 +6010,11 @@
    "sheet": "vtx",
    "value": "4.7uF",
    "rating": "10V X5R",
-   "manufacturer": "Samsung Electro-Mechanics",
-   "mpn": "CL05A475MP5NRNC",
-   "lcsc": "C23733",
-   "package": "0402",
-   "footprint": "lib:C_0402_1005Metric_L",
+   "manufacturer": "Murata",
+   "mpn": "GRM035R60J475ME15D",
+   "lcsc": "C335103",
+   "package": "0201",
+   "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
    "side": "F",
    "region": "vtx_pwr",
@@ -6394,7 +6026,7 @@
     "+3.3V_VTX",
     "GND"
    ],
-   "notes": "LP5907 (U22) CIN on +3.3V_VTX at U22 IN (D53 BR-03): 4.7 uF 0402 X5R, about 2.6 uF effective at 3.3 V (>= 2 uF at -20 % and hot) against LP5907 DS SNVS798Q 5.6 / 7.2.2.4 (> 0.7 uF effective over all conditions, <= 1 cm from IN, same side best); the 1 uF 0201 (about 0.45 uF) failed it and C108 serves the RTC6705 (P4 critique r3, the bom_plan fallback applied); +3.3V_VTX then 16.0 uF nominal / about 6.8 uF effective, inside the LP5912 10 uF max",
+   "notes": "LP5907 (U22) CIN on +3.3V_VTX at U22 IN (D53 BR-03): 4.7 uF 0402 X5R, about 2.6 uF effective at 3.3 V (>= 2 uF at -20 % and hot) against LP5907 DS SNVS798Q 5.6 / 7.2.2.4 (> 0.7 uF effective over all conditions, <= 1 cm from IN, same side best); the 1 uF 0201 (about 0.45 uF) failed it and C108 serves the RTC6705 (P4 critique r3, the bom_plan fallback applied); +3.3V_VTX then 16.0 uF nominal / about 6.8 uF effective, inside the LP5912 10 uF max 0402->0201 (owner review 2026-10-11, DC-bias margin at <=3.3 V).",
    "lib_work": []
   },
   {
@@ -6403,11 +6035,11 @@
    "sheet": "vtx",
    "value": "4.7uF",
    "rating": "10V X5R",
-   "manufacturer": "Samsung Electro-Mechanics",
-   "mpn": "CL05A475MP5NRNC",
-   "lcsc": "C23733",
-   "package": "0402",
-   "footprint": "lib:C_0402_1005Metric_L",
+   "manufacturer": "Murata",
+   "mpn": "GRM035R60J475ME15D",
+   "lcsc": "C335103",
+   "package": "0201",
+   "footprint": "lib:C_0201_0603Metric_L",
    "symbol": "Device:C",
    "side": "F",
    "region": "vtx_pwr",
@@ -6416,32 +6048,7 @@
    "exclude_from_pos": false,
    "silk": null,
    "nets": [],
-   "notes": "LP5907 output (PA_VREF) 4.7 uF 0402 X5R (D52 BR-26: > 0.7 uF effective)",
-   "lib_work": []
-  },
-  {
-   "ref": "R70",
-   "block": "vtx",
-   "sheet": "vtx",
-   "value": "10k",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0201FR-0710KL",
-   "lcsc": "C106225",
-   "package": "0201",
-   "footprint": "lib:R_0201_0603Metric_L",
-   "symbol": "Device:R",
-   "side": "B",
-   "region": "vtx_pwr",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "PA_NTC",
-    "+3.3V"
-   ],
-   "notes": "PA_NTC divider top to +3.3V (with the NTC); [PU]",
+   "notes": "LP5907 output (PA_VREF) 4.7 uF 0402 X5R (D52 BR-26: > 0.7 uF effective) 0402->0201 (owner review 2026-10-11, DC-bias margin at <=3.3 V).",
    "lib_work": []
   },
   {
@@ -6467,7 +6074,7 @@
     "/VTX/Q27_C",
     "/VTX/Q27_E"
    ],
-   "notes": "PA drive stage, one PNP in current mode (D52 BR-02, spec \u00a74.8): base from the 2-pole RC, emitter through Re (R73) to +3.3V_VTX, collector -> R65 -> L3 -> PAOUT1; SOT883 on the shared DFN-3L land (pin 1 B, 2 E, 3 C); <= 114 mW at the top step (Re 10R, hFE 475, 85 C, ngspice) vs Ptot 130 mW at 85 C ambient (500 K/W): V5 logs Q27 case temperature at the top step hot, Re 15R / 27R is the lever",
+   "notes": "PA drive stage, one PNP in current mode (D52 BR-02, spec §4.8): base from the 2-pole RC, emitter through Re (R73) to +3.3V_VTX, collector -> R65 -> L3 -> PAOUT1; SOT883 on the shared DFN-3L land (pin 1 B, 2 E, 3 C); <= 114 mW at the top step (Re 10R, hFE 475, 85 C, ngspice) vs Ptot 130 mW at 85 C ambient (500 K/W): V5 logs Q27 case temperature at the top step hot, Re 15R / 27R is the lever",
    "lib_work": []
   },
   {
@@ -6478,7 +6085,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6528,7 +6135,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6629,7 +6236,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6654,7 +6261,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6679,7 +6286,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-071KL",
-   "lcsc": null,
+   "lcsc": "C138165",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6694,31 +6301,6 @@
     "VTX_SPI_DATA"
    ],
    "notes": "VTX_SPI.DATA series at ESP32 GPIO14 (pin 17, D53): no back-power of the unpowered RTC6705 (F21, P4-4)",
-   "lib_work": []
-  },
-  {
-   "ref": "R84",
-   "block": "vtx",
-   "sheet": "vtx",
-   "value": "270R",
-   "rating": null,
-   "manufacturer": "Yageo",
-   "mpn": "RC0201FR-07270RL",
-   "lcsc": null,
-   "package": "0201",
-   "footprint": "lib:R_0201_0603Metric_L",
-   "symbol": "Device:R",
-   "side": "F",
-   "region": "rx_mcu",
-   "dnp": false,
-   "exclude_from_bom": false,
-   "exclude_from_pos": false,
-   "silk": null,
-   "nets": [
-    "/VTX/VTX_PWR_EN",
-    "VTX_PWR_CTL"
-   ],
-   "notes": "VTX_PWR_EN series from ESP32 GPIO4 (VTX_PWR_CTL, D111 map; patched-ELRS power-down hook); 270R (fix2 2026-10-10, was 1k) so GPIO4 low holds EN at 0.09 V < LP5912 VEN(OFF) 0.3 V against R68 10k; the patched build drives GPIO4 open-drain (low = VTX off, released = on); a push-pull high against the HD gate (Q28 on) would be 12 mA / 40 mW in this 0201 (fault case only, firmware rule in PINMAP 6); [PU]",
    "lib_work": []
   },
   {
@@ -6743,7 +6325,7 @@
     "+3.3V",
     "/LED/D5_K"
    ],
-   "notes": "[PU] status LED0 (GPIO7, sink from +3.3V); house colour kept at 0402 (\u00a74.5)",
+   "notes": "[PU] status LED0 (GPIO7, sink from +3.3V); house colour kept at 0402 (§4.5)",
    "lib_work": []
   },
   {
@@ -6779,7 +6361,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-07150RL",
-   "lcsc": null,
+   "lcsc": "C295773",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6803,7 +6385,7 @@
    "rating": null,
    "manufacturer": "Yageo",
    "mpn": "RC0201FR-07150RL",
-   "lcsc": null,
+   "lcsc": "C295773",
    "package": "0201",
    "footprint": "lib:R_0201_0603Metric_L",
    "symbol": "Device:R",
@@ -6840,7 +6422,7 @@
    "nets": [
     "CSA+"
    ],
-   "notes": "battery + (BT2.0 pigtail, 22 AWG, user-fitted); plated D1.1 in a 3.0 x 2.0 pad, >= 12 power vias (0.35/0.20, D6); silk '+' 2.0 mm high and '1S' beside (\u00a713); docs alias B+; LINEUP A16: excluded from BOM, DNP",
+   "notes": "battery + (BT2.0 pigtail, 22 AWG, user-fitted); plated D1.1 in a 3.0 x 2.0 pad, >= 12 power vias (0.35/0.20, D6); silk '+' 2.0 mm high and '1S' beside (§13); docs alias B+; LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7088,7 +6670,7 @@
    "nets": [
     "VIDEO_IN"
    ],
-   "notes": "camera CVBS in; camera return enters L2 at the CAM GND pad (\u00a711); in parallel with the camera plug J32 (D63); LINEUP A16: excluded from BOM, DNP",
+   "notes": "camera CVBS in; camera return enters L2 at the CAM GND pad (§11); in parallel with the camera plug J32 (D63); LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
   },
   {
@@ -7158,7 +6740,7 @@
    "exclude_from_pos": true,
    "silk": "VHD",
    "nets": [
-    "+5V_HD"
+    "+5V_BST"
    ],
    "notes": "DJI O4 Lite supply (red) from the TPS22810; LINEUP A16: excluded from BOM, DNP",
    "lib_work": []
@@ -7258,7 +6840,7 @@
     "GND",
     "+5V_CAM"
    ],
-   "notes": "camera plug in parallel with the CAM pads J23-J25 (D63/D64, IO-SET row 3, MUST; BetaFPV C03 and the Matrix-recommended cameras use JST 0.8 mm). Pin 1 VIDEO_IN (-> TLV7031 + SN74LVC1G3157 OSD front end), 2 GND (video return into L2, spec \u00a711), 3 +5V_CAM (after FB1 + 10 uF), tabs 4/5 GND. Pin order is provisional until gate G1 (calipers + photo on a C03 lead and the MX2 CAM IN, before the P3 footprint freeze and P4): with GND in the middle a mirrored footprint puts 5 V on the camera video output. Side entry, mating face toward +y of the footprint; Fallback if G1 measures 1.0 mm: JST SM03B-SRSS-TB(LF)(SN) (LCSC C160403) on lib:CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W with OpenDrone:SM03B-SRSS-TB (same pins 1-5), +17-21 mm2. LCSC C265338 (34,331 stock, JLCPCB parts API 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
+   "notes": "camera plug in parallel with the CAM pads J23-J25 (D63/D64, IO-SET row 3, MUST; BetaFPV C03 and the Matrix-recommended cameras use JST 0.8 mm). Pin 1 VIDEO_IN (-> TLV7031 + SN74LVC1G3157 OSD front end), 2 GND (video return into L2, spec §11), 3 +5V_CAM (after FB1 + 10 uF), tabs 4/5 GND. Pin order is provisional until gate G1 (calipers + photo on a C03 lead and the MX2 CAM IN, before the P3 footprint freeze and P4): with GND in the middle a mirrored footprint puts 5 V on the camera video output. Side entry, mating face toward +y of the footprint; Fallback if G1 measures 1.0 mm: JST SM03B-SRSS-TB(LF)(SN) (LCSC C160403) on lib:CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W with OpenDrone:SM03B-SRSS-TB (same pins 1-5), +17-21 mm2. LCSC C265338 (34,331 stock, JLCPCB parts API 2026-10-09); NextPCB turnkey sources it by MPN (D60)",
    "lib_work": []
   },
   {
@@ -7371,7 +6953,7 @@
    "rating": "30 V 0.2 A",
    "manufacturer": "Diodes Incorporated",
    "mpn": "SDM02M30CLP3-7B",
-   "lcsc": null,
+   "lcsc": "C5244996",
    "package": "X2-DFN1006-3",
    "footprint": "lib:X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3",
    "symbol": "lib:SDM02M30CLP3-7B",
@@ -7894,7 +7476,7 @@
    "SKUBAAE010",
    "TPS22810DRVR"
   ],
-  "bom_reduction": "D52-D54 applied 2026-10-09 (main case, ESP32-PICO-V3 per D55; the \u00a75.1 D0WD-V3 fallback is withdrawn): BOM-REDUCTION \u00a72 baseline additions C128 (D24 VIN1), R87 / C129 (D34) and \u00a73 BR-01..BR-26",
+  "bom_reduction": "D52-D54 applied 2026-10-09 (main case, ESP32-PICO-V3 per D55; the §5.1 D0WD-V3 fallback is withdrawn): BOM-REDUCTION §2 baseline additions C128 (D24 VIN1), R87 / C129 (D34) and §3 BR-01..BR-26",
   "dnp_parts": 6,
   "dnp_only_lines": [
    "53047-0310",

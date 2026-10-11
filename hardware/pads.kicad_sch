@@ -392,7 +392,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.molex.com/pdm_docs/sd/530470310_sd.pdf"
+			(property "Datasheet" "https://web.archive.org/web/2024id_/https://www.molex.com/pdm_docs/sd/530470310_sd.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3119,7 +3119,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0470b14b-5f91-5cd0-b157-77d0173ff073")
-		(property "Reference" "#PWR241"
+		(property "Reference" "#PWR228"
 			(at 30.48 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -3179,7 +3179,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR241")
+					(reference "#PWR228")
 					(unit 1)
 				)
 			)
@@ -3458,7 +3458,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "23351a0b-872a-5dba-8e61-69a94ae0089c")
-		(property "Reference" "#PWR239"
+		(property "Reference" "#PWR226"
 			(at 367.03 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -3518,7 +3518,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR239")
+					(reference "#PWR226")
 					(unit 1)
 				)
 			)
@@ -3876,7 +3876,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "3c8ebcd5-3b67-586a-b4ff-fea35585feb1")
-		(property "Reference" "#PWR245"
+		(property "Reference" "#PWR232"
 			(at 167.64 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -3936,7 +3936,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR245")
+					(reference "#PWR232")
 					(unit 1)
 				)
 			)
@@ -4151,7 +4151,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "537578aa-d5b8-5e29-9aff-9a963915c54b")
-		(property "Reference" "#PWR246"
+		(property "Reference" "#PWR233"
 			(at 173.99 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -4211,7 +4211,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR246")
+					(reference "#PWR233")
 					(unit 1)
 				)
 			)
@@ -4304,7 +4304,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5977d0c5-eae4-5279-9d2b-fb69e61a010a")
-		(property "Reference" "#PWR247"
+		(property "Reference" "#PWR234"
 			(at 238.76 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -4315,7 +4315,7 @@
 				)
 			)
 		)
-		(property "Value" "+5V_HD"
+		(property "Value" "+5V_BST"
 			(at 238.76 130.556 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4364,7 +4364,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR247")
+					(reference "#PWR234")
 					(unit 1)
 				)
 			)
@@ -4381,7 +4381,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5b8951d6-0a42-5fd9-91f0-b8368872322d")
-		(property "Reference" "#FLG08"
+		(property "Reference" "#FLG07"
 			(at 382.27 56.515 0)
 			(hide yes)
 			(show_name no)
@@ -4441,7 +4441,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#FLG08")
+					(reference "#FLG07")
 					(unit 1)
 				)
 			)
@@ -4458,7 +4458,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5c2f38a5-6dcb-53d2-916f-234e58ccbfad")
-		(property "Reference" "#PWR244"
+		(property "Reference" "#PWR231"
 			(at 139.7 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -4518,7 +4518,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR244")
+					(reference "#PWR231")
 					(unit 1)
 				)
 			)
@@ -5045,7 +5045,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "976197ee-edf5-5efc-9505-6cdb6ad212ea")
-		(property "Reference" "#PWR240"
+		(property "Reference" "#PWR227"
 			(at 379.73 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -5105,7 +5105,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR240")
+					(reference "#PWR227")
 					(unit 1)
 				)
 			)
@@ -5122,7 +5122,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "9aa6664d-f3ef-5a79-95e4-9e2f53f32f31")
-		(property "Reference" "#PWR238"
+		(property "Reference" "#PWR225"
 			(at 347.98 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -5182,7 +5182,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR238")
+					(reference "#PWR225")
 					(unit 1)
 				)
 			)
@@ -5427,7 +5427,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "caa82f5c-2761-5ce2-8ae1-6ac357fa2997")
-		(property "Reference" "#PWR243"
+		(property "Reference" "#PWR230"
 			(at 129.54 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -5487,7 +5487,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR243")
+					(reference "#PWR230")
 					(unit 1)
 				)
 			)
@@ -5620,7 +5620,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "e4803243-619c-5a5d-aae1-8e37de8b2b2f")
-		(property "Reference" "#PWR242"
+		(property "Reference" "#PWR229"
 			(at 50.8 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -5680,7 +5680,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR242")
+					(reference "#PWR229")
 					(unit 1)
 				)
 			)
@@ -5849,7 +5849,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f53d7a8e-7d04-5d01-bd35-74e157a3940e")
-		(property "Reference" "#PWR248"
+		(property "Reference" "#PWR235"
 			(at 248.92 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -5909,7 +5909,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR248")
+					(reference "#PWR235")
 					(unit 1)
 				)
 			)
@@ -5926,7 +5926,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f86b1469-06da-5f83-834a-d1f59ede5bc5")
-		(property "Reference" "#PWR249"
+		(property "Reference" "#PWR236"
 			(at 170.18 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -5986,7 +5986,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/8d214749-72cf-5803-99b7-260f0c3f1838"
-					(reference "#PWR249")
+					(reference "#PWR236")
 					(unit 1)
 				)
 			)

@@ -1742,10 +1742,6 @@
       },
       {
         "netclass": "Power",
-        "pattern": "+5V_HD"
-      },
-      {
-        "netclass": "Power",
         "pattern": "+3.3V"
       },
       {
@@ -1779,10 +1775,6 @@
       {
         "netclass": "Power",
         "pattern": "/VBUS"
-      },
-      {
-        "netclass": "Power",
-        "pattern": "/VTX/PA_VCC"
       },
       {
         "netclass": "GND",
