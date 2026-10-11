@@ -6,13 +6,13 @@
     "source_sha256": {
       "OpenAIO-Whoop.kicad_sch": "06df774083f12c51674df40cb10ed5ba5dc875c9b071e13a4a8efa03e092897c",
       "blackbox.kicad_sch": "8b21797ddd054d07375866063350733ab981db947c9ebaeb7372bff0db0c00fa",
-      "esc_channel.kicad_sch": "99f48b256a2c36ccdf17a1ecc832157339e7fc20365e2da9d33b0929a828ca3a",
+      "esc_channel.kicad_sch": "3183df3f948c06762ca9a01e4dbd02801aca4f356ede041a50e557f0732e9220",
       "imu.kicad_sch": "3275b4aa4972ab48424b17853b4fd0f091fe9210007256da40f07316e9fdff87",
       "led.kicad_sch": "b34e94352d4bf6ce3ce42b4e2f3e34b75ac799858e61a815d332f76ad4bd94c2",
       "osd.kicad_sch": "10fa6c06d09753df42b75e52360dee57b741d82b599cc7e01bce4e9e2476ad85",
       "pads.kicad_sch": "0a0ba99e136dfb2e648bc45fa7a08029103c6aae340e8293d9f16556d7f8ce8f",
       "power.kicad_sch": "6c78a97ddf3292121de16818839e9be743ca2d5aa93315922074a8bb6b7c3b75",
-      "rp2350a.kicad_sch": "a43998219e01e6663887d73377131152b090a18e1e4dca4dafe3ddce389c669d",
+      "rp2350a.kicad_sch": "5d152b3207b238b06e994dd46bc1ca02eafff408f5dd622e4b3e16dc196275b6",
       "rx_esp32_sx1281.kicad_sch": "90cdcd9a3ffd95072f7825981a6989aa810c6a2004dee7a213194ce9607055d5",
       "vtx.kicad_sch": "4516e5bf733c71b9f1642b0cb62d79238a9fdf2ce882bfda19aa088d424ce760"
     }
@@ -284,9 +284,47 @@
       "datasheet": ""
     },
     {
+      "ref": "C22",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
       "ref": "C23",
       "block": "esc1",
       "sheet": "esc_channel (ESC1)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C24",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
       "value": "22uF",
       "manufacturer": "Murata",
       "mpn": "GRM188C80J226ME15D",
@@ -360,9 +398,47 @@
       "datasheet": ""
     },
     {
+      "ref": "C28",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
       "ref": "C29",
       "block": "esc2",
       "sheet": "esc_channel (ESC2)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C30",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
       "value": "22uF",
       "manufacturer": "Murata",
       "mpn": "GRM188C80J226ME15D",
@@ -436,9 +512,47 @@
       "datasheet": ""
     },
     {
+      "ref": "C34",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
       "ref": "C35",
       "block": "esc3",
       "sheet": "esc_channel (ESC3)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C36",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
       "value": "22uF",
       "manufacturer": "Murata",
       "mpn": "GRM188C80J226ME15D",
@@ -512,6 +626,25 @@
       "datasheet": ""
     },
     {
+      "ref": "C40",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
       "ref": "C41",
       "block": "esc4",
       "sheet": "esc_channel (ESC4)",
@@ -545,6 +678,25 @@
       "exclude_from_board": false,
       "nets": [
         "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C43",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
         "GND"
       ],
       "datasheet": ""
@@ -4296,24 +4448,6 @@
       "datasheet": ""
     },
     {
-      "ref": "TP9",
-      "block": "fc",
-      "sheet": "rp2350a",
-      "value": "FCB",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "footprint": "lib:TestPoint_Pad_D0.30mm_MicroVia_L",
-      "symbol": "Connector:TestPoint",
-      "dnp": false,
-      "exclude_from_bom": true,
-      "exclude_from_board": false,
-      "nets": [
-        "/FC_BOOT"
-      ],
-      "datasheet": ""
-    },
-    {
       "ref": "TP12",
       "block": "fc",
       "sheet": "rp2350a",
@@ -4964,16 +5098,16 @@
     }
   ],
   "summary": {
-    "parts_total": 250,
-    "bom_parts": 218,
+    "parts_total": 257,
+    "bom_parts": 226,
     "bom_lines": 76,
     "by_block": {
       "blackbox": 3,
-      "esc1": 17,
-      "esc2": 17,
-      "esc3": 17,
-      "esc4": 17,
-      "fc": 34,
+      "esc1": 19,
+      "esc2": 19,
+      "esc3": 19,
+      "esc4": 19,
+      "fc": 33,
       "imu": 7,
       "led": 4,
       "osd": 13,

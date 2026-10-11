@@ -4161,12 +4161,6 @@
 		(uuid "338a236b-9ec4-5e98-acc9-0ba049343d7c")
 	)
 	(junction
-		(at 123.19 198.12)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3a555e67-2e52-5fc3-943f-cf1b5d4f0144")
-	)
-	(junction
 		(at 330.2 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4586,16 +4580,6 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 198.12) (xy 123.19 198.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "39f68f06-825c-558f-8d7d-26204231a1fd")
-	)
-	(wire
-		(pts
 			(xy 388.62 189.23) (xy 396.24 189.23)
 		)
 		(stroke
@@ -4836,7 +4820,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 198.12) (xy 128.27 198.12)
+			(xy 118.11 198.12) (xy 128.27 198.12)
 		)
 		(stroke
 			(width 0)
@@ -11939,84 +11923,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/df951d63-8e6a-5171-a7c4-15005f1245fb"
 					(reference "Q26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 123.19 198.12 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "cb3734c0-9905-552b-b68f-352643ea085c")
-		(property "Reference" "TP9"
-			(at 124.46 193.675 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "FCB"
-			(at 124.46 195.58 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:TestPoint_Pad_D0.30mm_MicroVia_L"
-			(at 123.19 198.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 123.19 198.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 123.19 198.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9f3d2c81-104a-5adf-91aa-e875375e2779")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/df951d63-8e6a-5171-a7c4-15005f1245fb"
-					(reference "TP9")
 					(unit 1)
 				)
 			)

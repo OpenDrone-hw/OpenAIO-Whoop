@@ -37,27 +37,29 @@ provided by KiCad 10. Do not move `.pretty`, models or child sheets independentl
 | Physical layer | KiCad name | Use |
 | --- | --- | --- |
 | L1 | F.Cu | Top parts; RF, video, gyro and sense traces; short local power loops; digital escapes |
-| L2 | In1.Cu | GND reference plane. No tracks. Only intentional antenna and RF-pad cutouts |
-| L3 | In2.Cu | Digital signals and regulated supplies. No analog or RF signals; short gate escapes are permitted |
-| L4 | In3.Cu | Battery distribution and permitted digital signals. No analog, RF, gate, gyro or VTX-control signals |
-| L5 | In4.Cu | GND reference pour with short ESC gate and BEMF/neutral escapes only. No phase, battery or DShot tracks |
+| L2 | In1.Cu | Digital, gate and BEMF routing with local GND pours; continuous GND under outer RF, USB and video |
+| L3 | In2.Cu | Continuous GND reference plane; no tracks or non-GND zones |
+| L4 | In3.Cu | Battery and regulated supply distribution; local GND reference regions; no signal or phase tracks |
+| L5 | In4.Cu | Digital, gate and BEMF routing with local GND pours; continuous GND under outer RF, USB and video |
 | L6 | B.Cu | Bottom parts; local RF, video and power loops; short digital connections |
 
 ```mermaid
 flowchart TB
   L1["L1 F.Cu · components / RF / analog / local power"]
-  L2["L2 In1.Cu · continuous GND"]
-  L3["L3 In2.Cu · digital / regulated power"]
-  L4["L4 In3.Cu · battery / permitted digital"]
-  L5["L5 In4.Cu · GND + local ESC gate / BEMF"]
+  L2["L2 In1.Cu · signals / local GND"]
+  L3["L3 In2.Cu · continuous GND"]
+  L4["L4 In3.Cu · supplies / local GND"]
+  L5["L5 In4.Cu · signals / local GND"]
   L6["L6 B.Cu · components / RF / analog / local power"]
   L1 --- L2 --- L3 --- L4 --- L5 --- L6
 ```
 
-GND zones alone belong on L2 and L5. Keep uninterrupted reference copper under
-each RF, USB and video route. If an RF chain is placed on L6, reserve the L5
-area below it against the otherwise permitted ESC gate/BEMF tracks. Do not run
-those tracks beneath a bottom-side gyro or oscillator either.
+GND zones alone belong on L2, L3 and L5. Keep uninterrupted local reference
+copper on L2/L5 under each outer RF, USB and video route. Signal tracks on
+those layers must avoid these reserved corridors. Do not run gate or other
+switching traces beneath a gyro, oscillator or analog input. Use local GND
+regions on L4 where a bottom inner signal needs a quiet nearby reference;
+keep signal returns away from split supply boundaries.
 
 The nominal 1.0 mm stackup is in `hardware/tools/stackup.json`. Outer dielectric
 spacing is 0.077 mm. The stored RF starting geometry is 0.105 mm trace / 0.15 mm

@@ -444,37 +444,36 @@ RULES = [
       "the ESP32-D0WD-V3 land, set as the footprint attribute 'allow soldermask bridges' on that footprint only",
       "(P3). Not active until then."], None),
 
-    ("In1 solid GND; In4 only ESC gates and BEMF",
-     ["L2 is the continuous GND reference. L5 allows short ESC gate and BEMF escapes in GND.",
-      "Phase power, DShot and programming nets do not qualify just because they are in an ESC sheet."],
+    ("In2 solid GND: no tracks",
+     ["Four routing layers: F, In1, In4 and B. In2 is the continuous ground reference.",
+      "A ground zone supplies continuity; routed traces must not split this plane."],
      "  (constraint disallow track)\n"
-     "  (condition \"A.Layer == 'In1.Cu' || (A.Layer == 'In4.Cu' && "
-     "!(A.NetName == '/ESC?/?_PWM' || A.NetName == '/ESC?/?_COM' || "
-     "A.NetName == '/ESC?/BEMF_?' || A.NetName == '/ESC?/NEUTRAL'))\")"),
+     "  (condition \"A.Layer == 'In2.Cu'\")"),
 
-    ("In1 and In4 GND zones only",
-     ["Both reference planes carry only GND zones. L5 ESC escapes are tracks, not phase pours.",
-      "Through pads and legal via antipads remain allowed."],
+    ("In1 In2 In4: GND zones only",
+     ["In2 is the ground plane. In1/In4 use local ground pours around signal routes.",
+      "Reserve unbroken In1/In4 ground under outer RF, USB and video routes."],
      "  (constraint disallow zone)\n"
-     "  (condition \"(A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu') && A.NetName != 'GND'\")"),
+     "  (condition \"(A.Layer == 'In1.Cu' || A.Layer == 'In2.Cu' || A.Layer == 'In4.Cu') && A.NetName != 'GND'\")"),
 
-    ("In2: no analog or RF; In3: no analog, RF or gate (D85)",
-     ["Spec 8.2 / 11, relaxed by D85 for routing closure: video and sense (Analog) and RF stay on L1 over L2 or L6",
-      "over L5; the FET gates (Gate) may use In2 (L3) but not In3 (L4), which is the +BATT plane itself."],
+    ("In3: supply and ground distribution only",
+     ["In3 distributes battery and regulated supply islands, with ground where needed for a local return.",
+      "Signals and motor phases do not use this plane."],
      "  (constraint disallow track zone)\n"
-     "  (condition \"(A.Layer == 'In2.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF')) || "
-     "(A.Layer == 'In3.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate'))\")"),
+     "  (condition \"A.Layer == 'In3.Cu' && A.NetName != 'GND' && A.NetClass != 'VBAT' && A.NetClass != 'Power'\")"),
 
-    ("In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)",
-     ["Spec 8.2 / 8.4, relaxed by D85: the gyro bus (SPI1, GYRO_*), VTX SPI and the digital PA controls may use In2",
-      "but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET) stay off both inner",
-      "signal layers. Net names compared with wildcards; '.' is literal; underscore forms of the buses matched too."],
+    ("Inner signal layers: no battery phase RF or sensitive analog",
+     ["In1/In4 carry digital signals and local ESC gates/BEMF. Battery and phase copper stays off them.",
+      "Video, Kelvin, regulator feedback, oscillator and RF nets remain on an outer face over local ground."],
      "  (constraint disallow track zone)\n"
-     "  (condition \"(A.Layer == 'In3.Cu' && (A.NetName == '*SPI1.*' || "
-     "A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || "
-     "A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')) || "
-     "((A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SHUNT_SENSE_*' || "
-     "A.NetName == '*/PA_DET*'))\")"),
+     "  (condition \"(A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu') && "
+     "(A.NetClass == 'VBAT' || A.NetClass == 'Phase' || A.NetClass == 'RF' || A.NetClass == 'Analog')\")"),
+
+    ("Regulator switch nodes: outer layers only",
+     ["The RP core buck switch node and boost switch node stay inside their component-side hot loops."],
+     "  (constraint disallow track zone)\n"
+     "  (condition \"A.Layer != 'F.Cu' && A.Layer != 'B.Cu' && "
+     "(A.NetName == '/RP2350A/VREG_LX' || A.NetName == '/POWER/U2_SW')\")"),
 
     ("RF: no vias",
      ["Keep each RF chain on one outer face over its GND reference.",
@@ -1360,8 +1359,8 @@ def build_board(path, P):
     ds = b.GetDesignSettings()
     if b.GetCopperLayerCount() != 6:
         b.SetCopperLayerCount(6)
-    for lname, kind in (("In1.Cu", P.LT_POWER), ("In4.Cu", P.LT_MIXED), ("In3.Cu", P.LT_MIXED),
-                        ("In2.Cu", P.LT_SIGNAL), ("F.Cu", P.LT_SIGNAL), ("B.Cu", P.LT_SIGNAL)):
+    for lname, kind in (("In1.Cu", P.LT_MIXED), ("In4.Cu", P.LT_MIXED), ("In3.Cu", P.LT_POWER),
+                        ("In2.Cu", P.LT_POWER), ("F.Cu", P.LT_SIGNAL), ("B.Cu", P.LT_SIGNAL)):
         b.SetLayerType(b.GetLayerID(lname), kind)
     ds.m_HasStackup = True
     ds.m_SolderMaskExpansion = mm(MASK_EXPANSION)
@@ -1441,13 +1440,13 @@ def build_board(path, P):
         "STACKUP  NextPCB 06101103-1080, 6L HDI 1+4+1, 1.0 mm, FR-4 Dk 4.2",
         "L1 F.Cu  1 oz   parts, RF 50R CPWG 0.105/0.15, hot loops, fan-out",
         "   1080 0.077   laser microvia L1-L2 0.10/0.25, in pad",
-        "L2 In1   1 oz*  solid GND plane, no tracks",
+        "L2 In1   1 oz*  digital / gate / BEMF signals, local GND reference",
         "   1080 0.077   (* plated foil)",
-        "L3 In2   1 oz   signal layer, refs L2; no Analog / RF",
+        "L3 In2   1 oz   continuous GND, no tracks",
         "   core 0.536   buried via L2-L5 0.15/0.35 (power 0.20/0.40)",
-        "L4 In3   1 oz   +BATT plane, refs L5; no Analog / RF / gate / gyro",
+        "L4 In3   1 oz   battery / regulated supplies / local GND; no signals",
         "   1080 0.077",
-        "L5 In4   1 oz*  GND pour + ESC gate/BEMF routing (B side, one microvia)",
+        "L5 In4   1 oz*  digital / gate / BEMF signals, local GND reference",
         "   1080 0.077   laser microvia L5-L6 0.10/0.25, in pad",
         "L6 B.Cu  1 oz   parts, fan-out",
         "ROUTING  every via in a pad or under a body; no through or blind vias",
@@ -1747,7 +1746,7 @@ def selftest(P, rf):
     case("In1 track under the VTX chain (keepout RF_VTX_CHAIN)", KEEPOUT_HIT, (c0[0], c0[1] - 1.5), r=0.8)
     via(c0[0], c0[1] - 3.0, 0.35, 0.20, "/T/V8"); case("signal via in RF_VTX_CHAIN", "RF_VTX_CHAIN: GND vias only", (c0[0], c0[1] - 3.0), r=0.4)
     via(c1[0] + 0.6, c1[1], 0.35, 0.20, "GND"); case("GND via in RF_VTX_CHAIN", None, (c1[0] + 0.6, c1[1]), r=0.3)
-    trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 non-ESC track (plane warning)", "In1 solid GND; In4 GND pour with ESC routing only", (-2.5, 3))
+    trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 digital track allowed", None, (-2.5, 3))
     ax, ay = RX_ANT_HOLE
     trk(ax + 0.2, ay - 1.1, ax + 1.0, ay - 1.1, 0.1, "/T/SIG4", "B.Cu"); case("signal track in RF_RX_ANT_L6", "RF_RX_ANT_L6: only the RF feed", (ax + 0.6, ay - 1.1))
     trk(ax + 0.2, ay + 0.9, ax + 1.0, ay + 0.9, W, "/RX/ANT_FEED", "B.Cu"); case("RF feed in RF_RX_ANT_L6", None, (ax + 0.6, ay + 0.9), r=0.3)
@@ -1760,18 +1759,19 @@ def selftest(P, rf):
     trk(ax + 1.9, ay + 2.0, ax + 2.3, ay + 2.0, 0.1, "/FLASH_CS"); case("NOR chip select /FLASH_CS 2.9 mm from the antenna hole", "SPI0 3 mm from the RX antenna hole", (ax + 2.1, ay + 2.0), r=0.4)
     fx, fy = RX_FEED[0]
     via(fx - 0.3, fy + 0.15, 0.35, 0.20, "/T/V9"); case("signal via in RF_RX_FEED", "RF_RX_FEED: GND vias only", (fx - 0.3, fy + 0.15), r=0.4)
-    # inner-layer bans (In2 / In3), D85
-    trk(6.0, 1.0, 7.0, 1.0, 0.1, "/OSD/VIDEO_IN", "In2.Cu"); case("Analog track on In2", "In2: no analog or RF; In3: no analog, RF or gate (D85)", (6.5, 1.0), r=0.6)
-    trk(6.0, 2.0, 7.0, 2.0, 0.15, "/ESC1/A_COM", "In3.Cu"); case("Gate track on In3", "In2: no analog or RF; In3: no analog, RF or gate (D85)", (6.5, 2.0), r=0.6)
-    trk(10.0, 2.0, 11.0, 2.0, 0.15, "/ESC2/B_PWM", "In2.Cu"); case("Gate track on In2 (allowed, D85)", None, (10.5, 2.0), r=0.6)
-    trk(6.0, 3.0, 7.0, 3.0, 0.1, "/FC/SPI1.SCK", "In2.Cu"); case("gyro SPI1 track on In2 (allowed, D85)", None, (6.5, 3.0), r=0.6)
-    trk(8.0, 1.0, 9.0, 1.0, 0.1, "/RX/VTX_SPI.CLK", "In2.Cu"); case("VTX SPI track on In2 (allowed, D85)", None, (8.5, 1.0), r=0.6)
-    trk(8.0, 2.0, 9.0, 2.0, 0.1, "/FC/SPI0.MISO", "In2.Cu"); case("blackbox SPI0 track on In2 (allowed)", None, (8.5, 2.0), r=0.6)
-    trk(6.0, 4.0, 7.0, 4.0, 0.1, "/SPI1_SCK", "In3.Cu"); case("schematic gyro net /SPI1_SCK on In3", "In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)", (6.5, 4.0), r=0.6)
-    trk(8.0, 4.0, 9.0, 4.0, 0.1, "/VTX_SPI_CLK", "In2.Cu"); case("schematic VTX net /VTX_SPI_CLK on In2 (allowed, D85)", None, (8.5, 4.0), r=0.6)
-    trk(6.0, 5.0, 7.0, 5.0, 0.1, "/VTX/U19_SPICLK", "In3.Cu"); case("RTC6705-side VTX net /VTX/U19_SPICLK on In3", "In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)", (6.5, 5.0), r=0.6)
-    trk(10.0, 4.0, 11.0, 4.0, 0.1, "/VTX/PA_DET", "In2.Cu"); case("PA_DET sense on In2", "In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)", (10.5, 4.0), r=0.6)
-    trk(8.0, 5.0, 9.0, 5.0, 0.1, "/SPI0_MISO", "In2.Cu"); case("schematic blackbox net /SPI0_MISO on In2 (allowed)", None, (8.5, 5.0), r=0.6)
+    # Four routing layers, one continuous ground plane, one supply layer.
+    for index, netname in enumerate(("/OSD/VIDEO_IN", "/ESC2/B_PWM", "/SPI1_SCK", "/VTX_SPI_CLK", "/SPI0_MISO", "/VTX/PA_DET")):
+        yy = 1.0 + index * 0.6
+        trk(6.0, yy, 7.0, yy, 0.15, netname, "In2.Cu")
+        case(netname + " forbidden on In2", "In2 solid GND: no tracks", (6.5, yy), r=0.25)
+    for index, netname in enumerate(("/ESC1/A_COM", "/SPI1_SCK", "/VTX/U19_SPICLK")):
+        yy = 1.0 + index
+        trk(8.0, yy, 9.0, yy, 0.15, netname, "In3.Cu")
+        case(netname + " forbidden on In3", "In3: supply and ground distribution only", (8.5, yy), r=0.3)
+    trk(10.0, 2.0, 11.0, 2.0, 0.15, "/ESC2/B_PWM", "In1.Cu")
+    case("ESC gate allowed on In1", None, (10.5, 2.0), r=0.3)
+    trk(10.0, 3.0, 11.0, 3.0, 0.15, "/SPI1_SCK", "In4.Cu")
+    case("gyro SPI allowed on In4", None, (10.5, 3.0), r=0.3)
     # battery-to-shunt corridor
     (sx0, sy0), (sx1, sy1) = SHUNT_CORRIDOR
     smx = (sx0 + sx1) / 2

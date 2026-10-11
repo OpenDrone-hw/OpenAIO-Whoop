@@ -25,9 +25,10 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
 
 ## Layout rules
 
-- In1 is a solid GND plane. In4 is a GND pour that carries only ESC gate and BEMF
-  routing (D121). In2 carries no analog or RF; In3 carries no analog, RF, gate,
-  gyro or VTX control nets. The DRU enforces the global layer restrictions. Named local areas are absent
+- F/In1/In4/B carry signals. In2 is a solid GND plane without tracks; In3
+  carries supply and GND distribution only. In1/In4 ground pours must remain
+  unbroken below outer RF, USB and video routes. RF, video, Kelvin and switch
+  nodes stay on the component face. The DRU enforces global layer restrictions. Named local areas are absent
   until placement; create them using research/ROUTING.md before routing.
 - HDI 1+4+1: laser microvias L1-L2 and L5-L6 only, buried vias L2-L5 staggered
   from them, no stacking. Vias sit inside same-net pads; a free-standing via
