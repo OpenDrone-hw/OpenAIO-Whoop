@@ -1,33 +1,33 @@
 {
-  "timestamp_utc": "2026-10-12T04:39:51.834273+00:00",
-  "purpose": "Partial routing checkpoint: complete flash bus, receiver control, boot/debug, camera and power entry connections; nine native open connections remain",
+  "timestamp_utc": "2026-10-12T05:15:08.332557+00:00",
+  "purpose": "Partial routing checkpoint: power connections, OSD sync, LED output and optional gyro clock completed; four native open connections remain",
   "manufacturing_ready": false,
   "source_sha256": {
-    "hardware/OpenAIO-Whoop.kicad_pcb": "3d0c485e12222fa2ade480989c6fb0025453025a9a5903a9b4db5a23909eccc9",
-    "hardware/OpenAIO-Whoop.kicad_pro": "bf4163a17c173b9d977019617e1f2c344519e4646403662696a131fd00930379",
+    "hardware/OpenAIO-Whoop.kicad_pcb": "11eb76ba52704d9b56030975ba95662a22f510c9b01583136d5ee2897d36bcd1",
+    "hardware/OpenAIO-Whoop.kicad_pro": "7703a2d3b6a72497f950cebc8f98abf0f58ec980a3d3f1be4d3aeca1bb303bb5",
     "hardware/OpenAIO-Whoop.kicad_dru": "edf6231c914330a4a993efb252812dcc2a3b323e13aafd35cb6ccaca03ea722f",
     "hardware/rx_esp32_sx1281.kicad_sch": "36e10d1594c270f7a68ee17fd20a0912d92f117d1f2134eb030d3b5f17f80f13",
     "hardware/OpenAIO-Whoop.kicad_sch": "2e10549463689cfe68d22d728073264047e2c300b2ee497e6b0c3dbd0e087bc6",
     "hardware/pads.kicad_sch": "314aedd4e6f3088bd39a2ea15654940eb4eeda707a313454b2212ccdc6f03193",
-    "firmware/betaflight/configs/OPENAIO_WHOOP/config.h": "e42953fc86679b4ebf07f83f05b74dc5fbab361fd54b763908f4b6736e433ced",
+    "firmware/betaflight/configs/OPENAIO_WHOOP/config.h": "dd3392f7d6cf194cc829c845f3cc665b546c34f5cba81889336bb96ffdfb15c3",
     "firmware/betaflight/configs/OPENAIO_WHOOP/config.c": "87accc2c072b5f3e0bbfb0be8360adff9d56188ba5791c59d16fd43564e98455",
-    "hardware/rp2350a.kicad_sch": "710231b27bdd117a4b9e62f6de5739254fd81b62a910d327b4609e5af2e0a7ff",
+    "hardware/rp2350a.kicad_sch": "4f15d6b9b9126be2206d4fa417ec9f3d9f9a45e75cceefd3c72697e9bdfc4f53",
     "hardware/tools/check_fc_io.py": "5241bef511fa9c0647c1f9e98b9e90e3907d4d3a8e8ce9f2b2f1e0d6848fe367",
     "firmware/expresslrs/board-layout.json": "7b052ee0f51594d65417c651bf540d28b0055722f179c9e0debf7f93d4b76b0b",
     "firmware/expresslrs/README.md": "439e5ace877e91af6abc3ca81d43720473467eddcc59c1bcff0e49549374ffe3",
-    "research/PINMAP.md": "1e506c91cf222ab52ae84a5b57063a48def97b8fbbd53a74cfd300311a380272",
+    "research/PINMAP.md": "2720526962ae1d83411fb4d6d5880a2af2e8e7c2d4eea5e4e33b566661d80d84",
     "AGENTS.md": "2c827bbac0bfb35f96b5bb8787072bbb6c49227ef0d7ca29dc90c7a95e43a958",
     "hardware/tools/check_rx_io.py": "3dfa13242e987b94969befbd966af091954e309a8825daa9c58ce46879d8cd50",
     "hardware/bom_plan.json": "781c466e06dda3a963040a5aa8217564bd13cf041912aa50defd06783ea866c1",
-    "hardware/sch_contract.json": "9e33ab5fecd63ce5fab7cd37f148a020e0d132dd31338cdd3d5ff522bb2a7283",
+    "hardware/sch_contract.json": "8a46520f5bcb0ae977fcb2915ad4ef3b5549b02c5508714f0ff81b42a6e820e0",
     "hardware/blackbox.kicad_sch": "e8f03472fbfdc1a4f83035adb0c537644c769e17e30d350808f2c48fdf3972b8",
     "hardware/lib.kicad_sym": "c5852f9d51eca7d871c5331d42595fb58a7acefacd94f48adc29aaae6aa15545",
     "hardware/lib.pretty/USON-8_3x3mm_P0.8mm_EP_PY25Q128HA_L.kicad_mod": "36abffdf276702ac73112787fd4e9a56ec586458bee23bc3f522a157cbcedd46",
     "hardware/tools/land_specs/USON-8_3x3mm_P0.8mm_EP_PY25Q128HA_L.json": "99a1afbdd39751f3fef74e14191919e491e29a1d9310ee3b24c8bb2a8a3607be",
-    "hardware/tools/setup_board.py": "1a0412f66b1acfee1f521bceaad1d23533304778882ed6ebd5269d3dcdfa61c7",
-    "hardware/tools/check_netlist.py": "494a4eb6b8e8dc09f7ec8a2d18fc7d02c72ad539403ad4819041fb67001997f6",
+    "hardware/tools/setup_board.py": "23d70b2a495e8d9ebfdb858ba4b38c0075785a14e5d324749c4018d994c9941b",
+    "hardware/tools/check_netlist.py": "da1d3f48a19fc14437db69c18c26c146ba78facbfae6e3b461080750a3869072",
     "hardware/tools/check_rule_behavior.py": "44bcac70196e4a934e27173ca1f9a8cdb33a478a485dd5f464f565e847a1cca4",
-    "research/ROUTING.md": "ef3f912ed133f685b722121ee1678fbb9052c55cff8b2a1eedf02ceebd87c523",
+    "research/ROUTING.md": "8ac467d56af3755abd4d81ce1baa3831fa14c6372a3b75932b463642cd08592a",
     "hardware/vtx.kicad_sch": "926e120f3a6152af13d4709f679ef6cc397da312ef68142a55d279d39cbe4b72",
     "research/DESIGN-SPEC.md": "93d857704854ad7b0a69135c5ec482de418adc77eefd303cd2a3d34bc213f1f3"
   },
@@ -37,11 +37,11 @@
       "items_not_allowed": 4,
       "track_dangling": 1,
       "track_not_centered_on_via": 1,
-      "connection_width": 4,
+      "connection_width": 5,
       "courtyards_overlap": 139,
       "track_width": 12
     },
-    "open_connections": 9,
+    "open_connections": 4,
     "schematic_parity_findings": 0
   },
   "native_erc": {
@@ -9915,27 +9915,198 @@
       ],
       "net": "/VBUS",
       "connected": true
+    },
+    {
+      "name": "OSD_SYNC_COMPLETE",
+      "pads": [
+        [
+          "U10",
+          "35"
+        ],
+        [
+          "U15",
+          "1"
+        ]
+      ],
+      "net": "/OSD_SYNC",
+      "connected": true
+    },
+    {
+      "name": "LED_STRIP_COMPLETE",
+      "pads": [
+        [
+          "J20",
+          "1"
+        ],
+        [
+          "U10",
+          "43"
+        ]
+      ],
+      "net": "/LED_STRIP",
+      "connected": true
+    },
+    {
+      "name": "GYRO_CLKIN_COMPLETE",
+      "pads": [
+        [
+          "U10",
+          "17"
+        ],
+        [
+          "U11",
+          "9"
+        ]
+      ],
+      "net": "/GYRO_CLKIN",
+      "connected": true
+    },
+    {
+      "name": "BOOST_SUPPLY_COMPLETE",
+      "pads": [
+        [
+          "C10",
+          "1"
+        ],
+        [
+          "C11",
+          "1"
+        ],
+        [
+          "C8",
+          "1"
+        ],
+        [
+          "C9",
+          "1"
+        ],
+        [
+          "D10",
+          "2"
+        ],
+        [
+          "J26",
+          "1"
+        ],
+        [
+          "R4",
+          "1"
+        ],
+        [
+          "U2",
+          "3"
+        ],
+        [
+          "U2",
+          "6"
+        ]
+      ],
+      "net": "+5V_BST",
+      "connected": true
+    },
+    {
+      "name": "VTX3V3_SUPPLY_COMPLETE",
+      "pads": [
+        [
+          "C100",
+          "1"
+        ],
+        [
+          "C101",
+          "1"
+        ],
+        [
+          "C102",
+          "1"
+        ],
+        [
+          "C103",
+          "1"
+        ],
+        [
+          "C108",
+          "1"
+        ],
+        [
+          "C122",
+          "1"
+        ],
+        [
+          "C98",
+          "1"
+        ],
+        [
+          "R61",
+          "1"
+        ],
+        [
+          "R73",
+          "1"
+        ],
+        [
+          "R89",
+          "1"
+        ],
+        [
+          "U19",
+          "8"
+        ],
+        [
+          "U19",
+          "9"
+        ],
+        [
+          "U19",
+          "22"
+        ],
+        [
+          "U19",
+          "30"
+        ],
+        [
+          "U19",
+          "31"
+        ],
+        [
+          "U19",
+          "32"
+        ],
+        [
+          "U19",
+          "39"
+        ],
+        [
+          "U21",
+          "1"
+        ],
+        [
+          "U22",
+          "4"
+        ]
+      ],
+      "net": "+3.3V_VTX",
+      "connected": true
     }
   ],
   "route_counts": {
     "footprints": 258,
-    "tracks": 1904,
-    "vias": 809,
+    "tracks": 1972,
+    "vias": 829,
     "rule_areas": 22,
     "copper_zones": 26
   },
   "via_process": {
-    "filled_capped_count": 809,
+    "filled_capped_count": 829,
     "allowed_spans": [
       "F.Cu-In1.Cu",
       "In1.Cu-In4.Cu",
       "In4.Cu-B.Cu"
     ],
     "independent_hole_spacing": {
-      "sha256": "3d0c485e12222fa2ade480989c6fb0025453025a9a5903a9b4db5a23909eccc9",
-      "holes": 824,
-      "overlapping_span_pairs": 270722,
-      "disjoint_span_pairs_ignored": 68354,
+      "sha256": "11eb76ba52704d9b56030975ba95662a22f510c9b01583136d5ee2897d36bcd1",
+      "holes": 844,
+      "overlapping_span_pairs": 284304,
+      "disjoint_span_pairs_ignored": 71442,
       "violations": [],
       "below_nominal_025mm_stagger": [
         {
@@ -11404,6 +11575,49 @@
         },
         {
           "a": {
+            "uuid": "637a0745-6203-4a6a-951c-10d936eab507",
+            "kind": "via",
+            "type": "micro",
+            "net": "GND",
+            "position": [
+              114.61,
+              115.35
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "4fe4a578-cffc-4056-a9f6-a48078fcf2e7",
+            "kind": "via",
+            "type": "buried",
+            "net": "/RX/VREG_RADIO",
+            "position": [
+              115.05,
+              115.35
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.4399999999999977,
+          "hole_edge_gap_mm": 0.3149999999999977,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
             "uuid": "64bbf247-833e-49ec-82b0-398981efcc2c",
             "kind": "via",
             "type": "micro",
@@ -11748,6 +11962,49 @@
         },
         {
           "a": {
+            "uuid": "8f4c1299-a973-4057-8e8b-e2b17bd93936",
+            "kind": "via",
+            "type": "micro",
+            "net": "GND",
+            "position": [
+              113.405,
+              108.359999
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "06423616-dc58-4473-b2f9-8935e57630e4",
+            "kind": "via",
+            "type": "buried",
+            "net": "GND",
+            "position": [
+              113.155,
+              108.36
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.250000000002,
+          "hole_edge_gap_mm": 0.125000000002,
+          "required_mm": 0.1
+        },
+        {
+          "a": {
             "uuid": "958c9762-3374-4344-b405-ef2efca1e1c3",
             "kind": "via",
             "type": "micro",
@@ -11960,6 +12217,49 @@
           "center_mm": 0.2499996960718236,
           "hole_edge_gap_mm": 0.09999969607182357,
           "required_mm": 0.1
+        },
+        {
+          "a": {
+            "uuid": "a33d9815-c3fb-47fb-bc6d-861478ea892a",
+            "kind": "via",
+            "type": "micro",
+            "net": "GND",
+            "position": [
+              113.405,
+              107.440001
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "3404264f-8d7f-4c2d-bd9a-d3853d1c48e9",
+            "kind": "via",
+            "type": "micro",
+            "net": "/LED_STRIP",
+            "position": [
+              113.4,
+              107.85
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "center_mm": 0.4100294867457696,
+          "hole_edge_gap_mm": 0.3100294867457696,
+          "required_mm": 0.3
         },
         {
           "a": {
@@ -12823,6 +13123,49 @@
         },
         {
           "a": {
+            "uuid": "071e84b0-7ab7-4145-812e-dec31f282a92",
+            "kind": "via",
+            "type": "buried",
+            "net": "GND",
+            "position": [
+              120.255993,
+              117.175
+            ],
+            "diameter": 0.2,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "fe75711a-0f53-4e3d-888c-1ddbaecb90a4",
+            "kind": "via",
+            "type": "buried",
+            "net": "GND",
+            "position": [
+              120.3725,
+              116.775
+            ],
+            "diameter": 0.2,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.4166219881967259,
+          "hole_edge_gap_mm": 0.2166219881967259,
+          "required_mm": 0.2
+        },
+        {
+          "a": {
             "uuid": "11a0668c-f54e-4c33-8310-9411f326c1a2",
             "kind": "via",
             "type": "buried",
@@ -13425,49 +13768,6 @@
         },
         {
           "a": {
-            "uuid": "36b12068-5c93-4f0b-968d-673ad06b37ca",
-            "kind": "via",
-            "type": "buried",
-            "net": "GND",
-            "position": [
-              115.09,
-              115.25
-            ],
-            "diameter": 0.15,
-            "span": [
-              1,
-              4
-            ],
-            "layers": [
-              "In1.Cu",
-              "In4.Cu"
-            ]
-          },
-          "b": {
-            "uuid": "43fb2ea4-e7ab-4923-86bb-5c6c053a6281",
-            "kind": "via",
-            "type": "micro",
-            "net": "GND",
-            "position": [
-              115.09,
-              115.0
-            ],
-            "diameter": 0.1,
-            "span": [
-              4,
-              5
-            ],
-            "layers": [
-              "In4.Cu",
-              "B.Cu"
-            ]
-          },
-          "center_mm": 0.25,
-          "hole_edge_gap_mm": 0.125,
-          "required_mm": 0.1
-        },
-        {
-          "a": {
             "uuid": "36debe6d-2800-4772-afae-d855cf52ad8d",
             "kind": "via",
             "type": "buried",
@@ -13551,6 +13851,49 @@
           "center_mm": 0.25,
           "hole_edge_gap_mm": 0.125,
           "required_mm": 0.1
+        },
+        {
+          "a": {
+            "uuid": "491fad84-dbdd-4412-b6ed-b55ba72cc439",
+            "kind": "via",
+            "type": "buried",
+            "net": "GND",
+            "position": [
+              118.7,
+              114.725
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "d4776124-c0cf-46e4-88e0-930e36b9cb53",
+            "kind": "via",
+            "type": "buried",
+            "net": "/RX/VREG_RADIO",
+            "position": [
+              118.25,
+              114.875
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.47434164902526144,
+          "hole_edge_gap_mm": 0.3243416490252614,
+          "required_mm": 0.3
         },
         {
           "a": {
@@ -15661,6 +16004,49 @@
         },
         {
           "a": {
+            "uuid": "5e8982a9-0f11-4627-85ea-d5d5db80d0b8",
+            "kind": "via",
+            "type": "micro",
+            "net": "GND",
+            "position": [
+              113.86,
+              118.8
+            ],
+            "diameter": 0.1,
+            "span": [
+              4,
+              5
+            ],
+            "layers": [
+              "In4.Cu",
+              "B.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "ead82063-a1e2-462d-8a19-90483bc8cb00",
+            "kind": "via",
+            "type": "buried",
+            "net": "+3.3V_VTX",
+            "position": [
+              113.48,
+              118.55
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.4548626166217626,
+          "hole_edge_gap_mm": 0.3298626166217626,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
             "uuid": "71ad23cd-2eb8-448c-a4f0-a92615dabc00",
             "kind": "via",
             "type": "micro",
@@ -15872,6 +16258,49 @@
           },
           "center_mm": 0.43139237360086985,
           "hole_edge_gap_mm": 0.30639237360086985,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
+            "uuid": "baff0a57-3e9e-440c-a68e-b0e67bf6ef17",
+            "kind": "via",
+            "type": "micro",
+            "net": "GND",
+            "position": [
+              113.86,
+              118.3
+            ],
+            "diameter": 0.1,
+            "span": [
+              4,
+              5
+            ],
+            "layers": [
+              "In4.Cu",
+              "B.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "ead82063-a1e2-462d-8a19-90483bc8cb00",
+            "kind": "via",
+            "type": "buried",
+            "net": "+3.3V_VTX",
+            "position": [
+              113.48,
+              118.55
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.4548626166217626,
+          "hole_edge_gap_mm": 0.3298626166217626,
           "required_mm": 0.3
         },
         {
@@ -17119,6 +17548,49 @@
           },
           "center_mm": 0.42784923513078627,
           "hole_edge_gap_mm": 0.30284923513078627,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
+            "uuid": "e2860584-fccd-4b31-a047-165996a7f1e5",
+            "kind": "via",
+            "type": "buried",
+            "net": "+3.3V",
+            "position": [
+              118.5,
+              115.25
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "d4776124-c0cf-46e4-88e0-930e36b9cb53",
+            "kind": "via",
+            "type": "buried",
+            "net": "/RX/VREG_RADIO",
+            "position": [
+              118.25,
+              114.875
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.4506939094329987,
+          "hole_edge_gap_mm": 0.3006939094329987,
           "required_mm": 0.3
         },
         {
@@ -21337,6 +21809,135 @@
         },
         {
           "a": {
+            "uuid": "a42b218f-8f63-4424-b0f0-be330910f347",
+            "kind": "via",
+            "type": "micro",
+            "net": "/OSD_SYNC",
+            "position": [
+              119.456,
+              118.561
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "34fba5e7-b219-4f86-a6ba-93a411f4b58c",
+            "kind": "via",
+            "type": "buried",
+            "net": "/OSD_SYNC",
+            "position": [
+              119.706,
+              118.56
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.25000199999200007,
+          "hole_edge_gap_mm": 0.12500199999200007,
+          "required_mm": 0.1
+        },
+        {
+          "a": {
+            "uuid": "12fbbda6-d838-4b02-80c0-db85ce488844",
+            "kind": "via",
+            "type": "buried",
+            "net": "/OSD_SYNC",
+            "position": [
+              118.425,
+              116.775
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "da215db0-1d1c-4ba1-8031-fe8e4dd25134",
+            "kind": "via",
+            "type": "micro",
+            "net": "/RX/RADIO_RST",
+            "position": [
+              118.04,
+              116.975
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "center_mm": 0.4338490520906879,
+          "hole_edge_gap_mm": 0.3088490520906879,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
+            "uuid": "e24a050c-b736-4de5-8811-845d7dce5149",
+            "kind": "via",
+            "type": "micro",
+            "net": "/OSD_SYNC",
+            "position": [
+              114.675,
+              115.125
+            ],
+            "diameter": 0.1,
+            "span": [
+              4,
+              5
+            ],
+            "layers": [
+              "In4.Cu",
+              "B.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "4fe4a578-cffc-4056-a9f6-a48078fcf2e7",
+            "kind": "via",
+            "type": "buried",
+            "net": "/RX/VREG_RADIO",
+            "position": [
+              115.05,
+              115.35
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.43732139211339466,
+          "hole_edge_gap_mm": 0.31232139211339466,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
             "uuid": "c07d2a7d-8076-4140-a289-25df66250aff",
             "kind": "via",
             "type": "micro",
@@ -22154,6 +22755,92 @@
         },
         {
           "a": {
+            "uuid": "ea5e25c0-38fa-443f-9d5e-ae5beadd748c",
+            "kind": "via",
+            "type": "micro",
+            "net": "/SPI1_MISO",
+            "position": [
+              106.65,
+              112.58
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "ebe09c04-64d6-4d6f-b145-b3668b11e4ff",
+            "kind": "via",
+            "type": "micro",
+            "net": "/GYRO_CLKIN",
+            "position": [
+              107.05,
+              112.5
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "center_mm": 0.4079215610874141,
+          "hole_edge_gap_mm": 0.3079215610874141,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
+            "uuid": "ebe09c04-64d6-4d6f-b145-b3668b11e4ff",
+            "kind": "via",
+            "type": "micro",
+            "net": "/GYRO_CLKIN",
+            "position": [
+              107.05,
+              112.5
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "93fd1e7d-5fc3-4728-a744-2245df83087f",
+            "kind": "via",
+            "type": "micro",
+            "net": "/SPI1_SCK",
+            "position": [
+              107.45,
+              112.58
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "center_mm": 0.407921561087428,
+          "hole_edge_gap_mm": 0.30792156108742796,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
             "uuid": "93fd1e7d-5fc3-4728-a744-2245df83087f",
             "kind": "via",
             "type": "micro",
@@ -22237,6 +22924,49 @@
           "center_mm": 0.2512468905280214,
           "hole_edge_gap_mm": 0.1262468905280214,
           "required_mm": 0.1
+        },
+        {
+          "a": {
+            "uuid": "05577f2f-943b-465b-abe0-eac866e94db3",
+            "kind": "via",
+            "type": "buried",
+            "net": "/RP2350A/ADC_VBAT",
+            "position": [
+              112.75,
+              107.75
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "a3c9f9db-f801-4850-83ab-3be36d8b92e7",
+            "kind": "via",
+            "type": "micro",
+            "net": "/LED_STRIP",
+            "position": [
+              112.8,
+              107.325
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "center_mm": 0.4279310692155891,
+          "hole_edge_gap_mm": 0.3029310692155891,
+          "required_mm": 0.3
         },
         {
           "a": {
@@ -23659,6 +24389,49 @@
         },
         {
           "a": {
+            "uuid": "4c16f839-dd83-4d1d-ad49-58f5caaa8fcc",
+            "kind": "via",
+            "type": "buried",
+            "net": "/MOTOR2",
+            "position": [
+              117.5,
+              114.625
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "9d40aac7-ca03-4afc-9e7e-363dc665bf81",
+            "kind": "via",
+            "type": "micro",
+            "net": "/ESC2/C2D",
+            "position": [
+              117.925,
+              114.575
+            ],
+            "diameter": 0.1,
+            "span": [
+              4,
+              5
+            ],
+            "layers": [
+              "In4.Cu",
+              "B.Cu"
+            ]
+          },
+          "center_mm": 0.4279310692155891,
+          "hole_edge_gap_mm": 0.3029310692155891,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
             "uuid": "174184e2-93f1-41cb-8baa-984ec77ade3b",
             "kind": "via",
             "type": "micro",
@@ -23698,6 +24471,49 @@
           },
           "center_mm": 0.4366062299143204,
           "hole_edge_gap_mm": 0.3116062299143204,
+          "required_mm": 0.3
+        },
+        {
+          "a": {
+            "uuid": "d4776124-c0cf-46e4-88e0-930e36b9cb53",
+            "kind": "via",
+            "type": "buried",
+            "net": "/RX/VREG_RADIO",
+            "position": [
+              118.25,
+              114.875
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "9d40aac7-ca03-4afc-9e7e-363dc665bf81",
+            "kind": "via",
+            "type": "micro",
+            "net": "/ESC2/C2D",
+            "position": [
+              117.925,
+              114.575
+            ],
+            "diameter": 0.1,
+            "span": [
+              4,
+              5
+            ],
+            "layers": [
+              "In4.Cu",
+              "B.Cu"
+            ]
+          },
+          "center_mm": 0.4422951503238534,
+          "hole_edge_gap_mm": 0.3172951503238534,
           "required_mm": 0.3
         },
         {
@@ -24711,7 +25527,7 @@
     "inherited_J32_housing_to_J4_pin1_land_gap_mm": 0.19,
     "placement_qualification": "J32 housing to J4.1 land has the same 0.190 mm gap as dafbb05, 0.010 mm below the 0.200 mm placement preference. No body overlap or native copper violation; connector geometry remains unchanged.",
     "physical_connectivity": {
-      "sha256": "3d0c485e12222fa2ade480989c6fb0025453025a9a5903a9b4db5a23909eccc9",
+      "sha256": "11eb76ba52704d9b56030975ba95662a22f510c9b01583136d5ee2897d36bcd1",
       "groups": [
         {
           "name": "ESC1_A_COM",
@@ -31625,7 +32441,7 @@
           "connected": true,
           "components": 1,
           "component_pads": {
-            "40c643d9-5793-441b-9896-545b4983dde5": [
+            "cb1301fb-7839-4f59-ab59-8fa55c8650ea": [
               "U18.2",
               "U18.12",
               "C87.2",
@@ -38440,6 +39256,236 @@
               "J31.4"
             ]
           }
+        },
+        {
+          "name": "OSD_SYNC_COMPLETE",
+          "pads": [
+            [
+              "U10",
+              "35"
+            ],
+            [
+              "U15",
+              "1"
+            ]
+          ],
+          "net": "/OSD_SYNC",
+          "connected": true,
+          "components": 1,
+          "component_pads": {
+            "63fe9893-5f15-434d-be60-05a1ea51f4dc": [
+              "U10.35",
+              "U15.1"
+            ]
+          }
+        },
+        {
+          "name": "LED_STRIP_COMPLETE",
+          "pads": [
+            [
+              "J20",
+              "1"
+            ],
+            [
+              "U10",
+              "43"
+            ]
+          ],
+          "net": "/LED_STRIP",
+          "connected": true,
+          "components": 1,
+          "component_pads": {
+            "ea749cb4-fd11-4021-9595-12af0ab11e6f": [
+              "J20.1",
+              "U10.43"
+            ]
+          }
+        },
+        {
+          "name": "GYRO_CLKIN_COMPLETE",
+          "pads": [
+            [
+              "U10",
+              "17"
+            ],
+            [
+              "U11",
+              "9"
+            ]
+          ],
+          "net": "/GYRO_CLKIN",
+          "connected": true,
+          "components": 1,
+          "component_pads": {
+            "67f69f91-470c-408b-bd1e-193dc06c0469": [
+              "U10.17",
+              "U11.9"
+            ]
+          }
+        },
+        {
+          "name": "BOOST_SUPPLY_COMPLETE",
+          "pads": [
+            [
+              "C10",
+              "1"
+            ],
+            [
+              "C11",
+              "1"
+            ],
+            [
+              "C8",
+              "1"
+            ],
+            [
+              "C9",
+              "1"
+            ],
+            [
+              "D10",
+              "2"
+            ],
+            [
+              "J26",
+              "1"
+            ],
+            [
+              "R4",
+              "1"
+            ],
+            [
+              "U2",
+              "3"
+            ],
+            [
+              "U2",
+              "6"
+            ]
+          ],
+          "net": "+5V_BST",
+          "connected": true,
+          "components": 1,
+          "component_pads": {
+            "26712a47-022d-496e-8704-07e530baa1f8": [
+              "C10.1",
+              "C11.1",
+              "C8.1",
+              "C9.1",
+              "D10.2",
+              "J26.1",
+              "R4.1",
+              "U2.3",
+              "U2.6"
+            ]
+          }
+        },
+        {
+          "name": "VTX3V3_SUPPLY_COMPLETE",
+          "pads": [
+            [
+              "C100",
+              "1"
+            ],
+            [
+              "C101",
+              "1"
+            ],
+            [
+              "C102",
+              "1"
+            ],
+            [
+              "C103",
+              "1"
+            ],
+            [
+              "C108",
+              "1"
+            ],
+            [
+              "C122",
+              "1"
+            ],
+            [
+              "C98",
+              "1"
+            ],
+            [
+              "R61",
+              "1"
+            ],
+            [
+              "R73",
+              "1"
+            ],
+            [
+              "R89",
+              "1"
+            ],
+            [
+              "U19",
+              "8"
+            ],
+            [
+              "U19",
+              "9"
+            ],
+            [
+              "U19",
+              "22"
+            ],
+            [
+              "U19",
+              "30"
+            ],
+            [
+              "U19",
+              "31"
+            ],
+            [
+              "U19",
+              "32"
+            ],
+            [
+              "U19",
+              "39"
+            ],
+            [
+              "U21",
+              "1"
+            ],
+            [
+              "U22",
+              "4"
+            ]
+          ],
+          "net": "+3.3V_VTX",
+          "connected": true,
+          "components": 1,
+          "component_pads": {
+            "883b6256-1c81-4a37-914e-0908c7f4ad15": [
+              "C100.1",
+              "C101.1",
+              "C102.1",
+              "C103.1",
+              "C108.1",
+              "C122.1",
+              "C98.1",
+              "R61.1",
+              "R73.1",
+              "R89.1",
+              "U19.8",
+              "U19.9",
+              "U19.22",
+              "U19.30",
+              "U19.31",
+              "U19.32",
+              "U19.39",
+              "U21.1",
+              "U22.4"
+            ]
+          }
         }
       ],
       "failures": [],
@@ -38447,7 +39493,7 @@
     },
     "reference": {
       "baseline_sha256": "aa51812ca8e532c1e3ebb6a19aea32f5d2dd624d320d92ab21837be90ab75a2c",
-      "candidate_sha256": "3d0c485e12222fa2ade480989c6fb0025453025a9a5903a9b4db5a23909eccc9",
+      "candidate_sha256": "11eb76ba52704d9b56030975ba95662a22f510c9b01583136d5ee2897d36bcd1",
       "checks": [
         {
           "net": "/RX/RF_RX_ANT",
@@ -38579,8 +39625,8 @@
           "net": "/RP2350A/XIN",
           "layer": "F.Cu",
           "baseline_missing_mm2": 0.5847012920295552,
-          "candidate_missing_mm2": 0.5867366379541273,
-          "new_missing_mm2": 0.002035257373347259
+          "candidate_missing_mm2": 0.5869635468586274,
+          "new_missing_mm2": 0.0022621361518559233
         },
         {
           "net": "/RX/RF_RX_ANT",
@@ -38716,12 +39762,12 @@
           "new_missing_mm2": 0.0
         }
       ],
-      "new_missing_mm2": 1.0493986385073122,
+      "new_missing_mm2": 1.0496255172858209,
       "accepted_local_reference_changes": [
         {
           "net": "/RP2350A/XIN",
           "layer": "F.Cu",
-          "maximum_new_missing_mm2": 0.002036
+          "maximum_new_missing_mm2": 0.002263
         },
         {
           "net": "/OSD/VID_FILT",
@@ -38775,7 +39821,7 @@
         }
       ],
       "independent_osd_review": "agents/flash-radio/osd-latest-review/review.json; exact SHA39ff6912c5f36b198e9d0b68912154c7f0dc61eec340b3dd4eab462077ae9a81; R54 returned to original placement and C71 mask bridge corrected",
-      "flash_debug_review": "Independent power-r2/reference-before-after.json review qualifies only0.002036 mm2 new XIN pad fringe; the XIN trace itself retains reference. In2 HD exception separately checked against existing SPI1 and USB copper.",
+      "flash_debug_review": "Source14 flash review qualified 0.002036 mm2 XIN pad fringe. The optional gyro clock adds 0.000226909 mm2 at one 21 um corner, independently verified to retain deeper In2 GND. In2 HD exception separately checked against existing SPI1 and USB copper.",
       "adc_review": "Independent ADC review of54ab and body/land correctioncbb85073: own buried-via antipads and short In4 paths over BATT are qualified only for nominal318Hz VBAT/1.59kHz current RC filters; no continuous In3GND claim. Root final projection includes moved C60 land.",
       "qualifications": [
         "New local VID_FILT, VID_DC and OSD_LVL apertures reviewed individually with continuous In2 GND below; VID_DC is U15 input pad fringe only. C71 uses local two-laser bypass loop. Prototype qualification, not measured noise validation.",
@@ -38787,7 +39833,7 @@
     },
     "battery_geometric_widths": {
       "baseline_sha256": "b85dbd57a704875a458db71f0546683a39716f7657686dd460a9957b5e7a25c5",
-      "candidate_sha256": "3d0c485e12222fa2ade480989c6fb0025453025a9a5903a9b4db5a23909eccc9",
+      "candidate_sha256": "11eb76ba52704d9b56030975ba95662a22f510c9b01583136d5ee2897d36bcd1",
       "entries": [
         {
           "fet": "Q29",
@@ -38801,8 +39847,8 @@
             121.253981
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 0.9315109252929688,
+          "delta_mm": -0.33199310302734375
         },
         {
           "fet": "Q29",
@@ -38816,8 +39862,8 @@
             120.895994
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 0.9315109252929688,
+          "delta_mm": -0.33199310302734375
         },
         {
           "fet": "Q30",
@@ -38831,8 +39877,8 @@
             122.433493
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 1.0152053833007812,
+          "delta_mm": -0.24829864501953125
         },
         {
           "fet": "Q30",
@@ -38846,8 +39892,8 @@
             122.775
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 1.0152053833007812,
+          "delta_mm": -0.24829864501953125
         },
         {
           "fet": "Q31",
@@ -38891,8 +39937,8 @@
             115.111777
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 0.9315109252929688,
+          "delta_mm": -0.33199310302734375
         },
         {
           "fet": "Q32",
@@ -38906,8 +39952,8 @@
             115.036777
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 0.9315109252929688,
+          "delta_mm": -0.33199310302734375
         },
         {
           "fet": "Q33",
@@ -38921,8 +39967,8 @@
             120.778223
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 0.9315109252929688,
+          "delta_mm": -0.33199310302734375
         },
         {
           "fet": "Q33",
@@ -38936,8 +39982,8 @@
             121.75
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 0.9315109252929688,
+          "delta_mm": -0.33199310302734375
         },
         {
           "fet": "Q34",
@@ -38951,8 +39997,8 @@
             115.752795
           ],
           "before_mm": 1.2635040283203125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.19779205322265625
+          "after_mm": 0.9315109252929688,
+          "delta_mm": -0.33199310302734375
         },
         {
           "fet": "Q34",
@@ -38966,8 +40012,8 @@
             116.24
           ],
           "before_mm": 1.2238311767578125,
-          "after_mm": 1.0657119750976562,
-          "delta_mm": -0.15811920166015625
+          "after_mm": 0.9315109252929688,
+          "delta_mm": -0.29232025146484375
         },
         {
           "fet": "Q35",
@@ -41609,6 +42655,86 @@
       "area": "HD_EN_IN2_BRIDGE",
       "GND_islands": 1,
       "qualification": "Existing USB, gyro SPI, RF, video and oscillator trace reference checked; only0.002036mm2 new XIN pad fringe accepted. Six native accept/reject fixtures reject wrong net, width, layer and outside-area tracks."
+    },
+    "routing15_firmware": {
+      "upstream_commit": "e0b7bb01b17b21351057e9ead2d1ab39dd44fa16",
+      "version": "2026.6.2",
+      "clean_compile_link_uf2": true,
+      "compiler": "GCC13.3.1",
+      "flash_bytes": 428816,
+      "ram_bytes": 471884,
+      "orientation_compile_inputs": [
+        "CW0_DEG",
+        0
+      ],
+      "orientation_is_flight_validated": false,
+      "hardware_tested": false,
+      "files": {
+        "betaflight_RP2350A_OPENAIO_WHOOP.elf": "58e55dde780bb272516ab889f1045fe22eb64893fd4ca98b8e9cb2b8346d659c",
+        "betaflight_2026.6.2_RP2350A_OPENAIO_WHOOP.uf2": "4b5bc37ec62172eba7675f9d480efeb17a7ebf8e5bb89e38870cf0d584277e98"
+      },
+      "config_sha256": {
+        "config.h": "dd3392f7d6cf194cc829c845f3cc665b546c34f5cba81889336bb96ffdfb15c3",
+        "pico_flash_mem.ld": "7acb5ab84573ddd3d5c46acf25db178aa58bc42e5b1fda47b87a6f66ed4df16a",
+        "config.mk": "a8bf28ec43545123c5ada37cac430291042682c47801a1396a53cd24641691ca",
+        "config.c": "87accc2c072b5f3e0bbfb0be8360adff9d56188ba5791c59d16fd43564e98455"
+      },
+      "binding": {
+        "FLASH_CS": 19,
+        "HD_EN": 1,
+        "LED_STRIP": 29
+      },
+      "qualification": "Compile and binding checks only. No flashing,flight,radio/OSD timing or orientation validation. Saved configurations need explicit reset/remapping. Existing linker RWX LOAD-segment warning remains."
+    },
+    "routing15_independent": {
+      "candidate": "local measurement: root15-reference-repair.kicad_pcb",
+      "candidate_sha256": "4efb006973decce1e2042592d59d0d6c5bd024b6ae56db9c9a41ac94bfe7eabf",
+      "reviewed_utc": "2026-10-12T05:13:25.812862+00:00",
+      "native_errors": 0,
+      "native_warnings": 162,
+      "unconnected_items": 4,
+      "island_groups_checked": 441,
+      "island_failures": 0,
+      "holes_checked": 844,
+      "hole_errors": 0,
+      "power_entry_evidence": "root15-reference-repair-battery.json",
+      "reference_evidence": "root15-reference-repair-reference.json",
+      "new_reference_qualification": {
+        "candidate_sha256": "4efb006973decce1e2042592d59d0d6c5bd024b6ae56db9c9a41ac94bfe7eabf",
+        "XIN_new_aperture_mm2": 0.00022690890450006776,
+        "XIN_aperture_missing_In2_mm2": 0.0,
+        "all_vias_filled_capped": true,
+        "physical_via_count": 829
+      },
+      "J26": {
+        "ref": "J26",
+        "position": [
+          110.025,
+          124.17
+        ],
+        "rotation": 90.0,
+        "layer": 2,
+        "pads": [
+          [
+            "1",
+            "+5V_BST",
+            [
+              110.025,
+              124.17
+            ]
+          ]
+        ]
+      },
+      "summary": "No new corrective action recommended for this routing checkpoint. Q31 east200 and all western battery entry metrics are preserved. Eastern common saddle is0.931511mm, Q30 branch1.015205mm; these remain geometric prototype qualifications, not ampacity ratings. VID_DC reference restored; only new XIN corner fringe0.000226909mm2 has deeper In2 fully present. Four unrelated connections remain open. Added VHD label is a separate reviewed annotation delta, not included in this board hash."
+    },
+    "routing15_qualification": {
+      "battery": "With corrected SYNC final portal, Q29/Q32/Q33/Q34 geometric entries are 0.931511 mm, Q30 1.015205 mm and Q31 1.321106 mm. Western entries retain source14 widths. These are prototype geometric tradeoffs, not ampacity or thermal validation.",
+      "reference": "SYNC final portal moved to119.706,118.56; its laser119.456,118.561. VID_DC returns to source14 coverage. The gyro clock adds only0.000226909mm2 XIN corner fringe with independently verified continuous In2 underneath.",
+      "J26": "Back110.025,124.17 at90deg; 1.134mm of0.50mm copper, no new vias. Power separated from front UART/ground pads; a0.8mm OD wire exit was geometrically checked.",
+      "VREG_RADIO": "Local bypass stubs preserved; shared regulated tie uses an inner supply bridge, Power net class. C91 ground and ESC2 programming laser moves retain connectivity.",
+      "LED_STRIP": "GPIO18 to29, 2.4585mm with2lasers; a GND buried at113.155,108.36 restores localground with0.250mm stagger. Firmware clean-build and bindings pass.",
+      "GYRO_CLKIN": "Optional route7.4638mm with2lasers; 3SPI1SCKsegments move with unchanged total length5.29533mm, MISO unchanged. Entire new clock retains In2 ground.",
+      "R61": "510k pull-up supply2.109mm with4transitions; local PA_DET In1 dogleg has full In2 coverage. Existing exact layer/width/net restriction retained."
     }
   },
   "antenna": {
@@ -41621,19 +42747,18 @@
     "qualification": "Compact window differs from manufacturer reference; ESP launch coplanar ground is not uniform."
   },
   "validation": [
-    "Native DRC/parity:0 copper/geometry errors,161 warnings,9 open connections,0 parity findings",
-    "429 distinct groups pass actual separate-filled-island connectivity, including all198 ground pads",
-    "824 drilled holes pass overlapping-depth spacing with inherited0.240209mm nominal stagger qualification",
-    "82 native rule-behavior fixtures and independent deliberate custom-rule probe pass",
-    "Fresh ERC:0 errors,11 inherited off-grid warnings;7 netlist,28 FC and17 RX binding checks pass",
-    "Fresh pinned Betaflight2026.6.2 clean build passes with CS19/HD1; orientation compile inputs are not hardware validation",
-    "Independent motor-supply width profiles explicitly qualify short local necks; no current rating inferred",
-    "RF/analog reference audit passes its exact retained qualifications; no new RF reference loss"
+    "Native DRC/parity:0 copper/geometry errors,162 warnings,4 open connections,0 parity findings",
+    "434 distinct groups pass actual separate-filled-island connectivity; independent reviewer441 groups including all ground and supply pads pass",
+    "844 holes pass overlapping-depth spacing; only inherited0.240209mm nominal stagger qualification",
+    "82 native rule-behavior fixtures and deliberate custom-rule probe pass",
+    "Fresh ERC0errors11offgrid warnings;7netlist28FC17RXbinding checks pass",
+    "Fresh pinned Betaflight2026.6.2 clean build passes LED29/CS19/HD1; no hardware or orientation validation",
+    "Independent battery width and reference qualifications recorded; no current,thermal or RF performance claim"
   ],
   "remaining": [
-    "Nine native open connections: OSD_EN,OSD_SYNC,OSD_W,UART0_TX,LED_STRIP,GYRO_CLKIN,CURR_SENSE,+5V_BST atJ26,+3.3V_VTX atR61",
-    "Final silkscreen,assembly and complete DRC review; courtyard,local-width and antenna warnings remain",
-    "Power/current/thermal and prototype transient,RF,video,USB and functional hardware tests; receiver firmware target still needs hardware qualification"
+    "Four native open connections: OSD_EN,OSD_W,UART0_TX,CURR_SENSE",
+    "Final assembly/silkscreen and complete DRC review; courtyard,local-width and antenna warnings remain",
+    "Prototype motor-load,thermal,transient,RF,video,USB,receiver and flight-controller functional tests before manufacturing or flight claims"
   ],
   "routing_decisions": [
     "ESC1 phase A and B sense pickups use bounded 0.12 mm In4 tracks; ESC1 C and ESC4 A use bounded In1 tracks. Exact-net, width, layer and area fixtures reject other use. High-current phase copper remains outer.",
@@ -41652,18 +42777,14 @@
     "Added remaining support supply inputs, receiver BOOT and main switched 3.3 V VTX distribution; no footprint movement, no new rule areas, no reduction of the 24 measured motor battery entry widths; three duplicate new VTX segments removed",
     "Routing12: movedR53buriedto122.0,119.7 torestoreQ29BATTwidth;restoredR54originalpositionafterbodyoverlaptrial;C71+0.075mmeastandlocalGNDreturncorrectioneliminatesmaskbridge;OSD_SYNCclass isdigitalTLV7031output,VID_DCstaysAnalog.",
     "Routing13: R45 flips180deg in place; R47 moves0.03mmwest,C60 moves toB113.395,110 to keep>=0.20mm body/land gaps and a0.510mm localRCpath. C59ground andBEEPER/LED1 routes repaired. Camera video1.273mmIn1bridge passes below5Vfeed. J24branch andR4feedbacktap complete. UART1RX7.221mm with2lasers complete.",
-    "Routing14: U13 rotates180deg in place; software flash CS movesGPIO1 to19,HD_EN moves19 to1. R50 relocates toF113.4,111.9 with local power. Full flash bus and bounded8.95mmIn2HDcontrol complete. SWDIO,ESC3programming,statusLEDs,FC_BOOT,RADIO_RST/BUSY/DIO1 and buzzer drain routed. D9 moves toB108.7,125.4, shortening output connection and removing the old front power feed; original VBUS path completed. Shared5V connection crosses2.766mm onIn3. BUSY buried at110.575,124.25 preserves Q31 margin. Source motor/gyro/UART pin maps otherwise retained."
+    "Routing14: U13 rotates180deg in place; software flash CS movesGPIO1 to19,HD_EN moves19 to1. R50 relocates toF113.4,111.9 with local power. Full flash bus and bounded8.95mmIn2HDcontrol complete. SWDIO,ESC3programming,statusLEDs,FC_BOOT,RADIO_RST/BUSY/DIO1 and buzzer drain routed. D9 moves toB108.7,125.4, shortening output connection and removing the old front power feed; original VBUS path completed. Shared5V connection crosses2.766mm onIn3. BUSY buried at110.575,124.25 preserves Q31 margin. Source motor/gyro/UART pin maps otherwise retained.",
+    "Routing15: complete short OSD sync with corrected reference portal; replace shared receiver VREG tie while preserving local bypass loops; move LED output toGPIO29 with exact ground restoration; route optional gyroclock; move J26 toback nearboost for1.134mm zero-via feed; complete R61 bias supply with locally grounded detector dogleg. Preserve all motor/gyro/UART identities and owner ESC groups."
   ],
   "unrouted_by_net": {
     "/OSD_EN": 1,
-    "+5V_BST": 1,
-    "/OSD_SYNC": 1,
-    "/GYRO_CLKIN": 1,
     "/UART0_TX": 1,
-    "/LED_STRIP": 1,
     "/OSD_W": 1,
-    "/CURR_SENSE": 1,
-    "+3.3V_VTX": 1
+    "/CURR_SENSE": 1
   },
   "preservation": {
     "owner_starting_files_rechecked": 834,

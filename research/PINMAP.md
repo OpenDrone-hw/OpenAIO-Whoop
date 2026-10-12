@@ -38,7 +38,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 19 | GPIO15 | `GYRO_CS` |
 | 27 | GPIO16 | `UART0_TX` |
 | 28 | GPIO17 | `UART0_RX` |
-| 29 | GPIO18 | `LED_STRIP` |
+| 29 | GPIO18 | - |
 | 31 | GPIO19 | `FLASH_CS` |
 | 32 | GPIO20 | `BEEPER` |
 | 33 | GPIO21 | `OSD_W` |
@@ -49,7 +49,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 40 | GPIO26_ADC0 | `ADC_CURR` |
 | 41 | GPIO27_ADC1 | `ADC_VBAT` |
 | 42 | GPIO28_ADC2 | - |
-| 43 | GPIO29_ADC3 | - |
+| 43 | GPIO29_ADC3 | `LED_STRIP` |
 
 ## 3. RP2354A power and system pins
 
@@ -113,7 +113,7 @@ uses north/south in the PCB editor, not the aircraft's flight direction.
 | Status LEDs | 8–9 | West edge, below the motor signals |
 | Gyro U11 | INT10, MOSI11, MISO12, CLK13, SCK14, CS15 | Southwest corner and south edge |
 | Receiver UART0 | TX16, RX17 | South edge, toward the ESP32 |
-| Auxiliary outputs | Analog permission1; LED strip18; beeper20 | Analog permission on west edge; strip and beeper southeast |
+| Auxiliary outputs | Analog permission1; LED strip29; beeper20 | Analog permission on west edge; strip northeast and beeper southeast |
 | OSD | W21, EN22, SYNC23 | East edge, below UART1 |
 | HD UART1 | TX24, RX25 | East edge, toward the HD pads |
 | ADC | Current26, battery27; 28–29 unused | East edge, upper half |

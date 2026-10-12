@@ -3968,7 +3968,7 @@
 		)
 		(uuid "f9374616-2b16-46fd-9e04-7647456ec6f9")
 	)
-	(text_box "GPIO assignments: SPI0 MISO0, SCK2, MOSI3; software flash CS19. HD_EN1. Motors 5/6/7/4 map to motors 1/2/3/4.\nGyro: INT10, MOSI11, MISO12, CLK13, SCK14, CS15. Preserve the verified SPI mux and U11 pad order.\nReceiver UART0 16/17; HD UART1 24/25; strip18; buzzer20; OSD W21/EN22/SYNC23; LEDs8/9.\nADC current26/battery27. GPIO28/29 are unconnected in this schematic. Read physical escape directions from the saved PCB."
+	(text_box "GPIO assignments: SPI0 MISO0, SCK2, MOSI3; software flash CS19. HD_EN1. Motors 5/6/7/4 map to motors 1/2/3/4.\nGyro: INT10, MOSI11, MISO12, CLK13, SCK14, CS15. Preserve the verified SPI mux and U11 pad order.\nReceiver UART0 16/17; HD UART1 24/25; strip29; buzzer20; OSD W21/EN22/SYNC23; LEDs8/9.\nADC current26/battery27. GPIO18/28 are unconnected in this schematic. Read physical escape directions from the saved PCB."
 		(exclude_from_sim no)
 		(at 353.06 129.54 0)
 		(size 66.04 26.67)
@@ -4273,7 +4273,7 @@
 		(uuid "895fe5fd-b6cb-5872-9738-53c8f0d9d738")
 	)
 	(no_connect
-		(at 321.31 191.77)
+		(at 321.31 152.4)
 		(uuid "8f372803-0836-51d0-8303-7d6c935c683a")
 	)
 	(no_connect
@@ -5806,7 +5806,7 @@
 	)
 	(hierarchical_label "LED_STRIP"
 		(shape output)
-		(at 321.31 152.4 0)
+		(at 321.31 191.77 0)
 		(effects
 			(font
 				(size 1.27 1.27)

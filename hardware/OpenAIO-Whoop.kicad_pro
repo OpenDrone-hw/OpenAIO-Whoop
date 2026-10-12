@@ -1892,6 +1892,10 @@
       {
         "netclass": "USB",
         "pattern": "*/U10_USB_D_N"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/RX/VREG_RADIO"
       }
     ]
   },

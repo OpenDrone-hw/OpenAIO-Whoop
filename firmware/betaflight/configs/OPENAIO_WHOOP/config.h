@@ -105,7 +105,7 @@
 
 // Keep LED strip instructions away from the 31-instruction OSD program.
 #define USE_LED_STRIP
-#define LED_STRIP_PIN PA18
+#define LED_STRIP_PIN PA29
 #define PIO_LEDSTRIP_INDEX 1
 #define LED0_PIN PA8
 #define LED1_PIN PA9

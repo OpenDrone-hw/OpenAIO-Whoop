@@ -124,7 +124,7 @@ Read device rotations and pad coordinates from the saved board. The
 Preserve the gyro's MOSI11/MISO12/SCK14/CS15
 order: it follows U11's actual pad arrangement. Receiver UART0 uses GPIO16/17
 on the south edge toward U16. HD UART1 uses GPIO24/25 on the east edge toward
-J28/J29. GPIO4–7 carry motors 4, 1, 2 and 3. U24 channels A2/B2 and A0/B0
+J28/J29. LED strip output uses GPIO29 beside its pad; GPIO18 is unused. GPIO4–7 carry motors 4, 1, 2 and 3. U24 channels A2/B2 and A0/B0
 carry motors 1 and 3 respectively, shortening the ESC output routes while
 retaining the four physical motor identities. Flash uses SPI0 MISO0/SCK2/MOSI3
 and software CS19; HD_EN uses GPIO1. The CS/permission swap reuses the existing
@@ -218,3 +218,18 @@ Before ordering, verify power-up/current, rail ripple, USB, both radio paths,
 video and overlay levels, thermal behavior, motor dead time and bidirectional
 telemetry on prototypes. This handoff establishes schematic/library consistency
 and routing constraints; it does not establish measured flight readiness.
+
+## External HD power access
+
+J26 (VHD, +5V_BST) is on the back at (110.025, 124.17) mm, rotated 90 degrees.
+Its 1.134 mm, 0.50 mm wide feed joins D10 pin 2 without vias. J27 ground and
+J28/J29 UART pads remain on the front ledge. These wires leave from separate
+locations; do not assume a contiguous four-pad connector. A 0.8 mm outer-diameter
+wire can leave J26 toward the lower board edge with at least 0.330 mm package
+clearance. Wire gauge, strain relief and installed-wire RF performance require
+physical qualification. The back silkscreen identifies this pad as VHD.
+
+C70 retains the mux bypass loop. The receiver shared VREG_RADIO tie uses a
+regulated-power bridge while its two direct local SX1281 bypass stubs remain
+on F.Cu. R61's 510 kOhm pull-up uses a 2.109 mm supply connection; the adjacent
+PA detector dogleg stays on In1 over continuous In2 ground.

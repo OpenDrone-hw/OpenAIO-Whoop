@@ -171,7 +171,7 @@ NETCLASS_PATTERNS = [
     ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
     ("Power", ["+5V", "+5V_BST", "+5V_USB", "+3.3V", "+3.3V_VTX", "+1.8V_GYRO", "+1.1V",
                "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS",            # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
-               "/RP2350A/VREG_LX"]),                                    # RP2354A core SMPS switch node (critique 2026-10-11)
+               "/RP2350A/VREG_LX", "/RX/VREG_RADIO"]),                                    # RP2354A core SMPS switch node (critique 2026-10-11)
     ("GND", ["GND"]),
     ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*CURR_SENSE*", "*ADC_VBAT*",
                 "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*",      # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
