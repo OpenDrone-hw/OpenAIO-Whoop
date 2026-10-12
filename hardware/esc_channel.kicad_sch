@@ -2529,7 +2529,7 @@
 		)
 		(uuid "6b855792-3656-5d17-b4fb-d67deaac2a82")
 	)
-	(text_box "Power-up: the EFM8 pull-up can put <= 60 uA on the FC DShot pad (accepted).\nUSB only: DShot idle-high back-feeds +BATT through the EFM8 (about 1 mA per channel)."
+	(text_box "U24 translates bidirectional DShot between FC 3.3 V and the battery-powered EFM8.\nEither supply absent: U24 isolates its ports; USB-only power does not drive the ESC supply."
 		(exclude_from_sim no)
 		(at 203.2 41.91 0)
 		(size 81.28 15.24)
@@ -2549,7 +2549,7 @@
 		)
 		(uuid "6ebdb997-59d5-5f1c-9369-59619f208b43")
 	)
-	(text_box "EFM8 pins per Bluejay BB51 layout A. VDD on +BATT, C19 100 nF at pin 4.\nR12 2.4k limits the DShot clamp current. C2D/C2CK on test vias."
+	(text_box "EFM8 pins per Bluejay BB51 layout A. VDD on +BATT; local 100nF directly at pin 4.\n22R series damps DShot edges. U24 on the FC sheet translates and isolates domains. C2D/C2CK on test vias."
 		(exclude_from_sim no)
 		(at 19.05 88.9 0)
 		(size 105.41 15.24)
@@ -2620,6 +2620,12 @@
 		(uuid "755df19f-6460-5f00-b63d-93a4f08e8be6")
 	)
 	(junction
+		(at 28.575 139.7)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a86cc740-de0d-4c1f-b41f-45b229438135")
+	)
+	(junction
 		(at 109.22 139.7)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2648,6 +2654,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d994b24b-4195-5dd0-98cf-b13ea9107169")
+	)
+	(junction
+		(at 78.105 139.7)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "dc671301-34bf-4d02-978a-b4b9a2b29e33")
 	)
 	(junction
 		(at 149.86 27.94)
@@ -2743,7 +2755,7 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 139.7) (xy 99.06 139.7)
+			(xy 66.04 139.7) (xy 78.105 139.7)
 		)
 		(stroke
 			(width 0)
@@ -2953,6 +2965,16 @@
 	)
 	(wire
 		(pts
+			(xy 78.105 139.7) (xy 99.06 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6989b974-3bad-4c17-a0c6-1c02757f8f26")
+	)
+	(wire
+		(pts
 			(xy 134.62 163.83) (xy 129.54 163.83)
 		)
 		(stroke
@@ -3153,6 +3175,16 @@
 	)
 	(wire
 		(pts
+			(xy 28.575 139.7) (xy 55.88 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c042addb-2b0d-4c47-a3dc-f720ac3e5037")
+	)
+	(wire
+		(pts
 			(xy 160.02 71.12) (xy 180.34 71.12)
 		)
 		(stroke
@@ -3163,7 +3195,7 @@
 	)
 	(wire
 		(pts
-			(xy 22.86 139.7) (xy 55.88 139.7)
+			(xy 22.86 139.7) (xy 28.575 139.7)
 		)
 		(stroke
 			(width 0)
@@ -3711,7 +3743,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0e7a0559-c9f0-5fad-b508-3a0d215a97c4")
-		(property "Reference" "#PWR52"
+		(property "Reference" "#PWR42"
 			(at 109.22 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -3800,7 +3832,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "1422b0b1-6235-55b6-81d2-e46aebb62475")
-		(property "Reference" "R22"
+		(property "Reference" "R15"
 			(at 156.21 60.96 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3924,7 +3956,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "15455b69-e700-52d6-a133-395b5a221f3d")
-		(property "Reference" "U7"
+		(property "Reference" "U6"
 			(at 78.74 41.91 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4107,7 +4139,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "1f456547-0d22-5c8e-a96f-0ae669a93127")
-		(property "Reference" "#PWR55"
+		(property "Reference" "#PWR45"
 			(at 99.06 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -4196,7 +4228,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "272c1b45-223a-58bd-9092-3d42319f57dd")
-		(property "Reference" "R23"
+		(property "Reference" "R16"
 			(at 156.21 33.02 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4320,7 +4352,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2e948131-19ca-578f-a227-5b31c01b3972")
-		(property "Reference" "R20"
+		(property "Reference" "R13"
 			(at 156.21 25.4 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4444,7 +4476,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "3bb35764-e81f-5ac6-a8de-478279c6b0be")
-		(property "Reference" "C25"
+		(property "Reference" "C19"
 			(at 60.96 35.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4561,6 +4593,132 @@
 	)
 	(symbol
 		(lib_id "Device:C")
+		(at 78.105 143.51 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "3c489a52-1db4-4f6a-844e-41a5a27c3c93")
+		(property "Reference" "C34"
+			(at 80.645 142.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22uF"
+			(at 80.645 144.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:C_0603_1608Metric_L"
+			(at 78.105 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 78.105 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 78.105 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C393031"
+			(at 78.105 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "GRM188C80J226ME15D"
+			(at 78.105 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 78.105 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "10ad74be-35e7-454b-a8ac-88872d31eafb")
+		)
+		(pin "2"
+			(uuid "f11715d0-9354-4f9e-99fb-945f3433f523")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0021bee0-9959-5c9e-86f0-21e49fa9ce8d"
+					(reference "C36")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/6d139bfe-ad39-5d26-964c-e430887c2538"
+					(reference "C43")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/a3c0517e-76c5-5fd7-8d0f-d7e948ad3995"
+					(reference "C40")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d67c44eb-67d1-5da8-b7a8-40b16f9433cd"
+					(reference "C34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
 		(at 66.04 143.51 0)
 		(unit 1)
 		(body_style 1)
@@ -4570,7 +4728,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "423d47e5-f3c1-5ec7-9a6c-d95e3bc85f7f")
-		(property "Reference" "C26"
+		(property "Reference" "C20"
 			(at 68.58 142.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4696,7 +4854,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "470384fd-a1e7-5182-99eb-33eac6960bc6")
-		(property "Reference" "R19"
+		(property "Reference" "R12"
 			(at 40.64 63.5 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4706,7 +4864,7 @@
 				)
 			)
 		)
-		(property "Value" "2.4k"
+		(property "Value" "22R"
 			(at 40.64 68.58 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4727,7 +4885,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0201FR-0722RL"
 			(at 40.64 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4749,7 +4907,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C166281"
+		(property "LCSC" "C155743"
 			(at 40.64 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4760,7 +4918,7 @@
 				)
 			)
 		)
-		(property "MPN" "RTT012401FTH"
+		(property "MPN" "RC0201FR-0722RL"
 			(at 40.64 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4771,7 +4929,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Ralec"
+		(property "Manufacturer" "Yageo"
 			(at 40.64 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4820,7 +4978,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "493d9250-a112-5358-a79e-b9489fefee25")
-		(property "Reference" "Q33"
+		(property "Reference" "Q30"
 			(at 101.6 152.4 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4964,7 +5122,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5050b99d-0c53-5cd8-9a03-a2183c9ee571")
-		(property "Reference" "#PWR56"
+		(property "Reference" "#PWR46"
 			(at 142.24 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -5053,7 +5211,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "5dc04043-0c61-5d3f-a6be-e2a49a3e1320")
-		(property "Reference" "#PWR49"
+		(property "Reference" "#PWR39"
 			(at 76.2 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -5142,7 +5300,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5f7853a7-cc28-5ba2-a93e-403f9b451bbb")
-		(property "Reference" "Q34"
+		(property "Reference" "Q31"
 			(at 144.78 152.4 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5276,6 +5434,95 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 78.105 147.32 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "62bdafe9-449f-4a7d-9bc5-f8306efc8d12")
+		(property "Reference" "#PWR0234"
+			(at 78.105 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 78.105 151.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 78.105 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 78.105 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 78.105 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9ca349d4-2d36-4b05-8dfd-d720ade10206")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0021bee0-9959-5c9e-86f0-21e49fa9ce8d"
+					(reference "#PWR0235")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/6d139bfe-ad39-5d26-964c-e430887c2538"
+					(reference "#PWR0237")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/a3c0517e-76c5-5fd7-8d0f-d7e948ad3995"
+					(reference "#PWR0236")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d67c44eb-67d1-5da8-b7a8-40b16f9433cd"
+					(reference "#PWR0234")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 156.21 71.12 90)
 		(unit 1)
@@ -5286,7 +5533,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "694cebc9-53e3-5946-90c5-35a2f520ad83")
-		(property "Reference" "R25"
+		(property "Reference" "R18"
 			(at 156.21 68.58 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5410,7 +5657,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "6d08fbc0-bb5d-5dd0-bf41-6bb25559a7df")
-		(property "Reference" "TP3"
+		(property "Reference" "TP1"
 			(at 110.49 64.77 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5498,7 +5745,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7408c31d-b231-51fc-9950-845da6043360")
-		(property "Reference" "TP4"
+		(property "Reference" "TP2"
 			(at 41.91 46.99 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5586,7 +5833,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "82fe2311-33f5-53e9-810f-a3675bc3b452")
-		(property "Reference" "#PWR51"
+		(property "Reference" "#PWR41"
 			(at 66.04 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -5675,7 +5922,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8f5e47dc-82af-5f3a-8e45-33bdd6955080")
-		(property "Reference" "R24"
+		(property "Reference" "R17"
 			(at 156.21 50.8 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5799,7 +6046,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "94a3c19d-bb04-5bfe-8f22-1f1e4cb5f988")
-		(property "Reference" "C27"
+		(property "Reference" "C21"
 			(at 154.94 142.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5925,7 +6172,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "9ce082e4-4c24-509f-b7d7-2c39cbf2f453")
-		(property "Reference" "#PWR47"
+		(property "Reference" "#PWR37"
 			(at 76.2 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -6004,6 +6251,132 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 28.575 143.51 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c39275bb-3489-4452-9b88-9967d0c5fde1")
+		(property "Reference" "C22"
+			(at 31.115 142.24 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22uF"
+			(at 31.115 144.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:C_0603_1608Metric_L"
+			(at 28.575 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 28.575 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 28.575 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C393031"
+			(at 28.575 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "GRM188C80J226ME15D"
+			(at 28.575 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 28.575 143.51 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "34c58962-f635-4ed2-aa5c-06bf5dc007d1")
+		)
+		(pin "2"
+			(uuid "edb47643-45a0-49df-8ce3-bd549460dfe4")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0021bee0-9959-5c9e-86f0-21e49fa9ce8d"
+					(reference "C24")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/6d139bfe-ad39-5d26-964c-e430887c2538"
+					(reference "C30")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/a3c0517e-76c5-5fd7-8d0f-d7e948ad3995"
+					(reference "C28")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d67c44eb-67d1-5da8-b7a8-40b16f9433cd"
+					(reference "C22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 58.42 43.18 0)
 		(unit 1)
@@ -6014,7 +6387,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "c4e02850-59a5-5ce7-a5d2-6051cf1560c0")
-		(property "Reference" "#PWR48"
+		(property "Reference" "#PWR38"
 			(at 58.42 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -6093,6 +6466,95 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 28.575 147.32 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "c676587b-9383-4856-b541-390b8510baed")
+		(property "Reference" "#PWR0112"
+			(at 28.575 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 28.575 151.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 28.575 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 28.575 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 28.575 147.32 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "08b0e5b7-c74c-4688-9649-93ffe4b4cba3")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0021bee0-9959-5c9e-86f0-21e49fa9ce8d"
+					(reference "#PWR0164")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/6d139bfe-ad39-5d26-964c-e430887c2538"
+					(reference "#PWR0233")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/a3c0517e-76c5-5fd7-8d0f-d7e948ad3995"
+					(reference "#PWR0165")
+					(unit 1)
+				)
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/d67c44eb-67d1-5da8-b7a8-40b16f9433cd"
+					(reference "#PWR0112")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+BATT")
 		(at 22.86 139.7 0)
 		(unit 1)
@@ -6103,7 +6565,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "c79ee11f-6975-5a17-bb9d-2584e401f0c8")
-		(property "Reference" "#PWR50"
+		(property "Reference" "#PWR40"
 			(at 22.86 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -6192,7 +6654,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "dbf125de-79f3-5780-afa9-b8d4f7358d63")
-		(property "Reference" "C29"
+		(property "Reference" "C23"
 			(at 111.76 142.24 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6318,7 +6780,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ec44fad0-affc-5f6e-9935-be8c4f1b1422")
-		(property "Reference" "#PWR54"
+		(property "Reference" "#PWR44"
 			(at 55.88 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -6407,7 +6869,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ef6f2261-b080-55dc-b773-bfee11a40e06")
-		(property "Reference" "#PWR53"
+		(property "Reference" "#PWR43"
 			(at 152.4 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -6496,7 +6958,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "fb22b247-7ab0-57f3-9b98-cbd237bc8938")
-		(property "Reference" "Q32"
+		(property "Reference" "Q29"
 			(at 58.42 152.4 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6640,7 +7102,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "feca3572-4f10-56dd-8bc7-a207bd254ba5")
-		(property "Reference" "R21"
+		(property "Reference" "R14"
 			(at 156.21 43.18 90)
 			(show_name no)
 			(do_not_autoplace no)

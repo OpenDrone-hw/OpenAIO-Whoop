@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""OpenAIO-Whoop board setup (phase P1): stackup, rules, net classes, custom DRC rules, outline, keepouts.
+"""OpenAIO-Whoop board setup generator: stackup, rules, net classes, custom DRC rules, outline, keepouts.
 
-    /usr/bin/python3.12 hardware/tools/setup_board.py              apply everything (idempotent, re-runnable)
+    /usr/bin/python3.12 hardware/tools/setup_board.py              legacy setup; do not run over manual placement
     /usr/bin/python3.12 hardware/tools/setup_board.py --check      build in a temp dir, compare, write nothing
     /usr/bin/python3.12 hardware/tools/setup_board.py --fd         recompute the field-solver impedance table first
     /usr/bin/python3.12 hardware/tools/setup_board.py --selftest   after applying, test the DRU on a synthetic board
@@ -103,9 +103,9 @@ V4_FLANGE_PAD_D = 4.6                            # v4 (Matrix measured): no pad 
 V4_RX_HOLE_R = 1.0                               # K2: circle D2.0 at AE1, all layers (only the L1 feed reaches the pad)
 V4_RX_FEED_HW = 0.6                              # K3: RF_RX_FEED half width, U18-22 -> FL1 -> AE1
 V4_VTX_STRIP_HW = 0.5                            # K5: RF_VTX_STRIP half width around the 5.8 GHz chain pads
-# Hand-off (D111/D112): the repo board IS floorplan v4 (placement B4, front chamfer c = 3.0). Its outline (outline_v4.py,
-# then the D112 chamfer) and its rule areas (keepouts_v4, re-anchored by the placement stages) are placement data carried
-# by the board. With V4_BOARD (and no configure_v4 spec) this script keeps both, checks the board's rule-area set against
+# The owner PCB preserves the v4 outline but its parts are parked and rule areas were removed.
+# Legacy coordinate constants above are not an accepted placement. Preserve board geometry;
+# see research/ROUTING.md before creating placement-dependent areas. With V4_BOARD (and no configure_v4 spec) this script keeps both, checks the board's rule-area set against
 # V4_AREAS and writes the v4 DRU; configure_v4(spec) still redraws them from a placement spec (comparison copies).
 V4_BOARD = True
 V4_AREAS = ("MOUNT_LEFT", "MOUNT_REAR", "MOUNT_RIGHT", "MOUNT_PAD_LEFT", "MOUNT_PAD_REAR", "MOUNT_PAD_RIGHT",
@@ -136,6 +136,7 @@ SEVERITIES = {
     "text_thickness": "error", "footprint_type_mismatch": "error", "tuning_profile_track_geometries": "error",
     "footprint_filters_mismatch": "warning", "silk_overlap": "warning", "track_not_centered_on_via": "warning",
     "via_dangling": "warning",
+    "holes_co_located": "error",                 # staggered 1+4+1, no stacked drills
 }
 
 TRACK_PRESETS = [0.10, 0.14, 0.20, 0.30, 0.50, 1.00]       # spec 8.4 (+ the RF 50 ohm width, computed)
@@ -175,7 +176,7 @@ NETCLASS_PATTERNS = [
                 "*/VT_MOD*", "*/RTC_*", "*/U19_XTAL*", "*/TCXO_OUT", "*/XTA",
                 "*/U2_FB*"]),                                               # boost feedback divider node (critique 2026-10-11)  # RTC6705 video input, PLL loop filter, 8/52 MHz refs (P4 critique)
     ("RF", ["*/RF_*", "*/ANT*", "*/RFIO*", "*/RFOUT*", "*/RFIN*"]),
-    ("USB", ["*/USB_D_P", "*/USB_D_N", "*/U10_USB_DP", "*/U10_USB_DM"]),  # _P/_N: KiCad pairs them (spec 8.2); MCU side of the 27R
+    ("USB", ["*/USB_D_P", "*/USB_D_N", "*/U10_USB_D_P", "*/U10_USB_D_N"]),  # _P/_N pairs on both sides of the 27R
 ]
 # Component classes for the spec 8.4 spacing rules, by footprint name (P3 checks these against the real names).
 COMPONENT_CLASSES = [
@@ -244,7 +245,7 @@ RULES = [
 
     ("HDI 1+4+1: no mechanical blind vias",
      ["Owner decision D97 (HDI): NextPCB 1+4+1 (HDI I), laser microvias L1-L2 and L6-L5 in the 1080 build-up, mechanical",
-      "buried vias L2-L5 in the core sub-lamination, through vias as before. No mechanical blind vias (another press cycle)."],
+      "buried vias L2-L5 in the core sub-lamination; no through vias. No mechanical blind vias (another press cycle)."],
      "  (constraint disallow blind_via)"),
 
     ("HDI 1+4+1: no through vias",
@@ -443,17 +444,24 @@ RULES = [
       "the ESP32-D0WD-V3 land, set as the footprint attribute 'allow soldermask bridges' on that footprint only",
       "(P3). Not active until then."], None),
 
-    ("In1 solid GND; In4 GND pour with ESC routing only",
-     ["Spec 8.2 / 11, D121: L2 unbroken under every signal (under the 5.8 GHz chain a hard keepout, RF_VTX_CHAIN).",
-      "L5 is a GND pour that carries the ESC gate and BEMF routing (B-side parts, one microvia); any other track",
-      "on L2 or L5 cuts a plane, so warn and review it."],
-     "  (severity warning)\n  (constraint disallow track)\n"
-     "  (condition \"A.Layer == 'In1.Cu' || (A.Layer == 'In4.Cu' && A.NetName != '/ESC*')\")"),
+    ("In1 solid GND; In4 only ESC gates and BEMF",
+     ["L2 is the continuous GND reference. L5 allows short ESC gate and BEMF escapes in GND.",
+      "Phase power, DShot and programming nets do not qualify just because they are in an ESC sheet."],
+     "  (constraint disallow track)\n"
+     "  (condition \"A.Layer == 'In1.Cu' || (A.Layer == 'In4.Cu' && "
+     "!(A.NetName == '/ESC?/?_PWM' || A.NetName == '/ESC?/?_COM' || "
+     "A.NetName == '/ESC?/BEMF_?' || A.NetName == '/ESC?/NEUTRAL'))\")"),
+
+    ("In1 and In4 GND zones only",
+     ["Both reference planes carry only GND zones. L5 ESC escapes are tracks, not phase pours.",
+      "Through pads and legal via antipads remain allowed."],
+     "  (constraint disallow zone)\n"
+     "  (condition \"(A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu') && A.NetName != 'GND'\")"),
 
     ("In2: no analog or RF; In3: no analog, RF or gate (D85)",
      ["Spec 8.2 / 11, relaxed by D85 for routing closure: video and sense (Analog) and RF stay on L1 over L2 or L6",
       "over L5; the FET gates (Gate) may use In2 (L3) but not In3 (L4), which is the +BATT plane itself."],
-     "  (constraint disallow track)\n"
+     "  (constraint disallow track zone)\n"
      "  (condition \"(A.Layer == 'In2.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF')) || "
      "(A.Layer == 'In3.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate'))\")"),
 
@@ -461,7 +469,7 @@ RULES = [
      ["Spec 8.2 / 8.4, relaxed by D85: the gyro bus (SPI1, GYRO_*), VTX SPI and the digital PA controls may use In2",
       "but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET) stay off both inner",
       "signal layers. Net names compared with wildcards; '.' is literal; underscore forms of the buses matched too."],
-     "  (constraint disallow track)\n"
+     "  (constraint disallow track zone)\n"
      "  (condition \"(A.Layer == 'In3.Cu' && (A.NetName == '*SPI1.*' || "
      "A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || "
      "A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')) || "
@@ -469,10 +477,9 @@ RULES = [
      "A.NetName == '*/PA_DET*'))\")"),
 
     ("RF: no vias",
-     ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.",
-      "D21 / FLOORPLAN Open: the RTC6705 (bottom) feeds the PA (top), so RF_PA_IN carries the one RF via,",
-      "fenced by GND vias at <= 1 mm (route/prep); every other RF net stays via-free."],
-     "  (constraint disallow via)\n  (condition \"A.NetClass == 'RF' && A.NetName != '/VTX/RF_PA_IN'\")"),
+     ["Keep each RF chain on one outer face over its GND reference.",
+      "The former cross-face PA-input exception is removed; the 1+4+1 via stack is not a verified RF launch."],
+     "  (constraint disallow via)\n  (condition \"A.NetClass == 'RF'\")"),
 
     ("RF: 50 ohm width on the outer layers",
      ["Spec 8.2: CPWG, gap @GAP@ mm (the RF clearance), L1 over L2 and L6 over L5, 50 ohm +- 10 %.",
@@ -1029,7 +1036,7 @@ def keepouts_v4():
               "spec 4.9 / 11 (v4 K4): SPI0 (blackbox) kept 3 mm from the antenna hole (DRU)"))
     K.append(("RF_VTX_STRIP", ["In1.Cu"], dict(tracks=True), ("segs", s["vtx_strip"], V4_VTX_STRIP_HW), True,
               "v4 K5: L2 solid under RF_PAOUT1 / RF_PA_IN / RF_PA_OUT / RF_UFL and their pads (half width %.1f); GND vias "
-              "only, plus the one RF_PA_IN via (DRU)" % V4_VTX_STRIP_HW))
+              "only; the RF chain stays on one outer face" % V4_VTX_STRIP_HW))
     K.append(("RF_PAD_CUTOUT", ["In1.Cu"], dict(zone_fills=True), ("poly", rect(*s["rf_pad_cut"])), True,
               "spec 4.8 (v4 K6): L2 cut under the U.FL signal pad"))
     K.append(("RF_PAD_CUTOUT_L3", ["In2.Cu"], dict(tracks=True), ("poly", rect(*s["rf_pad_cut"])), True,
@@ -1058,9 +1065,9 @@ V4_DROP_RULES = ("WIFI_ANT_KO: only the RF feed", "RF_RX_ANT: only the RF feed o
 V4_RF_RULES = [
     ("RF_VTX_STRIP: GND vias only (K5)",
      ["v4 K5 (replaces RF_VTX_CHAIN): no non-GND via inside the 0.5 mm strip around the 5.8 GHz chain, so L2 stays solid",
-      "under the line. The one RF_PA_IN via of 'RF: no vias' (M3: RTC6705 and PA on opposite sides) is the exception."],
+      "under the line. All RF signal nets stay via-free."],
      "  (constraint disallow via)\n"
-     "  (condition \"A.intersectsArea('RF_VTX_STRIP') && A.NetName != 'GND' && A.NetName != '/VTX/RF_PA_IN'\")"),
+     "  (condition \"A.intersectsArea('RF_VTX_STRIP') && A.NetName != 'GND'\")"),
     ("RF_RX_HOLE: only the RF feed on L1 (K2)",
      ["v4 K2 (replaces RF_RX_ANT / _L6 / RF_RX_EXIT): inside the D2.0 circle at the RX wire hole AE1 (all layers; pours",
       "kept out by the rule area) the only copper is the 2.4 GHz feed /RX/RF_RX_ANT on L1 into the AE1 pad; no vias."],
