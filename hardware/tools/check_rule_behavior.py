@@ -83,6 +83,22 @@ def main():
         ("PA wrong layer", "track", "/PA_DET", pcb.In4_Cu, False),
         ("PA wrong area", "track", "/PA_DET", pcb.In1_Cu, False),
         ("PA analog zone", "zone", "/PA_DET", pcb.In1_Cu, False),
+        ("VIDEO bridge bounded", "track", "/VIDEO_IN", pcb.In1_Cu, True),
+        ("VIDEO wrong width", "track", "/VIDEO_IN", pcb.In1_Cu, False),
+        ("VIDEO wrong net", "track", "/OSD/VID_DC", pcb.In1_Cu, False),
+        ("VIDEO outside area", "track", "/VIDEO_IN", pcb.In1_Cu, False),
+        ("VIDEO wrong layer", "track", "/VIDEO_IN", pcb.In4_Cu, False),
+        ("VIDEO analog zone", "zone", "/VIDEO_IN", pcb.In1_Cu, False),
+        ("ADC VBAT In1", "track", "/RP2350A/ADC_VBAT", pcb.In1_Cu, True),
+        ("ADC VBAT In4", "track", "/RP2350A/ADC_VBAT", pcb.In4_Cu, True),
+        ("ADC CURR In1", "track", "/RP2350A/ADC_CURR", pcb.In1_Cu, True),
+        ("ADC CURR In4", "track", "/RP2350A/ADC_CURR", pcb.In4_Cu, True),
+        ("ADC wrong width", "track", "/RP2350A/ADC_VBAT", pcb.In1_Cu, False),
+        ("ADC wrong net", "track", "/VIDEO_IN", pcb.In1_Cu, False),
+        ("ADC outside area", "track", "/RP2350A/ADC_VBAT", pcb.In1_Cu, False),
+        ("ADC wrong layer", "track", "/RP2350A/ADC_VBAT", pcb.In4_Cu, False),
+        ("ADC plane layer", "track", "/RP2350A/ADC_VBAT", pcb.In2_Cu, False),
+        ("ADC zone", "zone", "/RP2350A/ADC_VBAT", pcb.In1_Cu, False),
     ]
     board = pcb.BOARD()
     board.SetCopperLayerCount(6)
@@ -151,6 +167,22 @@ def main():
             if kind == "track":
                 item.SetWidth(pcb.FromMM(.10 if name == "OSD wrong width" else .12))
                 if name == "OSD outside area": item.SetEnd(pos(3, 0))
+        if name.startswith("VIDEO "):
+            area = pcb.ZONE(board); area.SetIsRuleArea(True)
+            area.SetZoneName("VIDEO_IN_LOCAL_BRIDGE")
+            layers = pcb.LSET(); layers.AddLayer(pcb.F_Cu); layers.AddLayer(pcb.In1_Cu)
+            area.SetLayerSet(layers)
+            area.SetNet(nets["GND"])
+            area.SetDoNotAllowTracks(False); area.SetDoNotAllowVias(False)
+            area.SetDoNotAllowPads(False); area.SetDoNotAllowFootprints(False)
+            area.SetDoNotAllowZoneFills(False)
+            outline = area.Outline(); outline.NewOutline()
+            for dx, dy in [(-.2, -.2), (2.2, -.2), (2.2, .2), (-.2, .2)]:
+                point = pos(dx, dy); outline.Append(point.x, point.y)
+            board.Add(area)
+            if kind == "track":
+                item.SetWidth(pcb.FromMM(.10 if name == "VIDEO wrong width" else .15))
+                if name == "VIDEO outside area": item.SetEnd(pos(3, 0))
         if name.startswith("PA "):
             suffix = "PA_DET_IN4_LOCAL" if name in ("PA detector In4", "PA wrong area") else "PA_DET_IN1_LOCAL"
             area = pcb.ZONE(board); area.SetIsRuleArea(True); area.SetZoneName(suffix)
@@ -167,6 +199,22 @@ def main():
             if kind == "track":
                 item.SetWidth(pcb.FromMM(.10 if name == "PA wrong width" else .12))
                 if name == "PA outside area": item.SetEnd(pos(3, 0))
+        if name.startswith("ADC "):
+            suffix = "ADC_CURR" if name.startswith("ADC CURR") else "ADC_VBAT"
+            inner = "IN4" if name in ("ADC VBAT In4", "ADC CURR In4") else "IN1"
+            area = pcb.ZONE(board); area.SetIsRuleArea(True)
+            area.SetZoneName(suffix + "_" + inner + "_LOCAL")
+            ls = pcb.LSET(); ls.AddLayer(pcb.F_Cu); ls.AddLayer(pcb.In4_Cu if inner == "IN4" else pcb.In1_Cu)
+            area.SetLayerSet(ls); area.SetNet(nets["GND"])
+            area.SetDoNotAllowTracks(False); area.SetDoNotAllowVias(False)
+            area.SetDoNotAllowPads(False); area.SetDoNotAllowFootprints(False); area.SetDoNotAllowZoneFills(False)
+            outline = area.Outline(); outline.NewOutline()
+            for dx, dy in [(-.2, -.2), (2.2, -.2), (2.2, .2), (-.2, .2)]:
+                point = pos(dx, dy); outline.Append(point.x, point.y)
+            board.Add(area)
+            if kind == "track":
+                item.SetWidth(pcb.FromMM(.10 if name == "ADC wrong width" else .12))
+                if name == "ADC outside area": item.SetEnd(pos(3, 0))
         item.SetNet(nets[netname]); board.Add(item)
         objects.append((name, str(item.m_Uuid.AsString()), allowed))
     stacked_ids = set()

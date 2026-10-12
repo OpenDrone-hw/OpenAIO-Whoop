@@ -28,8 +28,10 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
 
 - F/In1/In4/B carry signals. In2 is a solid GND plane without tracks; In3
   carries supply and GND distribution only. In1/In4 ground pours must remain
-  unbroken below outer RF, USB and video routes. RF, video, Kelvin and switch
-  nodes stay on the component face. The DRU enforces global layer restrictions.
+  unbroken below outer RF, USB and video routes. RF, Kelvin and switch nodes
+  stay on the component face. Video and ADC
+  routes use only the exact named local exceptions recorded in ROUTING.md.
+  The DRU enforces net, layer, width and enclosing-area restrictions.
   Preserve and check the board's named local RF areas before routing.
 - HDI 1+4+1: laser microvias L1-L2 and L5-L6 only, buried vias L2-L5 staggered
   from them, no stacking. Vias sit inside same-net pads; a free-standing via

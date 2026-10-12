@@ -72,9 +72,24 @@ nets, widths, layers, zones and any track extending beyond its named area.
 route on their named layers. The In4 portion has a connected local In3 GND
 return; its shortened end preserves the ESC battery-entry widths. These
 exceptions reject other nets, widths, layers, zone fills and tracks outside
-their areas. Six local pad/launch reference qualifications are recorded in
+their areas. Local pad/launch reference qualifications are recorded in
 `hardware/validation/routing-checkpoint-2026-10-11.json`; they do not waive
 RF reference requirements.
+
+
+`VIDEO_IN_LOCAL_BRIDGE` permits one 0.15 mm video track on In1, spanning
+1.273 mm over continuous In2 GND between two filled/capped laser vias.
+This separates the camera video and 5 V crossings without moving the connector
+or ESC gates. Its two outer launches have bounded adjacent-plane apertures;
+motor-load and PWM-sweep video testing remains required.
+
+`ADC_VBAT_IN1_LOCAL`, `ADC_VBAT_IN4_LOCAL`, `ADC_CURR_IN1_LOCAL` and
+`ADC_CURR_IN4_LOCAL` permit only the respective 0.12 mm filtered ADC tracks.
+The 318 Hz VBAT and 1.59 kHz current RC filters retain short local capacitor
+returns. Their own buried-via antipads and short In4 portions over battery
+copper are explicit low-bandwidth qualifications, not continuous In3 ground.
+All exceptions reject other nets, widths, layers, zones and tracks outside
+their named areas. RF references and Kelvin routing retain their restrictions.
 
 
 The nominal 1.0 mm stackup is in `hardware/tools/stackup.json`. Outer dielectric
