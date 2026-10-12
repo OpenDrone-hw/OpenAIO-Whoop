@@ -16,12 +16,12 @@ No firmware binary or RF power calibration is supplied here.
 
 | Function | ESP32 GPIO | Connection |
 |---|---|---|
-| CRSF RX / TX | 3 / 1 | RP2354 GPIO24 TX / GPIO25 RX |
+| CRSF RX / TX | 3 / 1 | RP2354 GPIO16 TX / GPIO17 RX |
 | SX1281 SCK / MOSI / MISO | 27 / 14 / 13 | Dedicated radio SPI |
 | SX1281 NSS / RESET | 26 / 25 | Active low |
 | SX1281 BUSY / DIO1 | 39 / 34 | Input-only ESP32 pins |
 | Boot and bind button | 0 | Shared button through D8 |
-| Addressable status LED | 32 | One LED, index 0 |
+| Addressable status LED | 4 | One LED, index 0 |
 | RTC6705 SCK / MOSI / NSS | 20 / 19 / 22 | Separate HSPI bus through R81 / R82 / R80 |
 | RTC6705 MISO | None | Explicit `vtx_miso: -1` |
 | PA reference enable | 21 | U22 EN, high enables PA_VREF |

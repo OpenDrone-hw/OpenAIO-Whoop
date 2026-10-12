@@ -1,18 +1,25 @@
 {
-  "timestamp_utc": "2026-10-12T01:59:30.646631+00:00",
-  "purpose": "Partial routing checkpoint: remaining ESC-controller and support supply inputs, receiver BOOT and switched VTX supply connected; 56 native open connections remain",
+  "timestamp_utc": "2026-10-12T02:10:04.609017+00:00",
+  "purpose": "Partial routing checkpoint: receiver LED moved to GPIO4 with matching schematic and ExpressLRS binding; 55 native open connections remain",
   "manufacturing_ready": false,
   "source_sha256": {
-    "hardware/OpenAIO-Whoop.kicad_pcb": "96f10f2ae11d83ac6b9ddd9e3965d5cf82b7a61d17fb2344c9f63da929242447",
+    "hardware/OpenAIO-Whoop.kicad_pcb": "833026ee4dda76daa5482bc712045a1da1f08719ba44526ab0c04c318f4532ac",
     "hardware/OpenAIO-Whoop.kicad_pro": "6d48d6102d7f5c797745a21d238fd11c1429835165da21f26c78ba319efd768a",
     "hardware/OpenAIO-Whoop.kicad_dru": "462a6112bc74224538bc5d870b39d5edaeef37d4c68e5514c70b75194c107060",
-    "hardware/rx_esp32_sx1281.kicad_sch": "fb5e2bd59c60af5ccc57146a06bb6cc73817c0ebf2e9fed6c8bf642afe335f3a",
+    "hardware/rx_esp32_sx1281.kicad_sch": "36e10d1594c270f7a68ee17fd20a0912d92f117d1f2134eb030d3b5f17f80f13",
     "hardware/OpenAIO-Whoop.kicad_sch": "2e10549463689cfe68d22d728073264047e2c300b2ee497e6b0c3dbd0e087bc6",
     "hardware/pads.kicad_sch": "314aedd4e6f3088bd39a2ea15654940eb4eeda707a313454b2212ccdc6f03193",
     "firmware/betaflight/configs/OPENAIO_WHOOP/config.h": "22d67d66c65582588cefc845d48030174bc021da5d4b649f4aef26b0d92b8268",
     "firmware/betaflight/configs/OPENAIO_WHOOP/config.c": "87accc2c072b5f3e0bbfb0be8360adff9d56188ba5791c59d16fd43564e98455",
     "hardware/rp2350a.kicad_sch": "462c0decb5badfaf1227b29ca3aa76f0ee8bb53f65f6cba421edc75db8ad01cb",
-    "hardware/tools/check_fc_io.py": "5241bef511fa9c0647c1f9e98b9e90e3907d4d3a8e8ce9f2b2f1e0d6848fe367"
+    "hardware/tools/check_fc_io.py": "5241bef511fa9c0647c1f9e98b9e90e3907d4d3a8e8ce9f2b2f1e0d6848fe367",
+    "firmware/expresslrs/board-layout.json": "7b052ee0f51594d65417c651bf540d28b0055722f179c9e0debf7f93d4b76b0b",
+    "firmware/expresslrs/README.md": "3bbd27800e3fd5c1f8866e80f7ac3ec4c144965c253e59fd6c9fb65af59c86d4",
+    "research/PINMAP.md": "c9f8a79a6d7ad10d97fea0de8794737bd567e7dbe9de8816a509240c90d83adf",
+    "AGENTS.md": "dfd8024ab9d4ee317f438615efee286e38e836c2b84cf938fb551bc654892b8f",
+    "hardware/tools/check_rx_io.py": "3dfa13242e987b94969befbd966af091954e309a8825daa9c58ce46879d8cd50",
+    "hardware/bom_plan.json": "9f0a37c0f973701c08f157347264e4a29fd56f21fa2fb234b94046a899e9a3b5",
+    "hardware/sch_contract.json": "416ea23095b3de709b2b85c385fc80aabff9c7797ed7eebf45955a4abac0f90b"
   },
   "native_drc": {
     "copper_or_geometry_errors": 0,
@@ -21,7 +28,7 @@
       "track_not_centered_on_via": 1,
       "courtyards_overlap": 135
     },
-    "open_connections": 56,
+    "open_connections": 55,
     "schematic_parity_findings": 0
   },
   "native_erc": {
@@ -9264,26 +9271,42 @@
       ],
       "net": "+3.3V_VTX",
       "connected": true
+    },
+    {
+      "name": "receiver-LED-GPIO4",
+      "pads": [
+        [
+          "U16",
+          "24"
+        ],
+        [
+          "D4",
+          "4"
+        ]
+      ],
+      "net": "/RX/RX_LED",
+      "connected": true
     }
   ],
   "route_counts": {
     "footprints": 258,
-    "tracks": 1290,
-    "vias": 644,
+    "tracks": 1297,
+    "vias": 647,
     "rule_areas": 16,
     "copper_zones": 26
   },
   "via_process": {
-    "filled_capped_count": 644,
+    "filled_capped_count": 647,
     "allowed_spans": [
       "F.Cu-In1.Cu",
       "In1.Cu-In4.Cu",
       "In4.Cu-B.Cu"
     ],
     "independent_hole_spacing": {
-      "holes": 659,
-      "overlapping_span_pairs": 173072,
-      "disjoint_span_pairs_ignored": 43739,
+      "sha256": "833026ee4dda76daa5482bc712045a1da1f08719ba44526ab0c04c318f4532ac",
+      "holes": 662,
+      "overlapping_span_pairs": 174631,
+      "disjoint_span_pairs_ignored": 44160,
       "violations": [],
       "below_nominal_025mm_stagger": [
         {
@@ -20943,6 +20966,49 @@
         },
         {
           "a": {
+            "uuid": "f1afb98e-77fb-41c6-ac28-704b96ed59c4",
+            "kind": "via",
+            "type": "micro",
+            "net": "/RX/RX_LED",
+            "position": [
+              113.5,
+              112.5
+            ],
+            "diameter": 0.1,
+            "span": [
+              0,
+              1
+            ],
+            "layers": [
+              "F.Cu",
+              "In1.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "74800fc9-7b14-4764-8c29-f697b668db8a",
+            "kind": "via",
+            "type": "buried",
+            "net": "/RX/RX_LED",
+            "position": [
+              113.5,
+              112.25
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "center_mm": 0.25,
+          "hole_edge_gap_mm": 0.125,
+          "required_mm": 0.1
+        },
+        {
+          "a": {
             "uuid": "c510ea86-90a5-41ec-98f5-507ff98cd18b",
             "kind": "via",
             "type": "buried",
@@ -21694,7 +21760,7 @@
     "inherited_J32_housing_to_J4_pin1_land_gap_mm": 0.19,
     "placement_qualification": "J32 housing to J4.1 land has the same 0.190 mm gap as dafbb05, 0.010 mm below the 0.200 mm placement preference. No body overlap or native copper violation; connector geometry remains unchanged.",
     "physical_connectivity": {
-      "sha256": "96f10f2ae11d83ac6b9ddd9e3965d5cf82b7a61d17fb2344c9f63da929242447",
+      "sha256": "833026ee4dda76daa5482bc712045a1da1f08719ba44526ab0c04c318f4532ac",
       "groups": [
         {
           "name": "ESC1_A_COM",
@@ -34514,6 +34580,28 @@
               "R73.1"
             ]
           }
+        },
+        {
+          "name": "receiver-LED-GPIO4",
+          "pads": [
+            [
+              "U16",
+              "24"
+            ],
+            [
+              "D4",
+              "4"
+            ]
+          ],
+          "net": "/RX/RX_LED",
+          "connected": true,
+          "components": 1,
+          "component_pads": {
+            "cf36a37f-c8be-4e1a-bd89-83ae045f2542": [
+              "U16.24",
+              "D4.4"
+            ]
+          }
         }
       ],
       "failures": [],
@@ -34521,7 +34609,7 @@
     },
     "reference": {
       "baseline_sha256": "aa51812ca8e532c1e3ebb6a19aea32f5d2dd624d320d92ab21837be90ab75a2c",
-      "candidate_sha256": "96f10f2ae11d83ac6b9ddd9e3965d5cf82b7a61d17fb2344c9f63da929242447",
+      "candidate_sha256": "833026ee4dda76daa5482bc712045a1da1f08719ba44526ab0c04c318f4532ac",
       "checks": [
         {
           "net": "/RX/RF_RX_ANT",
@@ -34839,7 +34927,7 @@
     },
     "battery_geometric_widths": {
       "baseline_sha256": "b85dbd57a704875a458db71f0546683a39716f7657686dd460a9957b5e7a25c5",
-      "candidate_sha256": "96f10f2ae11d83ac6b9ddd9e3965d5cf82b7a61d17fb2344c9f63da929242447",
+      "candidate_sha256": "833026ee4dda76daa5482bc712045a1da1f08719ba44526ab0c04c318f4532ac",
       "entries": [
         {
           "fet": "Q29",
@@ -35213,9 +35301,9 @@
     ],
     "C26_change": "Same-face shift north0.30mm to121.8225,115.125 at180deg;0.50mm minimum body gap, shorter0.40mm BATT legs toQ32/Q34.",
     "copper_clearance_pairs": {
-      "sha256": "96f10f2ae11d83ac6b9ddd9e3965d5cf82b7a61d17fb2344c9f63da929242447",
+      "sha256": "833026ee4dda76daa5482bc712045a1da1f08719ba44526ab0c04c318f4532ac",
       "checked_layers": 6,
-      "geometry_items": 3995,
+      "geometry_items": 4010,
       "violations": [],
       "qualification": "Independent planar track/via land-to-track/via/outer-pad check. Native DRC additionally checks drills, inner PTH clearances, zones, mask and board rules."
     },
@@ -35244,18 +35332,19 @@
     "qualification": "Compact window differs from manufacturer reference; ESP launch coplanar ground is not uniform."
   },
   "validation": [
-    "Native DRC/parity: 0 copper or geometry errors, 140 warnings, 56 open connections, 0 parity findings",
-    "392 distinct pad groups pass actual filled-island connectivity, including all 198 GND pads",
-    "659 drilled holes pass overlapping-depth spacing, with the inherited nominal-stagger qualification retained",
+    "Native source DRC/parity: 0 copper or geometry errors,140 warnings,55 open connections,0 parity findings",
+    "393 distinct pad groups pass actual filled-island connectivity, including all198 GND pads",
+    "662 drilled holes pass overlapping-depth spacing with inherited nominal-stagger qualification",
     "57 native rule behavior fixtures and native custom-rule probe pass",
     "7 netlist checks,28 FC bindings with physical U24 channel and external ESC identity validation, ERC0errors11off-grid warnings",
     "Negative translator test swaps motor1/3 output nodes while preserving GPIO legality; rejected at both physical U24 outputs",
     "Clean pinned Betaflight2026.6.2 compile/link/UF2 succeeds with motor1/3 GPIO permutation; compile-only gyro orientation inputs are not flight validation",
     "Critical RF/analog reference check preserves the six prior bounded qualifications; formerVIDEO_IN camera-pad fringe is restored",
-    "Source schematic, target and rules unchanged since the prior passing ERC, netlist, rule fixtures and clean Betaflight build; those prior results are retained rather than claimed as new runs"
+    "Source schematic, target and rules unchanged since the prior passing ERC, netlist, rule fixtures and clean Betaflight build; those prior results are retained rather than claimed as new runs",
+    "Fresh source ERC0errors11inherited off-grid warnings;7netlistchecks,28FCbindings and17receiverbindings pass. A negative old-GPIO32 LED target is correctly rejected. No ExpressLRS binary build or physical validation is claimed."
   ],
   "remaining": [
-    "56 native open connections, including duplicate NC U13 tie-bar airwire which must not be routed",
+    "55 native open connections, including duplicate NC U13 tie-bar airwire which must not be routed",
     "USB, flash bus, OSD controls, camera connector video and remaining UART links",
     "Remaining battery capacitor pickups, quiet 5 V distribution, R61 VTX pull-up, ADC/debug/programming, status LEDs and beeper links",
     "Final silkscreen, assembly and complete DRC review",
@@ -35312,7 +35401,6 @@
     "/RX/RADIO_RST": 1,
     "/RX/RADIO_BUSY": 1,
     "/RX/RADIO_DIO1": 1,
-    "/RX/RX_LED": 1,
     "/VBUS": 1,
     "/ESC2/C2CK": 1,
     "/ESC2/C2D": 1,
@@ -35409,5 +35497,14 @@
       "orientation_is_flight_validated": false,
       "saved_configuration": "Previously saved motor resources must be reset or explicitly remapped after flashing. Firmware compilation does not verify physical motor order."
     }
+  },
+  "receiver_led_change": {
+    "old_gpio": 32,
+    "new_gpio": 4,
+    "old_estimated_route_mm": 26.464,
+    "new_route_mm": 6.37530483272049,
+    "vias": 3,
+    "source_restriction": "ESP32-PICO-V3 package GPIO4 is an output-capable non-strapping pin; integrated flash and remaining radio/UART/VTX bindings unchanged",
+    "checks": "Agent isolated schematic semantic diff and visual pin review; root actual source ERC/netlist/binding/parity plus copper, reference, islands, drills and unchanged24BATTentry widths"
   }
 }

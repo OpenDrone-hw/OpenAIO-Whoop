@@ -142,7 +142,7 @@ schematic against the target and verifies SPI/UART mux, ADC and PIO constraints.
 | supply/system | 9 | EN | `RX_EN` |
 | 34 | 10 | VDET_1/I34 | `RADIO_DIO1` |
 | 35 | 11 | VDET_2/I35 | - |
-| 32 | 12 | 32K_XP/IO32 | `RX_LED` |
+| 32 | 12 | 32K_XP/IO32 | - |
 | 33 | 13 | 32K_XN/IO33 | `VTX_AMP_PWM` |
 | 25 | 14 | IO25 | `RADIO_RST` |
 | 26 | 15 | IO26 | `RADIO_NSS` |
@@ -154,7 +154,7 @@ schematic against the target and verifies SPI/UART mux, ADC and PIO constraints.
 | 15 | 21 | MTDO/IO15 | - |
 | 2 | 22 | IO2 | - |
 | 0 | 23 | IO0 | `RX_BOOT` |
-| 4 | 24 | IO4 | - |
+| 4 | 24 | IO4 | `RX_LED` |
 | supply/system | 25 | NC | - |
 | supply/system | 26 | VDD_SDIO | - |
 | 20 | 27 | IO20 | `VTX_SPI_CLK` |

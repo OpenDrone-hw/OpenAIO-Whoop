@@ -4632,7 +4632,7 @@
 		)
 		(uuid "ce9670f5-fb5a-5477-b092-f0191b365196")
 	)
-	(text_box "D4 RGB LED (GPIO32): +5V supply, C83 100nF local bypass. Specified DIN VIH = 2.8V; direct 3.3V data is valid. Place C83 beside D4 VDD/GND."
+	(text_box "D4 RGB LED (GPIO4): +5V supply, C83 100nF local bypass. Specified DIN VIH = 2.8V; direct 3.3V data is valid. Place C83 beside D4 VDD/GND."
 		(exclude_from_sim no)
 		(at 38.1 215.9 0)
 		(size 104.14 10.16)
@@ -4857,7 +4857,7 @@
 		(uuid "c7638885-bd5b-5bc1-bb00-5f80a7bc5a77")
 	)
 	(no_connect
-		(at 266.7 198.12)
+		(at 220.98 215.9)
 		(uuid "cddaaa98-eb3f-4faa-87f9-31559bea8536")
 	)
 	(no_connect
@@ -5466,7 +5466,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 215.9) (xy 218.44 215.9)
+			(xy 266.7 198.12) (xy 269.24 198.12)
 		)
 		(stroke
 			(width 0)
@@ -5875,12 +5875,12 @@
 		(uuid "3283ce37-db5f-5a8c-8f45-bb1f1049ad19")
 	)
 	(label "RX_LED"
-		(at 218.44 215.9 180)
+		(at 269.24 198.12 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "33d2bee2-f174-567f-b1d9-a3331d07af85")
 	)
