@@ -12,7 +12,7 @@ manufacturer identifier until an identifier is registered.
 | MCU / boot flash | RP2354A / 2MB in-package flash |
 | BMI270 | SPI1: SCK14, MISO12, MOSI11, CS15, INT10 |
 | Blackbox | SPI0: SCK2, MISO0, MOSI3, CS1; Puya 16MB |
-| Motors 1 to 4 | GPIO7, 6, 5, 4; PIO0 bidirectional DShot |
+| Motors 1 to 4 | GPIO5, 6, 7, 4; PIO0 bidirectional DShot |
 | ExpressLRS | UART0: TX16, RX17; CRSF with MSP-VTX |
 | HD pads | UART1: TX24, RX25; disabled in the default serial profile |
 | Analog OSD | W21, EN22, SYNC23; PIO2 |

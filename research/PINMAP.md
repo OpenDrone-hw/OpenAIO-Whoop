@@ -9,7 +9,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | Function | Binding |
 | --- | --- |
 | Flight controller | [Betaflight target](../firmware/betaflight/README.md), pinned 2026.6.2 |
-| Motor signals | Motors 1–4 on GPIO7/6/5/4 through U24, bidirectional 3.3 V to battery-level DShot |
+| Motor signals | Motors 1–4 on GPIO5/6/7/4 through U24, bidirectional 3.3 V to battery-level DShot |
 | Analog video | W21, EN22, active-low SYNC23; PIO2 |
 | Analog permission | GPIO19 high enables U21, low disables it; PINIO default 129 |
 | HD port | UART1 GPIO24/25; VHD remains battery-boost powered |
@@ -25,9 +25,9 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 4 | GPIO2 | `SPI0_SCK` |
 | 5 | GPIO3 | `SPI0_MOSI` |
 | 7 | GPIO4 | `MOTOR4_FC` |
-| 8 | GPIO5 | `MOTOR3_FC` |
+| 8 | GPIO5 | `MOTOR1_FC` |
 | 9 | GPIO6 | `MOTOR2_FC` |
-| 10 | GPIO7 | `MOTOR1_FC` |
+| 10 | GPIO7 | `MOTOR3_FC` |
 | 12 | GPIO8 | `LED0` |
 | 13 | GPIO9 | `LED1` |
 | 14 | GPIO10 | `GYRO_INT` |
@@ -109,7 +109,7 @@ uses north/south in the PCB editor, not the aircraft's flight direction.
 | Device group | GPIOs | Package escape on the saved board |
 | --- | --- | --- |
 | Blackbox U13 | 0–3 | West edge, upper four signal pads |
-| Motor translator U24 | 7, 6, 5, 4 for motors 1–4 | West edge, GPIO4 to GPIO7 from north to south |
+| Motor translator U24 | 5, 6, 7, 4 for motors 1–4 | West edge, GPIO4 to GPIO7 from north to south |
 | Status LEDs | 8–9 | West edge, below the motor signals |
 | Gyro U11 | INT10, MOSI11, MISO12, CLK13, SCK14, CS15 | Southwest corner and south edge |
 | Receiver UART0 | TX16, RX17 | South edge, toward the ESP32 |

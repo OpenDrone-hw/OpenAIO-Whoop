@@ -92,6 +92,22 @@ def check(netlist, config):
             if endpoints.get(endpoint) != expected:
                 errors.append(f"{endpoint[0]}.{endpoint[1]}: expected {expected}, "
                               f"got {endpoints.get(endpoint)}")
+    # U24 has fixed physical A-to-B channels. A matching GPIO name alone
+    # does not prove that firmware motor identities reach the correct ESC.
+    endpoints = {(ref, pin): name.rsplit("/", 1)[-1]
+                 for name, nodes in nets.items() for ref, pin, *_ in nodes}
+    channels = {"3": "12", "4": "11", "5": "10", "6": "9"}
+    for motor, resistor in enumerate(("R12", "R19", "R26", "R33"), 1):
+        inputs = [a for a in channels
+                  if endpoints.get(("U24", a)) == f"MOTOR{motor}_FC"]
+        if len(inputs) != 1:
+            errors.append(f"MOTOR{motor}: expected one U24 input channel")
+            continue
+        output = channels[inputs[0]]
+        for endpoint in (("U24", output), (resistor, "1")):
+            if endpoints.get(endpoint) != f"MOTOR{motor}":
+                errors.append(f"{endpoint[0]}.{endpoint[1]}: expected MOTOR{motor}, "
+                              f"got {endpoints.get(endpoint)}")
     for macro in ("ADC_CURR_PIN", "ADC_VBAT_PIN"):
         if pins.get(macro) not in {26, 27, 28, 29}:
             errors.append(f"{macro}: not an ADC pin")

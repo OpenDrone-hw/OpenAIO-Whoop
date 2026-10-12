@@ -1,24 +1,27 @@
 {
-  "timestamp_utc": "2026-10-12T00:06:41.514506+00:00",
-  "purpose": "Partial routing checkpoint: main RP/ESP/SX/gyro rails and real ground returns, ESC supply arrays, four DShot inputs, one DShot output, OSD level and PA detection, local RX SPI and controls; UART0 receiver and UART1 HD role assignment for shorter wiring",
+  "timestamp_utc": "2026-10-12T01:13:11.007744+00:00",
+  "purpose": "Partial routing checkpoint: four complete DShot channels, ESC same-face supply loops, auxiliary rails, all198 ground pads and shorter motor1/3 translator permutation; remaining76 connections not routed",
   "manufacturing_ready": false,
   "source_sha256": {
-    "hardware/OpenAIO-Whoop.kicad_pcb": "54946bc8fc85060a6644fb8da16e12d6aefcbb2cb7bfe8d12115dfa55b1fb607",
+    "hardware/OpenAIO-Whoop.kicad_pcb": "f54737131c8ae4ac14135fbc5bc08c69836252a02390d1a27c5f3291a93627f5",
     "hardware/OpenAIO-Whoop.kicad_pro": "6d48d6102d7f5c797745a21d238fd11c1429835165da21f26c78ba319efd768a",
     "hardware/OpenAIO-Whoop.kicad_dru": "462a6112bc74224538bc5d870b39d5edaeef37d4c68e5514c70b75194c107060",
     "hardware/rx_esp32_sx1281.kicad_sch": "fb5e2bd59c60af5ccc57146a06bb6cc73817c0ebf2e9fed6c8bf642afe335f3a",
     "hardware/OpenAIO-Whoop.kicad_sch": "2e10549463689cfe68d22d728073264047e2c300b2ee497e6b0c3dbd0e087bc6",
     "hardware/pads.kicad_sch": "314aedd4e6f3088bd39a2ea15654940eb4eeda707a313454b2212ccdc6f03193",
-    "firmware/betaflight/configs/OPENAIO_WHOOP/config.h": "83c43faf6095cddc0aa8f916713b73396ebab9666b1ad30242fb613df98099b9",
-    "firmware/betaflight/configs/OPENAIO_WHOOP/config.c": "87accc2c072b5f3e0bbfb0be8360adff9d56188ba5791c59d16fd43564e98455"
+    "firmware/betaflight/configs/OPENAIO_WHOOP/config.h": "22d67d66c65582588cefc845d48030174bc021da5d4b649f4aef26b0d92b8268",
+    "firmware/betaflight/configs/OPENAIO_WHOOP/config.c": "87accc2c072b5f3e0bbfb0be8360adff9d56188ba5791c59d16fd43564e98455",
+    "hardware/rp2350a.kicad_sch": "462c0decb5badfaf1227b29ca3aa76f0ee8bb53f65f6cba421edc75db8ad01cb",
+    "hardware/tools/check_fc_io.py": "5241bef511fa9c0647c1f9e98b9e90e3907d4d3a8e8ce9f2b2f1e0d6848fe367"
   },
   "native_drc": {
     "copper_or_geometry_errors": 0,
     "warnings_by_type": {
       "items_not_allowed": 4,
+      "track_not_centered_on_via": 1,
       "courtyards_overlap": 135
     },
-    "open_connections": 154,
+    "open_connections": 76,
     "schematic_parity_findings": 0
   },
   "native_erc": {
@@ -27,7 +30,7 @@
   },
   "connection_groups": [
     {
-      "name": "preserved_ESC1_A_COM",
+      "name": "ESC1_A_COM",
       "pads": [
         [
           "U6",
@@ -38,11 +41,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/A_COM"
+      "net": "/ESC1/A_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_A_PWM",
+      "name": "ESC1_A_PWM",
       "pads": [
         [
           "U6",
@@ -53,11 +56,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/A_PWM"
+      "net": "/ESC1/A_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_BEMF_A",
+      "name": "ESC1_BEMF_A",
       "pads": [
         [
           "U6",
@@ -68,11 +71,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/BEMF_A"
+      "net": "/ESC1/BEMF_A",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_phase_pair_A",
+      "name": "ESC1_phase_pair_A",
       "pads": [
         [
           "R13",
@@ -83,11 +86,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/PHASE_A"
+      "net": "/ESC1/PHASE_A",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_B_COM",
+      "name": "ESC1_sense_pickup_A",
+      "pads": [
+        [
+          "R13",
+          "1"
+        ],
+        [
+          "Q29",
+          "7"
+        ]
+      ],
+      "net": "/ESC1/PHASE_A",
+      "connected": true
+    },
+    {
+      "name": "ESC1_B_COM",
       "pads": [
         [
           "U6",
@@ -98,11 +116,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/B_COM"
+      "net": "/ESC1/B_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_B_PWM",
+      "name": "ESC1_B_PWM",
       "pads": [
         [
           "U6",
@@ -113,11 +131,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/B_PWM"
+      "net": "/ESC1/B_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_BEMF_B",
+      "name": "ESC1_BEMF_B",
       "pads": [
         [
           "U6",
@@ -128,11 +146,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/BEMF_B"
+      "net": "/ESC1/BEMF_B",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_phase_pair_B",
+      "name": "ESC1_phase_pair_B",
       "pads": [
         [
           "R14",
@@ -143,11 +161,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/PHASE_B"
+      "net": "/ESC1/PHASE_B",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_C_COM",
+      "name": "ESC1_sense_pickup_B",
+      "pads": [
+        [
+          "R14",
+          "1"
+        ],
+        [
+          "Q30",
+          "6"
+        ]
+      ],
+      "net": "/ESC1/PHASE_B",
+      "connected": true
+    },
+    {
+      "name": "ESC1_C_COM",
       "pads": [
         [
           "U6",
@@ -158,11 +191,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/C_COM"
+      "net": "/ESC1/C_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_C_PWM",
+      "name": "ESC1_C_PWM",
       "pads": [
         [
           "U6",
@@ -173,11 +206,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/C_PWM"
+      "net": "/ESC1/C_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_BEMF_C",
+      "name": "ESC1_BEMF_C",
       "pads": [
         [
           "U6",
@@ -188,11 +221,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/BEMF_C"
+      "net": "/ESC1/BEMF_C",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_phase_pair_C",
+      "name": "ESC1_phase_pair_C",
       "pads": [
         [
           "R15",
@@ -203,11 +236,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/PHASE_C"
+      "net": "/ESC1/PHASE_C",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_neutral",
+      "name": "ESC1_sense_pickup_C",
+      "pads": [
+        [
+          "R15",
+          "1"
+        ],
+        [
+          "Q31",
+          "6"
+        ]
+      ],
+      "net": "/ESC1/PHASE_C",
+      "connected": true
+    },
+    {
+      "name": "ESC1_neutral",
       "pads": [
         [
           "U6",
@@ -226,11 +274,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/NEUTRAL"
+      "net": "/ESC1/NEUTRAL",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_RTX",
+      "name": "ESC1_RTX",
       "pads": [
         [
           "U6",
@@ -241,11 +289,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/RTX"
+      "net": "/ESC1/RTX",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_A_COM",
+      "name": "ESC2_A_COM",
       "pads": [
         [
           "U7",
@@ -256,11 +304,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/A_COM"
+      "net": "/ESC2/A_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_A_PWM",
+      "name": "ESC2_A_PWM",
       "pads": [
         [
           "U7",
@@ -271,11 +319,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/A_PWM"
+      "net": "/ESC2/A_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_BEMF_A",
+      "name": "ESC2_BEMF_A",
       "pads": [
         [
           "U7",
@@ -286,11 +334,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/BEMF_A"
+      "net": "/ESC2/BEMF_A",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_phase_pair_A",
+      "name": "ESC2_phase_pair_A",
       "pads": [
         [
           "R20",
@@ -301,11 +349,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/PHASE_A"
+      "net": "/ESC2/PHASE_A",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_B_COM",
+      "name": "ESC2_sense_pickup_A",
+      "pads": [
+        [
+          "R20",
+          "1"
+        ],
+        [
+          "Q32",
+          "6"
+        ]
+      ],
+      "net": "/ESC2/PHASE_A",
+      "connected": true
+    },
+    {
+      "name": "ESC2_B_COM",
       "pads": [
         [
           "U7",
@@ -316,11 +379,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/B_COM"
+      "net": "/ESC2/B_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_B_PWM",
+      "name": "ESC2_B_PWM",
       "pads": [
         [
           "U7",
@@ -331,11 +394,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/B_PWM"
+      "net": "/ESC2/B_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_BEMF_B",
+      "name": "ESC2_BEMF_B",
       "pads": [
         [
           "U7",
@@ -346,11 +409,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/BEMF_B"
+      "net": "/ESC2/BEMF_B",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_phase_pair_B",
+      "name": "ESC2_phase_pair_B",
       "pads": [
         [
           "R21",
@@ -361,11 +424,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/PHASE_B"
+      "net": "/ESC2/PHASE_B",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_C_COM",
+      "name": "ESC2_sense_pickup_B",
+      "pads": [
+        [
+          "R21",
+          "1"
+        ],
+        [
+          "Q33",
+          "6"
+        ]
+      ],
+      "net": "/ESC2/PHASE_B",
+      "connected": true
+    },
+    {
+      "name": "ESC2_C_COM",
       "pads": [
         [
           "U7",
@@ -376,11 +454,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/C_COM"
+      "net": "/ESC2/C_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_C_PWM",
+      "name": "ESC2_C_PWM",
       "pads": [
         [
           "U7",
@@ -391,11 +469,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/C_PWM"
+      "net": "/ESC2/C_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_BEMF_C",
+      "name": "ESC2_BEMF_C",
       "pads": [
         [
           "U7",
@@ -406,11 +484,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/BEMF_C"
+      "net": "/ESC2/BEMF_C",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_phase_pair_C",
+      "name": "ESC2_phase_pair_C",
       "pads": [
         [
           "R22",
@@ -421,11 +499,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/PHASE_C"
+      "net": "/ESC2/PHASE_C",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_neutral",
+      "name": "ESC2_sense_pickup_C",
+      "pads": [
+        [
+          "R22",
+          "1"
+        ],
+        [
+          "Q34",
+          "6"
+        ]
+      ],
+      "net": "/ESC2/PHASE_C",
+      "connected": true
+    },
+    {
+      "name": "ESC2_neutral",
       "pads": [
         [
           "U7",
@@ -444,11 +537,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/NEUTRAL"
+      "net": "/ESC2/NEUTRAL",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_RTX",
+      "name": "ESC2_RTX",
       "pads": [
         [
           "U7",
@@ -459,11 +552,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/RTX"
+      "net": "/ESC2/RTX",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_A_COM",
+      "name": "ESC3_A_COM",
       "pads": [
         [
           "U8",
@@ -474,11 +567,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/A_COM"
+      "net": "/ESC3/A_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_A_PWM",
+      "name": "ESC3_A_PWM",
       "pads": [
         [
           "U8",
@@ -489,11 +582,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/A_PWM"
+      "net": "/ESC3/A_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_BEMF_A",
+      "name": "ESC3_BEMF_A",
       "pads": [
         [
           "U8",
@@ -504,11 +597,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/BEMF_A"
+      "net": "/ESC3/BEMF_A",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_phase_pair_A",
+      "name": "ESC3_phase_pair_A",
       "pads": [
         [
           "R27",
@@ -519,11 +612,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/PHASE_A"
+      "net": "/ESC3/PHASE_A",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_B_COM",
+      "name": "ESC3_sense_pickup_A",
+      "pads": [
+        [
+          "R27",
+          "1"
+        ],
+        [
+          "Q35",
+          "6"
+        ]
+      ],
+      "net": "/ESC3/PHASE_A",
+      "connected": true
+    },
+    {
+      "name": "ESC3_B_COM",
       "pads": [
         [
           "U8",
@@ -534,11 +642,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/B_COM"
+      "net": "/ESC3/B_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_B_PWM",
+      "name": "ESC3_B_PWM",
       "pads": [
         [
           "U8",
@@ -549,11 +657,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/B_PWM"
+      "net": "/ESC3/B_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_BEMF_B",
+      "name": "ESC3_BEMF_B",
       "pads": [
         [
           "U8",
@@ -564,11 +672,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/BEMF_B"
+      "net": "/ESC3/BEMF_B",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_phase_pair_B",
+      "name": "ESC3_phase_pair_B",
       "pads": [
         [
           "R28",
@@ -579,11 +687,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/PHASE_B"
+      "net": "/ESC3/PHASE_B",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_C_COM",
+      "name": "ESC3_sense_pickup_B",
+      "pads": [
+        [
+          "R28",
+          "1"
+        ],
+        [
+          "Q36",
+          "6"
+        ]
+      ],
+      "net": "/ESC3/PHASE_B",
+      "connected": true
+    },
+    {
+      "name": "ESC3_C_COM",
       "pads": [
         [
           "U8",
@@ -594,11 +717,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/C_COM"
+      "net": "/ESC3/C_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_C_PWM",
+      "name": "ESC3_C_PWM",
       "pads": [
         [
           "U8",
@@ -609,11 +732,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/C_PWM"
+      "net": "/ESC3/C_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_BEMF_C",
+      "name": "ESC3_BEMF_C",
       "pads": [
         [
           "U8",
@@ -624,11 +747,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/BEMF_C"
+      "net": "/ESC3/BEMF_C",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_phase_pair_C",
+      "name": "ESC3_phase_pair_C",
       "pads": [
         [
           "R29",
@@ -639,11 +762,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/PHASE_C"
+      "net": "/ESC3/PHASE_C",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_neutral",
+      "name": "ESC3_sense_pickup_C",
+      "pads": [
+        [
+          "R29",
+          "1"
+        ],
+        [
+          "Q37",
+          "6"
+        ]
+      ],
+      "net": "/ESC3/PHASE_C",
+      "connected": true
+    },
+    {
+      "name": "ESC3_neutral",
       "pads": [
         [
           "U8",
@@ -662,11 +800,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/NEUTRAL"
+      "net": "/ESC3/NEUTRAL",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_RTX",
+      "name": "ESC3_RTX",
       "pads": [
         [
           "U8",
@@ -677,11 +815,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/RTX"
+      "net": "/ESC3/RTX",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_A_COM",
+      "name": "ESC4_A_COM",
       "pads": [
         [
           "U9",
@@ -692,11 +830,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/A_COM"
+      "net": "/ESC4/A_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_A_PWM",
+      "name": "ESC4_A_PWM",
       "pads": [
         [
           "U9",
@@ -707,11 +845,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/A_PWM"
+      "net": "/ESC4/A_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_BEMF_A",
+      "name": "ESC4_BEMF_A",
       "pads": [
         [
           "U9",
@@ -722,11 +860,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/BEMF_A"
+      "net": "/ESC4/BEMF_A",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_phase_pair_A",
+      "name": "ESC4_phase_pair_A",
       "pads": [
         [
           "R34",
@@ -737,11 +875,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/PHASE_A"
+      "net": "/ESC4/PHASE_A",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_B_COM",
+      "name": "ESC4_sense_pickup_A",
+      "pads": [
+        [
+          "R34",
+          "1"
+        ],
+        [
+          "Q38",
+          "7"
+        ]
+      ],
+      "net": "/ESC4/PHASE_A",
+      "connected": true
+    },
+    {
+      "name": "ESC4_B_COM",
       "pads": [
         [
           "U9",
@@ -752,11 +905,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/B_COM"
+      "net": "/ESC4/B_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_B_PWM",
+      "name": "ESC4_B_PWM",
       "pads": [
         [
           "U9",
@@ -767,11 +920,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/B_PWM"
+      "net": "/ESC4/B_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_BEMF_B",
+      "name": "ESC4_BEMF_B",
       "pads": [
         [
           "U9",
@@ -782,11 +935,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/BEMF_B"
+      "net": "/ESC4/BEMF_B",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_phase_pair_B",
+      "name": "ESC4_phase_pair_B",
       "pads": [
         [
           "R35",
@@ -797,11 +950,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/PHASE_B"
+      "net": "/ESC4/PHASE_B",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_C_COM",
+      "name": "ESC4_sense_pickup_B",
+      "pads": [
+        [
+          "R35",
+          "1"
+        ],
+        [
+          "Q39",
+          "7"
+        ]
+      ],
+      "net": "/ESC4/PHASE_B",
+      "connected": true
+    },
+    {
+      "name": "ESC4_C_COM",
       "pads": [
         [
           "U9",
@@ -812,11 +980,11 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/C_COM"
+      "net": "/ESC4/C_COM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_C_PWM",
+      "name": "ESC4_C_PWM",
       "pads": [
         [
           "U9",
@@ -827,11 +995,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/C_PWM"
+      "net": "/ESC4/C_PWM",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_BEMF_C",
+      "name": "ESC4_BEMF_C",
       "pads": [
         [
           "U9",
@@ -842,11 +1010,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/BEMF_C"
+      "net": "/ESC4/BEMF_C",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_phase_pair_C",
+      "name": "ESC4_phase_pair_C",
       "pads": [
         [
           "R36",
@@ -857,11 +1025,26 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/PHASE_C"
+      "net": "/ESC4/PHASE_C",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_neutral",
+      "name": "ESC4_sense_pickup_C",
+      "pads": [
+        [
+          "R36",
+          "1"
+        ],
+        [
+          "Q40",
+          "6"
+        ]
+      ],
+      "net": "/ESC4/PHASE_C",
+      "connected": true
+    },
+    {
+      "name": "ESC4_neutral",
       "pads": [
         [
           "U9",
@@ -880,11 +1063,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/NEUTRAL"
+      "net": "/ESC4/NEUTRAL",
+      "connected": true
     },
     {
-      "name": "preserved_ESC4_RTX",
+      "name": "ESC4_RTX",
       "pads": [
         [
           "U9",
@@ -895,11 +1078,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/RTX"
+      "net": "/ESC4/RTX",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_bypass_4",
+      "name": "ESC1_bypass_4",
       "pads": [
         [
           "U6",
@@ -910,11 +1093,11 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
-      "name": "preserved_ESC1_bypass_3",
+      "name": "ESC1_bypass_3",
       "pads": [
         [
           "U6",
@@ -925,11 +1108,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_bypass_4",
+      "name": "ESC2_bypass_4",
       "pads": [
         [
           "U7",
@@ -940,11 +1123,11 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
-      "name": "preserved_ESC2_bypass_3",
+      "name": "ESC2_bypass_3",
       "pads": [
         [
           "U7",
@@ -955,11 +1138,11 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_bypass_4",
+      "name": "ESC3_bypass_4",
       "pads": [
         [
           "U8",
@@ -970,11 +1153,11 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
-      "name": "preserved_ESC3_bypass_3",
+      "name": "ESC3_bypass_3",
       "pads": [
         [
           "U8",
@@ -985,8 +1168,398 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "ESC4_bypass_4",
+      "pads": [
+        [
+          "U9",
+          "4"
+        ],
+        [
+          "C37",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "ESC4_bypass_3",
+      "pads": [
+        [
+          "U9",
+          "3"
+        ],
+        [
+          "C37",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q29_+BATT_local_cap",
+      "pads": [
+        [
+          "Q29",
+          "3"
+        ],
+        [
+          "C21",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q29_GND_local_cap",
+      "pads": [
+        [
+          "Q29",
+          "1"
+        ],
+        [
+          "C21",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q30_+BATT_local_cap",
+      "pads": [
+        [
+          "Q30",
+          "3"
+        ],
+        [
+          "C23",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q30_GND_local_cap",
+      "pads": [
+        [
+          "Q30",
+          "1"
+        ],
+        [
+          "C23",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q31_+BATT_local_cap",
+      "pads": [
+        [
+          "Q31",
+          "3"
+        ],
+        [
+          "C20",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q31_GND_local_cap",
+      "pads": [
+        [
+          "Q31",
+          "1"
+        ],
+        [
+          "C20",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q32_+BATT_local_cap",
+      "pads": [
+        [
+          "Q32",
+          "3"
+        ],
+        [
+          "C26",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q32_GND_local_cap",
+      "pads": [
+        [
+          "Q32",
+          "1"
+        ],
+        [
+          "C26",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q33_+BATT_local_cap",
+      "pads": [
+        [
+          "Q33",
+          "3"
+        ],
+        [
+          "C27",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q34_+BATT_local_cap",
+      "pads": [
+        [
+          "Q34",
+          "3"
+        ],
+        [
+          "C24",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q34_GND_local_cap",
+      "pads": [
+        [
+          "Q34",
+          "1"
+        ],
+        [
+          "C24",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q35_+BATT_local_cap",
+      "pads": [
+        [
+          "Q35",
+          "3"
+        ],
+        [
+          "C35",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q35_GND_local_cap",
+      "pads": [
+        [
+          "Q35",
+          "1"
+        ],
+        [
+          "C35",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q36_+BATT_local_cap",
+      "pads": [
+        [
+          "Q36",
+          "3"
+        ],
+        [
+          "C33",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q37_GND_local_cap",
+      "pads": [
+        [
+          "Q37",
+          "1"
+        ],
+        [
+          "C32",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q38_+BATT_local_cap",
+      "pads": [
+        [
+          "Q38",
+          "3"
+        ],
+        [
+          "C39",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q38_GND_local_cap",
+      "pads": [
+        [
+          "Q38",
+          "1"
+        ],
+        [
+          "C39",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q39_+BATT_local_cap",
+      "pads": [
+        [
+          "Q39",
+          "3"
+        ],
+        [
+          "C41",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q39_GND_local_cap",
+      "pads": [
+        [
+          "Q39",
+          "1"
+        ],
+        [
+          "C41",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q40_+BATT_local_cap",
+      "pads": [
+        [
+          "Q40",
+          "3"
+        ],
+        [
+          "C38",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "Q40_GND_local_cap",
+      "pads": [
+        [
+          "Q40",
+          "1"
+        ],
+        [
+          "C38",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q33_GND_local_cap",
+      "pads": [
+        [
+          "Q33",
+          "1"
+        ],
+        [
+          "C27",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q36_GND_local_cap",
+      "pads": [
+        [
+          "Q36",
+          "1"
+        ],
+        [
+          "C33",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "Q37_+BATT_local_cap",
+      "pads": [
+        [
+          "Q37",
+          "3"
+        ],
+        [
+          "C32",
+          "1"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_0",
@@ -1000,8 +1573,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RF_PAOUT1"
+      "net": "/VTX/RF_PAOUT1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_1",
@@ -1015,8 +1588,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RF_PAOUT1"
+      "net": "/VTX/RF_PAOUT1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_2",
@@ -1030,8 +1603,8 @@
           3
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RF_PA_IN"
+      "net": "/VTX/RF_PA_IN",
+      "connected": true
     },
     {
       "name": "preserved_VTX_3",
@@ -1045,8 +1618,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RF_PA_OUT"
+      "net": "/VTX/RF_PA_OUT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_4",
@@ -1060,8 +1633,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RF_UFL"
+      "net": "/VTX/RF_UFL",
+      "connected": true
     },
     {
       "name": "preserved_VTX_5",
@@ -1075,8 +1648,8 @@
           8
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_6",
@@ -1090,8 +1663,8 @@
           9
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_7",
@@ -1105,8 +1678,8 @@
           18
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_8",
@@ -1120,8 +1693,8 @@
           20
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_9",
@@ -1135,8 +1708,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_10",
@@ -1150,8 +1723,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_11",
@@ -1165,8 +1738,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_12",
@@ -1180,8 +1753,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_13",
@@ -1195,8 +1768,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_14",
@@ -1210,8 +1783,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_15",
@@ -1225,8 +1798,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/PA_DET_RAW"
+      "net": "/VTX/PA_DET_RAW",
+      "connected": true
     },
     {
       "name": "preserved_VTX_16",
@@ -1240,8 +1813,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/PA_DET"
+      "net": "/PA_DET",
+      "connected": true
     },
     {
       "name": "preserved_VTX_17",
@@ -1255,8 +1828,8 @@
           8
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_18",
@@ -1270,8 +1843,8 @@
           9
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_19",
@@ -1285,8 +1858,8 @@
           22
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_20",
@@ -1300,8 +1873,8 @@
           23
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_REG1D8"
+      "net": "/VTX/U19_REG1D8",
+      "connected": true
     },
     {
       "name": "preserved_VTX_21",
@@ -1315,8 +1888,8 @@
           40
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_LDD2V5"
+      "net": "/VTX/U19_LDD2V5",
+      "connected": true
     },
     {
       "name": "preserved_VTX_22",
@@ -1330,8 +1903,8 @@
           31
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_23",
@@ -1345,8 +1918,8 @@
           32
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_24",
@@ -1360,8 +1933,8 @@
           30
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_25",
@@ -1375,8 +1948,8 @@
           39
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_26",
@@ -1390,8 +1963,8 @@
           2
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_LDD2V5"
+      "net": "/VTX/U19_LDD2V5",
+      "connected": true
     },
     {
       "name": "preserved_VTX_27",
@@ -1405,8 +1978,8 @@
           24
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_XTAL1"
+      "net": "/VTX/U19_XTAL1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_28",
@@ -1420,8 +1993,8 @@
           24
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_XTAL1"
+      "net": "/VTX/U19_XTAL1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_29",
@@ -1435,8 +2008,8 @@
           25
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_XTAL2"
+      "net": "/VTX/U19_XTAL2",
+      "connected": true
     },
     {
       "name": "preserved_VTX_30",
@@ -1450,8 +2023,8 @@
           3
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_XTAL2"
+      "net": "/VTX/U19_XTAL2",
+      "connected": true
     },
     {
       "name": "preserved_VTX_31",
@@ -1465,8 +2038,8 @@
           27
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RTC_CP"
+      "net": "/VTX/RTC_CP",
+      "connected": true
     },
     {
       "name": "preserved_VTX_32",
@@ -1480,8 +2053,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RTC_VT"
+      "net": "/VTX/RTC_VT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_33",
@@ -1495,8 +2068,8 @@
           29
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RTC_VT"
+      "net": "/VTX/RTC_VT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_34",
@@ -1510,8 +2083,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RTC_VT"
+      "net": "/VTX/RTC_VT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_35",
@@ -1525,8 +2098,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/RTC_LF"
+      "net": "/VTX/RTC_LF",
+      "connected": true
     },
     {
       "name": "preserved_VTX_36",
@@ -1540,8 +2113,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_37",
@@ -1555,8 +2128,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_38",
@@ -1570,8 +2143,8 @@
           2
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "preserved_VTX_39",
@@ -1585,8 +2158,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+5V"
+      "net": "+5V",
+      "connected": true
     },
     {
       "name": "preserved_VTX_40",
@@ -1600,8 +2173,8 @@
           2
         ]
       ],
-      "connected": true,
-      "net": "/HD_EN"
+      "net": "/HD_EN",
+      "connected": true
     },
     {
       "name": "preserved_VTX_41",
@@ -1615,8 +2188,8 @@
           2
         ]
       ],
-      "connected": true,
-      "net": "/VTX/VT_MOD_N1"
+      "net": "/VTX/VT_MOD_N1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_42",
@@ -1630,8 +2203,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VIDEO_OUT"
+      "net": "/VIDEO_OUT",
+      "connected": true
     },
     {
       "name": "preserved_VTX_43",
@@ -1645,8 +2218,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/VT_MOD_N1"
+      "net": "/VTX/VT_MOD_N1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_44",
@@ -1660,8 +2233,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/VT_MOD_N1"
+      "net": "/VTX/VT_MOD_N1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_45",
@@ -1675,8 +2248,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/VT_MOD_N2"
+      "net": "/VTX/VT_MOD_N2",
+      "connected": true
     },
     {
       "name": "preserved_VTX_46",
@@ -1690,8 +2263,8 @@
           10
         ]
       ],
-      "connected": true,
-      "net": "/VTX/VT_MOD"
+      "net": "/VTX/VT_MOD",
+      "connected": true
     },
     {
       "name": "preserved_VTX_47",
@@ -1705,8 +2278,8 @@
           2
         ]
       ],
-      "connected": true,
-      "net": "/VTX/VT_MOD"
+      "net": "/VTX/VT_MOD",
+      "connected": true
     },
     {
       "name": "preserved_VTX_48",
@@ -1720,8 +2293,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/VT_MOD"
+      "net": "/VTX/VT_MOD",
+      "connected": true
     },
     {
       "name": "preserved_VTX_49",
@@ -1735,8 +2308,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/PA_VREF"
+      "net": "/VTX/PA_VREF",
+      "connected": true
     },
     {
       "name": "preserved_VTX_50",
@@ -1750,8 +2323,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/PA_RC1"
+      "net": "/VTX/PA_RC1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_51",
@@ -1765,8 +2338,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/PA_RC1"
+      "net": "/VTX/PA_RC1",
+      "connected": true
     },
     {
       "name": "preserved_VTX_52",
@@ -1780,8 +2353,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/Q27_B"
+      "net": "/VTX/Q27_B",
+      "connected": true
     },
     {
       "name": "preserved_VTX_53",
@@ -1795,8 +2368,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/Q27_B"
+      "net": "/VTX/Q27_B",
+      "connected": true
     },
     {
       "name": "preserved_VTX_54",
@@ -1810,8 +2383,8 @@
           2
         ]
       ],
-      "connected": true,
-      "net": "/VTX/Q27_E"
+      "net": "/VTX/Q27_E",
+      "connected": true
     },
     {
       "name": "preserved_VTX_55",
@@ -1825,8 +2398,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/Q27_C"
+      "net": "/VTX/Q27_C",
+      "connected": true
     },
     {
       "name": "preserved_VTX_56",
@@ -1840,8 +2413,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/PAOUT1_SUP"
+      "net": "/VTX/PAOUT1_SUP",
+      "connected": true
     },
     {
       "name": "preserved_VTX_57",
@@ -1855,8 +2428,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+3.3V_VTX"
+      "net": "+3.3V_VTX",
+      "connected": true
     },
     {
       "name": "preserved_VTX_58",
@@ -1870,8 +2443,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_AVDD65"
+      "net": "/VTX/U19_AVDD65",
+      "connected": true
     },
     {
       "name": "preserved_VTX_59",
@@ -1885,8 +2458,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_AVDD65_RC"
+      "net": "/VTX/U19_AVDD65_RC",
+      "connected": true
     },
     {
       "name": "preserved_VTX_60",
@@ -1900,8 +2473,8 @@
           6
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_SPILE"
+      "net": "/VTX/U19_SPILE",
+      "connected": true
     },
     {
       "name": "preserved_VTX_61",
@@ -1915,8 +2488,8 @@
           7
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_SPICLK"
+      "net": "/VTX/U19_SPICLK",
+      "connected": true
     },
     {
       "name": "preserved_VTX_62",
@@ -1930,8 +2503,8 @@
           5
         ]
       ],
-      "connected": true,
-      "net": "/VTX/U19_SPIDATA"
+      "net": "/VTX/U19_SPIDATA",
+      "connected": true
     },
     {
       "name": "preserved_VTX_63",
@@ -1945,8 +2518,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/VTX/PAOUT1_SUP"
+      "net": "/VTX/PAOUT1_SUP",
+      "connected": true
     },
     {
       "name": "preserved_VTX_64",
@@ -1960,8 +2533,8 @@
           5
         ]
       ],
-      "connected": true,
-      "net": "/VTX/PA_VREF"
+      "net": "/VTX/PA_VREF",
+      "connected": true
     },
     {
       "name": "preserved_VTX_65",
@@ -1975,8 +2548,8 @@
           4
         ]
       ],
-      "connected": true,
-      "net": "/VIDEO_OUT"
+      "net": "/VIDEO_OUT",
+      "connected": true
     },
     {
       "name": "preserved_WiFi_source",
@@ -1994,8 +2567,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/RX/RF_WIFI"
+      "net": "/RX/RF_WIFI",
+      "connected": true
     },
     {
       "name": "preserved_WiFi_antenna",
@@ -2017,8 +2590,8 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/RX/RF_WIFI_ANT"
+      "net": "/RX/RF_WIFI_ANT",
+      "connected": true
     },
     {
       "name": "preserved_WiFi_ground",
@@ -2040,8 +2613,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "preserved_Boost_0",
@@ -2055,8 +2628,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+5V_BST"
+      "net": "+5V_BST",
+      "connected": true
     },
     {
       "name": "preserved_Boost_1",
@@ -2070,8 +2643,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "preserved_Boost_2",
@@ -2085,8 +2658,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/POWER/U2_SW"
+      "net": "/POWER/U2_SW",
+      "connected": true
     },
     {
       "name": "preserved_Boost_3",
@@ -2100,8 +2673,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+5V_BST"
+      "net": "+5V_BST",
+      "connected": true
     },
     {
       "name": "preserved_Boost_4",
@@ -2115,8 +2688,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/POWER/U2_FB"
+      "net": "/POWER/U2_FB",
+      "connected": true
     },
     {
       "name": "preserved_Boost_5",
@@ -2130,8 +2703,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/POWER/U2_FB"
+      "net": "/POWER/U2_FB",
+      "connected": true
     },
     {
       "name": "FC_iovdd1",
@@ -2145,8 +2718,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_iovdd11",
@@ -2160,8 +2733,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_iovdd20",
@@ -2175,8 +2748,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_iovdd30",
@@ -2190,8 +2763,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_iovdd38",
@@ -2205,8 +2778,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_adc44",
@@ -2220,8 +2793,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_shared44_45",
@@ -2235,8 +2808,8 @@
           "45"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_dvdd6",
@@ -2250,8 +2823,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_dvdd39",
@@ -2265,8 +2838,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_dvdd23",
@@ -2280,8 +2853,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_usb_supply53",
@@ -2295,8 +2868,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_shared53_54",
@@ -2310,8 +2883,8 @@
           "54"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_vreg_filter_R",
@@ -2325,8 +2898,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/VREG_AVDD"
+      "net": "/RP2350A/VREG_AVDD",
+      "connected": true
     },
     {
       "name": "FC_vreg_filter_supply",
@@ -2340,8 +2913,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_vreg_input",
@@ -2355,8 +2928,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_vreg_output",
@@ -2370,8 +2943,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_qspi_boot",
@@ -2385,8 +2958,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/QSPI_SS"
+      "net": "/RP2350A/QSPI_SS",
+      "connected": true
     },
     {
       "name": "FC_osc_enable_supply",
@@ -2400,8 +2973,8 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_osc_bypass",
@@ -2415,8 +2988,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_osc_ground",
@@ -2430,8 +3003,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "FC_reg_LX_trial",
@@ -2445,8 +3018,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/VREG_LX"
+      "net": "/RP2350A/VREG_LX",
+      "connected": true
     },
     {
       "name": "FC_RUN_supply",
@@ -2460,8 +3033,8 @@
           "30"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "FC_osc_XIN_inner",
@@ -2475,8 +3048,8 @@
           "21"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/XIN"
+      "net": "/RP2350A/XIN",
+      "connected": true
     },
     {
       "name": "FC_filter_C57_inner",
@@ -2490,8 +3063,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/VREG_AVDD"
+      "net": "/RP2350A/VREG_AVDD",
+      "connected": true
     },
     {
       "name": "FC_PGND_EP_short",
@@ -2505,8 +3078,8 @@
           "61"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "FC_core_FB",
@@ -2520,8 +3093,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_core_east",
@@ -2535,8 +3108,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_core_south",
@@ -2550,8 +3123,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_core_west_power",
@@ -2565,8 +3138,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_gyro_MISO_inner",
@@ -2580,8 +3153,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/SPI1_MISO"
+      "net": "/SPI1_MISO",
+      "connected": true
     },
     {
       "name": "FC_gyro_MOSI_inner",
@@ -2595,8 +3168,8 @@
           "14"
         ]
       ],
-      "connected": true,
-      "net": "/SPI1_MOSI"
+      "net": "/SPI1_MOSI",
+      "connected": true
     },
     {
       "name": "FC_gyro_SCK_inner",
@@ -2610,8 +3183,8 @@
           "13"
         ]
       ],
-      "connected": true,
-      "net": "/SPI1_SCK"
+      "net": "/SPI1_SCK",
+      "connected": true
     },
     {
       "name": "FC_gyro_CS_inner",
@@ -2625,8 +3198,8 @@
           "12"
         ]
       ],
-      "connected": true,
-      "net": "/GYRO_CS"
+      "net": "/GYRO_CS",
+      "connected": true
     },
     {
       "name": "FC_gyro_INT_escape",
@@ -2640,8 +3213,8 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/GYRO_INT"
+      "net": "/GYRO_INT",
+      "connected": true
     },
     {
       "name": "FC_core_rail_all",
@@ -2683,8 +3256,8 @@
           "50"
         ]
       ],
-      "connected": true,
-      "net": "+1.1V"
+      "net": "+1.1V",
+      "connected": true
     },
     {
       "name": "FC_local_GND_all",
@@ -2758,8 +3331,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "FC_global_GND_anchor",
@@ -2773,218 +3346,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_ESC1_sense_pickup_A",
-      "pads": [
-        [
-          "R13",
-          "1"
-        ],
-        [
-          "Q29",
-          "7"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC1/PHASE_A"
-    },
-    {
-      "name": "ESC_ESC1_sense_pickup_B",
-      "pads": [
-        [
-          "R14",
-          "1"
-        ],
-        [
-          "Q30",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC1/PHASE_B"
-    },
-    {
-      "name": "ESC_ESC1_sense_pickup_C",
-      "pads": [
-        [
-          "R15",
-          "1"
-        ],
-        [
-          "Q31",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC1/PHASE_C"
-    },
-    {
-      "name": "ESC_ESC2_sense_pickup_A",
-      "pads": [
-        [
-          "R20",
-          "1"
-        ],
-        [
-          "Q32",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC2/PHASE_A"
-    },
-    {
-      "name": "ESC_ESC2_sense_pickup_B",
-      "pads": [
-        [
-          "R21",
-          "1"
-        ],
-        [
-          "Q33",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC2/PHASE_B"
-    },
-    {
-      "name": "ESC_ESC2_sense_pickup_C",
-      "pads": [
-        [
-          "R22",
-          "1"
-        ],
-        [
-          "Q34",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC2/PHASE_C"
-    },
-    {
-      "name": "ESC_ESC3_sense_pickup_A",
-      "pads": [
-        [
-          "R27",
-          "1"
-        ],
-        [
-          "Q35",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC3/PHASE_A"
-    },
-    {
-      "name": "ESC_ESC3_sense_pickup_B",
-      "pads": [
-        [
-          "R28",
-          "1"
-        ],
-        [
-          "Q36",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC3/PHASE_B"
-    },
-    {
-      "name": "ESC_ESC3_sense_pickup_C",
-      "pads": [
-        [
-          "R29",
-          "1"
-        ],
-        [
-          "Q37",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC3/PHASE_C"
-    },
-    {
-      "name": "ESC_ESC4_sense_pickup_A",
-      "pads": [
-        [
-          "R34",
-          "1"
-        ],
-        [
-          "Q38",
-          "7"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC4/PHASE_A"
-    },
-    {
-      "name": "ESC_ESC4_sense_pickup_B",
-      "pads": [
-        [
-          "R35",
-          "1"
-        ],
-        [
-          "Q39",
-          "7"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC4/PHASE_B"
-    },
-    {
-      "name": "ESC_ESC4_sense_pickup_C",
-      "pads": [
-        [
-          "R36",
-          "1"
-        ],
-        [
-          "Q40",
-          "6"
-        ]
-      ],
-      "connected": true,
-      "net": "/ESC4/PHASE_C"
-    },
-    {
-      "name": "ESC_ESC4_bypass_4",
-      "pads": [
-        [
-          "U9",
-          "4"
-        ],
-        [
-          "C37",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_ESC4_bypass_3",
-      "pads": [
-        [
-          "U9",
-          "3"
-        ],
-        [
-          "C37",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "POWER_boost_all_bulk",
@@ -3018,8 +3381,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "+5V_BST"
+      "net": "+5V_BST",
+      "connected": true
     },
     {
       "name": "POWER_regulated_input",
@@ -3045,8 +3408,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+5V"
+      "net": "+5V",
+      "connected": true
     },
     {
       "name": "POWER_regulated_output",
@@ -3064,8 +3427,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "POWER_power_local_ground",
@@ -3111,8 +3474,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "POWER_boost_feedback",
@@ -3130,8 +3493,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/POWER/U2_FB"
+      "net": "/POWER/U2_FB",
+      "connected": true
     },
     {
       "name": "POWER_Kelvin_positive",
@@ -3145,8 +3508,8 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/POWER/SHUNT_SENSE_P"
+      "net": "/POWER/SHUNT_SENSE_P",
+      "connected": true
     },
     {
       "name": "POWER_Kelvin_negative",
@@ -3160,8 +3523,8 @@
           "5"
         ]
       ],
-      "connected": true,
-      "net": "/POWER/SHUNT_SENSE_N"
+      "net": "/POWER/SHUNT_SENSE_N",
+      "connected": true
     },
     {
       "name": "POWER_global_reference_ground",
@@ -3175,8 +3538,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "VTX_control_/VTX_SPI_CLK",
@@ -3190,8 +3553,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/VTX_SPI_CLK"
+      "net": "/VTX_SPI_CLK",
+      "connected": true
     },
     {
       "name": "VTX_control_/VTX_SPI_CS",
@@ -3205,8 +3568,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/VTX_SPI_CS"
+      "net": "/VTX_SPI_CS",
+      "connected": true
     },
     {
       "name": "VTX_control_/VTX_SPI_DATA",
@@ -3220,8 +3583,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/VTX_SPI_DATA"
+      "net": "/VTX_SPI_DATA",
+      "connected": true
     },
     {
       "name": "VTX_control_/PA_EN",
@@ -3235,8 +3598,8 @@
           "3"
         ]
       ],
-      "connected": true,
-      "net": "/PA_EN"
+      "net": "/PA_EN",
+      "connected": true
     },
     {
       "name": "VTX_control_/VTX_AMP_PWM",
@@ -3250,8 +3613,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/VTX_AMP_PWM"
+      "net": "/VTX_AMP_PWM",
+      "connected": true
     },
     {
       "name": "VTX_control_/HD_EN",
@@ -3265,8 +3628,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/HD_EN"
+      "net": "/HD_EN",
+      "connected": true
     },
     {
       "name": "OSD_filter-cap",
@@ -3280,8 +3643,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/OSD/VID_FILT"
+      "net": "/OSD/VID_FILT",
+      "connected": true
     },
     {
       "name": "OSD_filter-couple",
@@ -3295,8 +3658,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/OSD/VID_FILT"
+      "net": "/OSD/VID_FILT",
+      "connected": true
     },
     {
       "name": "OSD_clamp-input",
@@ -3310,8 +3673,8 @@
           "5"
         ]
       ],
-      "connected": true,
-      "net": "/OSD/VID_DC"
+      "net": "/OSD/VID_DC",
+      "connected": true
     },
     {
       "name": "OSD_clamp-diode",
@@ -3325,8 +3688,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/OSD/VID_DC"
+      "net": "/OSD/VID_DC",
+      "connected": true
     },
     {
       "name": "OSD_video-shunt",
@@ -3340,8 +3703,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/VIDEO_IN"
+      "net": "/VIDEO_IN",
+      "connected": true
     },
     {
       "name": "OSD_divider-bottom",
@@ -3355,8 +3718,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/OSD/OSD_LVL"
+      "net": "/OSD/OSD_LVL",
+      "connected": true
     },
     {
       "name": "OSD_divider-switch",
@@ -3370,8 +3733,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/OSD/OSD_LVL"
+      "net": "/OSD/OSD_LVL",
+      "connected": true
     },
     {
       "name": "OSD_comparator-bypass",
@@ -3385,8 +3748,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "OSD_comparator-ground",
@@ -3400,8 +3763,8 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "OSD_comparator-cap-ground",
@@ -3415,8 +3778,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "OSD_clamp-ground",
@@ -3430,8 +3793,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "OSD_switch-divider-ground",
@@ -3445,8 +3808,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "OSD_termination-ground",
@@ -3460,8 +3823,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "OSD_video-filter",
@@ -3475,8 +3838,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/VIDEO_IN"
+      "net": "/VIDEO_IN",
+      "connected": true
     },
     {
       "name": "OSD_video-switch",
@@ -3490,8 +3853,8 @@
           "3"
         ]
       ],
-      "connected": true,
-      "net": "/VIDEO_IN"
+      "net": "/VIDEO_IN",
+      "connected": true
     },
     {
       "name": "OSD_switch-bypass",
@@ -3505,8 +3868,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "OSD_switch_ground",
@@ -3520,8 +3883,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "Q29 phase power",
@@ -3551,8 +3914,8 @@
           "3"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/PHASE_A"
+      "net": "/ESC1/PHASE_A",
+      "connected": true
     },
     {
       "name": "Q30 phase power",
@@ -3582,8 +3945,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/PHASE_B"
+      "net": "/ESC1/PHASE_B",
+      "connected": true
     },
     {
       "name": "Q31 phase power",
@@ -3613,8 +3976,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/PHASE_C"
+      "net": "/ESC1/PHASE_C",
+      "connected": true
     },
     {
       "name": "Q32 phase power",
@@ -3644,8 +4007,8 @@
           "3"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/PHASE_A"
+      "net": "/ESC2/PHASE_A",
+      "connected": true
     },
     {
       "name": "Q33 phase power",
@@ -3675,8 +4038,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/PHASE_B"
+      "net": "/ESC2/PHASE_B",
+      "connected": true
     },
     {
       "name": "Q34 phase power",
@@ -3706,8 +4069,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC2/PHASE_C"
+      "net": "/ESC2/PHASE_C",
+      "connected": true
     },
     {
       "name": "Q35 phase power",
@@ -3737,8 +4100,8 @@
           "3"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/PHASE_A"
+      "net": "/ESC3/PHASE_A",
+      "connected": true
     },
     {
       "name": "Q36 phase power",
@@ -3768,8 +4131,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/PHASE_B"
+      "net": "/ESC3/PHASE_B",
+      "connected": true
     },
     {
       "name": "Q37 phase power",
@@ -3799,8 +4162,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/PHASE_C"
+      "net": "/ESC3/PHASE_C",
+      "connected": true
     },
     {
       "name": "Q38 phase power",
@@ -3830,8 +4193,8 @@
           "3"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/PHASE_A"
+      "net": "/ESC4/PHASE_A",
+      "connected": true
     },
     {
       "name": "Q39 phase power",
@@ -3861,8 +4224,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/PHASE_B"
+      "net": "/ESC4/PHASE_B",
+      "connected": true
     },
     {
       "name": "Q40 phase power",
@@ -3892,8 +4255,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC4/PHASE_C"
+      "net": "/ESC4/PHASE_C",
+      "connected": true
     },
     {
       "name": "battery_entry",
@@ -3907,8 +4270,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "/POWER/CSA+"
+      "net": "/POWER/CSA+",
+      "connected": true
     },
     {
       "name": "boost_input",
@@ -3926,8 +4289,8 @@
           1
         ]
       ],
-      "connected": true,
-      "net": "+BATT"
+      "net": "+BATT",
+      "connected": true
     },
     {
       "name": "current_bypass",
@@ -3941,8 +4304,8 @@
           3
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "current_ground",
@@ -3964,8 +4327,8 @@
           2
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "RX_ground",
@@ -3991,8 +4354,8 @@
           2
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "/RX/RF_RFIO",
@@ -4006,8 +4369,8 @@
           "22"
         ]
       ],
-      "connected": true,
-      "net": "/RX/RF_RFIO"
+      "net": "/RX/RF_RFIO",
+      "connected": true
     },
     {
       "name": "/RX/RF_RX_ANT",
@@ -4021,8 +4384,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/RX/RF_RX_ANT"
+      "net": "/RX/RF_RX_ANT",
+      "connected": true
     },
     {
       "name": "/RX/TCXO_OUT",
@@ -4036,8 +4399,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/RX/TCXO_OUT"
+      "net": "/RX/TCXO_OUT",
+      "connected": true
     },
     {
       "name": "/RX/XTA",
@@ -4051,8 +4414,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/RX/XTA"
+      "net": "/RX/XTA",
+      "connected": true
     },
     {
       "name": "DShot_motor2",
@@ -4066,8 +4429,8 @@
           "4"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/MOTOR2_FC"
+      "net": "/RP2350A/MOTOR2_FC",
+      "connected": true
     },
     {
       "name": "DShot_motor1",
@@ -4081,8 +4444,8 @@
           "3"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/MOTOR1_FC"
+      "net": "/RP2350A/MOTOR3_FC",
+      "connected": true
     },
     {
       "name": "DShot_motor3",
@@ -4096,8 +4459,8 @@
           "5"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/MOTOR3_FC"
+      "net": "/RP2350A/MOTOR1_FC",
+      "connected": true
     },
     {
       "name": "DShot_motor4",
@@ -4111,8 +4474,8 @@
           "6"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/MOTOR4_FC"
+      "net": "/RP2350A/MOTOR4_FC",
+      "connected": true
     },
     {
       "name": "OSD_level",
@@ -4134,323 +4497,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/OSD/OSD_LVL"
-    },
-    {
-      "name": "ESC_supply_Q29_+BATT_local_cap",
-      "pads": [
-        [
-          "Q29",
-          "3"
-        ],
-        [
-          "C21",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q29_GND_local_cap",
-      "pads": [
-        [
-          "Q29",
-          "1"
-        ],
-        [
-          "C21",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q30_+BATT_local_cap",
-      "pads": [
-        [
-          "Q30",
-          "3"
-        ],
-        [
-          "C23",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q30_GND_local_cap",
-      "pads": [
-        [
-          "Q30",
-          "1"
-        ],
-        [
-          "C23",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q31_+BATT_local_cap",
-      "pads": [
-        [
-          "Q31",
-          "3"
-        ],
-        [
-          "C20",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q31_GND_local_cap",
-      "pads": [
-        [
-          "Q31",
-          "1"
-        ],
-        [
-          "C20",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q32_+BATT_local_cap",
-      "pads": [
-        [
-          "Q32",
-          "3"
-        ],
-        [
-          "C26",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q32_GND_local_cap",
-      "pads": [
-        [
-          "Q32",
-          "1"
-        ],
-        [
-          "C26",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q33_+BATT_local_cap",
-      "pads": [
-        [
-          "Q33",
-          "3"
-        ],
-        [
-          "C27",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q34_+BATT_local_cap",
-      "pads": [
-        [
-          "Q34",
-          "3"
-        ],
-        [
-          "C24",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q34_GND_local_cap",
-      "pads": [
-        [
-          "Q34",
-          "1"
-        ],
-        [
-          "C24",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q35_+BATT_local_cap",
-      "pads": [
-        [
-          "Q35",
-          "3"
-        ],
-        [
-          "C35",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q35_GND_local_cap",
-      "pads": [
-        [
-          "Q35",
-          "1"
-        ],
-        [
-          "C35",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q36_+BATT_local_cap",
-      "pads": [
-        [
-          "Q36",
-          "3"
-        ],
-        [
-          "C33",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q37_GND_local_cap",
-      "pads": [
-        [
-          "Q37",
-          "1"
-        ],
-        [
-          "C32",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q38_+BATT_local_cap",
-      "pads": [
-        [
-          "Q38",
-          "3"
-        ],
-        [
-          "C39",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q38_GND_local_cap",
-      "pads": [
-        [
-          "Q38",
-          "1"
-        ],
-        [
-          "C39",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q39_+BATT_local_cap",
-      "pads": [
-        [
-          "Q39",
-          "3"
-        ],
-        [
-          "C41",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q39_GND_local_cap",
-      "pads": [
-        [
-          "Q39",
-          "1"
-        ],
-        [
-          "C41",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
-    },
-    {
-      "name": "ESC_supply_Q40_+BATT_local_cap",
-      "pads": [
-        [
-          "Q40",
-          "3"
-        ],
-        [
-          "C38",
-          "1"
-        ]
-      ],
-      "connected": true,
-      "net": "+BATT"
-    },
-    {
-      "name": "ESC_supply_Q40_GND_local_cap",
-      "pads": [
-        [
-          "Q40",
-          "1"
-        ],
-        [
-          "C38",
-          "2"
-        ]
-      ],
-      "connected": true,
-      "net": "GND"
+      "net": "/OSD/OSD_LVL",
+      "connected": true
     },
     {
       "name": "PA_detect",
@@ -4468,8 +4516,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/PA_DET"
+      "net": "/PA_DET",
+      "connected": true
     },
     {
       "name": "MOTOR4_ESC",
@@ -4483,8 +4531,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/MOTOR4"
+      "net": "/MOTOR4",
+      "connected": true
     },
     {
       "name": "RAIL_new_main3v3_rail",
@@ -4646,8 +4694,8 @@
           "8"
         ]
       ],
-      "connected": true,
-      "net": "+3.3V"
+      "net": "+3.3V",
+      "connected": true
     },
     {
       "name": "RAIL_new_local_bypass_ground",
@@ -4753,8 +4801,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "GND"
+      "net": "GND",
+      "connected": true
     },
     {
       "name": "RAIL_gyro18",
@@ -4776,8 +4824,8 @@
           "8"
         ]
       ],
-      "connected": true,
-      "net": "+1.8V_GYRO"
+      "net": "+1.8V_GYRO",
+      "connected": true
     },
     {
       "name": "RAIL_sx_VREG_RADIO",
@@ -4799,8 +4847,8 @@
           "2"
         ]
       ],
-      "connected": true,
-      "net": "/RX/VREG_RADIO"
+      "net": "/RX/VREG_RADIO",
+      "connected": true
     },
     {
       "name": "RAIL_sx_VR_PA",
@@ -4814,8 +4862,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/RX/VR_PA"
+      "net": "/RX/VR_PA",
+      "connected": true
     },
     {
       "name": "RAIL_PA_DET_import",
@@ -4829,8 +4877,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/PA_DET"
+      "net": "/PA_DET",
+      "connected": true
     },
     {
       "name": "RX_LOCAL_radio-miso",
@@ -4844,8 +4892,8 @@
           "16"
         ]
       ],
-      "connected": true,
-      "net": "/RX/RADIO_MISO"
+      "net": "/RX/RADIO_MISO",
+      "connected": true
     },
     {
       "name": "RX_LOCAL_radio-mosi",
@@ -4859,8 +4907,8 @@
           "17"
         ]
       ],
-      "connected": true,
-      "net": "/RX/RADIO_MOSI"
+      "net": "/RX/RADIO_MOSI",
+      "connected": true
     },
     {
       "name": "RX_LOCAL_radio-sck",
@@ -4874,8 +4922,8 @@
           "18"
         ]
       ],
-      "connected": true,
-      "net": "/RX/RADIO_SCK"
+      "net": "/RX/RADIO_SCK",
+      "connected": true
     },
     {
       "name": "RX_LOCAL_radio-nss",
@@ -4889,8 +4937,8 @@
           "19"
         ]
       ],
-      "connected": true,
-      "net": "/RX/RADIO_NSS"
+      "net": "/RX/RADIO_NSS",
+      "connected": true
     },
     {
       "name": "RX_LOCAL_led0",
@@ -4904,8 +4952,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/LED/D5_K"
+      "net": "/LED/D5_K",
+      "connected": true
     },
     {
       "name": "RX_LOCAL_led1",
@@ -4919,8 +4967,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/LED/D6_K"
+      "net": "/LED/D6_K",
+      "connected": true
     },
     {
       "name": "RX_LOCAL_rx-boot-switch",
@@ -4934,8 +4982,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/RX/BOOT_SW"
+      "net": "/RX/BOOT_SW",
+      "connected": true
     },
     {
       "name": "RX_LOCAL_video-pad",
@@ -4949,8 +4997,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/VIDEO_IN"
+      "net": "/VIDEO_IN",
+      "connected": true
     },
     {
       "name": "CONTROL__ESC1_C2D",
@@ -4964,8 +5012,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/C2D"
+      "net": "/ESC1/C2D",
+      "connected": true
     },
     {
       "name": "CONTROL__RP2350A_BEEPER",
@@ -4979,8 +5027,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/RP2350A/BEEPER"
+      "net": "/RP2350A/BEEPER",
+      "connected": true
     },
     {
       "name": "CONTROL__ESC1_C2CK",
@@ -4994,8 +5042,8 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC1/C2CK"
+      "net": "/ESC1/C2CK",
+      "connected": true
     },
     {
       "name": "CONTROL__ESC3_C2D",
@@ -5009,30 +5057,1968 @@
           "1"
         ]
       ],
-      "connected": true,
-      "net": "/ESC3/C2D"
+      "net": "/ESC3/C2D",
+      "connected": true
+    },
+    {
+      "name": "all_FET_+BATT_to_entry",
+      "pads": [
+        [
+          "R2",
+          "4"
+        ],
+        [
+          "Q29",
+          "3"
+        ],
+        [
+          "Q30",
+          "3"
+        ],
+        [
+          "Q31",
+          "3"
+        ],
+        [
+          "Q32",
+          "3"
+        ],
+        [
+          "Q33",
+          "3"
+        ],
+        [
+          "Q34",
+          "3"
+        ],
+        [
+          "Q35",
+          "3"
+        ],
+        [
+          "Q36",
+          "3"
+        ],
+        [
+          "Q37",
+          "3"
+        ],
+        [
+          "Q38",
+          "3"
+        ],
+        [
+          "Q39",
+          "3"
+        ],
+        [
+          "Q40",
+          "3"
+        ]
+      ],
+      "net": "+BATT",
+      "connected": true
+    },
+    {
+      "name": "all_FET_GND_to_entry",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "Q29",
+          "1"
+        ],
+        [
+          "Q30",
+          "1"
+        ],
+        [
+          "Q31",
+          "1"
+        ],
+        [
+          "Q32",
+          "1"
+        ],
+        [
+          "Q33",
+          "1"
+        ],
+        [
+          "Q34",
+          "1"
+        ],
+        [
+          "Q35",
+          "1"
+        ],
+        [
+          "Q36",
+          "1"
+        ],
+        [
+          "Q37",
+          "1"
+        ],
+        [
+          "Q38",
+          "1"
+        ],
+        [
+          "Q39",
+          "1"
+        ],
+        [
+          "Q40",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "/UART0_RX",
+      "pads": [
+        [
+          "U10",
+          "28"
+        ],
+        [
+          "U16",
+          "41"
+        ]
+      ],
+      "net": "/UART0_RX",
+      "connected": true
+    },
+    {
+      "name": "/UART1_TX",
+      "pads": [
+        [
+          "U10",
+          "36"
+        ],
+        [
+          "J28",
+          "1"
+        ]
+      ],
+      "net": "/UART1_TX",
+      "connected": true
+    },
+    {
+      "name": "HD_EN_repaired",
+      "pads": [
+        [
+          "U10",
+          "31"
+        ],
+        [
+          "R68",
+          "2"
+        ],
+        [
+          "U21",
+          "4"
+        ]
+      ],
+      "net": "/HD_EN",
+      "connected": true
+    },
+    {
+      "name": "aux_3v3",
+      "pads": [
+        [
+          "U4",
+          "1"
+        ],
+        [
+          "C6",
+          "1"
+        ],
+        [
+          "U1",
+          "3"
+        ],
+        [
+          "C65",
+          "1"
+        ],
+        [
+          "U13",
+          "3"
+        ],
+        [
+          "U13",
+          "7"
+        ],
+        [
+          "U13",
+          "8"
+        ],
+        [
+          "R50",
+          "1"
+        ],
+        [
+          "R68",
+          "1"
+        ],
+        [
+          "C70",
+          "1"
+        ],
+        [
+          "U14",
+          "5"
+        ],
+        [
+          "C71",
+          "1"
+        ],
+        [
+          "U15",
+          "2"
+        ],
+        [
+          "R53",
+          "2"
+        ]
+      ],
+      "net": "+3.3V",
+      "connected": true
+    },
+    {
+      "name": "aux_5v",
+      "pads": [
+        [
+          "U4",
+          "6"
+        ],
+        [
+          "C128",
+          "1"
+        ],
+        [
+          "U21",
+          "6"
+        ],
+        [
+          "D9",
+          "1"
+        ],
+        [
+          "J21",
+          "1"
+        ],
+        [
+          "D4",
+          "2"
+        ],
+        [
+          "C83",
+          "1"
+        ]
+      ],
+      "net": "+5V",
+      "connected": true
+    },
+    {
+      "name": "aux_cam",
+      "pads": [
+        [
+          "FB1",
+          "2"
+        ],
+        [
+          "C15",
+          "1"
+        ],
+        [
+          "J32",
+          "3"
+        ]
+      ],
+      "net": "+5V_CAM",
+      "connected": true
+    },
+    {
+      "name": "aux_reset",
+      "pads": [
+        [
+          "U16",
+          "9"
+        ],
+        [
+          "R56",
+          "2"
+        ],
+        [
+          "C73",
+          "1"
+        ]
+      ],
+      "net": "/RX/RX_EN",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_C73.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C73",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_U15.4",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "U15",
+          "4"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_C66.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C66",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_R51.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "R51",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_C67.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C67",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_C15.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C15",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_C128.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C128",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_C144.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C144",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_C83.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C83",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_D4.3",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "D4",
+          "3"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_SW1.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "SW1",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J25.1",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J25",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J27.1",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J27",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J33.1",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J33",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J32.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J32",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J32.4",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J32",
+          "4"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J32.5",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J32",
+          "5"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J31.1",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J31",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J31.5",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J31",
+          "5"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_J31.6",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "J31",
+          "6"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_D7.3",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "D7",
+          "3"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "aux_gnd_C7.2",
+      "pads": [
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C7",
+          "2"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "FC_MOTOR1",
+      "pads": [
+        [
+          "U10",
+          "8"
+        ],
+        [
+          "U24",
+          "5"
+        ]
+      ],
+      "net": "/RP2350A/MOTOR1_FC",
+      "connected": true
+    },
+    {
+      "name": "ESC_MOTOR1",
+      "pads": [
+        [
+          "U24",
+          "10"
+        ],
+        [
+          "R12",
+          "1"
+        ]
+      ],
+      "net": "/MOTOR1",
+      "connected": true
+    },
+    {
+      "name": "FC_MOTOR2",
+      "pads": [
+        [
+          "U10",
+          "9"
+        ],
+        [
+          "U24",
+          "4"
+        ]
+      ],
+      "net": "/RP2350A/MOTOR2_FC",
+      "connected": true
+    },
+    {
+      "name": "ESC_MOTOR2",
+      "pads": [
+        [
+          "U24",
+          "11"
+        ],
+        [
+          "R19",
+          "1"
+        ]
+      ],
+      "net": "/MOTOR2",
+      "connected": true
+    },
+    {
+      "name": "FC_MOTOR3",
+      "pads": [
+        [
+          "U10",
+          "10"
+        ],
+        [
+          "U24",
+          "3"
+        ]
+      ],
+      "net": "/RP2350A/MOTOR3_FC",
+      "connected": true
+    },
+    {
+      "name": "ESC_MOTOR3",
+      "pads": [
+        [
+          "U24",
+          "12"
+        ],
+        [
+          "R26",
+          "1"
+        ]
+      ],
+      "net": "/MOTOR3",
+      "connected": true
+    },
+    {
+      "name": "FC_MOTOR4",
+      "pads": [
+        [
+          "U10",
+          "7"
+        ],
+        [
+          "U24",
+          "6"
+        ]
+      ],
+      "net": "/RP2350A/MOTOR4_FC",
+      "connected": true
+    },
+    {
+      "name": "ESC_MOTOR4",
+      "pads": [
+        [
+          "U24",
+          "9"
+        ],
+        [
+          "R33",
+          "1"
+        ]
+      ],
+      "net": "/MOTOR4",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C19.2",
+      "pads": [
+        [
+          "C19",
+          "2"
+        ],
+        [
+          "U6",
+          "3"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C31.2",
+      "pads": [
+        [
+          "C31",
+          "2"
+        ],
+        [
+          "U8",
+          "3"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C28.2",
+      "pads": [
+        [
+          "C28",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C29.2",
+      "pads": [
+        [
+          "C29",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C34.2",
+      "pads": [
+        [
+          "C34",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C36.2",
+      "pads": [
+        [
+          "C36",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_Q26.2",
+      "pads": [
+        [
+          "Q26",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_U6.21",
+      "pads": [
+        [
+          "U6",
+          "21"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_U8.12",
+      "pads": [
+        [
+          "U8",
+          "12"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_U8.21",
+      "pads": [
+        [
+          "U8",
+          "21"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C25.2",
+      "pads": [
+        [
+          "C25",
+          "2"
+        ],
+        [
+          "U7",
+          "3"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C30.2",
+      "pads": [
+        [
+          "C30",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_C43.2",
+      "pads": [
+        [
+          "C43",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_R48.1",
+      "pads": [
+        [
+          "R48",
+          "1"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_U6.12",
+      "pads": [
+        [
+          "U6",
+          "12"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "GND_access_U7.12",
+      "pads": [
+        [
+          "U7",
+          "12"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "U6_pin_ground",
+      "pads": [
+        [
+          "U6",
+          "12"
+        ],
+        [
+          "U6",
+          "21"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "U7_pin_ground",
+      "pads": [
+        [
+          "U7",
+          "12"
+        ],
+        [
+          "U7",
+          "21"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "U7_ep_ground",
+      "pads": [
+        [
+          "U7",
+          "21"
+        ],
+        [
+          "U7",
+          "3"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "U9_pin_ground",
+      "pads": [
+        [
+          "U9",
+          "12"
+        ],
+        [
+          "U9",
+          "21"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "C22_ground",
+      "pads": [
+        [
+          "C22",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "C40_ground",
+      "pads": [
+        [
+          "C40",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
+    },
+    {
+      "name": "All_ground_pads",
+      "pads": [
+        [
+          "U14",
+          "2"
+        ],
+        [
+          "C70",
+          "2"
+        ],
+        [
+          "C51",
+          "2"
+        ],
+        [
+          "FL1",
+          "2"
+        ],
+        [
+          "FL1",
+          "4"
+        ],
+        [
+          "C56",
+          "2"
+        ],
+        [
+          "C9",
+          "2"
+        ],
+        [
+          "C66",
+          "2"
+        ],
+        [
+          "C44",
+          "2"
+        ],
+        [
+          "X3",
+          "2"
+        ],
+        [
+          "C37",
+          "2"
+        ],
+        [
+          "J32",
+          "2"
+        ],
+        [
+          "J32",
+          "4"
+        ],
+        [
+          "J32",
+          "5"
+        ],
+        [
+          "C47",
+          "2"
+        ],
+        [
+          "C8",
+          "2"
+        ],
+        [
+          "Q36",
+          "1"
+        ],
+        [
+          "C54",
+          "2"
+        ],
+        [
+          "U15",
+          "3"
+        ],
+        [
+          "U15",
+          "4"
+        ],
+        [
+          "C67",
+          "2"
+        ],
+        [
+          "C6",
+          "2"
+        ],
+        [
+          "C133",
+          "2"
+        ],
+        [
+          "U10",
+          "47"
+        ],
+        [
+          "U10",
+          "61"
+        ],
+        [
+          "C12",
+          "2"
+        ],
+        [
+          "C15",
+          "2"
+        ],
+        [
+          "C10",
+          "2"
+        ],
+        [
+          "C132",
+          "2"
+        ],
+        [
+          "C137",
+          "2"
+        ],
+        [
+          "Q39",
+          "1"
+        ],
+        [
+          "C27",
+          "2"
+        ],
+        [
+          "R51",
+          "2"
+        ],
+        [
+          "C61",
+          "2"
+        ],
+        [
+          "C76",
+          "2"
+        ],
+        [
+          "C85",
+          "2"
+        ],
+        [
+          "J3",
+          "1"
+        ],
+        [
+          "C23",
+          "2"
+        ],
+        [
+          "J33",
+          "1"
+        ],
+        [
+          "C31",
+          "2"
+        ],
+        [
+          "U1",
+          "1"
+        ],
+        [
+          "U1",
+          "2"
+        ],
+        [
+          "C62",
+          "2"
+        ],
+        [
+          "C82",
+          "2"
+        ],
+        [
+          "R54",
+          "1"
+        ],
+        [
+          "C50",
+          "2"
+        ],
+        [
+          "C40",
+          "2"
+        ],
+        [
+          "C58",
+          "2"
+        ],
+        [
+          "C7",
+          "2"
+        ],
+        [
+          "C33",
+          "2"
+        ],
+        [
+          "Q30",
+          "1"
+        ],
+        [
+          "X1",
+          "2"
+        ],
+        [
+          "U2",
+          "1"
+        ],
+        [
+          "C14",
+          "2"
+        ],
+        [
+          "C42",
+          "2"
+        ],
+        [
+          "U9",
+          "3"
+        ],
+        [
+          "U9",
+          "12"
+        ],
+        [
+          "U9",
+          "21"
+        ],
+        [
+          "C138",
+          "2"
+        ],
+        [
+          "R5",
+          "2"
+        ],
+        [
+          "C45",
+          "2"
+        ],
+        [
+          "C87",
+          "1"
+        ],
+        [
+          "C25",
+          "2"
+        ],
+        [
+          "U18",
+          "5"
+        ],
+        [
+          "U18",
+          "13"
+        ],
+        [
+          "U18",
+          "20"
+        ],
+        [
+          "U18",
+          "21"
+        ],
+        [
+          "U18",
+          "23"
+        ],
+        [
+          "U18",
+          "24"
+        ],
+        [
+          "U18",
+          "25"
+        ],
+        [
+          "C49",
+          "2"
+        ],
+        [
+          "AE2",
+          "2"
+        ],
+        [
+          "AE2",
+          "3"
+        ],
+        [
+          "C11",
+          "2"
+        ],
+        [
+          "J27",
+          "1"
+        ],
+        [
+          "U4",
+          "3"
+        ],
+        [
+          "U4",
+          "7"
+        ],
+        [
+          "C57",
+          "2"
+        ],
+        [
+          "C52",
+          "2"
+        ],
+        [
+          "U16",
+          "49"
+        ],
+        [
+          "C89",
+          "2"
+        ],
+        [
+          "C46",
+          "2"
+        ],
+        [
+          "C71",
+          "2"
+        ],
+        [
+          "Q33",
+          "1"
+        ],
+        [
+          "U11",
+          "6"
+        ],
+        [
+          "U11",
+          "7"
+        ],
+        [
+          "U7",
+          "3"
+        ],
+        [
+          "U7",
+          "12"
+        ],
+        [
+          "U7",
+          "21"
+        ],
+        [
+          "C86",
+          "2"
+        ],
+        [
+          "U12",
+          "2"
+        ],
+        [
+          "U12",
+          "5"
+        ],
+        [
+          "C48",
+          "2"
+        ],
+        [
+          "C88",
+          "1"
+        ],
+        [
+          "J25",
+          "1"
+        ],
+        [
+          "D3",
+          "2"
+        ],
+        [
+          "C41",
+          "2"
+        ],
+        [
+          "U8",
+          "3"
+        ],
+        [
+          "U8",
+          "12"
+        ],
+        [
+          "U8",
+          "21"
+        ],
+        [
+          "U22",
+          "2"
+        ],
+        [
+          "U22",
+          "5"
+        ],
+        [
+          "Q38",
+          "1"
+        ],
+        [
+          "C124",
+          "2"
+        ],
+        [
+          "C96",
+          "2"
+        ],
+        [
+          "C35",
+          "2"
+        ],
+        [
+          "C135",
+          "2"
+        ],
+        [
+          "Q32",
+          "1"
+        ],
+        [
+          "C20",
+          "2"
+        ],
+        [
+          "C29",
+          "2"
+        ],
+        [
+          "X4",
+          "2"
+        ],
+        [
+          "X4",
+          "4"
+        ],
+        [
+          "C36",
+          "2"
+        ],
+        [
+          "R59",
+          "2"
+        ],
+        [
+          "C136",
+          "2"
+        ],
+        [
+          "C98",
+          "2"
+        ],
+        [
+          "C22",
+          "2"
+        ],
+        [
+          "C108",
+          "2"
+        ],
+        [
+          "C117",
+          "2"
+        ],
+        [
+          "C103",
+          "2"
+        ],
+        [
+          "Q40",
+          "1"
+        ],
+        [
+          "C24",
+          "2"
+        ],
+        [
+          "C102",
+          "2"
+        ],
+        [
+          "Q29",
+          "1"
+        ],
+        [
+          "C143",
+          "2"
+        ],
+        [
+          "Q34",
+          "1"
+        ],
+        [
+          "C116",
+          "2"
+        ],
+        [
+          "C60",
+          "2"
+        ],
+        [
+          "J1",
+          "2"
+        ],
+        [
+          "J1",
+          "3"
+        ],
+        [
+          "C19",
+          "2"
+        ],
+        [
+          "C106",
+          "2"
+        ],
+        [
+          "C39",
+          "2"
+        ],
+        [
+          "C65",
+          "2"
+        ],
+        [
+          "C113",
+          "2"
+        ],
+        [
+          "U21",
+          "5"
+        ],
+        [
+          "U21",
+          "7"
+        ],
+        [
+          "C109",
+          "2"
+        ],
+        [
+          "C21",
+          "2"
+        ],
+        [
+          "C128",
+          "2"
+        ],
+        [
+          "C111",
+          "2"
+        ],
+        [
+          "C73",
+          "2"
+        ],
+        [
+          "C112",
+          "2"
+        ],
+        [
+          "Q37",
+          "1"
+        ],
+        [
+          "C28",
+          "2"
+        ],
+        [
+          "C59",
+          "1"
+        ],
+        [
+          "C123",
+          "2"
+        ],
+        [
+          "U13",
+          "4"
+        ],
+        [
+          "C43",
+          "2"
+        ],
+        [
+          "Q35",
+          "1"
+        ],
+        [
+          "U6",
+          "3"
+        ],
+        [
+          "U6",
+          "12"
+        ],
+        [
+          "U6",
+          "21"
+        ],
+        [
+          "C95",
+          "2"
+        ],
+        [
+          "C118",
+          "2"
+        ],
+        [
+          "Q31",
+          "1"
+        ],
+        [
+          "C101",
+          "2"
+        ],
+        [
+          "R62",
+          "2"
+        ],
+        [
+          "C115",
+          "2"
+        ],
+        [
+          "C30",
+          "2"
+        ],
+        [
+          "Q26",
+          "2"
+        ],
+        [
+          "SW1",
+          "2"
+        ],
+        [
+          "J31",
+          "1"
+        ],
+        [
+          "J31",
+          "5"
+        ],
+        [
+          "J31",
+          "6"
+        ],
+        [
+          "D7",
+          "3"
+        ],
+        [
+          "U20",
+          "1"
+        ],
+        [
+          "U20",
+          "2"
+        ],
+        [
+          "U20",
+          "4"
+        ],
+        [
+          "U20",
+          "11"
+        ],
+        [
+          "U20",
+          "12"
+        ],
+        [
+          "U20",
+          "14"
+        ],
+        [
+          "U20",
+          "15"
+        ],
+        [
+          "U20",
+          "16"
+        ],
+        [
+          "U20",
+          "17"
+        ],
+        [
+          "U20",
+          "21"
+        ],
+        [
+          "C100",
+          "2"
+        ],
+        [
+          "C32",
+          "2"
+        ],
+        [
+          "C107",
+          "2"
+        ],
+        [
+          "C91",
+          "2"
+        ],
+        [
+          "C38",
+          "2"
+        ],
+        [
+          "C144",
+          "2"
+        ],
+        [
+          "R48",
+          "1"
+        ],
+        [
+          "C26",
+          "2"
+        ],
+        [
+          "R46",
+          "1"
+        ],
+        [
+          "FL2",
+          "2"
+        ],
+        [
+          "U24",
+          "7"
+        ],
+        [
+          "U19",
+          "28"
+        ],
+        [
+          "U19",
+          "33"
+        ],
+        [
+          "U19",
+          "38"
+        ],
+        [
+          "U19",
+          "41"
+        ],
+        [
+          "C125",
+          "2"
+        ],
+        [
+          "C34",
+          "2"
+        ],
+        [
+          "C122",
+          "2"
+        ],
+        [
+          "C94",
+          "2"
+        ],
+        [
+          "C114",
+          "2"
+        ],
+        [
+          "C83",
+          "2"
+        ],
+        [
+          "D4",
+          "3"
+        ]
+      ],
+      "net": "GND",
+      "connected": true
     }
   ],
   "route_counts": {
     "footprints": 258,
-    "tracks": 1002,
-    "vias": 479,
+    "tracks": 1226,
+    "vias": 616,
     "rule_areas": 16,
     "copper_zones": 26
   },
   "via_process": {
-    "filled_capped_count": 479,
+    "filled_capped_count": 616,
     "allowed_spans": [
       "F.Cu-In1.Cu",
       "In1.Cu-In4.Cu",
       "In4.Cu-B.Cu"
     ],
     "independent_hole_spacing": {
-      "holes": 494,
-      "overlapping_span_pairs": 97483,
-      "disjoint_span_pairs_ignored": 24288,
+      "holes": 631,
+      "overlapping_span_pairs": 158893,
+      "disjoint_span_pairs_ignored": 39872,
       "violations": [],
-      "below_nominal_025mm_stagger": [],
+      "below_nominal_025mm_stagger": [
+        {
+          "a": {
+            "uuid": "1992c80f-8af8-4f9a-a1d7-a62de9686416",
+            "kind": "via",
+            "type": "buried",
+            "net": "+3.3V",
+            "position": [
+              110.72,
+              121.790001
+            ],
+            "diameter": 0.15,
+            "span": [
+              1,
+              4
+            ],
+            "layers": [
+              "In1.Cu",
+              "In4.Cu"
+            ]
+          },
+          "b": {
+            "uuid": "b47bea43-7927-480e-9fc4-1352daeb1ef8",
+            "kind": "via",
+            "type": "micro",
+            "net": "+3.3V",
+            "position": [
+              110.709999,
+              121.55
+            ],
+            "diameter": 0.1,
+            "span": [
+              4,
+              5
+            ],
+            "layers": [
+              "In4.Cu",
+              "B.Cu"
+            ]
+          },
+          "center_mm": 0.2402092837548191,
+          "hole_edge_gap_mm": 0.11520928375481909,
+          "required_mm": 0.1
+        }
+      ],
       "qualification": "Independent circle-drill geometry including same-net holes. Adjacent micro/buried spans share a landing layer and use the existing 0.10 mm special rule. Opposite-face non-overlapping blind spans excluded. 0.001 mm numerical tolerance. Nominal 0.25 mm micro/buried stagger reported separately from the existing edge-spacing rule."
     }
   },
@@ -5054,13 +7040,14 @@
     "inherited_J32_housing_to_J4_pin1_land_gap_mm": 0.19,
     "placement_qualification": "J32 housing to J4.1 land has the same 0.190 mm gap as dafbb05, 0.010 mm below the 0.200 mm placement preference. No body overlap or native copper violation; connector geometry remains unchanged.",
     "physical_connectivity": {
-      "groups": 286,
+      "groups": 351,
       "failures": [],
       "method": "Independent same-net planar copper union. Each filled polygon has a distinct node; different islands of the same zone are never assumed connected. Physical via and plated-pad nodes join their actual copper layers. Two-nanometre contact tolerance.",
-      "corrected_previous_method": "Earlier native BFS traversed whole zone objects and falsely joined four isolated RP ground returns. Actual filled-island geometry now verifies every listed group, and new buried returns close those four islands."
+      "corrected_previous_method": "Earlier native BFS traversed whole zone objects and falsely joined four isolated RP ground returns. Actual filled-island geometry now verifies every listed group, and new buried returns close those four islands.",
+      "all_ground_pads": 198
     },
     "reference": {
-      "candidate_sha256": "7be8cdd8226e98698dda30606629cb9781abcdcac34194c385b59cb3bfe20489",
+      "candidate_sha256": "f54737131c8ae4ac14135fbc5bc08c69836252a02390d1a27c5f3291a93627f5",
       "checks": [
         {
           "net": "/RX/RF_RX_ANT",
@@ -5115,8 +7102,8 @@
           "net": "/VIDEO_IN",
           "layer": "F.Cu",
           "baseline_missing_mm2": 0.3528777425900638,
-          "candidate_missing_mm2": 0.36483728250533437,
-          "new_missing_mm2": 0.01195905379437892
+          "candidate_missing_mm2": 0.3528779294168691,
+          "new_missing_mm2": 0.0
         },
         {
           "net": "/OSD/VID_FILT",
@@ -5336,7 +7323,7 @@
           "new_missing_mm2": 0.0
         }
       ],
-      "new_missing_mm2": 0.5387390588367825,
+      "new_missing_mm2": 0.5267800050424036,
       "accepted_local_reference_changes": [
         {
           "net": "/OSD/VID_FILT",
@@ -5378,85 +7365,377 @@
     },
     "battery_geometric_widths": [
       {
-        "destination": "Q29",
-        "before_pa_mm": 1.6915130615234375,
-        "parent_pending_pa_mm": 1.6914749145507812,
-        "repaired_mm": 1.6914749145507812
+        "fet": "Q29",
+        "uuid": "3d77f7bf-0f6b-430a-8cac-92ccbf10620b",
+        "old_xy": [
+          119.200295,
+          121.253981
+        ],
+        "new_xy": [
+          119.200295,
+          121.253981
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q30",
-        "before_pa_mm": 1.6345977783203125,
-        "parent_pending_pa_mm": 1.6345977783203125,
-        "repaired_mm": 1.6345977783203125
+        "fet": "Q29",
+        "uuid": "9f55ec89-50bb-4e89-940a-949dba6114af",
+        "old_xy": [
+          119.4525,
+          120.795994
+        ],
+        "new_xy": [
+          119.8,
+          120.895994
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q31",
-        "before_pa_mm": 1.450042724609375,
-        "parent_pending_pa_mm": 1.450042724609375,
-        "repaired_mm": 1.450042724609375
+        "fet": "Q30",
+        "uuid": "5d06556e-a97d-4e52-aa47-45b9924cd36b",
+        "old_xy": [
+          121.997499,
+          122.433493
+        ],
+        "new_xy": [
+          121.997499,
+          122.433493
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q32",
-        "before_pa_mm": 1.6915130615234375,
-        "parent_pending_pa_mm": 1.6914749145507812,
-        "repaired_mm": 1.6914749145507812
+        "fet": "Q30",
+        "uuid": "fa7cde90-a272-4818-a06f-cfbce77154e3",
+        "old_xy": [
+          122.389006,
+          122.775
+        ],
+        "new_xy": [
+          122.389006,
+          122.775
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q33",
-        "before_pa_mm": 1.6915130615234375,
-        "parent_pending_pa_mm": 1.6914749145507812,
-        "repaired_mm": 1.6914749145507812
+        "fet": "Q31",
+        "uuid": "1d8618aa-578f-4218-aef1-ade48d3a7624",
+        "old_xy": [
+          114.3275,
+          124.283493
+        ],
+        "new_xy": [
+          114.3275,
+          124.283493
+        ],
+        "before_mm": 1.3477706909179688,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.09586334228515625
       },
       {
-        "destination": "Q34",
-        "before_pa_mm": 1.5967559814453125,
-        "parent_pending_pa_mm": 1.5967559814453125,
-        "repaired_mm": 1.5967559814453125
+        "fet": "Q31",
+        "uuid": "0998e468-a8a7-4deb-b6f7-c0e47d2074ba",
+        "old_xy": [
+          114.763981,
+          124.564704
+        ],
+        "new_xy": [
+          114.763981,
+          124.564704
+        ],
+        "before_mm": 1.3441085815429688,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.09220123291015625
       },
       {
-        "destination": "Q35",
-        "before_pa_mm": 1.5464019775390625,
-        "parent_pending_pa_mm": 1.5464019775390625,
-        "repaired_mm": 1.5464019775390625
+        "fet": "Q32",
+        "uuid": "4dfd27d4-2a58-4bd3-8258-698ab98a6ad4",
+        "old_xy": [
+          124.370723,
+          115.111777
+        ],
+        "new_xy": [
+          124.370723,
+          115.111777
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q36",
-        "before_pa_mm": 1.9107818603515625,
-        "parent_pending_pa_mm": 1.9107818603515625,
-        "repaired_mm": 1.9107818603515625
+        "fet": "Q32",
+        "uuid": "a1ee0c8e-a3c3-4f0e-9ac8-dcec55f667f8",
+        "old_xy": [
+          124.820723,
+          115.036777
+        ],
+        "new_xy": [
+          124.820723,
+          115.036777
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q37",
-        "before_pa_mm": 1.192474365234375,
-        "parent_pending_pa_mm": 0.90545654296875,
-        "repaired_mm": 1.192474365234375
+        "fet": "Q33",
+        "uuid": "f3abd907-1e74-4aac-8d05-1ab551cd72d7",
+        "old_xy": [
+          122.910723,
+          120.778223
+        ],
+        "new_xy": [
+          122.910723,
+          120.778223
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q38",
-        "before_pa_mm": 1.1643218994140625,
-        "parent_pending_pa_mm": 1.1643218994140625,
-        "repaired_mm": 1.1643218994140625
+        "fet": "Q33",
+        "uuid": "6018f8a3-56df-4624-994a-bcf3b8940028",
+        "old_xy": [
+          123.5425,
+          121.75
+        ],
+        "new_xy": [
+          123.5425,
+          121.75
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q39",
-        "before_pa_mm": 1.9107818603515625,
-        "parent_pending_pa_mm": 1.9107818603515625,
-        "repaired_mm": 1.9107818603515625
+        "fet": "Q34",
+        "uuid": "bfeca97f-3c51-4045-8c5d-c27a09793567",
+        "old_xy": [
+          121.328519,
+          115.752795
+        ],
+        "new_xy": [
+          121.328519,
+          115.752795
+        ],
+        "before_mm": 1.2635040283203125,
+        "after_mm": 1.2519073486328125,
+        "delta_mm": -0.0115966796875
       },
       {
-        "destination": "Q40",
-        "before_pa_mm": 1.03973388671875,
-        "parent_pending_pa_mm": 1.03973388671875,
-        "repaired_mm": 1.03973388671875
+        "fet": "Q34",
+        "uuid": "276774a2-8282-4449-9841-6dbda07f01cc",
+        "old_xy": [
+          121.455994,
+          116.24
+        ],
+        "new_xy": [
+          121.455994,
+          116.24
+        ],
+        "before_mm": 1.2238311767578125,
+        "after_mm": 1.2238311767578125,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q35",
+        "uuid": "8b41efec-71f8-439d-9c8f-a21a15734d06",
+        "old_xy": [
+          100.935295,
+          113.216481
+        ],
+        "new_xy": [
+          100.935295,
+          113.216481
+        ],
+        "before_mm": 1.010284423828125,
+        "after_mm": 1.010284423828125,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q35",
+        "uuid": "c44f8453-ac8e-449c-b172-11a089860c08",
+        "old_xy": [
+          101.425,
+          113.216506
+        ],
+        "new_xy": [
+          101.425,
+          113.216506
+        ],
+        "before_mm": 1.010284423828125,
+        "after_mm": 1.010284423828125,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q36",
+        "uuid": "4e89f073-1742-4103-ba41-905a6cac6e3e",
+        "old_xy": [
+          102.81,
+          104.716506
+        ],
+        "new_xy": [
+          102.81,
+          104.716506
+        ],
+        "before_mm": 1.8638992309570312,
+        "after_mm": 1.8638992309570312,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q36",
+        "uuid": "6f4070c2-e4e1-46f2-ab1c-510c15736239",
+        "old_xy": [
+          103.526776,
+          105.486776
+        ],
+        "new_xy": [
+          103.526776,
+          105.486776
+        ],
+        "before_mm": 1.9107818603515625,
+        "after_mm": 1.9107818603515625,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q37",
+        "uuid": "51c4c612-fe8d-4e0f-a605-31a9b902496e",
+        "old_xy": [
+          104.300637,
+          111.409705
+        ],
+        "new_xy": [
+          104.300637,
+          111.409705
+        ],
+        "before_mm": 2.3389816284179688,
+        "after_mm": 2.3389816284179688,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q37",
+        "uuid": "fe299548-3aa6-4d50-8559-610bdaf47b8a",
+        "old_xy": [
+          104.729618,
+          111.561506
+        ],
+        "new_xy": [
+          104.729618,
+          111.561506
+        ],
+        "before_mm": 2.3389816284179688,
+        "after_mm": 2.3389816284179688,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q38",
+        "uuid": "615b3f4f-4eee-436b-8fb6-b2440708d0a4",
+        "old_xy": [
+          108.15,
+          105.291506
+        ],
+        "new_xy": [
+          108.15,
+          105.291506
+        ],
+        "before_mm": 1.1518478393554688,
+        "after_mm": 1.1518478393554688,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q38",
+        "uuid": "2d041138-11f6-43ee-8102-b388c1868ac1",
+        "old_xy": [
+          108.5875,
+          105.075
+        ],
+        "new_xy": [
+          108.5875,
+          105.075
+        ],
+        "before_mm": 1.1518478393554688,
+        "after_mm": 1.1518478393554688,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q39",
+        "uuid": "e953cc04-d3bf-425f-b68f-44551358d2ce",
+        "old_xy": [
+          103.483518,
+          103.760295
+        ],
+        "new_xy": [
+          103.483518,
+          103.760295
+        ],
+        "before_mm": 1.46087646484375,
+        "after_mm": 1.46087646484375,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q39",
+        "uuid": "37a84a73-62a5-4f8d-a01c-602c94a1000f",
+        "old_xy": [
+          103.65,
+          104.266506
+        ],
+        "new_xy": [
+          103.65,
+          104.266506
+        ],
+        "before_mm": 1.6675567626953125,
+        "after_mm": 1.6675567626953125,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q40",
+        "uuid": "5c8aa484-d3d9-48d0-b44f-33fc12798809",
+        "old_xy": [
+          111.510994,
+          102.0
+        ],
+        "new_xy": [
+          111.510994,
+          102.0
+        ],
+        "before_mm": 1.1518478393554688,
+        "after_mm": 1.1518478393554688,
+        "delta_mm": 0.0
+      },
+      {
+        "fet": "Q40",
+        "uuid": "abe959dc-37e6-4d05-b748-85c113a07d0e",
+        "old_xy": [
+          111.915,
+          101.658494
+        ],
+        "new_xy": [
+          111.915,
+          101.658494
+        ],
+        "before_mm": 1.0480880737304688,
+        "after_mm": 1.0480880737304688,
+        "delta_mm": 0.0
       }
     ],
     "battery_geometry_method": [
-      "Widths are geometric eroded-path diameters with 1 mm terminal neighborhoods exempted; no thermal or motor-current rating.",
-      "before_pa_mm is a native refill of exact combined context with the 16 PA copper additions and 3 zones removed; parent_pending/repaired share all other geometry.",
-      "The single signal-transition aperture is explicit; all remaining new B-finish and inner trace copper is checked against actual filled adjacent GND."
+      "Actual BATT buried terminals; native unfractured fill, erosion with identical 1 mm endpoint neighborhoods, geometric only.",
+      "Baseline is the accepted ESC final3 plus UART/GND context before newer signal and auxiliary vias. All24 actual buried BATT-entry terminals are measured, not only MOSFET centres.",
+      "Q35 strongest1.305 to1.010mm and Q39 secondary1.668 to1.461mm changes belong to the preceding same-face cap-loop integration; Q39 retains its separate1.668mm entry.",
+      "The rejected auxiliary placement narrowed the shared eastern entry to0.970mm. Two portal moves restore it to1.251907mm; Q31 entries retain0.095864/0.092202mm reductions versus the baseline, Q34 tight entry1.223831mm and Q35-Q40 widths unchanged.",
+      "Geometric erosion with1mm endpoint neighborhoods is not ampacity, voltage-drop or thermal qualification."
     ],
     "C26_change": "Same-face shift north0.30mm to121.8225,115.125 at180deg;0.50mm minimum body gap, shorter0.40mm BATT legs toQ32/Q34.",
-    "copper_clearance_pairs": 0
+    "copper_clearance_pairs": 0,
+    "C15_change": "Same centre180deg rotation puts filter output towardFB1, giving0.606mm supply and1.344mm direct F ground connections. Minimum body gap0.210mm; land gap toJ23 0.09947mm.",
+    "C32_C117_change": "C32 at104.90,111.345 B/0deg; C117 at106.22,110.59 B. Small moves retain same-face ESC cap loops."
   },
   "antenna": {
     "reserved_area_before_mm2": 15,
@@ -5468,19 +7747,21 @@
     "qualification": "Compact window differs from manufacturer reference; ESP launch coplanar ground is not uniform."
   },
   "validation": [
-    "Native source DRC with schematic parity:0 copper/geometry errors,139 inherited warnings,154 opens,0 parity findings",
-    "286 distinct pad groups passed actual filled-island connectivity; each separate zone island is an independent copper node",
-    "Independent494-hole audit:0 overlapping-span drill spacing or nominal-stagger violations",
-    "57 native rule behavior fixtures passed",
-    "Existing7 netlist/28 FC binding checks and0-error11-warning ERC remain unchanged; no schematic or pin-map edits in this checkpoint",
-    "Independent RF/analog pad and trace references checked with six explicit local launch/pad qualifications; no new RF reference loss"
+    "Native source DRC/parity:0 copper or geometry errors,140 warnings,76 open connections,0 parity findings",
+    "351 distinct pad groups pass actual filled-island connectivity, including every one of198 GND pads",
+    "631 physical drilled holes pass actual overlapping-depth spacing; one micro/buried pair uses0.24021mm centre spacing and0.11521mm edge gap, legal under0.10mm rule but below nominal0.25mm stagger",
+    "57 native rule behavior fixtures and native custom-rule probe pass",
+    "7 netlist checks,28 FC bindings with physical U24 channel and external ESC identity validation, ERC0errors11off-grid warnings",
+    "Negative translator test swaps motor1/3 output nodes while preserving GPIO legality; rejected at both physical U24 outputs",
+    "Clean pinned Betaflight2026.6.2 compile/link/UF2 succeeds with motor1/3 GPIO permutation; compile-only gyro orientation inputs are not flight validation",
+    "Critical RF/analog reference check preserves the six prior bounded qualifications; formerVIDEO_IN camera-pad fringe is restored"
   ],
   "remaining": [
-    "Three U24-to-ESC DShot outputs, UART/USB/blackbox/OSD control and camera connector interfaces",
-    "Remaining half-bridge supply arrays, ESC power and local capacitor returns",
-    "Auxiliary5V/3.3V/VTX/OSD/camera rails and connector/local ground stitching",
-    "Silkscreen and complete DRC;154 open connections remain",
-    "Prototype transient/current/thermal, RF tuning and functional hardware tests"
+    "76 native open connections, including the duplicate NC U13 tie-bar airwire which must not be routed",
+    "USB, flash bus, OSD controls, camera connector video and remaining UART links",
+    "Remaining BATT/5V/VTX power pickups, ADC, debug/programming, status LEDs and beeper links",
+    "Final silkscreen, assembly and complete DRC review",
+    "Power distribution resistance/current/thermal checks and prototype transient, RF tuning and functional hardware tests"
   ],
   "routing_decisions": [
     "ESC1 phase A and B sense pickups use bounded 0.12 mm In4 tracks; ESC1 C and ESC4 A use bounded In1 tracks. Exact-net, width, layer and area fixtures reject other use. High-current phase copper remains outer.",
@@ -5492,20 +7773,21 @@
     "All geometry comparisons normalize native filled polygons with SHAPE_POLY_SET.Unfracture before measuring holes, width or connectivity. Zero-width fracture seams are not physical slots.",
     "OSD_LVL uses two F/In1 lasers and a bounded0.12mm In1 corridor. PA_DET uses boundedIn1/In4 corridors, short B finish and localIn3GND return; repaired return strip preserves all12 before-PA battery-entry geometric widths.",
     "U16.2 WiFi pad reference is restored by replacing HD_EN detour with6 In4 tracks and removing2 buried vias.",
-    "Receiver MISO/MOSI/SCK/NSS are short direct F routes between U16 and U18. J23-to-OSD video links locally; J32 connector video is still open."
+    "Receiver MISO/MOSI/SCK/NSS are short direct F routes between U16 and U18. J23-to-OSD video links locally; J32 connector video is still open.",
+    "All four FC-U24 inputs and U24-ESC outputs are routed. Motor1 usesGPIO5 andU24 A2/B2; motor3 usesGPIO7 andU24 A0/B0, retaining external ESC identities. The permutation saves roughly5.4mm on motor1 versus the unchanged-channel trial.",
+    "Sixteen GND lasers use existing In1/In4 ground pours; rejected extra buried vias would have unnecessarily narrowed the BATT plane. Four direct controller pin-to-exposed-pad links and two offset capacitor lasers close all198 GND pads.",
+    "The RX_EN buried portal moves to110.06,120.53 and C70 supply portal to121.55,121.10 to restore the common eastern BATT feed. No new plane outline or MOSFET position change."
   ],
   "unrouted_by_net": {
-    "GND": 46,
     "/VIDEO_IN": 1,
-    "+3.3V": 12,
+    "+3.3V": 2,
     "/OSD_EN": 1,
     "/BUZZER-": 1,
     "+5V_BST": 2,
     "/RP2350A/SWDIO": 1,
-    "+BATT": 26,
-    "+5V_CAM": 3,
-    "/MOTOR3": 1,
-    "/UART0_RX": 1,
+    "+BATT": 18,
+    "+5V_CAM": 1,
+    "/UART1_RX": 1,
     "/OSD_SYNC": 1,
     "/SPI0_MISO": 1,
     "/FLASH_CS": 2,
@@ -5519,23 +7801,19 @@
     "/LED_STRIP": 1,
     "/RP2350A/BEEPER": 1,
     "/OSD_W": 1,
-    "/UART1_TX": 1,
-    "/UART1_RX": 1,
     "/RP2350A/ADC_CURR": 2,
     "/RP2350A/ADC_VBAT": 3,
     "/RP2350A/U10_USB_D_N": 1,
     "/RP2350A/U10_USB_D_P": 1,
     "/USB_D_P": 2,
     "/FC_BOOT": 1,
-    "+5V": 6,
+    "+5V": 1,
     "/CURR_SENSE": 1,
     "/ESC4/C2CK": 1,
     "/ESC4/C2D": 1,
-    "/MOTOR2": 1,
     "/RX/RADIO_RST": 1,
     "/RX/RADIO_BUSY": 1,
     "/RX/RADIO_DIO1": 1,
-    "/RX/RX_EN": 2,
     "/RX/RX_LED": 1,
     "/RX/RX_BOOT": 1,
     "/VBUS": 1,
@@ -5544,8 +7822,7 @@
     "/ESC3/C2CK": 1,
     "/USB_D_N": 2,
     "+3.3V_VTX": 8,
-    "unconnected-(U13-EP-Pad9)": 1,
-    "/MOTOR1": 1
+    "unconnected-(U13-EP-Pad9)": 1
   },
   "preservation": {
     "owner_starting_files_rechecked": 834,
@@ -5586,5 +7863,54 @@
       "uf2_sha256": "aef5de07e5d117db68aa9fb37f975ebf25ae05f5164bdfc738dce26ef02163fb"
     },
     "saved_configuration": "Existing receiver-on-UART1 configuration requires reset or explicit serial remapping; ordinary boot does not replace saved settings"
+  },
+  "motor_channel_change": {
+    "gpio_order_motors_1_to_4": [
+      5,
+      6,
+      7,
+      4
+    ],
+    "translator_inputs": [
+      5,
+      4,
+      3,
+      6
+    ],
+    "translator_outputs": [
+      10,
+      11,
+      12,
+      9
+    ],
+    "external_esc_resistors": [
+      "R12",
+      "R19",
+      "R26",
+      "R33"
+    ],
+    "physical_channel_negative_test": {
+      "rejected": true,
+      "probe": "Swap U24 motor1 and motor3 output nodes while retaining legal GPIO mux, firmware and external ESC resistor identities",
+      "findings": [
+        "FAIL: U24.10: expected MOTOR1, got MOTOR3",
+        "FAIL: U24.12: expected MOTOR3, got MOTOR1"
+      ]
+    },
+    "firmware": {
+      "upstream_commit": "e0b7bb01b17b21351057e9ead2d1ab39dd44fa16",
+      "clean_compile_link_uf2": true,
+      "compiler": "GCC13.3.1",
+      "flash_bytes": 428736,
+      "ram_bytes": 471868,
+      "elf_sha256": "1d25a236b40d1584f6d32389e7a50584e34f37f4f7c59f9db014b936cbfda006",
+      "uf2_sha256": "cca898cd179baa7ac58e77d3f5534a8eb1dc674bfd9b6eb0e07a1e58a9b4ba6c",
+      "orientation_compile_inputs": [
+        "CW0_DEG",
+        0
+      ],
+      "orientation_is_flight_validated": false,
+      "saved_configuration": "Previously saved motor resources must be reset or explicitly remapped after flashing. Firmware compilation does not verify physical motor order."
+    }
   }
 }

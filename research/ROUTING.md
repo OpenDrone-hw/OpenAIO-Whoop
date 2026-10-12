@@ -101,8 +101,9 @@ Read device rotations and pad coordinates from the saved board. The
 Preserve the gyro's MOSI11/MISO12/SCK14/CS15
 order: it follows U11's actual pad arrangement. Receiver UART0 uses GPIO16/17
 on the south edge toward U16. HD UART1 uses GPIO24/25 on the east edge toward
-J28/J29. GPIO4–7 carry all four motor signals, in reverse motor
-number order to align with U24. Moving or rotating U10 substantially changes
+J28/J29. GPIO4–7 carry motors 4, 1, 2 and 3. U24 channels A2/B2 and A0/B0
+carry motors 1 and 3 respectively, shortening the ESC output routes while
+retaining the four physical motor identities. Moving or rotating U10 substantially changes
 these placement advantages.
 
 The component index groups every reference by schematic block. Schematic
