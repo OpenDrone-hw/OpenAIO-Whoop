@@ -11,7 +11,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | Flight controller | [Betaflight target](../firmware/betaflight/README.md), pinned 2026.6.2 |
 | Motor signals | Motors 1–4 on GPIO5/6/7/4 through U24, bidirectional 3.3 V to battery-level DShot |
 | Analog video | W21, EN22, active-low SYNC23; PIO2 |
-| Analog permission | GPIO19 high enables U21, low disables it; PINIO default 129 |
+| Analog permission | GPIO1 high enables U21, low disables it; PINIO default 129 |
 | HD port | UART1 GPIO24/25; VHD remains battery-boost powered |
 | Receiver | UART0 GPIO16/17, CRSF plus MSP-VTX; ESP32 controls the RTC6705 and PA |
 | Gyro | BMI270 default; final physical orientation must be set after placement |
@@ -21,7 +21,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | Pin | Package function | Net |
 | --- | --- | --- |
 | 2 | GPIO0 | `SPI0_MISO` |
-| 3 | GPIO1 | `FLASH_CS` |
+| 3 | GPIO1 | `HD_EN` |
 | 4 | GPIO2 | `SPI0_SCK` |
 | 5 | GPIO3 | `SPI0_MOSI` |
 | 7 | GPIO4 | `MOTOR4_FC` |
@@ -39,7 +39,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 27 | GPIO16 | `UART0_TX` |
 | 28 | GPIO17 | `UART0_RX` |
 | 29 | GPIO18 | `LED_STRIP` |
-| 31 | GPIO19 | `HD_EN` |
+| 31 | GPIO19 | `FLASH_CS` |
 | 32 | GPIO20 | `BEEPER` |
 | 33 | GPIO21 | `OSD_W` |
 | 34 | GPIO22 | `OSD_EN` |
@@ -108,12 +108,12 @@ uses north/south in the PCB editor, not the aircraft's flight direction.
 
 | Device group | GPIOs | Package escape on the saved board |
 | --- | --- | --- |
-| Blackbox U13 | 0–3 | West edge, upper four signal pads |
+| Blackbox U13 | MISO0, SCK2, MOSI3, software CS19 | Clock/data on west edge; CS on southeast corner |
 | Motor translator U24 | 5, 6, 7, 4 for motors 1–4 | West edge, GPIO4 to GPIO7 from north to south |
 | Status LEDs | 8–9 | West edge, below the motor signals |
 | Gyro U11 | INT10, MOSI11, MISO12, CLK13, SCK14, CS15 | Southwest corner and south edge |
 | Receiver UART0 | TX16, RX17 | South edge, toward the ESP32 |
-| Auxiliary outputs | LED strip18, analog permission19, beeper20 | Southeast corner |
+| Auxiliary outputs | Analog permission1; LED strip18; beeper20 | Analog permission on west edge; strip and beeper southeast |
 | OSD | W21, EN22, SYNC23 | East edge, below UART1 |
 | HD UART1 | TX24, RX25 | East edge, toward the HD pads |
 | ADC | Current26, battery27; 28–29 unused | East edge, upper half |

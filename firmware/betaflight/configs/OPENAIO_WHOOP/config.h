@@ -48,7 +48,7 @@
 #define SPI0_SDI_PIN PA0
 #define SPI0_SDO_PIN PA3
 #define FLASH_SPI_INSTANCE SPI0
-#define FLASH_CS_PIN PA1
+#define FLASH_CS_PIN PA19
 #define DEFAULT_BLACKBOX_DEVICE BLACKBOX_DEVICE_FLASH
 
 // Bluejay EFM8BB51, one bidirectional DShot state machine per motor on PIO0.
@@ -77,11 +77,11 @@
 // config.c adds VTX_MSP to the RX mask without the 2026.6.2 assignment conflict.
 // Do not define VTX_MSP_UART or MSP_DISPLAYPORT_UART for the analog default.
 
-// Q28 is absent. GPIO19 high permits analog VTX power, low forces it off.
+// Q28 is absent. GPIO1 high permits analog VTX power, low forces it off.
 // Inverted PINIO: logical inactive = high; logical active = analog off.
 // This signal does not switch the always-powered VHD supply pad.
 #define USE_PINIO
-#define PINIO1_PIN PA19
+#define PINIO1_PIN PA1
 #define PINIO1_CONFIG 129
 
 // Both display implementations are present; config.c defaults to analog AUTO.

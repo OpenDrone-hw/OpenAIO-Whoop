@@ -5218,7 +5218,7 @@
 		)
 		(uuid "13f3de22-71bb-5e9f-bd38-b143648a6555")
 	)
-	(text_box "U21 LP5912-3.3 on +5V, CIN = C13 on POWER if within 1 cm. EN = RP2354 GPIO19 (HD_EN).\nHigh = analog enabled; low = HD / analog off. R68 10k holds analog on during reset. C108 at VCO supply."
+	(text_box "U21 LP5912-3.3 on +5V, CIN = C13 on POWER if within 1 cm. EN = RP2354 GPIO1 (HD_EN).\nHigh = analog enabled; low = HD / analog off. R68 10k holds analog on during reset. C108 at VCO supply."
 		(exclude_from_sim no)
 		(at 20.32 86.36 0)
 		(size 111.76 19.48)

@@ -248,7 +248,7 @@
 # A ground zone supplies continuity; routed traces must not split this plane.
 (rule "In2 solid GND: no tracks"
   (constraint disallow track)
-  (condition "A.Layer == 'In2.Cu'"))
+  (condition "A.Layer == 'In2.Cu' && !(A.NetName == '/HD_EN' && A.Width == 0.09mm && A.enclosedByArea('HD_EN_IN2_BRIDGE'))"))
 
 # In2 is the ground plane. In1/In4 use local ground pours around signal routes.
 # Reserve unbroken In1/In4 ground under outer RF, USB and video routes.

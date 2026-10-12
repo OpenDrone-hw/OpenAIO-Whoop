@@ -37,7 +37,7 @@ provided by KiCad 10. Do not move `.pretty`, models or child sheets independentl
 | --- | --- | --- |
 | L1 | F.Cu | Top parts; RF, video, gyro and sense traces; short local power loops; digital escapes |
 | L2 | In1.Cu | Digital, gate and BEMF routing with local GND pours; continuous GND under outer RF, USB and video |
-| L3 | In2.Cu | Continuous GND reference plane; no tracks or non-GND zones |
+| L3 | In2.Cu | Main GND reference plane; only the named HD_EN bridge below; no non-GND zones |
 | L4 | In3.Cu | Battery and regulated supply distribution; local GND reference regions; no signal or phase tracks |
 | L5 | In4.Cu | Digital, gate and BEMF routing with local GND pours; continuous GND under outer RF, USB and video |
 | L6 | B.Cu | Bottom parts; local RF, video and power loops; short digital connections |
@@ -92,6 +92,14 @@ All exceptions reject other nets, widths, layers, zones and tracks outside
 their named areas. RF references and Kelvin routing retain their restrictions.
 
 
+`HD_EN_IN2_BRIDGE` permits only the 0.09 mm HD_EN control trace on In2,
+within its enclosing local area. This 8.95 mm section is part of the
+17.01 mm VTX power-enable connection. The native filled In2 ground remains
+one connected island. Existing USB, gyro SPI, RF, video and oscillator
+trace references retain their copper; the qualified XIN pad-edge aperture
+increase is 0.002036 mm². Other nets, layers, widths and tracks leaving the
+area remain errors. This local exception does not allow general In2 routing.
+
 The nominal 1.0 mm stackup is in `hardware/tools/stackup.json`. Outer dielectric
 spacing is 0.077 mm. The stored RF starting geometry is 0.105 mm trace / 0.15 mm
 coplanar gap, and USB is 0.12 mm trace / 0.12 mm pair gap. These are design
@@ -118,7 +126,10 @@ order: it follows U11's actual pad arrangement. Receiver UART0 uses GPIO16/17
 on the south edge toward U16. HD UART1 uses GPIO24/25 on the east edge toward
 J28/J29. GPIO4–7 carry motors 4, 1, 2 and 3. U24 channels A2/B2 and A0/B0
 carry motors 1 and 3 respectively, shortening the ESC output routes while
-retaining the four physical motor identities. Moving or rotating U10 substantially changes
+retaining the four physical motor identities. Flash uses SPI0 MISO0/SCK2/MOSI3
+and software CS19; HD_EN uses GPIO1. The CS/permission swap reuses the existing
+CS approach to the flash while preserving all hardware SPI data bindings.
+Moving or rotating U10 substantially changes
 these placement advantages.
 
 The component index groups every reference by schematic block. Schematic

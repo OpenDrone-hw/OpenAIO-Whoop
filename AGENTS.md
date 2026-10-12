@@ -26,7 +26,8 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
 
 ## Layout rules
 
-- F/In1/In4/B carry signals. In2 is a solid GND plane without tracks; In3
+- F/In1/In4/B carry signals. In2 is the main GND plane; only the bounded
+  HD_EN_IN2_BRIDGE described in ROUTING.md permits a signal there. In3
   carries supply and GND distribution only. In1/In4 ground pours must remain
   unbroken below outer RF, USB and video routes. RF, Kelvin and switch nodes
   stay on the component face. Video and ADC

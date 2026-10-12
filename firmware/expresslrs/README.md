@@ -47,11 +47,11 @@ calibration for this board. The fitted RTC6705 uses an 8 MHz crystal.
 
 ## Analog and HD power states
 
-RP2354 GPIO19, net `HD_EN`, directly controls U21 EN. High powers the analog
+RP2354 GPIO1, net `HD_EN`, directly controls U21 EN. High powers the analog
 VTX; low switches it off. R68 makes analog power the reset default. This
 signal is distinct from ESP32 GPIO19, which is RTC6705 MOSI.
 
-| State | RP2354 GPIO19 | ESP32 requirements |
+| State | RP2354 GPIO1 | ESP32 requirements |
 |---|---|---|
 | Analog initialization | High | PA_EN low, minimum RF drive, initialize RTC6705, then apply calibrated settings |
 | Analog operating | High | Normal VTX control |

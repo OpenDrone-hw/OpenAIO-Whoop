@@ -54,7 +54,7 @@ U21 remains LP5912 for the quieter dedicated VTX supply.
 
 U22 is TPS7A20285PDQNR. Its specified 1.5% accuracy under the relevant input
 and load conditions gives 2.807 to 2.893 V, inside SE5004L's 2.8 to 2.9 V
-reference range. Q28 and the associated R11 pull-down are removed. GPIO19
+reference range. Q28 and the associated R11 pull-down are removed. GPIO1
 high enables the analog rail; low disables it. R68 retains the analog-on
 reset default. The VHD supply is independent and remains battery-boost fed.
 

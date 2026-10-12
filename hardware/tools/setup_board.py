@@ -450,7 +450,7 @@ RULES = [
      ["Four routing layers: F, In1, In4 and B. In2 is the continuous ground reference.",
       "A ground zone supplies continuity; routed traces must not split this plane."],
      "  (constraint disallow track)\n"
-     "  (condition \"A.Layer == 'In2.Cu'\")"),
+     "  (condition \"A.Layer == 'In2.Cu' && !(A.NetName == '/HD_EN' && A.Width == 0.09mm && A.enclosedByArea('HD_EN_IN2_BRIDGE'))\")"),
 
     ("In1 In2 In4: GND zones only",
      ["In2 is the ground plane. In1/In4 use local ground pours around signal routes.",

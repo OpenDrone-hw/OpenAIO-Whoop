@@ -3968,7 +3968,7 @@
 		)
 		(uuid "f9374616-2b16-46fd-9e04-7647456ec6f9")
 	)
-	(text_box "GPIO groups follow U10 at -90 deg: flash 0-3 east; motors 7/6/5/4 north to U24 A0-A3.\nGyro 10-15 west: INT10, MOSI11, MISO12, CLK13, SCK14, CS15. Keep this order to match U11 pads.\nUART0 16/17; strip18; HD_EN19; buzzer20. OSD21-23 and CRSF24/25 south. ADC26/27; spare28/29. LEDs8/9."
+	(text_box "GPIO assignments: SPI0 MISO0, SCK2, MOSI3; software flash CS19. HD_EN1. Motors 5/6/7/4 map to motors 1/2/3/4.\nGyro: INT10, MOSI11, MISO12, CLK13, SCK14, CS15. Preserve the verified SPI mux and U11 pad order.\nReceiver UART0 16/17; HD UART1 24/25; strip18; buzzer20; OSD W21/EN22/SYNC23; LEDs8/9.\nADC current26/battery27. GPIO28/29 are unconnected in this schematic. Read physical escape directions from the saved PCB."
 		(exclude_from_sim no)
 		(at 353.06 129.54 0)
 		(size 66.04 26.67)
@@ -5793,7 +5793,7 @@
 		)
 		(uuid "65b210b9-25af-589b-91a3-5cceead9b480")
 	)
-	(hierarchical_label "HD_EN"
+	(hierarchical_label "FLASH_CS"
 		(shape output)
 		(at 321.31 154.94 0)
 		(effects
@@ -5870,7 +5870,7 @@
 		)
 		(uuid "b124c90c-ae6a-54b1-9646-123d22c35ee2")
 	)
-	(hierarchical_label "FLASH_CS"
+	(hierarchical_label "HD_EN"
 		(shape output)
 		(at 321.31 90.17 0)
 		(effects
