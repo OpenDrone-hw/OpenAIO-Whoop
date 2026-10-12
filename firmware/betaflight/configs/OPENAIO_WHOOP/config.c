@@ -11,7 +11,7 @@ void targetConfiguration(void)
 {
     // Called for defaults, before saved user configuration is loaded at boot.
     // 2026.6.2's VTX_MSP_UART macro would overwrite FUNCTION_RX_SERIAL.
-    serialPortConfig_t *receiver = serialFindPortConfigurationMutable(SERIAL_PORT_UART1);
+    serialPortConfig_t *receiver = serialFindPortConfigurationMutable(SERIALRX_UART);
     if (receiver) {
         receiver->functionMask = FUNCTION_RX_SERIAL | FUNCTION_VTX_MSP;
     }

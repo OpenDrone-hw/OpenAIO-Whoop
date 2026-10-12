@@ -2908,7 +2908,7 @@
 		)
 		(uuid "8517713c-3aef-5deb-9e04-dc5fb70f2691")
 	)
-	(label "UART1_TX"
+	(label "UART0_TX"
 		(at 200.66 35.56 0)
 		(effects
 			(font
@@ -2948,7 +2948,7 @@
 		)
 		(uuid "993b8185-579c-5556-90f6-c79f80e7c0b8")
 	)
-	(label "UART0_RX"
+	(label "UART1_RX"
 		(at 358.14 182.88 180)
 		(effects
 			(font
@@ -2958,7 +2958,7 @@
 		)
 		(uuid "9ca7f360-620c-5a11-9516-18a034b9895b")
 	)
-	(label "UART0_TX"
+	(label "UART1_TX"
 		(at 200.66 180.34 0)
 		(effects
 			(font
@@ -3058,7 +3058,7 @@
 		)
 		(uuid "e8fae507-dbd8-5f5c-86c2-a13f582550c5")
 	)
-	(label "UART1_RX"
+	(label "UART0_RX"
 		(at 220.98 38.1 180)
 		(effects
 			(font
@@ -3747,7 +3747,7 @@
 				(justify left top)
 			)
 		)
-		(pin "UART1_TX" input
+		(pin "UART0_TX" input
 			(at 223.52 35.56 180)
 			(uuid "0265af79-66bc-5787-8fa3-b8283bf85b51")
 			(effects
@@ -3757,7 +3757,7 @@
 				(justify left)
 			)
 		)
-		(pin "UART1_RX" output
+		(pin "UART0_RX" output
 			(at 223.52 38.1 180)
 			(uuid "0fb93a21-d6d4-5806-b1ca-5386b4b232eb")
 			(effects
@@ -4013,7 +4013,7 @@
 				(justify left)
 			)
 		)
-		(pin "UART0_TX" input
+		(pin "UART1_TX" input
 			(at 360.68 180.34 180)
 			(uuid "9ea1e7e2-cf73-5dde-a58e-5e795abe0d96")
 			(effects
@@ -4023,7 +4023,7 @@
 				(justify left)
 			)
 		)
-		(pin "UART0_RX" output
+		(pin "UART1_RX" output
 			(at 360.68 182.88 180)
 			(uuid "ed19b298-8b3f-5f6f-953e-3b4c6af21e8d")
 			(effects
@@ -4537,7 +4537,7 @@
 				(justify left)
 			)
 		)
-		(pin "UART1_TX" output
+		(pin "UART0_TX" output
 			(at 198.12 35.56 0)
 			(uuid "e6a5f156-b1fd-52e4-a23f-8827433b91cd")
 			(effects
@@ -4547,7 +4547,7 @@
 				(justify right)
 			)
 		)
-		(pin "UART1_RX" input
+		(pin "UART0_RX" input
 			(at 198.12 38.1 0)
 			(uuid "d3fad6bd-49e6-57da-ac58-096ba2654fd0")
 			(effects
@@ -4637,7 +4637,7 @@
 				(justify right)
 			)
 		)
-		(pin "UART0_TX" output
+		(pin "UART1_TX" output
 			(at 198.12 180.34 0)
 			(uuid "ea7e2e63-feea-52cc-9523-fda054e45dc5")
 			(effects
@@ -4647,7 +4647,7 @@
 				(justify right)
 			)
 		)
-		(pin "UART0_RX" input
+		(pin "UART1_RX" input
 			(at 198.12 182.88 0)
 			(uuid "246fe444-dff0-5713-a8ad-9f77173807b6")
 			(effects
@@ -4816,5 +4816,4 @@
 			(page "1")
 		)
 	)
-	(embedded_fonts no)
 )

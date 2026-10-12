@@ -4,16 +4,16 @@
     "generator": "hardware/tools/export_bom_plan.py",
     "authority": "Root schematic and hierarchical sheets; no placement is implied.",
     "source_sha256": {
-      "OpenAIO-Whoop.kicad_sch": "06df774083f12c51674df40cb10ed5ba5dc875c9b071e13a4a8efa03e092897c",
+      "OpenAIO-Whoop.kicad_sch": "2e10549463689cfe68d22d728073264047e2c300b2ee497e6b0c3dbd0e087bc6",
       "blackbox.kicad_sch": "8b21797ddd054d07375866063350733ab981db947c9ebaeb7372bff0db0c00fa",
       "esc_channel.kicad_sch": "3183df3f948c06762ca9a01e4dbd02801aca4f356ede041a50e557f0732e9220",
       "imu.kicad_sch": "3275b4aa4972ab48424b17853b4fd0f091fe9210007256da40f07316e9fdff87",
       "led.kicad_sch": "b34e94352d4bf6ce3ce42b4e2f3e34b75ac799858e61a815d332f76ad4bd94c2",
       "osd.kicad_sch": "10fa6c06d09753df42b75e52360dee57b741d82b599cc7e01bce4e9e2476ad85",
-      "pads.kicad_sch": "0a0ba99e136dfb2e648bc45fa7a08029103c6aae340e8293d9f16556d7f8ce8f",
+      "pads.kicad_sch": "314aedd4e6f3088bd39a2ea15654940eb4eeda707a313454b2212ccdc6f03193",
       "power.kicad_sch": "6c78a97ddf3292121de16818839e9be743ca2d5aa93315922074a8bb6b7c3b75",
       "rp2350a.kicad_sch": "c3bfa2a79a3ad1a1f860b700057faa2c6d8020367cec76d6e7876125c71fb3a2",
-      "rx_esp32_sx1281.kicad_sch": "276fe8e754209374774029edbbc381c6d2315b256fe348b105486bca2de3e3c7",
+      "rx_esp32_sx1281.kicad_sch": "fb5e2bd59c60af5ccc57146a06bb6cc73817c0ebf2e9fed6c8bf642afe335f3a",
       "vtx.kicad_sch": "4516e5bf733c71b9f1642b0cb62d79238a9fdf2ce882bfda19aa088d424ce760"
     }
   },
@@ -2595,7 +2595,7 @@
       "ref": "J28",
       "block": "pads",
       "sheet": "pads",
-      "value": "TX0",
+      "value": "TX1",
       "manufacturer": "",
       "mpn": "",
       "lcsc": "",
@@ -2605,7 +2605,7 @@
       "exclude_from_bom": true,
       "exclude_from_board": false,
       "nets": [
-        "/UART0_TX"
+        "/UART1_TX"
       ],
       "datasheet": ""
     },
@@ -2613,7 +2613,7 @@
       "ref": "J29",
       "block": "pads",
       "sheet": "pads",
-      "value": "RX0",
+      "value": "RX1",
       "manufacturer": "",
       "mpn": "",
       "lcsc": "",
@@ -2623,7 +2623,7 @@
       "exclude_from_bom": true,
       "exclude_from_board": false,
       "nets": [
-        "/UART0_RX"
+        "/UART1_RX"
       ],
       "datasheet": ""
     },
@@ -4929,8 +4929,8 @@
         "/RX/RX_BOOT",
         "/RX/RX_EN",
         "/RX/RX_LED",
-        "/UART1_RX",
-        "/UART1_TX",
+        "/UART0_RX",
+        "/UART0_TX",
         "/VTX_AMP_PWM",
         "/VTX_SPI_CLK",
         "/VTX_SPI_CS",

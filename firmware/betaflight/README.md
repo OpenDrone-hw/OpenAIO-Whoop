@@ -1,7 +1,7 @@
 # OpenAIO-Whoop Betaflight target
 
 This target uses the fitted BMI270 and onboard analog video by default. It
-includes HD DisplayPort support for the external UART0 pads. It is compiled
+includes HD DisplayPort support for the external UART1 pads. It is compiled
 against Betaflight **2026.6.2**, commit
 `e0b7bb01b17b21351057e9ead2d1ab39dd44fa16`, with that commit's Pico SDK.
 The target is not registered in the upstream config repository; `FOSS` is the
@@ -13,8 +13,8 @@ manufacturer identifier until an identifier is registered.
 | BMI270 | SPI1: SCK14, MISO12, MOSI11, CS15, INT10 |
 | Blackbox | SPI0: SCK2, MISO0, MOSI3, CS1; Puya 16MB |
 | Motors 1 to 4 | GPIO7, 6, 5, 4; PIO0 bidirectional DShot |
-| ExpressLRS | UART1: TX24, RX25; CRSF with MSP-VTX |
-| HD pads | UART0: TX16, RX17; disabled in the default serial profile |
+| ExpressLRS | UART0: TX16, RX17; CRSF with MSP-VTX |
+| HD pads | UART1: TX24, RX25; disabled in the default serial profile |
 | Analog OSD | W21, EN22, SYNC23; PIO2 |
 | Analog VTX permission | GPIO19; high permits power, low forces it off |
 | LED strip | GPIO18; PIO1 |
@@ -23,9 +23,9 @@ manufacturer identifier until an identifier is registered.
 | Spare GPIOs | 28, 29 |
 
 The pin groups follow the RP2354A package edges: blackbox GPIO0–3, motor
-outputs GPIO4–7, status LEDs GPIO8–9, and gyro GPIO10–15. HD UART0 stays on
+outputs GPIO4–7, status LEDs GPIO8–9, and gyro GPIO10–15. Receiver UART0 uses
 GPIO16–17; LED strip, VTX permission and beeper use GPIO18–20. The consecutive
-OSD group stays on GPIO21–23, followed by receiver UART1 on GPIO24–25 and the
+OSD group stays on GPIO21–23, followed by HD UART1 on GPIO24–25 and the
 two analog inputs on GPIO26–27. Final component placement must preserve these
 short local groups.
 
@@ -35,9 +35,12 @@ the motors to legacy PWM while using the PWM beeper on GPIO20 without
 reassigning the conflicting resources.
 
 `config.c` uses the supported `USE_TARGET_CONFIG` reset hook. It preserves
-CRSF while adding MSP-VTX on UART1 and selects analog AUTO OSD, with SD
+CRSF while adding MSP-VTX on UART0 and selects analog AUTO OSD, with SD
 element positions, even though HD support is compiled. The defaults apply on
 configuration reset; saved user settings remain authoritative on normal boot.
+A configuration saved with the earlier receiver-on-UART1 mapping must be
+reset or remapped: receiver plus MSP-VTX belongs on UART0, and optional HD
+DisplayPort belongs on UART1.
 This avoids the 2026.6.2 `VTX_MSP_UART` assignment overwriting the receiver
 function. It does not depend on display-default macros introduced after that
 release.
@@ -75,11 +78,11 @@ high when PINIO1 is inactive. Activating PINIO1 drives it low and forces the
 analog VTX off. GPIO19 does not control the VHD supply, which is powered from
 the battery boost.
 
-For a fixed HD setup, select MSP DisplayPort on UART0, set video system to HD
+For a fixed HD setup, select MSP DisplayPort on UART1, set video system to HD
 and OSD display device to MSP, and set `pinio_config = 1,1,1,1` so GPIO19 is
 low after initialization. Adjust the OSD canvas and positions for the connected
 HD system. Returning to analog requires AUTO video/display, no DisplayPort
-function on UART0, and `pinio_config = 129,1,1,1`.
+function on UART1, and `pinio_config = 129,1,1,1`.
 
 ExpressLRS owns the onboard VTX channel/power table. Its board layout and power
 calibration are separate from this FC target. Verify that first receiver boot

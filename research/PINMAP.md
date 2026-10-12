@@ -12,8 +12,8 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | Motor signals | Motors 1–4 on GPIO7/6/5/4 through U24, bidirectional 3.3 V to battery-level DShot |
 | Analog video | W21, EN22, active-low SYNC23; PIO2 |
 | Analog permission | GPIO19 high enables U21, low disables it; PINIO default 129 |
-| HD port | UART0 GPIO16/17; VHD remains battery-boost powered |
-| Receiver | UART1 GPIO24/25, CRSF plus MSP-VTX; ESP32 controls the RTC6705 and PA |
+| HD port | UART1 GPIO24/25; VHD remains battery-boost powered |
+| Receiver | UART0 GPIO16/17, CRSF plus MSP-VTX; ESP32 controls the RTC6705 and PA |
 | Gyro | BMI270 default; final physical orientation must be set after placement |
 
 ## 2. RP2354A signal pins
@@ -112,10 +112,10 @@ uses north/south in the PCB editor, not the aircraft's flight direction.
 | Motor translator U24 | 7, 6, 5, 4 for motors 1–4 | West edge, GPIO4 to GPIO7 from north to south |
 | Status LEDs | 8–9 | West edge, below the motor signals |
 | Gyro U11 | INT10, MOSI11, MISO12, CLK13, SCK14, CS15 | Southwest corner and south edge |
-| HD UART0 | TX16, RX17 | South edge, east of SWD |
+| Receiver UART0 | TX16, RX17 | South edge, toward the ESP32 |
 | Auxiliary outputs | LED strip18, analog permission19, beeper20 | Southeast corner |
 | OSD | W21, EN22, SYNC23 | East edge, below UART1 |
-| Receiver UART1 | TX24, RX25 | East edge, beside the IOVDD38 group |
+| HD UART1 | TX24, RX25 | East edge, toward the HD pads |
 | ADC | Current26, battery27; 28–29 unused | East edge, upper half |
 
 The four gyro SPI signals use short In1 routes above the continuous In2
@@ -170,8 +170,8 @@ schematic against the target and verifies SPI/UART mux, ADC and PIO constraints.
 | supply/system | 37 | VDD3P3_CPU | `+3.3V` |
 | 19 | 38 | IO19 | `VTX_SPI_DATA` |
 | 22 | 39 | IO22 | `VTX_SPI_CS` |
-| 3 | 40 | U0RXD/IO3 | `UART1_TX` |
-| 1 | 41 | U0TXD/IO1 | `UART1_RX` |
+| 3 | 40 | U0RXD/IO3 | `UART0_TX` |
+| 1 | 41 | U0TXD/IO1 | `UART0_RX` |
 | 21 | 42 | IO21 | `PA_EN` |
 | supply/system | 43 | VDDA | `+3.3V` |
 | supply/system | 44 | NC | - |

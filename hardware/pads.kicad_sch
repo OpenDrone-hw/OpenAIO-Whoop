@@ -2294,7 +2294,7 @@
 		)
 		(uuid "69a05841-5488-576d-9dc8-e8ff87250b46")
 	)
-	(text_box "VHD = +5V_BST, TX0/RX0 = UART0 GPIO16/17 for MSP DisplayPort. 3.3 V logic only. Copper only (DNP)."
+	(text_box "VHD = +5V_BST, TX1/RX1 = UART1 GPIO24/25 for MSP DisplayPort. 3.3 V logic only. Copper only (DNP)."
 		(exclude_from_sim no)
 		(at 223.52 147.32 0)
 		(size 93.98 12.7)
@@ -2882,7 +2882,7 @@
 		)
 		(uuid "3a973afc-1726-5554-a2b9-1a947c96bcbd")
 	)
-	(hierarchical_label "UART0_TX"
+	(hierarchical_label "UART1_TX"
 		(shape input)
 		(at 259.08 127 270)
 		(effects
@@ -3047,7 +3047,7 @@
 		)
 		(uuid "f201537a-01db-5431-a7d7-0657ef1c97ae")
 	)
-	(hierarchical_label "UART0_RX"
+	(hierarchical_label "UART1_RX"
 		(shape output)
 		(at 269.24 127 270)
 		(effects
@@ -3963,7 +3963,7 @@
 				)
 			)
 		)
-		(property "Value" "TX0"
+		(property "Value" "TX1"
 			(at 259.08 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5361,7 +5361,7 @@
 				)
 			)
 		)
-		(property "Value" "RX0"
+		(property "Value" "RX1"
 			(at 269.24 113.538 90)
 			(show_name no)
 			(do_not_autoplace no)

@@ -60,7 +60,7 @@
 #define DEFAULT_DSHOT_TELEMETRY DSHOT_TELEMETRY_ON
 #define PIO_DSHOT_INDEX 0
 
-// UART1 is the onboard ExpressLRS receiver. UART0 goes to the HD video pads.
+// UART0 is the onboard ExpressLRS receiver. UART1 goes to the HD video pads.
 #define UART0_TX_PIN PA16
 #define UART0_RX_PIN PA17
 #define UART1_TX_PIN PA24
@@ -71,7 +71,7 @@
 #define USE_TELEMETRY_CRSF
 #define DEFAULT_RX_FEATURE FEATURE_RX_SERIAL
 #define SERIALRX_PROVIDER SERIALRX_CRSF
-#define SERIALRX_UART SERIAL_PORT_UART1
+#define SERIALRX_UART SERIAL_PORT_UART0
 #define USE_VTX
 #define USE_VTX_MSP
 // config.c adds VTX_MSP to the RX mask without the 2026.6.2 assignment conflict.

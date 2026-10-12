@@ -74,6 +74,24 @@ def check(netlist, config):
                     errors.append(f"{macro}: invalid RP2350 peripheral mux pin")
     if defines.get("GYRO_1_SPI_INSTANCE") != "SPI1" or defines.get("FLASH_SPI_INSTANCE") != "SPI0":
         errors.append("gyro/blackbox SPI instances differ from the schematic buses")
+    # Check the far-end devices too: a legal GPIO mux can still send the
+    # receiver defaults to the external HD pads after a UART role change.
+    receiver = defines.get("SERIALRX_UART", "").removeprefix("SERIAL_PORT_UART")
+    if receiver not in {"0", "1"}:
+        errors.append("SERIALRX_UART must select an onboard UART")
+    else:
+        hd = str(1 - int(receiver))
+        endpoints = {(ref, pin): name.rsplit("/", 1)[-1]
+                     for name, nodes in nets.items() for ref, pin, *_ in nodes}
+        for endpoint, expected in {
+            ("U16", "40"): f"UART{receiver}_TX",  # ESP U0RXD
+            ("U16", "41"): f"UART{receiver}_RX",  # ESP U0TXD
+            ("J28", "1"): f"UART{hd}_TX",
+            ("J29", "1"): f"UART{hd}_RX",
+        }.items():
+            if endpoints.get(endpoint) != expected:
+                errors.append(f"{endpoint[0]}.{endpoint[1]}: expected {expected}, "
+                              f"got {endpoints.get(endpoint)}")
     for macro in ("ADC_CURR_PIN", "ADC_VBAT_PIN"):
         if pins.get(macro) not in {26, 27, 28, 29}:
             errors.append(f"{macro}: not an ADC pin")

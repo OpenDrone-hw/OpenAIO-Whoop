@@ -99,8 +99,9 @@ use the actual finished copper and laminate construction.
 Read device rotations and pad coordinates from the saved board. The
 [pin map](PINMAP.md#5-peripheral-allocation) groups each interface.
 Preserve the gyro's MOSI11/MISO12/SCK14/CS15
-order: it follows U11's actual pad arrangement. Receiver UART1 uses GPIO24/25
-on the east edge. GPIO4–7 carry all four motor signals, in reverse motor
+order: it follows U11's actual pad arrangement. Receiver UART0 uses GPIO16/17
+on the south edge toward U16. HD UART1 uses GPIO24/25 on the east edge toward
+J28/J29. GPIO4–7 carry all four motor signals, in reverse motor
 number order to align with U24. Moving or rotating U10 substantially changes
 these placement advantages.
 
