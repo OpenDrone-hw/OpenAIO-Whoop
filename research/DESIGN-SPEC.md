@@ -58,6 +58,29 @@ reference range. Q28 and the associated R11 pull-down are removed. GPIO1
 high enables the analog rail; low disables it. R68 retains the analog-on
 reset default. The VHD supply is independent and remains battery-boost fed.
 
+## ESP32-PICO supply pins
+
+The SiP includes internal bypass capacitors. Espressif's v1.3 Figure 11 adds
+10 uF and 100 nF externally; these are C82 and C76 on this board. Both connect
+from +3.3 V to GND. C73 is the 1 uF EN timing capacitor with R56, not a supply
+bypass capacitor.
+
+| U16 pin | Connection |
+| --- | --- |
+| 1, 43, 46 | VDDA to +3.3 V |
+| 3, 4 | VDDA3P3 to +3.3 V |
+| 19 | VDD3P3_RTC to +3.3 V |
+| 37 | VDD3P3_CPU to +3.3 V |
+| 49 | Exposed ground pad to GND |
+| 9 | EN to R56/C73 reset network |
+| 26 | VDD_SDIO left externally unconnected, per the SiP reference |
+
+C76 is on F.Cu at (110.52, 121.55) mm; C82 is on F.Cu at
+(106.05, 116.20) mm. The supply distribution joins all seven power pins.
+These coordinates identify the saved board, not a requirement to preserve
+an arbitrary location in a future placement. Preserve short supply/ground
+paths and the direct ground-pad connections when moving this group.
+
 ## Motor interfaces
 
 The ESC gate outputs are actively driven by Bluejay during operation. The
@@ -91,7 +114,8 @@ frequency. With the fitted overlay divider and approximately 7 ohms mux
 resistance, nominal black/white levels are about 0.23/0.89 V. These are circuit
 calculations, not scope measurements. Do not add the OpenFC external-output
 stage's gain of two and 75 ohm source resistor to this local connection.
-C70 must locally bypass both U14 and U15 with short connections.
+C70 locally bypasses U14; C71 separately bypasses U15. Each capacitor has
+short supply and ground connections.
 
 Retain X4 TAXM8M4RDBCCT2T, 8 MHz / 10 pF, 3.2 by 2.5 mm. No exact smaller
 passive 8 MHz replacement was verified. A small active oscillator would be a

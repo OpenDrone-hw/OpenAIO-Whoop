@@ -11,23 +11,24 @@ manufacturer identifier until an identifier is registered.
 | --- | --- |
 | MCU / boot flash | RP2354A / 2MB in-package flash |
 | BMI270 | SPI1: SCK14, MISO12, MOSI11, CS15, INT10 |
-| Blackbox | SPI0: SCK2, MISO0, MOSI3, CS1; Puya 16MB |
+| Blackbox | SPI0: SCK2, MISO0, MOSI3, CS19; Puya 16MB |
 | Motors 1 to 4 | GPIO5, 6, 7, 4; PIO0 bidirectional DShot |
 | ExpressLRS | UART0: TX16, RX17; CRSF with MSP-VTX |
 | HD pads | UART1: TX24, RX25; disabled in the default serial profile |
 | Analog OSD | W21, EN22, SYNC23; PIO2 |
-| Analog VTX permission | GPIO19; high permits power, low forces it off |
-| LED strip | GPIO18; PIO1 |
+| Analog VTX permission | GPIO1; high permits power, low forces it off |
+| LED strip | GPIO29; PIO1 |
 | Status / beeper | LEDs8/9, beeper20 |
 | Analog inputs | VBAT27, current26 |
-| Spare GPIOs | 28, 29 |
+| Spare GPIOs | 18, 28 |
 
-The pin groups follow the RP2354A package edges: blackbox GPIO0–3, motor
-outputs GPIO4–7, status LEDs GPIO8–9, and gyro GPIO10–15. Receiver UART0 uses
-GPIO16–17; LED strip, VTX permission and beeper use GPIO18–20. The consecutive
-OSD group stays on GPIO21–23, followed by HD UART1 on GPIO24–25 and the
-two analog inputs on GPIO26–27. Final component placement must preserve these
-short local groups.
+The pin groups follow the RP2354A package edges: blackbox data uses
+GPIO0/2/3 with software CS19, motor outputs GPIO4–7, status LEDs GPIO8–9,
+and gyro GPIO10–15. Receiver UART0 uses GPIO16–17; beeper uses GPIO20.
+The consecutive OSD group stays on GPIO21–23, followed by HD UART1 on
+GPIO24–25 and the two analog inputs on GPIO26–27. LED strip GPIO29 is
+beside its pad; analog VTX permission uses GPIO1. GPIO18 and GPIO28 are
+unused. Preserve the saved placement and checked local connections.
 
 GPIO20 shares hardware PWM slice 2 with GPIO4 and GPIO5. The default motor
 protocol is PIO DShot600, so it does not consume that PWM slice. Do not switch
@@ -58,7 +59,7 @@ make -j8 fwo CONFIG=OPENAIO_WHOOP \
 
 Replace both placeholders with values derived from the final PCB placement
 and intended mount. The build intentionally rejects an omitted orientation.
-The parked IMU footprint does not establish the finished board's orientation.
+The footprint rotation alone does not establish the installed board's orientation.
 The compilation check used `CW0_DEG` and `0` solely as explicit build inputs;
 those values are not an approved flight configuration.
 
@@ -73,13 +74,13 @@ compilation profile.
 
 ## Video profiles
 
-The analog defaults use `pinio_config = 129,1,1,1`. Inversion makes GPIO19
+The analog defaults use `pinio_config = 129,1,1,1`. Inversion makes GPIO1
 high when PINIO1 is inactive. Activating PINIO1 drives it low and forces the
-analog VTX off. GPIO19 does not control the VHD supply, which is powered from
+analog VTX off. GPIO1 does not control the VHD supply, which is powered from
 the battery boost.
 
 For a fixed HD setup, select MSP DisplayPort on UART1, set video system to HD
-and OSD display device to MSP, and set `pinio_config = 1,1,1,1` so GPIO19 is
+and OSD display device to MSP, and set `pinio_config = 1,1,1,1` so GPIO1 is
 low after initialization. Adjust the OSD canvas and positions for the connected
 HD system. Returning to analog requires AUTO video/display, no DisplayPort
 function on UART1, and `pinio_config = 129,1,1,1`.

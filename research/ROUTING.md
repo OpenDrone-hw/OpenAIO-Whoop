@@ -37,7 +37,7 @@ provided by KiCad 10. Do not move `.pretty`, models or child sheets independentl
 | --- | --- | --- |
 | L1 | F.Cu | Top parts; RF, video, gyro and sense traces; short local power loops; digital escapes |
 | L2 | In1.Cu | Digital, gate and BEMF routing with local GND pours; continuous GND under outer RF, USB and video |
-| L3 | In2.Cu | Main GND reference plane; only the named HD_EN bridge below; no non-GND zones |
+| L3 | In2.Cu | Main GND reference plane; only the named HD_EN and UART0_TX bridges below; no non-GND zones |
 | L4 | In3.Cu | Battery and regulated supply distribution; local GND reference regions; no signal or phase tracks |
 | L5 | In4.Cu | Digital, gate and BEMF routing with local GND pours; continuous GND under outer RF, USB and video |
 | L6 | B.Cu | Bottom parts; local RF, video and power loops; short digital connections |
@@ -93,12 +93,21 @@ their named areas. RF references and Kelvin routing retain their restrictions.
 
 
 `HD_EN_IN2_BRIDGE` permits only the 0.09 mm HD_EN control trace on In2,
-within its enclosing local area. This 8.95 mm section is part of the
-17.01 mm VTX power-enable connection. The native filled In2 ground remains
+within its enclosing local area. This 8.949 mm section is part of the
+20.156 mm VTX power-enable connection. The native filled In2 ground remains
 one connected island. Existing USB, gyro SPI, RF, video and oscillator
 trace references retain their copper; the qualified XIN pad-edge aperture
 increase is 0.002036 mm². Other nets, layers, widths and tracks leaving the
 area remain errors. This local exception does not allow general In2 routing.
+
+`UART0_TX_IN2_LOCAL` permits only the 0.09 mm UART0_TX trace on In2,
+within its named area. This 5.836 mm bridge completes the 17.992 mm receiver
+TX route with six vias and preserves the original GPIO16 assignment. The
+filled In2 ground remains one island. USB, SPI, oscillator, RF and analog
+reference projections are unchanged. Two short MOTOR1 crossings and one
+UART0_RX crossing create 0.026449 mm² and 0.02439 mm² reference apertures;
+these digital return-path tradeoffs require prototype signal verification.
+The rule rejects other nets, widths, layers and tracks outside the area.
 
 The nominal 1.0 mm stackup is in `hardware/tools/stackup.json`. Outer dielectric
 spacing is 0.077 mm. The stored RF starting geometry is 0.105 mm trace / 0.15 mm
@@ -233,3 +242,15 @@ C70 retains the mux bypass loop. The receiver shared VREG_RADIO tie uses a
 regulated-power bridge while its two direct local SX1281 bypass stubs remain
 on F.Cu. R61's 510 kOhm pull-up uses a 2.109 mm supply connection; the adjacent
 PA detector dogleg stays on In1 over continuous In2 ground.
+
+## Morning checkpoint
+
+The final UART transition at 111.9,118.05 mm restores all 24 measured
+battery-entry widths to the preceding accepted board. The discarded
+112.65,118.8 mm transition is not in this file. Power/thermal validation
+still requires a prototype; these are geometric checks only.
+
+The native open connections are OSD_EN, OSD_W and CURR_SENSE. The saved
+OSD_EN and current-monitor experiments were withheld because they cut
+existing PA-detector or USB reference copper. The accepted board retains
+the previous beeper GPIO20 binding.

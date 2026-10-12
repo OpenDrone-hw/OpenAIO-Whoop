@@ -89,6 +89,12 @@ def main():
         ("HD outside area", "track", "/HD_EN", pcb.In2_Cu, False),
         ("HD wrong layer", "track", "/HD_EN", pcb.In3_Cu, False),
         ("HD signal zone", "zone", "/HD_EN", pcb.In2_Cu, False),
+        ("UART bounded bridge", "track", "/UART0_TX", pcb.In2_Cu, True),
+        ("UART wrong width", "track", "/UART0_TX", pcb.In2_Cu, False),
+        ("UART wrong net", "track", "/UART0_RX", pcb.In2_Cu, False),
+        ("UART outside area", "track", "/UART0_TX", pcb.In2_Cu, False),
+        ("UART wrong layer", "track", "/UART0_TX", pcb.In3_Cu, False),
+        ("UART signal zone", "zone", "/UART0_TX", pcb.In2_Cu, False),
         ("VIDEO bridge bounded", "track", "/VIDEO_IN", pcb.In1_Cu, True),
         ("VIDEO wrong width", "track", "/VIDEO_IN", pcb.In1_Cu, False),
         ("VIDEO wrong net", "track", "/OSD/VID_DC", pcb.In1_Cu, False),
@@ -205,6 +211,22 @@ def main():
             if kind == "track":
                 item.SetWidth(pcb.FromMM(.10 if name == "HD wrong width" else .09))
                 if name == "HD outside area": item.SetEnd(pos(3, 0))
+        if name.startswith("UART "):
+            area = pcb.ZONE(board); area.SetIsRuleArea(True)
+            area.SetZoneName("UART0_TX_IN2_LOCAL")
+            layers = pcb.LSET(); layers.AddLayer(pcb.F_Cu); layers.AddLayer(pcb.In2_Cu)
+            area.SetLayerSet(layers)
+            area.SetNet(nets["GND"])
+            area.SetDoNotAllowTracks(False); area.SetDoNotAllowVias(False)
+            area.SetDoNotAllowPads(False); area.SetDoNotAllowFootprints(False)
+            area.SetDoNotAllowZoneFills(False)
+            outline = area.Outline(); outline.NewOutline()
+            for dx, dy in [(-.2, -.2), (2.2, -.2), (2.2, .2), (-.2, .2)]:
+                point = pos(dx, dy); outline.Append(point.x, point.y)
+            board.Add(area)
+            if kind == "track":
+                item.SetWidth(pcb.FromMM(.10 if name == "UART wrong width" else .09))
+                if name == "UART outside area": item.SetEnd(pos(3, 0))
         if name.startswith("PA "):
             suffix = "PA_DET_IN4_LOCAL" if name in ("PA detector In4", "PA wrong area") else "PA_DET_IN1_LOCAL"
             area = pcb.ZONE(board); area.SetIsRuleArea(True); area.SetZoneName(suffix)
