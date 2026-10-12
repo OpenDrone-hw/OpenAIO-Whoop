@@ -639,7 +639,7 @@
 					)
 				)
 			)
-			(property "Description" "PY25Q128HA-DFH-IR, single-SPI mode; WP and HOLD are inputs. Quad mode is not supported by this symbol."
+			(property "Description" "PY25Q128HA-DFH-IR, single-SPI mode; WP and HOLD are inputs. Quad mode is not supported by this symbol.; two unnumbered centre package tabs have no electrical terminal assignment in Puya Table 3-1/QRPD-0077; retain floating mechanical lands"
 				(at 0 -17.78 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -845,24 +845,6 @@
 						)
 					)
 					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 1.27 -10.16 90)
-					(length 2.54)
-					(name "EP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1749,7 +1731,7 @@
 		)
 		(uuid "01ce9a0d-41ce-570b-9418-94a5b1f85e88")
 	)
-	(text_box "WP# and HOLD# tied to +3.3V for single-SPI operation; pin 7 must not float.\nR50 10k holds CS# high through reset. EP tabs no-connect."
+	(text_box "WP# and HOLD# tied to +3.3V for single-SPI operation; pin 7 must not float.\nR50 10k holds CS# high through reset. Unnumbered package tabs: floating mechanical lands."
 		(exclude_from_sim no)
 		(at 118.11 21.59 0)
 		(size 78.74 19.05)
@@ -1786,10 +1768,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a53f6f29-fc19-5d57-b1a7-d09e051960f1")
-	)
-	(no_connect
-		(at 77.47 78.74)
-		(uuid "99f38324-0262-544e-874d-7cbf7a09e67e")
 	)
 	(wire
 		(pts
@@ -2661,7 +2639,7 @@
 				)
 			)
 		)
-		(property "Description" "128 Mbit (16 MB) serial NOR flash, SPI/Dual/Quad/QPI, 2.7-3.6 V, -40..85 C, fC 133 MHz (READ 03h 80 MHz), USON-8 3x3x0.55 mm P0.8 (package DF), JEDEC ID 85 20 18 (Betaflight m25p16 table 'PUYA PY25Q128'); EP (9) = two exposed tie-bar tabs, no electrical role stated: leave unconnected with a no-connect flag"
+		(property "Description" "PY25Q128HA-DFH-IR, single-SPI mode; WP and HOLD are inputs. Quad mode is not supported by this symbol.; two unnumbered centre package tabs have no electrical terminal assignment in Puya Table 3-1/QRPD-0077; retain floating mechanical lands"
 			(at 76.2 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -2728,9 +2706,6 @@
 		)
 		(pin "8"
 			(uuid "e5cfb005-3cb2-530a-8a07-9339f430a3a0")
-		)
-		(pin "9"
-			(uuid "823bbcc7-721a-5b03-91f6-d62c7d15a9f6")
 		)
 		(instances
 			(project "OpenAIO-Whoop"

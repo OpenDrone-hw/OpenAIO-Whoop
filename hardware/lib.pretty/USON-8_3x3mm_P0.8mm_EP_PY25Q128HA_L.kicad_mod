@@ -3,12 +3,12 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "Puya USON-8 3x3x0.55 mm (package code DF), P0.8, leads to the body edge, two exposed tie-bar tabs 0.20 x 0.80 on the centre line; PY25Q128HA DS Rev 2.0 p106 (drawing QRPD-0077), pins p4 (pin 1 top-left, 1-4 down the left). No vendor land: IPC-7351B least density, lands 0.94 x 0.29 at x +-1.28 (toe 0.25 past the body), tab lands 1:1 = pad 9 (no electrical function stated, leave unconnected). https://atta.szlcsc.com/upload/public/pdf/source/20250117/E5397163A091235CFF3CDB19865BC1CE.pdf | IPC-7351 least density (L) variant per D109: toe 1.58 (D 2.90/3.00/3.10 -> 1.55 max + 0.03), heel 0.81 kept (>= D/2-Lmax 0.80), width 0.29 kept (IPC L 0.285), tab lands unchanged")
+	(descr "Puya PY25Q128HA DF USON-8 3x3 mm; eight electrical terminals at 0.8 mm pitch plus two unnumbered centre package-tab lands. QRPD-0077: retain floating mechanical lands, no electrical or common-terminal assignment specified.")
 	(tags "USON-8 DFN-8 3x3 PY25Q128HA-DFH-IR Puya SPI NOR flash 128Mbit blackbox IPC7351L")
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "a1e2069b-cb59-4de5-82cd-f3f737cda337")
+		(uuid "83233a78-f6dc-490f-bd58-d9508686b6d0")
 		(effects
 			(font
 				(size 0.5 0.5)
@@ -20,7 +20,7 @@
 		(at 0 2.1 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "7f826232-0d24-4a08-a13d-0f37063562de")
+		(uuid "aa25cb57-090e-45c7-b04a-1d6ad8a07bec")
 		(effects
 			(font
 				(size 0.5 0.5)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "3ce2aacf-2974-4410-ad58-6f3545965ce8")
+		(uuid "0a35a637-b242-4c96-b871-a2a51040e5fc")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "5ec72549-5026-4fe7-9668-0c533e42da47")
+		(uuid "25099b46-10cd-46bd-a530-90265d13c3d8")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -61,7 +61,7 @@
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "b0cb8ccc-46db-4dd5-a6c0-46ad9f8b3720")
+		(uuid "7d5bf8c0-65f6-4691-8c22-c960f60351b8")
 	)
 	(fp_line
 		(start -1.5 -1)
@@ -71,7 +71,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "d5051232-c77b-46c5-ac0d-e946b1217135")
+		(uuid "923b8c02-18ef-4f2e-aed2-dd8ee5c4b73c")
 	)
 	(fp_line
 		(start -1.5 1.5)
@@ -81,7 +81,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "8ad82240-9f7a-45fc-9ce0-319de02b8180")
+		(uuid "077b8c57-3bac-4c10-b426-c94352e1abaa")
 	)
 	(fp_line
 		(start -1 -1.5)
@@ -91,7 +91,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "205d20c2-df7f-4c49-a5c5-fb0048c9cc28")
+		(uuid "03ad99f4-368d-4944-b2c5-2dd724f6b510")
 	)
 	(fp_line
 		(start 1.5 -1.5)
@@ -101,7 +101,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "8a0097be-76d7-4202-92cd-c7d602a9829b")
+		(uuid "109e54f8-0be4-4164-a570-9ae7e025f1b1")
 	)
 	(fp_line
 		(start 1.5 1.5)
@@ -111,7 +111,23 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "c3e0e0f8-9e3e-4235-acf2-78d42fb4299e")
+		(uuid "a33aac6f-d7e4-44a8-a512-6ae755b10bb5")
+	)
+	(pad "" smd roundrect
+		(at 0 -0.8)
+		(size 0.2 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "8cbf8439-0b95-4f95-b779-b8a267f7c628")
+	)
+	(pad "" smd roundrect
+		(at 0 0.8)
+		(size 0.2 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "016ee8a8-20a2-4223-9492-a3ec73da2520")
 	)
 	(pad "1" smd roundrect
 		(at -1.195 -1.2)
@@ -119,7 +135,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "e2b81803-1005-460f-9967-8ddeae6bc220")
+		(uuid "698cfa4b-53f8-4c88-b141-9feb17b1d22f")
 	)
 	(pad "2" smd roundrect
 		(at -1.195 -0.4)
@@ -127,7 +143,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "be4e4def-7037-4d1b-8928-e581fa3f7e04")
+		(uuid "5527fe49-8bf8-43ca-b68b-f7e584b8891e")
 	)
 	(pad "3" smd roundrect
 		(at -1.195 0.4)
@@ -135,7 +151,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "c0984cc1-d075-40d7-943b-496d94f88617")
+		(uuid "aeecf5cd-1f86-4060-a799-c73e5480f67f")
 	)
 	(pad "4" smd roundrect
 		(at -1.195 1.2)
@@ -143,7 +159,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "85589988-83bd-471a-8915-8e9af9687df1")
+		(uuid "e6d8f46f-dbf3-4055-99c6-2206df6e96b4")
 	)
 	(pad "5" smd roundrect
 		(at 1.195 1.2)
@@ -151,7 +167,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "592b6803-ab47-4f31-adf6-64441926c522")
+		(uuid "a82d88e8-9815-48d3-955b-3725815a5e1d")
 	)
 	(pad "6" smd roundrect
 		(at 1.195 0.4)
@@ -159,7 +175,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "583ff220-9f82-4557-97cf-0ff8b853d507")
+		(uuid "451a5502-0384-4f49-b1ff-6dd2cd6e108f")
 	)
 	(pad "7" smd roundrect
 		(at 1.195 -0.4)
@@ -167,7 +183,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "c34e3cc0-bb31-4c2d-8604-157504135fd1")
+		(uuid "a9443f9c-5aff-4aee-9dfc-93027a9ff09f")
 	)
 	(pad "8" smd roundrect
 		(at 1.195 -1.2)
@@ -175,23 +191,7 @@
 		(layers "F.Cu" "F.Mask" "F.Paste")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "df004a78-97ed-4ad0-9602-3f9b786b324d")
-	)
-	(pad "9" smd roundrect
-		(at 0 -0.8)
-		(size 0.2 0.8)
-		(layers "F.Cu" "F.Mask" "F.Paste")
-		(roundrect_rratio 0.25)
-		(thermal_bridge_angle 45)
-		(uuid "8fcbad4a-8185-4f8d-bcd2-302dc3c623f6")
-	)
-	(pad "9" smd roundrect
-		(at 0 0.8)
-		(size 0.2 0.8)
-		(layers "F.Cu" "F.Mask" "F.Paste")
-		(roundrect_rratio 0.25)
-		(thermal_bridge_angle 45)
-		(uuid "dc671217-529d-491a-9c64-9f37754f81e5")
+		(uuid "98be53ee-a693-4e47-a15f-846a34526c41")
 	)
 	(embedded_fonts no)
 	(model "${KIPRJMOD}/lib.3dshapes/USON-8_3x3mm_P0.8mm_EP_PY25Q128HA.step"

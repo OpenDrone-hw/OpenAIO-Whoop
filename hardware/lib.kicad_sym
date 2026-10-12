@@ -6332,7 +6332,7 @@
 				)
 			)
 		)
-		(property "Description" "PY25Q128HA-DFH-IR, single-SPI mode; WP and HOLD are inputs. Quad mode is not supported by this symbol."
+		(property "Description" "PY25Q128HA-DFH-IR, single-SPI mode; WP and HOLD are inputs. Quad mode is not supported by this symbol.; two unnumbered centre package tabs have no electrical terminal assignment in Puya Table 3-1/QRPD-0077; retain floating mechanical lands"
 			(at 0 -17.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6538,24 +6538,6 @@
 					)
 				)
 				(number "8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 1.27 -10.16 90)
-				(length 2.54)
-				(name "EP"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "9"
 					(effects
 						(font
 							(size 1.27 1.27)

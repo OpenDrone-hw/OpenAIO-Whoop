@@ -261,7 +261,8 @@ RULES = [  # (net pattern, class) - first match wins; the role each class stands
     # /POWER/U2_SW: boost switch node, 2.8-3.4 A average (P4 critique round 2)
     ("*/RF_*", "RF"), ("*/USB_D_P", "USB"), ("*/USB_D_N", "USB"), ("*/U10_USB_D_P", "USB"), ("*/U10_USB_D_N", "USB"),
     ("*CURR_SENSE*", "Analog"), ("*ADC_CURR*", "Analog"), ("*ADC_VBAT*", "Analog"), ("*SHUNT_SENSE*", "Analog"),
-    ("*VIDEO*", "Analog"), ("*/VID_*", "Analog"), ("*/OSD_LVL", "Analog"), ("*/OSD_SYNC", "Analog"),
+    ("*VIDEO*", "Analog"), ("*/VID_*", "Analog"), ("*/OSD_LVL", "Analog"),
+    ("/OSD_SYNC", "Default"),  # TLV7031 push-pull logic output; VID_DC remains analog.
     ("*/PA_DET*", "Analog"),
     ("*/VT_MOD*", "Analog"), ("*/RTC_*", "Analog"), ("*/U19_XTAL*", "Analog"), ("*/TCXO_OUT", "Analog"),
     ("*/XTA", "Analog"), ("*/U2_FB*", "Analog"),                     # RTC6705 video input, PLL loop filter, 8 / 52 MHz references (P4 critique)

@@ -162,6 +162,8 @@ DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "
                  "microvia_diameter": 0.25, "microvia_drill": 0.1, "diff_pair_width": 0.2, "diff_pair_gap": 0.25}
 # Planned net names (D4 power names; PINMAP.md; OpenAIO esc_channel upper-cased per LINEUP). Root-sheet local
 # labels appear as "/NAME", sub-sheet ones as "/SHEET/NAME", power nets bare.
+# OSD_SYNC is the TLV7031 push-pull digital output; VID_DC remains analog.
+# TI SLVSE13J sections 3 and 6.3. Default digital layer rules apply to sync.
 NETCLASS_PATTERNS = [
     ("VBAT", ["+BATT", "+BATT_*", "/POWER/CSA+"]),                        # +BATT, CSA+ battery node (spec 4.1, D113)
     ("Phase", ["/ESC?/PHASE_?", "/POWER/U2_SW"]),                         # PHASE_A/B/C and the boost switch node: drawn as
@@ -171,7 +173,7 @@ NETCLASS_PATTERNS = [
                "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS",            # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
                "/RP2350A/VREG_LX"]),                                    # RP2354A core SMPS switch node (critique 2026-10-11)
     ("GND", ["GND"]),
-    ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", 
+    ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*CURR_SENSE*", "*ADC_VBAT*",
                 "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*",      # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
                 "*/VT_MOD*", "*/RTC_*", "*/U19_XTAL*", "*/TCXO_OUT", "*/XTA",
                 "*/U2_FB*"]),                                               # boost feedback divider node (critique 2026-10-11)  # RTC6705 video input, PLL loop filter, 8/52 MHz refs (P4 critique)

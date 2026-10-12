@@ -24,6 +24,9 @@ def main():
     cli = os.environ.get("KICAD_CLI") or shutil.which("kicad-cli") or \
         "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli"
     tests = [
+        ("L2 sync digital", "track", "/OSD_SYNC", pcb.In1_Cu, True),
+        ("L5 sync digital", "track", "/OSD_SYNC", pcb.In4_Cu, True),
+        ("L3 sync forbidden", "track", "/OSD_SYNC", pcb.In2_Cu, False),
         ("L2 digital", "track", "/SPI0_SCK", pcb.In1_Cu, True),
         ("L2 gate", "track", "/ESC1/A_PWM", pcb.In1_Cu, True),
         ("L2 video", "track", "/OSD/VIDEO_IN", pcb.In1_Cu, False),
