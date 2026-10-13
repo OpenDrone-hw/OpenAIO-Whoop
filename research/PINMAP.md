@@ -49,7 +49,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 40 | GPIO26_ADC0 | `ADC_CURR` |
 | 41 | GPIO27_ADC1 | `ADC_VBAT` |
 | 42 | GPIO28_ADC2 | - |
-| 43 | GPIO29_ADC3 | - |
+| 43 | GPIO29_ADC3 | `SBUS` (J34 pin 6, 3.3 V logic only) |
 
 ## 3. RP2354A power and system pins
 

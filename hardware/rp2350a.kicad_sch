@@ -3895,10 +3895,6 @@
 		(uuid "895fe5fd-b6cb-5872-9738-53c8f0d9d738")
 	)
 	(no_connect
-		(at 321.31 179.07)
-		(uuid "8f372803-0836-51d0-8303-7d6c935c683a")
-	)
-	(no_connect
 		(at 321.31 176.53)
 		(uuid "a6f6af54-eb98-5bd3-9ff3-112e0fff24ec")
 	)
@@ -4399,6 +4395,16 @@
 			(type default)
 		)
 		(uuid "97e13218-a988-5a12-9df1-74c8609e06bc")
+	)
+	(wire
+		(pts
+			(xy 321.31 179.07) (xy 326.39 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99c786fc-62be-4c4c-ae5e-916c88e522af")
 	)
 	(wire
 		(pts
@@ -5049,6 +5055,30 @@
 			(justify left bottom)
 		)
 		(uuid "d79aa91f-3f7b-5302-8970-26590077cde8")
+	)
+	(global_label "SBUS"
+		(shape bidirectional)
+		(at 326.39 179.07 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d9bd4a48-b39d-45d0-87fe-144bd4060c2a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 326.39 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 	)
 	(hierarchical_label "OSD_SYNC"
 		(shape input)
