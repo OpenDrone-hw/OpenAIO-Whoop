@@ -3354,16 +3354,6 @@
 		(uuid "30e94dd5-e282-5ffd-916c-9bbcc12fb49b")
 	)
 	(label "C_PWM"
-		(at 129.54 163.83 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "33273552-6990-54fe-a288-a377accc1c24")
-	)
-	(label "B_PWM"
 		(at 86.36 163.83 180)
 		(effects
 			(font
@@ -3371,7 +3361,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "35d10129-8ec7-594e-b053-472d0638cebc")
+		(uuid "34e036c3-38cf-4b09-a719-f138a9b8f33d")
 	)
 	(label "PHASE_C"
 		(at 144.78 63.5 180)
@@ -3422,16 +3412,6 @@
 			(justify left bottom)
 		)
 		(uuid "5f705881-2761-55f8-b19e-5f886a25559b")
-	)
-	(label "C_COM"
-		(at 129.54 153.67 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "650255aa-1d01-5db2-baf7-4dffcd6d7c2f")
 	)
 	(label "PHASE_A"
 		(at 144.78 27.94 180)
@@ -3523,7 +3503,7 @@
 		)
 		(uuid "8fcf8aef-a036-565b-9874-8a6720539dfb")
 	)
-	(label "B_COM"
+	(label "C_COM"
 		(at 86.36 153.67 180)
 		(effects
 			(font
@@ -3531,7 +3511,7 @@
 			)
 			(justify right bottom)
 		)
-		(uuid "a08211f9-dff3-54cd-b52b-6699c12d178c")
+		(uuid "934bac56-596b-4fe5-a26a-d5ab64859f32")
 	)
 	(label "PHASE_B"
 		(at 104.14 158.75 0)
@@ -3562,6 +3542,26 @@
 			(justify left bottom)
 		)
 		(uuid "cb3aa98a-f28c-57d3-9f7f-feb220f26430")
+	)
+	(label "B_COM"
+		(at 129.54 153.67 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "daab2a44-427e-419c-a771-66abfdc72c79")
+	)
+	(label "B_PWM"
+		(at 129.54 163.83 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "dd3fb025-768d-4aa4-b40f-d17a17500ac7")
 	)
 	(label "PHASE_C"
 		(at 147.32 158.75 0)
