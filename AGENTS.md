@@ -81,6 +81,11 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   `hardware/lib.pretty/`, and `hardware/lib.3dshapes/`, then verify supplier
   fields in the board schematic. Do not duplicate a shared part or datasheet.
 
+- After a routing session, with KiCad closed, run `hardware/tools/hdi_via_pass.py` with KiCad's bundled
+  Python: it replaces every unbuildable via (mechanical blind, multi-layer microvia, through via) with the
+  minimum stack at the same spot (microvia, microvia + buried, microvia + buried + microvia), nudges
+  up to 0.05 mm for clearance and lists bigger conflicts. Then run DRC.
+
 ## Environment
 
 ```sh
