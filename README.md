@@ -51,6 +51,23 @@ manufactured yet.
 | USB | JST SH 1.0 mm 4-pin |
 | Camera | JST SUR 0.8 mm 3-pin plug and solder pads |
 
+### Electrical limits
+
+| Item | Limit | Source |
+|---|---|---|
+| Battery pad J2 | 1S only, 3.0 to 4.35 V. A 2S pack damages the TPS61022 (VIN abs max 7 V) and U4 (VIN abs max 6 V) | TPS61022 SLVSDX7D, TLV757P SBVS322C |
+| +5V pad (J21) and camera feed (J24, J32) | 1 A, pad voltage 4.4 to 5.4 V (D10 Schottky drop 0.42 to 0.50 V at 1.5 A) | MS2A40LDF datasheet |
+| 1.5 A | `+5V_BST` only (J26 VHD pad), not the +5V pad | TPS61022 output behind D10 |
+
+### VTX control path
+
+| Item | Value |
+|---|---|
+| Protocol | ExpressLRS MSP-VTX, CRSF receiver on UART1 (GPIO8/9) |
+| VTX owner | ESP32-PICO-V3 drives the RTC6705 over SPI and the SE5004L reference through PA_EN (GPIO21) |
+| Pit mode | Not implemented as a PA_EN drop: pit mode does not stop SPI activity or remove the PA reference (firmware/expresslrs/README.md). Dropping PA_EN in pit mode and at lowest power is an open firmware item |
+| HD hold-off | RP2354 GPIO19 (`HD_EN`) high permits analog VTX power, low switches it off; fixed HD builds set `pinio_config = 1,1,1,1` |
+
 Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10. Keep the complete hardware folder together.
 
 - [Placement, layer use and file guide](research/ROUTING.md)

@@ -2,6 +2,8 @@
 
 Date: 2026-10-10. Scope: the 2.4 GHz antenna that the ESP32-PICO-V3 (U16) uses in ELRS Wi-Fi mode. That mode is only used on the bench, for configuration and firmware updates. The SX1281 RC link keeps the AE1 wire antenna through FL1.
 
+Netlist correction (2026-10-13): the schematic has no Wi-Fi pi network. R88, C132 and C133 are not in the netlist. `/RX/RF_WIFI` joins U16 pin 2 (LNA_IN) directly to AE2 pins 1 and 4 (feed). Wherever this note or HANDOFF.md places, moves or tunes R88, C132 or C133, read it as a proposal that was not built. `bom_plan.json` still lists them until it is regenerated with `export_bom_plan.py`; `check_netlist.py` N4 reports the mismatch.
+
 Tags: **V** = read from a primary source (datasheet, repo file, Gerber, owner photo measurement). **S** = secondary source (shop listing, distributor, search summary). **I** = inferred (engineering estimate, stated as such).
 
 ## 1. Answer in short
@@ -33,7 +35,7 @@ Conclusion (I): production whoop RXs and AIOs give Wi-Fi either its own tiny chi
 ## 3. The board today (repo `hardware/OpenAIO-Whoop.kicad_pcb`, read 2026-10-10)
 
 - AE2 2450AT07A0100001T: B side, (119.3, 101.15), top edge. Its rule area `WIFI_ANT_KO` (115.25..120.25 x 100.0..103.2) blocks copper on all layers.
-- U16 ESP32-PICO-V3: B side, (112.6, 113.7). LNA_IN (pin 2, net `/RX/RF_WIFI`) is at (115.97, 111.45), **about 10.5 mm from the AE2 feed**. FLOORPLAN.md §Open item 10 records that the feed (13.5-15.6 mm) runs past the RTC6705 (U19, (119.8, 108.1)). It also says the pi match is split across both sides: R88 is on F, C132/C133 on B.
+- U16 ESP32-PICO-V3: B side, (112.6, 113.7). LNA_IN (pin 2, net `/RX/RF_WIFI`) is at (115.97, 111.45), **about 10.5 mm from the AE2 feed**. FLOORPLAN.md §Open item 10 records that the feed (13.5-15.6 mm) runs past the RTC6705 (U19, (119.8, 108.1)). FLOORPLAN.md also described a pi match split across both sides (R88 on F, C132/C133 on B); that network is not in the netlist.
 - Stackup, measured from B.Cu: In4 GND at **0.077 mm**, In3 +BATT plane at 0.39 mm, In2 signals at 0.51 mm, In1 GND at 0.83 mm, F.Cu at 0.93 mm (εr 4.2).
 - Boost U2 TPS61022 (106.9, 117.5) and L1 (109.3, 119.8), both B. They are about 9-10 mm from LNA_IN.
 
@@ -136,6 +138,9 @@ Net-aware DRU for this, per the commons lesson: one named rule area per void wit
 - **The feed's reference** (In4) stays continuous from U16 pin 2 to the void edge. Do not route an In4 jumper (D85 ≤ 3 mm jumps) under the feed.
 
 ### 6.6 Matching network
+
+Not in the schematic: AE2 is wired straight to U16 pin 2 (netlist 2026-10-13). The text below is a proposal. Adding one series 0201 0R pad is optional; add a DNP shunt only if a VNA measurement shows return loss worse than 6 dB.
+
 
 - The ESP32-PICO-V3 already has its internal CLC match to 50 Ω (datasheet Fig. 8, read by the D58 agent). The external pi is for the antenna only.
 - Pi = shunt C / series / shunt C in **0201, all on B, within 1 mm of the AE2 feed pad**. Keep the existing refs:

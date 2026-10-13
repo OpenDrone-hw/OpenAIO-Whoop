@@ -24,8 +24,8 @@ Placement facts (from the board, md5 4f845ba5):
 
 - Superseded by the 2026-10-11 schematic trim (D114): after the board sync the board holds 249 footprints (125 front, 124 back); the counts below are the pre-trim placement.
 - 266 footprints: 134 on the front, 132 on the back. 20 are DNP: the 4 motor
-  headers J4/J7/J10/J13, the 13 battery and IO solder pads, the AE1 wire hole, and C132/C133
-  (Wi-Fi tuning, 1.2 pF).
+  headers J4/J7/J10/J13, the 13 battery and IO solder pads and the AE1 wire hole. The
+  C132/C133 Wi-Fi tuning caps counted here are not in the netlist (2026-10-13).
 - Outline: 30.35 x 30.35 mm bounding box, 673.42 mm2. That is the 26.4 mm body,
   three D3.5 ear holes on the 25.5 mm pattern, and a 45-degree front chamfer
   with c = 3.0 mm (D112).
@@ -36,7 +36,8 @@ Placement facts (from the board, md5 4f845ba5):
   - Exceptions to D107 (open item 3): 18 +BATT microvias and 5 +BATT buried
     vias stand free in the R1 battery-feed field.
 - Every RF net now has all its pads on one side (open item 0, done). The
-  Wi-Fi pi network R88/C132/C133 is on the back with U16 and AE2. AE2 moved
+  Wi-Fi path is on the back with U16 and AE2: U16 pin 2 connects straight to AE2
+  (the R88/C132/C133 pi network recorded here earlier is not in the netlist, 2026-10-13). AE2 moved
   1.50 mm along the chamfer, and its five WIFI_* rule areas moved with it. C110
   is on the front with U19, L3 and U20. R44 and C117 (back) moved 0.32 and
   1.13 mm to make room. No other part, via or outline segment changed.
@@ -117,10 +118,9 @@ via under a part body.
      a via. The DRU comment still says the RTC6705 is on the bottom; that is
      out of date. C110's pad is 0.05 mm inside the left edge of
      `RF_VTX_STRIP`.
-   - Wi-Fi, all on the back (L6 over L5): U16 pin 2 to R88 is 0.95 mm, R88
-     to the AE2 feed is 0.60 mm (pad centres). The C133 and C132 shunts sit
-     0.60 and 0.52 mm from the R88 pads. Their GND pads are outside
-     `WIFI_VOID_V1`.
+   - Wi-Fi, all on the back (L6 over L5): U16 pin 2 connects directly to the
+     AE2 feed; there is no R88, C132 or C133 in the netlist (2026-10-13). The
+     distances to those parts recorded here earlier no longer apply.
 3. **ESC power path** (D103). The path runs from the battery pads to the R1
    shunt, onto the L4 +BATT plane, through buried vias into the In1/In4
    islands, and up microvias into each AGM210MAP +BATT pad and its 22 uF cap.
@@ -142,7 +142,8 @@ via under a part body.
    - `/VTX/RF_PAOUT1`: C110 moved to the front (112.925, 106.375), beside L3.
      The whole 5.8 GHz chain is now on the front. That leaves `/VTX/RF_PA_IN`
      with both pads on the front, so its via exception is no longer needed.
-   - `/RX/RF_WIFI` and `/RX/RF_WIFI_ANT`: R88, C132 and C133 moved to the back,
+   - `/RX/RF_WIFI` (the `/RX/RF_WIFI_ANT` net and R88, C132, C133 are not in the
+     netlist, 2026-10-13): historically R88, C132 and C133 were moved to the back,
      between U16 pin 2 and AE2.
      - There was only 0.73 mm between U16 pin 2 and the AE2 feed pad.
      - AE2 could not move toward the chamfer: its pads are 0.65 mm from the
