@@ -4398,16 +4398,6 @@
 	)
 	(wire
 		(pts
-			(xy 321.31 179.07) (xy 326.39 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99c786fc-62be-4c4c-ae5e-916c88e522af")
-	)
-	(wire
-		(pts
 			(xy 243.84 114.3) (xy 248.92 114.3)
 		)
 		(stroke
@@ -4725,6 +4715,16 @@
 			(type default)
 		)
 		(uuid "d6cfda3e-8376-5ba3-816a-667bbe090e5e")
+	)
+	(wire
+		(pts
+			(xy 321.31 179.07) (xy 326.39 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d75b11bd-53a6-4d4b-9843-4ded3599e919")
 	)
 	(wire
 		(pts
@@ -5057,7 +5057,7 @@
 		(uuid "d79aa91f-3f7b-5302-8970-26590077cde8")
 	)
 	(global_label "SBUS"
-		(shape bidirectional)
+		(shape input)
 		(at 326.39 179.07 0)
 		(fields_autoplaced yes)
 		(effects
@@ -5066,7 +5066,7 @@
 			)
 			(justify left)
 		)
-		(uuid "d9bd4a48-b39d-45d0-87fe-144bd4060c2a")
+		(uuid "fcbe1399-aa45-49ae-83cc-0d1c08fa1c30")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 326.39 179.07 0)
 			(hide yes)
