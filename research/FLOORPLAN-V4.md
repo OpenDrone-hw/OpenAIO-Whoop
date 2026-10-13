@@ -1,5 +1,7 @@
 # Floorplan v4 placement brief (binding)
 
+Layer, stackup and via statements here describe the 6-layer board. Since D123 (2026-10-13) the board is 8-layer HDI 1+6+1; see `research/ROUTING.md`.
+
 Date 2026-10-10. Binding for the v4 placement stage. The machine-readable copy is
 `p2v3/v4/brief.json` (scratchpad), built by `p2v3/v4/brief_work/mk_brief.py`.
 

@@ -56353,5 +56353,27 @@
 			)
 		)
 	)
+	(zone
+		(net "GND")
+		(locked yes)
+		(layer "In6.Cu")
+		(uuid "a0540567-29df-4cfb-aa0e-db6c4b7cdc7f")
+		(name "L7_GND")
+		(hatch edge 0.5)
+		(connect_pads yes
+			(clearance 0.12)
+		)
+		(min_thickness 0.2)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+			(island_removal_mode 0)
+		)
+		(polygon
+			(pts
+				(xy 129.5 97) (xy 129.5 129.5) (xy 97 129.5) (xy 97 97)
+			)
+		)
+	)
 	(embedded_fonts no)
 )

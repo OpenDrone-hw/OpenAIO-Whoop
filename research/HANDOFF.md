@@ -5,6 +5,11 @@ initial layout. Every part and IO pad is placed, synced to the schematic, with
 planes and rule areas in. Nothing is routed. Routing is the next step and is
 yours.
 
+2026-10-13 (D123): the board is now 8-layer HDI 1+6+1 with no tracks or vias. The stack-up section below is
+current; the placement facts, check results and routing steps further down describe the 6-layer board
+(its L5 GND is now L7 In6.Cu, its L6 B.Cu is now L8, buried vias span L2-L7). The layer plan is in
+`research/ROUTING.md`.
+
 ## What is in the repo
 
 | Item | Where | State |
@@ -12,7 +17,7 @@ yours.
 | Schematic | `hardware/OpenAIO-Whoop.kicad_sch` + 10 sub-sheets, `hardware/OpenAIO-Whoop-schematic.pdf` | final; ERC 0 errors |
 | Layout | `hardware/OpenAIO-Whoop.kicad_pcb` | placement, pours and rule areas; 0 tracks, 499 unrouted connections |
 | Library | `hardware/lib.kicad_sym`, `hardware/lib.pretty` (114 footprints), `hardware/lib.3dshapes`, `hardware/KiCad-Library` submodule (fdf8319) | every symbol, footprint and 3D model resolves from a fresh clone; see `research/LIBRARY.md` |
-| Rules | `hardware/OpenAIO-Whoop.kicad_pro` (net classes, HDI layer pairs), `hardware/OpenAIO-Whoop.kicad_dru` | both written by `hardware/tools/setup_board.py`; change the script and re-run it, do not hand-edit |
+| Rules | `hardware/OpenAIO-Whoop.kicad_pro` (net classes, HDI layer pairs), `hardware/OpenAIO-Whoop.kicad_dru` | edited in KiCad Board Setup since D123; `hardware/tools/setup_board.py` still writes the 6-layer setup, do not re-run it |
 | Renders | `images/front.png`, `images/back.png` | 3D renders of this board (4f845ba5), with the optional motor headers shown fitted |
 
 Placement facts (from the board, md5 4f845ba5):
@@ -53,31 +58,28 @@ most 3D models. After any scripted save, restore the `.kicad_pro` from git.
 
 ## Stack-up and via set
 
-NextPCB 6L 1.0 mm, 1.027 mm with mask, FR-4 Dk 4.2. Outer copper is 1 oz
-finished, inner copper 0.5 oz (`hardware/tools/stackup.json`).
+NextPCB 8L HDI 1+6+1, 0.997 mm with mask, 1 oz (35 um) on every layer, ENIG
+(D123, `hardware/tools/stackup.json`).
 
-| Layer | Copper | Role (DESIGN-SPEC.md 8.2, v4 DRU) | Pours on the board now |
-|---|---|---|---|
-| L1 F.Cu | 35 um | top parts, 5.8 GHz and 2.4 GHz RX lines, phase copper | GND x4, +BATT x5 local |
-| prepreg 1080 | 77 um | | |
-| L2 In1.Cu | 17.5 um | solid GND (RF and top reference, ESC return) | GND, +BATT islands x4 under FETs |
-| core | 300 um | | |
-| L3 In2.Cu | 17.5 um | digital signals between the sides | GND fill (cut back as you route) |
-| prepreg 2313 | 103 um | | |
-| L4 In3.Cu | 17.5 um | +BATT plane (ESC feed) | +BATT, 616.8 mm2 filled |
-| core | 300 um | | |
-| L5 In4.Cu | 17.5 um | GND pour (bottom reference, ESC return) with the ESC gate and BEMF routing (D121) | GND, +BATT islands x8 under FETs |
-| prepreg 1080 | 77 um | | |
-| L6 B.Cu | 35 um | bottom parts, Wi-Fi feed, Kelvin pair | GND x8, +BATT x8 local |
+| Layer | Role | Dielectric below |
+|---|---|---|
+| L1 F.Cu | top parts, RF, video, analog, power loops | 1080 0.077 Dk 4.0 |
+| L2 In1.Cu | GND plane, no tracks (zone L2_GND) | 1080 0.077 Dk 4.0 |
+| L3 In2.Cu | signals, ESC gate and BEMF escapes | core 0.127 Dk 4.3 |
+| L4 In3.Cu | +BATT plane (zone L4_BATT) | 2116 0.125 Dk 4.2 |
+| L5 In4.Cu | regulated rails plane (+5V_BST, +5V, +3V3), no zone yet | core 0.127 Dk 4.3 |
+| L6 In5.Cu | signals, ESC gate and BEMF escapes | 1080 0.077 Dk 4.0 |
+| L7 In6.Cu | GND plane, no tracks (zone L7_GND) | 1080 0.077 Dk 4.0 |
+| L8 B.Cu | bottom parts, Wi-Fi feed, Kelvin pair, power loops | |
 
-HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
+| Via | Span | Drill / pad |
+|---|---|---|
+| Laser microvia (Ctrl+V) | F.Cu-In1.Cu, In6.Cu-B.Cu | 0.10 / 0.25, copper filled, in pad |
+| Buried (Alt+Shift+V, preset "Buried L2-L7") | In1.Cu-In6.Cu | 0.15 / 0.35, power 0.20 / 0.40, resin filled, staggered 0.25 mm from its microvia |
+| Through, mechanical blind, stacked micro on buried | | not allowed (DRC errors) |
 
-- Laser microvias 0.10 / 0.25 mm, L1-L2 and L6-L5, copper filled, in pad.
-- Buried vias 0.15 / 0.35 mm (D116, re-drilled from 0.20), L2-L5, plated over (POFV), staggered 0.25 mm
-  from their microvia. No stacking.
-- Through vias are allowed but should be a last resort.
-- D107: every microvia goes in a same-net pad and every buried via under a part
-  body; there are no free-standing stitching vias.
+D107 still applies: every microvia goes in a same-net pad and every buried
+via under a part body.
 
 ## Checks and the files they used
 

@@ -155,8 +155,8 @@ when their named area exists. Create and inspect these around the final parts:
 `hardware/tools/board_spec.json` retains legacy area geometry as a historical
 placement reference. Do not apply those coordinates to this parked board.
 Update the area specification to the accepted placement, then run the full
-board-setup check. `setup_board.py` contains old floorplan coordinates and must
-not be used to regenerate the board over a manual placement.
+board-setup check. `setup_board.py` contains old floorplan coordinates and the 6-layer setup, and must
+not be used to regenerate the board, project or rules.
 
 ## Routing sequence and checks
 

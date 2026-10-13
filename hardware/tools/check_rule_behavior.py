@@ -23,31 +23,37 @@ def main():
     source = args.board.resolve()
     cli = os.environ.get("KICAD_CLI") or shutil.which("kicad-cli") or \
         "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli"
+    # 8-layer HDI 1+6+1 (D123): L2 In1 and L7 In6 GND planes, L3 In2 and L6 In5 signal,
+    # L4 In3 +BATT and L5 In4 regulated-rail planes.
     tests = [
         ("L2 track", "track", "GND", pcb.In1_Cu, False),
         ("L2 GND zone", "zone", "GND", pcb.In1_Cu, True),
         ("L2 battery zone", "zone", "+BATT", pcb.In1_Cu, False),
-        ("L5 phase zone", "zone", "/ESC1/PHASE_A", pcb.In4_Cu, False),
-        ("L5 GND zone", "zone", "GND", pcb.In4_Cu, True),
-        ("L5 gate escape", "track", "/ESC1/A_PWM", pcb.In4_Cu, True),
-        ("L5 BEMF escape", "track", "/ESC1/BEMF_A", pcb.In4_Cu, True),
-        ("L5 DShot", "track", "/ESC1/RTX", pcb.In4_Cu, False),
-        ("L5 phase track", "track", "/ESC1/PHASE_A", pcb.In4_Cu, False),
+        ("L7 track", "track", "/ESC1/A_PWM", pcb.In6_Cu, False),
+        ("L7 GND zone", "zone", "GND", pcb.In6_Cu, True),
+        ("L7 phase zone", "zone", "/ESC1/PHASE_A", pcb.In6_Cu, False),
+        ("L6 gate escape", "track", "/ESC1/A_PWM", pcb.In5_Cu, True),
+        ("L6 BEMF escape", "track", "/ESC1/BEMF_A", pcb.In5_Cu, True),
+        ("L6 analog zone", "zone", "/OSD/VIDEO_IN", pcb.In5_Cu, False),
         ("L3 gate", "track", "/ESC1/A_PWM", pcb.In2_Cu, True),
         ("L4 gate", "track", "/ESC1/A_PWM", pcb.In3_Cu, False),
+        ("L5 gate", "track", "/ESC1/A_PWM", pcb.In4_Cu, False),
         ("L3 analog zone", "zone", "/OSD/VIDEO_IN", pcb.In2_Cu, False),
         ("L3 gyro", "track", "/SPI1_SCK", pcb.In2_Cu, True),
         ("L4 gyro", "track", "/SPI1_SCK", pcb.In3_Cu, False),
+        ("L5 gyro", "track", "/SPI1_SCK", pcb.In4_Cu, False),
         ("RF PA-input via", "micro", "/VTX/RF_PA_IN", (pcb.F_Cu, pcb.In1_Cu), False),
         ("top laser", "micro", "GND", (pcb.F_Cu, pcb.In1_Cu), True),
-        ("bottom laser", "micro", "GND", (pcb.In4_Cu, pcb.B_Cu), True),
-        ("illegal long laser", "micro", "GND", (pcb.F_Cu, pcb.In4_Cu), False),
-        ("buried core", "buried", "GND", (pcb.In1_Cu, pcb.In4_Cu), True),
-        ("illegal blind", "blind", "GND", (pcb.F_Cu, pcb.In4_Cu), False),
+        ("bottom laser", "micro", "GND", (pcb.In6_Cu, pcb.B_Cu), True),
+        ("illegal long laser", "micro", "GND", (pcb.F_Cu, pcb.In2_Cu), False),
+        ("illegal laser F-B", "micro", "GND", (pcb.F_Cu, pcb.B_Cu), False),
+        ("buried core", "buried", "GND", (pcb.In1_Cu, pcb.In6_Cu), True),
+        ("illegal short buried", "buried", "GND", (pcb.In1_Cu, pcb.In4_Cu), False),
+        ("illegal blind", "blind", "GND", (pcb.F_Cu, pcb.In2_Cu), False),
         ("through via", "through", "GND", (pcb.F_Cu, pcb.B_Cu), False),
     ]
     board = pcb.BOARD()
-    board.SetCopperLayerCount(6)
+    board.SetCopperLayerCount(8)
     nets = {}
     objects = []
     for index, (name, kind, netname, layer, allowed) in enumerate(tests):
@@ -79,7 +85,7 @@ def main():
     stacked_ids = set()
     for kind, layers, width, drill in [
             (pcb.VIATYPE_MICROVIA, (pcb.F_Cu, pcb.In1_Cu), 0.25, 0.10),
-            (pcb.VIATYPE_BURIED, (pcb.In1_Cu, pcb.In4_Cu), 0.35, 0.15)]:
+            (pcb.VIATYPE_BURIED, (pcb.In1_Cu, pcb.In6_Cu), 0.35, 0.15)]:
         item = pcb.PCB_VIA(board)
         item.SetPosition(pcb.VECTOR2I(pcb.FromMM(10), pcb.FromMM(50)))
         item.SetViaType(kind); item.SetLayerPair(*layers)

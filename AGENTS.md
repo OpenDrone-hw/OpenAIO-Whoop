@@ -36,7 +36,11 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   vias In1.Cu-In6.Cu staggered from them (0.35 / 0.15, power 0.40 / 0.20), no
   stacking, no through vias, no mechanical blind vias. Vias sit inside same-net
   pads; a free-standing via takes board space and is avoided. The stackup is
-  `hardware/tools/stackup.json`, applied with `apply_stackup.py`.
+  `hardware/tools/stackup.json`, applied with `apply_stackup.py`. Decision D123
+  (2026-10-13) in research/DECISIONS.md.
+- `hardware/tools/setup_board.py`, `board_spec.json` and `freeroute.py` describe the
+  pre-2026-10-13 6-layer board: do not run `setup_board.py` to write the project or
+  rules; the 8-layer `.kicad_pro` and `.kicad_dru` are edited in KiCad Board Setup.
 - RF nets carry no vias and keep 50 ohm width on the outer layers. Inside the
   `RF_VTX_STRIP` rule area (0.5 mm around the 5.8 GHz chain) only GND vias are
   allowed, so In1 (and In6 on the bottom face) stays solid under the line; `RF_PAD_CUTOUT` cuts In1 out
