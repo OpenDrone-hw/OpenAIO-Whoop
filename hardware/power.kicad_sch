@@ -3562,6 +3562,17 @@
 		)
 		(uuid "0cf7cd52-694d-5dcc-811c-fb02c238ba9e")
 	)
+	(text "1S only, max 4.35 V"
+		(exclude_from_sim no)
+		(at 38.1 33.02 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0e28bbd5-52dc-4d92-894c-1965270fa75c")
+	)
 	(text "LDO REVERSE-CURRENT BYPASS"
 		(exclude_from_sim no)
 		(at 149.86 99.06 0)
@@ -3786,7 +3797,7 @@
 		)
 		(uuid "90dcf120-2814-5959-81e6-f5d5512ba8df")
 	)
-	(text_box "TLV75733 U4: EN on +5V; GND pin 3 and EP pin 7 grounded; NC pins 2/5. C13 10 uF input, C14 4.7 uF local output.\nU4 permits 1-200 uF COUT; D11 bypasses reverse current during input collapse. Keep the bypass loop short."
+	(text_box "TLV75733 U4: EN on +5V; GND pin 3 and EP pin 7 grounded; pins 2 and 5 not connected. C12 and C128 are the +5V input capacitors, C14 4.7 uF local output.\nU4 permits 1-200 uF COUT; D11 bypasses reverse current during input collapse. Keep the bypass loop short."
 		(exclude_from_sim no)
 		(at 255.27 63.5 0)
 		(size 148.59 12.7)
