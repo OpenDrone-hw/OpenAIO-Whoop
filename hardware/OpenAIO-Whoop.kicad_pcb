@@ -56198,14 +56198,14 @@
 			(justify mirror)
 		)
 	)
-	(gr_text "HDI 1+6+1 NextPCB. L1 parts | L2 GND | L3 sig | L4 PWR | L5 PWR | L6 sig | L7 GND | L8 parts\nVias: laser 0.25/0.10 L1-L2, L8-L7 | buried L2-L7 0.35/0.15 (power 0.40/0.20) | NO through vias (Whoop)\nRoute (X). V = through via (disallowed here). Ctrl+V = microvia. Alt+Shift+V = blind/buried via (uses active layer pair).\nRoute > Set Layer Pair: presets \"Buried L2-L7\" (In1.Cu/In6.Cu), \"Micro L1-L2\", \"Micro L7-L8\"; Shift+V cycles presets.\nAlt+< = select layer then place blind/buried via. After placing, E on the via: check type and layers.\nSizes: Board Setup > Design Rules > Pre-defined Sizes; pick via size in the toolbar before placing.\nGND pin: pad > Ctrl+V microvia into the pad > done (L2 is GND). Bottom: pad > Ctrl+V to In6.\nSignal: pad > Ctrl+V to In1 > Alt+Shift+V buried 0.25 mm beside it (lands overlap, no L2 track) > route on In2/In5.\nPower: pad > microvias > buried vias staggered > In3/In4 plane connects through the buried via.\nNever stack a microvia on a buried via; stagger 0.25 mm c-c. Never microvia L1-L3 (skip via).\nFine pitch (<= 0.5 mm): microvia in pad, filled and capped (IPC-4761 VII). Buried vias are resin filled.\nPower and phase: arrays of microvias and buried vias, 0.20 mm same-net hole spacing.\nRF: no vias on RF nets, 0.105 mm CPWG gap 0.15 on L1/L8, L2/L7 solid below.\nRun DRC after each block; \"blind via\" errors mean Alt+Shift+V picked the wrong type."
+	(gr_text "ROUTING CHEAT SHEET  -  8L HDI 1+6+1  -  NextPCB\nLAYERS   L1 parts | L2 GND | L3 sig | L4 PWR | L5 PWR | L6 sig | L7 GND | L8 parts\n\nVIA          SIZE                     SPAN        KEY\nmicro        0.25/0.10                L1-L2 L8-L7 Ctrl+V\nburied       0.35/0.15  (PWR 0.40/0.20) L2-L7       Alt+Shift+V\nthrough      none - DRC error\nlayer pair   preset \"Buried L2-L7\"                Shift+V cycle\n\nESCAPE\nGND pin      pad > micro > L2              done\nsignal       pad > micro > buried > L3/L6  stagger 0.25 c-c\npower        micro array > buried array > L4/L5\nfine pitch   micro in pad (filled + capped)\n\nNEVER\nmicro on buried (stacked)   micro L1-L3   via on RF net\ntracks on L2/L7             2 oz copper (forces 5/5 mil)\n\nWIDTHS\nmin track 0.089 (3.5 mil)   RF 50R 0.105 gap 0.15   USB 90R 0.12/0.12\n\nCHECK\nE on via = type + layers    DRC after each block    B = refill zones"
 		(at 56 139 0)
 		(layer "Cmts.User")
-		(uuid "842970bf-2113-49c4-9dd5-0d1f9404cca3")
+		(uuid "520a7be7-a428-4a92-81b5-3ac2d1399148")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.15)
+				(size 0.8 0.8)
+				(thickness 0.12)
 			)
 			(justify left top)
 		)
