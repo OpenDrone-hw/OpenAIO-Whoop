@@ -103,7 +103,7 @@ Use only these via spans:
 | Span | Type | Pad / drill |
 | --- | --- | --- |
 | F.Cu to In1.Cu | Laser microvia | 0.25 / 0.10 mm |
-| In1.Cu to In6.Cu | Buried mechanical | 0.35 / 0.15 mm; power preset 0.40 / 0.20 mm |
+| In1.Cu to In6.Cu | Buried mechanical | 0.33 / 0.15 mm in every net class (D126) |
 | In6.Cu to B.Cu | Laser microvia | 0.25 / 0.10 mm |
 
 No through vias, no mechanical blind vias, no microvia that skips a layer (for
@@ -116,7 +116,7 @@ KiCad setup for these spans:
 | Action | Key | Via used |
 | --- | --- | --- |
 | Microvia | Ctrl+V | net class microvia size 0.25 / 0.10 (every class) |
-| Blind/buried via | Alt+Shift+V | net class via size (0.35 / 0.15; Power, VBAT, Phase and GND classes 0.40 / 0.20) |
+| Blind/buried via | Alt+Shift+V | net class via size (0.33 / 0.15 in every class) |
 | Through via | V | disallowed by the DRU |
 
 Route > Set Layer Pair lists three presets stored in `board.layer_pairs` of the
