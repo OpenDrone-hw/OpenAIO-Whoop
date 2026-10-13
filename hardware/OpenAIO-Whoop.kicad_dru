@@ -68,9 +68,11 @@
   (constraint hole_to_hole (min 0.20mm))
   (condition "A.Net == B.Net && A.Type == 'Via' && B.Type == 'Via'"))
 
-# Staggered, not stacked: microvia and buried via of one escape 0.25 c-c (holes 0.125 apart).
-(rule "HDI staggered microvia on a buried via land"
-  (constraint hole_to_hole (min 0.10mm))
+# Stacked or staggered: a microvia may sit centred on a same-net buried via (owner 2026-10-13,
+# NextPCB prices this as HDI II / Rank 2). KiCad reports the stack as holes_co_located, set to
+# warning in the .kicad_pro; a different-net overlap still fails as a short.
+(rule "HDI microvia stacked or staggered on a same-net buried via"
+  (constraint hole_to_hole (min 0mm))
   (condition "A.Net == B.Net && ((A.Via_Type == 'Micro' && B.Via_Type == 'Buried') || (A.Via_Type == 'Buried' && B.Via_Type == 'Micro'))"))
 
 # 50 ohm CPWG (gap 0.15) on the outer layers over 0.077 mm 1080.

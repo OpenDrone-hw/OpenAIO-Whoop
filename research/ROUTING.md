@@ -107,7 +107,8 @@ Use only these via spans:
 | In6.Cu to B.Cu | Laser microvia | 0.25 / 0.10 mm |
 
 No through vias, no mechanical blind vias, no microvia that skips a layer (for
-example F.Cu to In2.Cu), and no stacked laser/buried drills. Use filled and
+example F.Cu to In2.Cu), and no stacked microvia on a microvia. A microvia may sit centred on a
+same-net buried via (D124, priced as HDI II). Use filled and
 capped via-in-pad where required by the assembly land.
 
 KiCad setup for these spans:
@@ -128,9 +129,8 @@ placing it with Alt+Shift+V.
 For a plane-only L2 escape, a 0.25 mm laser land and 0.35 mm buried land with
 centers 0.25 mm apart overlap by 0.05 mm. Their drill edges remain 0.125 mm
 apart. The shared copper land joins them without an L2 track. This geometry was
-checked with KiCad connectivity and DRC on the earlier 1+4+1 stack. Keep the drills
-staggered; the laser has its own landing and does not drill into the buried
-hole. Beyond 0.30 mm centers the two circular lands no longer overlap.
+checked with KiCad connectivity and DRC on the earlier 1+4+1 stack. Staggered drills keep
+the order at HDI I; a centred stack (D124) is allowed and moves it to HDI II. Beyond 0.30 mm centers the two circular lands no longer overlap.
 
 Check adjacent pad clearance and soldermask separately. A valid overlapping
 via pair does not justify enlarging every fine-pitch pad. High-current paths

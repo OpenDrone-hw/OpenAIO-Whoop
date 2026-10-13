@@ -33,8 +33,8 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   enforces the layer restrictions. Named local areas are absent until placement;
   create them using research/ROUTING.md before routing.
 - HDI 1+6+1: laser microvias F.Cu-In1.Cu and In6.Cu-B.Cu only (0.25 / 0.10), buried
-  vias In1.Cu-In6.Cu staggered from them (0.35 / 0.15, power 0.40 / 0.20), no
-  stacking, no through vias, no mechanical blind vias. Vias sit inside same-net
+  vias In1.Cu-In6.Cu stacked on or staggered from them (0.35 / 0.15, power
+  0.40 / 0.20; stacking is priced as HDI II, D124), no through vias, no mechanical blind vias. Vias sit inside same-net
   pads; a free-standing via takes board space and is avoided. The stackup is
   `hardware/tools/stackup.json`, applied with `apply_stackup.py`. Decision D123
   (2026-10-13) in research/DECISIONS.md.
