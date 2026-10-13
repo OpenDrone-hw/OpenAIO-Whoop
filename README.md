@@ -46,7 +46,7 @@ manufactured yet.
 | Receiver | Onboard ExpressLRS 2.4 GHz, ESP32-PICO-V3 + SX1281, wire antenna |
 | Video | Onboard analog VTX, RTC6705 + SE5004L PA, U.FL |
 | OSD | Analog, PIO framebuffer |
-| Digital video | DJI O4 Lite pads J26 VHD (5 V boost), J27 GND, J28 TX, J29 RX (hardware UART0), optional SBUS pad J34 (GPIO29, 3.3 V logic) |
+| Digital video | DJI O4 Lite pads J26 VHD (5 V boost), J27 GND, J28 TX, J29 RX (hardware UART0), optional SBUS pad J34 (GPIO29, 3.3 V logic); plug J35 JST SH 1.0 4-pin side entry (1 VHD, 2 GND, 3 TX, 4 RX) for a pre-wired harness to the DJI 6-pin |
 | Motors | Molex PicoBlade 1.25 mm 3-pin lands, plug or solder |
 | USB | JST SH 1.0 mm 4-pin |
 | Camera | JST SUR 0.8 mm 3-pin plug and solder pads |
