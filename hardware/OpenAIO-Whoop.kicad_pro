@@ -165,7 +165,7 @@
         "min_text_thickness": 0.13,
         "min_through_hole_diameter": 0.15,
         "min_track_width": 0.09,
-        "min_via_annular_width": 0.09,
+        "min_via_annular_width": 0.075,
         "min_via_diameter": 0.35,
         "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
@@ -216,6 +216,7 @@
       ],
       "track_widths": [
         0.0,
+        0.09,
         0.1,
         0.105,
         0.14,
@@ -256,6 +257,10 @@
           "drill": 0.0
         },
         {
+          "diameter": 0.25,
+          "drill": 0.1
+        },
+        {
           "diameter": 0.35,
           "drill": 0.15
         },
@@ -277,9 +282,9 @@
     },
     "layer_pairs": [
       {
-        "bottomLayer": 10,
+        "bottomLayer": 14,
         "enabled": true,
-        "name": "Buried L2-L5",
+        "name": "Buried L2-L7",
         "topLayer": 4
       },
       {
@@ -291,8 +296,8 @@
       {
         "bottomLayer": 2,
         "enabled": true,
-        "name": "Micro L5-L6",
-        "topLayer": 10
+        "name": "Micro L7-L8",
+        "topLayer": 14
       }
     ],
     "layer_presets": [],
@@ -1565,8 +1570,8 @@
         "schematic_color": "rgb(200, 0, 200)",
         "track_width": 0.1,
         "tuning_profile": "",
-        "via_diameter": 0.35,
-        "via_drill": 0.15,
+        "via_diameter": 0.4,
+        "via_drill": 0.2,
         "wire_width": 6
       },
       {
@@ -1584,8 +1589,8 @@
         "schematic_color": "rgb(255, 140, 0)",
         "track_width": 0.25,
         "tuning_profile": "",
-        "via_diameter": 0.35,
-        "via_drill": 0.15,
+        "via_diameter": 0.4,
+        "via_drill": 0.2,
         "wire_width": 6
       },
       {
@@ -2148,7 +2153,7 @@
             "delay": 0,
             "diff_pair_gap": 0,
             "signal_layer": "B.Cu",
-            "top_reference_layer": "In4.Cu",
+            "top_reference_layer": "In6.Cu",
             "width": 105000
           }
         ],

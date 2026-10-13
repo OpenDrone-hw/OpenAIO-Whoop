@@ -36,7 +36,7 @@ manufactured yet.
 |---|---|
 | Target class | 1S whoops, 65 to 85 mm |
 | Mounting | 25.5 x 25.5 mm, three ear holes |
-| Board | 26.4 mm body, 6-layer HDI 1+4+1, 1.0 mm |
+| Board | 26.4 mm body, 8-layer HDI 1+6+1, 1.0 mm |
 | Input | 1S LiPo (3.0-4.35 V), solder pads |
 | Firmware | Betaflight, Bluejay, ExpressLRS |
 | MCU | RP2354A |
@@ -60,7 +60,7 @@ Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10. Keep the complete hardware 
 - [ExpressLRS binding](firmware/expresslrs/README.md)
 
 The board is synchronized to the schematic, with inherited component positions
-and escape vias retained. Placement and routing are unfinished. The images above
+and no routing. Placement and routing are unfinished. The images above
 are earlier design views, not a manufacturing release.
 
 ## Constraints

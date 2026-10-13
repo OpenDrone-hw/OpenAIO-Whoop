@@ -17,7 +17,7 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   [research/ROUTING.md](research/ROUTING.md) for placement, layers and file paths.
 - Firmware bindings live in `firmware/betaflight/` and `firmware/expresslrs/`.
   Do not copy obsolete configuration snippets from historical design proposals.
-- The board has parked parts and inherited escape vias. Local rule areas and
+- The board has parked parts and no tracks or vias: the 42 vias (38 microvias F.Cu-B.Cu, one F.Cu-In3.Cu, three 0.25 / 0.10 through vias) and 235 track segments of the 6-layer board were removed for the 8-layer conversion. Local rule areas and
   placement are unfinished; do not describe it as DRC-clean or manufactured.
 - `bom_plan.json` and `sch_contract.json` are generated readbacks. Refresh them
   with `export_bom_plan.py` and `export_interfaces.py`; never use legacy circuit
@@ -25,16 +25,21 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
 
 ## Layout rules
 
-- In1 is a solid GND plane. In4 is a GND pour that carries only ESC gate and BEMF
-  routing (D121). In2 carries no analog or RF; In3 carries no analog, RF, gate,
-  gyro or VTX control nets. The DRU enforces the global layer restrictions. Named local areas are absent
-  until placement; create them using research/ROUTING.md before routing.
-- HDI 1+4+1: laser microvias L1-L2 and L5-L6 only, buried vias L2-L5 staggered
-  from them, no stacking. Vias sit inside same-net pads; a free-standing via
-  takes board space and is avoided.
+- 8 layers, HDI 1+6+1, 1.0 mm (0.997 mm stackup sum), 1 oz copper on every
+  layer. L2 (In1) and L7 (In6) are solid GND planes with no tracks. L3 (In2) and
+  L6 (In5) are signal layers; ESC gate and BEMF escapes go on them. L4 (In3) is the
+  +BATT plane and L5 (In4) the regulated-rail plane. In2 and In5 carry no analog or
+  RF; In3 and In4 carry no analog, RF, gate, gyro or VTX control nets. The DRU
+  enforces the layer restrictions. Named local areas are absent until placement;
+  create them using research/ROUTING.md before routing.
+- HDI 1+6+1: laser microvias F.Cu-In1.Cu and In6.Cu-B.Cu only (0.25 / 0.10), buried
+  vias In1.Cu-In6.Cu staggered from them (0.35 / 0.15, power 0.40 / 0.20), no
+  stacking, no through vias, no mechanical blind vias. Vias sit inside same-net
+  pads; a free-standing via takes board space and is avoided. The stackup is
+  `hardware/tools/stackup.json`, applied with `apply_stackup.py`.
 - RF nets carry no vias and keep 50 ohm width on the outer layers. Inside the
   `RF_VTX_STRIP` rule area (0.5 mm around the 5.8 GHz chain) only GND vias are
-  allowed, so In1 stays solid under the line; `RF_PAD_CUTOUT` cuts In1 out
+  allowed, so In1 (and In6 on the bottom face) stays solid under the line; `RF_PAD_CUTOUT` cuts In1 out
   under the U.FL signal pad.
 - AE1, the RX wire, leaves through a plated D0.5 hole. Inside the D2.0
   `RF_RX_HOLE` area pours are kept out on all layers and the only copper is the
@@ -45,7 +50,7 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   from the gyro, the crystals and the antennas.
 - Each AGM210MAP keeps its 22 uF hot-loop cap directly across its supply pair.
   The battery path from the pads through R2 to each ESC cell stays short and
-  symmetric; R2's sense taps stay Kelvin, off In2 and In3.
+  symmetric; R2's sense taps stay Kelvin, on the outer layers.
 - The motor plugs, the twelve half-bridges, the USB plug at the rear hole, the
   battery pads and the camera plug sit where the BetaFPV Matrix 1S 5IN1 II has
   them, so motor leads, battery lead and camera cable reach as they do on that
