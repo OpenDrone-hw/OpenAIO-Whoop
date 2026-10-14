@@ -75,6 +75,14 @@
   (constraint hole_to_hole (min 0mm))
   (condition "A.Net == B.Net && ((A.Via_Type == 'Micro' && B.Via_Type == 'Buried') || (A.Via_Type == 'Buried' && B.Via_Type == 'Micro'))"))
 
+# Laser and buried holes are separate drill operations in separate press cycles: the laser hole stops on its L2
+# capture pad and never meets the buried barrel, so the 0.09 copper clearance on L2 is what separates them. With
+# 0.25 / 0.10 and 0.33 / 0.15 lands that clearance already puts the walls 0.255 apart; 0.25 is that floor, not
+# the 0.30 mechanical-drill value (review 2026-10-14; confirm with NextPCB alongside the laser spacing question).
+(rule "HDI laser hole to buried hole, different nets: L2 copper clearance governs"
+  (constraint hole_to_hole (min 0.25mm))
+  (condition "A.Net != B.Net && ((A.Via_Type == 'Micro' && B.Via_Type == 'Buried') || (A.Via_Type == 'Buried' && B.Via_Type == 'Micro'))"))
+
 # 50 ohm CPWG (gap 0.15) on the outer layers over 0.077 mm 1080.
 (rule "RF: 50 ohm width on the outer layers"
   (layer outer)
@@ -177,6 +185,8 @@
 # Spec 7 / 8.1: components 0.30 from the routed edge and the mounting holes (copper 0.20 is the fab limit).
 # Edge solder pads (user, motor and battery pads) are the intended exception, scoped by footprint: they
 # keep the 0.20 copper-to-edge minimum (D7: exceptions as named, scoped rules).
+# Kept an error: KiCad 10 applies one edge_clearance constraint per pad, so a warning severity here would also
+# demote pads under the 0.20 fab limit (tested 2026-10-14).
 (rule "parts: pads 0.30 from the edge"
   (constraint edge_clearance (min 0.30mm))
   (condition "A.Type == 'Pad' && !(A.memberOfFootprint('*:small_pad*') || A.memberOfFootprint('*:SolderPad*') || A.memberOfFootprint('*:MotorPad*') || A.memberOfFootprint('*:BattPad*') || A.memberOfFootprint('*:motor_pad*') || A.memberOfFootprint('*:battery_pad*') || A.memberOfFootprint('*:BT2*'))"))
