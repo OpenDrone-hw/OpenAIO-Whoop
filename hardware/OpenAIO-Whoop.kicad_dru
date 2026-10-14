@@ -34,6 +34,7 @@
 
 # NextPCB 8L HDI 1+6+1: laser L1-L2 and L8-L7, buried L2-L7, no mechanical blind vias (another press cycle).
 (rule "HDI 1+6+1: no mechanical blind vias"
+  (severity warning)
   (constraint disallow blind_via))
 
 (rule "HDI 1+6+1: microvias F.Cu-In1.Cu and In6.Cu-B.Cu only"
@@ -134,6 +135,7 @@
 # D107 / D116: the board has no through vias; every via is a laser microvia in a pad or a buried L2-L7 via under
 # a body. A through via (KiCad 'V') blocks all eight layers and is an error here; use Place Microvia / Place Blind/Buried.
 (rule "HDI 1+6+1: no through vias"
+  (severity warning)
   (constraint disallow through_via))
 
 # NextPCB min mechanical drill 0.15 (boards <= 1.2 mm); the netclass via size applies (0.35 / 0.40). 0.15 in the
@@ -388,3 +390,27 @@
 (rule "D92 boost ground under the hot loop"
   (constraint disallow via)
   (condition "A.Type == 'Via' && A.intersectsArea('BOOST_GND_L5') && A.NetName != 'GND' && A.NetName != '+BATT' && A.NetName != '+5V_BST'"))
+
+# Edit form (hdi_via_pass.py --collapse): while routing, each HDI stack is one Through (F.Cu-B.Cu) or Blind
+# (F.Cu-In6.Cu, In1.Cu-B.Cu) via with a front/inner/back padstack: outer lands are the microvia lands, the inner
+# land and the drill are the buried via. The fab form has no Through or Blind vias, so the two disallow rules above
+# are warnings that mean "via pass not run yet", and the rules below check an edit-form via as the stack it
+# becomes. The next via pass rebuilds the stacks; DRC on the fab form is the one that gates the fab.
+(rule "edit form: stack via lands"
+  (constraint via_diameter (min 0.25mm))
+  (constraint annular_width (min 0.05mm))
+  (condition "A.Type == 'Via' && (A.Via_Type == 'Through' || A.Via_Type == 'Blind')"))
+
+# The 0.15 edit drill stands for the 0.10 laser hole on the outer layers: 0.18 - 0.025.
+(rule "edit form: outer hole clearance as the laser hole"
+  (layer outer)
+  (constraint hole_clearance (min 0.155mm))
+  (condition "A.Type == 'Via' && (A.Via_Type == 'Through' || A.Via_Type == 'Blind')"))
+
+(rule "edit form: stack via to microvia, different nets, as laser to buried"
+  (constraint hole_to_hole (min 0.25mm))
+  (condition "A.Net != B.Net && ((A.Via_Type == 'Micro' && (B.Via_Type == 'Through' || B.Via_Type == 'Blind')) || (B.Via_Type == 'Micro' && (A.Via_Type == 'Through' || A.Via_Type == 'Blind')))"))
+
+(rule "edit form: stack via staggered on a same-net microvia"
+  (constraint hole_to_hole (min 0mm))
+  (condition "A.Net == B.Net && ((A.Via_Type == 'Micro' && (B.Via_Type == 'Through' || B.Via_Type == 'Blind')) || (B.Via_Type == 'Micro' && (A.Via_Type == 'Through' || A.Via_Type == 'Blind')))"))

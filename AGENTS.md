@@ -85,6 +85,12 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   Python: it replaces every unbuildable via (mechanical blind, multi-layer microvia, through via) with the
   minimum stack at the same spot (microvia, microvia + buried, microvia + buried + microvia), nudges
   up to 0.05 mm for clearance and lists bigger conflicts. Then run DRC.
+- Edit form: `hdi_via_pass.py <board> --collapse` turns each stack into one via (front/inner/back padstack
+  with the stack's lands and the buried drill), so a stack moves as one object. Move vias with Drag (D): the
+  router holds clearance to other nets. Move (M) never checks DRC, and the router never checks same-net hole
+  spacing. The `edit form:` rules in the .kicad_dru check an edit-form via as the stack it becomes; the next
+  normal via pass rebuilds the stacks. Stacks whose microvia sits off the buried via to clear outer copper
+  stay as stacks and are listed.
 
 ## Environment
 

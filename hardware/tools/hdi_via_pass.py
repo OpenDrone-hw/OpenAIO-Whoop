@@ -2,7 +2,7 @@
 
 Run with KiCad closed, using KiCad's bundled Python:
   /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3 \
-      hardware/tools/hdi_via_pass.py hardware/<board>.kicad_pcb [--allow-through] [--dry-run]
+      hardware/tools/hdi_via_pass.py hardware/<board>.kicad_pcb [--allow-through] [--collapse] [--dry-run]
 
 A via is kept when it is a microvia F.Cu-In1.Cu or In6.Cu-B.Cu at the net class microvia size,
 a buried via In1.Cu-In6.Cu, or (with --allow-through) a through via. A via that already spans
@@ -15,6 +15,15 @@ copper, it is moved up to 0.05 mm together with its track ends; larger conflicts
 and left for the owner. A stitching microvia (into its own net's L2/L7 plane, no track attached, not the
 last via of a pad) that then sits within copper clearance or different-net hole spacing of
 another net's via or track on a shared layer is removed. Zones are refilled. The script prints a report and saves the board unless --dry-run.
+
+--collapse turns the board into its edit form: every stack (microvia, buried via and microvia of one net whose
+lands overlap) becomes one via F.Cu-B.Cu (or F.Cu-In6.Cu / In1.Cu-B.Cu for a two-part stack) at the buried via
+position, with a front/inner/back padstack carrying the stack's lands and the buried drill. In KiCad the stack
+then moves as one object, and Drag (D) holds clearance to other nets while it moves; Move (M) never checks DRC.
+A microvia that sat off the buried via keeps its copper through an outer-layer stub to the new position; when
+its land would not clear other-net copper there, the stack is kept as it is and listed.
+DRC is only meaningful in the fab form: the next normal run of this script rebuilds the stacks from the
+padstack sizes.
 """
 import json
 import math
@@ -40,6 +49,7 @@ INNER = {pcbnew.In2_Cu, pcbnew.In3_Cu, pcbnew.In4_Cu, pcbnew.In5_Cu}
 MAX_NUDGE = pcbnew.FromMM(0.05)
 CLEARANCE = pcbnew.FromMM(0.09)
 HOLE_GAP = pcbnew.FromMM(0.30)
+HOLE_CLEARANCE = pcbnew.FromMM(0.18)
 
 
 def legal(v, allow_through, micro):
@@ -159,11 +169,106 @@ def clear_stitching(board):
     return len(gone)
 
 
+def collapse(board):
+    """Replace each HDI stack with one via carrying the stack's lands in a front/inner/back padstack."""
+    items = list(board.GetTracks())
+    vias = [t for t in items if t.GetClass() == "PCB_VIA"]
+    tracks = [t for t in items if t.GetClass() != "PCB_VIA"]
+    buried = [v for v in vias if v.GetViaType() == pcbnew.VIATYPE_BURIED]
+    micros = [v for v in vias if v.GetViaType() == pcbnew.VIATYPE_MICROVIA]
+    claims = {}
+    for m in micros:
+        # The nearest same-net buried via whose land overlaps this microvia's land.
+        best = None
+        for q in buried:
+            if q.GetNetCode() != m.GetNetCode():
+                continue
+            d = (q.GetPosition() - m.GetPosition()).EuclideanNorm()
+            if d < (q.GetWidth(I1) + m.GetWidth(m.TopLayer())) / 2 and (best is None or d < best[0]):
+                best = (d, q)
+        if best:
+            side = "top" if m.TopLayer() == F else "bot"
+            prev = claims.get((id(best[1]), side))
+            if prev is None or best[0] < prev[0]:
+                claims[(id(best[1]), side)] = (best[0], m)
+    pads = [pad for fp in board.GetFootprints() for pad in fp.Pads()]
+
+    def outer_clear(m, pos, outer):
+        # The microvia land and hole moved to pos must clear other-net copper on its outer layer.
+        land = pcbnew.SHAPE_CIRCLE(pos, m.GetWidth(outer) // 2)
+        hole = pcbnew.SHAPE_CIRCLE(pos, m.GetDrillValue() // 2)
+        for o in items + pads:
+            if o is m or o.GetNetCode() == m.GetNetCode() or not o.IsOnLayer(outer):
+                continue
+            shape = o.GetEffectiveShape(outer)
+            if shape.Collide(land, CLEARANCE) or shape.Collide(hole, HOLE_CLEARANCE):
+                return False
+        return True
+
+    done, stubs, offset = 0, 0, []
+    for q in buried:
+        top = claims.get((id(q), "top"))
+        bot = claims.get((id(q), "bot"))
+        if not top and not bot:
+            continue
+        pos = q.GetPosition()
+        blocked = [part[1] for part, outer in ((top, F), (bot, B)) if part and (part[1].GetPosition() - pos).EuclideanNorm() > 10
+                   and not outer_clear(part[1], pos, outer)]
+        if blocked:
+            offset.append(f"{q.GetNetname()} {pcbnew.ToMM(pos.x):.2f},{pcbnew.ToMM(pos.y):.2f}")
+            continue
+        n = pcbnew.PCB_VIA(board)
+        board.Add(n)
+        n.SetPosition(pos)
+        n.SetNet(q.GetNet())
+        n.SetViaType(pcbnew.VIATYPE_THROUGH if top and bot else pcbnew.VIATYPE_BLIND)
+        n.SetLayerPair(F if top else I1, B if bot else I6)
+        ps = n.Padstack()
+        ps.SetMode(pcbnew.PADSTACK.MODE_FRONT_INNER_BACK)
+        for layer, w in ((F, top[1].GetWidth(F) if top else q.GetWidth(I1)), (I1, q.GetWidth(I1)),
+                         (B, bot[1].GetWidth(B) if bot else q.GetWidth(I1))):
+            ps.SetSize(pcbnew.VECTOR2I(w, w), layer)
+        n.SetPadstack(ps)
+        n.SetDrill(q.GetDrillValue())
+        for part, outer in ((top, F), (bot, B)):
+            if not part:
+                continue
+            m = part[1]
+            p = m.GetPosition()
+            if (p - pos).EuclideanNorm() > 10:
+                w = max([t.GetWidth() for t in tracks if t.GetNetCode() == m.GetNetCode() and t.GetLayer() == outer
+                         and ((t.GetStart() - p).EuclideanNorm() < 10 or (t.GetEnd() - p).EuclideanNorm() < 10)]
+                        or [pcbnew.FromMM(0.15)])
+                t = pcbnew.PCB_TRACK(board)
+                t.SetStart(p)
+                t.SetEnd(pos)
+                t.SetWidth(min(w, m.GetWidth(outer)))
+                t.SetLayer(outer)
+                t.SetNet(m.GetNet())
+                board.Add(t)
+                stubs += 1
+            board.Remove(m)
+        board.Remove(q)
+        done += 1
+    return done, stubs, offset
+
+
 def main():
     args = sys.argv[1:]
     path = [a for a in args if not a.startswith("--")][0]
     allow_through, dry = "--allow-through" in args, "--dry-run" in args
     board = pcbnew.LoadBoard(path)
+    if "--collapse" in args:
+        before = len([t for t in board.GetTracks() if t.GetClass() == "PCB_VIA"])
+        done, stubs, offset = collapse(board)
+        pcbnew.ZONE_FILLER(board).Fill(board.Zones())
+        print(f"{before} vias; {done} stacks collapsed to one via each, {stubs} outer stubs for offset microvias")
+        for where in offset:
+            print(f"  kept as a stack: {where} (its microvia sits off the buried via to clear outer-layer copper)")
+        if not dry:
+            pcbnew.SaveBoard(path, board)
+            print("saved")
+        return
     # KiCad 10 Python does not wrap NETCLASS, so via sizes come from the project file.
     pro = json.load(open(os.path.splitext(path)[0] + ".kicad_pro"))
     classes = {c["name"]: c for c in pro["net_settings"]["classes"]}
@@ -179,9 +284,13 @@ def main():
     for v in bad:
         pos, net = v.GetPosition(), v.GetNet()
         micro, mech = sizes(v)
-        # Keep the routed land when it is larger, so overlap connections made while routing survive.
-        micro = (max(micro[0], v.GetWidth(v.TopLayer())), micro[1])
-        mech = (max(mech[0], v.GetWidth(v.TopLayer())), mech[1])
+        # Keep the routed land when it is larger, so overlap connections made while routing survive. A collapsed
+        # stack carries its lands per layer: front = top microvia, inner = buried via, back = bottom microvia.
+        top = (max(micro[0], v.GetWidth(v.TopLayer())), micro[1])
+        bot = (max(micro[0], v.GetWidth(v.BottomLayer())), micro[1])
+        inner = I1 if v.IsOnLayer(I1) else v.TopLayer()
+        mech = (max(mech[0], v.GetWidth(inner)), mech[1])
+        micro = top
         if (v.TopLayer(), v.BottomLayer()) in ((F, I1), (I6, B)):
             v.SetViaType(pcbnew.VIATYPE_MICROVIA)
             v.SetWidth(micro[0])
@@ -203,7 +312,7 @@ def main():
             else:
                 n.SetViaType(pcbnew.VIATYPE_MICROVIA)
                 n.SetLayerPair(*((F, I1) if p == "micro_top" else (I6, B)))
-                n.SetWidth(micro[0])
+                n.SetWidth((top if p == "micro_top" else bot)[0])
                 n.SetDrill(micro[1])
             new.append(n)
         label = f"{v.GetNetname()} {board.GetLayerName(v.TopLayer())}-{board.GetLayerName(v.BottomLayer())}"
