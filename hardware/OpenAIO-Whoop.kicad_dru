@@ -29,7 +29,8 @@
 # hole 0.20, hole clearance 0.18, copper to edge 0.20, silk text 0.8 / 0.13); the rules below are what this
 # board needs on top of them, from the NextPCB published limits (HDI, nextpcb.com/pcb-capabilities,
 # /advanced-pcb-capabilities). D21: every deliberate break of a conservative rule
-# is a rule named 'D21 <name>' with its reason; nothing is ignored globally.
+# is a rule named 'D21 <name>' with its reason. Exception: copper_edge_clearance is ignored in the .kicad_pro
+# until the outline is final (owner, 2026-10-14).
 
 # NextPCB 8L HDI 1+6+1: laser L1-L2 and L8-L7, buried L2-L7, no mechanical blind vias (another press cycle).
 (rule "HDI 1+6+1: no mechanical blind vias"
@@ -89,22 +90,28 @@
   (constraint track_width (min 0.100mm) (opt 0.105mm) (max 0.110mm))
   (condition "A.NetClass == 'RF'"))
 
+# Layer-use rules below are design intent, not fab limits: warnings, so the error list is what NextPCB rejects
+# or what breaks a net (owner, 2026-10-14).
 # L2 (In1.Cu) and L7 (In6.Cu) are solid GND reference planes: no tracks, GND zones only.
 (rule "In1 and In6: GND planes, no tracks"
+  (severity warning)
   (constraint disallow track)
   (condition "A.Layer == 'In1.Cu' || A.Layer == 'In6.Cu'"))
 
 (rule "In1 and In6 GND zones only"
+  (severity warning)
   (constraint disallow zone)
   (condition "(A.Layer == 'In1.Cu' || A.Layer == 'In6.Cu') && A.NetName != 'GND'"))
 
 # L3 (In2) and L6 (In5) signal layers: no analog or RF. Gate and BEMF escapes may use them.
 (rule "In2/In5: no analog or RF"
+  (severity warning)
   (constraint disallow track zone)
   (condition "(A.Layer == 'In2.Cu' || A.Layer == 'In5.Cu') && (A.NetClass == 'Analog' || A.NetClass == 'RF')"))
 
 # L4 (In3, +BATT) and L5 (In4, regulated rails) power planes: no analog, RF, gate, gyro, VTX control, Kelvin or PA sense.
 (rule "In3/In4: power planes, permitted digital only"
+  (severity warning)
   (constraint disallow track zone)
   (condition "(A.Layer == 'In3.Cu' || A.Layer == 'In4.Cu') && (A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate' || A.NetName == '*SPI1.*' || A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')"))
 
@@ -287,6 +294,7 @@
 # Keep each RF chain on one outer face over its GND reference.
 # The former cross-face PA-input exception is removed; the 1+6+1 via stack is not a verified RF launch.
 (rule "RF: no vias"
+  (severity warning)
   (constraint disallow via)
   (condition "A.NetClass == 'RF'"))
 
