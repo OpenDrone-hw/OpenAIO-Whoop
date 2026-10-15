@@ -91,6 +91,10 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   spacing. The `edit form:` rules in the .kicad_dru check an edit-form via as the stack it becomes; the next
   normal via pass rebuilds the stacks. Stacks whose microvia sits off the buried via to clear outer copper
   stay as stacks and are listed.
+- Board cleanup tools (fab form, KiCad closed, DRC after each): `track_widen.py` widens tracks to the per-class
+  targets in the script where clearance allows (never narrower; `--revert drc.json` undoes widened tracks DRC
+  flags); `gnd_stitch.py` adds buried L2-L7 and outer microvia GND stitching where every layer has room (rerun
+  adds only what is missing); then `via_declutter.py` on the DRC report removes any stitching via DRC flags.
 
 ## Environment
 

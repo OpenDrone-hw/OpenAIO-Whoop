@@ -37,12 +37,12 @@ provided by KiCad 10. Do not move `.pretty`, models or child sheets independentl
 | Physical layer | KiCad name | Use |
 | --- | --- | --- |
 | L1 | F.Cu | Top parts; RF, video, gyro and sense traces; short local power loops; digital escapes |
-| L2 | In1.Cu | GND reference plane. No tracks. Only intentional antenna and RF-pad cutouts |
+| L2 | In1.Cu | GND reference plane. No tracks. Board 2026-10-15 also carries VBUS, +5V_BST and CSA+ islands (open item) |
 | L3 | In2.Cu | Digital signals, regulated supplies, ESC gate and BEMF escapes. No analog or RF |
-| L4 | In3.Cu | +BATT plane and permitted digital signals. No analog, RF, gate, gyro or VTX-control signals |
-| L5 | In4.Cu | Regulated rails plane (+5V_BST, +5V, +3V3) and permitted digital signals. Same exclusions as L4 |
-| L6 | In5.Cu | Digital signals, ESC gate and BEMF escapes. No analog or RF |
-| L7 | In6.Cu | GND reference plane. No tracks. Only intentional antenna and RF-pad cutouts |
+| L4 | In3.Cu | +3.3V plane and permitted digital signals. No analog, RF, gate, gyro or VTX-control signals |
+| L5 | In4.Cu | +BATT plane and permitted digital signals. Same exclusions as L4 |
+| L6 | In5.Cu | +5V_BST / +5V split plane; digital signals, ESC gate and BEMF escapes. No analog or RF |
+| L7 | In6.Cu | GND reference plane. No tracks. Board 2026-10-15 also carries a VBUS island (open item) |
 | L8 | B.Cu | Bottom parts; local RF, video and power loops; short digital connections |
 
 ```mermaid
@@ -50,9 +50,9 @@ flowchart TB
   L1["L1 F.Cu · components / RF / analog / local power"]
   L2["L2 In1.Cu · continuous GND"]
   L3["L3 In2.Cu · digital / gate / BEMF"]
-  L4["L4 In3.Cu · +BATT plane"]
-  L5["L5 In4.Cu · regulated rails plane"]
-  L6["L6 In5.Cu · digital / gate / BEMF"]
+  L4["L4 In3.Cu · +3.3V plane"]
+  L5["L5 In4.Cu · +BATT plane"]
+  L6["L6 In5.Cu · +5V_BST / +5V plane, digital / gate / BEMF"]
   L7["L7 In6.Cu · continuous GND"]
   L8["L8 B.Cu · components / RF / analog / local power"]
   L1 --- L2 --- L3 --- L4 --- L5 --- L6 --- L7 --- L8
@@ -60,6 +60,11 @@ flowchart TB
 
 GND zones alone belong on L2 and L7. Keep uninterrupted reference copper under
 each RF, USB and video route, directly beneath L1 (L2) and L8 (L7).
+
+GND stitching (2026-10-15, `hardware/tools/gnd_stitch.py`): buried L2-L7 vias on a
+2 mm grid plus a fence 0.6 mm inside the outline at 1.2 mm, and F.Cu-L2 / L7-B.Cu
+microvias on a 1.2 mm grid, each only where every layer it crosses has room. Track
+widths per class: `hardware/tools/track_widen.py` (targets in the script).
 
 The 1.0 mm stackup is in `hardware/tools/stackup.json` and applied to the board
 with `hardware/tools/apply_stackup.py`: 1 oz copper on all eight layers, 1080

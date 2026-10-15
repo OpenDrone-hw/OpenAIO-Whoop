@@ -110,7 +110,7 @@
   (constraint disallow track zone)
   (condition "(A.Layer == 'In2.Cu' || A.Layer == 'In5.Cu') && (A.NetClass == 'Analog' || A.NetClass == 'RF')"))
 
-# L4 (In3, +BATT) and L5 (In4, regulated rails) power planes: no analog, RF, gate, gyro, VTX control, Kelvin or PA sense.
+# L4 (In3, +3.3V) and L5 (In4, +BATT) power planes (board 2026-10-15): no analog, RF, gate, gyro, VTX control, Kelvin or PA sense.
 (rule "In3/In4: power planes, permitted digital only"
   (severity warning)
   (constraint disallow track zone)
@@ -351,9 +351,15 @@
 
 # Spec 8.2: length-matched pair. USB FS (12 Mbit/s, 83 ns bit) tolerates far more than this:
 # 5 mm is about 30 ps. Relaxed from 0.5 mm on 2026-10-14; KiCad measured the pair across R42/R43.
-(rule "USB: length match"
+# KiCad measures skew across every net a rule matches, so each pair gets its own rule: one rule over the whole
+# class compared the 0.7 mm U10 stubs with the 13 mm run (a false 17 mm skew, 2026-10-15).
+(rule "USB: length match, connector to R42/R43"
   (constraint skew (max 5mm))
-  (condition "A.NetClass == 'USB'"))
+  (condition "A.NetName == '/USB_D_P' || A.NetName == '/USB_D_N'"))
+
+(rule "USB: length match, R42/R43 to U10"
+  (constraint skew (max 5mm))
+  (condition "A.NetName == '/RP2350A/U10_USB_D_P' || A.NetName == '/RP2350A/U10_USB_D_N'"))
 
 # D21 / route sync 2026-10-10: the Analog class clearance (0.15) also hits pad pairs inside the 1.0 x 0.8 X2SON
 # video switch U14 (SN74LVC1G3157DTBR, land gap 0.10) and the 0.8 x 0.8 X2SON comparator U15 (TLV7031DPWR, 0.11).
