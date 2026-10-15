@@ -64329,6 +64329,14 @@
 		(uuid "0bf589d6-c83e-489f-a418-830c5074ae5f")
 	)
 	(via micro
+		(at 101.76 117.42)
+		(size 0.25)
+		(drill 0.1)
+		(layers "In6.Cu" "B.Cu")
+		(net "GND")
+		(uuid "0c111833-5a06-42f9-999f-b86b8b7a7b8a")
+	)
+	(via micro
 		(at 118 122.14)
 		(size 0.33)
 		(drill 0.1)
@@ -65231,6 +65239,14 @@
 		(layers "In6.Cu" "B.Cu")
 		(net "GND")
 		(uuid "2402d421-1d26-4fad-b74f-a617a503d2ed")
+	)
+	(via micro
+		(at 100.44 117.28)
+		(size 0.25)
+		(drill 0.1)
+		(layers "In6.Cu" "B.Cu")
+		(net "GND")
+		(uuid "2403b02e-57c5-47ab-88ac-ea08692e2087")
 	)
 	(via micro
 		(at 100.96 114.48)
