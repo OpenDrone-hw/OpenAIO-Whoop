@@ -98,6 +98,8 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   `track_to_pour.py --net X` turns a high-current net's tracks into pours (one zone per outline, each track
   removed only if connectivity holds); `pad_vias.py` fills GND and plane-fed pads (and `--pour-net` pours) with
   vias; `loop_resistance.py` estimates copper resistance and loss of the high-current loops (read only).
+  `inner_router.py` reroutes In2.Cu / In5.Cu between the existing vias: shorter, sensitive nets on In2, noisy
+  (gate, phase sense, DShot, clocks) on In5, a reroute kept only if it scores better and splits no plane.
 
 ## Environment
 

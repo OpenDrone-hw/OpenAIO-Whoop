@@ -72,6 +72,12 @@ fence, `gnd_stitch.py`; a via that would split a power plane is left out), about
 with room holds vias in pad (`pad_vias.py`); 0201 and fine-pitch pads are too small
 for a 0.25 land. Track widths per class: `track_widen.py`.
 
+Inner signal layers (2026-10-15, `inner_router.py`, vias unchanged): 483 -> 468 mm
+of routing; sensitive tracks within 0.5 mm of noisy ones 12.5 -> 4.1 mm; gate lines
+on In2 73 -> 42 mm and phase sense 33 -> 8 mm (moved to In5). The +5V plane on In5
+gives up 12 % of its copper to the In5 routes (still one piece; 10 better routes
+were refused because they split it).
+
 ## Copper loss estimate
 
 `hardware/tools/loop_resistance.py` solves each high-current net as a resistor mesh
