@@ -95,6 +95,9 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   targets in the script where clearance allows (never narrower; `--revert drc.json` undoes widened tracks DRC
   flags); `gnd_stitch.py` adds buried L2-L7 and outer microvia GND stitching where every layer has room (rerun
   adds only what is missing); then `via_declutter.py` on the DRC report removes any stitching via DRC flags.
+  `track_to_pour.py --net X` turns a high-current net's tracks into pours (one zone per outline, each track
+  removed only if connectivity holds); `pad_vias.py` fills GND and plane-fed pads (and `--pour-net` pours) with
+  vias; `loop_resistance.py` estimates copper resistance and loss of the high-current loops (read only).
 
 ## Environment
 

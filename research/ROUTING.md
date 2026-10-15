@@ -61,10 +61,36 @@ flowchart TB
 GND zones alone belong on L2 and L7. Keep uninterrupted reference copper under
 each RF, USB and video route, directly beneath L1 (L2) and L8 (L7).
 
-GND stitching (2026-10-15, `hardware/tools/gnd_stitch.py`): buried L2-L7 vias on a
-2 mm grid plus a fence 0.6 mm inside the outline at 1.2 mm, and F.Cu-L2 / L7-B.Cu
-microvias on a 1.2 mm grid, each only where every layer it crosses has room. Track
-widths per class: `hardware/tools/track_widen.py` (targets in the script).
+L2 and L7 carry GND zones only (2026-10-15): the VBUS island moved to In3, the
++5V_BST island to In5 and CSA+ to F.Cu alone. GND, +BATT, +5V_BST, +5V, VBUS and
++3.3V_VTX have no tracks where a pour can carry them (`track_to_pour.py`); Kelvin,
+BEMF and sense lines stay tracks.
+
+Vias (2026-10-15): 2945 in total. GND: 101 buried L2-L7 (1.5 mm grid and an edge
+fence, `gnd_stitch.py`; a via that would split a power plane is left out), about
+2070 microvias from the outer pours and pads to L2 / L7. Every GND and plane-fed pad
+with room holds vias in pad (`pad_vias.py`); 0201 and fine-pitch pads are too small
+for a 0.25 land. Track widths per class: `track_widen.py`.
+
+## Copper loss estimate
+
+`hardware/tools/loop_resistance.py` solves each high-current net as a resistor mesh
+(0.1 mm cells per layer from the real pours, vias as barrels: buried 0.15 mm plated
+20 um, laser vias copper filled), copper at 45 C (very good airflow). Grid model,
+about +-30 %. FET RDS(on) is not included.
+
+| Path | R (mOhm) | Full throttle 14.5 A (3 A per ESC + 2.5 A boost) | Hover 6.5 A (1 A per ESC) |
+| --- | --- | --- | --- |
+| J2 to shunt (CSA+, F.Cu only) | 0.17 | 36 mW | 7 mW |
+| Shunt R2 (part, for scale) | 0.50 | 105 mW | 21 mW |
+| +BATT shunt to FETs and boost (vias 11 mW) | 0.53 | 112 mW | 14 mW |
+| GND FETs and boost to J3 (vias 2 mW) | 0.25 | 53 mW | 11 mW |
+| 12 phase paths, FET to motor pad (2.45 A RMS each) | 0.23-1.14 | 40 mW | 4 mW |
+| Total copper (without shunt) | | 241 mW | 37 mW |
+
+80 % of the +BATT loss is in the L5 plane carrying current from the single feed
+corner (shunt) to four ESCs; more vias at the FETs did not change it (tested). The
+ESC2 and ESC3 phase C pours (1.14 mOhm) are the longest phase paths.
 
 The 1.0 mm stackup is in `hardware/tools/stackup.json` and applied to the board
 with `hardware/tools/apply_stackup.py`: 1 oz copper on all eight layers, 1080
@@ -72,7 +98,9 @@ prepreg 0.077 mm between L1-L2, L2-L3, L6-L7 and L7-L8, 0.20 mm FR4 cores
 (0.127 mm dielectric) between L3-L4 and L5-L6, 2116 prepreg 0.125 mm between
 L4-L5, total 0.997 mm. The L2-L7 sub-lamination is 0.743 mm. The stored RF
 starting geometry is 0.105 mm trace / 0.15 mm coplanar gap, and USB is 0.12 mm
-trace / 0.12 mm pair gap. These are design calculations for the recorded
+trace / 0.12 mm pair gap. The routed board (2026-10-15) carries USB at 0.10 mm with
+0.20-0.43 mm pair gaps: USB full speed (12 Mbit/s) does not need the impedance, so
+this is not a defect, but the board does not follow the calculated geometry. These are design calculations for the recorded
 stackup. Fabricator impedance adjustment must use the actual finished copper
 and laminate construction. The stackup values are unconfirmed by the fabricator
 until it returns its engineering query.
