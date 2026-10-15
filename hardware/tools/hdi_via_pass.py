@@ -55,7 +55,8 @@ HOLE_CLEARANCE = pcbnew.FromMM(0.18)
 def legal(v, allow_through, micro):
     t, top, bot = v.GetViaType(), v.TopLayer(), v.BottomLayer()
     if t == pcbnew.VIATYPE_MICROVIA:
-        return (top, bot) in ((F, I1), (I6, B)) and v.GetWidth(top) >= micro[0] and v.GetDrillValue() == micro[1]
+        # The land is DRC's to judge (a scoped rule may allow a smaller one, D21 U14); only span and drill matter.
+        return (top, bot) in ((F, I1), (I6, B)) and v.GetDrillValue() == micro[1]
     if t == pcbnew.VIATYPE_BURIED:
         return (top, bot) == (I1, I6)
     if t == pcbnew.VIATYPE_THROUGH:

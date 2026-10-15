@@ -391,6 +391,24 @@
   (constraint disallow via)
   (condition "A.Type == 'Via' && A.intersectsArea('BOOST_GND_L5') && A.NetName != 'GND' && A.NetName != '+BATT' && A.NetName != '+5V_BST'"))
 
+# D21 U14 via in pad: the SN74LVC1G3157 X2SON-6 (1.0 x 0.8) centre pads 2 (GND) and 5 (+3.3V) are 0.40 apart and
+# each carries a laser via. With 0.25 lands no spot in the pads keeps the 0.18 hole clearance to the corner pads
+# (tested 2026-10-15); with 0.20 lands it holds, and the pad copper around the via is the capture ring, so the
+# 0.075 ring is measured on the land alone. Owner, 2026-10-15. Confirm with NextPCB (8 mil capture pad).
+(rule "D21 U14 via in pad: 0.20 land"
+  (constraint via_diameter (min 0.20mm))
+  (constraint annular_width (min 0.05mm))
+  (condition "A.Type == 'Via' && A.Via_Type == 'Micro' && A.intersectsCourtyard('U14')"))
+
+# Same pads: the pad 2 GND laser via and the pad 5 +3.3V buried via meet on L2 at 0.087 copper / 0.2275 hole wall /
+# 0.137 buried hole to the laser land (needs 0.09 / 0.25 / 0.18). A 0.01 mm grid over the buried via position found no spot that clears VIDEO_OUT on In2 and
+# Q38 on B.Cu as well (2026-10-15). Only via pairs inside U14 are relaxed.
+(rule "D21 U14 via in pad: GND laser via to +3.3V buried via"
+  (constraint clearance (min 0.085mm))
+  (constraint hole_to_hole (min 0.22mm))
+  (constraint hole_clearance (min 0.13mm))
+  (condition "A.Type == 'Via' && B.Type == 'Via' && A.intersectsCourtyard('U14') && B.intersectsCourtyard('U14') && A.Net != B.Net"))
+
 # Edit form (hdi_via_pass.py --collapse): while routing, each HDI stack is one Through (F.Cu-B.Cu) or Blind
 # (F.Cu-In6.Cu, In1.Cu-B.Cu) via with a front/inner/back padstack: outer lands are the microvia lands, the inner
 # land and the drill are the buried via. The fab form has no Through or Blind vias, so the two disallow rules above
