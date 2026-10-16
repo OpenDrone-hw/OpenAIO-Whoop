@@ -16,96 +16,60 @@ the same mounting pattern.
 
 ## Why
 
-Whoops are where an AIO is not a convenience but the only option: there is no
-room for a stack and no weight budget for connectors. 2S and up is OpenAIO's
-range, so what is left for a second board is 1S, where the power tree starts
-from a single cell and everything below +5V has to be boosted rather than
-bucked. That is the whole design problem, and it is worth solving once.
+Whoops are where an AIO is not a convenience but the only option: there is no room for a stack and no weight budget for connectors. 2S and up is OpenAIO's range, so what is left for a second board is 1S, where the power tree starts from a single cell and everything above battery voltage has to be boosted.
 
-Analog is the reason this board is separate rather than a variant. A 1S whoop
-is the last class still flying analog in volume, and an onboard VTX is what
-makes the board worth building instead of pointing people at a digital AIO
-with an HD port.
+Analog is the reason this board is separate rather than a variant. A 1S whoop is the last class still flying analog in volume, and an onboard VTX is what makes the board worth building instead of pointing people at a digital AIO with an HD port.
 
 ## Specifications
-
-From the design files: the schematic and an initial placement. Not routed or
-manufactured yet.
 
 | | |
 |---|---|
 | Target class | 1S whoops, 65 to 85 mm |
-| Mounting | 25.5 x 25.5 mm, three ear holes |
-| Board | 26.4 mm body, 8-layer HDI 1+6+1, 1.0 mm |
-| Input | 1S LiPo (3.0-4.35 V), solder pads |
-| Firmware | Betaflight, Bluejay, ExpressLRS |
-| MCU | RP2354A |
-| IMU | BMI270 |
-| Blackbox | 16 MB SPI NOR flash |
-| ESC | 4 channels, EFM8BB51 + AGM210MAP half-bridges, DShot |
+| Mounting | 25.5 x 25.5 mm, three D3.55 ear holes |
+| Board | 26.4 mm body, 8-layer HDI 1+6+1, 0.997 mm |
+| Input | 1S LiPo, solder pads J2 (+) and J3 (-) |
+| MCU | RP2354A, 2 MB in-package flash |
+| IMU | BMI270 on SPI |
+| Blackbox | 16 MB SPI NOR flash (PY25Q128HA) |
+| ESC | 4 channels, EFM8BB51 + 3 AGM210MAP half-bridges each, bidirectional DShot, Bluejay |
+| Current sense | 0.5 mohm shunt + INA186A3, 50 mV/A |
 | Receiver | Onboard ExpressLRS 2.4 GHz, ESP32-PICO-V3 + SX1281, wire antenna |
 | Video | Onboard analog VTX, RTC6705 + SE5004L PA, U.FL |
 | OSD | Analog, PIO framebuffer |
-| Digital video | DJI O4 Lite pads J26 VHD (5 V boost), J27 GND, J28 TX, J29 RX (hardware UART0), optional SBUS pad J34 (GPIO29, 3.3 V logic); plug J35 JST SH 1.0 4-pin side entry (1 VHD, 2 GND, 3 TX, 4 RX) for a pre-wired harness to the DJI 6-pin |
+| Digital video | DJI O4 Lite pads: J26 VHD (+5V_BST), J28 TX0, J29 RX0, J27 GND (UART0); JST SH 1.0 mm 4-pin plug J35 (1 VHD, 2 GND, 3 TX, 4 RX) |
 | Motors | Molex PicoBlade 1.25 mm 3-pin lands, plug or solder |
-| USB | JST SH 1.0 mm 4-pin |
-| Camera | JST SUR 0.8 mm 3-pin plug and solder pads |
+| USB | JST SH 1.0 mm 4-pin, J31 |
+| Camera | JST SUR 0.8 mm 3-pin plug J32, solder pads J23 and J24 |
+| Firmware | Betaflight (target in this repo), Bluejay, ExpressLRS |
 
-Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10. Keep the complete hardware folder together.
+Technical write-up, part list and layout constraints: [AGENTS.md](AGENTS.md). Pin map: [research/PINMAP.md](research/PINMAP.md). Firmware: [Betaflight target](firmware/betaflight/README.md), [ExpressLRS binding](firmware/expresslrs/README.md).
 
-- [Placement, layer use and file guide](research/ROUTING.md)
-- [Electrical design reference](research/DESIGN-SPEC.md)
-- [Exact pin map](research/PINMAP.md)
-- [Betaflight target and build instructions](firmware/betaflight/README.md)
-- [ExpressLRS binding](firmware/expresslrs/README.md)
-
-The board is synchronized to the schematic, with inherited component positions
-and no routing. Placement and routing are unfinished. The images above
-are earlier design views, not a manufacturing release.
+Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10 and keep the hardware folder together. The images above are renders of the routed board; this is not a manufacturing release.
 
 ## Constraints
 
 - 25.5 x 25.5 mm mounting pattern, shared with OpenAIO.
-- 1S only. 2S and above is OpenAIO, and covering both here would mean a wider
-  front end for a range another board already serves.
-- Motor plugs, USB, battery pads and camera plug sit where the BetaFPV Matrix
-  1S 5IN1 II has them: motor plugs paired at the two side holes, USB at the
-  rear hole.
-- FC section reuses the [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; Betaflight target derived from its target.
-- Receiver reuses the [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL)
-  SX1281 design on an ESP32-PICO-V3 and talks CRSF to the FC; the same ESP32
-  controls the VTX.
-- Passives 0201 and up, no 01005, so the board stays hand-reworkable.
-- No battery protection on the board: no reverse-polarity protection, no TVS
-  and no low-cell cutoff. The 5 V boost runs the cell down to about 1 V, so
-  unplug the battery after landing.
-- Assembly house chosen per release. Fab-ready manufacturing files are kept in
-  a private Incutec production repository and are not published.
-
-### Electrical limits
-
-| Item | Limit | Source |
-|---|---|---|
-| Battery pad J2 | 1S only, 3.0 to 4.35 V. A 2S pack damages the TPS61022 (VIN abs max 7 V) and U4 (VIN abs max 6 V) | TPS61022 SLVSDX7D, TLV757P SBVS322C |
-| +5V pad (J21) and camera feed (J24, J32) | 1 A, pad voltage 4.4 to 5.4 V (D10 Schottky drop 0.42 to 0.50 V at 1.5 A) | MS2A40LDF datasheet |
-| 1.5 A | `+5V_BST` only (J26 VHD pad), not the +5V pad | TPS61022 output behind D10 |
+- 1S only. 2S and above is OpenAIO.
+- Motor plugs, USB, battery pads and camera plug follow the BetaFPV Matrix 1S 5IN1 II positions, so leads and cables reach as on that board.
+- FC section follows the [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; receiver follows [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL) (SX1281) on an ESP32-PICO-V3 that talks CRSF to the FC and also controls the VTX.
+- Passives 0201 and up.
+- No battery protection on the board: no reverse-polarity protection, no TVS, no low-cell cutoff.
 
 ### VTX control path
 
 | Item | Value |
 |---|---|
 | Protocol | ExpressLRS MSP-VTX, CRSF receiver on UART1 (GPIO8/9) |
-| VTX owner | ESP32-PICO-V3 drives the RTC6705 over SPI and the SE5004L reference through PA_EN (GPIO21) |
-| Pit mode | Not implemented as a PA_EN drop: pit mode does not stop SPI activity or remove the PA reference (firmware/expresslrs/README.md). Dropping PA_EN in pit mode and at lowest power is an open firmware item |
-| HD hold-off | RP2354 GPIO19 (`HD_EN`) high permits analog VTX power, low switches it off; fixed HD builds set `pinio_config = 1,1,1,1` |
+| VTX owner | ESP32-PICO-V3 drives the RTC6705 over SPI and the SE5004L reference through PA_EN (ESP32 GPIO21) |
+| Pit mode | Does not drop PA_EN and does not stop SPI activity (see firmware/expresslrs/README.md) |
+| HD hold-off | RP2354A GPIO19 (`HD_EN`) high permits analog VTX power, low switches it off; fixed HD builds set `pinio_config = 1,1,1,1` |
 
 ## Prior art
 
-- [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL): the FC and RX stages this board reuses.
-- [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO): the 2-6S board, and the source of the ESC and power sheets that do not survive the drop to one cell.
+- [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL): the FC and RX stages this board follows.
+- [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO): the 2S to 6S board on the same mounting pattern.
 - [OpenVTX](https://github.com/OpenDrone-hw/OpenVTX): the line's RTC6705 analog VTX.
-- The class reference is the BetaFPV Matrix 1S 5IN1 II.
-- An earlier stitched design was reset in August 2026 (see the git history before #9); reference for the thinking, not a design to continue from.
+- BetaFPV Matrix 1S 5IN1 II: the class reference.
 
 ## In the line
 
@@ -114,25 +78,16 @@ What pairs with what, and what is available:
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). KiCad files cannot be merged, so say
-what you intend to change before you do, on
-[Discord](https://discord.gg/v3sWmTcx3R).
+See [CONTRIBUTING.md](CONTRIBUTING.md). KiCad files cannot be merged, so say what you intend to change before you do, on [Discord](https://discord.gg/v3sWmTcx3R).
 
-Clone with the shared library and open `hardware/OpenAIO-Whoop.kicad_pro` in
-KiCad 10:
+Clone with the shared library:
 
 ```sh
 git clone --recursive https://github.com/OpenDrone-hw/OpenAIO-Whoop
 git submodule update --init      # after a plain git clone
 ```
 
-Every footprint and 3D model comes from the project library
-(`hardware/lib.pretty`, `lib.3dshapes`) or from the pinned
-`hardware/KiCad-Library` submodule. Symbols come from `hardware/lib.kicad_sym`,
-the submodule, or KiCad 10's stock `Device`, `power`, `Connector` and
-`Mechanical` libraries, which a default KiCad install provides (lineup rule A8). Catalogue 3D models resolve through the
-project text variable `OPENDRONE_LIB` (`${KIPRJMOD}/KiCad-Library`), so
-without the submodule the 3D view shows bare pads.
+Catalogue 3D models resolve through the project text variable `OPENDRONE_LIB` (`${KIPRJMOD}/KiCad-Library`), so without the submodule the 3D view shows bare pads.
 
 A repository holds design files only. Sourcing (suppliers, prices, quotes, RFQs, contacts) is handled by Incutec and never lives in OpenDrone repositories.
 

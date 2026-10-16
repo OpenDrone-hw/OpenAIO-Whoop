@@ -28,7 +28,7 @@ No firmware binary or RF power calibration is supplied here.
 | RTC6705 RF drive control | 33 | PWM through R71 / Q27 |
 | PA detector | 36 | ADC1 through R66 / C117 |
 
-The fitted XL-1010RGBC-WS2812B sends its 24-bit LED data in GRB order;
+The fitted XL-1010RGBC-2812B sends its 24-bit LED data in GRB order;
 `led_rgb_isgrb: true` matches its datasheet's data-structure section.
 
 `radio_dcdc: false` selects the SX1281 LDO configuration fitted in the

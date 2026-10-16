@@ -9,12 +9,12 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | Function | Binding |
 | --- | --- |
 | Flight controller | [Betaflight target](../firmware/betaflight/README.md), pinned 2026.6.2 |
-| Motor signals | GPIO4/6/18/20 through U24, bidirectional 3.3 V to battery-level DShot |
+| Motor signals | GPIO4/6/18/20, each through a 1k series resistor (R69, R70, R57, R67) to the ESC MCU P0.5 pin, bidirectional DShot on PIO0 |
 | Analog video | W21, EN22, active-low SYNC23; PIO2 |
 | Analog permission | GPIO19 high enables U21, low disables it; PINIO default 129 |
 | HD port | UART0 GPIO16/17; VHD remains battery-boost powered |
 | Receiver | UART1 GPIO8/9, CRSF plus MSP-VTX; ESP32 controls the RTC6705 and PA |
-| Gyro | BMI270 default; final physical orientation must be set after placement |
+| Gyro | BMI270; the build takes its alignment and board yaw from the build flags (see the Betaflight README) |
 
 ## 2. RP2354A signal pins
 
@@ -24,9 +24,9 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 3 | GPIO1 | `FLASH_CS` |
 | 4 | GPIO2 | `SPI0_SCK` |
 | 5 | GPIO3 | `SPI0_MOSI` |
-| 7 | GPIO4 | `MOTOR1_FC` |
+| 7 | GPIO4 | `Net-(U10-GPIO4)` |
 | 8 | GPIO5 | `LED_STRIP` |
-| 9 | GPIO6 | `MOTOR2_FC` |
+| 9 | GPIO6 | `Net-(U10-GPIO6)` |
 | 10 | GPIO7 | `GYRO_INT` |
 | 12 | GPIO8 | `UART1_TX` |
 | 13 | GPIO9 | `UART1_RX` |
@@ -38,9 +38,9 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 19 | GPIO15 | `GYRO_CS` |
 | 27 | GPIO16 | `UART0_TX` |
 | 28 | GPIO17 | `UART0_RX` |
-| 29 | GPIO18 | `MOTOR3_FC` |
+| 29 | GPIO18 | `Net-(U10-GPIO18)` |
 | 31 | GPIO19 | `HD_EN` |
-| 32 | GPIO20 | `MOTOR4_FC` |
+| 32 | GPIO20 | `Net-(U10-GPIO20)` |
 | 33 | GPIO21 | `OSD_W` |
 | 34 | GPIO22 | `OSD_EN` |
 | 35 | GPIO23 | `OSD_SYNC` |
@@ -49,7 +49,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 40 | GPIO26_ADC0 | `ADC_CURR` |
 | 41 | GPIO27_ADC1 | `ADC_VBAT` |
 | 42 | GPIO28_ADC2 | - |
-| 43 | GPIO29_ADC3 | `SBUS` (pad J34, 3.3 V logic only) |
+| 43 | GPIO29_ADC3 | `SBUS` (net has no other connection, no pad) |
 
 ## 3. RP2354A power and system pins
 
@@ -89,13 +89,13 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 
 ## 4. Power and reset behavior
 
-U24 isolates the motor interfaces when either supply is absent. Its VCCA and OE
-use +3.3V; VCCB uses +BATT. Each ESC signal has 22 ohms in series. The gate outputs of the four
-EFM8BB51 controllers are actively driven during normal Bluejay operation.
-The translator does not replace firmware dead time or reset qualification.
+The motor signals go from each ESC MCU (P0.5, net `MOTORn`) through a 1k resistor
+straight to the RP2354A GPIO; there is no level translator. The ESC MCUs are
+supplied from +BATT.
 
-R68 pulls HD_EN high for analog operation. Q28 and R11 are removed. U21 controls
-the analog synthesizer supply; U22 controls the PA reference. VHD is independent.
+R68 pulls HD_EN to +3.3V for analog operation. U21 (enabled by HD_EN) supplies
+the analog VTX rail `+3.3V_VTX`; U22 (enabled by PA_EN) supplies the PA reference.
+VHD (`+5V_BST`) is independent of both.
 
 ## 5. Peripheral allocation
 
@@ -159,12 +159,12 @@ serves the IMU. The RP2354A boot flash is the separate 2 MB in-package device.
 
 ## 7. ESC and motor interface
 
-| Motor | FC GPIO | U24 A / B pins | ESC MCU | MCU DShot pin |
-| --- | --- | --- | --- | --- |
-| 1 | 4 | 3 / 12 | U6 | 17 |
-| 2 | 6 | 4 / 11 | U7 | 17 |
-| 3 | 18 | 5 / 10 | U8 | 17 |
-| 4 | 20 | 6 / 9 | U9 | 17 |
+| Motor | FC GPIO | Series resistor | ESC MCU | MCU DShot pin | Net |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 4 | R69 1k | U6 | 17 | `/MOTOR1` |
+| 2 | 6 | R70 1k | U7 | 17 | `/MOTOR2` |
+| 3 | 18 | R57 1k | U8 | 17 | `/MOTOR3` |
+| 4 | 20 | R67 1k | U9 | 17 | `/MOTOR4` |
 
 The shared ESC sheet is instantiated four times. The following table shows
 ESC1 local nets; the same pins apply to U7, U8 and U9.
@@ -172,11 +172,8 @@ ESC1 local nets; the same pins apply to U7, U8 and U9.
 Bluejay BB51 layout A senses phase X on the BEMF_X comparator input while it
 drives X_PWM / X_COM (P1.2 Bp, P1.4 Cp, P0.1 Bm, P0.2 Cm). The half-bridge on
 X_PWM must therefore sit on the phase node that the BEMF_X series resistor
-taps. `check_netlist.py` rule N7 checks this per ESC. Before the 2026-10-13 review
-B_PWM drove Q31 (PHASE_C) and C_PWM drove Q30 (PHASE_B) while R14 (PHASE_B) fed
-BEMF_B and R15 (PHASE_C) fed BEMF_C. The shared ESC sheet now labels R14's
-comparator net BEMF_C and R15's BEMF_B, so rule N7 passes for all four ESCs. The
-MCU pin table below does not change. Motor pads J4 pins 1/2/3 are
+taps. `check_netlist.py` rule N7 checks this per ESC; the shared ESC sheet labels R14's
+comparator net BEMF_C and R15's BEMF_B accordingly. Motor pads J4 pins 1/2/3 are
 PHASE_C/B/A.
 
 | Pin | Package function | Net |
@@ -197,7 +194,7 @@ PHASE_C/B/A.
 | 14 | P1.0 | `A_PWM` |
 | 15 | P0.7 | - |
 | 16 | P0.6 | - |
-| 17 | P0.5 | `RTX` |
+| 17 | P0.5 | `MOTORn` (n = 1 to 4) |
 | 18 | P0.4 | `NEUTRAL` |
 | 19 | P0.3 | `BEMF_A` |
 | 20 | P0.2 | `BEMF_C` |
@@ -210,4 +207,4 @@ PHASE_C/B/A.
 - Configure SX1281 for LDO mode. Keep the separate VTX SPI MISO disabled.
 - Keep the ESP32-PICO-V3 population. ESP8685/C3 requires an integrated-VTX firmware port.
 - Do not assign the RP2354A in-package flash pins to board peripherals.
-- Final gyro orientation, RF power calibration and motor-to-frame ordering are set after placement and bench checks.
+- Gyro orientation, RF power calibration and motor-to-frame ordering are set from bench checks on the assembled board.
