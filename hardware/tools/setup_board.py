@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""OpenAIO-Whoop board setup (phase P1): stackup, rules, net classes, custom DRC rules, outline, keepouts.
+"""OpenAIO-Whoop board setup generator: stackup, rules, net classes, custom DRC rules, outline, keepouts.
 
-    /usr/bin/python3.12 hardware/tools/setup_board.py              apply everything (idempotent, re-runnable)
+    /usr/bin/python3.12 hardware/tools/setup_board.py              legacy setup; do not run over manual placement
     /usr/bin/python3.12 hardware/tools/setup_board.py --check      build in a temp dir, compare, write nothing
     /usr/bin/python3.12 hardware/tools/setup_board.py --fd         recompute the field-solver impedance table first
     /usr/bin/python3.12 hardware/tools/setup_board.py --selftest   after applying, test the DRU on a synthetic board
@@ -103,9 +103,9 @@ V4_FLANGE_PAD_D = 4.6                            # v4 (Matrix measured): no pad 
 V4_RX_HOLE_R = 1.0                               # K2: circle D2.0 at AE1, all layers (only the L1 feed reaches the pad)
 V4_RX_FEED_HW = 0.6                              # K3: RF_RX_FEED half width, U18-22 -> FL1 -> AE1
 V4_VTX_STRIP_HW = 0.5                            # K5: RF_VTX_STRIP half width around the 5.8 GHz chain pads
-# Hand-off (D111/D112): the repo board IS floorplan v4 (placement B4, front chamfer c = 3.0). Its outline (outline_v4.py,
-# then the D112 chamfer) and its rule areas (keepouts_v4, re-anchored by the placement stages) are placement data carried
-# by the board. With V4_BOARD (and no configure_v4 spec) this script keeps both, checks the board's rule-area set against
+# The owner PCB preserves the v4 outline but its parts are parked and rule areas were removed.
+# Legacy coordinate constants above are not an accepted placement. Preserve board geometry;
+# see research/ROUTING.md before creating placement-dependent areas. With V4_BOARD (and no configure_v4 spec) this script keeps both, checks the board's rule-area set against
 # V4_AREAS and writes the v4 DRU; configure_v4(spec) still redraws them from a placement spec (comparison copies).
 V4_BOARD = True
 V4_AREAS = ("MOUNT_LEFT", "MOUNT_REAR", "MOUNT_RIGHT", "MOUNT_PAD_LEFT", "MOUNT_PAD_REAR", "MOUNT_PAD_RIGHT",
@@ -113,33 +113,34 @@ V4_AREAS = ("MOUNT_LEFT", "MOUNT_REAR", "MOUNT_RIGHT", "MOUNT_PAD_LEFT", "MOUNT_
             "RF_PAD_CUTOUT_L3", "SHUNT_CORRIDOR", "WIFI_VOID_V1", "WIFI_VOID_V2_L2", "WIFI_VOID_V2_L3", "WIFI_FAR_F",
             "WIFI_GND_LINK", "BOOST_GND_L5", "USB_MATING", "TAB_T1", "TAB_T3", "TAB_T4")
 
-# spec 8.1 / 8.4 + D6: board minimums (the .kicad_pro "rules" block).  Via 0.35 / 0.20 is the OpenDrone
-# standard via (D6, owner-confirmed buildable at NextPCB), so the annular minimum is 0.075 and the minimum through
-# hole is 0.20 (spec 8.4): DRC then enforces the standard via, although both fabs drill 0.15.
+# spec 8.1 / 8.4 + NextPCB published limits (nextpcb.com/pcb-capabilities, read 2026-10-11): board minimums (the
+# .kicad_pro "rules" block). Annular ring 3.5 mil (0.09) for 1 oz, mechanical drill 0.15 (boards <= 1.2 mm), via
+# hole to track 7 mil (0.18). The via is 0.35 / 0.15 (ring 0.10); the 0.40 / 0.20 power via keeps ring 0.10.
 PRO_RULES = {
     "min_clearance": 0.09, "min_track_width": 0.09, "min_connection": 0.09,
-    "min_via_diameter": 0.35, "min_via_annular_width": 0.075, "min_through_hole_diameter": 0.20,
+    "min_via_diameter": 0.35, "min_via_annular_width": 0.09, "min_through_hole_diameter": 0.15,
     "min_microvia_diameter": 0.25, "min_microvia_drill": 0.1,           # D97 HDI 1+4+1 laser via 0.10 / 0.25
-    "min_hole_to_hole": 0.2, "min_hole_clearance": 0.2, "min_copper_edge_clearance": 0.2,
+    "min_hole_to_hole": 0.2, "min_hole_clearance": 0.18, "min_copper_edge_clearance": 0.2,
     "min_text_height": 0.8, "min_text_thickness": 0.13,                 # spec 8.1 / 13, D12: 0.8 / 0.13 labels
     "min_silk_clearance": 0.0, "solder_mask_to_copper_clearance": 0.005,
 }
 MASK_EXPANSION = 0.04                            # spec 8.1
-MASK_MIN_WEB = 0.10                              # spec 8.1 (green)
+MASK_MIN_WEB = 0.09                              # NextPCB green mask dam 3.5 mil
 VIA_FILL_CAP = True                              # spec 8: IPC-4761 type VII filled + capped (board setting)
 
 # D7: the 16 checks hardware-template ignores, re-enabled before placement.
 SEVERITIES = {
-    "copper_edge_clearance": "error", "courtyards_overlap": "error", "missing_courtyard": "error",
+    "copper_edge_clearance": "error", "courtyards_overlap": "warning", "missing_courtyard": "error",  # courtyards: owner, 2026-10-11
     "malformed_courtyard": "error", "npth_inside_courtyard": "error", "pth_inside_courtyard": "error",
     "silk_edge_clearance": "error", "silk_over_copper": "error", "text_height": "error",
     "text_thickness": "error", "footprint_type_mismatch": "error", "tuning_profile_track_geometries": "error",
     "footprint_filters_mismatch": "warning", "silk_overlap": "warning", "track_not_centered_on_via": "warning",
     "via_dangling": "warning",
+    "holes_co_located": "error",                 # staggered 1+4+1, no stacked drills
 }
 
 TRACK_PRESETS = [0.10, 0.14, 0.20, 0.30, 0.50, 1.00]       # spec 8.4 (+ the RF 50 ohm width, computed)
-VIA_PRESETS = [(0.35, 0.20), (0.40, 0.20)]                 # D6 standard via; spec 8.3 power via
+VIA_PRESETS = [(0.35, 0.15), (0.40, 0.20)]                 # NextPCB ring 0.09: signal via; spec 8.3 power via
 DIFF_PAIR_PRESETS = [(0.12, 0.12, 0.25)]                   # spec 8.2 USB FS pair: width, gap, via gap
 TEXT_DEFAULTS = {"silk_line_width": 0.13, "silk_text_size_h": 0.8, "silk_text_size_v": 0.8,
                  "silk_text_thickness": 0.13}             # spec 8.4 / 13, D12: new silk items start at 0.8 / 0.13
@@ -148,34 +149,34 @@ TEXT_DEFAULTS = {"silk_line_width": 0.13, "silk_text_size_h": 0.8, "silk_text_si
 # default wire colour, P4 critique r3) + GND (orchestrator, spec 8.3 power-via arrays).
 # (name, track, clearance, via dia, via drill, colour, priority, extra)  track None = computed RF width
 NETCLASSES = [
-    ("RF", None, 0.15, 0.35, 0.20, "rgb(200, 160, 0)", 0, {"tuning_profile": "RF50"}),
-    ("USB", 0.12, 0.12, 0.35, 0.20, "rgb(30, 110, 255)", 1, {"diff_pair_width": 0.12, "diff_pair_gap": 0.12}),
-    ("VBAT", 0.50, 0.15, 0.40, 0.20, "rgb(220, 40, 40)", 2, {}),
-    ("Phase", 0.50, 0.15, 0.40, 0.20, "rgb(200, 0, 200)", 3, {}),
-    ("Gate", 0.15, 0.10, 0.35, 0.20, "rgb(120, 60, 220)", 4, {}),
-    ("Analog", 0.10, 0.15, 0.35, 0.20, "rgb(0, 160, 160)", 5, {}),
-    ("Power", 0.25, 0.09, 0.35, 0.20, "rgb(255, 140, 0)", 6, {}),
+    ("RF", None, 0.15, 0.35, 0.15, "rgb(200, 160, 0)", 0, {"tuning_profile": "RF50"}),
+    ("USB", 0.12, 0.09, 0.35, 0.15, "rgb(30, 110, 255)", 1, {"diff_pair_width": 0.12, "diff_pair_gap": 0.12}),
+    ("VBAT", 0.50, 0.09, 0.40, 0.20, "rgb(220, 40, 40)", 2, {}),
+    ("Phase", 0.10, 0.09, 0.35, 0.15, "rgb(200, 0, 200)", 3, {}),   # D121: phases are zones; the net also carries the BEMF taps
+    ("Gate", 0.15, 0.09, 0.35, 0.15, "rgb(120, 60, 220)", 4, {}),
+    ("Analog", 0.10, 0.09, 0.35, 0.15, "rgb(0, 160, 160)", 5, {}),
+    ("Power", 0.25, 0.09, 0.35, 0.15, "rgb(255, 140, 0)", 6, {}),
     ("GND", 0.20, 0.09, 0.40, 0.20, "rgb(130, 130, 130)", 7, {}),
 ]
-DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "via_drill": 0.20,
+DEFAULT_CLASS = {"track_width": 0.09, "clearance": 0.09, "via_diameter": 0.35, "via_drill": 0.15,
                  "microvia_diameter": 0.25, "microvia_drill": 0.1, "diff_pair_width": 0.2, "diff_pair_gap": 0.25}
 # Planned net names (D4 power names; PINMAP.md; OpenAIO esc_channel upper-cased per LINEUP). Root-sheet local
 # labels appear as "/NAME", sub-sheet ones as "/SHEET/NAME", power nets bare.
 NETCLASS_PATTERNS = [
     ("VBAT", ["+BATT", "+BATT_*", "/POWER/CSA+"]),                        # +BATT, CSA+ battery node (spec 4.1, D113)
-    ("Phase", ["/ESC?/PHASE_?", "/POWER/U2_SW"]),                         # in-sheet PHASE_A/B/C (spec 8.4); boost switch
-                                                                          # node U2_SW 2.8-3.4 A avg (P4 critique round 2)
+    ("Phase", ["/ESC?/PHASE_?", "/POWER/U2_SW"]),                         # PHASE_A/B/C and the boost switch node: drawn as
+                                                                          # zones, so the class sets colour and signal-size defaults (D121)
     ("Gate", ["/ESC?/?_COM", "/ESC?/?_PWM"]),                              # Bluejay layout A names (spec 4.4)
-    ("Power", ["+5V", "+5V_BST", "+5V_USB", "+5V_HD", "+3.3V", "+3.3V_VTX", "+1.8V_GYRO", "+1.1V",
-               "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS",             # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
-               "/VTX/PA_VCC"]),                                         # SE5004L VCC feed 0.65-0.8 A: the board ignores the
-                                                                          # schematic directive label (P4 critique round 2)
+    ("Power", ["+5V", "+5V_BST", "+5V_USB", "+3.3V", "+3.3V_VTX", "+1.8V_GYRO", "+1.1V",
+               "+5V_*", "+3.3V_*", "+1.8V_GYRO_*", "+1.1V_*", "/VBUS",            # LINEUP A11 names; EFM8 VDD is on +BATT; VBUS hier. net (P4)
+               "/RP2350A/VREG_LX"]),                                    # RP2354A core SMPS switch node (critique 2026-10-11)
     ("GND", ["GND"]),
     ("Analog", ["*VIDEO*", "*/VID_*", "*/OSD_LVL*", "*/OSD_SYNC*", "*CURR_SENSE*", "*ADC_VBAT*", 
                 "*/PA_DET*", "*/VPD*", "*SHUNT_SENSE_*", "*ADC_CURR*",      # Kelvin pair SHUNT_SENSE_P/N (spec 4.1); ADC_CURR RC node (P4)
-                "*/VT_MOD*", "*/RTC_*", "*/U19_XTAL*", "*/TCXO_OUT", "*/XTA"]),  # RTC6705 video input, PLL loop filter, 8/52 MHz refs (P4 critique)
+                "*/VT_MOD*", "*/RTC_*", "*/U19_XTAL*", "*/TCXO_OUT", "*/XTA",
+                "*/U2_FB*"]),                                               # boost feedback divider node (critique 2026-10-11)  # RTC6705 video input, PLL loop filter, 8/52 MHz refs (P4 critique)
     ("RF", ["*/RF_*", "*/ANT*", "*/RFIO*", "*/RFOUT*", "*/RFIN*"]),
-    ("USB", ["*/USB_D_P", "*/USB_D_N"]),                                  # _P/_N: KiCad pairs them (spec 8.2)
+    ("USB", ["*/USB_D_P", "*/USB_D_N", "*/U10_USB_D_P", "*/U10_USB_D_N"]),  # _P/_N pairs on both sides of the 27R
 ]
 # Component classes for the spec 8.4 spacing rules, by footprint name (P3 checks these against the real names).
 COMPONENT_CLASSES = [
@@ -225,16 +226,32 @@ AE_EXEMPT = ("  (severity ignore)\n  (constraint disallow footprint pad)\n"
 RULES = [
     ("header",
      ["OpenAIO-Whoop board rules (research/DESIGN-SPEC.md 7, 8.1, 8.4, 10, 11; D6, D7, D21). Generated by",
-      "hardware/tools/setup_board.py: change the script, not this file. Numbers that gate every fab live in the",
-      ".kicad_pro (clearance 0.09, track 0.09, via 0.35 / 0.20 (D6), annular 0.075, through hole 0.20, hole to",
-      "hole 0.20, hole clearance 0.20, copper to edge 0.20, silk text 0.8 / 0.13); the rules below are what this",
-      "board needs on top of them, from the NextPCB and JLCPCB intersection in spec 8.1. D21: every deliberate",
-      "break of a conservative rule is a rule named 'D21 <name>' with its reason; nothing is ignored globally."], None),
+      "hardware/tools/setup_board.py: change the script, not this file. Numbers that gate the fab live in the",
+      ".kicad_pro (clearance 0.09, track 0.09, via 0.35 / 0.15, annular 0.09, through hole 0.15, hole to",
+      "hole 0.20, hole clearance 0.18, copper to edge 0.20, silk text 0.8 / 0.13); the rules below are what this",
+      "board needs on top of them, from the NextPCB published limits (HDI 1+4+1, nextpcb.com/pcb-capabilities,",
+      "/advanced-pcb-capabilities, /pcb-product/hdi-6layers). D21: every deliberate break of a conservative rule",
+      "is a rule named 'D21 <name>' with its reason; nothing is ignored globally."], None),
+
+    ("copper clearance 0.09 everywhere",
+     ["D122 (owner: \"put all of the copper to copper stuff at a minimum\"): one copper clearance, the NextPCB 0.09 minimum,",
+      "for every net and item. Custom rules override net class clearances; the rules below it are the only exceptions",
+      "(RF CPWG gap, plated-hole copper)."],
+     "  (constraint clearance (min 0.09mm))"),
+
+    ("RF: CPWG gap 0.15",
+     ["Spec 8.2: the 0.15 gap sets the 50 ohm CPWG impedance, so RF copper keeps it to every other net."],
+     "  (constraint clearance (min 0.15mm))\n  (condition \"(A.NetClass == 'RF' || B.NetClass == 'RF') && A.Net != B.Net\")"),
 
     ("HDI 1+4+1: no mechanical blind vias",
      ["Owner decision D97 (HDI): NextPCB 1+4+1 (HDI I), laser microvias L1-L2 and L6-L5 in the 1080 build-up, mechanical",
-      "buried vias L2-L5 in the core sub-lamination, through vias as before. No mechanical blind vias (another press cycle)."],
+      "buried vias L2-L5 in the core sub-lamination; no through vias. No mechanical blind vias (another press cycle)."],
      "  (constraint disallow blind_via)"),
+
+    ("HDI 1+4+1: no through vias",
+     ["D107 / D116: the board has no through vias; every via is a laser microvia in a pad or a buried L2-L5 via under",
+      "a body. A through via (KiCad 'V') blocks all six layers and is an error here; use Place Microvia / Place Blind/Buried."],
+     "  (constraint disallow through_via)"),
 
     ("HDI 1+4+1: microvias L1-L2 and L5-L6 only",
      ["Laser vias span one 1080 layer only (NextPCB laser AR 1:1 max, 0.75:1 recommended); no skip vias."],
@@ -256,30 +273,34 @@ RULES = [
      "  (constraint via_diameter (min 0.25mm))\n  (constraint annular_width (min 0.075mm))\n"
      "  (condition \"A.Via_Type == 'Micro'\")"),
 
-    ("HDI buried via: mechanical hole 0.20",
-     ["D6 drill for the buried via too (NextPCB min mechanical 0.15); the netclass via size applies (0.35 / 0.40)."],
-     "  (constraint hole_size (min 0.20mm) (max 0.25mm))\n  (condition \"A.Via_Type == 'Buried'\")"),
+    ("HDI buried via: mechanical hole 0.15 to 0.25",
+     ["NextPCB min mechanical drill 0.15 (boards <= 1.2 mm); the netclass via size applies (0.35 / 0.40). 0.15 in the",
+      "0.77 mm L2-L5 stack is AR 5.2:1. The 0.20 drill stays legal for the 0.40 power via."],
+     "  (constraint hole_size (min 0.15mm) (max 0.25mm))\n  (condition \"A.Via_Type == 'Buried'\")"),
 
     ("hole to hole, different nets 0.30",
-     ["NextPCB 0.30 between holes of different nets (CAF); JLCPCB 0.20. Same net stays at the 0.20 minimum."],
+     ["NextPCB 0.30 (12 mil) between holes of different nets. Same net stays at the 0.20 (8 mil) minimum."],
      "  (constraint hole_to_hole (min 0.30mm))\n  (condition \"A.Net != B.Net\")"),
 
     ("D21 same_net_via_array",
      ["D21: the 0.30 CAF spacing above is for holes of different nets; via arrays of one net (phase fields, EP",
-      "arrays, battery and power arrays) stay at the 0.20 board minimum, which both fabs build."],
+      "arrays, battery and power arrays) stay at the 0.20 board minimum (NextPCB: via to via, same net, 8 mil)."],
      "  (constraint hole_to_hole (min 0.20mm))\n"
      "  (condition \"A.Net == B.Net && A.Type == 'Via' && B.Type == 'Via'\")"),
 
     ("D21 HDI staggered microvia on a buried via land",
      ["D21: a staggered microvia lands on the buried via's L2/L5 land, 0.25 mm centre to centre (0.10 mm hole to",
-      "hole) so the laser hole sits on solid copper, not on the resin fill; both holes share only that copper layer."],
+      "hole) so the laser hole sits on solid copper, not on the resin fill; both holes share only that copper layer.",
+      "NextPCB EQ: its page gives 0.20 for same-net via to via and says nothing about a laser hole beside a buried",
+      "hole; with the 0.15 buried drill the gap at 0.25 c-c is 0.125. A stacked microvia (0 mm) is the alternative."],
      "  (constraint hole_to_hole (min 0.10mm))\n"
      "  (condition \"A.Net == B.Net && ((A.Via_Type == 'Micro' && B.Via_Type == 'Buried') || "
      "(A.Via_Type == 'Buried' && B.Via_Type == 'Micro'))\")"),
 
-    ("PTH pad holes 0.45 apart",
-     ["JLCPCB 0.45 hole to hole between plated pad holes (battery holes, motor wire anchors)."],
-     "  (constraint hole_to_hole (min 0.45mm))\n"
+    ("PTH pad holes 0.30 apart",
+     ["NextPCB 0.30 hole to hole (12 mil, different nets) between plated pad holes (battery holes, motor wire",
+      "anchors); the 0.40 copper rule below is the tighter one for most pairs."],
+     "  (constraint hole_to_hole (min 0.30mm))\n"
      "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.isPlated() && B.isPlated()\")"),
 
     ("PTH pads, copper 0.40 apart",
@@ -299,27 +320,20 @@ RULES = [
      "B.memberOfFootprint('*:MotorPad_PicoBlade*')\")"),
 
     ("PTH annular ring 0.20",
-     ["Component holes: JLCPCB 0.15 absolute, 0.20 recommended; NextPCB 0.20. Vias keep the 0.075 of D6."],
+     ["Component holes: 0.20 ring (NextPCB research 2026-10-07; the 3.5 mil page value does not separate vias)."],
      "  (constraint annular_width (min 0.20mm))\n  (condition \"A.Type == 'Pad' && A.isPlated()\")"),
 
-    ("PTH hole to copper 0.28",
-     ["JLCPCB 0.28 from a plated pad hole to other copper (NextPCB 0.23). Via holes keep the 0.20 minimum."],
-     "  (constraint hole_clearance (min 0.28mm))\n  (condition \"A.Type == 'Pad' && A.isPlated()\")"),
+    ("PTH hole to copper 0.23",
+     ["NextPCB 0.23 (9 mil) from a plated pad hole to a track. Via holes keep the 0.18 board minimum (7 mil)."],
+     "  (constraint hole_clearance (min 0.23mm))\n  (condition \"A.Type == 'Pad' && A.isPlated()\")"),
 
     ("inner layers: PTH hole to copper 0.30",
-     ["JLCPCB 0.30 on inner layers for plated pad holes."],
+     ["Inner layers, plated pad holes: NextPCB publishes no inner-layer value; 0.30 kept (EQ)."],
      "  (layer inner)\n  (constraint hole_clearance (min 0.30mm))\n  (condition \"A.Type == 'Pad' && A.isPlated()\")"),
 
-    ("NPTH at least 0.50",
-     ["JLCPCB 0.50 minimum non-plated hole (NextPCB 0.40). The mounting holes are Edge.Cuts cut-outs, not pads."],
-     "  (constraint hole_size (min 0.50mm))\n  (condition \"A.Type == 'Pad' && !A.isPlated()\")"),
-
-    ("SMD pad to track and pour 0.13",
-     ["Spec 8.1: 0.04 mask expansion + JLCPCB 0.09 from a mask opening to copper. Pours are copper too, so the",
-      "zone fill keeps the same distance (spec text names tracks; zones added for the same reason)."],
-     "  (constraint clearance (min 0.13mm))\n"
-     "  (condition \"A.Type == 'Pad' && A.Pad_Type == 'SMD' && (B.Type == 'Track' || B.Type == 'Arc' || "
-     "B.Type == 'Zone') && A.Net != B.Net\")"),
+    ("NPTH at least 0.40",
+     ["NextPCB 0.40 minimum non-plated hole. The mounting holes are Edge.Cuts cut-outs, not pads."],
+     "  (constraint hole_size (min 0.40mm))\n  (condition \"A.Type == 'Pad' && !A.isPlated()\")"),
 
     ("silk 0.20 from the edge and holes",
      ["Silk clipped at the routed edge or a hole is lost (line silk rule, pcb-agent-commons). KiCad 10.0.6",
@@ -343,7 +357,7 @@ RULES = [
 
     ("courtyards: touching allowed, overlap is an error",
      ["Spec 8.4 / D2 body rule: courtyards are drawn at max(body, land) + 0.10 (P3 normalises the library), so",
-      "touching courtyards are 0.20 mm body to body. courtyards_overlap is an error in the .kicad_pro."],
+      "touching courtyards are 0.20 mm body to body. courtyards_overlap is a warning in the .kicad_pro (owner)."],
      "  (constraint courtyard_clearance (min 0mm))"),
 
     ("0402 to 0402: +0.05",
@@ -374,7 +388,7 @@ RULES = [
 
     ("D67 test vias are vias: hole spacing 0.20",
      ["D67: TP1-TP9, TP12, TP13 are mask-open filled 0.35/0.20 vias drawn as footprints (TestPoint_Via_*); the via",
-      "hole spacing (0.20, pro minimum) applies, not the 0.45 component-hole value."],
+      "hole spacing (0.20, pro minimum) applies, not the 0.30 component-hole value."],
      "  (constraint hole_to_hole (min 0.20mm))\n"
      "  (condition \"A.memberOfFootprint('*:TestPoint_Via*') && B.memberOfFootprint('*:TestPoint_Via*')\")"),
 
@@ -403,18 +417,24 @@ RULES = [
       "their own footprints in the project library (P3), so lib_footprint_mismatch stays an error and never",
       "fires for them; no rule is needed and none is relaxed."], None),
 
+    ("Boost output: +5V_BST and +5V at least 0.30 wide",
+     ["The TPS61022 output carries 2-3 A with a DJI O4 Lite on VHD (D114 removed the load switch); pours preferred.",
+      "Warning severity so the necks into 0201 and QFN pads stay legal."],
+     "  (severity warning)\n  (constraint track_width (min 0.30mm))\n"
+     "  (condition \"A.NetName == '+5V_BST' || A.NetName == '+5V'\")"),
+
     ("D21 footprint_via_pads annular",
      ["D21 / spec 8.3: through vias drawn inside a footprint land as PTH pads with the Heatsink fabrication property",
-      "(EFM8BB51 EP array, CSD13202Q2 merged-drain phase field) are 0.35/0.20 Type VII vias (D6), not component",
-      "holes: the via annular ring 0.075 applies instead of the 0.20 PTH component-hole ring (LIBRARY.md item)."],
-     "  (constraint annular_width (min 0.075mm))\n  (condition \"A.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad'\")"),
+      "(EFM8BB51 EP array) are 0.35/0.15 Type VII vias, not component holes: the via annular ring 0.09 (NextPCB",
+      "3.5 mil) applies instead of the 0.20 PTH component-hole ring (LIBRARY.md item)."],
+     "  (constraint annular_width (min 0.09mm))\n  (condition \"A.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad'\")"),
 
     ("D21 footprint_via_pads hole_clearance",
-     ["D21: the same footprint vias keep the 0.20 via hole clearance, not the 0.28 / 0.30 component-hole values."],
-     "  (constraint hole_clearance (min 0.20mm))\n  (condition \"A.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad'\")"),
+     ["D21: the same footprint vias keep the 0.18 via hole clearance, not the 0.23 / 0.30 component-hole values."],
+     "  (constraint hole_clearance (min 0.18mm))\n  (condition \"A.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad'\")"),
 
     ("D21 footprint_via_pads same_net_holes",
-     ["D21 / D39: same-net footprint vias keep the 0.20 hole spacing of a via array, not the 0.45 PTH pad value."],
+     ["D21 / D39: same-net footprint vias keep the 0.20 hole spacing of a via array, not the 0.30 PTH pad value."],
      "  (constraint hole_to_hole (min 0.20mm))\n"
      "  (condition \"A.Type == 'Pad' && B.Type == 'Pad' && A.Fabrication_Property == 'Heatsink pad' && "
      "B.Fabrication_Property == 'Heatsink pad' && A.Net == B.Net\")"),
@@ -424,35 +444,42 @@ RULES = [
       "the ESP32-D0WD-V3 land, set as the footprint attribute 'allow soldermask bridges' on that footprint only",
       "(P3). Not active until then."], None),
 
-    ("In1 and In4 are solid GND planes",
-     ["Spec 8.2 / 11: L2 and L5 unbroken under every signal. A track on them cuts the plane; warn so each one",
-      "is reviewed (L2 under the 5.8 GHz chain is a hard keepout, rule area RF_VTX_CHAIN)."],
-     "  (severity warning)\n  (constraint disallow track)\n"
-     "  (condition \"A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu'\")"),
+    ("In1 solid GND; In4 only ESC gates and BEMF",
+     ["L2 is the continuous GND reference. L5 allows short ESC gate and BEMF escapes in GND.",
+      "Phase power, DShot and programming nets do not qualify just because they are in an ESC sheet."],
+     "  (constraint disallow track)\n"
+     "  (condition \"A.Layer == 'In1.Cu' || (A.Layer == 'In4.Cu' && "
+     "!(A.NetName == '/ESC?/?_PWM' || A.NetName == '/ESC?/?_COM' || "
+     "A.NetName == '/ESC?/BEMF_?' || A.NetName == '/ESC?/NEUTRAL'))\")"),
+
+    ("In1 and In4 GND zones only",
+     ["Both reference planes carry only GND zones. L5 ESC escapes are tracks, not phase pours.",
+      "Through pads and legal via antipads remain allowed."],
+     "  (constraint disallow zone)\n"
+     "  (condition \"(A.Layer == 'In1.Cu' || A.Layer == 'In4.Cu') && A.NetName != 'GND'\")"),
 
     ("In2: no analog or RF; In3: no analog, RF or gate (D85)",
      ["Spec 8.2 / 11, relaxed by D85 for routing closure: video and sense (Analog) and RF stay on L1 over L2 or L6",
       "over L5; the FET gates (Gate) may use In2 (L3) but not In3 (L4), which is the +BATT plane itself."],
-     "  (constraint disallow track)\n"
+     "  (constraint disallow track zone)\n"
      "  (condition \"(A.Layer == 'In2.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF')) || "
      "(A.Layer == 'In3.Cu' && (A.NetClass == 'Analog' || A.NetClass == 'RF' || A.NetClass == 'Gate'))\")"),
 
     ("In3: no gyro or VTX control; In2/In3: no Kelvin or PA sense (D85)",
      ["Spec 8.2 / 8.4, relaxed by D85: the gyro bus (SPI1, GYRO_*), VTX SPI and the digital PA controls may use In2",
-      "but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET, PA_NTC) stay off both inner",
+      "but stay off the In3 +BATT plane; the analog sense nets (SHUNT_SENSE_*, PA_DET) stay off both inner",
       "signal layers. Net names compared with wildcards; '.' is literal; underscore forms of the buses matched too."],
-     "  (constraint disallow track)\n"
+     "  (constraint disallow track zone)\n"
      "  (condition \"(A.Layer == 'In3.Cu' && (A.NetName == '*SPI1.*' || "
      "A.NetName == '*SPI1_*' || A.NetName == '*GYRO_*' || A.NetName == '*VTX_SPI.*' || "
      "A.NetName == '*VTX_SPI_*' || A.NetName == '*/U19_SPI*' || A.NetName == '*/PA_*')) || "
      "((A.Layer == 'In2.Cu' || A.Layer == 'In3.Cu') && (A.NetName == '*SHUNT_SENSE_*' || "
-     "A.NetName == '*/PA_DET*' || A.NetName == '*/PA_NTC*'))\")"),
+     "A.NetName == '*/PA_DET*'))\")"),
 
     ("RF: no vias",
-     ["Spec 10: no via in the 5.8 GHz path; the 2.4 GHz feed runs on L1 to the antenna hole without one.",
-      "D21 / FLOORPLAN Open: the RTC6705 (bottom) feeds the PA (top), so RF_PA_IN carries the one RF via,",
-      "fenced by GND vias at <= 1 mm (route/prep); every other RF net stays via-free."],
-     "  (constraint disallow via)\n  (condition \"A.NetClass == 'RF' && A.NetName != '/VTX/RF_PA_IN'\")"),
+     ["Keep each RF chain on one outer face over its GND reference.",
+      "The former cross-face PA-input exception is removed; the 1+4+1 via stack is not a verified RF launch."],
+     "  (constraint disallow via)\n  (condition \"A.NetClass == 'RF'\")"),
 
     ("RF: 50 ohm width on the outer layers",
      ["Spec 8.2: CPWG, gap @GAP@ mm (the RF clearance), L1 over L2 and L6 over L5, 50 ohm +- 10 %.",
@@ -1009,7 +1036,7 @@ def keepouts_v4():
               "spec 4.9 / 11 (v4 K4): SPI0 (blackbox) kept 3 mm from the antenna hole (DRU)"))
     K.append(("RF_VTX_STRIP", ["In1.Cu"], dict(tracks=True), ("segs", s["vtx_strip"], V4_VTX_STRIP_HW), True,
               "v4 K5: L2 solid under RF_PAOUT1 / RF_PA_IN / RF_PA_OUT / RF_UFL and their pads (half width %.1f); GND vias "
-              "only, plus the one RF_PA_IN via (DRU)" % V4_VTX_STRIP_HW))
+              "only; the RF chain stays on one outer face" % V4_VTX_STRIP_HW))
     K.append(("RF_PAD_CUTOUT", ["In1.Cu"], dict(zone_fills=True), ("poly", rect(*s["rf_pad_cut"])), True,
               "spec 4.8 (v4 K6): L2 cut under the U.FL signal pad"))
     K.append(("RF_PAD_CUTOUT_L3", ["In2.Cu"], dict(tracks=True), ("poly", rect(*s["rf_pad_cut"])), True,
@@ -1038,9 +1065,9 @@ V4_DROP_RULES = ("WIFI_ANT_KO: only the RF feed", "RF_RX_ANT: only the RF feed o
 V4_RF_RULES = [
     ("RF_VTX_STRIP: GND vias only (K5)",
      ["v4 K5 (replaces RF_VTX_CHAIN): no non-GND via inside the 0.5 mm strip around the 5.8 GHz chain, so L2 stays solid",
-      "under the line. The one RF_PA_IN via of 'RF: no vias' (M3: RTC6705 and PA on opposite sides) is the exception."],
+      "under the line. All RF signal nets stay via-free."],
      "  (constraint disallow via)\n"
-     "  (condition \"A.intersectsArea('RF_VTX_STRIP') && A.NetName != 'GND' && A.NetName != '/VTX/RF_PA_IN'\")"),
+     "  (condition \"A.intersectsArea('RF_VTX_STRIP') && A.NetName != 'GND'\")"),
     ("RF_RX_HOLE: only the RF feed on L1 (K2)",
      ["v4 K2 (replaces RF_RX_ANT / _L6 / RF_RX_EXIT): inside the D2.0 circle at the RX wire hole AE1 (all layers; pours",
       "kept out by the rule area) the only copper is the 2.4 GHz feed /RX/RF_RX_ANT on L1 into the AE1 pad; no vias."],
@@ -1158,6 +1185,7 @@ def write_pro(path, rf):
         c.update(extra)
         classes.append(c)
     ns["classes"] = classes
+    ns["netclass_assignments"] = None                    # KiCad's per-net cache; the patterns are the source
     ns["netclass_patterns"] = [{"netclass": n, "pattern": pat} for n, pats in NETCLASS_PATTERNS for pat in pats]
     ns["net_colors"] = {}            # template per-net colours (+3.3V, +10V, ...) would override the class colours
     wnm = int(round(rf["w"] * 1e6))
@@ -1332,7 +1360,7 @@ def build_board(path, P):
     ds = b.GetDesignSettings()
     if b.GetCopperLayerCount() != 6:
         b.SetCopperLayerCount(6)
-    for lname, kind in (("In1.Cu", P.LT_POWER), ("In4.Cu", P.LT_POWER), ("In3.Cu", P.LT_MIXED),
+    for lname, kind in (("In1.Cu", P.LT_POWER), ("In4.Cu", P.LT_MIXED), ("In3.Cu", P.LT_MIXED),
                         ("In2.Cu", P.LT_SIGNAL), ("F.Cu", P.LT_SIGNAL), ("B.Cu", P.LT_SIGNAL)):
         b.SetLayerType(b.GetLayerID(lname), kind)
     ds.m_HasStackup = True
@@ -1409,8 +1437,24 @@ def build_board(path, P):
     add_text(eco2, "eco2/text", "FRONT", (17.0, -18.2), size=1.0, thick=0.15)
     for name, (sx, sy) in HOLES.items():
         add_shape("circle", u1, "user1/" + name, (sx * HOLE_HALF, sy * HOLE_HALF), FLANGE_D / 2, width=0.05)
-    add_text(cmts, "cmts/layers", "F.Cu sig | In1 GND | In2 sig | In3 +BATT/PWR | In4 GND | B.Cu sig",
-             (0.0, 18.5), size=0.8, thick=0.1)
+    add_text(cmts, "cmts/layers", "\n".join([
+        "STACKUP  NextPCB 06101103-1080, 6L HDI 1+4+1, 1.0 mm, FR-4 Dk 4.2",
+        "L1 F.Cu  1 oz   parts, RF 50R CPWG 0.105/0.15, hot loops, fan-out",
+        "   1080 0.077   laser microvia L1-L2 0.10/0.25, in pad",
+        "L2 In1   1 oz*  solid GND plane, no tracks",
+        "   1080 0.077   (* plated foil)",
+        "L3 In2   1 oz   signal layer, refs L2; no Analog / RF",
+        "   core 0.536   buried via L2-L5 0.15/0.35 (power 0.20/0.40)",
+        "L4 In3   1 oz   +BATT plane, refs L5; no Analog / RF / gate / gyro",
+        "   1080 0.077",
+        "L5 In4   1 oz*  GND pour + ESC gate/BEMF routing (B side, one microvia)",
+        "   1080 0.077   laser microvia L5-L6 0.10/0.25, in pad",
+        "L6 B.Cu  1 oz   parts, fan-out",
+        "ROUTING  every via in a pad or under a body; no through or blind vias",
+        "  L6->L5: one microvia; L1->L3/L5: microvia + buried 0.25 mm staggered",
+        "  L1->L6: micro + buried + micro; phases as zones, BEMF taps signal size",
+        "  min track/space 0.09, annular 0.09 (laser 0.075), filled + capped vias"]),
+             (0.0, 18.5), size=0.6, thick=0.08)
 
     # outline polygon for clipping and the band, from the analytic geometry (deterministic: the board's own
     # polygon can still see the deleted arcs, whose re-loaded mid points differ by a nanometre)
@@ -1703,7 +1747,7 @@ def selftest(P, rf):
     case("In1 track under the VTX chain (keepout RF_VTX_CHAIN)", KEEPOUT_HIT, (c0[0], c0[1] - 1.5), r=0.8)
     via(c0[0], c0[1] - 3.0, 0.35, 0.20, "/T/V8"); case("signal via in RF_VTX_CHAIN", "RF_VTX_CHAIN: GND vias only", (c0[0], c0[1] - 3.0), r=0.4)
     via(c1[0] + 0.6, c1[1], 0.35, 0.20, "GND"); case("GND via in RF_VTX_CHAIN", None, (c1[0] + 0.6, c1[1]), r=0.3)
-    trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 track (plane warning)", "In1 and In4 are solid GND planes", (-2.5, 3))
+    trk(-3, 3, -2, 3, 0.1, "/T/SIG3", "In4.Cu"); case("In4 non-ESC track (plane warning)", "In1 solid GND; In4 GND pour with ESC routing only", (-2.5, 3))
     ax, ay = RX_ANT_HOLE
     trk(ax + 0.2, ay - 1.1, ax + 1.0, ay - 1.1, 0.1, "/T/SIG4", "B.Cu"); case("signal track in RF_RX_ANT_L6", "RF_RX_ANT_L6: only the RF feed", (ax + 0.6, ay - 1.1))
     trk(ax + 0.2, ay + 0.9, ax + 1.0, ay + 0.9, W, "/RX/ANT_FEED", "B.Cu"); case("RF feed in RF_RX_ANT_L6", None, (ax + 0.6, ay + 0.9), r=0.3)
@@ -1787,7 +1831,7 @@ def selftest(P, rf):
     # netclass patterns
     sample = {"+BATT": "VBAT", "/POWER/CSA+": "VBAT", "/ESC1/PHASE_A": "Phase", "/ESC3/B_COM": "Gate",
               "/ESC2/C_PWM": "Gate", "+3.3V_VTX": "Power", "+5V": "Power", "+5V_USB": "Power", "+5V_BST": "Power",
-              "+5V_HD": "Power", "+1.8V_GYRO": "Power", "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog",
+              "+1.8V_GYRO": "Power", "GND": "GND", "/OSD/VIDEO_IN": "Analog", "/CURR_SENSE": "Analog",
               "/SHUNT_SENSE_P": "Analog", "/POWER/SHUNT_SENSE_N": "Analog", "/VTX/RF_OUT": "RF",
               "/RX/ANT_FEED": "RF", "/USB_D_P": "USB", "/USB_D_N": "USB", "/MOTOR1": "Default",
               "/SPI0.SCK": "Default", "/ESC1/VDD": "Default"}
@@ -1823,9 +1867,20 @@ def selftest(P, rf):
 # ==============================================================================================================
 # 6. Main
 # ==============================================================================================================
-def run(check=False, recompute_fd=False, do_selftest=False):
+def run(check=False, recompute_fd=False, do_selftest=False, dru_only=False, pro_only=False):
     rec = impedance(recompute_fd, write=not check)
     rf = rf_values(rec)
+    if pro_only:                                                # KiCad closed: project file only, board untouched
+        write_pro(PRO, rf)
+        print("wrote " + PRO)
+        return 0
+    if dru_only:                                                # KiCad may stay open: board and project untouched
+        text = dru_text(rf, open(DRU).read())
+        changed = text != open(DRU).read()
+        if changed and not check:
+            open(DRU, "w").write(text)
+        print(("would change " if check else "wrote ") + DRU if changed else "DRU up to date")
+        return 1 if (check and changed) else 0
     print(impedance_report(rec))
     P = quiet_pcbnew()
     tmp = tempfile.mkdtemp(prefix="setup_board_")
@@ -1895,7 +1950,8 @@ def main():
         if "--json-only" not in a:
             print(impedance_report(rec))
         return 0
-    return run(check="--check" in a, recompute_fd="--fd" in a, do_selftest="--selftest" in a)
+    return run(check="--check" in a, recompute_fd="--fd" in a, do_selftest="--selftest" in a,
+               dru_only="--dru-only" in a, pro_only="--pro-only" in a)
 
 
 if __name__ == "__main__":

@@ -1080,7 +1080,7 @@
 		)
 		(uuid "f6da4da5-58b0-58f0-85df-fa65f4e32616")
 	)
-	(text "status LEDs"
+	(text "STATUS LEDS"
 		(exclude_from_sim no)
 		(at 44.45 33.02 0)
 		(effects
@@ -1093,7 +1093,7 @@
 		)
 		(uuid "601b62a3-3d74-5520-86fb-8903209dd21b")
 	)
-	(text_box "Status LEDs from OpenFC-Lite-Mini: +3.3V -> LED -> 150R -> GPIO, the pin sinks (low = on, Betaflight default). LED0 = GPIO10 green D5, LED1 = GPIO24 blue D6.\nAbout 2-3 mA, ceiling 6 mA: LED, resistor and GPIO well inside ratings. The LEDs may glow faintly from the reset pull-downs until Betaflight drives the pins: cosmetic, accepted. Slow signal, R at either end (D33)."
+	(text_box "+3.3V -> LED -> 150R -> GPIO, the pin sinks (low = on). LED0 GPIO10 green, LED1 GPIO24 blue, about 2-3 mA.\nThe LEDs may glow faintly during reset: cosmetic."
 		(exclude_from_sim no)
 		(at 88.9 25.4 0)
 		(size 107.95 15.24)
@@ -1282,7 +1282,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C295773"
 			(at 66.04 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -1397,7 +1397,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C295773"
 			(at 45.72 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -1456,7 +1456,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "631e3a1a-de22-5535-99f2-450046f659b4")
-		(property "Reference" "#PWR236"
+		(property "Reference" "#PWR218"
 			(at 45.72 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -1516,7 +1516,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0a9dca22-7345-53f8-9367-07faa3e8899c"
-					(reference "#PWR236")
+					(reference "#PWR218")
 					(unit 1)
 				)
 			)
@@ -1785,7 +1785,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "f882358a-447c-5b31-a027-3ba5f6daa202")
-		(property "Reference" "#PWR237"
+		(property "Reference" "#PWR219"
 			(at 66.04 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -1845,7 +1845,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/0a9dca22-7345-53f8-9367-07faa3e8899c"
-					(reference "#PWR237")
+					(reference "#PWR219")
 					(unit 1)
 				)
 			)

@@ -1,5 +1,7 @@
 # Floorplan v4 placement brief (binding)
 
+Layer, stackup and via statements here describe the 6-layer board. Since D123 (2026-10-13) the board is 8-layer HDI 1+6+1; see `research/ROUTING.md`.
+
 Date 2026-10-10. Binding for the v4 placement stage. The machine-readable copy is
 `p2v3/v4/brief.json` (scratchpad), built by `p2v3/v4/brief_work/mk_brief.py`.
 
@@ -91,7 +93,7 @@ The edge parts are fixed in the placer (`--fixed`); only AE1 y moves.
 | U4, U21 / U3 / J2, J3 | `WSON-6_..._LP5912_V4` / `TI_SOT-583_DRL_TPS2116_V4` / `BattPad_D1.7mm_PTH1.1_V4` | `dietchk/lib_cfix.pretty` (courtyard fixes) |
 | J20-J29, J33 | `SolderPad_0.8x1.0mm_V4` | repo lib |
 | AE2 | `ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_D90Void` | `outline_verify/v2/lib_v4.pretty` |
-| BMI270, power parts (AGM, U2, U5, U12, U22, U20) | unchanged datasheet lands (D95) | — |
+| BMI270, power parts (AGM, U2, U12, U22, U20) | unchanged datasheet lands (D95) | — |
 
 Parity: write project-lib symbol variants without the removed pins (D96). Never use DRC exclusions. Copy the V4b,
 cfix and D90Void files into `hardware/lib.pretty`.
@@ -128,9 +130,9 @@ cfix and D90Void files into `hardware/lib.pretty`.
 | **M3 VTX** | U20 rotated so pins 1-5 face U19-35. L3/C110 ≤ 0.6 mm from pin 35. 1 RF via + 2-4 GND via-in-pad; U20-3 ≤ 1.5 mm from that via. FL2 → J1 on F ≤ 2.5 mm, J1 on the centre side of the PA. Re-place C111-C118, C123, R66. Variant: U19 on F (no RF via) when the front pair is on B |
 | **M4 Wi-Fi** | U16 on B at the rotation that points pin 2 at AE2. C133/R88/C132 on B within 1 mm (R88 moves). Series 0201 0R + 1 DNP shunt. GND row → B.Cu link ≤ 0.3 mm → 2 GND vias just outside V1; each shunt gets its own In4 via outside V1. Pass gate: the bench 3 m upload test (realistic range 2-4 m) |
 | **M5 Boost** | U2/L1 on B at the site; C8-C11 in an arc within 3 mm; C7 at L1's input; GND pour on B; 4 GND vias outside the loop; 0 input vias |
-| **M6 Battery** | R1's +BATT_IN end butts J2; its +BATT end has a 3 × 4 field of 12 vias (0.40 pitch) into L4; R1 + pour on B; J3 solid on L2/L5 + 4 helper vias; C1/C2/D1 straight across J2-J3 |
+| **M6 Battery** | R1's +BATT_IN end butts J2; its +BATT end has a 3 × 4 field of 12 vias (0.40 pitch) into L4; R1 + pour on B; J3 solid on L2/L5 + 4 helper vias; C1/C2 straight across J2-J3 (D1 removed, D114) |
 | **M7 RX corner** | U18 with FL1 at pin 22, TCXO at the outer end, feed ≤ 4 mm. AE1 y scored by term W against USB_MATING and the rear flange. U18 ring never over J31 pads |
-| **M8 5 V chain** | U24 ≤ 2 mm from J31; U3 between U24 and the boost output; U4/U21 at the edge of their load group, majority side; 1 via per rail pad group (2 for +5V_BST/+5V_HD) |
+| **M8 5 V chain** | U24 ≤ 2 mm from J31; U3 between U24 and the boost output; U4/U21 at the edge of their load group, majority side; 1 via per rail pad group (2 for +5V_BST; +5V_HD merged into +5V_BST, D114) |
 
 ## 9. Placer objective (`tricks/placer/place.py`; weights in mm of equivalent length)
 
@@ -198,7 +200,7 @@ cfix and D90Void files into `hardware/lib.pretty`.
 | GND pad clusters | ≤ 110 | one filled via-in-pad per cluster (term G) |
 | Edge fence | 46 at 2.5 mm, ≥ 30 via-in-pad | 1.25 mm within 5 mm of AE1/AE2/J1/U20 |
 | RF fence / interior stitching | ~10 at 1.4 mm / ≤ 30 | stitching only where the 2.5 mm coverage check fails; ≥ 2 ties per L1/L6 island |
-| Power | ~110 | AGM 72 (3+3 × 12), R1 12, J3 4, boost 4 GND, +5V_BST/+5V_HD 2 each, other rails 1 per pad group |
+| Power | ~110 | AGM 72 (3+3 × 12), R1 12, J3 4, boost 4 GND, +5V_BST 2, other rails 1 per pad group |
 | Phase across sides | 0 | single-sided cells |
 | Signal | ≤ 140 | reserved before any track |
 | **Total** | **~480** | v3: 365 holes + 150 still needed, against 65 packable sites |

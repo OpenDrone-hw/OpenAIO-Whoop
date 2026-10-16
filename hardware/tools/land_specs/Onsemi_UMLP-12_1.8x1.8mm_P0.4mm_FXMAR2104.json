@@ -1,0 +1,132 @@
+{
+  "footprint": "lib:Onsemi_UMLP-12_1.8x1.8mm_P0.4mm_FXMAR2104",
+  "part": "FXMAR2104UMX (LCSC C457752), U24",
+  "datasheet": "https://www.onsemi.com/download/data-sheet/pdf/fxmar2104-d.pdf; Rev1.0.1 p3 top-through pin map and p14 Fig15 recommended land pattern MKT-UMLP12Arev4",
+  "derivation": "Top view. Pad1 upper-left, pad2 lower-left;3..6 bottom left-to-right;7/8 right lower/upper;9..12 top right-to-left. Four pads on top/bottom, two on left/right. Overall land extent2.10mm. Pin1 0.588mm long, all other lands0.563mm long; width0.20mm, pitch0.40mm. Pad centre magnitude=(2.10-length)/2.",
+  "pads": [
+    {
+      "number": "1",
+      "x": -0.756,
+      "y": -0.2,
+      "w": 0.588,
+      "h": 0.2,
+      "rot": 0,
+      "shape": "rect"
+    },
+    {
+      "number": "2",
+      "x": -0.7685,
+      "y": 0.2,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 0,
+      "shape": "rect"
+    },
+    {
+      "number": "3",
+      "x": -0.6,
+      "y": 0.7685,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 90,
+      "shape": "rect"
+    },
+    {
+      "number": "4",
+      "x": -0.2,
+      "y": 0.7685,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 90,
+      "shape": "rect"
+    },
+    {
+      "number": "5",
+      "x": 0.2,
+      "y": 0.7685,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 90,
+      "shape": "rect"
+    },
+    {
+      "number": "6",
+      "x": 0.6,
+      "y": 0.7685,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 90,
+      "shape": "rect"
+    },
+    {
+      "number": "7",
+      "x": 0.7685,
+      "y": 0.2,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 180,
+      "shape": "rect"
+    },
+    {
+      "number": "8",
+      "x": 0.7685,
+      "y": -0.2,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 180,
+      "shape": "rect"
+    },
+    {
+      "number": "9",
+      "x": 0.6,
+      "y": -0.7685,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 270,
+      "shape": "rect"
+    },
+    {
+      "number": "10",
+      "x": 0.2,
+      "y": -0.7685,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 270,
+      "shape": "rect"
+    },
+    {
+      "number": "11",
+      "x": -0.2,
+      "y": -0.7685,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 270,
+      "shape": "rect"
+    },
+    {
+      "number": "12",
+      "x": -0.6,
+      "y": -0.7685,
+      "w": 0.563,
+      "h": 0.2,
+      "rot": 270,
+      "shape": "rect"
+    }
+  ],
+  "removed_nc": [],
+  "exposed": [],
+  "paste": {
+    "ratio_min": 0.95,
+    "ratio_max": 1.05
+  },
+  "body": {
+    "w": 1.8,
+    "h": 1.8,
+    "x": 0,
+    "y": 0
+  },
+  "courtyard_margin": 0.1,
+  "pin1": "1",
+  "y_axis": "down",
+  "view": "top"
+}

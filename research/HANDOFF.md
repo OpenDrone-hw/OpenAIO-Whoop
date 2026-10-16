@@ -5,6 +5,11 @@ initial layout. Every part and IO pad is placed, synced to the schematic, with
 planes and rule areas in. Nothing is routed. Routing is the next step and is
 yours.
 
+2026-10-13 (D123): the board is now 8-layer HDI 1+6+1 with no tracks or vias. The stack-up section below is
+current; the placement facts, check results and routing steps further down describe the 6-layer board
+(its L5 GND is now L7 In6.Cu, its L6 B.Cu is now L8, buried vias span L2-L7). The layer plan is in
+`research/ROUTING.md`.
+
 ## What is in the repo
 
 | Item | Where | State |
@@ -12,14 +17,15 @@ yours.
 | Schematic | `hardware/OpenAIO-Whoop.kicad_sch` + 10 sub-sheets, `hardware/OpenAIO-Whoop-schematic.pdf` | final; ERC 0 errors |
 | Layout | `hardware/OpenAIO-Whoop.kicad_pcb` | placement, pours and rule areas; 0 tracks, 499 unrouted connections |
 | Library | `hardware/lib.kicad_sym`, `hardware/lib.pretty` (114 footprints), `hardware/lib.3dshapes`, `hardware/KiCad-Library` submodule (fdf8319) | every symbol, footprint and 3D model resolves from a fresh clone; see `research/LIBRARY.md` |
-| Rules | `hardware/OpenAIO-Whoop.kicad_pro` (net classes, HDI layer pairs), `hardware/OpenAIO-Whoop.kicad_dru` | both written by `hardware/tools/setup_board.py`; change the script and re-run it, do not hand-edit |
+| Rules | `hardware/OpenAIO-Whoop.kicad_pro` (net classes, HDI layer pairs), `hardware/OpenAIO-Whoop.kicad_dru` | edited in KiCad Board Setup since D123; `hardware/tools/setup_board.py` still writes the 6-layer setup, do not re-run it |
 | Renders | `images/front.png`, `images/back.png` | 3D renders of this board (4f845ba5), with the optional motor headers shown fitted |
 
 Placement facts (from the board, md5 4f845ba5):
 
+- Superseded by the 2026-10-11 schematic trim (D114): after the board sync the board holds 249 footprints (125 front, 124 back); the counts below are the pre-trim placement.
 - 266 footprints: 134 on the front, 132 on the back. 20 are DNP: the 4 motor
-  headers J4/J7/J10/J13, the 13 battery and IO solder pads, the AE1 wire hole, and C132/C133
-  (Wi-Fi tuning, 1.2 pF).
+  headers J4/J7/J10/J13, the 13 battery and IO solder pads and the AE1 wire hole. The
+  C132/C133 Wi-Fi tuning caps counted here are not in the netlist (2026-10-13).
 - Outline: 30.35 x 30.35 mm bounding box, 673.42 mm2. That is the 26.4 mm body,
   three D3.5 ear holes on the 25.5 mm pattern, and a 45-degree front chamfer
   with c = 3.0 mm (D112).
@@ -30,7 +36,8 @@ Placement facts (from the board, md5 4f845ba5):
   - Exceptions to D107 (open item 3): 18 +BATT microvias and 5 +BATT buried
     vias stand free in the R1 battery-feed field.
 - Every RF net now has all its pads on one side (open item 0, done). The
-  Wi-Fi pi network R88/C132/C133 is on the back with U16 and AE2. AE2 moved
+  Wi-Fi path is on the back with U16 and AE2: U16 pin 2 connects straight to AE2
+  (the R88/C132/C133 pi network recorded here earlier is not in the netlist, 2026-10-13). AE2 moved
   1.50 mm along the chamfer, and its five WIFI_* rule areas moved with it. C110
   is on the front with U19, L3 and U20. R44 and C117 (back) moved 0.32 and
   1.13 mm to make room. No other part, via or outline segment changed.
@@ -52,31 +59,28 @@ most 3D models. After any scripted save, restore the `.kicad_pro` from git.
 
 ## Stack-up and via set
 
-NextPCB 6L 1.0 mm, 1.027 mm with mask, FR-4 Dk 4.2. Outer copper is 1 oz
-finished, inner copper 0.5 oz (`hardware/tools/stackup.json`).
+NextPCB 8L HDI 1+6+1, 0.997 mm with mask, 1 oz (35 um) on every layer, ENIG
+(D123, `hardware/tools/stackup.json`).
 
-| Layer | Copper | Role (DESIGN-SPEC.md 8.2, v4 DRU) | Pours on the board now |
-|---|---|---|---|
-| L1 F.Cu | 35 um | top parts, 5.8 GHz and 2.4 GHz RX lines, phase copper | GND x4, +BATT x5 local |
-| prepreg 1080 | 77 um | | |
-| L2 In1.Cu | 17.5 um | solid GND (RF and top reference, ESC return) | GND, +BATT islands x4 under FETs |
-| core | 300 um | | |
-| L3 In2.Cu | 17.5 um | digital signals between the sides | GND fill (cut back as you route) |
-| prepreg 2313 | 103 um | | |
-| L4 In3.Cu | 17.5 um | +BATT plane (ESC feed) | +BATT, 616.8 mm2 filled |
-| core | 300 um | | |
-| L5 In4.Cu | 17.5 um | solid GND (bottom reference, ESC return) | GND, +BATT islands x8 under FETs |
-| prepreg 1080 | 77 um | | |
-| L6 B.Cu | 35 um | bottom parts, Wi-Fi feed, Kelvin pair | GND x8, +BATT x8 local |
+| Layer | Role | Dielectric below |
+|---|---|---|
+| L1 F.Cu | top parts, RF, video, analog, power loops | 1080 0.077 Dk 4.0 |
+| L2 In1.Cu | GND plane, no tracks (zone L2_GND) | 1080 0.077 Dk 4.0 |
+| L3 In2.Cu | signals, ESC gate and BEMF escapes | core 0.127 Dk 4.3 |
+| L4 In3.Cu | +BATT plane (zone L4_BATT) | 2116 0.125 Dk 4.2 |
+| L5 In4.Cu | regulated rails plane (+5V_BST, +5V, +3V3), no zone yet | core 0.127 Dk 4.3 |
+| L6 In5.Cu | signals, ESC gate and BEMF escapes | 1080 0.077 Dk 4.0 |
+| L7 In6.Cu | GND plane, no tracks (zone L7_GND) | 1080 0.077 Dk 4.0 |
+| L8 B.Cu | bottom parts, Wi-Fi feed, Kelvin pair, power loops | |
 
-HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
+| Via | Span | Drill / pad |
+|---|---|---|
+| Laser microvia (Ctrl+V) | F.Cu-In1.Cu, In6.Cu-B.Cu | 0.10 / 0.25, copper filled, in pad |
+| Buried (Alt+Shift+V, preset "Buried L2-L7") | In1.Cu-In6.Cu | 0.15 / 0.35, power 0.20 / 0.40, resin filled, staggered 0.25 mm from its microvia |
+| Through, mechanical blind, stacked micro on buried | | not allowed (DRC errors) |
 
-- Laser microvias 0.10 / 0.25 mm, L1-L2 and L6-L5, copper filled, in pad.
-- Buried vias 0.20 / 0.35 mm, L2-L5, plated over (POFV), staggered 0.25 mm
-  from their microvia. No stacking.
-- Through vias are allowed but should be a last resort.
-- D107: every microvia goes in a same-net pad and every buried via under a part
-  body; there are no free-standing stitching vias.
+D107 still applies: every microvia goes in a same-net pad and every buried
+via under a part body.
 
 ## Checks and the files they used
 
@@ -114,10 +118,9 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
      a via. The DRU comment still says the RTC6705 is on the bottom; that is
      out of date. C110's pad is 0.05 mm inside the left edge of
      `RF_VTX_STRIP`.
-   - Wi-Fi, all on the back (L6 over L5): U16 pin 2 to R88 is 0.95 mm, R88
-     to the AE2 feed is 0.60 mm (pad centres). The C133 and C132 shunts sit
-     0.60 and 0.52 mm from the R88 pads. Their GND pads are outside
-     `WIFI_VOID_V1`.
+   - Wi-Fi, all on the back (L6 over L5): U16 pin 2 connects directly to the
+     AE2 feed; there is no R88, C132 or C133 in the netlist (2026-10-13). The
+     distances to those parts recorded here earlier no longer apply.
 3. **ESC power path** (D103). The path runs from the battery pads to the R1
    shunt, onto the L4 +BATT plane, through buried vias into the In1/In4
    islands, and up microvias into each AGM210MAP +BATT pad and its 22 uF cap.
@@ -139,7 +142,8 @@ HDI 1+4+1 (D97, `research/FLOORPLAN-V4.md` section 18):
    - `/VTX/RF_PAOUT1`: C110 moved to the front (112.925, 106.375), beside L3.
      The whole 5.8 GHz chain is now on the front. That leaves `/VTX/RF_PA_IN`
      with both pads on the front, so its via exception is no longer needed.
-   - `/RX/RF_WIFI` and `/RX/RF_WIFI_ANT`: R88, C132 and C133 moved to the back,
+   - `/RX/RF_WIFI` (the `/RX/RF_WIFI_ANT` net and R88, C132, C133 are not in the
+     netlist, 2026-10-13): historically R88, C132 and C133 were moved to the back,
      between U16 pin 2 and AE2.
      - There was only 0.73 mm between U16 pin 2 and the AE2 feed pad.
      - AE2 could not move toward the chamfer: its pads are 0.65 mm from the

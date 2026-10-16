@@ -1,0 +1,156 @@
+(footprint "OSC-SMD_4P-L2.0-W1.6-BL_YXC_YSO110TR_Dense"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "YXC YSO110TR 2.0x1.6 CMOS oscillator (X1 OT201612MJBA4SL): datasheet p2 recommended land 0.9x0.8, gaps 0.5/0.3, outer edges trimmed to the 2.1x1.7 dense envelope")
+	(tags "YXC OW7EL89CENUNFAYLC-52M TCXO 2016")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "b2502314-269e-4aac-95b7-56c81b6dcae3")
+		(effects
+			(font
+				(size 0.66 0.66)
+				(thickness 0.099)
+			)
+		)
+	)
+	(property "Value" "OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense"
+		(at 0 1.485 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "334936dc-bc81-4afb-b9e2-ec50c3287278")
+		(effects
+			(font
+				(size 0.66 0.66)
+				(thickness 0.099)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c3678082-be7e-4d37-ba24-71610865092f")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7b03a1f5-a03c-4c34-ade7-515fe5d71d97")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.15 -0.95)
+		(end 1.15 0.95)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "66f7c8cf-5886-41ef-a2c9-4beb2cbfd64c")
+	)
+	(fp_line
+		(start -1.025 -0.825)
+		(end 1.025 -0.825)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "494de4a7-20f9-427a-ab55-b73822bb06f6")
+	)
+	(fp_line
+		(start -1.025 0.575)
+		(end -1.025 -0.825)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ac530c91-4064-426c-beb0-3c6b5c4947e1")
+	)
+	(fp_line
+		(start -0.775 0.825)
+		(end -1.025 0.575)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3d5e59d5-a88e-4e7d-b2df-4c1ebd383083")
+	)
+	(fp_line
+		(start 1.025 -0.825)
+		(end 1.025 0.825)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "1412a698-4b48-415f-82c8-03f8eb6f1928")
+	)
+	(fp_line
+		(start 1.025 0.825)
+		(end -0.775 0.825)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "58106ad6-5e1a-4a8e-902c-a926cab09d1c")
+	)
+	(pad "1" smd rect
+		(at -0.65 0.5)
+		(size 0.8 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "f0e256ee-8d57-4944-ba61-41587bccfed4")
+	)
+	(pad "2" smd rect
+		(at 0.65 0.5)
+		(size 0.8 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "2b58af46-f9ad-4a5c-af20-c8f0567d4c48")
+	)
+	(pad "3" smd rect
+		(at 0.65 -0.5)
+		(size 0.8 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "783bfb78-b5ff-4104-969c-3bc3dcad1a3b")
+	)
+	(pad "4" smd rect
+		(at -0.65 -0.5)
+		(size 0.8 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "494bfafc-1269-40cf-82a3-bc507ecbd769")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z.wrl"
+		(offset
+			(xyz 0 -0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

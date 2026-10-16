@@ -36,7 +36,7 @@ manufactured yet.
 |---|---|
 | Target class | 1S whoops, 65 to 85 mm |
 | Mounting | 25.5 x 25.5 mm, three ear holes |
-| Board | 26.4 mm body, 6-layer HDI 1+4+1, 1.0 mm |
+| Board | 26.4 mm body, 8-layer HDI 1+6+1, 1.0 mm |
 | Input | 1S LiPo (3.0-4.35 V), solder pads |
 | Firmware | Betaflight, Bluejay, ExpressLRS |
 | MCU | RP2354A |
@@ -46,12 +46,22 @@ manufactured yet.
 | Receiver | Onboard ExpressLRS 2.4 GHz, ESP32-PICO-V3 + SX1281, wire antenna |
 | Video | Onboard analog VTX, RTC6705 + SE5004L PA, U.FL |
 | OSD | Analog, PIO framebuffer |
-| Digital video | DJI O4 Lite pads, switched 5 V and UART |
+| Digital video | DJI O4 Lite pads J26 VHD (5 V boost), J27 GND, J28 TX, J29 RX (hardware UART0), optional SBUS pad J34 (GPIO29, 3.3 V logic); plug J35 JST SH 1.0 4-pin side entry (1 VHD, 2 GND, 3 TX, 4 RX) for a pre-wired harness to the DJI 6-pin |
 | Motors | Molex PicoBlade 1.25 mm 3-pin lands, plug or solder |
 | USB | JST SH 1.0 mm 4-pin |
 | Camera | JST SUR 0.8 mm 3-pin plug and solder pads |
 
-Technical write-up, part list and layout constraints: [AGENTS.md](AGENTS.md).
+Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10. Keep the complete hardware folder together.
+
+- [Placement, layer use and file guide](research/ROUTING.md)
+- [Electrical design reference](research/DESIGN-SPEC.md)
+- [Exact pin map](research/PINMAP.md)
+- [Betaflight target and build instructions](firmware/betaflight/README.md)
+- [ExpressLRS binding](firmware/expresslrs/README.md)
+
+The board is synchronized to the schematic, with inherited component positions
+and no routing. Placement and routing are unfinished. The images above
+are earlier design views, not a manufacturing release.
 
 ## Constraints
 
@@ -66,8 +76,28 @@ Technical write-up, part list and layout constraints: [AGENTS.md](AGENTS.md).
   SX1281 design on an ESP32-PICO-V3 and talks CRSF to the FC; the same ESP32
   controls the VTX.
 - Passives 0201 and up, no 01005, so the board stays hand-reworkable.
+- No battery protection on the board: no reverse-polarity protection, no TVS
+  and no low-cell cutoff. The 5 V boost runs the cell down to about 1 V, so
+  unplug the battery after landing.
 - Assembly house chosen per release. Fab-ready manufacturing files are kept in
   a private Incutec production repository and are not published.
+
+### Electrical limits
+
+| Item | Limit | Source |
+|---|---|---|
+| Battery pad J2 | 1S only, 3.0 to 4.35 V. A 2S pack damages the TPS61022 (VIN abs max 7 V) and U4 (VIN abs max 6 V) | TPS61022 SLVSDX7D, TLV757P SBVS322C |
+| +5V pad (J21) and camera feed (J24, J32) | 1 A, pad voltage 4.4 to 5.4 V (D10 Schottky drop 0.42 to 0.50 V at 1.5 A) | MS2A40LDF datasheet |
+| 1.5 A | `+5V_BST` only (J26 VHD pad), not the +5V pad | TPS61022 output behind D10 |
+
+### VTX control path
+
+| Item | Value |
+|---|---|
+| Protocol | ExpressLRS MSP-VTX, CRSF receiver on UART1 (GPIO8/9) |
+| VTX owner | ESP32-PICO-V3 drives the RTC6705 over SPI and the SE5004L reference through PA_EN (GPIO21) |
+| Pit mode | Not implemented as a PA_EN drop: pit mode does not stop SPI activity or remove the PA reference (firmware/expresslrs/README.md). Dropping PA_EN in pit mode and at lowest power is an open firmware item |
+| HD hold-off | RP2354 GPIO19 (`HD_EN`) high permits analog VTX power, low switches it off; fixed HD builds set `pinio_config = 1,1,1,1` |
 
 ## Prior art
 

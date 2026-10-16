@@ -12,16 +12,45 @@ work in `p2v3/integ4_work/`).
 
 ## Summary
 
+Counts of 2026-10-11 (owner review: BOM trim D114/D115, NextPCB rules D116, critique round fixes).
+
 | Item | Count |
 |---|---|
-| Symbols in `hardware/lib.kicad_sym` | 34 (19 from the merge, 3 for D52, 6 for D56-D58, 2 for D63, 4 for D65-D66) |
-| Footprints in `hardware/lib.pretty` | 85 (70 from the merge, 1 for D52, 6 for D56-D58, 3 for D63, 5 for D65-D67) |
-| 3D models in `hardware/lib.3dshapes` | 34 |
-| Land specs in `hardware/tools/land_specs` | 85 lib specs (+3 checker test specs) |
-| bom_plan entries (D52-D67 plan) | 268 = 229 fitted + 6 DNP + 33 pads / mechanics; 82 BOM lines (+ 2 DNP-only); 53 footprints (all `lib:`), 50 symbols (24 `lib:`) |
-| check_footprint, bom_plan footprints | 53 / 53 PASS |
-| check_footprint, all lib footprints | 85 / 85 PASS (8 with the intended 'lands without paste' WARN: solder, motor and test pads, the plug-ready motor land, the test via, the pogo footprint, the Wi-Fi edge strip) |
-| Entries resolving (symbol + footprint via lib tables, pins = pads) | 268 / 268; all 34 lib symbols resolve to their Footprint field, pins = pads, `${KIPRJMOD}` 3D files present |
+| Symbols in `hardware/lib.kicad_sym` | 38, every one placed; each symbol's default Footprint is the footprint the schematic places |
+| Footprints in `hardware/lib.pretty` | 106 |
+| 3D models in `hardware/lib.3dshapes` | 29 |
+| Land specs in `hardware/tools/land_specs` | 106 lib specs (+3 checker test specs that fail by design) |
+| bom_plan entries | 252 parts on 48 footprints, 24 DNP |
+| check_footprint, all lib footprints | 106 / 106 PASS |
+
+Footprint variants (D109, D111):
+
+| Suffix | Land | Use |
+|---|---|---|
+| `_L` | IPC-7351 least: lands 0.05-0.15 mm past the package, courtyard 0.1 mm | default for ICs and connectors on this board |
+| `_Dense` | datasheet land with the outer edges trimmed to the budget envelope, inner gaps kept | crystals, oscillators, small logic, passive arrays |
+| `_W` | datasheet recommended land, wider toes | fallback where an assembler asks for more toe |
+| no suffix | catalogue or datasheet land as drawn | source of the variants above |
+
+## 2026-10-11 owner review
+
+- Removed with the D114 BOM trim, from the symbol library: SMF5.0A, TPS22810DRVR, D_BAS16LD, R_Selector_3Pin, and the long-unused
+  74LVC1T45GS, BC847QASZ, CSD13202Q2, CSD25310Q2, DEA102700LT-6307A2, ESP32-D0WD-V3, GD25Q32EEIGR, SM04B-SRSS-TB,
+  SX1280IMLTRT, TPS22810DBVR, TS2306A240GFMSM9, W25Q128JVPIM.
+- Removed footprints, their land specs and unused 3D files: TI_SON-6_2x2mm_CSD25310Q2, TI_SON-6_2x2mm_DQK_CSD13202Q2,
+  QFN-48_5x5mm_P0.35mm_EP_ESP32-D0WD, USON-8_3x2mm_P0.5mm_EP_GD25Q32E, WSON-8_6x5mm_P1.27mm_NoEP,
+  Nexperia_DFN1010B-6_SOT1216, Nexperia_XSON6_SOT1202_1x1mm, TestPoint_Via_D0.35mm_Drill0.2mm, R_0402_Selector_3Pad,
+  MotorPad_PicoBlade step. Footprints still on the placed board for removed parts (SOD-123FL_..._Dense D1,
+  Nexperia_SOD882D_L D2, R_0402_Selector_3Pad_L R67) go after the board sync.
+- New `lib:OSC-SMD_4P-L2.0-W1.6-BL_YXC_YSO110TR_Dense` for X1 OT201612MJBA4SL from the YSO110TR sheet p2 (0.8 x 0.7
+  lands at +-0.65 / +-0.5, covering the 0.57 x 0.475 terminals). X1 sat on the X3 TCXO land, which covered about 65 %
+  of each terminal.
+- X3 OW7EL89CENUNFAYLC-52M symbol: pin 1 is NC (YXC clipped-sine table), was named GND.
+- C122, C123, C134 moved to 0201 GRM035R60J475ME15D (6.3 V X5R) on `lib:C_0201_0603Metric_L`.
+- Datasheet fields: dead or HTML-only links replaced with URLs verified to return a PDF (RTC6705, SE5004L, FL2, X1,
+  EFM8BB51, BC857BM, FTC252012, HCS1206, Molex 53047).
+- Still open: the 14 lib symbols that share a name with the OpenDrone catalogue differ only in pin electrical types;
+  upstreaming the typed symbols to KiCad-Library is a separate reviewed change.
 
 ## D113 complete library from a recursive clone (2026-10-10)
 

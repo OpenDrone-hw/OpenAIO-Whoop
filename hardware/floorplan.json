@@ -6,7 +6,8 @@
   "coordinates": "poly: absolute KiCad mm; rel_mm / at: relative to the body centre (113.2, 113.2)",
   "regions": "spec 10 blocks as realised by the hand-tuned placement; *_outer_* = parts more than 3.0 mm from their block's main part",
   "parts_total": 275,
-  "placed": 272
+  "placed": 272,
+  "status": "v3 placement snapshot of 2026-10-09; predates D114 (17 parts removed: D1, R2, R3, C5, U5, C16, C129, R9, R10, R87, D2, R67, TH1, R70, R84, C121, C92). The o4_t / o4_b regions and power_entry_t entries for those parts are stale; the board is the authority."
  },
  "regions": {
   "art_t": {

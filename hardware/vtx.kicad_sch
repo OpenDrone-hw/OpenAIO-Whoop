@@ -766,279 +766,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:Thermistor_NTC"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "TH"
-				(at -4.445 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Thermistor_NTC"
-				(at 3.175 0 90)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Temperature dependent resistor, negative temperature coefficient"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "thermistor NTC resistor sensor RTD"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "R_* RV_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "Thermistor_NTC_0_1"
-				(arc
-					(start -3.175 2.413)
-					(mid -3.0506 2.3165)
-					(end -3.048 2.159)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -3.048 2.794)
-					(mid -2.9736 2.9736)
-					(end -2.794 3.048)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -2.794 3.048)
-					(mid -2.6144 2.9736)
-					(end -2.54 2.794)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -2.794 2.54)
-					(mid -2.9736 2.6144)
-					(end -3.048 2.794)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -2.794 1.905)
-					(mid -2.9736 1.9794)
-					(end -3.048 2.159)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -2.54 2.159)
-					(mid -2.6144 1.9794)
-					(end -2.794 1.905)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -2.159 2.794)
-					(mid -2.434 2.5608)
-					(end -2.794 2.54)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 2.159) (xy -2.54 2.794)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 -3.683) (xy -2.54 -1.397) (xy -2.794 -2.159) (xy -2.286 -2.159) (xy -2.54 -1.397) (xy -2.54 -1.651)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.778 2.54) (xy -1.778 1.524) (xy 1.778 -1.524) (xy 1.778 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.778 -1.397) (xy -1.778 -3.683) (xy -2.032 -2.921) (xy -1.524 -2.921) (xy -1.778 -3.683)
-						(xy -1.778 -3.429)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start -1.016 2.54)
-					(end 1.016 -2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Thermistor_NTC_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "lib:AP1606"
 			(pin_names
 				(hide yes)
@@ -1068,7 +795,7 @@
 					)
 				)
 			)
-			(property "Footprint" "OpenDrone:DFN-3L_L1.0-W0.6-P0.65-BR"
+			(property "Footprint" "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W"
 				(at 0 -15.24 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1427,7 +1154,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/C549525.pdf"
+			(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Nexperia-BC857BM-315_C549525.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1646,218 +1373,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "lib:LP5907SNX-2.85"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at -7.62 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "LP5907-2.85"
-				(at 7.62 6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Footprint" "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense"
-				(at 0 -10.16 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/lp5907.pdf"
-				(at 0 -12.7 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "250 mA ultra-low-noise LDO, fixed 2.85 V +-2 %, VIN 2.2-5.5 V, EN with 1 M pull-down and 230 ohm active output discharge, X2SON-4 1x1 mm (DQN); EP (5) = thermal pad, GND or floating"
-				(at 0 -15.24 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "Texas Instruments"
-				(at 0 -17.78 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "LP5907SNX-2.85/NOPB"
-				(at 0 -20.32 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC" ""
-				(at 0 -22.86 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "LDO regulator 2.85V 250mA low noise X2SON LP5907"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "LP5907SNX-2.85_0_1"
-				(rectangle
-					(start -7.62 5.08)
-					(end 7.62 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "LP5907SNX-2.85_1_1"
-				(pin power_out line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(name "OUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -1.27 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 -2.54 0)
-					(length 2.54)
-					(name "EN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(name "IN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 1.27 -7.62 90)
-					(length 2.54)
-					(name "EP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "lib:LP5912-3.3DRVR"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -1884,7 +1399,7 @@
 					)
 				)
 			)
-			(property "Footprint" "OpenDrone:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm"
+			(property "Footprint" "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L"
 				(at 0 -11.43 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2156,7 +1671,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/C2442150.pdf"
+			(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2108060630_Walsin-Tech-Corp-RFBPF1608060K98Q1C_C2442150.pdf"
 				(at 0 -11.43 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2358,7 +1873,7 @@
 					(justify right)
 				)
 			)
-			(property "Footprint" "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_Dense"
+			(property "Footprint" "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_L"
 				(at 0 -33.02 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2369,7 +1884,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/C913074.pdf"
+			(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/7e020bec5b18bc7a241687b74c0020d6.pdf?productCode=C913074"
 				(at 0 -35.56 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2737,7 +2252,7 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -3.81 30.48 270)
 					(length 2.54)
 					(name "AVDD_6.5"
@@ -3190,220 +2705,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "lib:R_Selector_3Pin"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "R"
-				(at -5.08 3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "0R"
-				(at 5.08 3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Footprint" "lib:R_0402_Selector_3Pad"
-				(at 0 -7.62 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402JR-070RL"
-				(at 0 -10.16 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Assembly-time selector: ONE 0402 0 R fitted across COM-A (pads 1-2, default) or COM-B (pads 2-3) of the 3-pad land; a single 0402 cannot bridge A-B. PA VCC = +BATT (A, default) or +5V (B), DESIGN-SPEC 4.2"
-				(at 0 -12.7 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "Yageo"
-				(at 0 -15.24 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "RC0402JR-070RL"
-				(at 0 -17.78 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC" "C60485"
-				(at 0 -20.32 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "selector jumper 0R 0402 option"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "R_Selector_3Pin_0_1"
-				(rectangle
-					(start -5.08 2.54)
-					(end 5.08 -2.54)
-					(stroke
-						(width 0)
-						(type dash)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -3.81 0.762)
-					(end -1.27 -0.762)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start 1.27 0.762)
-					(end 3.81 -0.762)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R_Selector_3Pin_1_1"
-				(pin passive line
-					(at -7.62 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -5.08 90)
-					(length 2.54)
-					(name "COM"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "lib:SE5004L-R"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -3432,7 +2733,7 @@
 					(justify right)
 				)
 			)
-			(property "Footprint" "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L"
+			(property "Footprint" "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L_L"
 				(at 0 -17.78 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3443,7 +2744,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/C210263.pdf"
+			(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/1912111437_Skyworks-Solutions-SE5004L-R_C210263.pdf"
 				(at 0 -20.32 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3904,6 +3205,218 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "lib:TPS7A20285PDQN"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -7.62 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "TPS7A20285"
+				(at 7.62 6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify right)
+				)
+			)
+			(property "Footprint" "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense"
+				(at 0 -10.16 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps7a20.pdf"
+				(at 0 -12.7 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "300 mA low-noise LDO, fixed 2.85 V, +/-1.5% at VIN >= 3.15 V and IOUT >= 1 mA, X2SON-4 1x1 mm (DQN); EP pin 5 to GND"
+				(at 0 -15.24 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Texas Instruments"
+				(at 0 -17.78 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "TPS7A20285PDQNR"
+				(at 0 -20.32 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC" "C3748388"
+				(at 0 -22.86 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "LDO 2.85V 300mA low noise X2SON DQN"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "TPS7A20285PDQN_0_1"
+				(rectangle
+					(start -7.62 5.08)
+					(end 7.62 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "TPS7A20285PDQN_1_1"
+				(pin power_out line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -1.27 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 2.54 0)
+					(length 2.54)
+					(name "IN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 1.27 -7.62 90)
+					(length 2.54)
+					(name "EP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "lib:U.FL-R-SMT-1(80)"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -3930,7 +3443,7 @@
 					)
 				)
 			)
-			(property "Footprint" "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical"
+			(property "Footprint" "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical_L"
 				(at 0 -12.7 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -5432,7 +4945,7 @@
 		)
 		(uuid "2c0eab51-0081-5739-8e4d-004e421f2cc5")
 	)
-	(text "RTC6705 VTX: 8 MHz CRYSTAL, SPI, VIDEO, PLL, PA DRIVE, PAOUT1 FEED"
+	(text "RTC6705 VTX"
 		(exclude_from_sim no)
 		(at 139.7 30.48 0)
 		(effects
@@ -5528,7 +5041,7 @@
 		)
 		(uuid "81141ac4-f492-5c1a-9cdd-b421bb419cdc")
 	)
-	(text "PA DETECTOR + NTC"
+	(text "PA DETECTOR"
 		(exclude_from_sim no)
 		(at 383.54 147.32 0)
 		(effects
@@ -5567,7 +5080,7 @@
 		)
 		(uuid "a6bd0c95-d099-5aa4-8e57-757eab9ddf68")
 	)
-	(text "Decoupling at the RTC6705 supply pins (pin numbers next to each capacitor):"
+	(text "RTC6705 decoupling (pin numbers by each cap)"
 		(exclude_from_sim no)
 		(at 147.32 38.1 0)
 		(effects
@@ -5628,7 +5141,7 @@
 		)
 		(uuid "d4c7280d-a782-56a4-9441-f1d2dfd1c1eb")
 	)
-	(text "PA REFERENCE LP5907-2.85"
+	(text "PA REFERENCE TPS7A20-2.85"
 		(exclude_from_sim no)
 		(at 17.78 113.03 0)
 		(effects
@@ -5685,7 +5198,7 @@
 		)
 		(uuid "fa8cf270-c9c1-54b3-a251-bfcda8e015a1")
 	)
-	(text_box "U22 LP5907-2.85 PA reference from +3.3V_VTX: EN = PA_EN (ESP32 GPIO21, D111 map); its 1 MOhm EN pull-down holds the PA off until ELRS drives it. C122 4.7 uF CIN within 1 cm, C123 4.7 uF out.\nBench-gated: the VREF window vs the SE5004L (V5) and the HD switch-on excursion of PA_VREF (V9); fallback C123 1 uF or patched ELRS drops PA_EN on HD_EN."
+	(text_box "U22 TPS7A20285: 2.85 V +/-1.5% from +3.3V_VTX; EN = PA_EN (GPIO21), internal pull-down.\nVIN >= 3.15 V; PA internal 2k load meets IOUT >= 1 mA. C122/C123 4.7 uF local bypass."
 		(exclude_from_sim no)
 		(at 20.32 149.86 0)
 		(size 111.76 13.3)
@@ -5705,7 +5218,7 @@
 		)
 		(uuid "13f3de22-71bb-5e9f-bd38-b143648a6555")
 	)
-	(text_box "U21 LP5912-3.3 VTX supply on +5V; CIN = shared C13 on POWER if within 1 cm, else its own 10 uF.\nEN = VTX_PWR_EN: R68 10k to +3.3V keeps the VTX on with stock ELRS (GPIO4 has a weak reset pull-down).\nFIRMWARE RULE: patched ELRS drives ESP32 GPIO4 OPEN-DRAIN through R84 270R: low = VTX off, released = on. Never drive GPIO4 push-pull high (12 mA into Q28 in HD mode, fault case).\nQ28 AP1606 on HD_EN pulls EN low in HD mode (VTX off). +3.3V_VTX COUT about 6.8 uF effective; C108 at the RTC6705 VCO pins 39/40."
+	(text_box "U21 LP5912-3.3 on +5V, CIN = C13 on POWER if within 1 cm. EN = RP2354 GPIO19 (HD_EN).\nHigh = analog enabled; low = HD / analog off. R68 10k holds analog on during reset. C108 at VCO supply."
 		(exclude_from_sim no)
 		(at 20.32 86.36 0)
 		(size 111.76 19.48)
@@ -5725,7 +5238,7 @@
 		)
 		(uuid "2dab5148-fcea-596e-bbc5-a92175f5e2e5")
 	)
-	(text_box "PA_DET: DET -> R66 1k / C117 100p -> ESP32 GPIO36 (ADC1); keep the RC at the ESP32 end. PA_NTC: TH1 in the PA ring + R70 10k -> GPIO37 (1.65 V at 25 C). FL2 BPF on the PA side; J1 U.FL with L2 cut out under the signal pad, >= 4 GND vias."
+	(text_box "PA_DET: DET -> R66 1k / C117 100p -> ESP32 GPIO36, RC at the ESP32 end. J1 U.FL with the L2 plane cut out under the signal pad, >= 4 GND vias."
 		(exclude_from_sim no)
 		(at 307.34 198.89 0)
 		(size 170.18 7.12)
@@ -5745,7 +5258,7 @@
 		)
 		(uuid "3aaaa757-c5be-52bc-9e4f-5bd5a60a8d95")
 	)
-	(text_box "SE5004L PA (EK1 layout): RFout has an internal DC shunt, so RFout -> FL2 directly, no match parts. PA_VCC = R67 0R selector: +BATT (default, pads 1-2) or +5V (pads 2-3, rework). EK1 decoupling at 8/9, 18/19 and 20 + C118 10 uF. EP and GND pins to a via field."
+	(text_box "SE5004L (EK1 layout): RFout -> FL2 directly, no match parts. VCC on +BATT; decoupling at pins 8/9, 18/19, 20 + C118 10 uF. EP and GND pins to a via field."
 		(exclude_from_sim no)
 		(at 307.34 190.5 0)
 		(size 170.18 7.12)
@@ -5765,7 +5278,7 @@
 		)
 		(uuid "676f6fac-2d4f-53de-ab5a-f4091824023a")
 	)
-	(text_box "Video modulation and PLL loop filter as OpenOSD-X v1.01: VIDEO_OUT -> R58 || C104, R59, C105, R60 -> VT_MOD with R61/R62 bias. Loop filter CP -> R63 -> VT, C106, R64 + C107. RTC_CP / RTC_VT / RTC_LF / VT_MOD are high-impedance (Analog class): short copper, >= 5 mm from the boost and ESC phases."
+	(text_box "VIDEO_OUT -> R58 || C104, R59, C105, R60 -> VT_MOD with R61/R62 bias; loop filter CP -> R63 -> VT, C106, R64 + C107.\nHigh-impedance (Analog class): short copper, >= 5 mm from boost and ESC phases."
 		(exclude_from_sim no)
 		(at 139.7 207.28 0)
 		(size 160.02 7.12)
@@ -5785,7 +5298,7 @@
 		)
 		(uuid "6be002d0-840e-5af6-befc-ebe1955347e1")
 	)
-	(text_box "PNP PA drive: ESP32 GPIO33 VTX_AMP_PWM (ELRS vtx_amp_pwm, D111 map) -> 2 RC poles -> Q27 BC857 with emitter R73 -> PAOUT1 supply: sets the RTC6705 output-stage current (not the SE5004L bias). GPIO33 is high-impedance from reset and the PA stays off (PA_EN), so boot leakage is bounded (V5).\nStart value R73 = 10R; at the top step R73/R65/Q27 run near their derated ratings: V8 measures, levers 27R or a capped ELRS power table."
+	(text_box "ESP32 GPIO33 VTX_AMP_PWM -> 2 RC poles -> Q27 BC857 with emitter R73 -> PAOUT1 supply: sets the RTC6705 output-stage current.\nR73 10R; at the top step R73/R65/Q27 run near derated ratings."
 		(exclude_from_sim no)
 		(at 139.7 215.67 0)
 		(size 160.02 11.24)
@@ -5805,7 +5318,7 @@
 		)
 		(uuid "9f627506-f93b-5e1c-9d3e-c71fbe308da2")
 	)
-	(text_box "RTC6705 checked pin by pin against OpenOSD-X v1.01: decoupling per pin as drawn (numbers next to each cap); REG1D8, AVDD_6.5 and RF_VT2 open (V5 spur checks). X4 8 MHz exactly (ELRS R = 400), CL 10 pF."
+	(text_box "RTC6705 pin 40 fed via R89 51R + C135 1u; pin 17 via R90 3.3k + C136 1u to GND. X4 8 MHz exactly, CL 10 pF."
 		(exclude_from_sim no)
 		(at 139.7 190.5 0)
 		(size 160.02 7.12)
@@ -5825,7 +5338,7 @@
 		)
 		(uuid "a5e93d82-e7fa-5aa0-925a-f594761d4565")
 	)
-	(text_box "PAOUT1 feed: L3 4.7 nH choke from PAOUT1_SUP (C109), C110 10 pF DC block into the PA input ('DC block required'). Only L3, C109, C110 between pin 35 and the PA: 50 Ohm CPWG < 5 mm, RF class."
+	(text_box "PAOUT1 feed: L3 4.7 nH choke from PAOUT1_SUP (C109), C110 10 pF DC block into the PA input. Only these between pin 35 and the PA: 50 Ohm CPWG < 5 mm, RF class."
 		(exclude_from_sim no)
 		(at 139.7 228.18 0)
 		(size 160.02 7.12)
@@ -5845,7 +5358,7 @@
 		)
 		(uuid "b0089bc5-e8a3-5b94-8575-d9ad95b9ab53")
 	)
-	(text_box "VTX SPI: R80/R81/R82 1k in series, PLACED AT THE ESP32 END: they limit back-feed into the unpowered RTC6705 in HD mode. 1 MHz, the RC is far below the timing limits; SPIDATA is bidirectional (3-wire reads)."
+	(text_box "R80/R81/R82 1k in series on the SPI lines, placed at the ESP32 end: they limit back-feed into the unpowered RTC6705 in HD mode."
 		(exclude_from_sim no)
 		(at 139.7 198.89 0)
 		(size 160.02 7.12)
@@ -5864,46 +5377,6 @@
 			(justify left top)
 		)
 		(uuid "c5df5b8d-aec0-5f2a-b47a-9f31da2999f5")
-	)
-	(text_box "VTX sheet, generated by gen_vtx.py. No sibling exists: circuit per the OpenOSD-X v1.01 reference, the SE5004L datasheet + EK1 and DESIGN-SPEC 4.8. Flow: ESP32 controls (RX sheet) left, RTC6705 middle, PA, BPF and U.FL right."
-		(exclude_from_sim no)
-		(at 485.14 34.29 0)
-		(size 93.98 9.18)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width -0.0001)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "d4a04ddf-be76-56bc-ae36-0bf4ca2c2975")
-	)
-	(text_box "BENCH ITEMS: RF_VT2 spur (V5); PA drive Re (V5/V8); PA_VREF window and HD switch-on (V5/V9); OSD contrast (V9); X4 start-up margin (V5); top-step temperature of Q27/R73/R65 (V5/V8)."
-		(exclude_from_sim no)
-		(at 485.14 44.74 0)
-		(size 93.98 9.18)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width -0.0001)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "e1fe0f24-2271-5eb5-b94d-ef619e078154")
 	)
 	(junction
 		(at 363.22 107.95)
@@ -5984,18 +5457,6 @@
 		(uuid "420cc6d6-01dc-5a52-af76-ebb1566d9532")
 	)
 	(junction
-		(at 318.77 91.44)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4bc89a44-66ee-5b98-b997-1e5bcbc8f60e")
-	)
-	(junction
-		(at 95.25 67.31)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5033e34b-2da1-58cb-9739-e0861a275a1d")
-	)
-	(junction
 		(at 276.86 105.41)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6024,12 +5485,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6408a219-2e9b-554f-bc10-beb83c53251a")
-	)
-	(junction
-		(at 252.73 101.6)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "64dd354a-ac71-50ee-88e4-e32397bb2c73")
 	)
 	(junction
 		(at 241.3 167.64)
@@ -6096,12 +5551,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "85dd9354-be71-5e84-8b89-3d750ea159c5")
-	)
-	(junction
-		(at 393.7 170.18)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "85ded0aa-d63a-516e-9049-7cf817e3030a")
 	)
 	(junction
 		(at 360.68 143.51)
@@ -6186,12 +5635,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e666c057-3511-56c6-a910-0930e7df0287")
-	)
-	(junction
-		(at 229.87 101.6)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "eb68bdc8-e5e1-51dc-bda5-67f0d63d7ac6")
 	)
 	(junction
 		(at 209.55 162.56)
@@ -6286,10 +5729,6 @@
 	(no_connect
 		(at 256.54 146.05)
 		(uuid "f4f67605-f606-5db0-bf96-abd3a7e54c6b")
-	)
-	(no_connect
-		(at 237.49 104.14)
-		(uuid "f9ba98fe-ef25-5e41-a01e-f8c2bdaa0b51")
 	)
 	(no_connect
 		(at 236.22 165.1)
@@ -6424,26 +5863,6 @@
 			(type default)
 		)
 		(uuid "0f8d6251-8262-5524-a836-dafea0b7e2ee")
-	)
-	(wire
-		(pts
-			(xy 368.3 76.2) (xy 373.38 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "10fc49e8-9196-51b1-8742-3e1966c8a384")
-	)
-	(wire
-		(pts
-			(xy 360.68 81.28) (xy 360.68 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "11dc49df-3c85-58ac-9cde-342e136cafc6")
 	)
 	(wire
 		(pts
@@ -6647,16 +6066,6 @@
 	)
 	(wire
 		(pts
-			(xy 41.91 62.23) (xy 50.8 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "31acda33-caf8-5c6c-a6c6-b01cc2a0b034")
-	)
-	(wire
-		(pts
 			(xy 170.18 45.72) (xy 182.88 45.72)
 		)
 		(stroke
@@ -6704,6 +6113,16 @@
 			(type default)
 		)
 		(uuid "3b1fa1bc-3c12-5502-aeba-e30b2ea920a5")
+	)
+	(wire
+		(pts
+			(xy 40.64 62.23) (xy 50.8 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3d22af62-beef-4c94-9dff-2cf67cdcbed9")
 	)
 	(wire
 		(pts
@@ -6857,16 +6276,6 @@
 	)
 	(wire
 		(pts
-			(xy 393.7 170.18) (xy 403.86 170.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "601dda22-6540-559b-a244-974642dc3a22")
-	)
-	(wire
-		(pts
 			(xy 342.9 133.35) (xy 342.9 135.89)
 		)
 		(stroke
@@ -6877,17 +6286,7 @@
 	)
 	(wire
 		(pts
-			(xy 95.25 67.31) (xy 100.33 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "61aa1f5b-5d3d-58ad-b076-6c426ae4fc2a")
-	)
-	(wire
-		(pts
-			(xy 250.19 101.6) (xy 252.73 101.6)
+			(xy 250.19 101.6) (xy 257.81 101.6)
 		)
 		(stroke
 			(width 0)
@@ -6924,16 +6323,6 @@
 			(type default)
 		)
 		(uuid "658ed65b-a000-5d19-a860-7945075cdc94")
-	)
-	(wire
-		(pts
-			(xy 252.73 104.14) (xy 252.73 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6734c749-5958-5c60-b77e-b3a93ec725bd")
 	)
 	(wire
 		(pts
@@ -7027,16 +6416,6 @@
 	)
 	(wire
 		(pts
-			(xy 393.7 166.37) (xy 393.7 170.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7f3a51dd-d4cf-554f-9c2f-f17ffea466ff")
-	)
-	(wire
-		(pts
 			(xy 198.12 138.43) (xy 204.47 138.43)
 		)
 		(stroke
@@ -7097,7 +6476,17 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 135.89) (xy 68.58 140.97)
+			(xy 360.68 76.2) (xy 360.68 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "864609da-c110-4dd9-8742-42f758b5ae93")
+	)
+	(wire
+		(pts
+			(xy 68.58 133.35) (xy 68.58 140.97)
 		)
 		(stroke
 			(width 0)
@@ -7107,23 +6496,13 @@
 	)
 	(wire
 		(pts
-			(xy 312.42 91.44) (xy 318.77 91.44)
+			(xy 312.42 91.44) (xy 325.12 91.44)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "8b9b9383-e14b-59b6-a104-ccc220c57de8")
-	)
-	(wire
-		(pts
-			(xy 252.73 101.6) (xy 257.81 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8e519ff0-0634-5c62-9614-534bb6ca2f21")
 	)
 	(wire
 		(pts
@@ -7164,16 +6543,6 @@
 			(type default)
 		)
 		(uuid "99ad2e24-eee4-5480-bc68-26aca4187066")
-	)
-	(wire
-		(pts
-			(xy 34.29 62.23) (xy 31.75 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9a3449ba-e71a-5667-94f8-7af044b3b996")
 	)
 	(wire
 		(pts
@@ -7247,7 +6616,7 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 67.31) (xy 95.25 67.31)
+			(xy 90.17 67.31) (xy 105.41 67.31)
 		)
 		(stroke
 			(width 0)
@@ -7324,16 +6693,6 @@
 			(type default)
 		)
 		(uuid "ae0dc0c7-7447-54ff-9561-e86a09254da5")
-	)
-	(wire
-		(pts
-			(xy 393.7 170.18) (xy 393.7 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "afc84c1d-4308-50e1-aa59-9883fab65f75")
 	)
 	(wire
 		(pts
@@ -7437,16 +6796,6 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 67.31) (xy 50.8 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bd732bd3-852d-5b8b-8cd1-086c478c598e")
-	)
-	(wire
-		(pts
 			(xy 167.64 138.43) (xy 167.64 130.81)
 		)
 		(stroke
@@ -7457,7 +6806,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 135.89) (xy 68.58 135.89)
+			(xy 71.12 133.35) (xy 68.58 133.35)
 		)
 		(stroke
 			(width 0)
@@ -7534,26 +6883,6 @@
 			(type default)
 		)
 		(uuid "c5c23706-7761-58a1-a066-7645588ce0cd")
-	)
-	(wire
-		(pts
-			(xy 393.7 158.75) (xy 393.7 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c654b287-19ec-5cdb-8096-556bcafb24e5")
-	)
-	(wire
-		(pts
-			(xy 100.33 67.31) (xy 105.41 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c67c447e-bca0-52d0-8d78-0870d261180c")
 	)
 	(wire
 		(pts
@@ -7687,16 +7016,6 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 72.39) (xy 40.64 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "de8794d1-9fd6-5bb6-869a-69a6d5132516")
-	)
-	(wire
-		(pts
 			(xy 260.35 71.12) (xy 266.7 71.12)
 		)
 		(stroke
@@ -7744,16 +7063,6 @@
 			(type default)
 		)
 		(uuid "e34dbe87-59e5-53cf-a89e-a6f9cfe0030e")
-	)
-	(wire
-		(pts
-			(xy 318.77 91.44) (xy 325.12 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e5752d5e-3702-5aa6-9171-25c6cb036ec5")
 	)
 	(wire
 		(pts
@@ -7817,7 +7126,7 @@
 	)
 	(wire
 		(pts
-			(xy 353.06 76.2) (xy 347.98 76.2)
+			(xy 347.98 76.2) (xy 360.68 76.2)
 		)
 		(stroke
 			(width 0)
@@ -7935,6 +7244,16 @@
 		)
 		(uuid "2010d11d-ffa0-5db2-9693-f3cbab91d327")
 	)
+	(label "U19_AVDD65_RC"
+		(at 248.92 40.64 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "23072f3f-c750-4a24-b9e7-5228e5807d0d")
+	)
 	(label "RTC_LF"
 		(at 292.1 139.7 0)
 		(effects
@@ -7944,6 +7263,16 @@
 			(justify left bottom)
 		)
 		(uuid "2387d5bf-3249-56fe-a799-6d0f7e6f88fd")
+	)
+	(label "U19_LDD2V5"
+		(at 233.68 40.64 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "30cce5fe-0996-4003-8c42-f021b0b073c1")
 	)
 	(label "Q27_B"
 		(at 266.7 71.12 90)
@@ -7985,6 +7314,16 @@
 		)
 		(uuid "536a8bff-e5a5-51bb-baec-884e1e86ca9a")
 	)
+	(label "U19_AVDD65"
+		(at 237.49 104.14 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "592f163a-1d6d-47b5-bd38-01f5bf4f3538")
+	)
 	(label "PAOUT1_SUP"
 		(at 278.13 105.41 0)
 		(effects
@@ -8015,6 +7354,16 @@
 		)
 		(uuid "624319aa-d5b4-57ea-8b68-f0a0d3f7a381")
 	)
+	(label "U19_LDD2V5"
+		(at 241.3 33.02 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6605d309-cde3-4a2c-9fe8-35730f821e58")
+	)
 	(label "VT_MOD"
 		(at 207.01 138.43 0)
 		(effects
@@ -8024,16 +7373,6 @@
 			(justify left bottom)
 		)
 		(uuid "6efe44d4-fabb-5037-bb57-baace385f584")
-	)
-	(label "VTX_PWR_EN"
-		(at 53.34 62.23 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "73ae6162-7918-51fa-acd7-65d50d66e513")
 	)
 	(label "RF_UFL"
 		(at 443.23 115.57 0)
@@ -8045,6 +7384,16 @@
 		)
 		(uuid "754fcb9c-6659-5bc2-bb9b-92fb52fa654e")
 	)
+	(label "U19_AVDD65_RC"
+		(at 256.54 33.02 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7eee7868-b00b-4ee5-b2bc-68be1f9de4a7")
+	)
 	(label "PA_RC1"
 		(at 246.38 71.12 90)
 		(effects
@@ -8054,6 +7403,16 @@
 			(justify left bottom)
 		)
 		(uuid "80322322-983c-5634-aeec-6dda523677c7")
+	)
+	(label "U19_LDD2V5"
+		(at 252.73 104.14 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "91fb72a8-bb07-4958-89a2-67dc892dcceb")
 	)
 	(label "Q27_C"
 		(at 276.86 86.36 90)
@@ -8084,16 +7443,6 @@
 			(justify left bottom)
 		)
 		(uuid "9f0b367b-45f1-55a3-a148-62abce2b22d5")
-	)
-	(label "PA_VCC"
-		(at 344.17 91.44 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ac0e9851-6c5f-59c0-bb60-a84d6544875f")
 	)
 	(label "PA_VREF"
 		(at 342.9 115.57 180)
@@ -8155,9 +7504,19 @@
 		)
 		(uuid "eeb02bc4-4ce1-54b2-bcf4-c9a837dfb7f9")
 	)
+	(label "U19_AVDD65"
+		(at 248.92 33.02 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f357bb55-f0e3-4342-908a-af411a56706e")
+	)
 	(hierarchical_label "HD_EN"
 		(shape input)
-		(at 40.64 72.39 180)
+		(at 40.64 62.23 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8176,17 +7535,6 @@
 			(justify right)
 		)
 		(uuid "19c89f6e-4774-5d68-ad90-63936ea15a78")
-	)
-	(hierarchical_label "PA_NTC"
-		(shape output)
-		(at 403.86 170.18 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "39328c2b-e26d-5874-8fd9-2c4456674b29")
 	)
 	(hierarchical_label "PA_EN"
 		(shape input)
@@ -8232,17 +7580,6 @@
 		)
 		(uuid "c3f2f768-cfad-5c87-b377-681c3112d0b5")
 	)
-	(hierarchical_label "VTX_PWR_CTL"
-		(shape input)
-		(at 31.75 62.23 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "c5cc2486-23e1-5d09-8172-7916df21f8b7")
-	)
 	(hierarchical_label "VIDEO_OUT"
 		(shape input)
 		(at 157.48 138.43 180)
@@ -8264,31 +7601,6 @@
 			(justify right)
 		)
 		(uuid "da5e54ef-27b3-5092-8cd4-cf268ce1528c")
-	)
-	(netclass_flag ""
-		(length 2.54)
-		(shape round)
-		(at 367.03 91.44 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c417cb0d-c865-5a60-98a6-d13c506f4a31")
-		(property "Netclass" "Power"
-			(at 367.03 87.63 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-			)
-		)
 	)
 	(netclass_flag ""
 		(length 2.54)
@@ -8341,7 +7653,7 @@
 		)
 	)
 	(symbol
-		(lib_id "lib:LP5907SNX-2.85")
+		(lib_id "lib:TPS7A20285PDQN")
 		(at 81.28 133.35 0)
 		(unit 1)
 		(body_style 1)
@@ -8361,7 +7673,7 @@
 				)
 			)
 		)
-		(property "Value" "LP5907-2.85"
+		(property "Value" "TPS7A20285"
 			(at 88.9 127 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8382,7 +7694,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/lp5907.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps7a20.pdf"
 			(at 81.28 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -8393,7 +7705,7 @@
 				)
 			)
 		)
-		(property "Description" "250 mA ultra-low-noise LDO, fixed 2.85 V +-2 %, VIN 2.2-5.5 V, EN with 1 M pull-down and 230 ohm active output discharge, X2SON-4 1x1 mm (DQN); EP (5) = thermal pad, GND or floating"
+		(property "Description" "300 mA low-noise LDO, fixed 2.85 V, +/-1.5% at VIN >= 3.15 V and IOUT >= 1 mA, X2SON-4 1x1 mm (DQN); EP pin 5 to GND"
 			(at 81.28 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -8404,7 +7716,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C3748388"
 			(at 81.28 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -8415,7 +7727,7 @@
 				)
 			)
 		)
-		(property "MPN" "LP5907SNX-2.85/NOPB"
+		(property "MPN" "TPS7A20285PDQNR"
 			(at 81.28 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -8472,7 +7784,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0441ec21-be19-53f9-98c0-16c52c19dc14")
-		(property "Reference" "#PWR193"
+		(property "Reference" "#PWR179"
 			(at 208.28 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -8532,198 +7844,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR193")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 373.38 76.2 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "045bf379-9b6e-5e2b-98b9-4ff5c74d23ee")
-		(property "Reference" "#PWR200"
-			(at 373.38 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 373.38 72.644 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 373.38 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 373.38 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 373.38 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "5ae4dbb6-c40f-5d82-8219-614a03a07633")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR200")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 393.7 162.56 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "04aa83da-62a5-5d6c-be31-b24091956887")
-		(property "Reference" "R70"
-			(at 396.216 161.29 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 396.216 163.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 393.7 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 393.7 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 393.7 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C106225"
-			(at 393.7 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "RC0201FR-0710KL"
-			(at 393.7 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Yageo"
-			(at 393.7 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "29ed20d3-cbb0-5f4f-8939-a7ea8286eeb5")
-		)
-		(pin "2"
-			(uuid "f300d619-bad8-5da0-9bd1-19fe494d10cc")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "R70")
+					(reference "#PWR179")
 					(unit 1)
 				)
 			)
@@ -8740,7 +7861,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "05873ecc-9d48-5e11-bbf6-04091e0e167c")
-		(property "Reference" "#PWR195"
+		(property "Reference" "#PWR181"
 			(at 113.03 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -8800,7 +7921,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR195")
+					(reference "#PWR181")
 					(unit 1)
 				)
 			)
@@ -8817,7 +7938,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "06630e2c-8d25-5233-80e4-a0efc46fce6b")
-		(property "Reference" "#PWR187"
+		(property "Reference" "#PWR173"
 			(at 50.8 50.8 0)
 			(hide yes)
 			(show_name no)
@@ -8877,7 +7998,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR187")
+					(reference "#PWR173")
 					(unit 1)
 				)
 			)
@@ -8894,7 +8015,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0b0718e9-46ac-5f0b-8c69-e5b2be3e6994")
-		(property "Reference" "#PWR199"
+		(property "Reference" "#PWR184"
 			(at 347.98 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -8954,7 +8075,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR199")
+					(reference "#PWR184")
 					(unit 1)
 				)
 			)
@@ -8971,7 +8092,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0b61c735-9c77-5d7d-8dfd-acb9fd375661")
-		(property "Reference" "#PWR203"
+		(property "Reference" "#PWR187"
 			(at 266.7 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -9031,7 +8152,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR203")
+					(reference "#PWR187")
 					(unit 1)
 				)
 			)
@@ -9162,7 +8283,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0e89a7b5-7da0-5055-ac34-8e09b85043b6")
-		(property "Reference" "#PWR208"
+		(property "Reference" "#PWR192"
 			(at 373.38 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -9222,7 +8343,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR208")
+					(reference "#PWR192")
 					(unit 1)
 				)
 			)
@@ -9239,7 +8360,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "0edf14ba-4343-5b03-9c78-d64c2dc0e5b9")
-		(property "Reference" "#PWR232"
+		(property "Reference" "#PWR215"
 			(at 207.01 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -9299,7 +8420,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR232")
+					(reference "#PWR215")
 					(unit 1)
 				)
 			)
@@ -9369,7 +8490,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C138165"
 			(at 256.54 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -9428,7 +8549,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "11a9d689-0f5a-578f-a93d-ba99e995d762")
-		(property "Reference" "#PWR190"
+		(property "Reference" "#PWR176"
 			(at 170.18 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -9488,7 +8609,121 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR190")
+					(reference "#PWR176")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 248.92 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "12425f37-39ce-4541-a027-4ba74894d6c8")
+		(property "Reference" "R90"
+			(at 251.44 35.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "3.3k"
+			(at 251.44 38.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:R_0201_0603Metric_L"
+			(at 248.92 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 248.92 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 248.92 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C274874"
+			(at 248.92 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "RC0201FR-073K3L"
+			(at 248.92 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Yageo"
+			(at 248.92 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "93e51cbe-35a8-4b97-8f2e-243617dcd7b5")
+		)
+		(pin "2"
+			(uuid "6204d286-dbdc-4480-bfd2-ef95787fd212")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
+					(reference "R90")
 					(unit 1)
 				)
 			)
@@ -9505,7 +8740,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "1747ee3a-2080-5ed3-929d-a613f69a7b49")
-		(property "Reference" "#PWR215"
+		(property "Reference" "#PWR199"
 			(at 289.56 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -9565,7 +8800,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR215")
+					(reference "#PWR199")
 					(unit 1)
 				)
 			)
@@ -9582,7 +8817,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "17d9d661-50da-545d-b6c9-4a77cc8db83d")
-		(property "Reference" "#PWR213"
+		(property "Reference" "#PWR197"
 			(at 444.5 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -9642,7 +8877,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR213")
+					(reference "#PWR197")
 					(unit 1)
 				)
 			)
@@ -9659,7 +8894,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "187e068d-2b41-5aee-8564-6d5409eea310")
-		(property "Reference" "#PWR224"
+		(property "Reference" "#PWR208"
 			(at 80.01 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -9719,7 +8954,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR224")
+					(reference "#PWR208")
 					(unit 1)
 				)
 			)
@@ -9736,7 +8971,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "19c2c0ff-1c20-5fc3-9bac-ceab37ab629b")
-		(property "Reference" "#PWR218"
+		(property "Reference" "#PWR202"
 			(at 204.47 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -9796,7 +9031,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR218")
+					(reference "#PWR202")
 					(unit 1)
 				)
 			)
@@ -9866,7 +9101,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C138165"
 			(at 198.12 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -9915,118 +9150,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 38.1 62.23 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "20d1eb21-c5d7-550d-ac6e-4b40eb6642fe")
-		(property "Reference" "R84"
-			(at 38.1 57.174 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "270R"
-			(at 38.1 59.714 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 38.1 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 38.1 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 38.1 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" ""
-			(at 38.1 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "RC0201FR-07270RL"
-			(at 38.1 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Yageo"
-			(at 38.1 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6219d1bc-d2ca-50ed-9289-20f2932eb7da")
-		)
-		(pin "2"
-			(uuid "28033ed3-25a3-5c2e-8d28-20cebe8c9f7b")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "R84")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 62.23 64.77 0)
 		(unit 1)
@@ -10037,7 +9160,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "273ea157-348e-54c2-b38e-0f3c827293fc")
-		(property "Reference" "#PWR194"
+		(property "Reference" "#PWR180"
 			(at 62.23 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -10097,7 +9220,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR194")
+					(reference "#PWR180")
 					(unit 1)
 				)
 			)
@@ -10397,7 +9520,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C76922"
 			(at 411.48 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -10625,7 +9748,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C295805"
 			(at 204.47 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -10668,6 +9791,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
 					(reference "R61")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 233.68 33.02 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "2d3973b4-4cbe-461b-8415-d6c5f2bc0b37")
+		(property "Reference" "#PWR169"
+			(at 233.68 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3.3V_VTX"
+			(at 233.68 29.46 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 233.68 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 233.68 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 233.68 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bb5cee96-5cab-405f-97ea-030359aa7cf5")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
+					(reference "#PWR169")
 					(unit 1)
 				)
 			)
@@ -10967,7 +10167,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "3675e126-6a1f-5892-ad86-99f325d838d1")
-		(property "Reference" "#PWR198"
+		(property "Reference" "#PWR183"
 			(at 105.41 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -11027,7 +10227,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR198")
+					(reference "#PWR183")
 					(unit 1)
 				)
 			)
@@ -11158,7 +10358,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "402b9887-45af-5d73-950f-3c6beaa3e11a")
-		(property "Reference" "#PWR233"
+		(property "Reference" "#PWR216"
 			(at 219.71 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -11218,7 +10418,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR233")
+					(reference "#PWR216")
 					(unit 1)
 				)
 			)
@@ -11235,7 +10435,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "495f4bca-5a19-558c-810a-7d4a207b766e")
-		(property "Reference" "#PWR230"
+		(property "Reference" "#PWR213"
 			(at 213.36 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -11295,7 +10495,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR230")
+					(reference "#PWR213")
 					(unit 1)
 				)
 			)
@@ -11365,7 +10565,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C76925"
 			(at 163.83 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -11424,7 +10624,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "49906e23-70d5-5138-a281-61c282068a43")
-		(property "Reference" "#PWR188"
+		(property "Reference" "#PWR174"
 			(at 276.86 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -11484,7 +10684,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR188")
+					(reference "#PWR174")
 					(unit 1)
 				)
 			)
@@ -11742,7 +10942,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "4cb322d0-258d-51ee-b527-57890c1bab88")
-		(property "Reference" "#PWR222"
+		(property "Reference" "#PWR206"
 			(at 99.06 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -11802,7 +11002,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR222")
+					(reference "#PWR206")
 					(unit 1)
 				)
 			)
@@ -11874,7 +11074,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C295793"
 			(at 173.99 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -11955,7 +11155,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_L"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 99.06 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -11988,7 +11188,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C23733"
+		(property "LCSC" "C335103"
 			(at 99.06 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -11999,7 +11199,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL05A475MP5NRNC"
+		(property "MPN" "GRM035R60J475ME15D"
 			(at 99.06 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -12010,7 +11210,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Samsung Electro-Mechanics"
+		(property "Manufacturer" "Murata"
 			(at 99.06 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -12047,7 +11247,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "536d97f8-2c13-52a9-a926-d35316354a83")
-		(property "Reference" "#PWR212"
+		(property "Reference" "#PWR196"
 			(at 257.81 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -12107,7 +11307,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR212")
+					(reference "#PWR196")
 					(unit 1)
 				)
 			)
@@ -12124,7 +11324,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "549bbc63-d644-5de1-a84e-7e07e907312c")
-		(property "Reference" "#PWR226"
+		(property "Reference" "#PWR210"
 			(at 173.99 152.4 0)
 			(hide yes)
 			(show_name no)
@@ -12184,7 +11384,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR226")
+					(reference "#PWR210")
 					(unit 1)
 				)
 			)
@@ -12483,7 +11683,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C138165"
 			(at 236.22 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -12597,7 +11797,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C76922"
 			(at 337.82 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -12709,7 +11909,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C327393"
 			(at 194.31 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -12752,83 +11952,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
 					(reference "R60")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 50.8 80.01 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "648afa5d-636e-5a84-a0e6-a18c8ba004fe")
-		(property "Reference" "#PWR204"
-			(at 50.8 86.36 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 50.8 83.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 50.8 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 50.8 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 50.8 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4e107493-4069-59f6-9962-d25519122347")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR204")
 					(unit 1)
 				)
 			)
@@ -12959,7 +12082,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "69cdf726-d5b5-5b89-8275-a80a7ede4ea6")
-		(property "Reference" "#PWR196"
+		(property "Reference" "#PWR182"
 			(at 72.39 76.2 0)
 			(hide yes)
 			(show_name no)
@@ -13019,7 +12142,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR196")
+					(reference "#PWR182")
 					(unit 1)
 				)
 			)
@@ -13203,7 +12326,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C327393"
 			(at 163.83 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -13262,7 +12385,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "6b599f17-8fd4-55c3-bcbe-d9fa0b6754fc")
-		(property "Reference" "#PWR189"
+		(property "Reference" "#PWR175"
 			(at 157.48 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -13322,7 +12445,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR189")
+					(reference "#PWR175")
 					(unit 1)
 				)
 			)
@@ -13394,7 +12517,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C76922"
 			(at 208.28 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -13453,7 +12576,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "74a0f199-fdd5-5b8a-acfd-c10e7524b791")
-		(property "Reference" "#PWR223"
+		(property "Reference" "#PWR207"
 			(at 279.4 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -13513,7 +12636,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR223")
+					(reference "#PWR207")
 					(unit 1)
 				)
 			)
@@ -13583,7 +12706,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C138165"
 			(at 393.7 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -13633,83 +12756,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 393.7 181.61 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "7a6b86c2-f8d5-5264-9a40-3f10ea4f925d")
-		(property "Reference" "#PWR235"
-			(at 393.7 187.96 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 393.7 185.42 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 393.7 181.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 393.7 181.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 393.7 181.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "bfdc8e33-702b-5ddc-b84f-4d1447d2a1b8")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR235")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 312.42 99.06 0)
 		(unit 1)
 		(body_style 1)
@@ -13719,7 +12765,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "7b6aa8a4-946a-5a46-84a6-7afa39b4deea")
-		(property "Reference" "#PWR205"
+		(property "Reference" "#PWR189"
 			(at 312.42 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -13779,7 +12825,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR205")
+					(reference "#PWR189")
 					(unit 1)
 				)
 			)
@@ -13901,123 +12947,6 @@
 		)
 	)
 	(symbol
-		(lib_id "lib:AP1606")
-		(at 50.8 72.39 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7fa1271c-514d-5fcf-9180-c629a52bf960")
-		(property "Reference" "Q28"
-			(at 55.88 71.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "AP1606"
-			(at 55.88 73.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "${OPENDRONE_LIB}/datasheet/AP1606.pdf"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "20 V N-channel MOSFET in DFN-3L package. [project copy of OpenDrone:AP1606 with datasheet pin types, P4 integration 2026-10-09]"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C2849580"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "AP1606"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "ALLPOWER"
-			(at 50.8 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "7af5e2f8-c9d2-586a-b6d6-a901eab1d5d6")
-		)
-		(pin "2"
-			(uuid "be348838-bcff-5b40-9b85-0d70909cdf2a")
-		)
-		(pin "3"
-			(uuid "77ae73f9-d954-5c77-8e6c-d87624904e44")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "Q28")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 67.31 77.47 0)
 		(unit 1)
@@ -14028,7 +12957,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "80bc725d-8046-5ca6-83bc-000789ae3620")
-		(property "Reference" "#PWR201"
+		(property "Reference" "#PWR185"
 			(at 67.31 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -14088,84 +13017,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR201")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 318.77 91.44 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "83bd9912-bbbf-55d1-99c8-f9d82584725e")
-		(property "Reference" "#FLG07"
-			(at 318.77 89.535 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 318.77 87.63 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 318.77 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 318.77 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 318.77 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8a3c8f80-d713-5851-8fb8-2286775b9709")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#FLG07")
+					(reference "#PWR185")
 					(unit 1)
 				)
 			)
@@ -14286,120 +13138,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 95.25 71.12 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8bcecbec-7d60-5736-8590-938c1f9e7631")
-		(property "Reference" "C121"
-			(at 98.782 69.85 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1uF"
-			(at 98.782 72.39 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:C_0201_0603Metric_L"
-			(at 95.25 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 95.25 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 95.25 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C76935"
-			(at 95.25 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "GRM033R61A105ME44D"
-			(at 95.25 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 95.25 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ab51ff91-b041-5230-a180-239096eee5c3")
-		)
-		(pin "2"
-			(uuid "5a062561-6077-5384-a86e-3869d8abb158")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "C121")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 434.34 121.92 0)
 		(unit 1)
@@ -14410,7 +13148,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "8da6d3e1-fa4b-5372-8971-26070088f842")
-		(property "Reference" "#PWR216"
+		(property "Reference" "#PWR200"
 			(at 434.34 128.27 0)
 			(hide yes)
 			(show_name no)
@@ -14470,7 +13208,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR216")
+					(reference "#PWR200")
 					(unit 1)
 				)
 			)
@@ -14627,7 +13365,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "98a6cb4e-f77c-53ea-b1f1-60eab789c02a")
-		(property "Reference" "#PWR192"
+		(property "Reference" "#PWR178"
 			(at 195.58 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -14687,7 +13425,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR192")
+					(reference "#PWR178")
 					(unit 1)
 				)
 			)
@@ -14759,7 +13497,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C76922"
 			(at 386.08 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -15034,120 +13772,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:Thermistor_NTC")
-		(at 393.7 177.8 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "9d8e973f-e459-577a-b9a9-0b583f095caa")
-		(property "Reference" "TH1"
-			(at 397.1 176.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k NTC B3380"
-			(at 397.1 179.07 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "lib:R_0201_0603Metric_L"
-			(at 393.7 177.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 393.7 177.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Temperature dependent resistor, negative temperature coefficient"
-			(at 393.7 177.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C98098"
-			(at 393.7 177.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "NCP03XH103F05RL"
-			(at 393.7 177.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Murata"
-			(at 393.7 177.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "1ea1b91d-c1cd-5613-b17f-1b03e21ef3bd")
-		)
-		(pin "2"
-			(uuid "cda2ba62-77a0-5329-bde0-c1d1ba82045b")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "TH1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 386.08 99.06 0)
 		(unit 1)
@@ -15158,7 +13782,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "9dd9268d-b606-5bdf-a542-433adb258426")
-		(property "Reference" "#PWR209"
+		(property "Reference" "#PWR193"
 			(at 386.08 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -15218,7 +13842,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR209")
+					(reference "#PWR193")
 					(unit 1)
 				)
 			)
@@ -15235,7 +13859,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "a18d0f0c-2c38-5cb8-9e12-0e01258835e3")
-		(property "Reference" "#PWR211"
+		(property "Reference" "#PWR195"
 			(at 411.48 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -15295,15 +13919,15 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR211")
+					(reference "#PWR195")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 393.7 156.21 0)
+		(lib_id "power:PWR_FLAG")
+		(at 241.3 33.02 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15311,9 +13935,9 @@
 		(on_board yes)
 		(in_pos_files no)
 		(dnp no)
-		(uuid "a4f3cf76-982f-54c7-bb19-2c10b8ff5444")
-		(property "Reference" "#PWR229"
-			(at 393.7 160.02 0)
+		(uuid "a4a1213a-2ce2-4bdb-ada1-cff3b25950c4")
+		(property "Reference" "#FLG08"
+			(at 241.3 31.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15323,8 +13947,8 @@
 				)
 			)
 		)
-		(property "Value" "+3.3V"
-			(at 393.7 152.654 0)
+		(property "Value" "PWR_FLAG"
+			(at 241.3 29.21 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15334,7 +13958,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 393.7 156.21 0)
+			(at 241.3 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15345,7 +13969,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 393.7 156.21 0)
+			(at 241.3 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15355,8 +13979,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 393.7 156.21 0)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 241.3 33.02 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15367,12 +13991,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "e820836d-92fe-5695-bfe6-47b3f3a5a0a8")
+			(uuid "313e094d-4525-41bd-8ffe-68f04de27ca8")
 		)
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR229")
+					(reference "#FLG08")
 					(unit 1)
 				)
 			)
@@ -15444,7 +14068,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C76922"
 			(at 401.32 127 0)
 			(hide yes)
 			(show_name no)
@@ -15617,7 +14241,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ad6acf00-85fd-50c4-9408-407748aacb79")
-		(property "Reference" "#PWR210"
+		(property "Reference" "#PWR194"
 			(at 398.78 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -15677,7 +14301,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR210")
+					(reference "#PWR194")
 					(unit 1)
 				)
 			)
@@ -15694,7 +14318,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ad6ef170-9f3b-5665-9bfc-439dc0744f2e")
-		(property "Reference" "#PWR207"
+		(property "Reference" "#PWR191"
 			(at 337.82 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -15754,7 +14378,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR207")
+					(reference "#PWR191")
 					(unit 1)
 				)
 			)
@@ -15771,7 +14395,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "adb56b2c-66b1-5786-a5ce-f76d0bd3d48a")
-		(property "Reference" "#PWR225"
+		(property "Reference" "#PWR209"
 			(at 350.52 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -15831,7 +14455,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR225")
+					(reference "#PWR209")
 					(unit 1)
 				)
 			)
@@ -15946,6 +14570,120 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
 					(reference "C107")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 256.54 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "aea981c1-f740-4175-89ac-a7caf64e8e63")
+		(property "Reference" "C136"
+			(at 260.07 35.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 260.07 38.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:C_0201_0603Metric_L"
+			(at 256.54 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 256.54 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 256.54 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C76935"
+			(at 256.54 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "GRM033R61A105ME44D"
+			(at 256.54 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 256.54 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "66fd8df1-9fc1-48c6-ae27-0fe00ff11e07")
+		)
+		(pin "2"
+			(uuid "6da0341f-2e0b-4ed8-b774-708c2abfc259")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
+					(reference "C136")
 					(unit 1)
 				)
 			)
@@ -16076,7 +14814,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b0f4c79a-9ba2-528d-a9ea-a5810cbe660f")
-		(property "Reference" "#PWR220"
+		(property "Reference" "#PWR204"
 			(at 401.32 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -16136,7 +14874,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR220")
+					(reference "#PWR204")
 					(unit 1)
 				)
 			)
@@ -16153,7 +14891,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b2dfa14c-2700-5bda-905d-a7c10bc9a4ff")
-		(property "Reference" "#PWR234"
+		(property "Reference" "#PWR217"
 			(at 233.68 185.42 0)
 			(hide yes)
 			(show_name no)
@@ -16213,7 +14951,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR234")
+					(reference "#PWR217")
 					(unit 1)
 				)
 			)
@@ -16230,7 +14968,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b5548f22-6f21-5aea-910a-c2ea9ba71e91")
-		(property "Reference" "#PWR228"
+		(property "Reference" "#PWR212"
 			(at 204.47 156.21 0)
 			(hide yes)
 			(show_name no)
@@ -16290,7 +15028,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR228")
+					(reference "#PWR212")
 					(unit 1)
 				)
 			)
@@ -16307,7 +15045,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b5848a74-3ae0-5782-b1da-2fecd4d33fab")
-		(property "Reference" "#PWR202"
+		(property "Reference" "#PWR186"
 			(at 246.38 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -16367,7 +15105,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR202")
+					(reference "#PWR186")
 					(unit 1)
 				)
 			)
@@ -16553,7 +15291,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C295807"
 			(at 204.47 146.05 0)
 			(hide yes)
 			(show_name no)
@@ -16612,7 +15350,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b8e51e8f-cfb9-5004-a92b-256d500c0b4d")
-		(property "Reference" "#PWR214"
+		(property "Reference" "#PWR198"
 			(at 474.98 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -16672,7 +15410,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR214")
+					(reference "#PWR198")
 					(unit 1)
 				)
 			)
@@ -16689,7 +15427,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "b966ec2b-9b51-5a63-919d-8431955587a9")
-		(property "Reference" "#PWR219"
+		(property "Reference" "#PWR203"
 			(at 63.5 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -16749,7 +15487,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR219")
+					(reference "#PWR203")
 					(unit 1)
 				)
 			)
@@ -16982,6 +15720,83 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 241.3 40.64 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "c8108601-e850-4704-ad8d-37e56791bd07")
+		(property "Reference" "#PWR170"
+			(at 241.3 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 241.3 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 241.3 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5a0666a7-56c9-4e17-a91e-20074cb69685")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
+					(reference "#PWR170")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 207.01 170.18 0)
 		(unit 1)
@@ -17159,7 +15974,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C138165"
 			(at 198.12 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -17218,7 +16033,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ced6a4fc-818e-5c2e-a9aa-9ccc5ecd1a16")
-		(property "Reference" "#PWR206"
+		(property "Reference" "#PWR190"
 			(at 325.12 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -17278,7 +16093,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR206")
+					(reference "#PWR190")
 					(unit 1)
 				)
 			)
@@ -17517,6 +16332,120 @@
 	)
 	(symbol
 		(lib_id "Device:R")
+		(at 233.68 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d012518b-bce5-410d-96c6-177b9159b1fe")
+		(property "Reference" "R89"
+			(at 236.2 35.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "51R"
+			(at 236.2 38.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:R_0201_0603Metric_L"
+			(at 233.68 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 233.68 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 233.68 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C163499"
+			(at 233.68 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "RC0201FR-0751RL"
+			(at 233.68 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Yageo"
+			(at 233.68 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c81e7075-7e9d-46ae-a75f-fc040c7e806b")
+		)
+		(pin "2"
+			(uuid "482e0409-b7a9-4d5d-84b1-16f5d5a241c4")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
+					(reference "R89")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
 		(at 198.12 78.74 90)
 		(unit 1)
 		(body_style 1)
@@ -17579,7 +16508,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C138165"
 			(at 198.12 78.74 0)
 			(hide yes)
 			(show_name no)
@@ -17638,7 +16567,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "d7bbff71-6183-57f4-9ad0-f2edc7111efc")
-		(property "Reference" "#PWR191"
+		(property "Reference" "#PWR177"
 			(at 182.88 59.69 0)
 			(hide yes)
 			(show_name no)
@@ -17698,7 +16627,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR191")
+					(reference "#PWR177")
 					(unit 1)
 				)
 			)
@@ -17819,83 +16748,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 95.25 74.93 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "d94cb727-24f1-55c9-aacc-1668a4509ba7")
-		(property "Reference" "#PWR197"
-			(at 95.25 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 95.25 78.74 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 95.25 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 95.25 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 95.25 74.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6e3ce91a-d730-5862-9c5c-8a369d2789bd")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR197")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3.3V")
 		(at 152.4 45.72 0)
 		(unit 1)
@@ -17906,7 +16758,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "de6a1b51-cb13-5afa-a04f-bf7c7a6a010f")
-		(property "Reference" "#PWR186"
+		(property "Reference" "#PWR172"
 			(at 152.4 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -17966,7 +16818,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR186")
+					(reference "#PWR172")
 					(unit 1)
 				)
 			)
@@ -18005,7 +16857,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "lib:C_0402_1005Metric_L"
+		(property "Footprint" "lib:C_0201_0603Metric_L"
 			(at 63.5 127 0)
 			(hide yes)
 			(show_name no)
@@ -18038,7 +16890,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C23733"
+		(property "LCSC" "C335103"
 			(at 63.5 127 0)
 			(hide yes)
 			(show_name no)
@@ -18049,7 +16901,7 @@
 				)
 			)
 		)
-		(property "MPN" "CL05A475MP5NRNC"
+		(property "MPN" "GRM035R60J475ME15D"
 			(at 63.5 127 0)
 			(hide yes)
 			(show_name no)
@@ -18060,7 +16912,7 @@
 				)
 			)
 		)
-		(property "Manufacturer" "Samsung Electro-Mechanics"
+		(property "Manufacturer" "Murata"
 			(at 63.5 127 0)
 			(hide yes)
 			(show_name no)
@@ -18199,6 +17051,120 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 241.3 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e2ca9761-09c9-483a-ba72-f3ef6b748d25")
+		(property "Reference" "C135"
+			(at 244.83 35.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 244.83 38.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:C_0201_0603Metric_L"
+			(at 241.3 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 241.3 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C76935"
+			(at 241.3 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "GRM033R61A105ME44D"
+			(at 241.3 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 241.3 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "02367c06-ff20-47eb-b3d3-6a702d0ec953")
+		)
+		(pin "2"
+			(uuid "2dd1a418-b386-4972-a24f-045adb0d93ee")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
+					(reference "C135")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 241.3 167.64 0)
 		(unit 1)
@@ -18209,7 +17175,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "e85725e6-7dcb-5202-9919-f20993334046")
-		(property "Reference" "#PWR231"
+		(property "Reference" "#PWR214"
 			(at 241.3 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -18269,7 +17235,84 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR231")
+					(reference "#PWR214")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 256.54 40.64 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "e8f78b21-c313-47c4-95a2-362567bf3e36")
+		(property "Reference" "#PWR171"
+			(at 256.54 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 256.54 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 256.54 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 256.54 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 256.54 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6b826669-138a-4b83-8f43-1e04fd86a68e")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
+					(reference "#PWR171")
 					(unit 1)
 				)
 			)
@@ -18286,7 +17329,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "e9aca885-5a59-5d25-b29c-35308119fa03")
-		(property "Reference" "#PWR227"
+		(property "Reference" "#PWR211"
 			(at 292.1 154.94 0)
 			(hide yes)
 			(show_name no)
@@ -18346,7 +17389,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR227")
+					(reference "#PWR211")
 					(unit 1)
 				)
 			)
@@ -18363,7 +17406,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "ea9b4190-7ab6-5732-815a-954c3a15f905")
-		(property "Reference" "#PWR221"
+		(property "Reference" "#PWR205"
 			(at 342.9 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -18423,7 +17466,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR221")
+					(reference "#PWR205")
 					(unit 1)
 				)
 			)
@@ -18440,7 +17483,7 @@
 		(in_pos_files no)
 		(dnp no)
 		(uuid "edccd8a5-63bd-5c1c-a983-b3b0c18065c8")
-		(property "Reference" "#PWR217"
+		(property "Reference" "#PWR201"
 			(at 58.42 127 0)
 			(hide yes)
 			(show_name no)
@@ -18500,7 +17543,7 @@
 		(instances
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "#PWR217")
+					(reference "#PWR201")
 					(unit 1)
 				)
 			)
@@ -18806,7 +17849,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C138139"
 			(at 292.1 134.62 0)
 			(hide yes)
 			(show_name no)
@@ -18920,7 +17963,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C76922"
 			(at 195.58 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -18963,121 +18006,6 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
 					(reference "C103")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "lib:R_Selector_3Pin")
-		(at 360.68 76.2 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "fc99002c-d373-5365-bacc-3877e9c838ae")
-		(property "Reference" "R67"
-			(at 360.68 69.85 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "0R"
-			(at 360.68 72.39 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "lib:R_0402_Selector_3Pad_L"
-			(at 360.68 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402JR-070RL"
-			(at 360.68 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Assembly-time selector: ONE 0402 0 R fitted across COM-A (pads 1-2, default) or COM-B (pads 2-3) of the 3-pad land; a single 0402 cannot bridge A-B. PA VCC = +BATT (A, default) or +5V (B), DESIGN-SPEC 4.2"
-			(at 360.68 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC" "C60485"
-			(at 360.68 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "RC0402JR-070RL"
-			(at 360.68 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Yageo"
-			(at 360.68 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0ef1446a-894c-5b4c-9e30-3ca5c40ccaa1")
-		)
-		(pin "2"
-			(uuid "c2fa4928-641a-5274-a600-77b0f299a45e")
-		)
-		(pin "3"
-			(uuid "0f618423-a602-51a0-836e-41bca05f1def")
-		)
-		(instances
-			(project "OpenAIO-Whoop"
-				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/11edd549-3d5f-5e16-86ba-6970b46b0a92"
-					(reference "R67")
 					(unit 1)
 				)
 			)

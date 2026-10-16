@@ -8,7 +8,7 @@
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "e804173c-8ff4-498b-a87d-bdf14f36a3b6")
+		(uuid "d230b087-a256-477a-bd4f-538189b894f5")
 		(effects
 			(font
 				(size 0.4 0.4)
@@ -20,7 +20,7 @@
 		(at 0 1 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "d0f040ba-6228-452c-aa4b-c9c549b12ff3")
+		(uuid "b58700f9-3652-4be0-84e3-f5ead7a1d01f")
 		(effects
 			(font
 				(size 0.4 0.4)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "a2f39080-dae3-4c85-bd6d-3e6c7fe24a73")
+		(uuid "bd724bac-6e16-492b-b392-b76edcf6187a")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "d6120f7e-f2dc-41ea-a233-9791c3849dc5")
+		(uuid "3a981cce-6734-47f1-a50f-97862fd0067b")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -61,7 +61,7 @@
 		)
 		(fill no)
 		(layer "F.CrtYd")
-		(uuid "8fcb5e20-a1b5-4522-91b2-9257931574e7")
+		(uuid "e26ad983-e477-4387-a03f-7a4609642828")
 	)
 	(fp_line
 		(start -0.5 -0.6)
@@ -71,7 +71,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "19b5c6dd-94c0-433b-965c-ad9c63362d3b")
+		(uuid "a07de7e2-3f1b-4fb8-baf4-150432501cfc")
 	)
 	(fp_line
 		(start -0.5 0.6)
@@ -81,7 +81,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "330955a4-64fc-4bab-87f5-d5ff3c7876d8")
+		(uuid "2e8624bf-e395-4ec6-95ed-e9d4e80ae5a4")
 	)
 	(fp_line
 		(start 0.5 -0.6)
@@ -91,7 +91,7 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "8e7d7b52-4b44-4f7c-8ef6-b6ef93ccf787")
+		(uuid "922df488-9726-4106-b5bb-69c40f9eabb3")
 	)
 	(fp_line
 		(start 0.5 0.6)
@@ -101,16 +101,16 @@
 			(type default)
 		)
 		(layer "F.Fab")
-		(uuid "44c57366-e29b-4572-a302-74eb3d665750")
+		(uuid "dfdae3fd-c1bb-4688-ba04-3707f9acc5a6")
 	)
 	(pad "1" smd roundrect
 		(at 0 0)
-		(size 1 1.2)
+		(size 0.8 1.2)
 		(property pad_prop_testpoint)
 		(layers "F.Cu" "F.Mask")
 		(roundrect_rratio 0.25)
 		(thermal_bridge_angle 45)
-		(uuid "fe46b924-882d-47ff-9798-e2de2e8be89f")
+		(uuid "cd5f482e-37cc-49e5-8517-a8d63790b692")
 	)
 	(embedded_fonts no)
 )
