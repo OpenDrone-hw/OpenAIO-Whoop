@@ -1,9 +1,10 @@
 # OpenAIO-Whoop
 
-An all-in-one board for 1S whoops, 65 to 85 mm class: flight controller,
+An all-in-one board for 1S: 65 and 75 mm tiny whoops, 1S toothpicks and 1S
+long range on an 18650. Flight controller,
 four brushless ESC channels, an ExpressLRS receiver and an onboard analog VTX
 on the 25.5 x 25.5 mm whoop mounting pattern. The 1S sibling of
-[OpenAIO](https://github.com/OpenDrone-hw/OpenAIO), which covers 2S to 6S on
+[OpenAIO](https://github.com/OpenDrone-hw/OpenAIO), which covers 3S to 6S on
 the same mounting pattern.
 
 <p>
@@ -67,7 +68,7 @@ Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10 and keep the hardware folder
 ## Prior art
 
 - [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL): the FC and RX stages this board follows.
-- [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO): the 2S to 6S board on the same mounting pattern.
+- [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO): the 3S to 6S board on the same mounting pattern.
 - [OpenVTX](https://github.com/OpenDrone-hw/OpenVTX): the line's RTC6705 analog VTX.
 - BetaFPV Matrix 1S 5IN1 II: the class reference.
 
