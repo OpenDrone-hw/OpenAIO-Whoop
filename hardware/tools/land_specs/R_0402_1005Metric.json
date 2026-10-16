@@ -1,0 +1,35 @@
+{
+ "footprint": "lib:R_0402_1005Metric",
+ "part": "Yageo RC0402FR-0751RL (51 R, 1 %, 1/16 W), R57",
+ "datasheet": "Yageo spec sheet RC0402FR-0751RL generated 2026-10-07 (dl/yageo/rc.pdf; https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0751RL) p1: L 1.00 +-0.05, W 0.50 +-0.05, T 0.35 +-0.05, B1 0.20 +-0.10, B2 (bottom terminal) 0.25 +-0.10. Yageo RC series datasheet (Farnell 443714 p5) refers the footprint to the 'Chip resistors mounting' document, which could not be retrieved (yageo.com 404 on 2026-10-07)",
+ "derivation": "IPC-7351B chip < 1608 from the Yageo dimensions (F 0.10, P 0.05): nominal toe J_T 0.10 gives Z = Lmin + 0.20 + 0.15 = 1.30 (= area budget 0402 1.30 x 0.55, DESIGN-SPEC 9.2), heel G = 0.33 rounded up to 0.40 (land inner edge 0.20 under the B2 terminal, range 0.15-0.35 from the end), width X between density L 0.50 and nominal 0.60 -> 0.55; pads 0.45 x 0.55 at +-0.425, 1:1 paste",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.425,
+   "y": 0.0,
+   "w": 0.45,
+   "h": 0.55,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": 0.425,
+   "y": 0.0,
+   "w": 0.45,
+   "h": 0.55,
+   "shape": "roundrect"
+  }
+ ],
+ "exposed": [],
+ "removed_nc": [],
+ "body": {
+  "w": 1.0,
+  "h": 0.5,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/rx/landspecs/R_0402_1005Metric.json"
+}

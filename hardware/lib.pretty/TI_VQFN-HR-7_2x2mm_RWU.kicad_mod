@@ -1,0 +1,221 @@
+(footprint "TI_VQFN-HR-7_2x2mm_RWU"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "TI RWU0007A VQFN-HR-7 2x2 mm (TPS61022): lands per SLVSDX7D p26, pins 1-3 paste in two apertures each per p27 (83 %), pins 4-7 paste 1:1, no thermal pad; F.Fab body, no silk")
+	(tags "VQFN-HR RWU0007A TPS61022 boost")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "2867d5dc-4c53-48b9-b3f2-f86ebc62601b")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "TI_VQFN-HR-7_2x2mm_RWU"
+		(at 0 1.8 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b49aa073-ea06-4380-8f48-988bff1d9462")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "49615d5d-025b-4987-ac0d-744357bf4748")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "def6fe48-cfdd-40e3-a708-23bc7d2b9239")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_poly
+		(pts
+			(xy 1.1 -0.98) (xy 1.3 -0.98) (xy 1.3 0.98) (xy 1.1 0.98) (xy 1.1 1.1) (xy -1.1 1.1) (xy -1.1 0.83)
+			(xy -1.3 0.83) (xy -1.3 -0.83) (xy -1.1 -0.83) (xy -1.1 -1.1) (xy 1.1 -1.1)
+		)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "2ea125c5-3a86-43be-b589-2c44c5817e71")
+	)
+	(fp_line
+		(start -1 -0.75)
+		(end -0.75 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "16db9c81-c23d-4096-b717-41e9e860a58f")
+	)
+	(fp_line
+		(start -1 1)
+		(end -1 -0.75)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ec81b877-bc0c-4732-bf44-3de526f48dcf")
+	)
+	(fp_line
+		(start -0.75 -1)
+		(end 1 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "691f0980-753d-464c-8143-d6a95289ad5e")
+	)
+	(fp_line
+		(start 1 -1)
+		(end 1 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "51e3ef0a-918c-4cc6-a8fa-c27cda77a54f")
+	)
+	(fp_line
+		(start 1 1)
+		(end -1 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "48f1ad08-633a-4e77-bb63-5dc5df3cefbf")
+	)
+	(pad "" smd rect
+		(at -0.9625 -0.55)
+		(size 0.475 0.35)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "18eb01e2-693e-448a-93a6-6d88ca64f85b")
+	)
+	(pad "" smd rect
+		(at -0.9625 0.55)
+		(size 0.475 0.35)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "d613047f-6bf1-46de-add5-5221840cff07")
+	)
+	(pad "" smd rect
+		(at -0.8875 0)
+		(size 0.625 0.2)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "230a230f-8b89-429d-96d7-a1c38fe95ccb")
+	)
+	(pad "" smd rect
+		(at -0.2875 -0.55)
+		(size 0.475 0.35)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "d40df804-1f66-4ae8-a0a0-97fe1b466bf8")
+	)
+	(pad "" smd rect
+		(at -0.2875 0.55)
+		(size 0.475 0.35)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "08cd1c2b-54b2-4fe0-ba1d-f74b5756ea26")
+	)
+	(pad "" smd rect
+		(at -0.0625 0)
+		(size 0.625 0.2)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "e8333949-e900-4fc2-a61b-8b5ed95f7626")
+	)
+	(pad "1" smd rect
+		(at -0.625 -0.55)
+		(size 1.15 0.35)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "5fc93d12-9329-4b01-b570-51ba61376bf5")
+	)
+	(pad "2" smd rect
+		(at -0.475 0)
+		(size 1.45 0.2)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "c1290221-1763-42ae-b81e-e1a223bce1de")
+	)
+	(pad "3" smd rect
+		(at -0.625 0.55)
+		(size 1.15 0.35)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "bd69a7ff-b4fb-40cd-941d-fdb24c0d33b7")
+	)
+	(pad "4" smd rect
+		(at 0.975 0.75)
+		(size 0.45 0.25)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "29ceddc1-074e-426c-bfda-0345095d6afc")
+	)
+	(pad "5" smd rect
+		(at 0.975 0.25)
+		(size 0.45 0.25)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "4a76c01f-3094-461b-af98-07ddbfa92b15")
+	)
+	(pad "6" smd rect
+		(at 0.975 -0.25)
+		(size 0.45 0.25)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "e267a1e1-3156-4f78-ab3e-230539b1c1f8")
+	)
+	(pad "7" smd rect
+		(at 0.975 -0.75)
+		(size 0.45 0.25)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "119d8bd0-dd53-4913-98fc-11d4720ee720")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/TI_VQFN-HR-7_2x2mm_RWU.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

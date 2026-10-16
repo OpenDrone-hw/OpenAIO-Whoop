@@ -1,0 +1,53 @@
+{
+ "footprint": "lib:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_W",
+ "source": "OpenDrone:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B",
+ "part": "XINGLIGHT XL-1010RGBC-WS2812B",
+ "datasheet": "${OPENDRONE_LIB}/datasheet/XL-1010RGBC-WS2812B.pdf p11 'Outline Dimension' (1.0 x 1.0, top view 1 DOUT top-left, 2 VDD top-right, 3 GND bottom-left, 4 DI bottom-right) and 'Recommended Soldering Pattern' (0.45 pads, 0.4 gaps)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.425,
+   "y": -0.425,
+   "w": 0.45,
+   "h": 0.45,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.425,
+   "y": -0.425,
+   "w": 0.45,
+   "h": 0.45,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -0.425,
+   "y": 0.425,
+   "w": 0.45,
+   "h": 0.45,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": 0.425,
+   "y": 0.425,
+   "w": 0.45,
+   "h": 0.45,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 1.0,
+  "h": 1.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "pad centres +-(0.2 + 0.225) = +-0.425",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true
+ }
+}

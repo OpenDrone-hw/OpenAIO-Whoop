@@ -1,0 +1,53 @@
+{
+ "footprint": "lib:FILTER-SMD_4P-L1.0-W0.5-L_W",
+ "source": "OpenDrone:FILTER-SMD_4P-L1.0-W0.5-L (house land; geometry of the corrected DEA _W land)",
+ "part": "Johanson 2450FM07D0034T 2.45 GHz front-end filter 1005 (FL1, LCSC C2651081)",
+ "datasheet": "Johanson 2450FM07D0034 detail specification 9/10/2019 p1 'Mechanical Dimensions' (L 1.00, W 0.50, a 0.18, b 0.25; terminal configuration 1 IN, 2 GND, 3 OUT, 4 GND) and p2 'Mounting Pad Dimensions'",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.575,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0,
+   "y": 0.325,
+   "w": 0.3,
+   "h": 0.45,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.575,
+   "y": 0,
+   "w": 0.45,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": 0,
+   "y": -0.325,
+   "w": 0.3,
+   "h": 0.45,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 1.0,
+  "h": 0.5
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "Same 1005 4-terminal land as the TDK DEA _W copy (end pads 0.45 x 0.30 at +-0.575, side pads 0.30 x 0.45 at +-0.325): the Johanson end terminals (x 0.32-0.50) and side terminals (0.25 wide at the long edges) sit inside the lands with fillet; Johanson's p2 example uses 0.3-0.55 mm pads at the same positions",
+ "build": {
+  "courtyard": "polygon",
+  "model_from_source": true
+ }
+}

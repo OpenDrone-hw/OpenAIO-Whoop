@@ -1,0 +1,96 @@
+(footprint "TestPoint_Pad_D0.30mm_MicroVia_L"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "D67 / D99 / D107 test point as a microvia-capped land: SMD land D0.30 on F.Cu + F.Mask with the test-point property, no paste (probe target, flat cap), single terminal. The through-via pad (D0.35 / drill 0.20) of TestPoint_Via_D0.35mm_Drill0.2mm is dropped: the net reaches the land through one HDI laser microvia (0.10 hole, 0.25 land, copper filled, in pad) placed by the router inside the land (0.025 margin). D109 least density: body = land, courtyard 0.50 x 0.50 (was 0.56 x 0.56); excluded from BOM and position files as before. Derived from lib:TestPoint_Via_D0.35mm_Drill0.2mm (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/TestPoint_Pad_D0.30mm_MicroVia_L.json")
+	(tags "test point via probe filled capped POFV C2 SWD")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "7dba60d3-9966-498d-aa44-8a42fbd61ba3")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Value" "TestPoint_Pad_D0.30mm_MicroVia_L"
+		(at 0 0.45 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "836b1b1e-ba33-43a1-ab0f-742e26836595")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0332b634-f0f7-4dff-a118-bb4f12564d64")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2864468d-f10a-419b-8594-902ec29a9e7a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.25 -0.25)
+		(end 0.25 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "0c7a3943-0823-428a-bdf0-8752ae14ba6c")
+	)
+	(fp_arc
+		(start -0.15 0)
+		(mid 0 -0.15)
+		(end 0.15 0)
+		(stroke
+			(width 0.02)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "c42485a6-1e0f-4b56-baf1-7bc0aa9d32f7")
+	)
+	(fp_arc
+		(start 0.15 0)
+		(mid 0 0.15)
+		(end -0.15 0)
+		(stroke
+			(width 0.02)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "66aeaa31-41d9-4ecc-a8bf-8f8b46f445b0")
+	)
+	(pad "1" smd circle
+		(at 0 0)
+		(size 0.3 0.3)
+		(property pad_prop_testpoint)
+		(layers "F.Cu" "F.Mask")
+		(uuid "cea16b2f-d00c-4bd9-812a-87b0323c52f6")
+	)
+	(embedded_fonts no)
+)

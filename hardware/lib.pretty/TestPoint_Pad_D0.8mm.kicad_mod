@@ -1,0 +1,96 @@
+(footprint "TestPoint_Pad_D0.8mm"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Round SMD test pad D0.8 mm, bare ENIG copper for spring probes / fixture (no paste), OpenAIO-Whoop spec 4.10 test pads; no silkscreen")
+	(tags "test point pad probe fixture")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "e44d154a-d2fd-4b38-9cbb-33ff63cf15a6")
+		(effects
+			(font
+				(size 0.32 0.32)
+				(thickness 0.048)
+			)
+		)
+	)
+	(property "Value" "TestPoint_Pad_D0.8mm"
+		(at 0 0.72 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "278b895a-c1fe-4254-b25c-b378cd074a35")
+		(effects
+			(font
+				(size 0.32 0.32)
+				(thickness 0.048)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "deda07c6-5896-4050-84f6-e3f971b88c9b")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9ab1cefe-4556-426a-bf65-b561affd873f")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.5 -0.5)
+		(end 0.5 0.5)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "3c62be63-e2c7-47dc-9950-0d7ca2dbd677")
+	)
+	(fp_arc
+		(start -0.4 0)
+		(mid 0 -0.4)
+		(end 0.4 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "d2a8b856-915b-4fbf-8db8-874179b23bc1")
+	)
+	(fp_arc
+		(start 0.4 0)
+		(mid 0 0.4)
+		(end -0.4 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ef8c2feb-974a-4999-8c9b-59e85c4d3638")
+	)
+	(pad "1" smd circle
+		(at 0 0)
+		(size 0.8 0.8)
+		(property pad_prop_testpoint)
+		(layers "F.Cu" "F.Mask")
+		(uuid "c9de652e-f9ab-4291-8dc9-922c3b19dac8")
+	)
+	(embedded_fonts no)
+)

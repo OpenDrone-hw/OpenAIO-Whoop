@@ -1,0 +1,97 @@
+{
+  "_comment": "Written by setup_board.py (impedance step). 50 ohm widths for the RF layers: L1 over L2 and L6 over L5 have the same geometry (stackup.json). Widths in mm, Z0 in ohm.",
+  "inputs": {
+    "h": 0.077,
+    "t": 0.035,
+    "er": 4.2,
+    "er_alt": 3.91,
+    "gap": 0.15,
+    "target": 50.0,
+    "mask": {
+      "er": 3.5,
+      "t_on_cu": 0.0127,
+      "t_on_sub": 0.0305
+    },
+    "grid": {
+      "dx": 0.0023333333333333335,
+      "X": 3.0,
+      "air": 1.0,
+      "ground_strip": 0.5
+    },
+    "solver": "setup_board.fd_z0 v1"
+  },
+  "closed_forms": {
+    "er 4.20": {
+      "microstrip_hj_bare_w50": 0.129,
+      "cpwg_kicad_calculator_bare_w50": 0.1609
+    },
+    "er 3.91": {
+      "microstrip_hj_bare_w50": 0.1368,
+      "cpwg_kicad_calculator_bare_w50": 0.1687
+    }
+  },
+  "field_solver": {
+    "validation": {
+      "microstrip_bare_w0.139_er4.20": {
+        "fd": 47.64,
+        "hammerstad_jensen": 48.1
+      }
+    },
+    "er 4.20": {
+      "cpwg_gap0.15_mask": {
+        "w50": 0.1028,
+        "samples_w_z0": {
+          "0.10267": 50.02,
+          "0.105": 49.58,
+          "0.10733": 49.08,
+          "0.10967": 48.66,
+          "0.112": 48.18,
+          "0.11433": 47.78,
+          "0.11667": 47.32
+        }
+      },
+      "microstrip_mask": {
+        "w50": 0.1112,
+        "samples_w_z0": {
+          "0.10967": 50.31,
+          "0.112": 49.84,
+          "0.11433": 49.38,
+          "0.11667": 48.93
+        }
+      }
+    },
+    "er 3.91": {
+      "cpwg_gap0.15_mask": {
+        "w50": 0.1095,
+        "samples_w_z0": {
+          "0.10733": 50.39,
+          "0.10967": 49.96,
+          "0.112": 49.47,
+          "0.11433": 49.06,
+          "0.11667": 48.6,
+          "0.119": 48.2,
+          "0.12133": 47.75,
+          "0.12367": 47.37
+        }
+      },
+      "microstrip_mask": {
+        "w50": 0.1182,
+        "samples_w_z0": {
+          "0.11667": 50.3,
+          "0.119": 49.85,
+          "0.12133": 49.4,
+          "0.12367": 48.97
+        }
+      }
+    },
+    "rf_width": {
+      "w": 0.105,
+      "rule": "0.005-rounded mean of the CPWG widths at the two Er",
+      "z0": {
+        "er 4.20": 49.58,
+        "er 3.91": 50.9
+      }
+    }
+  },
+  "rf_width_mm": 0.105
+}

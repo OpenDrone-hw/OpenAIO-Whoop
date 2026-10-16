@@ -1,0 +1,5043 @@
+{
+  "meta": {
+    "board": "OpenAIO-Whoop",
+    "generator": "hardware/tools/export_bom_plan.py",
+    "authority": "Root schematic and hierarchical sheets; no placement is implied.",
+    "source_sha256": {
+      "OpenAIO-Whoop.kicad_sch": "28d4b4ada4846189545cd793982c06d9162a344141e38059d8865a808c755784",
+      "blackbox.kicad_sch": "8b21797ddd054d07375866063350733ab981db947c9ebaeb7372bff0db0c00fa",
+      "esc_channel.kicad_sch": "fe08945865cf82380713484d1378b042fca13c73ff4522a57fd468f0de3c3f32",
+      "imu.kicad_sch": "3275b4aa4972ab48424b17853b4fd0f091fe9210007256da40f07316e9fdff87",
+      "led.kicad_sch": "3258ca67c468219e74d2581c52afc6573a3e00bef19fda11cc05b49c8a974fb2",
+      "osd.kicad_sch": "731bb046feed39a3b1bf044d5e96f1d99e93189165c6d3c30a9abca68473645e",
+      "pads.kicad_sch": "4cc666a04657c74d1de62997255089271dd1f87932974f679430897060376181",
+      "power.kicad_sch": "2d093475faf809af13c6ca24e89404b7f2f2b55fd9af9264ff10dc4ff6779fb3",
+      "rp2350a.kicad_sch": "5bd377282aa7061e558975ac88d2cab427328a5245ef4074f756a1e50134c961",
+      "rx_esp32_sx1281.kicad_sch": "2a5216270706a72a70b0e85dbab812427565d0e0524168f5455b1fec474ac1d2",
+      "vtx.kicad_sch": "4516e5bf733c71b9f1642b0cb62d79238a9fdf2ce882bfda19aa088d424ce760"
+    }
+  },
+  "parts": [
+    {
+      "ref": "AE1",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "ANT",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:AE_WireHole_PTH0.5mm",
+      "symbol": "Device:Antenna",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_RX_ANT"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "AE2",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "2450AT07A0100001T",
+      "manufacturer": "Johanson Technology",
+      "mpn": "2450AT07A0100001T",
+      "lcsc": "C17531353",
+      "footprint": "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100",
+      "symbol": "lib:2450AT07A0100001T",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_WIFI_ANT",
+        "GND"
+      ],
+      "datasheet": "https://www.johansontechnology.com/datasheets/antennas/2450AT07A0100.pdf"
+    },
+    {
+      "ref": "C6",
+      "block": "power",
+      "sheet": "power",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C7",
+      "block": "power",
+      "sheet": "power",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C8",
+      "block": "power",
+      "sheet": "power",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_BST",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C9",
+      "block": "power",
+      "sheet": "power",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_BST",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C10",
+      "block": "power",
+      "sheet": "power",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_BST",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C11",
+      "block": "power",
+      "sheet": "power",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_BST",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C12",
+      "block": "power",
+      "sheet": "power",
+      "value": "10uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM155C80J106ME11D",
+      "lcsc": "C237279",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C13",
+      "block": "power",
+      "sheet": "power",
+      "value": "10uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM155C80J106ME11D",
+      "lcsc": "C237279",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C14",
+      "block": "power",
+      "sheet": "power",
+      "value": "4.7uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM035R60J475ME15D",
+      "lcsc": "C335103",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": "https://www.murata.com/en-us/products/productdetail?partno=GRM035R60J475ME15%23"
+    },
+    {
+      "ref": "C15",
+      "block": "power",
+      "sheet": "power",
+      "value": "10uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM155C80J106ME11D",
+      "lcsc": "C237279",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_CAM",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C19",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C20",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C21",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C23",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C25",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C26",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C27",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C29",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C31",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C32",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C33",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C35",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C37",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C38",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C39",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C41",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "22uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM188C80J226ME15D",
+      "lcsc": "C393031",
+      "footprint": "lib:C_0603_1608Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C42",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C44",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C45",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C46",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C47",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C48",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C49",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C50",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.1V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C51",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.1V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C52",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "4.7uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM035R60J475ME15D",
+      "lcsc": "C335103",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.1V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C54",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C56",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "4.7uF",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL05A475MP5NRNC",
+      "lcsc": "C23733",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.1V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C57",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "4.7uF",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL05A475MP5NRNC",
+      "lcsc": "C23733",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/VREG_AVDD",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C58",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "4.7uF",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL05A475MP5NRNC",
+      "lcsc": "C23733",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C59",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/ADC_VBAT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C60",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/ADC_CURR",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C61",
+      "block": "imu",
+      "sheet": "imu",
+      "value": "4.7uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM035R60J475ME15D",
+      "lcsc": "C335103",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C62",
+      "block": "imu",
+      "sheet": "imu",
+      "value": "4.7uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM035R60J475ME15D",
+      "lcsc": "C335103",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.8V_GYRO",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C65",
+      "block": "blackbox",
+      "sheet": "blackbox",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C66",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "100pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H101JA01D",
+      "lcsc": "C76922",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VIDEO_IN",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C67",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "470pF",
+      "manufacturer": "Yageo",
+      "mpn": "CC0201JRX7R9BB471",
+      "lcsc": "C526944",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/OSD/VID_FILT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C68",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "1uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R61A105ME44D",
+      "lcsc": "C76935",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/OSD/VID_DC",
+        "/OSD/VID_FILT"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C70",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C73",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "1uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R61A105ME44D",
+      "lcsc": "C76935",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RX_EN",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C76",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C82",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "10uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM155C80J106ME11D",
+      "lcsc": "C237279",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C83",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C84",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "1nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R71H102KA12D",
+      "lcsc": "C85934",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/TCXO_OUT",
+        "/RX/XTA"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C85",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C86",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "10nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R71A103KA01D",
+      "lcsc": "C76941",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/VR_PA",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C87",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "470nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R60J474KE90D",
+      "lcsc": "C85926",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/VREG_RADIO",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C88",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "10nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R71A103KA01D",
+      "lcsc": "C76941",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/VREG_RADIO",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C89",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C91",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C94",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "15pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H150JA01D",
+      "lcsc": "C85891",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_XTAL1",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C95",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "15pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H150JA01D",
+      "lcsc": "C85891",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_XTAL2",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C96",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "470nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R60J474KE90D",
+      "lcsc": "C85926",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_REG1D8",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C98",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C100",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C101",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C102",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H101JA01D",
+      "lcsc": "C76922",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C103",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H101JA01D",
+      "lcsc": "C76922",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C104",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "33pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H330JA01D",
+      "lcsc": "C76925",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VIDEO_OUT",
+        "/VTX/VT_MOD_N1"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C105",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "4.7uF",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL05A475MP5NRNC",
+      "lcsc": "C23733",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/VT_MOD_N1",
+        "/VTX/VT_MOD_N2"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C106",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1uF",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL05A105KA5NQNC",
+      "lcsc": "C52923",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/RTC_VT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C107",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "4.7uF",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL05A475MP5NRNC",
+      "lcsc": "C23733",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/RTC_LF",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C108",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "10uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM155C80J106ME11D",
+      "lcsc": "C237279",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C109",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "10nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R71A103KA01D",
+      "lcsc": "C76941",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/PAOUT1_SUP",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C110",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "10pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H100JA01D",
+      "lcsc": "C76921",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/RF_PAOUT1",
+        "/VTX/RF_PA_IN"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C111",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H101JA01D",
+      "lcsc": "C76922",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C112",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R71H102KA12D",
+      "lcsc": "C85934",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C113",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H101JA01D",
+      "lcsc": "C76922",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C114",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R71H102KA12D",
+      "lcsc": "C85934",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C115",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H101JA01D",
+      "lcsc": "C76922",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C116",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R71H102KA12D",
+      "lcsc": "C85934",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C117",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H101JA01D",
+      "lcsc": "C76922",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/PA_DET",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C118",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "10uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM155C80J106ME11D",
+      "lcsc": "C237279",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C122",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "4.7uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM035R60J475ME15D",
+      "lcsc": "C335103",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C123",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "4.7uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM035R60J475ME15D",
+      "lcsc": "C335103",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/PA_VREF",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C124",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R61A105ME44D",
+      "lcsc": "C76935",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/PA_RC1",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C125",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R61A105ME44D",
+      "lcsc": "C76935",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/Q27_B",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C128",
+      "block": "power",
+      "sheet": "power",
+      "value": "10uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM155C80J106ME11D",
+      "lcsc": "C237279",
+      "footprint": "lib:C_0402_1005Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C132",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "1.2pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H1R2BA01D",
+      "lcsc": "C85895",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": true,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_WIFI_ANT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C133",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "1.2pF",
+      "manufacturer": "Murata",
+      "mpn": "GRM0335C1H1R2BA01D",
+      "lcsc": "C85895",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": true,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_WIFI",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C135",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R61A105ME44D",
+      "lcsc": "C76935",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_LDD2V5",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C136",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1uF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033R61A105ME44D",
+      "lcsc": "C76935",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_AVDD65_RC",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C137",
+      "block": "imu",
+      "sheet": "imu",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C138",
+      "block": "imu",
+      "sheet": "imu",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.8V_GYRO",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C143",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "C144",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100nF",
+      "manufacturer": "Murata",
+      "mpn": "GRM033C81E104KE14D",
+      "lcsc": "C181047",
+      "footprint": "lib:C_0201_0603Metric_L",
+      "symbol": "Device:C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "D3",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "SDM02U30LP3",
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "SDM02U30LP3-7B",
+      "lcsc": "C151629",
+      "footprint": "lib:X3-DFN0603-2_L0.6-W0.3-RD_W",
+      "symbol": "lib:SDM02U30LP3-7B",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/OSD/VID_DC",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/SDM02U30LP3-7B.pdf"
+    },
+    {
+      "ref": "D4",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "RGB WS2812",
+      "manufacturer": "XINGLIGHT",
+      "mpn": "XL-1010RGBC-2812B",
+      "lcsc": "C5349953",
+      "footprint": "lib:LED-SMD_4P-L1.0-W1.0-TL_XL-1010RGBC-WS2812B_Dense",
+      "symbol": "lib:XL-1010RGBC-WS2812B",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V",
+        "/RX/RX_LED",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/XL-1010RGBC-WS2812B.pdf"
+    },
+    {
+      "ref": "D5",
+      "block": "led",
+      "sheet": "led",
+      "value": "green",
+      "manufacturer": "XINGLIGHT",
+      "mpn": "XL-1005UGC",
+      "lcsc": "C965793",
+      "footprint": "lib:LED_0402_1005Metric_L",
+      "symbol": "Device:LED",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/LED/D5_K"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "D6",
+      "block": "led",
+      "sheet": "led",
+      "value": "blue",
+      "manufacturer": "XINGLIGHT",
+      "mpn": "XL-1005UBC",
+      "lcsc": "C22355736",
+      "footprint": "lib:LED_0402_1005Metric_L",
+      "symbol": "Device:LED",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/LED/D6_K"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "D7",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "TPD2EUSB30",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPD2EUSB30DRTR",
+      "lcsc": "C97502",
+      "footprint": "lib:TI_SOT-9X3-3_DRT_L",
+      "symbol": "lib:TPD2EUSB30DRTR",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/USB_D_N",
+        "/USB_D_P",
+        "GND"
+      ],
+      "datasheet": "https://www.ti.com/lit/ds/symlink/tpd2eusb30.pdf"
+    },
+    {
+      "ref": "D8",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "SDM02M30CLP3",
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "SDM02M30CLP3-7B",
+      "lcsc": "C5244996",
+      "footprint": "lib:X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3",
+      "symbol": "lib:SDM02M30CLP3-7B",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/FC_BOOT",
+        "/RX/BOOT_SW",
+        "/RX/RX_BOOT"
+      ],
+      "datasheet": "https://www.diodes.com/assets/Datasheets/SDM02M30CLP3.pdf"
+    },
+    {
+      "ref": "D9",
+      "block": "power",
+      "sheet": "power",
+      "value": "MS2A40LDF",
+      "manufacturer": "MSKSEMI",
+      "mpn": "MS2A40LDF",
+      "lcsc": "C7380000",
+      "footprint": "lib:DFN1610-2_L1.6-W1.0-P1.05-RD",
+      "symbol": "lib:MS2A40LDF",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V",
+        "/VBUS"
+      ],
+      "datasheet": "https://datasheet.lcsc.com/datasheet/pdf/b245d311027883dd26c3826404872d47.pdf"
+    },
+    {
+      "ref": "D10",
+      "block": "power",
+      "sheet": "power",
+      "value": "MS2A40LDF",
+      "manufacturer": "MSKSEMI",
+      "mpn": "MS2A40LDF",
+      "lcsc": "C7380000",
+      "footprint": "lib:DFN1610-2_L1.6-W1.0-P1.05-RD",
+      "symbol": "lib:MS2A40LDF",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V",
+        "+5V_BST"
+      ],
+      "datasheet": "https://datasheet.lcsc.com/datasheet/pdf/b245d311027883dd26c3826404872d47.pdf"
+    },
+    {
+      "ref": "D11",
+      "block": "power",
+      "sheet": "power",
+      "value": "MS2A40LDF",
+      "manufacturer": "MSKSEMI",
+      "mpn": "MS2A40LDF",
+      "lcsc": "C7380000",
+      "footprint": "lib:DFN1610-2_L1.6-W1.0-P1.05-RD",
+      "symbol": "lib:MS2A40LDF",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "+5V"
+      ],
+      "datasheet": "https://datasheet.lcsc.com/datasheet/pdf/b245d311027883dd26c3826404872d47.pdf"
+    },
+    {
+      "ref": "FB1",
+      "block": "power",
+      "sheet": "power",
+      "value": "120R@100MHz 0.9A",
+      "manufacturer": "Murata",
+      "mpn": "BLM03PX121SN1D",
+      "lcsc": "C525479",
+      "footprint": "lib:L_0201_0603Metric_L",
+      "symbol": "Device:FerriteBead",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V",
+        "+5V_CAM"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "FL1",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "2450FM07D0034T",
+      "manufacturer": "Johanson Technology",
+      "mpn": "2450FM07D0034T",
+      "lcsc": "C2651081",
+      "footprint": "lib:FILTER-SMD_4P-L1.0-W0.5-L_W",
+      "symbol": "lib:2450FM07D0034T",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_RFIO",
+        "/RX/RF_RX_ANT",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/2450FM07D0034T.pdf"
+    },
+    {
+      "ref": "FL2",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "BPF 5.15-5.95G",
+      "manufacturer": "Walsin",
+      "mpn": "RFBPF1608060K98Q1C",
+      "lcsc": "C2442150",
+      "footprint": "lib:Walsin_RFBPF1608060K98Q1C",
+      "symbol": "lib:RFBPF1608060K98Q1C",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/RF_PA_OUT",
+        "/VTX/RF_UFL",
+        "GND"
+      ],
+      "datasheet": "https://www.lcsc.com/datasheet/C2442150.pdf"
+    },
+    {
+      "ref": "H1",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "MountingHole 3.5",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:MountingHole_3.5mm_Ear_Flange5.2",
+      "symbol": "Mechanical:MountingHole",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": true,
+      "nets": [],
+      "datasheet": ""
+    },
+    {
+      "ref": "H2",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "MountingHole 3.5",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:MountingHole_3.5mm_Ear_Flange5.2",
+      "symbol": "Mechanical:MountingHole",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": true,
+      "nets": [],
+      "datasheet": ""
+    },
+    {
+      "ref": "H3",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "MountingHole 3.5",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:MountingHole_3.5mm_Ear_Flange5.2",
+      "symbol": "Mechanical:MountingHole",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": true,
+      "nets": [],
+      "datasheet": ""
+    },
+    {
+      "ref": "J1",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "U.FL",
+      "manufacturer": "Hirose",
+      "mpn": "U.FL-R-SMT-1(80)",
+      "lcsc": "C88374",
+      "footprint": "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical_L",
+      "symbol": "lib:U.FL-R-SMT-1(80)",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/RF_UFL",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/U.FL-R-SMT-1-80.pdf"
+    },
+    {
+      "ref": "J2",
+      "block": "power",
+      "sheet": "power",
+      "value": "+",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:BattPad_D1.7mm_PTH1.1",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/POWER/CSA+"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J3",
+      "block": "power",
+      "sheet": "power",
+      "value": "-",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:BattPad_D1.7mm_PTH1.1",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J4",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "M1",
+      "manufacturer": "Molex",
+      "mpn": "53047-0310",
+      "lcsc": "",
+      "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+      "symbol": "lib:Molex_53047-0310",
+      "dnp": true,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/PHASE_A",
+        "/ESC1/PHASE_B",
+        "/ESC1/PHASE_C"
+      ],
+      "datasheet": "https://www.molex.com/pdm_docs/sd/530470310_sd.pdf"
+    },
+    {
+      "ref": "J7",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "M2",
+      "manufacturer": "Molex",
+      "mpn": "53047-0310",
+      "lcsc": "",
+      "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+      "symbol": "lib:Molex_53047-0310",
+      "dnp": true,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/PHASE_A",
+        "/ESC2/PHASE_B",
+        "/ESC2/PHASE_C"
+      ],
+      "datasheet": "https://www.molex.com/pdm_docs/sd/530470310_sd.pdf"
+    },
+    {
+      "ref": "J10",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "M3",
+      "manufacturer": "Molex",
+      "mpn": "53047-0310",
+      "lcsc": "",
+      "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+      "symbol": "lib:Molex_53047-0310",
+      "dnp": true,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/PHASE_A",
+        "/ESC3/PHASE_B",
+        "/ESC3/PHASE_C"
+      ],
+      "datasheet": "https://www.molex.com/pdm_docs/sd/530470310_sd.pdf"
+    },
+    {
+      "ref": "J13",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "M4",
+      "manufacturer": "Molex",
+      "mpn": "53047-0310",
+      "lcsc": "",
+      "footprint": "lib:MotorPad_PicoBlade_1x03_P1.25mm_PTH0.5",
+      "symbol": "lib:Molex_53047-0310",
+      "dnp": true,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/PHASE_A",
+        "/ESC4/PHASE_B",
+        "/ESC4/PHASE_C"
+      ],
+      "datasheet": "https://www.molex.com/pdm_docs/sd/530470310_sd.pdf"
+    },
+    {
+      "ref": "J20",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "LED",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/LED_STRIP"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J21",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "5V",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J22",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "BZ-",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/BUZZER-"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J23",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "CAM",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/VIDEO_IN"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J24",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "5V",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_CAM"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J25",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "GND",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J26",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "VHD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_BST"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J27",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "GND",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J28",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "TX0",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/UART0_TX"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J29",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "RX0",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/UART0_RX"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "J31",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "USB",
+      "manufacturer": "JST",
+      "mpn": "BM04B-SRSS-TB(LF)(SN)",
+      "lcsc": "C160390",
+      "footprint": "lib:CONN-SMD_4P-P1.00_BM04B-SRSS-TB",
+      "symbol": "lib:BM04B-SRSS-TB",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/USB_D_N",
+        "/USB_D_P",
+        "/VBUS",
+        "GND"
+      ],
+      "datasheet": "https://www.jst-mfg.com/product/pdf/eng/eSH.pdf"
+    },
+    {
+      "ref": "J32",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "CAM",
+      "manufacturer": "JST",
+      "mpn": "SM03B-SURS-TF(LF)(SN)",
+      "lcsc": "C265338",
+      "footprint": "lib:JST_SUR_SM03B-SURS-TF_1x03-1MP_P0.80mm_Horizontal",
+      "symbol": "lib:SM03B-SURS-TF",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_CAM",
+        "/VIDEO_IN",
+        "GND"
+      ],
+      "datasheet": "https://www.jst-mfg.com/product/pdf/eng/eSUR.pdf"
+    },
+    {
+      "ref": "J33",
+      "block": "pads",
+      "sheet": "pads",
+      "value": "GND",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:SolderPad_1.0x1.2mm",
+      "symbol": "lib:SolderPad_01x01",
+      "dnp": true,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "L1",
+      "block": "power",
+      "sheet": "power",
+      "value": "0.68uH 6.5A",
+      "manufacturer": "Changjiang Microelectronics (CJiang)",
+      "mpn": "FTC252012SR68MBCA",
+      "lcsc": "C5832369",
+      "footprint": "lib:IND-SMD_L2.5-W2.0_FTC252012_L",
+      "symbol": "lib:L_FTC252012",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/POWER/U2_SW"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "L2",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "3.3uH",
+      "manufacturer": "Abracon",
+      "mpn": "AOTA-B201610S3R3-101-T",
+      "lcsc": "C42411119",
+      "footprint": "lib:IND-SMD_L2.0-W1.6_AOTA-B201610S3R3-101-T_Dense",
+      "symbol": "lib:AOTA-B201610S3R3-101-T",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.1V",
+        "/RP2350A/VREG_LX"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/AOTA-B201610S3R3-101-T.pdf"
+    },
+    {
+      "ref": "L3",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "4.7nH",
+      "manufacturer": "Murata",
+      "mpn": "LQP03TN4N7H02D",
+      "lcsc": "C86126",
+      "footprint": "lib:L_0201_0603Metric_L",
+      "symbol": "Device:L",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/PAOUT1_SUP",
+        "/VTX/RF_PAOUT1"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "Q26",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "AP1606",
+      "manufacturer": "ALLPOWER",
+      "mpn": "AP1606",
+      "lcsc": "C2849580",
+      "footprint": "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W",
+      "symbol": "lib:AP1606",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/BUZZER-",
+        "/RP2350A/BEEPER",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/AP1606.pdf"
+    },
+    {
+      "ref": "Q27",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "BC857BM",
+      "manufacturer": "Nexperia",
+      "mpn": "BC857BM,315",
+      "lcsc": "C549525",
+      "footprint": "lib:DFN-3L_L1.0-W0.6-P0.65-BR_W",
+      "symbol": "lib:BC857BM",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/Q27_B",
+        "/VTX/Q27_C",
+        "/VTX/Q27_E"
+      ],
+      "datasheet": "https://www.lcsc.com/datasheet/C549525.pdf"
+    },
+    {
+      "ref": "Q29",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC1/A_COM",
+        "/ESC1/A_PWM",
+        "/ESC1/PHASE_A",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q30",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC1/B_COM",
+        "/ESC1/B_PWM",
+        "/ESC1/PHASE_B",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q31",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC1/C_COM",
+        "/ESC1/C_PWM",
+        "/ESC1/PHASE_C",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q32",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC2/A_COM",
+        "/ESC2/A_PWM",
+        "/ESC2/PHASE_A",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q33",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC2/B_COM",
+        "/ESC2/B_PWM",
+        "/ESC2/PHASE_B",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q34",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC2/C_COM",
+        "/ESC2/C_PWM",
+        "/ESC2/PHASE_C",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q35",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC3/A_COM",
+        "/ESC3/A_PWM",
+        "/ESC3/PHASE_A",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q36",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC3/B_COM",
+        "/ESC3/B_PWM",
+        "/ESC3/PHASE_B",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q37",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC3/C_COM",
+        "/ESC3/C_PWM",
+        "/ESC3/PHASE_C",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q38",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC4/A_COM",
+        "/ESC4/A_PWM",
+        "/ESC4/PHASE_A",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q39",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC4/B_COM",
+        "/ESC4/B_PWM",
+        "/ESC4/PHASE_B",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "Q40",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "AGM210MAP",
+      "manufacturer": "AGMSEMI",
+      "mpn": "AGM210MAP",
+      "lcsc": "C7431169",
+      "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP_L",
+      "symbol": "lib:AGM210MAP",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC4/C_COM",
+        "/ESC4/C_PWM",
+        "/ESC4/PHASE_C",
+        "GND"
+      ],
+      "datasheet": "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2306191430_AGM-Semi-AGM210MAP_C7431169.pdf"
+    },
+    {
+      "ref": "R2",
+      "block": "power",
+      "sheet": "power",
+      "value": "0.5mR 2W",
+      "manufacturer": "Stackpole",
+      "mpn": "HCS1206FTL500",
+      "lcsc": "C346511",
+      "footprint": "lib:R_1206_Kelvin_4Pad_NetTie_HCS1206_L",
+      "symbol": "lib:R_Shunt_Kelvin",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/POWER/CSA+",
+        "/POWER/SHUNT_SENSE_N",
+        "/POWER/SHUNT_SENSE_P"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R4",
+      "block": "power",
+      "sheet": "power",
+      "value": "47k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0747KL",
+      "lcsc": "C138139",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_BST",
+        "/POWER/U2_FB"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R5",
+      "block": "power",
+      "sheet": "power",
+      "value": "6.2k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-076K2L",
+      "lcsc": "C295814",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/POWER/U2_FB",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R12",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "22R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0722RL",
+      "lcsc": "C155743",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/RTX",
+        "/MOTOR1"
+      ],
+      "datasheet": "https://yageogroup.com/component-documentation/download/specsheet/RC0201FR-0722RL"
+    },
+    {
+      "ref": "R13",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/BEMF_A",
+        "/ESC1/PHASE_A"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R14",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/BEMF_B",
+        "/ESC1/PHASE_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R15",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/BEMF_C",
+        "/ESC1/PHASE_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R16",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/NEUTRAL",
+        "/ESC1/PHASE_A"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R17",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/NEUTRAL",
+        "/ESC1/PHASE_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R18",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/NEUTRAL",
+        "/ESC1/PHASE_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R19",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "22R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0722RL",
+      "lcsc": "C155743",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/RTX",
+        "/MOTOR2"
+      ],
+      "datasheet": "https://yageogroup.com/component-documentation/download/specsheet/RC0201FR-0722RL"
+    },
+    {
+      "ref": "R20",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/BEMF_A",
+        "/ESC2/PHASE_A"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R21",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/BEMF_B",
+        "/ESC2/PHASE_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R22",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/BEMF_C",
+        "/ESC2/PHASE_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R23",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/NEUTRAL",
+        "/ESC2/PHASE_A"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R24",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/NEUTRAL",
+        "/ESC2/PHASE_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R25",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/NEUTRAL",
+        "/ESC2/PHASE_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R26",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "22R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0722RL",
+      "lcsc": "C155743",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/RTX",
+        "/MOTOR3"
+      ],
+      "datasheet": "https://yageogroup.com/component-documentation/download/specsheet/RC0201FR-0722RL"
+    },
+    {
+      "ref": "R27",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/BEMF_A",
+        "/ESC3/PHASE_A"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R28",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/BEMF_B",
+        "/ESC3/PHASE_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R29",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/BEMF_C",
+        "/ESC3/PHASE_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R30",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/NEUTRAL",
+        "/ESC3/PHASE_A"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R31",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/NEUTRAL",
+        "/ESC3/PHASE_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R32",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/NEUTRAL",
+        "/ESC3/PHASE_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R33",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "22R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0722RL",
+      "lcsc": "C155743",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/RTX",
+        "/MOTOR4"
+      ],
+      "datasheet": "https://yageogroup.com/component-documentation/download/specsheet/RC0201FR-0722RL"
+    },
+    {
+      "ref": "R34",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/BEMF_A",
+        "/ESC4/PHASE_A"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R35",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/BEMF_B",
+        "/ESC4/PHASE_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R36",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/BEMF_C",
+        "/ESC4/PHASE_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R37",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/NEUTRAL",
+        "/ESC4/PHASE_A"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R38",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/NEUTRAL",
+        "/ESC4/PHASE_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R39",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/NEUTRAL",
+        "/ESC4/PHASE_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R41",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "27R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0727RL",
+      "lcsc": "C273268",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/RP2350A/VREG_AVDD"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R42",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "27R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0727RL",
+      "lcsc": "C273268",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/U10_USB_D_P",
+        "/USB_D_P"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R43",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "27R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0727RL",
+      "lcsc": "C273268",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/U10_USB_D_N",
+        "/USB_D_N"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R44",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/FC_BOOT",
+        "/RP2350A/QSPI_SS"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R45",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/RP2350A/ADC_VBAT"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R46",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/ADC_VBAT",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R47",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/CURR_SENSE",
+        "/RP2350A/ADC_CURR"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R48",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "100k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07100KL",
+      "lcsc": "C106224",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/BEEPER",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R49",
+      "block": "imu",
+      "sheet": "imu",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/GYRO_CS"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R50",
+      "block": "blackbox",
+      "sheet": "blackbox",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/FLASH_CS"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R51",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "75R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0775RL",
+      "lcsc": "C274878",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VIDEO_IN",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R52",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "820R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07820RL",
+      "lcsc": "C155736",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/OSD/OSD_LVL",
+        "/OSD_W"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R53",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "2.4k",
+      "manufacturer": "Ralec",
+      "mpn": "RTT012401FTH",
+      "lcsc": "C166281",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/OSD/OSD_LVL"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R54",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "270R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07270RL",
+      "lcsc": "C295793",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/OSD/OSD_LVL",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R55",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "680R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07680RL",
+      "lcsc": "C274876",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/OSD/VID_FILT",
+        "/VIDEO_IN"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R56",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/RX/RX_EN"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R58",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1.2k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071K2L",
+      "lcsc": "C327393",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VIDEO_OUT",
+        "/VTX/VT_MOD_N1"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R59",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "270R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07270RL",
+      "lcsc": "C295793",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/VT_MOD_N1",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R60",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1.2k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071K2L",
+      "lcsc": "C327393",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/VT_MOD",
+        "/VTX/VT_MOD_N2"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R61",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "510k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07510KL",
+      "lcsc": "C295805",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "/VTX/VT_MOD"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R62",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "560k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07560KL",
+      "lcsc": "C295807",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/VT_MOD",
+        "GND"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R63",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "100k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07100KL",
+      "lcsc": "C106224",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/RTC_CP",
+        "/VTX/RTC_VT"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R64",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "47k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0747KL",
+      "lcsc": "C138139",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/RTC_LF",
+        "/VTX/RTC_VT"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R65",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "10R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710RL",
+      "lcsc": "C106226",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/PAOUT1_SUP",
+        "/VTX/Q27_C"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R66",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/PA_DET",
+        "/VTX/PA_DET_RAW"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R68",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "10k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710KL",
+      "lcsc": "C106225",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/HD_EN"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R71",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/PA_RC1",
+        "/VTX_AMP_PWM"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R72",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/PA_RC1",
+        "/VTX/Q27_B"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R73",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "10R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0710RL",
+      "lcsc": "C106226",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "/VTX/Q27_E"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R80",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_SPILE",
+        "/VTX_SPI_CS"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R81",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_SPICLK",
+        "/VTX_SPI_CLK"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R82",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "1k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-071KL",
+      "lcsc": "C138165",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_SPIDATA",
+        "/VTX_SPI_DATA"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R85",
+      "block": "led",
+      "sheet": "led",
+      "value": "150R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07150RL",
+      "lcsc": "C295773",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/LED/D5_K",
+        "/LED0"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R86",
+      "block": "led",
+      "sheet": "led",
+      "value": "150R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-07150RL",
+      "lcsc": "C295773",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/LED/D6_K",
+        "/LED1"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R88",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "0R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201JR-070RL",
+      "lcsc": "C106228",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/RF_WIFI",
+        "/RX/RF_WIFI_ANT"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R89",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "51R",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-0751RL",
+      "lcsc": "C163499",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "/VTX/U19_LDD2V5"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "R90",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "3.3k",
+      "manufacturer": "Yageo",
+      "mpn": "RC0201FR-073K3L",
+      "lcsc": "C274874",
+      "footprint": "lib:R_0201_0603Metric_L",
+      "symbol": "Device:R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_AVDD65",
+        "/VTX/U19_AVDD65_RC"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "SW1",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "SKUBAAE010",
+      "manufacturer": "Alps Alpine",
+      "mpn": "SKUBAAE010",
+      "lcsc": "",
+      "footprint": "lib:SW_Alps_SKUBAAE010_2.4x1.4mm",
+      "symbol": "lib:SKUBAAE010",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/RX/BOOT_SW",
+        "GND"
+      ],
+      "datasheet": "https://tech.alpsalpine.com/e/products/detail/SKUBAAE010/"
+    },
+    {
+      "ref": "TP1",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "C2D",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.8mm",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/C2D"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP2",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "C2CK",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.8mm",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC1/C2CK"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP3",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "C2D",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.8mm",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/C2D"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP4",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "C2CK",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.8mm",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC2/C2CK"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP5",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "C2D",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.8mm",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/C2D"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP6",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "C2CK",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.8mm",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC3/C2CK"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP7",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "C2D",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.8mm",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/C2D"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP8",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "C2CK",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.8mm",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/ESC4/C2CK"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP9",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "FCB",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.30mm_MicroVia_L",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/FC_BOOT"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP12",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "CLK",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.30mm_MicroVia_L",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/SWCLK"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "TP13",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "DIO",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "footprint": "lib:TestPoint_Pad_D0.30mm_MicroVia_L",
+      "symbol": "Connector:TestPoint",
+      "dnp": false,
+      "exclude_from_bom": true,
+      "exclude_from_board": false,
+      "nets": [
+        "/RP2350A/SWDIO"
+      ],
+      "datasheet": ""
+    },
+    {
+      "ref": "U1",
+      "block": "power",
+      "sheet": "power",
+      "value": "INA186A3",
+      "manufacturer": "Texas Instruments",
+      "mpn": "INA186A3IDCKR",
+      "lcsc": "C2058245",
+      "footprint": "lib:SOT-363_SC-70-6_Dense",
+      "symbol": "lib:INA186A3IDCKR",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/CURR_SENSE",
+        "/POWER/SHUNT_SENSE_N",
+        "/POWER/SHUNT_SENSE_P",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/INA186A3IDCKR.pdf"
+    },
+    {
+      "ref": "U2",
+      "block": "power",
+      "sheet": "power",
+      "value": "TPS61022",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS61022RWUR",
+      "lcsc": "C915088",
+      "footprint": "lib:TI_VQFN-HR-7_2x2mm_RWU_L",
+      "symbol": "lib:TPS61022RWUR",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+5V_BST",
+        "+BATT",
+        "/POWER/U2_FB",
+        "/POWER/U2_SW",
+        "GND"
+      ],
+      "datasheet": "https://www.ti.com/lit/ds/symlink/tps61022.pdf"
+    },
+    {
+      "ref": "U4",
+      "block": "power",
+      "sheet": "power",
+      "value": "TLV75733",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TLV75733PDRVR",
+      "lcsc": "C2868428",
+      "footprint": "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L",
+      "symbol": "lib:TLV75733PDRVR",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "+5V",
+        "GND"
+      ],
+      "datasheet": "https://www.ti.com/lit/ds/symlink/tlv757p.pdf"
+    },
+    {
+      "ref": "U6",
+      "block": "esc1",
+      "sheet": "esc_channel (ESC1)",
+      "value": "EFM8BB51F16I",
+      "manufacturer": "Silicon Labs",
+      "mpn": "EFM8BB51F16I-C-QFN20R",
+      "lcsc": "C3232998",
+      "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L",
+      "symbol": "lib:EFM8BB51F16I-C-QFN20R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC1/A_COM",
+        "/ESC1/A_PWM",
+        "/ESC1/BEMF_A",
+        "/ESC1/BEMF_B",
+        "/ESC1/BEMF_C",
+        "/ESC1/B_COM",
+        "/ESC1/B_PWM",
+        "/ESC1/C2CK",
+        "/ESC1/C2D",
+        "/ESC1/C_COM",
+        "/ESC1/C_PWM",
+        "/ESC1/NEUTRAL",
+        "/ESC1/RTX",
+        "GND"
+      ],
+      "datasheet": "https://www.silabs.com/documents/public/data-sheets/efm8bb51-datasheet.pdf"
+    },
+    {
+      "ref": "U7",
+      "block": "esc2",
+      "sheet": "esc_channel (ESC2)",
+      "value": "EFM8BB51F16I",
+      "manufacturer": "Silicon Labs",
+      "mpn": "EFM8BB51F16I-C-QFN20R",
+      "lcsc": "C3232998",
+      "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L",
+      "symbol": "lib:EFM8BB51F16I-C-QFN20R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC2/A_COM",
+        "/ESC2/A_PWM",
+        "/ESC2/BEMF_A",
+        "/ESC2/BEMF_B",
+        "/ESC2/BEMF_C",
+        "/ESC2/B_COM",
+        "/ESC2/B_PWM",
+        "/ESC2/C2CK",
+        "/ESC2/C2D",
+        "/ESC2/C_COM",
+        "/ESC2/C_PWM",
+        "/ESC2/NEUTRAL",
+        "/ESC2/RTX",
+        "GND"
+      ],
+      "datasheet": "https://www.silabs.com/documents/public/data-sheets/efm8bb51-datasheet.pdf"
+    },
+    {
+      "ref": "U8",
+      "block": "esc3",
+      "sheet": "esc_channel (ESC3)",
+      "value": "EFM8BB51F16I",
+      "manufacturer": "Silicon Labs",
+      "mpn": "EFM8BB51F16I-C-QFN20R",
+      "lcsc": "C3232998",
+      "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L",
+      "symbol": "lib:EFM8BB51F16I-C-QFN20R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC3/A_COM",
+        "/ESC3/A_PWM",
+        "/ESC3/BEMF_A",
+        "/ESC3/BEMF_B",
+        "/ESC3/BEMF_C",
+        "/ESC3/B_COM",
+        "/ESC3/B_PWM",
+        "/ESC3/C2CK",
+        "/ESC3/C2D",
+        "/ESC3/C_COM",
+        "/ESC3/C_PWM",
+        "/ESC3/NEUTRAL",
+        "/ESC3/RTX",
+        "GND"
+      ],
+      "datasheet": "https://www.silabs.com/documents/public/data-sheets/efm8bb51-datasheet.pdf"
+    },
+    {
+      "ref": "U9",
+      "block": "esc4",
+      "sheet": "esc_channel (ESC4)",
+      "value": "EFM8BB51F16I",
+      "manufacturer": "Silicon Labs",
+      "mpn": "EFM8BB51F16I-C-QFN20R",
+      "lcsc": "C3232998",
+      "footprint": "lib:QFN-20_3x3mm_P0.5mm_EFM8BB51_L",
+      "symbol": "lib:EFM8BB51F16I-C-QFN20R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/ESC4/A_COM",
+        "/ESC4/A_PWM",
+        "/ESC4/BEMF_A",
+        "/ESC4/BEMF_B",
+        "/ESC4/BEMF_C",
+        "/ESC4/B_COM",
+        "/ESC4/B_PWM",
+        "/ESC4/C2CK",
+        "/ESC4/C2D",
+        "/ESC4/C_COM",
+        "/ESC4/C_PWM",
+        "/ESC4/NEUTRAL",
+        "/ESC4/RTX",
+        "GND"
+      ],
+      "datasheet": "https://www.silabs.com/documents/public/data-sheets/efm8bb51-datasheet.pdf"
+    },
+    {
+      "ref": "U10",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "RP2354A",
+      "manufacturer": "Raspberry Pi",
+      "mpn": "RP2354A",
+      "lcsc": "C41378174",
+      "footprint": "lib:QFN-60_L7.0-W7.0-P0.40-TL-EP3.4_L",
+      "symbol": "lib:RP2354A",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.1V",
+        "+3.3V",
+        "/FLASH_CS",
+        "/GYRO_CLKIN",
+        "/GYRO_CS",
+        "/GYRO_INT",
+        "/HD_EN",
+        "/LED0",
+        "/LED1",
+        "/LED_STRIP",
+        "/OSD_EN",
+        "/OSD_SYNC",
+        "/OSD_W",
+        "/RP2350A/ADC_CURR",
+        "/RP2350A/ADC_VBAT",
+        "/RP2350A/BEEPER",
+        "/RP2350A/MOTOR1_FC",
+        "/RP2350A/MOTOR2_FC",
+        "/RP2350A/MOTOR3_FC",
+        "/RP2350A/MOTOR4_FC",
+        "/RP2350A/QSPI_SS",
+        "/RP2350A/SWCLK",
+        "/RP2350A/SWDIO",
+        "/RP2350A/U10_USB_D_N",
+        "/RP2350A/U10_USB_D_P",
+        "/RP2350A/VREG_AVDD",
+        "/RP2350A/VREG_LX",
+        "/RP2350A/XIN",
+        "/SPI0_MISO",
+        "/SPI0_MOSI",
+        "/SPI0_SCK",
+        "/SPI1_MISO",
+        "/SPI1_MOSI",
+        "/SPI1_SCK",
+        "/UART0_RX",
+        "/UART0_TX",
+        "/UART1_RX",
+        "/UART1_TX",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/RP2350.pdf"
+    },
+    {
+      "ref": "U11",
+      "block": "imu",
+      "sheet": "imu",
+      "value": "BMI270",
+      "manufacturer": "Bosch Sensortec",
+      "mpn": "BMI270",
+      "lcsc": "C2836813",
+      "footprint": "lib:LGA-14_L3.0-W2.5-P0.50-BR_W",
+      "symbol": "lib:BMI270",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.8V_GYRO",
+        "+3.3V",
+        "/GYRO_CLKIN",
+        "/GYRO_CS",
+        "/GYRO_INT",
+        "/SPI1_MISO",
+        "/SPI1_MOSI",
+        "/SPI1_SCK",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/BMI270.pdf"
+    },
+    {
+      "ref": "U12",
+      "block": "imu",
+      "sheet": "imu",
+      "value": "TPS7A2018",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS7A2018PDQNRM3",
+      "lcsc": "C36996449",
+      "footprint": "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense",
+      "symbol": "lib:TPS7A2018PDQN",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+1.8V_GYRO",
+        "+3.3V",
+        "GND"
+      ],
+      "datasheet": "https://www.ti.com/lit/ds/symlink/tps7a20.pdf"
+    },
+    {
+      "ref": "U13",
+      "block": "blackbox",
+      "sheet": "blackbox",
+      "value": "PY25Q128HA-DFH-IR",
+      "manufacturer": "Puya",
+      "mpn": "PY25Q128HA-DFH-IR",
+      "lcsc": "C53467986",
+      "footprint": "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA_L",
+      "symbol": "lib:PY25Q128HA-DFH-IR_SPI",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/FLASH_CS",
+        "/SPI0_MISO",
+        "/SPI0_MOSI",
+        "/SPI0_SCK",
+        "GND"
+      ],
+      "datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20250117/E5397163A091235CFF3CDB19865BC1CE.pdf"
+    },
+    {
+      "ref": "U14",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "SN74LVC1G3157",
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC1G3157DTBR",
+      "lcsc": "C2673087",
+      "footprint": "lib:X2SON-6_L1.0-W0.8-BL_Dense",
+      "symbol": "lib:SN74LVC1G3157DTBR",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/OSD/OSD_LVL",
+        "/OSD_EN",
+        "/VIDEO_IN",
+        "/VIDEO_OUT",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/SN74LVC1G3157DTBR.pdf"
+    },
+    {
+      "ref": "U15",
+      "block": "osd",
+      "sheet": "osd",
+      "value": "TLV7031",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TLV7031DPWR",
+      "lcsc": "C2876045",
+      "footprint": "lib:X2SON-4_L0.8-W0.8-P0.48-TL-A_Dense",
+      "symbol": "lib:TLV7031DPWR",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/OSD/VID_DC",
+        "/OSD_SYNC",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/TLV7031.pdf"
+    },
+    {
+      "ref": "U16",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "ESP32-PICO-V3",
+      "manufacturer": "Espressif",
+      "mpn": "ESP32-PICO-V3",
+      "lcsc": "C967022",
+      "footprint": "lib:LGA-48_7x7mm_P0.5mm_EP_ESP32-PICO_L",
+      "symbol": "lib:ESP32-PICO-V3",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/PA_DET",
+        "/PA_EN",
+        "/RX/RADIO_BUSY",
+        "/RX/RADIO_DIO1",
+        "/RX/RADIO_MISO",
+        "/RX/RADIO_MOSI",
+        "/RX/RADIO_NSS",
+        "/RX/RADIO_RST",
+        "/RX/RADIO_SCK",
+        "/RX/RF_WIFI",
+        "/RX/RX_BOOT",
+        "/RX/RX_EN",
+        "/RX/RX_LED",
+        "/UART1_RX",
+        "/UART1_TX",
+        "/VTX_AMP_PWM",
+        "/VTX_SPI_CLK",
+        "/VTX_SPI_CS",
+        "/VTX_SPI_DATA",
+        "GND"
+      ],
+      "datasheet": "https://www.espressif.com/sites/default/files/documentation/esp32-pico_series_datasheet_en.pdf"
+    },
+    {
+      "ref": "U18",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "SX1281",
+      "manufacturer": "Semtech",
+      "mpn": "SX1281IMLTRT",
+      "lcsc": "C2151551",
+      "footprint": "lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_L",
+      "symbol": "lib:SX1281IMLTRT",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/RX/RADIO_BUSY",
+        "/RX/RADIO_DIO1",
+        "/RX/RADIO_MISO",
+        "/RX/RADIO_MOSI",
+        "/RX/RADIO_NSS",
+        "/RX/RADIO_RST",
+        "/RX/RADIO_SCK",
+        "/RX/RF_RFIO",
+        "/RX/VREG_RADIO",
+        "/RX/VR_PA",
+        "/RX/XTA",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/SX1281IMLTRT.pdf"
+    },
+    {
+      "ref": "U19",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "RTC6705",
+      "manufacturer": "RichWave",
+      "mpn": "RTC6705",
+      "lcsc": "C913074",
+      "footprint": "lib:QFN-40_6x6mm_P0.5mm_EP_RTC6705_L",
+      "symbol": "lib:RTC6705",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "/VTX/RF_PAOUT1",
+        "/VTX/RTC_CP",
+        "/VTX/RTC_VT",
+        "/VTX/U19_AVDD65",
+        "/VTX/U19_LDD2V5",
+        "/VTX/U19_REG1D8",
+        "/VTX/U19_SPICLK",
+        "/VTX/U19_SPIDATA",
+        "/VTX/U19_SPILE",
+        "/VTX/U19_XTAL1",
+        "/VTX/U19_XTAL2",
+        "/VTX/VT_MOD",
+        "GND"
+      ],
+      "datasheet": "https://www.lcsc.com/datasheet/C913074.pdf"
+    },
+    {
+      "ref": "U20",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "SE5004L",
+      "manufacturer": "Skyworks",
+      "mpn": "SE5004L-R",
+      "lcsc": "C210263",
+      "footprint": "lib:QFN-20_4x4mm_P0.5mm_EP_SE5004L_L",
+      "symbol": "lib:SE5004L-R",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+BATT",
+        "/VTX/PA_DET_RAW",
+        "/VTX/PA_VREF",
+        "/VTX/RF_PA_IN",
+        "/VTX/RF_PA_OUT",
+        "GND"
+      ],
+      "datasheet": "https://www.lcsc.com/datasheet/C210263.pdf"
+    },
+    {
+      "ref": "U21",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "LP5912-3.3",
+      "manufacturer": "Texas Instruments",
+      "mpn": "LP5912-3.3DRVR",
+      "lcsc": "C524780",
+      "footprint": "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_L",
+      "symbol": "lib:LP5912-3.3DRVR",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "+5V",
+        "/HD_EN",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/LP5912.pdf"
+    },
+    {
+      "ref": "U22",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "TPS7A20285",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS7A20285PDQNR",
+      "lcsc": "C3748388",
+      "footprint": "lib:X2SON-4_L1.0-W1.0-P0.65-TL-EP_Dense",
+      "symbol": "lib:TPS7A20285PDQN",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V_VTX",
+        "/PA_EN",
+        "/VTX/PA_VREF",
+        "GND"
+      ],
+      "datasheet": "https://www.ti.com/lit/ds/symlink/tps7a20.pdf"
+    },
+    {
+      "ref": "U24",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "FXMAR2104UMX",
+      "manufacturer": "onsemi",
+      "mpn": "FXMAR2104UMX",
+      "lcsc": "C457752",
+      "footprint": "lib:Onsemi_UMLP-12_1.8x1.8mm_P0.4mm_FXMAR2104",
+      "symbol": "lib:FXMAR2104UMX",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "+BATT",
+        "/MOTOR1",
+        "/MOTOR2",
+        "/MOTOR3",
+        "/MOTOR4",
+        "/RP2350A/MOTOR1_FC",
+        "/RP2350A/MOTOR2_FC",
+        "/RP2350A/MOTOR3_FC",
+        "/RP2350A/MOTOR4_FC",
+        "GND"
+      ],
+      "datasheet": "https://www.onsemi.com/download/data-sheet/pdf/fxmar2104-d.pdf"
+    },
+    {
+      "ref": "X1",
+      "block": "fc",
+      "sheet": "rp2350a",
+      "value": "12MHz",
+      "manufacturer": "YXC",
+      "mpn": "OT201612MJBA4SL",
+      "lcsc": "C669076",
+      "footprint": "lib:OSC-SMD_4P-L2.0-W1.6-BL_YXC_YSO110TR_Dense",
+      "symbol": "lib:OT201612MJBA4SL",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/RP2350A/XIN",
+        "GND"
+      ],
+      "datasheet": "https://datasheet.lcsc.com/datasheet/pdf/b336a5b52993e15e0134a8f3d7decec7.pdf?productCode=C669076"
+    },
+    {
+      "ref": "X3",
+      "block": "rx",
+      "sheet": "rx_esp32_sx1281",
+      "value": "52MHz TCXO",
+      "manufacturer": "YXC",
+      "mpn": "OW7EL89CENUNFAYLC-52M",
+      "lcsc": "C22434896",
+      "footprint": "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense",
+      "symbol": "lib:OW7EL89CENUNFAYLC-52M",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "+3.3V",
+        "/RX/TCXO_OUT",
+        "GND"
+      ],
+      "datasheet": "${OPENDRONE_LIB}/datasheet/TXC-OW-Series.pdf"
+    },
+    {
+      "ref": "X4",
+      "block": "vtx",
+      "sheet": "vtx",
+      "value": "8MHz 10pF",
+      "manufacturer": "Yajingxin",
+      "mpn": "TAXM8M4RDBCCT2T",
+      "lcsc": "C400090",
+      "footprint": "lib:CRYSTAL-SMD_4P-L3.2-W2.5-BL_Dense",
+      "symbol": "Device:Crystal_GND24",
+      "dnp": false,
+      "exclude_from_bom": false,
+      "exclude_from_board": false,
+      "nets": [
+        "/VTX/U19_XTAL1",
+        "/VTX/U19_XTAL2",
+        "GND"
+      ],
+      "datasheet": ""
+    }
+  ],
+  "summary": {
+    "parts_total": 253,
+    "bom_parts": 219,
+    "bom_lines": 77,
+    "by_block": {
+      "blackbox": 3,
+      "esc1": 17,
+      "esc2": 17,
+      "esc3": 17,
+      "esc4": 17,
+      "fc": 34,
+      "imu": 7,
+      "led": 4,
+      "osd": 12,
+      "pads": 21,
+      "power": 24,
+      "rx": 24,
+      "vtx": 56
+    }
+  }
+}

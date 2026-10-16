@@ -1,0 +1,139 @@
+(footprint "BattPad_3.0x2.0mm_PTH1.1"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Battery lead pad 3.0 x 2.0 mm both sides, plated D1.1 hole for a 22 AWG lead (BT2.0 pigtail); power vias are placed in the pad on the board (P6); OpenAIO-Whoop spec 4.10")
+	(tags "battery pad pigtail PTH power")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "6494f240-e529-4742-8481-bac56f9e632f")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "BattPad_3.0x2.0mm_PTH1.1"
+		(at 0 1.8 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3370bb8e-55ea-4cb2-b51d-9cded8123bc7")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cf744a46-2051-4f64-b8d7-4f72463e7030")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a055a59f-3f4e-4334-bbbb-4440ee3e18f9")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole exclude_from_pos_files exclude_from_bom)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.6 -1.1)
+		(end 1.6 1.1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "B.CrtYd")
+		(uuid "ea0c766e-7db5-4b71-bea2-3ce5c1d261c5")
+	)
+	(fp_rect
+		(start -1.6 -1.1)
+		(end 1.6 1.1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "f68b41b2-3edb-48c5-aad8-e767c6e285a0")
+	)
+	(fp_line
+		(start -1.5 -1)
+		(end 1.5 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "6bf4736d-bf4b-4954-8d2f-35fe1ec251d9")
+	)
+	(fp_line
+		(start -1.5 1)
+		(end -1.5 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3a40f98f-b0a2-4fae-8aea-103289f5d056")
+	)
+	(fp_line
+		(start 1.5 -1)
+		(end 1.5 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "f1cb71bc-9744-4b9b-a85c-d99f539baad4")
+	)
+	(fp_line
+		(start 1.5 1)
+		(end -1.5 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "f088d363-64f2-447a-ba3a-94a89847d87e")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 0.55 0)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "6409ea80-ee7e-42a1-b666-d076918a1c27")
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 3 2)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers yes)
+		(keep_end_layers yes)
+		(thermal_bridge_angle 45)
+		(uuid "526e5679-a9a4-4ea7-bd2a-8f1b433ec28e")
+	)
+	(embedded_fonts no)
+)

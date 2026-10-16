@@ -1,0 +1,170 @@
+(footprint "SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "SHOU HAN TS2306A 240gf MSM 9 tact switch 3.0 x 2.0 x 0.6 mm, LCSC C2976675; lands per the datasheet reference land (0.55 x 1.5 per side at +-1.625), paste per the reference stencil (2 x 0.42 x 0.60 per land); _W copy of OpenDrone:SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5 with F.Fab body and courtyard; no silk")
+	(tags "switch tact TS2306A 3x2mm SMD")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "0a04ac44-410b-42dd-89c9-5ea83d8f94e2")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5_W"
+		(at 0 1.8 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c82d7009-3df4-4ff1-83ec-b795fefbe825")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e4875f9b-d396-4727-86d5-c7cf71a2083d")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "155446e9-3338-41d7-93b9-93ef52a56781")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -2 -1.1)
+		(end 2 1.1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "467cb64d-50bb-470e-8e5a-9ae1a6ee2ac5")
+	)
+	(fp_line
+		(start -1.5 -0.7)
+		(end -1.2 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3fe422f3-7321-440c-bc25-410239733d6b")
+	)
+	(fp_line
+		(start -1.5 1)
+		(end -1.5 -0.7)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "52f0005d-b614-405b-a760-127dfcfdd3fd")
+	)
+	(fp_line
+		(start -1.2 -1)
+		(end 1.5 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "04dd1e03-7912-4ca5-bb28-c3070055ea67")
+	)
+	(fp_line
+		(start 1.5 -1)
+		(end 1.5 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "19fb307c-ef88-4d4b-b5e0-bad24739fb95")
+	)
+	(fp_line
+		(start 1.5 1)
+		(end -1.5 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "d3f6c893-66c0-476c-b5fb-9c6cac1777a9")
+	)
+	(pad "" smd rect
+		(at -1.635 -0.425)
+		(size 0.42 0.6)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "2d6c9494-894e-4781-9c0f-f944073b9fc6")
+	)
+	(pad "" smd rect
+		(at -1.635 0.425)
+		(size 0.42 0.6)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "7a61a3a5-53f6-424a-8942-62d321c3e3d2")
+	)
+	(pad "" smd rect
+		(at 1.635 -0.425)
+		(size 0.42 0.6)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "b36f7934-ca28-413a-89a1-ecaed5ba52d6")
+	)
+	(pad "" smd rect
+		(at 1.635 0.425)
+		(size 0.42 0.6)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "91262cdd-5c2b-4884-b383-abc16d6167c7")
+	)
+	(pad "1" smd rect
+		(at -1.625 0)
+		(size 0.55 1.5)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "2d5ed1a1-850c-4c64-98a2-efa332a102fd")
+	)
+	(pad "2" smd rect
+		(at 1.625 0)
+		(size 0.55 1.5)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "79d7e2ed-4189-41fa-914e-c579a5e3df85")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/SW-SMD_4P-L3.0-W2.0-P0.85-LS3.5.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

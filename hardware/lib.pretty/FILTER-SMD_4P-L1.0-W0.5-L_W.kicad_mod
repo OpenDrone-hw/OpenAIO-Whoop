@@ -1,0 +1,159 @@
+(footprint "FILTER-SMD_4P-L1.0-W0.5-L_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Johanson 2450FM07D0034T 2.45 GHz front-end filter 1005 (house part OpenDrone:FILTER-SMD_4P-L1.0-W0.5-L, C2651081, OpenRX-Lite / OpenAIO). Johanson detail spec 9/10/2019 p1: L 1.00 +-0.05, W 0.50 +-0.05, end terminal a 0.18 +-0.10, side terminal b 0.25 +-0.10; top view 1 IN (left, toward the chipset), 2 GND bottom, 3 OUT right (toward the antenna), 4 GND top. Land = the corrected 1005 4-terminal land of FILTER-SMD_4P-L1.0-W0.5-L_DEA102700LT-XXX_W (ends 0.45 x 0.30 at +-0.575, sides 0.30 x 0.45 at +-0.325): covers the Johanson end terminals (x 0.32-0.50) and side terminals (+-0.125) with fillet. F.Fab body, no component silk; spec hardware/tools/land_specs/FILTER-SMD_4P-L1.0-W0.5-L_W.json")
+	(tags "Johanson 2450FM07D0034T 2.45 GHz filter SX1281 1005")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "e1cb4300-6c5f-5b79-9818-8ddd24f93372")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Value" "FILTER-SMD_4P-L1.0-W0.5-L_W"
+		(at 0 0.45 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9dcdb381-58dd-5b81-9355-6170d3177557")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1eeb0854-1502-5e9d-9c7d-1d4d7bca16da")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e497415e-3127-5b92-8f71-6dbd5078a85b")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_poly
+		(pts
+			(xy 0.25 -0.35) (xy 0.6 -0.35) (xy 0.6 -0.25) (xy 0.9 -0.25) (xy 0.9 0.25) (xy 0.6 0.25) (xy 0.6 0.35)
+			(xy 0.25 0.35) (xy 0.25 0.65) (xy -0.25 0.65) (xy -0.25 0.35) (xy -0.6 0.35) (xy -0.6 0.25) (xy -0.9 0.25)
+			(xy -0.9 -0.25) (xy -0.6 -0.25) (xy -0.6 -0.35) (xy -0.25 -0.35) (xy -0.25 -0.65) (xy 0.25 -0.65)
+		)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "3f61e24d-821b-5dd6-8bce-d8fa5c79451c")
+	)
+	(fp_line
+		(start -0.5 -0.125)
+		(end -0.375 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "f1fe0b81-1569-5c22-a72e-f4bd81227057")
+	)
+	(fp_line
+		(start -0.5 0.25)
+		(end -0.5 -0.125)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "1ff472ac-cca0-5ed2-91f7-0f1b46a8d3b1")
+	)
+	(fp_line
+		(start -0.375 -0.25)
+		(end 0.5 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "38804242-e5bd-5594-b271-d9e0a0a9f8bf")
+	)
+	(fp_line
+		(start 0.5 -0.25)
+		(end 0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "51b9a750-0dc6-5878-814e-4aa9602a0104")
+	)
+	(fp_line
+		(start 0.5 0.25)
+		(end -0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "0fc858b5-b7eb-5730-8d88-c2cb9c9d0ab0")
+	)
+	(pad "1" smd rect
+		(at -0.575 0)
+		(size 0.45 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "55a7181d-decb-5e5a-b8ef-033159a85c73")
+	)
+	(pad "2" smd rect
+		(at 0 0.325)
+		(size 0.3 0.45)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "8cf17dd9-0ae8-57be-a61a-c94431c153de")
+	)
+	(pad "3" smd rect
+		(at 0.575 0)
+		(size 0.45 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "cf44d68f-172b-51f9-8e17-fcf1791232f0")
+	)
+	(pad "4" smd rect
+		(at 0 -0.325)
+		(size 0.3 0.45)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "b72b0a2e-658d-5c6d-8c32-f12e90da9867")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/FILTER-SMD_4P-L1.0-W0.5-H0.4-L_DEA102700LT-XXX.wrl"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

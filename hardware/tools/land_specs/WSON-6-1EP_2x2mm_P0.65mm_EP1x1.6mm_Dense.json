@@ -1,0 +1,103 @@
+{
+ "footprint": "lib:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_Dense",
+ "source": "OpenDrone:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm",
+ "part": "TI LP5912-3.3DRVR WSON-6 (DRV)",
+ "datasheet": "${OPENDRONE_LIB}/datasheet/LP5912.pdf p35-37 DRV0006A (4222173/C): body 2.0 x 2.0, EP 1.0 x 1.6; land example 6X (0.45) x 6X (0.3), 4X (0.65), (1.95) row centres, EP (1) x (1.6), (R0.05); stencil: EP 2 windows (1.0 x 0.7) at (0.45), 88 % printed coverage; pin 1 top-left",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.925,
+   "y": -0.65,
+   "w": 0.35,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -0.925,
+   "y": 0,
+   "w": 0.35,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -0.925,
+   "y": 0.65,
+   "w": 0.35,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": 0.925,
+   "y": 0.65,
+   "w": 0.35,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 0.925,
+   "y": 0,
+   "w": 0.35,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 0.925,
+   "y": -0.65,
+   "w": 0.35,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": 0,
+   "y": 0,
+   "w": 1.0,
+   "h": 1.6,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 2.0,
+  "h": 2.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "TI land with the toe trimmed (heel edge 0.75 kept); EP and paste as TI",
+ "dense": "budget envelope WSON22 2.2 x 2.2 vs TI example 2.4: outer edge 1.20 -> 1.10 (0.10 past the body), pads 0.35 x 0.30 at +-0.925 still cover the 0.25-0.35 terminals",
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.9,
+  "min_windows": 2
+ },
+ "exposed": [
+  "7"
+ ],
+ "build": {
+  "radius": 0.05,
+  "courtyard": "polygon",
+  "model_from_source": true,
+  "paste_windows": {
+   "7": [
+    [
+     0,
+     -0.45,
+     1.0,
+     0.7
+    ],
+    [
+     0,
+     0.45,
+     1.0,
+     0.7
+    ]
+   ]
+  }
+ }
+}

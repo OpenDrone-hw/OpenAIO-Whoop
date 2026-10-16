@@ -1,0 +1,106 @@
+{
+ "footprint": "lib:ANT-SMD_4P-L1.0-W0.5_Johanson_2450AT07A0100_Edge5.0x3.2",
+ "part": "Johanson Technology 2450AT07A0100001T (legacy P/N 2450AT07A0100T), 2.4 GHz ceramic chip antenna, ELRS Wi-Fi (D58), fed from ESP32-PICO-V3 LNA_IN (pin 2) through a pi network",
+ "datasheet": "Johanson 'Ultra-Miniature 2.4GHz Chip antenna 0.37mm max Thickness' P/N 2450AT07A0100, Detail Specification 10/12/2020 Ver 3.1 (https://www.johansontechnology.com/datasheets/antennas/2450AT07A0100.pdf, local p2v3/wifi_dl/2450AT07A0100.pdf): p1 Mechanical Dimensions L 1.00+-0.10, W 0.50+-0.10, T 0.37 max, a 0.15, b 0.25, c 0.08; Terminal Configuration 1 Feed, 2 GND, 3 GND, 4 Feed (mark on the feed end); p2 'Mounting Considerations / Test Board-Top View': lands in two rows 0.3 deep with a 0.3 gap, columns split by a 0.1 slot, 'No Ground (Yellow area)' 5.0 x 3.0 at the board edge, edge strip 0.4 deep from the slot (0.9 from the clearance end) 4.0 long to the far ground, feed tongue 1.5 long / 0.7 deep / 0.25 past pad 1, 1.2 clear below it, pi (shunt-series-shunt) slots recommended; p3 evaluation board 40 x 20, clearance 5 x 3 on top AND bottom. Current P/N and -40..+85 C (part page) / -40..+105 C (Rev 4.0, 2024): https://www.johansontechnology.com/part/2450AT07A0100001T/",
+ "derivation": "KiCad frame: origin = body centre, part turned so L runs along y (as on the DS p2 test board), GND row (3 left, 2 right) toward the board edge at y = -1.15, feed row (4 left, 1 right) inward. Lands 0.20 x 0.30 (column width read from the p2 drawing: slot 0.1, pads to the 0.5 body width; row depth 0.3 and gap 0.3 dimensioned) cover the terminals (a 0.15 x b 0.25, inset c 0.08). Pattern copper as F.Cu-only pads with the land numbers (mask-covered, no paste): '3' near-ground piece x -1.25..-0.05, y -0.85..-0.20 (DS: ground left of the 0.1 slot down to 0.25 above the feed row); '2' edge strip x 0.05..4.35, y -0.85..-0.40 (DS 0.4 deep, 4.0 + 0.1 long, +0.05 onto land 2, +0.30 into the far ground); '4' feed tongue (joins feed lands 4 and 1; the pin-1 marker then sits at land 1) x -1.25..0.50, y 0.15..0.85 (DS 0.7 deep, 0.25 past land 1, +0.30 outside the keep-out where the 50 ohm feed lands). Whole DS pattern moved 0.20 inward (DS copper 0.10 from the edge -> 0.30, the board's pad-to-edge rule), so the keep-out WIFI_ANT_KEEPOUT is 5.0 x 3.2 from the edge (x -0.95..4.05, y -1.15..2.05), all copper layers, no tracks/vias/pours/footprints; drawn 0.20 past the edge line. 3D: body-equivalent 1005 4-terminal model (1.02 x 0.52 x 0.41, house FILTER-SMD_4P-L1.0-W0.5-H0.4-L.step from OpenRX-Lite-UFL) turned 90 deg; the antenna is 0.37 max.",
+ "pads": [
+  {
+   "number": "3",
+   "x": -0.15,
+   "y": -0.3,
+   "w": 0.2,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.15,
+   "y": -0.3,
+   "w": 0.2,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -0.15,
+   "y": 0.3,
+   "w": 0.2,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "1",
+   "x": 0.15,
+   "y": 0.3,
+   "w": 0.2,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -0.65,
+   "y": -0.525,
+   "w": 1.2,
+   "h": 0.65,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 2.2,
+   "y": -0.625,
+   "w": 4.3,
+   "h": 0.45,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -0.375,
+   "y": 0.5,
+   "w": 1.75,
+   "h": 0.7,
+   "shape": "rect"
+  }
+ ],
+ "exposed": [],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 1.0
+ },
+ "body": {
+  "w": 0.5,
+  "h": 1.0,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "keepout": {
+  "name": "WIFI_ANT_KEEPOUT",
+  "x0": -0.95,
+  "y0": -1.15,
+  "x1": 4.05,
+  "y1": 2.05,
+  "layers": "all copper",
+  "disallow": [
+   "tracks",
+   "vias",
+   "copper pours",
+   "footprints"
+  ],
+  "edge_line_y": -1.15,
+  "area_mm2": 16.0,
+  "datasheet_area_mm2": 15.0
+ },
+ "dru_exception": {
+  "verified": "kicad-cli 10 DRC on p2v3/wifi_work/drctest (repo .kicad_dru + PART_EDGE_BAND ring): without it only 'parts: courtyards off the edge band' fires on AE2; with it 0 errors. Must come after that rule (last match wins).",
+  "text": "# D21 / D58: the Wi-Fi chip antenna's edge strip is part of the maker's radiator (Johanson 2450AT07A0100 DS p2); its copper keeps\n# 0.30 from the edge, its courtyard (copper + 0.10) enters the 0.30 part band. Scoped to that footprint only.\n(rule \"D21 wifi_antenna_edge_strip\"\n  (severity ignore)\n  (constraint disallow footprint)\n  (condition \"A.Type == 'Footprint' && A.Library_Link == '*2450AT07A0100*'\"))"
+ },
+ "keepout_test": "footprint rule area flags a GND via and a GND track inside it (items_not_allowed, 'keepout area WIFI_ANT_KEEPOUT of AE2'), never the antenna's own pads/footprint; pours stop at its outline on all 6 layers; feed track ends on the tongue outside it (no net-aware DRU needed)",
+ "matching": {
+  "topology": "pi at the tongue, outside the keep-out: shunt C (antenna side) - series element - shunt C (PICO side), 0201 on lib:C/L/R_0201_0603Metric_W",
+  "rev1_population": "series RC0201JR-070RL 0 ohm fitted, both shunts DNP; values tuned on the first boards (VNA at the tongue, or Johanson tuning service) from the house RF set GRM0335C1H*BA01D C0G / LQP03TN*02D",
+  "chip_side": "ESP32-PICO-V3 has its own CLC to 50 ohm inside (DS v1.3 Fig. 8 p49: 1.2 pF / 1.8 nH / 1.5 pF); Fig. 11 p52 shows the external pi as TBD"
+ }
+}

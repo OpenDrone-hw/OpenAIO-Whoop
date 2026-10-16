@@ -1,0 +1,54 @@
+{
+ "footprint": "lib:C_0402_1005Metric_L",
+ "part": "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05",
+ "datasheet": "Murata GRM155C80J106ME11_ spec (LCSC C237279 PDF, p23/bomred_lib/dl/lcsc/C237279.pdf) p1 '3. Type & Dimensions' L 1.0+-0.2, W 0.5+-0.2, T 0.5+-0.2, e 0.15-0.35, g 0.3 min; p26 'Soldering and Mounting / 2. Land Dimensions' Table 2 Reflow, GRM15 1.0x0.5 (+-0.15/+-0.20): a 0.4-0.6, b 0.4-0.5, c 0.5-0.7. Samsung CL05A475MP5NRNC L 1.00+-0.15 and CL05A105KA5NQNC L 1.00+-0.10 (product.samsungsem.com product pages, read 2026-10-10)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.4125,
+   "y": 0,
+   "w": 0.425,
+   "h": 0.5,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": 0.4125,
+   "y": 0,
+   "w": 0.425,
+   "h": 0.5,
+   "shape": "roundrect"
+  }
+ ],
+ "body": {
+  "w": 1.0,
+  "h": 0.5
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "IPC-7351C least density (D109), verifier fix 2026-10-10: the worst part on this footprint is GRM155C80J106ME11 (L 1.0+-0.2), so the land outer edge is L max/2 + 0.025 = 0.625 (toe 0.125 at nominal, 0.025 at L max 1.20, 0.05 at the CL05A475 L max 1.15); inner edge 0.20 (terminal inner edge >= g min/2 = 0.15, heel -0.05 = IPC L); width 0.50 = W nominal (side 0; Murata c min 0.50 for +-0.15/+-0.20 parts; does not set the courtyard). Lands 0.425 x 0.50 at +-0.4125, gap 0.40, overall 1.25 x 0.50; courtyard 1.45 x 0.70. The first _L land (0.38 x 0.48 at +-0.39, outer edge 0.58) assumed L +-0.05 and left the GRM155 terminal uncovered at L max.",
+ "applies_to": [
+  {
+   "mpn": "Murata GRM155C80J106ME11D (10 uF 6.3 V X6S 0402, LCSC C237279)",
+   "d52": "BR-14 (C13 + C120 -> one shared LP5912 CIN), BR-20 (C30, D24 TPS2116 VIN1 cap); was already C12, C15, C82, C93, C108, C118",
+   "datasheet": "Murata spec GRM155C80J106ME11_ (LCSC C237279 PDF): p1 '3. Type & Dimensions' chip 1.0+-0.2 x 0.5+-0.2 x 0.5+-0.2, e 0.15-0.35, g 0.3 min (the 1.0+-0.05 row on that PDF is the tape cavity, not the chip); p26 Table 2 Reflow, GRM15 (+-0.15/+-0.20): a 0.4-0.6, b 0.4-0.5, c 0.5-0.7",
+   "fit": "land a 0.40 / b 0.425 / c 0.50: at the bottom of every +-0.20 range; outer edge 0.625 covers the terminal at L max 1.20"
+  },
+  {
+   "mpn": "Samsung CL05A475MP5NRNC (4.7 uF 10 V X5R 0402, LCSC C23733)",
+   "d52": "BR-26: C123 LP5907 COUT (0201 1 uF -> this part); was already C56-C58, C105, C107",
+   "datasheet": "Samsung Electro-Mechanics MLCC catalogue (LCSC C23733 PDF, p23/bomred_lib/dl/lcsc/C23733.pdf): p19 CL05A475M row (1.0 x 0.5, T 0.5 = code P); p76 'Application Manual for Surface Mounting / 2. Design of Solder Land Pattern': land width 2/3 W < b < W, toe 2/3 T < a < T (no gap value); product page CL05A475MP5NRN: L 1.00+-0.15, W 0.50+-0.15, T 0.50+-0.15",
+   "fit": "toe 0.05 at L max 1.15; land width 0.50 = W nominal (Samsung b < W rule met at W nominal)"
+  },
+  {
+   "mpn": "Samsung CL05A105KA5NQNC (1 uF 0402, C106)",
+   "datasheet": "product.samsungsem.com CL05A105KA5NQN: L 1.00+-0.10, W 0.50+-0.10, T 0.50+-0.10",
+   "fit": "toe 0.075 at L max 1.10"
+  }
+ ],
+ "derived_from": "lib:C_0402_1005Metric_W (spec hardware/tools/land_specs/C_0402_1005Metric_W.json)",
+ "density": "IPC-7351C least (L), D109",
+ "staged_from": "p2v3/v4/fpL/passives/land_specs/C_0402_1005Metric_L.json"
+}

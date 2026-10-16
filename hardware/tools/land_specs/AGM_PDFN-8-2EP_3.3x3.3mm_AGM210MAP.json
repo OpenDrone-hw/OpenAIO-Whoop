@@ -1,0 +1,101 @@
+{
+ "footprint": "lib:AGM_PDFN-8-2EP_3.3x3.3mm_AGM210MAP",
+ "part": "AGMSEMI AGM210MAP (12x, ESC1-4 half-bridges, D56), LCSC C7431169",
+ "datasheet": "AGMSEMI AGM210MAP VER2.73 (eighth version, 2026-03-20; local p2v3/agm_work/dl/v273.pdf, md5 23ef6cfafd4b71ab44c5567a3690c996; VER2.72 = LCSC/JLC copy https://www.lcsc.com/datasheet/C7431169.pdf, identical package page): p1 'PDFN3.3*3.3 Pin Configuration' top view (pin 1 S1, 2 G1, 3 S2, 4 G2, 5-6 D2, 7-8 D1; Q1 = N, Q2 = P from the p1 symbols); p9 lower drawing (dual-pad PDFN3.3x3.3): D 3.10, E1 3.10, E 3.30 incl. leads (protrusion L1/L2 0.10 ref), b 0.30 (0.25-0.35), e 0.65 BSC, drain pads D2/D3 1.05 x E2 1.82, centre gap d 0.40, pad span D1 2.50, H1 0.31 (lead tip to pad), K 0.77 (pad to lead), H2 0.40 (lead length). No land pattern in the datasheet (p10 is marking).",
+ "derivation": "KiCad frame = DS top view turned 90 deg clockwise (pins 1-4 down the left column, pin 1 top-left; drains right). Leads: lead x 1.25..1.65 from centre (H2 0.40 to the tip) -> land 1.20..1.85 (heel 0.05, toe 0.20), width b 0.30 + 0.05 = 0.35. Drain pads: x -0.48..1.34 (E2 1.82 from H1 0.31 inside the tip), y 0.20..1.25 -> EP land x -0.53..1.34 (+0.05 inner end), y 0.175..1.30 (+0.05 outward, +0.025 to the 0.40 gap -> 0.35 land gap). Drain tabs (pins 5-8, part of the drain pads): lands 1.34..1.85 x 0.35, abutting the EP lands (same pin). EP numbers = drain pin numbers ('8' D1, '5' D2), duplicate-number pads map to the stacked symbol pins. Paste: leads and tabs 1:1; each EP 2 windows 0.81 x 0.925 (71 %). Cross-check: e2k C7431169 'DFN-8_L3.2-W3.1-P0.65-LS3.4-BL-1' has the same pin map (EP D1 left / D2 right in its frame) and EP lands 1.2 x 2.0.",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.525,
+   "y": -0.975,
+   "w": 0.65,
+   "h": 0.35,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -1.525,
+   "y": -0.325,
+   "w": 0.65,
+   "h": 0.35,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -1.525,
+   "y": 0.325,
+   "w": 0.65,
+   "h": 0.35,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": -1.525,
+   "y": 0.975,
+   "w": 0.65,
+   "h": 0.35,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": 1.595,
+   "y": -0.975,
+   "w": 0.51,
+   "h": 0.35,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": 1.595,
+   "y": -0.325,
+   "w": 0.51,
+   "h": 0.35,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 1.595,
+   "y": 0.325,
+   "w": 0.51,
+   "h": 0.35,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 1.595,
+   "y": 0.975,
+   "w": 0.51,
+   "h": 0.35,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": 0.405,
+   "y": -0.7375,
+   "w": 1.87,
+   "h": 1.125,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 0.405,
+   "y": 0.7375,
+   "w": 1.87,
+   "h": 1.125,
+   "shape": "roundrect"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8,
+  "min_windows": 2
+ },
+ "body": {
+  "w": 3.1,
+  "h": 3.1,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1"
+}

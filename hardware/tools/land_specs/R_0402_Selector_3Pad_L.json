@@ -1,0 +1,50 @@
+{
+ "footprint": "lib:R_0402_Selector_3Pad_L",
+ "part": "Yageo RC0402JR-070RL 0 R (LCSC C60485) on a 3-pad land, R67 (PA VCC selector, DESIGN-SPEC 4.2)",
+ "datasheet": "Yageo spec sheet RC0402 (rx group copy /tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/rx/dl/yageo/rc.pdf; https://www.yageogroup.com/component-documentation/download/specsheet/RC0402JR-070RL) p1: L 1.00 +-0.05, W 0.50 +-0.05, B2 0.25 +-0.10",
+ "derivation": "Yageo RC0402JR-070RL 0 R on a 3-pad selector land, R67 (PA VCC selector). Yageo RC0402: L 1.00+-0.05, W 0.50+-0.05, B2 0.25+-0.10. IPC-7351C least density (D109): the 0402_L land (0.38 x 0.48) repeated at 0.78 pitch: pads 1 -0.39, 2 +0.39 (common), 3 +1.17; origin at the pad 1-2 midpoint (default fit, CPL anchor). Either fit has toe 0.08 (nominal) / 0.055 (L max) on its outer land; pads 1 and 3 inner edges are 1.18 apart > 1.05 L max, so one part cannot bridge 1-3. Pad 3 keeps no paste (default fit 1-2). Body envelope 1.78 x 0.50 centred at +0.39; courtyard 2.14 x 0.70.",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.39,
+   "y": 0,
+   "w": 0.38,
+   "h": 0.48,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": 0.39,
+   "y": 0,
+   "w": 0.38,
+   "h": 0.48,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": 1.17,
+   "y": 0,
+   "w": 0.38,
+   "h": 0.48,
+   "shape": "roundrect"
+  }
+ ],
+ "body": {
+  "w": 1.78,
+  "h": 0.5,
+  "x": 0.39,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "removed_nc": [],
+ "no_paste": [
+  {
+   "number": "3",
+   "reason": "unfitted 2-3 option (+5V): a stencil deposit 0.40 mm from pad 2 could bridge to PA_VCC in reflow (P4 critique round 2); the 2-3 rework is soldered by hand. A 2-3 variant would drop the paste from pad 1 instead"
+  }
+ ],
+ "derived_from": "lib:R_0402_Selector_3Pad (spec hardware/tools/land_specs/R_0402_Selector_3Pad.json)",
+ "density": "IPC-7351C least (L), D109",
+ "staged_from": "p2v3/v4/fpL/passives/land_specs/R_0402_Selector_3Pad_L.json"
+}

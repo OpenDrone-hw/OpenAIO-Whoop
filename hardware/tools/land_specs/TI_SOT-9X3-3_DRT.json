@@ -1,0 +1,45 @@
+{
+ "footprint": "lib:TI_SOT-9X3-3_DRT",
+ "datasheet": "TI TPD2EUSB30 datasheet SLVSAC2G (rev. June 2021), https://www.ti.com/lit/ds/symlink/tpd2eusb30.pdf, p26 DRT (R-PDSO-N3) outline 4206292-2/D, p27 DRT land pattern 4211172/A, p3 Figure 5-1 pin configuration (1 D+, 2 D-, 3 GND)",
+ "derivation": "rows centred on the package (pad 3 at y -0.425, pads 1/2 at +0.425); land 0.05 solder-mask clearance per p27 (KiCad default mask expansion)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.35,
+   "y": 0.425,
+   "w": 0.3,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.35,
+   "y": 0.425,
+   "w": 0.3,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.0,
+   "y": -0.425,
+   "w": 0.3,
+   "h": 0.3,
+   "shape": "rect"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 1.0
+ },
+ "body": {
+  "w": 1.0,
+  "h": 0.8,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top"
+}

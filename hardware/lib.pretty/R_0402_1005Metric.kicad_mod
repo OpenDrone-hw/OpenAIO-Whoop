@@ -1,0 +1,144 @@
+(footprint "R_0402_1005Metric"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Resistor 0402 (1005 metric), Yageo RC0402 body 1.00 x 0.50 (spec sheet p1); IPC-7351B-derived lands 0.45 x 0.55 at +-0.425 (Z 1.30 = area budget)")
+	(tags "resistor 0402 1005 RC0402")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "acb5363d-9759-4805-83c0-cb5e54f63f35")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Value" "R_0402_1005Metric"
+		(at 0 0.45 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "2bfbb45f-30c9-4917-b21d-617b45d831ea")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ee5ca07a-9075-4e00-98b5-6c2d8f9a5f59")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3143f293-d49a-47f3-88ee-5a05d6ed55a6")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.75 -0.38)
+		(end 0.75 0.38)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "07e22a20-022b-4742-84f3-cab0bf57d67b")
+	)
+	(fp_line
+		(start -0.5 -0.125)
+		(end -0.375 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "59c22763-34c4-4241-ba33-54afe39e29fc")
+	)
+	(fp_line
+		(start -0.5 0.25)
+		(end -0.5 -0.125)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "5e16f543-76d9-4d58-9c6a-389e849bd302")
+	)
+	(fp_line
+		(start -0.375 -0.25)
+		(end 0.5 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "7f5e0f0c-f15c-4b5a-b6ce-39a779f39e6e")
+	)
+	(fp_line
+		(start 0.5 -0.25)
+		(end 0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ae2af292-18ed-4765-9f52-8e7e5f12f9f9")
+	)
+	(fp_line
+		(start 0.5 0.25)
+		(end -0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "195ffba2-caf3-4977-8301-d1dae6be5614")
+	)
+	(pad "1" smd roundrect
+		(at -0.425 0)
+		(size 0.45 0.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "74a1222f-c2b7-4c4a-9d78-fe822cad9e76")
+	)
+	(pad "2" smd roundrect
+		(at 0.425 0)
+		(size 0.45 0.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "437f5ef7-607b-483d-b72c-3db111ac1239")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/R_0402_1005Metric.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

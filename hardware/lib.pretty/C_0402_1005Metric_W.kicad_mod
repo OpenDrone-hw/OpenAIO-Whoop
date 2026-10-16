@@ -1,0 +1,144 @@
+(footprint "C_0402_1005Metric_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "0402 (1005 metric, 1.0 x 0.5 mm) MLCC GRM155 / CL05. Land per Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf). GR*15 row: a 0.30-0.50, b 0.35-0.45, c 0.40-0.60. Chosen a 0.40, b 0.45, c 0.55: lands 0.45 x 0.55 at +-0.425 (1.30 x 0.55 = budget envelope '0402'; same land as lib:R_0402_1005Metric). Samsung CL05 parts share the EIA 0402 chip format.. Corrected copy of OpenDrone:C_0402_1005Metric (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/C_0402_1005Metric_W.json")
+	(tags "0402 (1005 metric 1.0 x 0.5")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "266eb168-ca4b-4b79-a2ee-8eae96c814ca")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Value" "C_0402_1005Metric_W"
+		(at 0 0.45 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "406aa540-a272-4497-945e-ec49e704d675")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6a475bcf-e1b5-4543-8863-834b1ef0661b")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c0a84f2c-b0f6-40fb-8c02-bfc85c426f78")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.75 -0.38)
+		(end 0.75 0.38)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "55356790-879a-41f9-972a-7b95b0685781")
+	)
+	(fp_line
+		(start -0.5 -0.125)
+		(end -0.375 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "128d4a74-95f4-41ba-a613-4ceccdfc477c")
+	)
+	(fp_line
+		(start -0.5 0.25)
+		(end -0.5 -0.125)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "4c1d5aa8-5322-456f-a51a-7b40ac3de7b3")
+	)
+	(fp_line
+		(start -0.375 -0.25)
+		(end 0.5 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "eff68cf9-62e8-48bf-8962-7eea83317465")
+	)
+	(fp_line
+		(start 0.5 -0.25)
+		(end 0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "17565ab9-65ab-4fcd-8edb-bf1b277307d7")
+	)
+	(fp_line
+		(start 0.5 0.25)
+		(end -0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "80abf88b-ee9b-4105-8d04-58dfb7e313e4")
+	)
+	(pad "1" smd roundrect
+		(at -0.425 0)
+		(size 0.45 0.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "ed97f7fe-89d2-47c9-a94b-0715c8064e49")
+	)
+	(pad "2" smd roundrect
+		(at 0.425 0)
+		(size 0.45 0.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "61a853ec-94b6-4094-8a28-a023599e8fed")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/C_0402_1005Metric.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

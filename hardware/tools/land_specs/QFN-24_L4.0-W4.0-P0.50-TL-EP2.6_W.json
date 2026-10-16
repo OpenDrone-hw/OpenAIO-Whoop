@@ -1,0 +1,234 @@
+{
+ "footprint": "lib:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_W",
+ "part": "Semtech SX1281IMLTRT (LCSC C2151551, D52 BR-25; was SX1280IMLTRT C125969), U18; corrected copy of OpenDrone:QFN-24_L4.0-W4.0-P0.50-TL-EP2.6",
+ "datasheet": "Semtech SX1280/SX1281 Data Sheet DS.SX1280-1.W.APP Rev 3.2 March 2020 (${OPENDRONE_LIB}/datasheet/SX1281IMLTRT.pdf, covers SX1280IMLTRT): 17.3 Land Pattern Fig 17-3 p153 (C 4.00, X 0.30, Y 0.80, Z 4.80, G 3.20, P 0.50, H=K 2.70 EP land); body Fig 17-1 p152 (D=E 4.00, D1=E1 2.60, L 0.40, b 0.23); pins Table 2-1 p17 (exposed pad = 'pin 0', numbered 25 here as in the OpenDrone footprint/symbol)",
+ "derivation": "lands exactly per Fig 17-3; EP paste 2x2 windows 1.10 mm on 1.35 mm pitch = 66 % (no stencil data in the data sheet)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -2.0,
+   "y": -1.25,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -2.0,
+   "y": -0.75,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -2.0,
+   "y": -0.25,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -2.0,
+   "y": 0.25,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "5",
+   "x": -2.0,
+   "y": 0.75,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "6",
+   "x": -2.0,
+   "y": 1.25,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "7",
+   "x": -1.25,
+   "y": 2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "8",
+   "x": -0.75,
+   "y": 2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "9",
+   "x": -0.25,
+   "y": 2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "10",
+   "x": 0.25,
+   "y": 2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "11",
+   "x": 0.75,
+   "y": 2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "12",
+   "x": 1.25,
+   "y": 2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "13",
+   "x": 2.0,
+   "y": 1.25,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "14",
+   "x": 2.0,
+   "y": 0.75,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "15",
+   "x": 2.0,
+   "y": 0.25,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "16",
+   "x": 2.0,
+   "y": -0.25,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "17",
+   "x": 2.0,
+   "y": -0.75,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "18",
+   "x": 2.0,
+   "y": -1.25,
+   "w": 0.8,
+   "h": 0.3,
+   "shape": "rect"
+  },
+  {
+   "number": "19",
+   "x": 1.25,
+   "y": -2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "20",
+   "x": 0.75,
+   "y": -2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "21",
+   "x": 0.25,
+   "y": -2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "22",
+   "x": -0.25,
+   "y": -2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "23",
+   "x": -0.75,
+   "y": -2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "24",
+   "x": -1.25,
+   "y": -2.0,
+   "w": 0.3,
+   "h": 0.8,
+   "shape": "rect"
+  },
+  {
+   "number": "25",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 2.7,
+   "h": 2.7,
+   "shape": "rect"
+  }
+ ],
+ "exposed": [
+  "25"
+ ],
+ "removed_nc": [],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8,
+  "min_windows": 2
+ },
+ "body": {
+  "w": 4.0,
+  "h": 4.0,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/rx/landspecs/QFN-24_L4.0-W4.0-P0.50-TL-EP2.6_W.json",
+ "applies_to": [
+  {
+   "mpn": "Semtech SX1281IMLTRT (LCSC C2151551)",
+   "d52": "BR-25: U18 SX1280IMLTRT -> SX1281IMLTRT (new lib symbol SX1281IMLTRT, pin-5 GND fix kept); SX1280 stays the drop-in alternate",
+   "datasheet": "the data sheet cited above is DS.SX1280-1 rev 3.2, which covers SX1280 and SX1281 (one package drawing Fig 17-1 p152, one land Fig 17-3 p153, one pin table Table 2-1 p17); the LCSC C2151551 PDF (p23/bomred_lib/dl/lcsc/C2151551.pdf) is the same document",
+   "fit": "same land"
+  }
+ ]
+}

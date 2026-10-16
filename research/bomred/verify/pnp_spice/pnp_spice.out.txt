@@ -1,0 +1,66 @@
+model hFE(-5V,-2mA,25C) = 299.0; BF scale for hFE 220 / 475: 0.736 / 1.589
+hFE check: lo 221 hi 468; at 85 C typ 382, at -20 C typ 240
+
+1. Ic (mA) vs ELRS count, PAOUT1 sink Imax 95 mA (PNP-limited)
+Re  hFE   T   | 2000  2500  3000  3133  3263  3300  3400  3500  3700 | pinch(<0.1mA) | P_Q max mW
+10  220  -20  |  31.8  18.8   4.7   1.4   0.1   0.0   0.0   0.0   0.0 | 3248 | 82
+10  220   25  |  37.4  23.4   8.0   4.1   0.9   0.4   0.0   0.0   0.0 | 3360 | 92
+10  220   85  |  44.9  29.7  13.1   8.6   4.4   3.3   1.0   0.1   0.0 | 3516 | 102
+10  475  -20  |  43.8  25.7   6.1   1.7   0.1   0.0   0.0   0.0   0.0 | 3248 | 101
+10  475   25  |  50.2  31.0  10.2   5.0   1.0   0.5   0.0   0.0   0.0 | 3360 | 108
+10  475   85  |  58.5  38.2  16.3  10.6   5.2   3.9   1.1   0.1   0.0 | 3516 | 114
+15  220  -20  |  27.5  16.0   4.0   1.2   0.1   0.0   0.0   0.0   0.0 | 3248 | 70
+15  220   25  |  32.0  19.7   6.7   3.5   0.9   0.4   0.0   0.0   0.0 | 3360 | 77
+15  220   85  |  37.9  24.7  10.8   7.1   3.7   2.8   0.9   0.1   0.0 | 3516 | 85
+15  475  -20  |  35.9  20.7   4.9   1.4   0.1   0.0   0.0   0.0   0.0 | 3248 | 83
+15  475   25  |  40.6  24.7   8.2   4.1   0.9   0.5   0.0   0.0   0.0 | 3360 | 88
+15  475   85  |  46.8  30.1  12.8   8.4   4.3   3.2   1.0   0.1   0.0 | 3516 | 93
+27  220  -20  |  20.5  11.8   3.0   1.0   0.0   0.0   0.0   0.0   0.0 | 3240 | 51
+27  220   25  |  23.4  14.2   4.9   2.6   0.7   0.4   0.0   0.0   0.0 | 3356 | 56
+27  220   85  |  27.2  17.5   7.6   5.1   2.8   2.2   0.8   0.1   0.0 | 3516 | 60
+27  475  -20  |  24.7  14.0   3.5   1.1   0.1   0.0   0.0   0.0   0.0 | 3240 | 57
+27  475   25  |  27.5  16.5   5.5   2.9   0.8   0.4   0.0   0.0   0.0 | 3356 | 61
+27  475   85  |  31.2  19.8   8.5   5.7   3.0   2.3   0.8   0.1   0.0 | 3516 | 64
+47  220  -20  |  14.3   8.2   2.1   0.8   0.0   0.0   0.0   0.0   0.0 | 3240 | 35
+47  220   25  |  16.1   9.7   3.4   1.8   0.6   0.3   0.0   0.0   0.0 | 3356 | 38
+47  220   85  |  18.3  11.7   5.2   3.5   2.0   1.6   0.6   0.1   0.0 | 3512 | 40
+47  475  -20  |  16.1   9.1   2.3   0.8   0.0   0.0   0.0   0.0   0.0 | 3240 | 38
+47  475   25  |  17.8  10.6   3.7   2.0   0.6   0.3   0.0   0.0   0.0 | 3356 | 40
+47  475   85  |  19.9  12.7   5.5   3.7   2.1   1.7   0.6   0.1   0.0 | 3512 | 42
+
+2. real duty steps (0.1 %% each) between I25 and 2*I25 (6 dB, Pout ~ Idc^2), 25 C, PNP-limited
+Re  hFE | I25=0.5mA  1mA   2mA   4mA   8mA
+10  220 |     8     13     19     32     62
+10  475 |     8     11     16     25     47
+15  220 |    10     14     21     39     74
+15  475 |     8     13     19     31     59
+27  220 |    13     17     29     53    104
+27  475 |    11     17     24     47     89
+47  220 |    16     22     41     77    153
+47  475 |    14     21     38     70    137
+
+3. PAOUT1 sink Imax 10 mA (stage wants less than the PNP ceiling): YOLO count 2000
+Re 10 hFE 220: count 2000 Ie 10.4 mA V(PAOUT1) 3.04 V Vec 0.06 V; count 3000 Ie 8.0 mA V(PAOUT1) 0.27 V
+Re 10 hFE 475: count 2000 Ie 10.4 mA V(PAOUT1) 3.04 V Vec 0.06 V; count 3000 Ie 10.0 mA V(PAOUT1) 1.79 V
+Re 47 hFE 220: count 2000 Ie 10.3 mA V(PAOUT1) 2.64 V Vec 0.07 V; count 3000 Ie 3.4 mA V(PAOUT1) 0.09 V
+Re 47 hFE 475: count 2000 Ie 10.3 mA V(PAOUT1) 2.65 V Vec 0.07 V; count 3000 Ie 3.7 mA V(PAOUT1) 0.10 V
+
+4. GPIO13 undriven at reset (Imax 95 mA, 25 C)
+Re 10 hFE 220 floating (1 GOhm) : Ic 0.00 mA
+Re 10 hFE 220 45 kOhm pull-down : Ic 10.22 mA
+Re 10 hFE 475 floating (1 GOhm) : Ic 0.00 mA
+Re 10 hFE 475 45 kOhm pull-down : Ic 18.93 mA
+Re 47 hFE 220 floating (1 GOhm) : Ic 0.00 mA
+Re 47 hFE 220 45 kOhm pull-down : Ic 8.97 mA
+Re 47 hFE 475 floating (1 GOhm) : Ic 0.00 mA
+Re 47 hFE 475 45 kOhm pull-down : Ic 15.16 mA
+
+5. HD mode: +3V3_VTX = 0 V, GPIO13 high 3.3 V, RTC6705 unpowered (PAOUT1 0 V)
+hFE 220 25 C: GPIO13 current 2.31e-11 A, into the rail -6.61e-12 A, Veb -3.30 V (VEBO -5 V), Vcb -3.30 V
+hFE 220 85 C: GPIO13 current 3.22e-11 A, into the rail -1.12e-11 A, Veb -3.30 V (VEBO -5 V), Vcb -3.30 V
+hFE 475 25 C: GPIO13 current 2.31e-11 A, into the rail -6.61e-12 A, Veb -3.30 V (VEBO -5 V), Vcb -3.30 V
+hFE 475 85 C: GPIO13 current 3.22e-11 A, into the rail -1.11e-11 A, Veb -3.30 V (VEBO -5 V), Vcb -3.30 V
+
+6. 10 kHz PWM ripple at count 3133 (76.4 %), Re 10, hFE typ, C124/C125 at 0.6 uF (DC bias)
+Ic 4.41..4.52 mA (ripple 2.65 % p-p), base 2.5520..2.5540 V (2.08 mV p-p)
+averaged step pit (3700) -> 3133: final 4.47 mA, within 1 % after 7.8 ms

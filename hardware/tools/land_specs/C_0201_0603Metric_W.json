@@ -1,0 +1,58 @@
+{
+ "footprint": "lib:C_0201_0603Metric_W",
+ "source": "OpenDrone:C_0201_0603Metric",
+ "part": "0201 (0603 metric, 0.6 x 0.3 mm) GRM033/GRM0335/CC0201 MLCC",
+ "datasheet": "Murata JEMCG0-2701K 'Soldering and Mounting / (2) Land Dimensions', Table 2 Reflow Soldering Method (a = gap between lands, b = land length, c = land width), printed in every GRM spec sheet, here GRM21BR71C106KE51L spec p32 (LCSC C408142, p23/merge/od/dl/murata/grm21_c408142.pdf)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.275,
+   "y": 0,
+   "w": 0.35,
+   "h": 0.4,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": 0.275,
+   "y": 0,
+   "w": 0.35,
+   "h": 0.4,
+   "shape": "roundrect"
+  }
+ ],
+ "body": {
+  "w": 0.6,
+  "h": 0.3
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "GR*03 row: a 0.20-0.30, b 0.20-0.35, c 0.20-0.40. Chosen a 0.20 (= the chip's minimum terminal gap g 0.2), b 0.35, c 0.40 (range maxima): lands 0.35 x 0.40 at +-0.275 (0.90 x 0.40 overall) so a 0.35 mm filled+capped via fits inside a pad (D23 via-in-pad plan). Budget envelope 0.8 x 0.35 is exceeded by 0.10 x 0.05 on purpose; the P2 preview placed the larger stock land (1.10 x 0.40). Same land for every 0201 chip on the BOM (resistors, NTC, ferrite, inductor share the 0.6 x 0.3 format; Yageo RC0201 publishes no land). Corrected copy of the OpenDrone/KiCad-stock land (0.46 x 0.40 at +-0.32 plus paste-only pads).",
+ "build": {
+  "radius_ratio": 0.25,
+  "courtyard": "rect",
+  "model_from_source": true
+ },
+ "applies_to": [
+  {
+   "mpn": "Murata GRM033C81E104KE14D (100 nF 25 V X6S 0201, LCSC C181047)",
+   "d52": "BR-18: replaces every GRM033R61E104KE14D; D34 O4 EN 100 nF filter (baseline)",
+   "datasheet": "Murata spec GRM033C81E104KE14_ (LCSC C181047 PDF, p23/bomred_lib/dl/lcsc/C181047.pdf): p1 chip L 0.6+-0.03 W 0.3+-0.03 T 0.3+-0.03, g 0.2 min; p26 '2. Land Dimensions' Table 2 Reflow, GRM03: a 0.2-0.3, b 0.2-0.35, c 0.2-0.4",
+   "fit": "land a 0.20 / b 0.35 / c 0.40 inside every range"
+  },
+  {
+   "mpn": "Murata GRM033R71A103KA01D (10 nF 10 V X7R 0201, LCSC C76941)",
+   "d52": "BR-19: replaces GRM033R61A103KA01J and GRM033R71C103KA01D (C16, C86, C88, C109; CAP1 on the sec. 5.1 fallback)",
+   "datasheet": "Murata spec GRM033R71A103KA01-01A (LCSC C76941 PDF, p23/bomred_lib/dl/lcsc/C76941.pdf): chip 0.6 x 0.3 (GRM03); p25 '2. Land Dimensions' Table 2 Reflow, GRM03: a 0.2-0.25, b 0.25-0.35, c 0.3-0.4",
+   "fit": "land a 0.20 / b 0.35 / c 0.40 inside every range (a and b at the range limits)"
+  },
+  {
+   "mpn": "Murata GRM0335C1H1R2BA01D (1.2 pF 50 V C0G 0201, LCSC C85895; DNP in rev1)",
+   "d58": "Wi-Fi pi-network shunts C132 / C133 (value set by tuning on the first boards)",
+   "datasheet": "Murata GRM03 size code (0.6 x 0.3 chip), the same GRM03 reflow land table as the entries above (datasheet not re-read in this pass); already built on C_0201_0603Metric by OpenAIO / OpenRX (KiCad-Library PARTS-USED.md, C85895)",
+   "fit": "inferred: same GRM03 chip and land table as the checked GRM033 entries"
+  }
+ ]
+}

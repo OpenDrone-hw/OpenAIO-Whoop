@@ -1,0 +1,36 @@
+{
+ "datasheet": "/home/user/OpenAIO-Whoop/research/DESIGN-SPEC.md \u00a74.10 'Test pads' row: FCB, RXB, CLK, DIO, GND and 8x C2D/C2CK, \u00d8 0.8 mm, bottom; \u00a712.1 programming fixture contacts the same pads; bom_plan TP1-TP13 'pad D0.8'",
+ "derivation": "bare round SMD copper land \u00d8 0.80, mask-defined by the 0.04 board mask expansion; no paste (flat ENIG for spring probes, like OpenDrone TestPoint_Pad_D1.0mm and small_pad); body = land; single terminal, so no pin-1 marker is meaningful (pin1 null)",
+ "pads": [
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 0.8,
+   "h": 0.8,
+   "shape": "circle"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 0.8,
+  "h": 0.8,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": null,
+ "attrs": [
+  "smd",
+  "exclude_from_pos_files",
+  "exclude_from_bom"
+ ],
+ "pad_property": "testpoint",
+ "footprint": "lib:TestPoint_Pad_D0.8mm",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "staged_from": "p23/staging/io_pads/landspecs/TestPoint_Pad_D0.8mm.json"
+}

@@ -1,0 +1,68 @@
+{
+ "footprint": "lib:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_Dense",
+ "part": "TPS22810DBVR (LCSC C205990), U5 (area option)",
+ "datasheet": "TI TPS22810 SLVSDH0C (Jan 2018) [/tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/power/dl/tps22810.pdf; https://www.ti.com/lit/ds/symlink/tps22810.pdf]: p3 Pin Configuration DBV top view (1 VIN, 2 GND, 3 EN/UVLO, 4 CT, 5 QOD, 6 VOUT); p34 DBV0006A outline 4214840/G (body 1.45-1.75 x 2.75-3.05, lead span 2.6-3.0, pitch 0.95, foot 0.3-0.6); p35 example board layout (6X (1.1) x 6X (0.6), (2.6) between column centres, 2X (0.95) pitch, (R0.05) TYP)",
+ "derivation": "Spec pads in TI's top view (pin 1 top-left) rotated 180 deg (frame_rot) into the OpenDrone '-BR' frame (pin 1 bottom-right at x +1.30, y +0.95). Body = moulded body nominal 1.6 x 2.9. Dense: budget_v6 SOT236 envelope 3.0 x 2.8 vs TI land 3.7 x 2.9: toe trimmed to IPC-7351B least density (Z = Lmin 2.6 + 2 x Jt 0.15 + sqrt(CL 0.4^2 + F 0.05^2 + P 0.025^2) = 3.30), heel edge kept at TI's +-0.75; pads 0.90 x 0.60 at +-1.20; envelope 3.3 x 2.9 (-1.24 mm2 incl. the 0.2 gap)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.2,
+   "y": -0.95,
+   "w": 0.9,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -1.2,
+   "y": 0.0,
+   "w": 0.9,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -1.2,
+   "y": 0.95,
+   "w": 0.9,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": 1.2,
+   "y": 0.95,
+   "w": 0.9,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 1.2,
+   "y": 0.0,
+   "w": 0.9,
+   "h": 0.6,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 1.2,
+   "y": -0.95,
+   "w": 0.9,
+   "h": 0.6,
+   "shape": "roundrect"
+  }
+ ],
+ "removed_nc": [],
+ "body": {
+  "w": 1.6,
+  "h": 2.9,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "frame_rot": 180,
+ "dense": "budget_v6 SOT236 envelope 3.0 x 2.8 vs TI land 3.7 x 2.9: toe trimmed to IPC-7351B least density (Z = Lmin 2.6 + 2 x Jt 0.15 + sqrt(CL 0.4^2 + F 0.05^2 + P 0.025^2) = 3.30), heel edge kept at TI's +-0.75; pads 0.90 x 0.60 at +-1.20; envelope 3.3 x 2.9 (-1.24 mm2 incl. the 0.2 gap)",
+ "staged_from": "p23/staging/power/landspecs/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR_Dense.json"
+}

@@ -1,0 +1,144 @@
+(footprint "SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Littelfuse SMF5.0A SOD-123FL. Land per Littelfuse SMF series data sheet (rev 05/15/20, study-1-2s/dl/ds/smf3.pdf) p5 'Dimensions - SOD-123FL' (A body 2.50-2.90, D 1.50-2.00, B overall 3.40-3.90) and 'Mounting Pad Layout' (1.3 x 1.4 lands, 1.6 gap). Littelfuse land with the outer edge trimmed (inner gap 1.6 kept). DENSE: budget envelope SOD123FL 3.9 vs Littelfuse 4.2: outer edge 2.10 -> 1.95 (0.125 past the 3.65 nominal lead span), lands 1.15 x 1.40. Corrected copy of OpenDrone:SOD-123FL_L2.7-W1.8-LS3.7-RD (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense.json")
+	(tags "Littelfuse SMF5.0A SOD-123FL")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "c84fc24f-6417-445b-b9b2-702affbb8c35")
+		(effects
+			(font
+				(size 0.7 0.7)
+				(thickness 0.105)
+			)
+		)
+	)
+	(property "Value" "SOD-123FL_L2.7-W1.8-LS3.7-RD_Dense"
+		(at 0 1.575 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1456134d-73ba-44eb-9f48-de9f5cbee04d")
+		(effects
+			(font
+				(size 0.7 0.7)
+				(thickness 0.105)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bbf2855d-8f5c-4d30-96ee-1c104c620cf4")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7a5186d3-413e-494a-b4ab-ff0a496f6e75")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_poly
+		(pts
+			(xy 1.45 -0.8) (xy 2.05 -0.8) (xy 2.05 0.8) (xy 1.45 0.8) (xy 1.45 0.98) (xy -1.45 0.98) (xy -1.45 0.8)
+			(xy -2.05 0.8) (xy -2.05 -0.8) (xy -1.45 -0.8) (xy -1.45 -0.98) (xy 1.45 -0.98)
+		)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "af128d49-f947-4237-8a89-6dcc8488a7dc")
+	)
+	(fp_line
+		(start -1.35 -0.625)
+		(end -1.1 -0.875)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "b336de96-9ed9-4ead-ab5c-01a474c8210b")
+	)
+	(fp_line
+		(start -1.35 0.875)
+		(end -1.35 -0.625)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "695f6762-3b32-4eb5-94dc-34b35f572b3d")
+	)
+	(fp_line
+		(start -1.1 -0.875)
+		(end 1.35 -0.875)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3b12e2f8-17eb-4e9b-a89e-898279165480")
+	)
+	(fp_line
+		(start 1.35 -0.875)
+		(end 1.35 0.875)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "5355fb82-0fb3-42c4-8b5f-ccfe1c50dae4")
+	)
+	(fp_line
+		(start 1.35 0.875)
+		(end -1.35 0.875)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "864ddb0a-587d-443c-8d74-113a65329eca")
+	)
+	(pad "1" smd rect
+		(at -1.375 0)
+		(size 1.15 1.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "65cebec3-d14a-4a41-92fc-1dc46d387baa")
+	)
+	(pad "2" smd rect
+		(at 1.375 0)
+		(size 1.15 1.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "78b919d9-5291-410d-8a27-e4db3b14c995")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/SOD-123FL_L2.8-W1.8-H1.1-LS3.6.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 180)
+		)
+	)
+)

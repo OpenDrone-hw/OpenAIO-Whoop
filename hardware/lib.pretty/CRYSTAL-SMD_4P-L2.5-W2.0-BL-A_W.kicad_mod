@@ -1,0 +1,156 @@
+(footprint "CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "YXC X252012MMB4SI-24 12 MHz 2520. Land per YXC YSX221SL X252012MMB4SI-24 spec p3 '2. External dimensions' (2.5 x 2.05) and 'Top View Suggested Layout' (pads 1.0 x 0.9, gaps 0.85 x / 0.65 y); pin 1 bottom-left (LCSC C2896601, p23/merge/od/dl/lcsc/C2896601.pdf). pad centres x +-(0.425 + 0.5) = +-0.925, y +-(0.325 + 0.45) = +-0.775. Corrected copy of OpenDrone:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W.json")
+	(tags "YXC X252012MMB4SI-24 12 MHz 2520")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "4cac7dc5-4992-49d7-becf-9504a563e64a")
+		(effects
+			(font
+				(size 0.82 0.82)
+				(thickness 0.123)
+			)
+		)
+	)
+	(property "Value" "CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W"
+		(at 0 1.845 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d44a146c-3c62-4fd1-b419-2ac19c728e80")
+		(effects
+			(font
+				(size 0.82 0.82)
+				(thickness 0.123)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b8d8d319-8d5f-4f14-a32e-600a499ae16b")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9b1a1636-ab3d-4b68-9300-d2cb2a62c992")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.53 -1.33)
+		(end 1.53 1.33)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "ae0e7cc7-94be-4780-960a-70080334e78b")
+	)
+	(fp_line
+		(start -1.25 -1.025)
+		(end 1.25 -1.025)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "bfe05e78-f81b-48f2-b04f-a0888b2d6fef")
+	)
+	(fp_line
+		(start -1.25 0.775)
+		(end -1.25 -1.025)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "f2ae49e8-1e2e-48ed-88ae-5f7e58cb2ede")
+	)
+	(fp_line
+		(start -1 1.025)
+		(end -1.25 0.775)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "20cddac1-2870-44c9-9422-19b6dbdc308a")
+	)
+	(fp_line
+		(start 1.25 -1.025)
+		(end 1.25 1.025)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "0b3e00aa-4119-40a4-ad24-a43e48ccf4ae")
+	)
+	(fp_line
+		(start 1.25 1.025)
+		(end -1 1.025)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "744f9597-f197-454e-86a2-52562d8a8c2a")
+	)
+	(pad "1" smd rect
+		(at -0.925 0.775)
+		(size 1 0.9)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "de717eb8-2a35-4135-a1e6-2d302b7e5522")
+	)
+	(pad "2" smd rect
+		(at 0.925 0.775)
+		(size 1 0.9)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "f63c682b-770e-4b1f-90dc-23e051dbc1d7")
+	)
+	(pad "3" smd rect
+		(at 0.925 -0.775)
+		(size 1 0.9)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "de8be7c8-3bb8-4ad5-af2d-d533ea577658")
+	)
+	(pad "4" smd rect
+		(at -0.925 -0.775)
+		(size 1 0.9)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "4905fd1c-7175-4aed-b03e-860e901c09fe")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/CRYSTAL-SMD_4P-L2.5-W2.0-BL-A.wrl"
+		(offset
+			(xyz 0 -0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

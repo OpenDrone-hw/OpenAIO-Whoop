@@ -1,0 +1,86 @@
+{
+  "_comment": "OpenAIO-Whoop stackup: 8-layer HDI 1+6+1, 1.0 mm (0.997 mm with mask), 1 oz finished copper on all eight layers, ENIG. Sequence: sub-lamination L2-L7 (foil / 1080 / core 0.20 / 2116 / core 0.20 / 1080 / foil), buried vias L2-L7, resin fill, then 1080 + foil each side and laser vias L1-L2, L8-L7. L2 and L7 are GND planes; L3/L6 sit 0.077 mm from them. Values from the 8L HDI conversion plan; NextPCB confirms the construction (EQ). Applied by apply_stackup.py. The earlier 6L 1+4+1 stack is in git history.",
+  "copper_layers": 8,
+  "copper_finish": "ENIG",
+  "layers": {
+    "F.Mask": {
+      "thickness": 0.015
+    },
+    "F.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 1": {
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
+      "epsilon_r": 4.0,
+      "loss_tangent": 0.02
+    },
+    "In1.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 2": {
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
+      "epsilon_r": 4.0,
+      "loss_tangent": 0.02
+    },
+    "In2.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 3": {
+      "type": "core",
+      "thickness": 0.127,
+      "material": "FR4 0.20 mm incl. 1/1 oz",
+      "epsilon_r": 4.3,
+      "loss_tangent": 0.02
+    },
+    "In3.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 4": {
+      "type": "prepreg",
+      "thickness": 0.125,
+      "material": "2116",
+      "epsilon_r": 4.2,
+      "loss_tangent": 0.02
+    },
+    "In4.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 5": {
+      "type": "core",
+      "thickness": 0.127,
+      "material": "FR4 0.20 mm incl. 1/1 oz",
+      "epsilon_r": 4.3,
+      "loss_tangent": 0.02
+    },
+    "In5.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 6": {
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
+      "epsilon_r": 4.0,
+      "loss_tangent": 0.02
+    },
+    "In6.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 7": {
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
+      "epsilon_r": 4.0,
+      "loss_tangent": 0.02
+    },
+    "B.Cu": {
+      "thickness": 0.035
+    },
+    "B.Mask": {
+      "thickness": 0.015
+    }
+  }
+}

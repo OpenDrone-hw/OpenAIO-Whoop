@@ -1,0 +1,136 @@
+{
+ "footprint": "lib:LGA-14_L3.0-W2.5-P0.50-BR_W",
+ "source": "OpenDrone:LGA-14_L3.0-W2.5-P0.50-BR",
+ "part": "Bosch Sensortec BMI270 LGA-14 3.0 x 2.5",
+ "datasheet": "${OPENDRONE_LIB}/datasheet/BMI270.pdf (BST-BMI270-DS000-08) p145 s8.3 'Landing pattern recommendation': side pads 0.475 x 0.25 at 0.5 pitch, inner edge 0.925 from the centre; end pads 0.25 x 0.475, inner edge 0.675; body 3.0 x 2.5; pin 1 top-left",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.1625,
+   "y": -0.75,
+   "w": 0.475,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -1.1625,
+   "y": -0.25,
+   "w": 0.475,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -1.1625,
+   "y": 0.25,
+   "w": 0.475,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -1.1625,
+   "y": 0.75,
+   "w": 0.475,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "5",
+   "x": -0.5,
+   "y": 0.9125,
+   "w": 0.25,
+   "h": 0.475,
+   "shape": "rect"
+  },
+  {
+   "number": "6",
+   "x": 0.0,
+   "y": 0.9125,
+   "w": 0.25,
+   "h": 0.475,
+   "shape": "rect"
+  },
+  {
+   "number": "7",
+   "x": 0.5,
+   "y": 0.9125,
+   "w": 0.25,
+   "h": 0.475,
+   "shape": "rect"
+  },
+  {
+   "number": "8",
+   "x": 1.1625,
+   "y": 0.75,
+   "w": 0.475,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "9",
+   "x": 1.1625,
+   "y": 0.25,
+   "w": 0.475,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "10",
+   "x": 1.1625,
+   "y": -0.25,
+   "w": 0.475,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "11",
+   "x": 1.1625,
+   "y": -0.75,
+   "w": 0.475,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "12",
+   "x": 0.5,
+   "y": -0.9125,
+   "w": 0.25,
+   "h": 0.475,
+   "shape": "rect"
+  },
+  {
+   "number": "13",
+   "x": 0.0,
+   "y": -0.9125,
+   "w": 0.25,
+   "h": 0.475,
+   "shape": "rect"
+  },
+  {
+   "number": "14",
+   "x": -0.5,
+   "y": -0.9125,
+   "w": 0.25,
+   "h": 0.475,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 3.0,
+  "h": 2.5
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "frame_rot": 180,
+ "derivation": "side pad centres x +-(0.925 + 0.2375) = +-1.1625, end pad centres y +-(0.675 + 0.2375) = +-0.9125. Spec in the Bosch top view, frame_rot 180 into the OpenDrone '-BR' frame (pin 1 lower right, as built on OpenFC-Lite-Mini); 3D model turned 180 deg to follow pin 1. Lands inside the body (budget LGA14 2.6 x 3.1 = body + 0.1)",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true,
+  "model_rot_add": 180,
+  "model_local": true
+ }
+}

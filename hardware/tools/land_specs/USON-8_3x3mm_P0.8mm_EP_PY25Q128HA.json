@@ -1,0 +1,104 @@
+{
+ "footprint": "lib:USON-8_3x3mm_P0.8mm_EP_PY25Q128HA",
+ "part": "Puya PY25Q128HA-DFH-IR (USON8 3x3x0.55, package code DF), U13 blackbox NOR (D66)",
+ "datasheet": "Puya PY25Q128HA datasheet Rev 2.0 (2024-05-07) [p2v3/flash_work/dl/puya_E53971/ds.pdf; https://atta.szlcsc.com/upload/public/pdf/source/20250117/E5397163A091235CFF3CDB19865BC1CE.pdf]: p106 13.7 8-Pad USON(3x3x0.55mm), drawing QRPD-0077 rev 1.0: D 2.90/3.00/3.10, E 2.90/3.00/3.10, A 0.50/0.55/0.60, b 0.25/0.30/0.35, L 0.50/0.60/0.70 (leads run from the body edge, no pull-back), e 0.80 BSC, Ne 2.40 BSC, two exposed tie-bar tabs E2 0.70/0.80/0.90 x D2 0.10/0.20/0.30 on the body centre line between the lead columns, inner gap K 0.70/0.80/0.90 (pin-1-side tab chamfered); pins p4 Fig 3-2 / Table 3-1 (1 CS#, 2 SO, 3 WP#, 4 GND, 5 SI, 6 SCLK, 7 HOLD#/RESET#, 8 VCC; counter-clockwise from the top view); package code DF p97, valid part number PY25Q128HA-DFH-IR p98. The data sheet gives NO land pattern and no statement on the tabs' electrical role",
+ "derivation": "Frame: data-sheet top view (pins 1-4 along one edge) turned 90 deg so pins 1-4 run down the left side, pin 1 top-left (KiCad +y down); lead span along x. IPC-7351B least density for no-lead SON (Jt 0.20, Jh 0, Js -0.04, F 0.05, P 0.025, RMS tolerances; flash_work/ipc.py): Zmax 3.508, Gmin 1.622, Xmax 0.285 -> lands 0.94 x 0.29 centred at x +-1.28 (x 0.81..1.75: heel at Gmin/2, toe 0.25 past the body edge), rounded to 0.01; least density = the house GD25Q32E toe rule (density, D33/D34). Tabs: lands 1:1 with the nominal tab (0.20 x 0.80 at x 0, y +-0.80; K 0.80 gap), both pad '9', no net (floating copper, solder attachment only, same treatment as the GD25Q32E EP); 1:1 paste on every land. Courtyard = max(body, lands) + 0.10 by normalise_courtyard.py",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.28,
+   "y": -1.2,
+   "w": 0.94,
+   "h": 0.29,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -1.28,
+   "y": -0.4,
+   "w": 0.94,
+   "h": 0.29,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -1.28,
+   "y": 0.4,
+   "w": 0.94,
+   "h": 0.29,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": -1.28,
+   "y": 1.2,
+   "w": 0.94,
+   "h": 0.29,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 1.28,
+   "y": 1.2,
+   "w": 0.94,
+   "h": 0.29,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 1.28,
+   "y": 0.4,
+   "w": 0.94,
+   "h": 0.29,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": 1.28,
+   "y": -0.4,
+   "w": 0.94,
+   "h": 0.29,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": 1.28,
+   "y": -1.2,
+   "w": 0.94,
+   "h": 0.29,
+   "shape": "roundrect"
+  },
+  {
+   "number": "9",
+   "x": 0.0,
+   "y": -0.8,
+   "w": 0.2,
+   "h": 0.8,
+   "shape": "roundrect"
+  },
+  {
+   "number": "9",
+   "x": 0.0,
+   "y": 0.8,
+   "w": 0.2,
+   "h": 0.8,
+   "shape": "roundrect"
+  }
+ ],
+ "exposed": [],
+ "removed_nc": [],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 1.0,
+  "min_windows": 1
+ },
+ "body": {
+  "w": 3.0,
+  "h": 3.0,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p2v3/staging/flash/landspecs/USON-8_3x3mm_P0.8mm_EP_PY25Q128HA.json"
+}

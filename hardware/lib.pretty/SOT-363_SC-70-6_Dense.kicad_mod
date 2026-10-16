@@ -1,0 +1,178 @@
+(footprint "SOT-363_SC-70-6_Dense"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "TI INA186A3IDCKR SC70-6 (DCK). Land per TI INA186 data sheet SBOS761 (www.ti.com/lit/ds/symlink/ina186.pdf, p23/merge/od/dl/ti/ina186.pdf) p42-44 DCK0006A (4214835/D): body 2.0 x 1.25 (D 1.85-2.15, E1 1.1-1.4), lead span E 1.8-2.4; land example 6X (0.9) x 6X (0.4), 4X (0.65) pitch, (2.2) row centres, (R0.05); pin 1 top-left. The bundled ${OPENDRONE_LIB}/datasheet/INA186A3IDCKR.pdf (2022) omits the DCK drawing. TI land with the toe trimmed (heel edge 0.65 kept). DENSE: budget envelope SC70_6 2.4 (lead direction) vs TI example 3.1: outer edge 1.55 -> 1.20 (0.15 past the 1.05 nominal lead tip, IPC-7351B least toe), pads 0.55 x 0.40 at +-0.925; heel edge 0.65 covers the 0.26-0.46 lead foot. Corrected copy of OpenDrone:SOT-363_SC-70-6 (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/SOT-363_SC-70-6_Dense.json")
+	(tags "TI INA186A3IDCKR SC70-6 (DCK)")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "a58fb021-29f7-4cd5-845b-fe2b58ba382b")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(property "Value" "SOT-363_SC-70-6_Dense"
+		(at 0 1.5 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a4cc6033-533a-446e-a1de-418cec9a6b8c")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.075)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ea291c40-c046-44ba-a949-a1b7b4889632")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0f6bf60e-9dcd-4b17-8413-7c3fa31feae3")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_poly
+		(pts
+			(xy 0.73 -0.95) (xy 1.3 -0.95) (xy 1.3 0.95) (xy 0.73 0.95) (xy 0.73 1.1) (xy -0.73 1.1) (xy -0.73 0.95)
+			(xy -1.3 0.95) (xy -1.3 -0.95) (xy -0.73 -0.95) (xy -0.73 -1.1) (xy 0.73 -1.1)
+		)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "dd20f6d1-1c8e-4216-bd10-a5d1b9ffbb37")
+	)
+	(fp_line
+		(start -0.625 -0.75)
+		(end -0.375 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "6ddab866-718e-4696-b9d0-1136d7813344")
+	)
+	(fp_line
+		(start -0.625 1)
+		(end -0.625 -0.75)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "8a005dab-23f5-4dd2-8f6e-cc2db0702c66")
+	)
+	(fp_line
+		(start -0.375 -1)
+		(end 0.625 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "23aa2b7a-c769-4a86-8495-230b23f90747")
+	)
+	(fp_line
+		(start 0.625 -1)
+		(end 0.625 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "54c22b3d-634e-49a0-b5ba-1c6dbfe1dd28")
+	)
+	(fp_line
+		(start 0.625 1)
+		(end -0.625 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "a9ffb423-4bf6-40e6-a6a3-444337cff19e")
+	)
+	(pad "1" smd roundrect
+		(at -0.925 -0.65)
+		(size 0.55 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "df7dbee9-4ae4-4453-8dec-df2ba67b49dd")
+	)
+	(pad "2" smd roundrect
+		(at -0.925 0)
+		(size 0.55 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "442dcb1e-1bab-480e-b0c9-2413c1926eb7")
+	)
+	(pad "3" smd roundrect
+		(at -0.925 0.65)
+		(size 0.55 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "08739642-10c5-40f7-8918-fd91b0d02bf2")
+	)
+	(pad "4" smd roundrect
+		(at 0.925 0.65)
+		(size 0.55 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "844d6802-6659-466e-9f46-9b14adc3d596")
+	)
+	(pad "5" smd roundrect
+		(at 0.925 0)
+		(size 0.55 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "e0a5f3a4-8081-486b-8e15-9dee42353da3")
+	)
+	(pad "6" smd roundrect
+		(at 0.925 -0.65)
+		(size 0.55 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(thermal_bridge_angle 45)
+		(uuid "590583b2-92fa-46b4-a08e-0a24e0fd43dc")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/SOT-363_SC-70-6.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

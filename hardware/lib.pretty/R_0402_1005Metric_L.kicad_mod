@@ -1,0 +1,144 @@
+(footprint "R_0402_1005Metric_L"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "0402 (1005 metric, 1.0 x 0.5 mm) chip resistor RC0402. IPC-7351C least density (D109): lands 0.38 x 0.48 at +-0.39 (gap 0.40, overall 1.16 x 0.48). Chip 1.00+-0.05 x 0.50+-0.05 (Murata GRM155, Samsung CL05, Yageo RC0402): toe 0.08 past the nominal end, 0.055 at L max 1.05; land inner edge 0.20 (terminal inner edge 0.15 at e max 0.35, heel -0.05 = IPC L); width 0.48 (side -0.01; Samsung CL05 rule b < W met, Murata c 0.40-0.60 met). Murata GR*15 Table 2: a 0.30-0.50 -> 0.40, b 0.35-0.45 -> 0.38, c 0.40-0.60 -> 0.48. Courtyard 1.36 x 0.70. Derived from lib:R_0402_1005Metric (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/R_0402_1005Metric_L.json")
+	(tags "resistor 0402 1005 RC0402")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "b9a9684e-33b1-4ed3-b0b8-4ddbc3529e87")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Value" "R_0402_1005Metric_L"
+		(at 0 0.45 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d4e63b6c-081e-48ca-8ea2-2e739d511373")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8b9e7de5-533b-4f75-ba6c-de0d1c064297")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d18807bb-ef6d-4797-88de-796888f78f83")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.68 -0.35)
+		(end 0.68 0.35)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "6a8761ba-7d38-4156-9eca-02a0ddcf66a5")
+	)
+	(fp_line
+		(start -0.5 -0.125)
+		(end -0.375 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "be16bd45-7ac2-4448-9e9f-270425c9bee5")
+	)
+	(fp_line
+		(start -0.5 0.25)
+		(end -0.5 -0.125)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "2c74b855-9704-440a-812f-8db3fdca9d3e")
+	)
+	(fp_line
+		(start -0.375 -0.25)
+		(end 0.5 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "06db1a32-e484-41ef-8d7f-2ca0ad1f70df")
+	)
+	(fp_line
+		(start 0.5 -0.25)
+		(end 0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "f14779a4-00c3-4f97-b29f-63849d8c4e2c")
+	)
+	(fp_line
+		(start 0.5 0.25)
+		(end -0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "8ad85469-0138-4725-ac5a-40951bad1604")
+	)
+	(pad "1" smd roundrect
+		(at -0.39 0)
+		(size 0.38 0.48)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "7070b635-c191-4a69-a1a0-1fc96b8e17b2")
+	)
+	(pad "2" smd roundrect
+		(at 0.39 0)
+		(size 0.38 0.48)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(thermal_bridge_angle 45)
+		(uuid "7b468704-34e3-4512-8151-e43914f9ce0b")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/R_0402_1005Metric.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

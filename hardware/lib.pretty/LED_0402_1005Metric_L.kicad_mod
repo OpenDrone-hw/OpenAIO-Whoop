@@ -1,0 +1,142 @@
+(footprint "LED_0402_1005Metric_L"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "XINGLIGHT XL-1005UGC / XL-1005UBC 0402 LED (body 1.0 x 0.5 x 0.40, datasheet p7 'Outline Dimension' and 'Recommended Soldering Pattern' 0.3 x 0.55 lands, 0.5 gap, 0.8 centres; pad 1 cathode). IPC-7351C least density (D109): the maker land is already at the toe limit (outer edge 0.55 = body end + 0.05, = L max with the +-0.10 general tolerance), kept; width 0.55 -> 0.48 (body 0.50, side -0.01) so the courtyard is set by the body: 1.30 x 0.70. Derived from lib:LED_0402_1005Metric (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/LED_0402_1005Metric_L.json")
+	(tags "LED 0402 1005 XL-1005UGC XL-1005UBC")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "2ca83cc2-43a6-4924-928b-259f9a3d0d96")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Value" "LED_0402_1005Metric_L"
+		(at 0 0.45 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9804fdb8-1e85-49ab-8f3a-3a4da5245932")
+		(effects
+			(font
+				(size 0.2 0.2)
+				(thickness 0.03)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c5e6d365-b66b-46d9-a206-91a98e3779ab")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7a0297c7-b7de-4ffa-8e42-fd0083622fea")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.65 -0.35)
+		(end 0.65 0.35)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "5c38ce3d-8d22-4425-ae7b-eee1da964fad")
+	)
+	(fp_line
+		(start -0.5 -0.125)
+		(end -0.375 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "f8540cc9-7379-42f6-b5e4-917963d6391a")
+	)
+	(fp_line
+		(start -0.5 0.25)
+		(end -0.5 -0.125)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "4f319831-5ecb-4d6e-869d-e2f5ad1cc7ce")
+	)
+	(fp_line
+		(start -0.375 -0.25)
+		(end 0.5 -0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "7b352018-6ebf-4128-b98f-78e1b0f10c80")
+	)
+	(fp_line
+		(start 0.5 -0.25)
+		(end 0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "61a80b13-50e4-4c88-95df-96084f50dbf3")
+	)
+	(fp_line
+		(start 0.5 0.25)
+		(end -0.5 0.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "7b78c4d8-97c8-453f-8800-d5748d527870")
+	)
+	(pad "1" smd rect
+		(at -0.4 0)
+		(size 0.3 0.48)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "f2e74dac-d1f5-48e5-92b5-81fa413fa761")
+	)
+	(pad "2" smd rect
+		(at 0.4 0)
+		(size 0.3 0.48)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "1d7892b0-b6bb-41ed-8070-4326e2b6ebe4")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/LED_0402_1005Metric.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

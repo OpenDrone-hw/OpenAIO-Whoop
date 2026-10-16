@@ -1,0 +1,93 @@
+{
+ "datasheet": "/home/user/OpenAIO-Whoop/research/DESIGN-SPEC.md \u00a74.10 'USB' row: 4 pogo pads 1.0 x 1.0 mm (ENIG; D+, D-, +5V_USB, GND) on the bottom at the top edge, two NPTH alignment holes \u00d8 0.8 and \u00d8 1.1 so the clip-on adapter (O3) fits one way only; \u00a710 region table (holes 1.5 mm apart); DRU 'NPTH at least 0.50'",
+ "derivation": "pads in one row at 1.27 mm pitch (standard pitch of off-the-shelf spring-contact strips for the O3 adapter; 0.27 copper gap, 0.19 mask web at the 0.04 expansion); NPTH \u00d8 0.80 and \u00d8 1.10 1.50 apart (spec), centred on the row and 1.35 inboard (+y): hole edges 0.30 (\u00d8 1.1) and 0.45 (\u00d8 0.8) from pad copper, 0.55 hole to hole; pin 1 at -x on the \u00d8 0.8 side (adapter key); no paste (flat contacts), pad property test point; body = pads + holes (no component body); B.CrtYd keeps the holes clear of parts on the other side. Pin order is set in the schematic (suggested 1 +5V_USB, 2 D-, 3 D+, 4 GND = USB order, data pair in the middle)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -1.905,
+   "y": 0.0,
+   "w": 1.0,
+   "h": 1.0,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -0.635,
+   "y": 0.0,
+   "w": 1.0,
+   "h": 1.0,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.635,
+   "y": 0.0,
+   "w": 1.0,
+   "h": 1.0,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": 1.905,
+   "y": 0.0,
+   "w": 1.0,
+   "h": 1.0,
+   "shape": "rect"
+  },
+  {
+   "number": "",
+   "x": -0.75,
+   "y": 1.35,
+   "w": 0.8,
+   "h": 0.8,
+   "shape": "circle"
+  },
+  {
+   "number": "",
+   "x": 0.75,
+   "y": 1.35,
+   "w": 1.1,
+   "h": 1.1,
+   "shape": "circle"
+  }
+ ],
+ "holes": [
+  {
+   "number": "",
+   "x": -0.75,
+   "y": 1.35,
+   "drill": 0.8,
+   "plated": false
+  },
+  {
+   "number": "",
+   "x": 0.75,
+   "y": 1.35,
+   "drill": 1.1,
+   "plated": false
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 4.81,
+  "h": 2.4,
+  "x": 0.0,
+  "y": 0.7
+ },
+ "pin1": "1",
+ "attrs": [
+  "smd",
+  "exclude_from_pos_files",
+  "exclude_from_bom"
+ ],
+ "pad_property": "testpoint",
+ "b_courtyard": "holes",
+ "footprint": "lib:USB_Pogo_4x1.0mm_NPTH0.8_1.1",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "staged_from": "p23/staging/io_pads/landspecs/USB_Pogo_4x1.0mm_NPTH0.8_1.1.json"
+}

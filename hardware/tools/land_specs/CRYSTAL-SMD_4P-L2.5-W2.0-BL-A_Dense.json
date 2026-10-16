@@ -1,0 +1,54 @@
+{
+ "footprint": "lib:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_Dense",
+ "source": "OpenDrone:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A",
+ "part": "YXC X252012MMB4SI-24 12 MHz 2520",
+ "datasheet": "YXC YSX221SL X252012MMB4SI-24 spec p3 '2. External dimensions' (2.5 x 2.05) and 'Top View Suggested Layout' (pads 1.0 x 0.9, gaps 0.85 x / 0.65 y); pin 1 bottom-left (LCSC C2896601, p23/merge/od/dl/lcsc/C2896601.pdf)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.8625,
+   "y": 0.6875,
+   "w": 0.875,
+   "h": 0.725,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.8625,
+   "y": 0.6875,
+   "w": 0.875,
+   "h": 0.725,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.8625,
+   "y": -0.6875,
+   "w": 0.875,
+   "h": 0.725,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -0.8625,
+   "y": -0.6875,
+   "w": 0.875,
+   "h": 0.725,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 2.5,
+  "h": 2.05
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "suggested layout with the outer edges trimmed to the budget envelope (inner gaps 0.85 / 0.65 kept)",
+ "dense": "budget envelope XTAL2520 2.6 x 2.1 vs suggested layout 2.85 x 2.45: outer land edges 1.425/1.225 -> 1.30/1.05 (0.05/0.025 past the body); pads 0.875 x 0.725 cover the bottom terminals (gaps 0.9 / 0.7 p3)",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true
+ }
+}

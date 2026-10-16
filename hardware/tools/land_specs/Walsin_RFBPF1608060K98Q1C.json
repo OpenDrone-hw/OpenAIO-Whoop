@@ -1,0 +1,42 @@
+{
+ "footprint": "lib:Walsin_RFBPF1608060K98Q1C",
+ "part": "Walsin RFBPF1608060K98Q1C (LCSC C2442150), FL2",
+ "datasheet": "Walsin PI_RFBPF1608060K98Q1C_V01 (May 2015) [/tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/vtx_osd/dl/C2442150_ds.pdf; https://www.lcsc.com/datasheet/C2442150.pdf]: p2 construction (top view P1 input left, P2 GND centre, P3 output right) and dimensions L 1.60, W 0.80, T 0.60 max, A 0.55, B 0.60, C 0.25, D 0.23, E 0.40, F 0.12, G 0.125; p3 solder land pattern: centre land +-0.200 x +-0.300, side lands 0.430..0.680 x +-0.275",
+ "derivation": "Lands exactly per p3 (= the terminals 1:1); 1:1 paste",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.555,
+   "y": 0.0,
+   "w": 0.25,
+   "h": 0.55,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 0.4,
+   "h": 0.6,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.555,
+   "y": 0.0,
+   "w": 0.25,
+   "h": 0.55,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 1.6,
+  "h": 0.8,
+  "x": 0,
+  "y": 0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "removed_nc": [],
+ "staged_from": "p23/staging/vtx_osd/landspecs/Walsin_RFBPF1608060K98Q1C.json"
+}

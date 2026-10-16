@@ -1,0 +1,53 @@
+{
+ "footprint": "lib:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A_W",
+ "source": "OpenDrone:CRYSTAL-SMD_4P-L2.5-W2.0-BL-A",
+ "part": "YXC X252012MMB4SI-24 12 MHz 2520",
+ "datasheet": "YXC YSX221SL X252012MMB4SI-24 spec p3 '2. External dimensions' (2.5 x 2.05) and 'Top View Suggested Layout' (pads 1.0 x 0.9, gaps 0.85 x / 0.65 y); pin 1 bottom-left (LCSC C2896601, p23/merge/od/dl/lcsc/C2896601.pdf)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.925,
+   "y": 0.775,
+   "w": 1.0,
+   "h": 0.9,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.925,
+   "y": 0.775,
+   "w": 1.0,
+   "h": 0.9,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.925,
+   "y": -0.775,
+   "w": 1.0,
+   "h": 0.9,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -0.925,
+   "y": -0.775,
+   "w": 1.0,
+   "h": 0.9,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 2.5,
+  "h": 2.05
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "pad centres x +-(0.425 + 0.5) = +-0.925, y +-(0.325 + 0.45) = +-0.775",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true
+ }
+}

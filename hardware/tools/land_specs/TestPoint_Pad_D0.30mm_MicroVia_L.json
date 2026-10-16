@@ -1,0 +1,38 @@
+{
+ "footprint": "lib:TestPoint_Pad_D0.30mm_MicroVia_L",
+ "datasheet": "/home/user/OpenAIO-Whoop/research/DECISIONS.md D67 (mask-open test points, no silk), D99 (test points as microvia-capped lands), D107 (vias in pads, no free vias); research/FLOORPLAN-V4.md section 18 (HDI microvia 0.10 / 0.25, copper filled, in pad)",
+ "derivation": "D67 / D99 / D107 test point as a microvia-capped land: SMD land D0.30 on F.Cu + F.Mask with the test-point property, no paste (probe target, flat cap), single terminal. The through-via pad (D0.35 / drill 0.20) of TestPoint_Via_D0.35mm_Drill0.2mm is dropped: the net reaches the land through one HDI laser microvia (0.10 hole, 0.25 land, copper filled, in pad) placed by the router inside the land (0.025 margin). D109 least density: body = land, courtyard 0.50 x 0.50 (was 0.56 x 0.56); excluded from BOM and position files as before.",
+ "pads": [
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 0.0,
+   "w": 0.3,
+   "h": 0.3,
+   "shape": "circle"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 0.3,
+  "h": 0.3,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": null,
+ "attrs": [
+  "smd",
+  "exclude_from_pos_files",
+  "exclude_from_bom"
+ ],
+ "pad_property": "testpoint",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "derived_from": "lib:TestPoint_Via_D0.35mm_Drill0.2mm (spec hardware/tools/land_specs/TestPoint_Via_D0.35mm_Drill0.2mm.json)",
+ "density": "IPC-7351C least (L), D109",
+ "staged_from": "p2v3/v4/fpL/passives/land_specs/TestPoint_Pad_D0.30mm_MicroVia_L.json"
+}

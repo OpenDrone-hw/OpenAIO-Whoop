@@ -1,0 +1,18 @@
+{
+ "footprint": "lib:OSC-SMD_4P-L2.0-W1.6-BL_YXC_YSO110TR_Dense",
+ "source": "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense (pads rebuilt)",
+ "part": "YXC OT201612MJBA4SL (YSO110TR series) 12 MHz CMOS oscillator 2016, X1",
+ "datasheet": "YXC YSO110TR spec (LCSC C669076, wmsc.lcsc.com .../2407310922_YXC-Crystal-Oscillators-OT201612MJBA4SL_C669076.pdf) p2 'Dimensions and Recommended Land Pattern', 2.0*1.6: terminals 0.57 x 0.475 (gaps 0.7 / 0.5), recommended land 0.9 x 0.8 with gaps 0.5 x / 0.3 y; pin 1 bottom-left top view (1 tri-state, 2 GND, 3 OUT, 4 VDD)",
+ "pads": [
+  {"number": "1", "x": -0.65, "y": 0.5, "w": 0.8, "h": 0.7, "shape": "rect"},
+  {"number": "2", "x": 0.65, "y": 0.5, "w": 0.8, "h": 0.7, "shape": "rect"},
+  {"number": "3", "x": 0.65, "y": -0.5, "w": 0.8, "h": 0.7, "shape": "rect"},
+  {"number": "4", "x": -0.65, "y": -0.5, "w": 0.8, "h": 0.7, "shape": "rect"}
+ ],
+ "body": {"w": 2.05, "h": 1.65},
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "recommended land with inner gaps 0.5 / 0.3 kept and outer edges trimmed from 1.15 / 0.95 to 1.05 / 0.85 (dense envelope 2.1 x 1.7); lands cover the full 0.57 x 0.475 terminals (x 0.35-0.92, y 0.25-0.725)"
+}

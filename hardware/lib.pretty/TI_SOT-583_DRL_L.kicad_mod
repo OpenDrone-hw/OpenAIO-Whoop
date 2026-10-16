@@ -1,0 +1,195 @@
+(footprint "TI_SOT-583_DRL_L"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "TI DRL0008A SOT-5X3 (SOT-583) 8 pins, 2.1 x 1.2 mm body, P0.5 (TPS2116): lands 0.67 x 0.30 R0.05 at +-0.74 per SLVSFG1A p23, paste 1:1 (p24); F.Fab body, no silk | IPC-7351 least density (L) variant per D109: toe 0.88 (DRL0008A lead span 1.5-1.7 -> tip 0.85 max + 0.03), heel 0.405 kept (= tip - Lmax 0.4), width 0.30 kept (power mux)")
+	(tags "SOT-583 SOT-5X3 DRL0008A TPS2116 IPC7351L")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "ab57ee09-5371-45c3-9222-aa2765ebadca")
+		(effects
+			(font
+				(size 0.84 0.84)
+				(thickness 0.126)
+			)
+		)
+	)
+	(property "Value" "TI_SOT-583_DRL_L"
+		(at 0 1.89 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "20d06370-142f-46d4-9daf-3bf362af2eba")
+		(effects
+			(font
+				(size 0.84 0.84)
+				(thickness 0.126)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "73e9bcd8-28fc-4fce-a61a-467808184418")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c6f3bc62-be65-4f13-b54a-a054d3796d9e")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_poly
+		(pts
+			(xy 0.7 -1) (xy 0.98 -1) (xy 0.98 -0.5) (xy 0.98 0) (xy 0.98 0.5) (xy 0.98 1) (xy 0.7 1) (xy 0.7 1.15)
+			(xy -0.7 1.15) (xy -0.7 1) (xy -0.98 1) (xy -0.98 0.5) (xy -0.98 0) (xy -0.98 -0.5) (xy -0.98 -1)
+			(xy -0.7 -1) (xy -0.7 -1.15) (xy 0.7 -1.15)
+		)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "7791f3e6-3358-49a7-ba1b-d79c0a9ffc42")
+	)
+	(fp_line
+		(start -0.6 -0.8)
+		(end -0.35 -1.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "80c15ff0-2955-4c36-bde4-7c225e45343a")
+	)
+	(fp_line
+		(start -0.6 1.05)
+		(end -0.6 -0.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "61023ef1-1f62-4487-b9e9-1e666b00948b")
+	)
+	(fp_line
+		(start -0.35 -1.05)
+		(end 0.6 -1.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "2a0a4e00-7a9f-40d6-8ea8-9b852e1f9527")
+	)
+	(fp_line
+		(start 0.6 -1.05)
+		(end 0.6 1.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "986ad4e9-84aa-48d6-9c48-9f12a5bc21dc")
+	)
+	(fp_line
+		(start 0.6 1.05)
+		(end -0.6 1.05)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "c983fbe6-ccc3-4e5f-8291-cbffa64b2719")
+	)
+	(pad "1" smd roundrect
+		(at -0.6425 -0.75)
+		(size 0.475 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "d4d20943-4413-4939-9c98-cb84615ac520")
+	)
+	(pad "2" smd roundrect
+		(at -0.6425 -0.25)
+		(size 0.475 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "a5942375-f7d1-4164-8dae-d6d2320161c3")
+	)
+	(pad "3" smd roundrect
+		(at -0.6425 0.25)
+		(size 0.475 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "4df6b04b-e8cc-4aea-992b-38718f20b93b")
+	)
+	(pad "4" smd roundrect
+		(at -0.6425 0.75)
+		(size 0.475 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "5c82be83-b369-4deb-a75e-003a094888c7")
+	)
+	(pad "5" smd roundrect
+		(at 0.6425 0.75)
+		(size 0.475 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "84b5128d-c4a1-4a61-92b9-937f8e7d97af")
+	)
+	(pad "6" smd roundrect
+		(at 0.6425 0.25)
+		(size 0.475 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "c8cfd1e5-15a5-4d79-a194-ff148f86f97c")
+	)
+	(pad "7" smd roundrect
+		(at 0.6425 -0.25)
+		(size 0.475 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "b683f7d8-945a-45fa-a695-b8da3d4d00a7")
+	)
+	(pad "8" smd roundrect
+		(at 0.6425 -0.75)
+		(size 0.475 0.3)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1666666667)
+		(thermal_bridge_angle 45)
+		(uuid "e1cf9b2c-3aa7-4b0c-89f6-d7a972088acb")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/TI_SOT-583_DRL.step"
+		(offset
+			(xyz 0 0 0.135)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 90)
+		)
+	)
+)

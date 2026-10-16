@@ -1,0 +1,34 @@
+{
+  "_comment": "hardware-template OpenDrone-6L line-standard values, as on the empty scaffold. Keys are the report keys of check_board_setup.py; a value is exact or within 'tolerance', or {\"value\": v, \"tol\": t} for its own tolerance. Copy and edit for the board spec.",
+  "tolerance": 0.0005,
+  "expect": {
+    "copper_layers": 6,
+    "thickness_mm": {"value": 1.6, "tol": 0.01},
+    "stackup": [],
+    "rules.clearance_mm": 0.09,
+    "rules.track_mm": 0.09,
+    "rules.connection_mm": 0.09,
+    "rules.via_dia_mm": 0.35,
+    "rules.via_drill_mm": 0.2,
+    "rules.via_annular_mm": 0.075,
+    "rules.microvia_dia_mm": 0.2,
+    "rules.microvia_drill_mm": 0.1,
+    "rules.hole_to_hole_mm": 0.2,
+    "rules.hole_clearance_mm": 0.2,
+    "rules.copper_edge_mm": 0.2,
+    "presets.track_mm": [0.15, 0.25, 0.4, 0.8],
+    "presets.via_mm": [[0.35, 0.2]],
+    "netclasses.Default": {
+      "clearance_mm": 0.09,
+      "track_mm": 0.09,
+      "via_dia_mm": 0.35,
+      "via_drill_mm": 0.2,
+      "uvia_dia_mm": 0.3,
+      "uvia_drill_mm": 0.1,
+      "dp_width_mm": 0.2,
+      "dp_gap_mm": 0.25
+    },
+    "outline": null,
+    "holes": []
+  }
+}

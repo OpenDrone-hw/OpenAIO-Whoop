@@ -1,0 +1,82 @@
+{
+ "footprint": "lib:TI_SOT-583_DRL",
+ "part": "TPS2116DRLR (LCSC C3235557), U3",
+ "datasheet": "TI TPS2116 SLVSFG1A (May 2021) [/tmp/claude-0/-home-user/84218be5-e7e2-573d-8ce2-dce426a96e71/scratchpad/p23/staging/power/dl/tps2116.pdf; https://www.ti.com/lit/ds/symlink/tps2116.pdf]: p3 Figure 5-1 DRL top view + Table 5-1 (1 GND, 2/7 VOUT, 3 VIN1, 4 PR1, 5 MODE, 6 VIN2, 8 ST); p22 DRL0008A outline 4224486/G (body 1.1-1.3 x 2.0-2.2, lead span 1.5-1.7, pitch 0.5, max height 0.6); p23 example board layout (8X (0.67) x 8X (0.3), (1.48) between column centres, 6X (0.5) pitch, (R0.05) TYP); p24 stencil 1:1",
+ "derivation": "Pins 1-4 down the left column, 5-8 up the right (p22/p23 top view); body nominal 1.2 x 2.1.",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.74,
+   "y": -0.75,
+   "w": 0.67,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "2",
+   "x": -0.74,
+   "y": -0.25,
+   "w": 0.67,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "3",
+   "x": -0.74,
+   "y": 0.25,
+   "w": 0.67,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "4",
+   "x": -0.74,
+   "y": 0.75,
+   "w": 0.67,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "5",
+   "x": 0.74,
+   "y": 0.75,
+   "w": 0.67,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "6",
+   "x": 0.74,
+   "y": 0.25,
+   "w": 0.67,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "7",
+   "x": 0.74,
+   "y": -0.25,
+   "w": 0.67,
+   "h": 0.3,
+   "shape": "roundrect"
+  },
+  {
+   "number": "8",
+   "x": 0.74,
+   "y": -0.75,
+   "w": 0.67,
+   "h": 0.3,
+   "shape": "roundrect"
+  }
+ ],
+ "removed_nc": [],
+ "body": {
+  "w": 1.2,
+  "h": 2.1,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "staged_from": "p23/staging/power/landspecs/TI_SOT-583_DRL.json"
+}

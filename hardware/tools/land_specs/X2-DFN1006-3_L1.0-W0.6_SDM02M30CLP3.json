@@ -1,0 +1,47 @@
+{
+ "part": "D-boot: shared-button isolation, Diodes Inc. SDM02M30CLP3-7B (dual Schottky, common cathode)",
+ "datasheet": "Diodes Inc. SDM02M30CLP3 datasheet DS41598 Rev. 2-2 (May 2019), copy https://static.chipdip.ru/lib/152/DOC031152119.pdf: p1 top view (C left, A1 top right, A2 bottom right), case X2-DFN1006-3, ordering SDM02M30CLP3-7B 10k/reel; p2 electrical (VF 0.28 typ / 0.34 max at 0.1 mA, 0.40 max at 1 mA; IR 0.15 uA max at 10 V, 0.40 uA at 30 V; CT 3.3 pF at 5 V; TJ -55..+150 C); p4 package outline (D 1.00, E 0.60, A 0.40 max) and suggested pad layout (C 0.70, G1 0.30, G2 0.20, X 0.40, X1 1.10, Y 0.25, Y1 0.70).",
+ "derivation": "cathode pad X x Y1 = 0.40 x 0.70 at x = -C/2 = -0.35; anode pads X x Y = 0.40 x 0.25 at x = +0.35, y = +-(G2/2 + Y/2) = +-0.225 (A1 at -y = top, per the p1 top view); X1 = 0.40 + 0.30 + 0.40 = 1.10 and Y1 = 2 x 0.25 + 0.20 = 0.70 close; pads 1 = A1, 2 = A2, 3 = C",
+ "pads": [
+  {
+   "number": "1",
+   "x": 0.35,
+   "y": -0.225,
+   "w": 0.4,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.35,
+   "y": 0.225,
+   "w": 0.4,
+   "h": 0.25,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": -0.35,
+   "y": 0.0,
+   "w": 0.4,
+   "h": 0.7,
+   "shape": "rect"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 1.0,
+  "h": 0.6,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": "1",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "footprint": "lib:X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3",
+ "staged_from": "p2v3/staging/io2/landspecs/X2-DFN1006-3_L1.0-W0.6_SDM02M30CLP3.json"
+}

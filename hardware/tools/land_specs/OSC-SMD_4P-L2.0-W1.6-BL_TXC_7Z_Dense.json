@@ -1,0 +1,54 @@
+{
+ "footprint": "lib:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z_Dense",
+ "source": "OpenDrone:OSC-SMD_4P-L2.0-W1.6-BL_TXC_7Z",
+ "part": "YXC OW7EL89CENUNFAYLC-52M TCXO 2016",
+ "datasheet": "YXC YSO510TP TCXO spec (LCSC C22434896, p23/merge/od/dl/lcsc/C22434896.pdf) p2 'Dimensions and Recommended Land Pattern', 2.0*1.6 mm: body 2.05 x 1.65, land 0.6 x 0.8, gaps 1.1 x / 0.4 y, pin 1 bottom-left (1 OE/NC, 2 GND, 3 OUT, 4 VDD)",
+ "pads": [
+  {
+   "number": "1",
+   "x": -0.8,
+   "y": 0.525,
+   "w": 0.5,
+   "h": 0.65,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": 0.8,
+   "y": 0.525,
+   "w": 0.5,
+   "h": 0.65,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 0.8,
+   "y": -0.525,
+   "w": 0.5,
+   "h": 0.65,
+   "shape": "rect"
+  },
+  {
+   "number": "4",
+   "x": -0.8,
+   "y": -0.525,
+   "w": 0.5,
+   "h": 0.65,
+   "shape": "rect"
+  }
+ ],
+ "body": {
+  "w": 2.05,
+  "h": 1.65
+ },
+ "courtyard_margin": 0.1,
+ "pin1": "1",
+ "y_axis": "down",
+ "view": "top",
+ "derivation": "recommended land with the outer edges trimmed to the budget envelope (inner gaps 1.1 / 0.4 kept)",
+ "dense": "budget envelope TCXO2016 2.1 x 1.7 vs recommended 2.3 x 2.0: outer edges 1.15/1.00 -> 1.05/0.85 (0.025 past the body); lands 0.5 x 0.65 cover the 0.4 x 0.625 bottom terminals (p2 bottom view)",
+ "build": {
+  "courtyard": "rect",
+  "model_from_source": true
+ }
+}

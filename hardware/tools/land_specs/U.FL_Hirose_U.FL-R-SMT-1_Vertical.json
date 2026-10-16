@@ -1,0 +1,59 @@
+{
+ "datasheet": "${OPENDRONE_LIB}/datasheet/U.FL-R-SMT-1-80.pdf (Hirose U.FL series catalogue 2014.10e / Nov.1.2016) p3 'Receptacles' U.FL-R-SMT-1: 'Recommended PCB Mounting Pattern' GND lands 4\u00b10.05 outside, 1.9\u00b10.05 inside, 2.2\u00b10.05 high; SIG land 1\u00b10.05 wide, 1.05\u00b10.05 high, its top edge 1\u00b10.05 below the GND land centre line (= mating axis); body 2.6 x 2.6, 3 over the GND terminals, (3.1) over the SIG tabs, 1.25 high; 'No conductive traces in this area' between the GND lands; p7 metal mask 0.10-0.12 mm, 2 reflows",
+ "derivation": "origin = mating axis; GND centres x \u00b1(1.9/2 + 1.05/2) = \u00b11.475; SIG centre y = 1.0 + 1.05/2 = +1.525 (SIG toward +y as in the datasheet top view); pads numbered as the OpenDrone symbol (1 SIG, 2/3 GND); paste 1:1 (no exposed pad); F.Cu rule area (no tracks, vias or pours) over the datasheet's no-trace zone x \u00b10.95, y -1.10..+1.00",
+ "pads": [
+  {
+   "number": "1",
+   "x": 0.0,
+   "y": 1.525,
+   "w": 1.0,
+   "h": 1.05,
+   "shape": "rect"
+  },
+  {
+   "number": "2",
+   "x": -1.475,
+   "y": 0.0,
+   "w": 1.05,
+   "h": 2.2,
+   "shape": "rect"
+  },
+  {
+   "number": "3",
+   "x": 1.475,
+   "y": 0.0,
+   "w": 1.05,
+   "h": 2.2,
+   "shape": "rect"
+  }
+ ],
+ "paste": {
+  "ratio_min": 0.5,
+  "ratio_max": 0.8
+ },
+ "body": {
+  "w": 3.0,
+  "h": 3.1,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "pin1": "1",
+ "attrs": [
+  "smd"
+ ],
+ "keepout": {
+  "x0": -0.95,
+  "y0": -1.1,
+  "x1": 0.95,
+  "y1": 1.0
+ },
+ "model": {
+  "file": "U.FL_Hirose_U.FL-R-SMT-1_Vertical.step",
+  "src": "easyeda2kicad C88374 (EasyEDA package RF-SMD_FRF05002-JSS103M, SolidWorks STEP, bbox 3.0 x 3.1 x 1.25 centred on the axis)"
+ },
+ "footprint": "lib:U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "staged_from": "p23/staging/io_pads/landspecs/U.FL_Hirose_U.FL-R-SMT-1_Vertical.json"
+}

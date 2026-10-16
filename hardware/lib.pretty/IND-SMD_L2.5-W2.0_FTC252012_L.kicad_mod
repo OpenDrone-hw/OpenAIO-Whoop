@@ -1,0 +1,142 @@
+(footprint "IND-SMD_L2.5-W2.0_FTC252012_L"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "cjiang FTC252012SR68MBCA 0.68 uH 2520 (L1, TPS61022 boost). Spec for Approval p5-p6 row FTC252012S: L 2.5+-0.2, W 2.0+-0.2, E 0.85+-0.2, land A 2.60 overall, B 0.70 gap, C 2.10. IPC-7351C least density (D109): the maker land length is already below IPC L at the toe (outer edge 1.30 = nominal end + 0.05), kept (A 2.60, B 0.70); land height C 2.10 -> 2.00 (= W nominal, side 0) so the courtyard is set by the body: 2.80 x 2.20 (was 2.80 x 2.30). Derived from lib:IND-SMD_L2.5-W2.0_FTC252012 (same frame, pad numbers, 3D model, F.Fab body, no component silk); spec hardware/tools/land_specs/IND-SMD_L2.5-W2.0_FTC252012_L.json")
+	(tags "inductor 2520 FTC252012 molded")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "11071306-4053-4b08-bf93-5a639c79e096")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "IND-SMD_L2.5-W2.0_FTC252012_L"
+		(at 0 1.8 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6ede39e8-116f-4a88-ae53-ae5cb04b5813")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "97622d20-326f-42d4-ab49-d935560aec8a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "76d30633-0e56-4b3d-9192-9d1303674973")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -1.4 -1.1)
+		(end 1.4 1.1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "6dd5562f-be8f-45b3-8170-83617fdd164c")
+	)
+	(fp_line
+		(start -1.25 -0.75)
+		(end -1 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "51de273f-dfcd-4988-9749-19679c9c1a6e")
+	)
+	(fp_line
+		(start -1.25 1)
+		(end -1.25 -0.75)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "597f8bdf-3188-45f8-aa2d-f8a19ff3d015")
+	)
+	(fp_line
+		(start -1 -1)
+		(end 1.25 -1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "2fe6ec8d-0c32-46ed-8d12-94ea571d8465")
+	)
+	(fp_line
+		(start 1.25 -1)
+		(end 1.25 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "f55a3f37-f6f4-4710-99b2-acfed3b55080")
+	)
+	(fp_line
+		(start 1.25 1)
+		(end -1.25 1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "dc47d46e-5b3c-49e3-ad25-66b6c3e7d597")
+	)
+	(pad "1" smd rect
+		(at -0.825 0)
+		(size 0.95 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "ecba2930-422b-47bd-a775-51cd3bfdf147")
+	)
+	(pad "2" smd rect
+		(at 0.825 0)
+		(size 0.95 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "2eabf24a-194d-44a5-beba-c05782ce687a")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/IND-SMD_L2.5-W2.0-H1.2_FTC252012.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

@@ -1,0 +1,2164 @@
+{
+  "board": {
+    "3dviewports": [],
+    "design_settings": {
+      "defaults": {
+        "apply_defaults_to_fp_barcodes": false,
+        "apply_defaults_to_fp_dimensions": false,
+        "apply_defaults_to_fp_fields": false,
+        "apply_defaults_to_fp_shapes": false,
+        "apply_defaults_to_fp_text": false,
+        "board_outline_line_width": 0.05,
+        "copper_line_width": 0.2,
+        "copper_text_italic": false,
+        "copper_text_size_h": 1.5,
+        "copper_text_size_v": 1.5,
+        "copper_text_thickness": 0.3,
+        "copper_text_upright": false,
+        "courtyard_line_width": 0.05,
+        "dimension_precision": 4,
+        "dimension_units": 3,
+        "dimensions": {
+          "arrow_length": 1270000,
+          "extension_offset": 500000,
+          "keep_text_aligned": true,
+          "suppress_zeroes": true,
+          "text_position": 0,
+          "units_format": 0
+        },
+        "fab_line_width": 0.1,
+        "fab_text_italic": false,
+        "fab_text_size_h": 1.0,
+        "fab_text_size_v": 1.0,
+        "fab_text_thickness": 0.15,
+        "fab_text_upright": false,
+        "other_line_width": 0.1,
+        "other_text_italic": false,
+        "other_text_size_h": 1.0,
+        "other_text_size_v": 1.0,
+        "other_text_thickness": 0.15,
+        "other_text_upright": false,
+        "pads": {
+          "drill": 0.8,
+          "height": 1.27,
+          "width": 2.54
+        },
+        "silk_line_width": 0.13,
+        "silk_text_italic": false,
+        "silk_text_size_h": 0.8,
+        "silk_text_size_v": 0.8,
+        "silk_text_thickness": 0.13,
+        "silk_text_upright": false,
+        "zones": {
+          "border_display_style": 2,
+          "border_hatch_pitch": 0.5,
+          "corner_radius": 0.0,
+          "corner_smoothing": 0,
+          "fill_mode": 0,
+          "hatch_gap": 1.5,
+          "hatch_orientation": 0.0,
+          "hatch_smoothing_level": 0,
+          "hatch_smoothing_value": 0.1,
+          "hatch_thickness": 1.0,
+          "min_clearance": 0.12,
+          "min_island_area": 10.0,
+          "min_thickness": 0.25,
+          "pad_connection": 2,
+          "remove_islands": 0,
+          "thermal_relief_gap": 0.5,
+          "thermal_relief_spoke_width": 0.5
+        }
+      },
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        },
+        {
+          "gap": 0.12,
+          "via_gap": 0.25,
+          "width": 0.12
+        }
+      ],
+      "drc_exclusions": [],
+      "meta": {
+        "version": 2
+      },
+      "rule_severities": {
+        "annular_width": "error",
+        "clearance": "error",
+        "connection_width": "warning",
+        "copper_edge_clearance": "ignore",
+        "copper_sliver": "warning",
+        "courtyards_overlap": "warning",
+        "creepage": "error",
+        "diff_pair_gap_out_of_range": "warning",
+        "diff_pair_uncoupled_length_too_long": "error",
+        "drill_out_of_range": "error",
+        "duplicate_footprints": "warning",
+        "extra_footprint": "warning",
+        "footprint": "error",
+        "footprint_filters_mismatch": "warning",
+        "footprint_symbol_field_mismatch": "warning",
+        "footprint_symbol_mismatch": "warning",
+        "footprint_type_mismatch": "error",
+        "hole_clearance": "error",
+        "hole_to_hole": "error",
+        "holes_co_located": "ignore",
+        "invalid_outline": "error",
+        "isolated_copper": "warning",
+        "item_on_disabled_layer": "error",
+        "items_not_allowed": "warning",
+        "length_out_of_range": "error",
+        "lib_footprint_issues": "warning",
+        "lib_footprint_mismatch": "warning",
+        "malformed_courtyard": "error",
+        "microvia_drill_out_of_range": "error",
+        "mirrored_text_on_front_layer": "warning",
+        "missing_courtyard": "error",
+        "missing_footprint": "warning",
+        "missing_tuning_profile": "warning",
+        "net_conflict": "warning",
+        "nonmirrored_text_on_back_layer": "warning",
+        "npth_inside_courtyard": "error",
+        "padstack": "warning",
+        "pth_inside_courtyard": "warning",
+        "shorting_items": "error",
+        "silk_edge_clearance": "warning",
+        "silk_over_copper": "warning",
+        "silk_overlap": "warning",
+        "skew_out_of_range": "warning",
+        "solder_mask_bridge": "warning",
+        "starved_thermal": "error",
+        "text_height": "error",
+        "text_on_edge_cuts": "error",
+        "text_thickness": "error",
+        "through_hole_pad_without_hole": "error",
+        "too_many_vias": "error",
+        "track_angle": "error",
+        "track_dangling": "warning",
+        "track_not_centered_on_via": "ignore",
+        "track_on_post_machined_layer": "error",
+        "track_segment_length": "error",
+        "track_width": "error",
+        "tracks_crossing": "error",
+        "tuning_profile_track_geometries": "error",
+        "unconnected_items": "error",
+        "unresolved_variable": "error",
+        "via_dangling": "warning",
+        "zones_intersect": "error"
+      },
+      "rules": {
+        "max_error": 0.005,
+        "min_clearance": 0.09,
+        "min_connection": 0.09,
+        "min_copper_edge_clearance": 0.2,
+        "min_groove_width": 0.0,
+        "min_hole_clearance": 0.18,
+        "min_hole_to_hole": 0.2,
+        "min_microvia_diameter": 0.25,
+        "min_microvia_drill": 0.1,
+        "min_resolved_spokes": 2,
+        "min_silk_clearance": 0.0,
+        "min_text_height": 0.8,
+        "min_text_thickness": 0.13,
+        "min_through_hole_diameter": 0.15,
+        "min_track_width": 0.09,
+        "min_via_annular_width": 0.075,
+        "min_via_diameter": 0.33,
+        "solder_mask_to_copper_clearance": 0.005,
+        "use_height_for_length_calcs": true
+      },
+      "teardrop_options": [
+        {
+          "td_onpthpad": false,
+          "td_onroundshapesonly": false,
+          "td_onsmdpad": false,
+          "td_ontrackend": false,
+          "td_onvia": false
+        }
+      ],
+      "teardrop_parameters": [
+        {
+          "td_allow_use_two_tracks": true,
+          "td_curve_segcount": 1,
+          "td_height_ratio": 1.0,
+          "td_length_ratio": 0.5,
+          "td_maxheight": 2.0,
+          "td_maxlen": 1.0,
+          "td_on_pad_in_zone": false,
+          "td_target_name": "td_round_shape",
+          "td_width_to_size_filter_ratio": 0.9
+        },
+        {
+          "td_allow_use_two_tracks": true,
+          "td_curve_segcount": 0,
+          "td_height_ratio": 1.0,
+          "td_length_ratio": 0.5,
+          "td_maxheight": 2.0,
+          "td_maxlen": 1.0,
+          "td_on_pad_in_zone": false,
+          "td_target_name": "td_rect_shape",
+          "td_width_to_size_filter_ratio": 0.9
+        },
+        {
+          "td_allow_use_two_tracks": true,
+          "td_curve_segcount": 0,
+          "td_height_ratio": 1.0,
+          "td_length_ratio": 0.5,
+          "td_maxheight": 2.0,
+          "td_maxlen": 1.0,
+          "td_on_pad_in_zone": false,
+          "td_target_name": "td_track_end",
+          "td_width_to_size_filter_ratio": 0.9
+        }
+      ],
+      "track_widths": [
+        0.0,
+        0.09,
+        0.1,
+        0.105,
+        0.14,
+        0.2,
+        0.3,
+        0.5,
+        1.0
+      ],
+      "tuning_pattern_settings": {
+        "diff_pair_defaults": {
+          "corner_radius_percentage": 80,
+          "corner_style": 1,
+          "max_amplitude": 1.0,
+          "min_amplitude": 0.2,
+          "single_sided": false,
+          "spacing": 1.0
+        },
+        "diff_pair_skew_defaults": {
+          "corner_radius_percentage": 80,
+          "corner_style": 1,
+          "max_amplitude": 1.0,
+          "min_amplitude": 0.2,
+          "single_sided": false,
+          "spacing": 0.6
+        },
+        "single_track_defaults": {
+          "corner_radius_percentage": 80,
+          "corner_style": 1,
+          "max_amplitude": 1.0,
+          "min_amplitude": 0.2,
+          "single_sided": false,
+          "spacing": 0.6
+        }
+      },
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        },
+        {
+          "diameter": 0.25,
+          "drill": 0.1
+        },
+        {
+          "diameter": 0.33,
+          "drill": 0.15
+        }
+      ],
+      "zones_allow_external_fillets": false
+    },
+    "ipc2581": {
+      "bom_rev": "",
+      "dist": "",
+      "distpn": "",
+      "internal_id": "",
+      "mfg": "",
+      "mpn": "",
+      "sch_revision": "rev1"
+    },
+    "layer_pairs": [
+      {
+        "bottomLayer": 14,
+        "enabled": true,
+        "name": "Buried L2-L7",
+        "topLayer": 4
+      },
+      {
+        "bottomLayer": 4,
+        "enabled": true,
+        "name": "Micro L1-L2",
+        "topLayer": 0
+      },
+      {
+        "bottomLayer": 2,
+        "enabled": true,
+        "name": "Micro L7-L8",
+        "topLayer": 14
+      }
+    ],
+    "layer_presets": [],
+    "viewports": []
+  },
+  "boards": [],
+  "component_class_settings": {
+    "assignments": [
+      {
+        "component_class": "PASSIVE_0201",
+        "conditions": {
+          "FOOTPRINT": {
+            "primary": "*0201*"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "PASSIVE_0402",
+        "conditions": {
+          "FOOTPRINT": {
+            "primary": "*0402*"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "TALL",
+        "conditions": {
+          "FOOTPRINT": {
+            "primary": "*U.FL*"
+          },
+          "FOOTPRINT-1": {
+            "primary": "*U_FL*"
+          },
+          "FOOTPRINT-2": {
+            "primary": "*UFL*"
+          },
+          "FOOTPRINT-3": {
+            "primary": "*SRSS*"
+          },
+          "FOOTPRINT-4": {
+            "primary": "*IND-SMD_L2.5-W2.0*"
+          },
+          "FOOTPRINT-5": {
+            "primary": "*_2520*"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "POWER_FET",
+        "conditions": {
+          "FOOTPRINT": {
+            "primary": "*CSD25310Q2*"
+          },
+          "FOOTPRINT-1": {
+            "primary": "*CSD13202Q2*"
+          },
+          "FOOTPRINT-2": {
+            "primary": "*DQK*"
+          },
+          "FOOTPRINT-3": {
+            "primary": "*AGM210*"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "SOLDER_PAD",
+        "conditions": {
+          "FOOTPRINT": {
+            "primary": "*small_pad*"
+          },
+          "FOOTPRINT-1": {
+            "primary": "*SolderPad*"
+          },
+          "FOOTPRINT-2": {
+            "primary": "*MotorPad*"
+          },
+          "FOOTPRINT-3": {
+            "primary": "*BattPad*"
+          },
+          "FOOTPRINT-4": {
+            "primary": "*motor_pad*"
+          },
+          "FOOTPRINT-5": {
+            "primary": "*battery_pad*"
+          },
+          "FOOTPRINT-6": {
+            "primary": "*BT2*"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "MOTOR_PAD",
+        "conditions": {
+          "FOOTPRINT": {
+            "primary": "*MotorPad*"
+          },
+          "FOOTPRINT-1": {
+            "primary": "*motor_pad*"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "BLACKBOX",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C65"
+          },
+          "REFERENCE-1": {
+            "primary": "R50"
+          },
+          "REFERENCE-2": {
+            "primary": "U13"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "ESC1",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C19"
+          },
+          "REFERENCE-1": {
+            "primary": "C20"
+          },
+          "REFERENCE-10": {
+            "primary": "R15"
+          },
+          "REFERENCE-11": {
+            "primary": "R16"
+          },
+          "REFERENCE-12": {
+            "primary": "R17"
+          },
+          "REFERENCE-13": {
+            "primary": "R18"
+          },
+          "REFERENCE-14": {
+            "primary": "TP1"
+          },
+          "REFERENCE-15": {
+            "primary": "TP2"
+          },
+          "REFERENCE-16": {
+            "primary": "U6"
+          },
+          "REFERENCE-2": {
+            "primary": "C21"
+          },
+          "REFERENCE-3": {
+            "primary": "C23"
+          },
+          "REFERENCE-4": {
+            "primary": "Q29"
+          },
+          "REFERENCE-5": {
+            "primary": "Q30"
+          },
+          "REFERENCE-6": {
+            "primary": "Q31"
+          },
+          "REFERENCE-7": {
+            "primary": "R12"
+          },
+          "REFERENCE-8": {
+            "primary": "R13"
+          },
+          "REFERENCE-9": {
+            "primary": "R14"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "ESC2",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C25"
+          },
+          "REFERENCE-1": {
+            "primary": "C26"
+          },
+          "REFERENCE-10": {
+            "primary": "R22"
+          },
+          "REFERENCE-11": {
+            "primary": "R23"
+          },
+          "REFERENCE-12": {
+            "primary": "R24"
+          },
+          "REFERENCE-13": {
+            "primary": "R25"
+          },
+          "REFERENCE-14": {
+            "primary": "TP3"
+          },
+          "REFERENCE-15": {
+            "primary": "TP4"
+          },
+          "REFERENCE-16": {
+            "primary": "U7"
+          },
+          "REFERENCE-2": {
+            "primary": "C27"
+          },
+          "REFERENCE-3": {
+            "primary": "C29"
+          },
+          "REFERENCE-4": {
+            "primary": "Q32"
+          },
+          "REFERENCE-5": {
+            "primary": "Q33"
+          },
+          "REFERENCE-6": {
+            "primary": "Q34"
+          },
+          "REFERENCE-7": {
+            "primary": "R19"
+          },
+          "REFERENCE-8": {
+            "primary": "R20"
+          },
+          "REFERENCE-9": {
+            "primary": "R21"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "ESC3",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C31"
+          },
+          "REFERENCE-1": {
+            "primary": "C32"
+          },
+          "REFERENCE-10": {
+            "primary": "R29"
+          },
+          "REFERENCE-11": {
+            "primary": "R30"
+          },
+          "REFERENCE-12": {
+            "primary": "R31"
+          },
+          "REFERENCE-13": {
+            "primary": "R32"
+          },
+          "REFERENCE-14": {
+            "primary": "TP5"
+          },
+          "REFERENCE-15": {
+            "primary": "TP6"
+          },
+          "REFERENCE-16": {
+            "primary": "U8"
+          },
+          "REFERENCE-2": {
+            "primary": "C33"
+          },
+          "REFERENCE-3": {
+            "primary": "C35"
+          },
+          "REFERENCE-4": {
+            "primary": "Q35"
+          },
+          "REFERENCE-5": {
+            "primary": "Q36"
+          },
+          "REFERENCE-6": {
+            "primary": "Q37"
+          },
+          "REFERENCE-7": {
+            "primary": "R26"
+          },
+          "REFERENCE-8": {
+            "primary": "R27"
+          },
+          "REFERENCE-9": {
+            "primary": "R28"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "ESC4",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C37"
+          },
+          "REFERENCE-1": {
+            "primary": "C38"
+          },
+          "REFERENCE-10": {
+            "primary": "R36"
+          },
+          "REFERENCE-11": {
+            "primary": "R37"
+          },
+          "REFERENCE-12": {
+            "primary": "R38"
+          },
+          "REFERENCE-13": {
+            "primary": "R39"
+          },
+          "REFERENCE-14": {
+            "primary": "TP7"
+          },
+          "REFERENCE-15": {
+            "primary": "TP8"
+          },
+          "REFERENCE-16": {
+            "primary": "U9"
+          },
+          "REFERENCE-2": {
+            "primary": "C39"
+          },
+          "REFERENCE-3": {
+            "primary": "C41"
+          },
+          "REFERENCE-4": {
+            "primary": "Q38"
+          },
+          "REFERENCE-5": {
+            "primary": "Q39"
+          },
+          "REFERENCE-6": {
+            "primary": "Q40"
+          },
+          "REFERENCE-7": {
+            "primary": "R33"
+          },
+          "REFERENCE-8": {
+            "primary": "R34"
+          },
+          "REFERENCE-9": {
+            "primary": "R35"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "IMU",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C61"
+          },
+          "REFERENCE-1": {
+            "primary": "C62"
+          },
+          "REFERENCE-2": {
+            "primary": "R49"
+          },
+          "REFERENCE-3": {
+            "primary": "U11"
+          },
+          "REFERENCE-4": {
+            "primary": "U12"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "LED",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "D5"
+          },
+          "REFERENCE-1": {
+            "primary": "D6"
+          },
+          "REFERENCE-2": {
+            "primary": "R85"
+          },
+          "REFERENCE-3": {
+            "primary": "R86"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "OSD",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C66"
+          },
+          "REFERENCE-1": {
+            "primary": "C67"
+          },
+          "REFERENCE-10": {
+            "primary": "U14"
+          },
+          "REFERENCE-11": {
+            "primary": "U15"
+          },
+          "REFERENCE-2": {
+            "primary": "C68"
+          },
+          "REFERENCE-3": {
+            "primary": "C70"
+          },
+          "REFERENCE-4": {
+            "primary": "D3"
+          },
+          "REFERENCE-5": {
+            "primary": "R51"
+          },
+          "REFERENCE-6": {
+            "primary": "R52"
+          },
+          "REFERENCE-7": {
+            "primary": "R53"
+          },
+          "REFERENCE-8": {
+            "primary": "R54"
+          },
+          "REFERENCE-9": {
+            "primary": "R55"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "PADS",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "D7"
+          },
+          "REFERENCE-1": {
+            "primary": "J10"
+          },
+          "REFERENCE-10": {
+            "primary": "J29"
+          },
+          "REFERENCE-11": {
+            "primary": "J31"
+          },
+          "REFERENCE-12": {
+            "primary": "J32"
+          },
+          "REFERENCE-13": {
+            "primary": "J33"
+          },
+          "REFERENCE-14": {
+            "primary": "J4"
+          },
+          "REFERENCE-15": {
+            "primary": "J7"
+          },
+          "REFERENCE-16": {
+            "primary": "LOGO1"
+          },
+          "REFERENCE-17": {
+            "primary": "J13"
+          },
+          "REFERENCE-18": {
+            "primary": "J20"
+          },
+          "REFERENCE-2": {
+            "primary": "J21"
+          },
+          "REFERENCE-3": {
+            "primary": "J22"
+          },
+          "REFERENCE-4": {
+            "primary": "J23"
+          },
+          "REFERENCE-5": {
+            "primary": "J24"
+          },
+          "REFERENCE-6": {
+            "primary": "J25"
+          },
+          "REFERENCE-7": {
+            "primary": "J26"
+          },
+          "REFERENCE-8": {
+            "primary": "J27"
+          },
+          "REFERENCE-9": {
+            "primary": "J28"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "POWER",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C1"
+          },
+          "REFERENCE-1": {
+            "primary": "C10"
+          },
+          "REFERENCE-10": {
+            "primary": "C15"
+          },
+          "REFERENCE-11": {
+            "primary": "C8"
+          },
+          "REFERENCE-12": {
+            "primary": "J2"
+          },
+          "REFERENCE-13": {
+            "primary": "J3"
+          },
+          "REFERENCE-14": {
+            "primary": "L1"
+          },
+          "REFERENCE-15": {
+            "primary": "C9"
+          },
+          "REFERENCE-16": {
+            "primary": "D10"
+          },
+          "REFERENCE-17": {
+            "primary": "D9"
+          },
+          "REFERENCE-18": {
+            "primary": "FB1"
+          },
+          "REFERENCE-19": {
+            "primary": "R1"
+          },
+          "REFERENCE-2": {
+            "primary": "U1"
+          },
+          "REFERENCE-20": {
+            "primary": "U2"
+          },
+          "REFERENCE-21": {
+            "primary": "U4"
+          },
+          "REFERENCE-22": {
+            "primary": "C11"
+          },
+          "REFERENCE-23": {
+            "primary": "R11"
+          },
+          "REFERENCE-24": {
+            "primary": "R4"
+          },
+          "REFERENCE-25": {
+            "primary": "R5"
+          },
+          "REFERENCE-3": {
+            "primary": "C12"
+          },
+          "REFERENCE-4": {
+            "primary": "C2"
+          },
+          "REFERENCE-5": {
+            "primary": "C6"
+          },
+          "REFERENCE-6": {
+            "primary": "C7"
+          },
+          "REFERENCE-7": {
+            "primary": "C128"
+          },
+          "REFERENCE-8": {
+            "primary": "C13"
+          },
+          "REFERENCE-9": {
+            "primary": "C14"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "RP2350A",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C134"
+          },
+          "REFERENCE-1": {
+            "primary": "C42"
+          },
+          "REFERENCE-10": {
+            "primary": "C54"
+          },
+          "REFERENCE-11": {
+            "primary": "R46"
+          },
+          "REFERENCE-12": {
+            "primary": "R45"
+          },
+          "REFERENCE-13": {
+            "primary": "TP12"
+          },
+          "REFERENCE-14": {
+            "primary": "TP13"
+          },
+          "REFERENCE-15": {
+            "primary": "TP9"
+          },
+          "REFERENCE-16": {
+            "primary": "X1"
+          },
+          "REFERENCE-17": {
+            "primary": "C44"
+          },
+          "REFERENCE-18": {
+            "primary": "R41"
+          },
+          "REFERENCE-19": {
+            "primary": "U10"
+          },
+          "REFERENCE-2": {
+            "primary": "C45"
+          },
+          "REFERENCE-20": {
+            "primary": "C47"
+          },
+          "REFERENCE-21": {
+            "primary": "C48"
+          },
+          "REFERENCE-22": {
+            "primary": "C49"
+          },
+          "REFERENCE-23": {
+            "primary": "C51"
+          },
+          "REFERENCE-24": {
+            "primary": "C52"
+          },
+          "REFERENCE-25": {
+            "primary": "R48"
+          },
+          "REFERENCE-26": {
+            "primary": "C50"
+          },
+          "REFERENCE-27": {
+            "primary": "C57"
+          },
+          "REFERENCE-28": {
+            "primary": "C58"
+          },
+          "REFERENCE-29": {
+            "primary": "C59"
+          },
+          "REFERENCE-3": {
+            "primary": "L2"
+          },
+          "REFERENCE-30": {
+            "primary": "Q26"
+          },
+          "REFERENCE-31": {
+            "primary": "C46"
+          },
+          "REFERENCE-4": {
+            "primary": "C60"
+          },
+          "REFERENCE-5": {
+            "primary": "R42"
+          },
+          "REFERENCE-6": {
+            "primary": "R43"
+          },
+          "REFERENCE-7": {
+            "primary": "R44"
+          },
+          "REFERENCE-8": {
+            "primary": "R47"
+          },
+          "REFERENCE-9": {
+            "primary": "C56"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "RX",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "AE1"
+          },
+          "REFERENCE-1": {
+            "primary": "AE2"
+          },
+          "REFERENCE-10": {
+            "primary": "C86"
+          },
+          "REFERENCE-11": {
+            "primary": "X3"
+          },
+          "REFERENCE-12": {
+            "primary": "C88"
+          },
+          "REFERENCE-13": {
+            "primary": "C133"
+          },
+          "REFERENCE-14": {
+            "primary": "C76"
+          },
+          "REFERENCE-15": {
+            "primary": "C82"
+          },
+          "REFERENCE-16": {
+            "primary": "C83"
+          },
+          "REFERENCE-17": {
+            "primary": "C84"
+          },
+          "REFERENCE-18": {
+            "primary": "R56"
+          },
+          "REFERENCE-19": {
+            "primary": "C85"
+          },
+          "REFERENCE-2": {
+            "primary": "C132"
+          },
+          "REFERENCE-20": {
+            "primary": "C87"
+          },
+          "REFERENCE-21": {
+            "primary": "C89"
+          },
+          "REFERENCE-22": {
+            "primary": "C91"
+          },
+          "REFERENCE-23": {
+            "primary": "D4"
+          },
+          "REFERENCE-3": {
+            "primary": "D8"
+          },
+          "REFERENCE-4": {
+            "primary": "C73"
+          },
+          "REFERENCE-5": {
+            "primary": "FL1"
+          },
+          "REFERENCE-6": {
+            "primary": "R88"
+          },
+          "REFERENCE-7": {
+            "primary": "SW1"
+          },
+          "REFERENCE-8": {
+            "primary": "U16"
+          },
+          "REFERENCE-9": {
+            "primary": "U18"
+          }
+        },
+        "conditions_operator": "ANY"
+      },
+      {
+        "component_class": "VTX",
+        "conditions": {
+          "REFERENCE": {
+            "primary": "C100"
+          },
+          "REFERENCE-1": {
+            "primary": "C101"
+          },
+          "REFERENCE-10": {
+            "primary": "U21"
+          },
+          "REFERENCE-11": {
+            "primary": "R63"
+          },
+          "REFERENCE-12": {
+            "primary": "R73"
+          },
+          "REFERENCE-13": {
+            "primary": "C122"
+          },
+          "REFERENCE-14": {
+            "primary": "C117"
+          },
+          "REFERENCE-15": {
+            "primary": "R90"
+          },
+          "REFERENCE-16": {
+            "primary": "C123"
+          },
+          "REFERENCE-17": {
+            "primary": "C112"
+          },
+          "REFERENCE-18": {
+            "primary": "C107"
+          },
+          "REFERENCE-19": {
+            "primary": "R71"
+          },
+          "REFERENCE-2": {
+            "primary": "R89"
+          },
+          "REFERENCE-20": {
+            "primary": "C95"
+          },
+          "REFERENCE-21": {
+            "primary": "C136"
+          },
+          "REFERENCE-22": {
+            "primary": "U22"
+          },
+          "REFERENCE-23": {
+            "primary": "C96"
+          },
+          "REFERENCE-24": {
+            "primary": "C102"
+          },
+          "REFERENCE-25": {
+            "primary": "C115"
+          },
+          "REFERENCE-26": {
+            "primary": "R82"
+          },
+          "REFERENCE-27": {
+            "primary": "Q27"
+          },
+          "REFERENCE-28": {
+            "primary": "J1"
+          },
+          "REFERENCE-29": {
+            "primary": "C108"
+          },
+          "REFERENCE-3": {
+            "primary": "Q28"
+          },
+          "REFERENCE-30": {
+            "primary": "C110"
+          },
+          "REFERENCE-31": {
+            "primary": "C125"
+          },
+          "REFERENCE-32": {
+            "primary": "U20"
+          },
+          "REFERENCE-33": {
+            "primary": "R62"
+          },
+          "REFERENCE-34": {
+            "primary": "R60"
+          },
+          "REFERENCE-35": {
+            "primary": "C116"
+          },
+          "REFERENCE-36": {
+            "primary": "C118"
+          },
+          "REFERENCE-37": {
+            "primary": "FL2"
+          },
+          "REFERENCE-38": {
+            "primary": "C106"
+          },
+          "REFERENCE-39": {
+            "primary": "R68"
+          },
+          "REFERENCE-4": {
+            "primary": "R65"
+          },
+          "REFERENCE-40": {
+            "primary": "C135"
+          },
+          "REFERENCE-41": {
+            "primary": "C94"
+          },
+          "REFERENCE-42": {
+            "primary": "R59"
+          },
+          "REFERENCE-43": {
+            "primary": "C114"
+          },
+          "REFERENCE-44": {
+            "primary": "R81"
+          },
+          "REFERENCE-45": {
+            "primary": "C103"
+          },
+          "REFERENCE-46": {
+            "primary": "L3"
+          },
+          "REFERENCE-47": {
+            "primary": "R64"
+          },
+          "REFERENCE-48": {
+            "primary": "C124"
+          },
+          "REFERENCE-49": {
+            "primary": "U19"
+          },
+          "REFERENCE-5": {
+            "primary": "C111"
+          },
+          "REFERENCE-50": {
+            "primary": "R61"
+          },
+          "REFERENCE-51": {
+            "primary": "R72"
+          },
+          "REFERENCE-52": {
+            "primary": "C98"
+          },
+          "REFERENCE-53": {
+            "primary": "X4"
+          },
+          "REFERENCE-54": {
+            "primary": "R66"
+          },
+          "REFERENCE-55": {
+            "primary": "C105"
+          },
+          "REFERENCE-56": {
+            "primary": "R58"
+          },
+          "REFERENCE-6": {
+            "primary": "C109"
+          },
+          "REFERENCE-7": {
+            "primary": "R80"
+          },
+          "REFERENCE-8": {
+            "primary": "C113"
+          },
+          "REFERENCE-9": {
+            "primary": "C104"
+          }
+        },
+        "conditions_operator": "ANY"
+      }
+    ],
+    "meta": {
+      "version": 0
+    },
+    "sheet_component_classes": {
+      "enabled": false
+    }
+  },
+  "cvpcb": {
+    "equivalence_files": []
+  },
+  "erc": {
+    "erc_exclusions": [],
+    "meta": {
+      "version": 0
+    },
+    "pin_map": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        2,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2,
+        2,
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        0,
+        2,
+        2,
+        2,
+        2
+      ],
+      [
+        0,
+        2,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        2,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0,
+        2
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    ],
+    "rule_severities": {
+      "bus_definition_conflict": "error",
+      "bus_entry_needed": "error",
+      "bus_to_bus_conflict": "error",
+      "bus_to_net_conflict": "error",
+      "different_unit_footprint": "error",
+      "different_unit_net": "error",
+      "duplicate_reference": "error",
+      "duplicate_sheet_names": "error",
+      "endpoint_off_grid": "warning",
+      "extra_units": "error",
+      "field_name_whitespace": "warning",
+      "footprint_filter": "ignore",
+      "footprint_link_issues": "warning",
+      "four_way_junction": "ignore",
+      "global_label_dangling": "warning",
+      "ground_pin_not_ground": "warning",
+      "hier_label_mismatch": "error",
+      "isolated_pin_label": "warning",
+      "label_dangling": "error",
+      "label_multiple_wires": "warning",
+      "lib_symbol_issues": "warning",
+      "lib_symbol_mismatch": "warning",
+      "missing_bidi_pin": "warning",
+      "missing_input_pin": "warning",
+      "missing_power_pin": "error",
+      "missing_unit": "warning",
+      "multiple_net_names": "warning",
+      "net_not_bus_member": "warning",
+      "no_connect_connected": "warning",
+      "no_connect_dangling": "warning",
+      "pin_not_connected": "error",
+      "pin_not_driven": "error",
+      "pin_to_pin": "warning",
+      "power_pin_not_driven": "error",
+      "same_local_global_label": "warning",
+      "similar_label_and_power": "warning",
+      "similar_labels": "warning",
+      "similar_power": "warning",
+      "simulation_model_issue": "ignore",
+      "single_global_label": "ignore",
+      "stacked_pin_name": "warning",
+      "unannotated": "error",
+      "unconnected_wire_endpoint": "warning",
+      "undefined_netclass": "error",
+      "unit_value_mismatch": "error",
+      "unresolved_variable": "error",
+      "wire_dangling": "error"
+    }
+  },
+  "libraries": {
+    "pinned_footprint_libs": [],
+    "pinned_symbol_libs": []
+  },
+  "meta": {
+    "filename": "OpenAIO-Whoop.kicad_pro",
+    "version": 3
+  },
+  "net_settings": {
+    "classes": [
+      {
+        "bus_width": 12,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "Default",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2147483647,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.09,
+        "tuning_profile": "",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "Analog",
+        "pcb_color": "rgb(0, 160, 160)",
+        "priority": 5,
+        "schematic_color": "rgb(0, 160, 160)",
+        "track_width": 0.1,
+        "tuning_profile": "",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "GND",
+        "pcb_color": "rgb(130, 130, 130)",
+        "priority": 7,
+        "schematic_color": "rgb(130, 130, 130)",
+        "track_width": 0.2,
+        "tuning_profile": "",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "Gate",
+        "pcb_color": "rgb(120, 60, 220)",
+        "priority": 4,
+        "schematic_color": "rgb(120, 60, 220)",
+        "track_width": 0.15,
+        "tuning_profile": "",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "Phase",
+        "pcb_color": "rgb(200, 0, 200)",
+        "priority": 3,
+        "schematic_color": "rgb(200, 0, 200)",
+        "track_width": 0.1,
+        "tuning_profile": "",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "Power",
+        "pcb_color": "rgb(255, 140, 0)",
+        "priority": 6,
+        "schematic_color": "rgb(255, 140, 0)",
+        "track_width": 0.25,
+        "tuning_profile": "",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.15,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "RF",
+        "pcb_color": "rgb(200, 160, 0)",
+        "priority": 0,
+        "schematic_color": "rgb(200, 160, 0)",
+        "track_width": 0.105,
+        "tuning_profile": "RF50",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.12,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.12,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "USB",
+        "pcb_color": "rgb(30, 110, 255)",
+        "priority": 1,
+        "schematic_color": "rgb(30, 110, 255)",
+        "track_width": 0.12,
+        "tuning_profile": "",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.09,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.25,
+        "microvia_drill": 0.1,
+        "name": "VBAT",
+        "pcb_color": "rgb(220, 40, 40)",
+        "priority": 2,
+        "schematic_color": "rgb(220, 40, 40)",
+        "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
+        "wire_width": 6
+      }
+    ],
+    "meta": {
+      "version": 5
+    },
+    "net_colors": null,
+    "netclass_assignments": {
+      "+5V_BST": [
+        "Power"
+      ],
+      "+BATT": [
+        "VBAT"
+      ],
+      "/CURR_SENSE": [
+        "Analog"
+      ],
+      "/ESC1/A_COM": [
+        "Gate"
+      ],
+      "/ESC1/PHASE_A": [
+        "Phase"
+      ],
+      "/ESC2/A_COM": [
+        "Gate"
+      ],
+      "/ESC2/PHASE_A": [
+        "Phase"
+      ],
+      "/ESC3/A_COM": [
+        "Gate"
+      ],
+      "/ESC3/PHASE_A": [
+        "Phase"
+      ],
+      "/ESC4/A_COM": [
+        "Gate"
+      ],
+      "/ESC4/PHASE_A": [
+        "Phase"
+      ],
+      "/PA_DET": [
+        "Analog"
+      ],
+      "/POWER/CSA+": [
+        "VBAT"
+      ],
+      "/POWER/SHUNT_SENSE_P": [
+        "Analog"
+      ],
+      "/POWER/U2_SW": [
+        "Phase"
+      ],
+      "/RX/RF_RFIO": [
+        "RF"
+      ],
+      "/USB_D_P": [
+        "USB"
+      ],
+      "/VBUS": [
+        "Power"
+      ],
+      "/VIDEO_IN": [
+        "Analog"
+      ],
+      "/VTX/RF_PAOUT1": [
+        "RF"
+      ]
+    },
+    "netclass_patterns": [
+      {
+        "netclass": "VBAT",
+        "pattern": "+BATT"
+      },
+      {
+        "netclass": "VBAT",
+        "pattern": "+BATT_*"
+      },
+      {
+        "netclass": "VBAT",
+        "pattern": "/POWER/CSA+"
+      },
+      {
+        "netclass": "Phase",
+        "pattern": "/ESC?/PHASE_?"
+      },
+      {
+        "netclass": "Phase",
+        "pattern": "/POWER/U2_SW"
+      },
+      {
+        "netclass": "Gate",
+        "pattern": "/ESC?/?_COM"
+      },
+      {
+        "netclass": "Gate",
+        "pattern": "/ESC?/?_PWM"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+5V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+5V_BST"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+5V_USB"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+3.3V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+3.3V_VTX"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+1.8V_GYRO"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+1.1V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+5V_*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+3.3V_*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+1.8V_GYRO_*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+1.1V_*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/VBUS"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/RP2350A/VREG_LX"
+      },
+      {
+        "netclass": "GND",
+        "pattern": "GND"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*VIDEO*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/VID_*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/OSD_LVL*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/OSD_SYNC*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*CURR_SENSE*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*ADC_VBAT*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/PA_DET*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/VPD*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*SHUNT_SENSE_*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*ADC_CURR*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/VT_MOD*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/RTC_*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/U19_XTAL*"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/TCXO_OUT"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/XTA"
+      },
+      {
+        "netclass": "Analog",
+        "pattern": "*/U2_FB*"
+      },
+      {
+        "netclass": "RF",
+        "pattern": "*/RF_*"
+      },
+      {
+        "netclass": "RF",
+        "pattern": "*/ANT*"
+      },
+      {
+        "netclass": "RF",
+        "pattern": "*/RFIO*"
+      },
+      {
+        "netclass": "RF",
+        "pattern": "*/RFOUT*"
+      },
+      {
+        "netclass": "RF",
+        "pattern": "*/RFIN*"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "*/USB_D_P"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "*/USB_D_N"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "*/U10_USB_D_P"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "*/U10_USB_D_N"
+      }
+    ]
+  },
+  "pcbnew": {
+    "last_paths": {
+      "gencad": "",
+      "idf": "",
+      "netlist": "./",
+      "plot": "",
+      "pos_files": "",
+      "specctra_dsn": "",
+      "step": "",
+      "svg": "",
+      "vrml": ""
+    },
+    "page_layout_descr_file": ""
+  },
+  "schematic": {
+    "annotate_start_num": 0,
+    "annotation": {
+      "method": 0,
+      "sort_order": 0
+    },
+    "bom_export_filename": "${PROJECTNAME}.csv",
+    "bom_fmt_presets": [],
+    "bom_fmt_settings": {
+      "field_delimiter": ",",
+      "keep_line_breaks": false,
+      "keep_tabs": false,
+      "name": "CSV",
+      "ref_delimiter": ",",
+      "ref_range_delimiter": "",
+      "string_delimiter": "\""
+    },
+    "bom_presets": [],
+    "bom_settings": {
+      "exclude_dnp": false,
+      "fields_ordered": [
+        {
+          "group_by": false,
+          "label": "Reference",
+          "name": "Reference",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Qty",
+          "name": "${QUANTITY}",
+          "show": true
+        },
+        {
+          "group_by": true,
+          "label": "Value",
+          "name": "Value",
+          "show": true
+        },
+        {
+          "group_by": true,
+          "label": "DNP",
+          "name": "${DNP}",
+          "show": true
+        },
+        {
+          "group_by": true,
+          "label": "Exclude from BOM",
+          "name": "${EXCLUDE_FROM_BOM}",
+          "show": true
+        },
+        {
+          "group_by": true,
+          "label": "Exclude from Board",
+          "name": "${EXCLUDE_FROM_BOARD}",
+          "show": true
+        },
+        {
+          "group_by": true,
+          "label": "Footprint",
+          "name": "Footprint",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Datasheet",
+          "name": "Datasheet",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "LCSC",
+          "name": "LCSC",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "LCSC",
+          "name": "LCSC",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Description",
+          "name": "Description",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "#",
+          "name": "${ITEM_NUMBER}",
+          "show": false
+        }
+      ],
+      "filter_string": "",
+      "group_symbols": true,
+      "include_excluded_from_bom": true,
+      "name": "",
+      "sort_asc": true,
+      "sort_field": "Reference"
+    },
+    "bus_aliases": {},
+    "connection_grid_size": 50.0,
+    "drawing": {
+      "dashed_lines_dash_length_ratio": 12.0,
+      "dashed_lines_gap_length_ratio": 3.0,
+      "default_line_thickness": 6.0,
+      "default_text_size": 50.0,
+      "field_names": [],
+      "hop_over_size_choice": 0,
+      "intersheets_ref_own_page": false,
+      "intersheets_ref_prefix": "",
+      "intersheets_ref_short": false,
+      "intersheets_ref_show": false,
+      "intersheets_ref_suffix": "",
+      "junction_size_choice": 3,
+      "label_size_ratio": 0.375,
+      "operating_point_overlay_i_precision": 3,
+      "operating_point_overlay_i_range": "~A",
+      "operating_point_overlay_v_precision": 3,
+      "operating_point_overlay_v_range": "~V",
+      "overbar_offset_ratio": 1.23,
+      "pin_symbol_size": 25.0,
+      "text_offset_ratio": 0.15
+    },
+    "legacy_lib_dir": "",
+    "legacy_lib_list": [],
+    "meta": {
+      "version": 1
+    },
+    "net_format_name": "KiCad",
+    "page_layout_descr_file": "",
+    "plot_directory": "",
+    "reuse_designators": true,
+    "space_save_all_events": true,
+    "spice_current_sheet_as_root": false,
+    "spice_external_command": "spice \"%I\"",
+    "spice_model_current_sheet_as_root": true,
+    "spice_save_all_currents": false,
+    "spice_save_all_dissipations": false,
+    "spice_save_all_voltages": false,
+    "subpart_first_id": 65,
+    "subpart_id_separator": 0,
+    "top_level_sheets": [
+      {
+        "filename": "OpenAIO-Whoop.kicad_sch",
+        "name": "OpenAIO-Whoop",
+        "uuid": "2c3a7206-1e66-4d43-a02f-491225e20dd6"
+      }
+    ],
+    "used_designators": "CN1,#PWR112,#PWR164-165,#PWR188,#PWR232-242,C22,C24,C28,C30,C34,C36,C40,C43,C53,C55,C63-64,C71,R1-2,R57,R67,R69-70",
+    "variants": []
+  },
+  "sheets": [
+    [
+      "2c3a7206-1e66-4d43-a02f-491225e20dd6",
+      "OpenAIO-Whoop"
+    ],
+    [
+      "41417550-e292-5308-8e83-617f301e47b8",
+      "POWER"
+    ],
+    [
+      "d67c44eb-67d1-5da8-b7a8-40b16f9433cd",
+      "ESC1"
+    ],
+    [
+      "0021bee0-9959-5c9e-86f0-21e49fa9ce8d",
+      "ESC2"
+    ],
+    [
+      "a3c0517e-76c5-5fd7-8d0f-d7e948ad3995",
+      "ESC3"
+    ],
+    [
+      "6d139bfe-ad39-5d26-964c-e430887c2538",
+      "ESC4"
+    ],
+    [
+      "df951d63-8e6a-5171-a7c4-15005f1245fb",
+      "RP2350A"
+    ],
+    [
+      "f446158c-b285-51eb-bc17-5ec1fb190fc1",
+      "IMU"
+    ],
+    [
+      "04f14c5a-8e46-5d66-be84-2bb8762684a3",
+      "BLACKBOX"
+    ],
+    [
+      "d622c956-8c4e-5ac1-b8c4-8a8024f124d6",
+      "OSD"
+    ],
+    [
+      "73d8a02c-e770-5e7b-9535-3e34b447ded8",
+      "RX"
+    ],
+    [
+      "11edd549-3d5f-5e16-86ba-6970b46b0a92",
+      "VTX"
+    ],
+    [
+      "0a9dca22-7345-53f8-9367-07faa3e8899c",
+      "LED"
+    ],
+    [
+      "8d214749-72cf-5803-99b7-260f0c3f1838",
+      "PADS"
+    ]
+  ],
+  "text_variables": {
+    "OPENDRONE_LIB": "${KIPRJMOD}/KiCad-Library"
+  },
+  "tuning_profiles": {
+    "meta": {
+      "version": 0
+    },
+    "tuning_profiles_impedance_geometric": [
+      {
+        "enable_time_domain_tuning": false,
+        "layer_entries": [
+          {
+            "bottom_reference_layer": "In1.Cu",
+            "delay": 0,
+            "diff_pair_gap": 0,
+            "signal_layer": "F.Cu",
+            "top_reference_layer": "UNDEFINED",
+            "width": 105000
+          },
+          {
+            "bottom_reference_layer": "UNDEFINED",
+            "delay": 0,
+            "diff_pair_gap": 0,
+            "signal_layer": "B.Cu",
+            "top_reference_layer": "In6.Cu",
+            "width": 105000
+          }
+        ],
+        "profile_name": "RF50",
+        "target_impedance": 50.0,
+        "type": 0,
+        "via_overrides": [],
+        "via_prop_delay": 0
+      }
+    ]
+  }
+}

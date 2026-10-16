@@ -1,0 +1,149 @@
+(footprint "TI_SOT-9X3-3_DRT_L"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "TI DRT (SOT-9X3, R-PDSO-N3) 1.0 x 0.8 mm, 3 pins, lands 0.30 x 0.30 per TI land pattern 4211172/A (TPD2EUSB30 SLVSAC2G p27); pin 1 bottom-left | IPC-7351 least density (L) variant per D109: toe 0.56 (DRT lead span 0.95-1.05 -> tip 0.525 max + 0.035), heel and width 0.30 kept")
+	(tags "DRT SOT-9X3 TPD2EUSB30 ESD IPC7351L")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "bc346fe2-7bff-4dd5-9b67-443aef1838aa")
+		(effects
+			(font
+				(size 0.32 0.32)
+				(thickness 0.048)
+			)
+		)
+	)
+	(property "Value" "TI_SOT-9X3-3_DRT_L"
+		(at 0 0.72 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3edea675-fd5f-4fe6-a843-64868ee7406d")
+		(effects
+			(font
+				(size 0.32 0.32)
+				(thickness 0.048)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8afb8fc5-4f72-4666-9e48-c9158c66176a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "54592586-d3b8-433c-9ee7-8f8bdca9448e")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.6 -0.66)
+		(end 0.6 0.66)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "4f7ca72d-6175-4757-98d4-7bf9cfb64fb1")
+	)
+	(fp_line
+		(start -0.5 -0.4)
+		(end 0.5 -0.4)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "98d45480-e932-4eb9-bf8c-3e4dd1442fc3")
+	)
+	(fp_line
+		(start -0.5 0.2)
+		(end -0.5 -0.4)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "6090e4d8-14df-4e88-8c1f-e993eeb29a72")
+	)
+	(fp_line
+		(start -0.3 0.4)
+		(end -0.5 0.2)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "da8824a2-959e-4591-8fba-7eb98864c387")
+	)
+	(fp_line
+		(start 0.5 -0.4)
+		(end 0.5 0.4)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "06545a89-4f92-4c03-8112-32add2c3b45f")
+	)
+	(fp_line
+		(start 0.5 0.4)
+		(end -0.3 0.4)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "0b0923e1-eea3-4389-899a-89c5e77b44dd")
+	)
+	(pad "1" smd rect
+		(at -0.35 0.4175)
+		(size 0.3 0.285)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "6a9897d0-5253-43e0-815e-d82b94576aea")
+	)
+	(pad "2" smd rect
+		(at 0.35 0.4175)
+		(size 0.3 0.285)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "1536f982-3a8b-4e08-ac33-ba3c50a01fae")
+	)
+	(pad "3" smd rect
+		(at 0 -0.4175)
+		(size 0.3 0.285)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "fbb74f5f-1771-4956-bd66-cfe5e8e7b856")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/TI_SOT-9X3-3_DRT.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

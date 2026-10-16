@@ -1,0 +1,166 @@
+(footprint "Nexperia_SOD882D"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Nexperia SOD882D (DFN1006D-2) 1.0 x 0.6 x 0.4 mm, pin 1 cathode left: lands 0.5 x 0.7 at +-0.40, paste 0.3 x 0.6 at +-0.35 per BAS16LD Rev. 1 Fig 9; F.Fab body, no silk")
+	(tags "SOD882D DFN1006D-2 BAS16LD diode")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "b8fbef4f-c203-4c2d-a24d-0db9a5b30015")
+		(effects
+			(font
+				(size 0.24 0.24)
+				(thickness 0.036)
+			)
+		)
+	)
+	(property "Value" "Nexperia_SOD882D"
+		(at 0 0.54 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0783c048-8906-416f-9e01-384355f9a017")
+		(effects
+			(font
+				(size 0.24 0.24)
+				(thickness 0.036)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c13df085-fd3a-4ac1-abbe-4f8f75d82ce2")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "85ddb12b-ea86-482c-b2ad-64efe41a5bc1")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -0.75 -0.45)
+		(end 0.75 0.45)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "661334b7-e472-4681-9c3a-33edb8f62e7a")
+	)
+	(fp_line
+		(start -0.5 -0.15)
+		(end -0.35 -0.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "a4675ec8-7d9f-4f7d-9a11-3f5bddcbdde5")
+	)
+	(fp_line
+		(start -0.5 0.3)
+		(end -0.5 -0.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "560fa792-db67-4fdd-87ff-9c42af91b19d")
+	)
+	(fp_line
+		(start -0.35 -0.3)
+		(end 0.5 -0.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3b20cd3a-28ae-4f4d-acda-f6e33e7d4f77")
+	)
+	(fp_line
+		(start -0.3 -0.3)
+		(end -0.3 0.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "602dd5d5-92c7-4f0e-963d-d88c7ad5c674")
+	)
+	(fp_line
+		(start 0.5 -0.3)
+		(end 0.5 0.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "1597348a-d666-4ec4-b495-d973911280d3")
+	)
+	(fp_line
+		(start 0.5 0.3)
+		(end -0.5 0.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "803218b5-2b6c-4eb8-b219-1700fec67747")
+	)
+	(pad "" smd rect
+		(at -0.35 0)
+		(size 0.3 0.6)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "b6090928-5fe0-48be-9baa-f29578013e0a")
+	)
+	(pad "" smd rect
+		(at 0.35 0)
+		(size 0.3 0.6)
+		(layers "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "5d5760d1-7f2b-4395-8ecd-6f2738802993")
+	)
+	(pad "1" smd rect
+		(at -0.4 0)
+		(size 0.5 0.7)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "75c64e68-a6cf-4b29-a8b6-ee0700c16e26")
+	)
+	(pad "2" smd rect
+		(at 0.4 0)
+		(size 0.5 0.7)
+		(layers "F.Cu" "F.Mask")
+		(thermal_bridge_angle 45)
+		(uuid "1ffd29ae-345e-45cf-9f92-9393da86a525")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/lib.3dshapes/SOD882D_L1.0-W0.6-H0.4.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

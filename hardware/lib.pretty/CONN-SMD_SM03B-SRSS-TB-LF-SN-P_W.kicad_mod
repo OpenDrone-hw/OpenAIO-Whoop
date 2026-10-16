@@ -1,0 +1,163 @@
+(footprint "CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "JST SH 1.0 mm 3-pin shrouded header, SIDE entry SM03B-SRSS-TB(LF)(SN), LCSC C160403; corrected copy of OpenDrone:CONN-SMD_SM03B-SRSS-TB-LF-SN-P (tabs 1.2 x 1.8 per JST instead of 1.5 x 2.0, F.Fab body 5.0 x 4.25 added, component silk removed, courtyard normalised); mating face toward +y, plug 2.0 mm beyond")
+	(tags "connector JST SH 1.0mm SM03B-SRSS-TB side entry horizontal")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "47ca5144-ce5f-47e9-bef3-ba898b5fef85")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "CONN-SMD_SM03B-SRSS-TB-LF-SN-P_W"
+		(at 0 3.125 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "55bbe4e1-a496-4265-837f-fa7347888966")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c8668236-5a40-4fa1-9b70-809c023147f4")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fb534530-73ba-4968-97f6-766a9f097233")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -3 -2.82)
+		(end 3 2.94)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "84643f7c-8e50-464b-a2ae-b1480c223f76")
+	)
+	(fp_line
+		(start -2.5 -1.3125)
+		(end -2.2 -1.6125)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "ae178229-a934-4d7b-bb2e-7b02989e6d48")
+	)
+	(fp_line
+		(start -2.5 2.6375)
+		(end -2.5 -1.3125)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "9b73d72c-df45-43cb-8b54-a08e12f23d0c")
+	)
+	(fp_line
+		(start -2.2 -1.6125)
+		(end 2.5 -1.6125)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "b3f86c8e-3e41-4daa-a9fa-d3df7b2a374a")
+	)
+	(fp_line
+		(start 2.5 -1.6125)
+		(end 2.5 2.6375)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "944e25ae-0069-48cd-b1be-c9e8da66b79e")
+	)
+	(fp_line
+		(start 2.5 2.6375)
+		(end -2.5 2.6375)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "a871b4d8-e388-4741-8e8c-909f6a8bfc5f")
+	)
+	(pad "1" smd rect
+		(at -1 -1.9375)
+		(size 0.6 1.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "9c0a2a15-c90b-4011-af81-0bbafafd983d")
+	)
+	(pad "2" smd rect
+		(at 0 -1.9375)
+		(size 0.6 1.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "f0a02c3a-c0c2-4560-9f9f-0aad0824d13d")
+	)
+	(pad "3" smd rect
+		(at 1 -1.9375)
+		(size 0.6 1.55)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "6c257456-68ad-4c7e-963e-7df78d7d2f3c")
+	)
+	(pad "4" smd rect
+		(at 2.3 1.9375)
+		(size 1.2 1.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "132e0e9a-c96b-4fb9-9d3b-2925d6e3fb02")
+	)
+	(pad "5" smd rect
+		(at -2.3 1.9375)
+		(size 1.2 1.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "ffa1be58-7a4a-408c-8791-5d4bb366cffe")
+	)
+	(embedded_fonts no)
+	(model "${OPENDRONE_LIB}/3dmodel/CONN-SMD_SR1.00-WS-3P.step"
+		(offset
+			(xyz -1 -0.17 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

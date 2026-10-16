@@ -1,0 +1,25 @@
+{
+ "datasheet": "research/LINEUP-CONVENTIONS.md B3 (the shipped 8-polygon incutec artwork, 4.36:1, Mini front 6.1 x 1.4 mm); source: OpenFC-Lite-Mini hardware/OpenFC.kicad_pcb F.Silkscreen, 8 filled board polygons 6.105 x 1.401 mm (work/find_logo.py, copied point for point)",
+ "derivation": "board art, no copper: check_footprint needs lands and exits 2 by design; checked by work/verify_fp.py (8 filled F.Silkscreen polygons, bbox 6.105 x 1.401, aspect 4.36, identical to the source within 1 um, check_conventions B3 signature); placed on B (flip mirrors it, B13); attributes board-only, not in BOM/pos; courtyard = artwork + 0.10 keeps parts off the print",
+ "pads": [],
+ "body": {
+  "w": 6.105,
+  "h": 1.401,
+  "x": 0.0,
+  "y": 0.0
+ },
+ "attrs": [
+  "board_only",
+  "exclude_from_pos_files",
+  "exclude_from_bom"
+ ],
+ "footprint": "lib:incutec_logo_6.1x1.4mm",
+ "courtyard_margin": 0.1,
+ "y_axis": "down",
+ "view": "top",
+ "staged_from": "p23/staging/io_pads/landspecs/incutec_logo_6.1x1.4mm.json",
+ "artwork": {
+  "layer": "F.SilkS",
+  "polygons": 8
+ }
+}
