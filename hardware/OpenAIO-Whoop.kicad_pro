@@ -63,7 +63,7 @@
           "min_clearance": 0.12,
           "min_island_area": 10.0,
           "min_thickness": 0.25,
-          "pad_connection": 1,
+          "pad_connection": 2,
           "remove_islands": 0,
           "thermal_relief_gap": 0.5,
           "thermal_relief_spoke_width": 0.5
@@ -89,11 +89,11 @@
         "annular_width": "error",
         "clearance": "error",
         "connection_width": "warning",
-        "copper_edge_clearance": "error",
+        "copper_edge_clearance": "ignore",
         "copper_sliver": "warning",
         "courtyards_overlap": "warning",
         "creepage": "error",
-        "diff_pair_gap_out_of_range": "error",
+        "diff_pair_gap_out_of_range": "warning",
         "diff_pair_uncoupled_length_too_long": "error",
         "drill_out_of_range": "error",
         "duplicate_footprints": "warning",
@@ -105,11 +105,11 @@
         "footprint_type_mismatch": "error",
         "hole_clearance": "error",
         "hole_to_hole": "error",
-        "holes_co_located": "error",
+        "holes_co_located": "ignore",
         "invalid_outline": "error",
         "isolated_copper": "warning",
         "item_on_disabled_layer": "error",
-        "items_not_allowed": "error",
+        "items_not_allowed": "warning",
         "length_out_of_range": "error",
         "lib_footprint_issues": "warning",
         "lib_footprint_mismatch": "warning",
@@ -123,12 +123,12 @@
         "nonmirrored_text_on_back_layer": "warning",
         "npth_inside_courtyard": "error",
         "padstack": "warning",
-        "pth_inside_courtyard": "error",
+        "pth_inside_courtyard": "warning",
         "shorting_items": "error",
-        "silk_edge_clearance": "error",
-        "silk_over_copper": "error",
+        "silk_edge_clearance": "warning",
+        "silk_over_copper": "warning",
         "silk_overlap": "warning",
-        "skew_out_of_range": "error",
+        "skew_out_of_range": "warning",
         "solder_mask_bridge": "warning",
         "starved_thermal": "error",
         "text_height": "error",
@@ -138,7 +138,7 @@
         "too_many_vias": "error",
         "track_angle": "error",
         "track_dangling": "warning",
-        "track_not_centered_on_via": "warning",
+        "track_not_centered_on_via": "ignore",
         "track_on_post_machined_layer": "error",
         "track_segment_length": "error",
         "track_width": "error",
@@ -165,8 +165,8 @@
         "min_text_thickness": 0.13,
         "min_through_hole_diameter": 0.15,
         "min_track_width": 0.09,
-        "min_via_annular_width": 0.09,
-        "min_via_diameter": 0.35,
+        "min_via_annular_width": 0.075,
+        "min_via_diameter": 0.33,
         "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
@@ -216,6 +216,7 @@
       ],
       "track_widths": [
         0.0,
+        0.09,
         0.1,
         0.105,
         0.14,
@@ -256,12 +257,12 @@
           "drill": 0.0
         },
         {
-          "diameter": 0.35,
-          "drill": 0.15
+          "diameter": 0.25,
+          "drill": 0.1
         },
         {
-          "diameter": 0.4,
-          "drill": 0.2
+          "diameter": 0.33,
+          "drill": 0.15
         }
       ],
       "zones_allow_external_fillets": false
@@ -277,9 +278,9 @@
     },
     "layer_pairs": [
       {
-        "bottomLayer": 10,
+        "bottomLayer": 14,
         "enabled": true,
-        "name": "Buried L2-L5",
+        "name": "Buried L2-L7",
         "topLayer": 4
       },
       {
@@ -291,8 +292,8 @@
       {
         "bottomLayer": 2,
         "enabled": true,
-        "name": "Micro L5-L6",
-        "topLayer": 10
+        "name": "Micro L7-L8",
+        "topLayer": 14
       }
     ],
     "layer_presets": [],
@@ -425,49 +426,49 @@
             "primary": "C20"
           },
           "REFERENCE-10": {
-            "primary": "R14"
-          },
-          "REFERENCE-11": {
             "primary": "R15"
           },
-          "REFERENCE-12": {
+          "REFERENCE-11": {
             "primary": "R16"
           },
-          "REFERENCE-13": {
+          "REFERENCE-12": {
             "primary": "R17"
           },
-          "REFERENCE-14": {
+          "REFERENCE-13": {
             "primary": "R18"
           },
-          "REFERENCE-15": {
+          "REFERENCE-14": {
             "primary": "TP1"
           },
-          "REFERENCE-16": {
+          "REFERENCE-15": {
             "primary": "TP2"
           },
-          "REFERENCE-2": {
+          "REFERENCE-16": {
             "primary": "U6"
           },
-          "REFERENCE-3": {
+          "REFERENCE-2": {
             "primary": "C21"
           },
-          "REFERENCE-4": {
+          "REFERENCE-3": {
             "primary": "C23"
           },
-          "REFERENCE-5": {
+          "REFERENCE-4": {
             "primary": "Q29"
           },
-          "REFERENCE-6": {
+          "REFERENCE-5": {
             "primary": "Q30"
           },
-          "REFERENCE-7": {
+          "REFERENCE-6": {
             "primary": "Q31"
           },
-          "REFERENCE-8": {
+          "REFERENCE-7": {
             "primary": "R12"
           },
-          "REFERENCE-9": {
+          "REFERENCE-8": {
             "primary": "R13"
+          },
+          "REFERENCE-9": {
+            "primary": "R14"
           }
         },
         "conditions_operator": "ANY"
@@ -482,49 +483,49 @@
             "primary": "C26"
           },
           "REFERENCE-10": {
-            "primary": "R21"
-          },
-          "REFERENCE-11": {
             "primary": "R22"
           },
-          "REFERENCE-12": {
+          "REFERENCE-11": {
             "primary": "R23"
           },
-          "REFERENCE-13": {
+          "REFERENCE-12": {
             "primary": "R24"
           },
-          "REFERENCE-14": {
+          "REFERENCE-13": {
             "primary": "R25"
           },
-          "REFERENCE-15": {
+          "REFERENCE-14": {
             "primary": "TP3"
           },
-          "REFERENCE-16": {
+          "REFERENCE-15": {
             "primary": "TP4"
           },
-          "REFERENCE-2": {
+          "REFERENCE-16": {
             "primary": "U7"
           },
-          "REFERENCE-3": {
+          "REFERENCE-2": {
             "primary": "C27"
           },
-          "REFERENCE-4": {
+          "REFERENCE-3": {
             "primary": "C29"
           },
-          "REFERENCE-5": {
+          "REFERENCE-4": {
             "primary": "Q32"
           },
-          "REFERENCE-6": {
+          "REFERENCE-5": {
             "primary": "Q33"
           },
-          "REFERENCE-7": {
+          "REFERENCE-6": {
             "primary": "Q34"
           },
-          "REFERENCE-8": {
+          "REFERENCE-7": {
             "primary": "R19"
           },
-          "REFERENCE-9": {
+          "REFERENCE-8": {
             "primary": "R20"
+          },
+          "REFERENCE-9": {
+            "primary": "R21"
           }
         },
         "conditions_operator": "ANY"
@@ -539,49 +540,49 @@
             "primary": "C32"
           },
           "REFERENCE-10": {
-            "primary": "R28"
-          },
-          "REFERENCE-11": {
             "primary": "R29"
           },
-          "REFERENCE-12": {
+          "REFERENCE-11": {
             "primary": "R30"
           },
-          "REFERENCE-13": {
+          "REFERENCE-12": {
             "primary": "R31"
           },
-          "REFERENCE-14": {
+          "REFERENCE-13": {
             "primary": "R32"
           },
-          "REFERENCE-15": {
+          "REFERENCE-14": {
             "primary": "TP5"
           },
-          "REFERENCE-16": {
+          "REFERENCE-15": {
             "primary": "TP6"
           },
-          "REFERENCE-2": {
+          "REFERENCE-16": {
             "primary": "U8"
           },
-          "REFERENCE-3": {
+          "REFERENCE-2": {
             "primary": "C33"
           },
-          "REFERENCE-4": {
+          "REFERENCE-3": {
             "primary": "C35"
           },
-          "REFERENCE-5": {
+          "REFERENCE-4": {
             "primary": "Q35"
           },
-          "REFERENCE-6": {
+          "REFERENCE-5": {
             "primary": "Q36"
           },
-          "REFERENCE-7": {
+          "REFERENCE-6": {
             "primary": "Q37"
           },
-          "REFERENCE-8": {
+          "REFERENCE-7": {
             "primary": "R26"
           },
-          "REFERENCE-9": {
+          "REFERENCE-8": {
             "primary": "R27"
+          },
+          "REFERENCE-9": {
+            "primary": "R28"
           }
         },
         "conditions_operator": "ANY"
@@ -596,49 +597,49 @@
             "primary": "C38"
           },
           "REFERENCE-10": {
-            "primary": "R35"
-          },
-          "REFERENCE-11": {
             "primary": "R36"
           },
-          "REFERENCE-12": {
+          "REFERENCE-11": {
             "primary": "R37"
           },
-          "REFERENCE-13": {
+          "REFERENCE-12": {
             "primary": "R38"
           },
-          "REFERENCE-14": {
+          "REFERENCE-13": {
             "primary": "R39"
           },
-          "REFERENCE-15": {
+          "REFERENCE-14": {
             "primary": "TP7"
           },
-          "REFERENCE-16": {
+          "REFERENCE-15": {
             "primary": "TP8"
           },
-          "REFERENCE-2": {
+          "REFERENCE-16": {
             "primary": "U9"
           },
-          "REFERENCE-3": {
+          "REFERENCE-2": {
             "primary": "C39"
           },
-          "REFERENCE-4": {
+          "REFERENCE-3": {
             "primary": "C41"
           },
-          "REFERENCE-5": {
+          "REFERENCE-4": {
             "primary": "Q38"
           },
-          "REFERENCE-6": {
+          "REFERENCE-5": {
             "primary": "Q39"
           },
-          "REFERENCE-7": {
+          "REFERENCE-6": {
             "primary": "Q40"
           },
-          "REFERENCE-8": {
+          "REFERENCE-7": {
             "primary": "R33"
           },
-          "REFERENCE-9": {
+          "REFERENCE-8": {
             "primary": "R34"
+          },
+          "REFERENCE-9": {
+            "primary": "R35"
           }
         },
         "conditions_operator": "ANY"
@@ -692,34 +693,34 @@
             "primary": "C67"
           },
           "REFERENCE-10": {
-            "primary": "D3"
-          },
-          "REFERENCE-11": {
-            "primary": "R51"
-          },
-          "REFERENCE-2": {
-            "primary": "R52"
-          },
-          "REFERENCE-3": {
-            "primary": "R53"
-          },
-          "REFERENCE-4": {
-            "primary": "R54"
-          },
-          "REFERENCE-5": {
-            "primary": "R55"
-          },
-          "REFERENCE-6": {
             "primary": "U14"
           },
-          "REFERENCE-7": {
+          "REFERENCE-11": {
             "primary": "U15"
           },
-          "REFERENCE-8": {
+          "REFERENCE-2": {
             "primary": "C68"
           },
-          "REFERENCE-9": {
+          "REFERENCE-3": {
             "primary": "C70"
+          },
+          "REFERENCE-4": {
+            "primary": "D3"
+          },
+          "REFERENCE-5": {
+            "primary": "R51"
+          },
+          "REFERENCE-6": {
+            "primary": "R52"
+          },
+          "REFERENCE-7": {
+            "primary": "R53"
+          },
+          "REFERENCE-8": {
+            "primary": "R54"
+          },
+          "REFERENCE-9": {
+            "primary": "R55"
           }
         },
         "conditions_operator": "ANY"
@@ -797,76 +798,76 @@
             "primary": "C10"
           },
           "REFERENCE-10": {
-            "primary": "D9"
-          },
-          "REFERENCE-11": {
-            "primary": "R1"
-          },
-          "REFERENCE-12": {
-            "primary": "R5"
-          },
-          "REFERENCE-13": {
-            "primary": "U1"
-          },
-          "REFERENCE-14": {
-            "primary": "U2"
-          },
-          "REFERENCE-15": {
-            "primary": "U4"
-          },
-          "REFERENCE-16": {
-            "primary": "C11"
-          },
-          "REFERENCE-17": {
-            "primary": "R11"
-          },
-          "REFERENCE-18": {
-            "primary": "R4"
-          },
-          "REFERENCE-19": {
-            "primary": "C12"
-          },
-          "REFERENCE-2": {
-            "primary": "C14"
-          },
-          "REFERENCE-20": {
             "primary": "C15"
           },
-          "REFERENCE-21": {
-            "primary": "C2"
-          },
-          "REFERENCE-22": {
-            "primary": "C6"
-          },
-          "REFERENCE-23": {
-            "primary": "C7"
-          },
-          "REFERENCE-24": {
-            "primary": "C128"
-          },
-          "REFERENCE-25": {
-            "primary": "C13"
-          },
-          "REFERENCE-3": {
+          "REFERENCE-11": {
             "primary": "C8"
           },
-          "REFERENCE-4": {
-            "primary": "FB1"
-          },
-          "REFERENCE-5": {
+          "REFERENCE-12": {
             "primary": "J2"
           },
-          "REFERENCE-6": {
+          "REFERENCE-13": {
             "primary": "J3"
           },
-          "REFERENCE-7": {
+          "REFERENCE-14": {
             "primary": "L1"
           },
-          "REFERENCE-8": {
+          "REFERENCE-15": {
             "primary": "C9"
           },
-          "REFERENCE-9": {
+          "REFERENCE-16": {
             "primary": "D10"
+          },
+          "REFERENCE-17": {
+            "primary": "D9"
+          },
+          "REFERENCE-18": {
+            "primary": "FB1"
+          },
+          "REFERENCE-19": {
+            "primary": "R1"
+          },
+          "REFERENCE-2": {
+            "primary": "U1"
+          },
+          "REFERENCE-20": {
+            "primary": "U2"
+          },
+          "REFERENCE-21": {
+            "primary": "U4"
+          },
+          "REFERENCE-22": {
+            "primary": "C11"
+          },
+          "REFERENCE-23": {
+            "primary": "R11"
+          },
+          "REFERENCE-24": {
+            "primary": "R4"
+          },
+          "REFERENCE-25": {
+            "primary": "R5"
+          },
+          "REFERENCE-3": {
+            "primary": "C12"
+          },
+          "REFERENCE-4": {
+            "primary": "C2"
+          },
+          "REFERENCE-5": {
+            "primary": "C6"
+          },
+          "REFERENCE-6": {
+            "primary": "C7"
+          },
+          "REFERENCE-7": {
+            "primary": "C128"
+          },
+          "REFERENCE-8": {
+            "primary": "C13"
+          },
+          "REFERENCE-9": {
+            "primary": "C14"
           }
         },
         "conditions_operator": "ANY"
@@ -881,94 +882,94 @@
             "primary": "C42"
           },
           "REFERENCE-10": {
-            "primary": "R41"
-          },
-          "REFERENCE-11": {
-            "primary": "U10"
-          },
-          "REFERENCE-12": {
-            "primary": "C45"
-          },
-          "REFERENCE-13": {
-            "primary": "R42"
-          },
-          "REFERENCE-14": {
-            "primary": "R43"
-          },
-          "REFERENCE-15": {
-            "primary": "R44"
-          },
-          "REFERENCE-16": {
-            "primary": "C51"
-          },
-          "REFERENCE-17": {
-            "primary": "C52"
-          },
-          "REFERENCE-18": {
-            "primary": "R48"
-          },
-          "REFERENCE-19": {
-            "primary": "C50"
-          },
-          "REFERENCE-2": {
             "primary": "C54"
           },
-          "REFERENCE-20": {
-            "primary": "TP12"
-          },
-          "REFERENCE-21": {
-            "primary": "TP13"
-          },
-          "REFERENCE-22": {
-            "primary": "TP9"
-          },
-          "REFERENCE-23": {
-            "primary": "L2"
-          },
-          "REFERENCE-24": {
-            "primary": "Q26"
-          },
-          "REFERENCE-25": {
-            "primary": "C46"
-          },
-          "REFERENCE-26": {
-            "primary": "C60"
-          },
-          "REFERENCE-27": {
-            "primary": "C47"
-          },
-          "REFERENCE-28": {
-            "primary": "C48"
-          },
-          "REFERENCE-29": {
-            "primary": "C49"
-          },
-          "REFERENCE-3": {
+          "REFERENCE-11": {
             "primary": "R46"
           },
-          "REFERENCE-30": {
-            "primary": "R47"
-          },
-          "REFERENCE-31": {
-            "primary": "C56"
-          },
-          "REFERENCE-4": {
+          "REFERENCE-12": {
             "primary": "R45"
           },
-          "REFERENCE-5": {
-            "primary": "C57"
+          "REFERENCE-13": {
+            "primary": "TP12"
           },
-          "REFERENCE-6": {
-            "primary": "C58"
+          "REFERENCE-14": {
+            "primary": "TP13"
           },
-          "REFERENCE-7": {
-            "primary": "C59"
+          "REFERENCE-15": {
+            "primary": "TP9"
           },
-          "REFERENCE-8": {
+          "REFERENCE-16": {
             "primary": "X1"
           },
-          "REFERENCE-9": {
+          "REFERENCE-17": {
             "primary": "C44"
+          },
+          "REFERENCE-18": {
+            "primary": "R41"
+          },
+          "REFERENCE-19": {
+            "primary": "U10"
+          },
+          "REFERENCE-2": {
+            "primary": "C45"
+          },
+          "REFERENCE-20": {
+            "primary": "C47"
+          },
+          "REFERENCE-21": {
+            "primary": "C48"
+          },
+          "REFERENCE-22": {
+            "primary": "C49"
+          },
+          "REFERENCE-23": {
+            "primary": "C51"
+          },
+          "REFERENCE-24": {
+            "primary": "C52"
+          },
+          "REFERENCE-25": {
+            "primary": "R48"
+          },
+          "REFERENCE-26": {
+            "primary": "C50"
+          },
+          "REFERENCE-27": {
+            "primary": "C57"
+          },
+          "REFERENCE-28": {
+            "primary": "C58"
+          },
+          "REFERENCE-29": {
+            "primary": "C59"
+          },
+          "REFERENCE-3": {
+            "primary": "L2"
+          },
+          "REFERENCE-30": {
+            "primary": "Q26"
+          },
+          "REFERENCE-31": {
+            "primary": "C46"
+          },
+          "REFERENCE-4": {
+            "primary": "C60"
+          },
+          "REFERENCE-5": {
+            "primary": "R42"
+          },
+          "REFERENCE-6": {
+            "primary": "R43"
+          },
+          "REFERENCE-7": {
+            "primary": "R44"
+          },
+          "REFERENCE-8": {
+            "primary": "R47"
+          },
+          "REFERENCE-9": {
+            "primary": "C56"
           }
         },
         "conditions_operator": "ANY"
@@ -983,13 +984,13 @@
             "primary": "AE2"
           },
           "REFERENCE-10": {
-            "primary": "C88"
+            "primary": "C86"
           },
           "REFERENCE-11": {
             "primary": "X3"
           },
           "REFERENCE-12": {
-            "primary": "R56"
+            "primary": "C88"
           },
           "REFERENCE-13": {
             "primary": "C133"
@@ -1007,13 +1008,13 @@
             "primary": "C84"
           },
           "REFERENCE-18": {
-            "primary": "C132"
+            "primary": "R56"
           },
           "REFERENCE-19": {
             "primary": "C85"
           },
           "REFERENCE-2": {
-            "primary": "C73"
+            "primary": "C132"
           },
           "REFERENCE-20": {
             "primary": "C87"
@@ -1031,7 +1032,7 @@
             "primary": "D8"
           },
           "REFERENCE-4": {
-            "primary": "C86"
+            "primary": "C73"
           },
           "REFERENCE-5": {
             "primary": "FL1"
@@ -1061,169 +1062,169 @@
             "primary": "C101"
           },
           "REFERENCE-10": {
-            "primary": "C111"
-          },
-          "REFERENCE-11": {
-            "primary": "R60"
-          },
-          "REFERENCE-12": {
-            "primary": "C135"
-          },
-          "REFERENCE-13": {
-            "primary": "C104"
-          },
-          "REFERENCE-14": {
-            "primary": "R80"
-          },
-          "REFERENCE-15": {
-            "primary": "R82"
-          },
-          "REFERENCE-16": {
-            "primary": "C117"
-          },
-          "REFERENCE-17": {
-            "primary": "R64"
-          },
-          "REFERENCE-18": {
-            "primary": "C122"
-          },
-          "REFERENCE-19": {
-            "primary": "R65"
-          },
-          "REFERENCE-2": {
-            "primary": "C103"
-          },
-          "REFERENCE-20": {
-            "primary": "C112"
-          },
-          "REFERENCE-21": {
-            "primary": "R90"
-          },
-          "REFERENCE-22": {
-            "primary": "U20"
-          },
-          "REFERENCE-23": {
-            "primary": "C136"
-          },
-          "REFERENCE-24": {
-            "primary": "R72"
-          },
-          "REFERENCE-25": {
-            "primary": "C95"
-          },
-          "REFERENCE-26": {
-            "primary": "R73"
-          },
-          "REFERENCE-27": {
-            "primary": "C102"
-          },
-          "REFERENCE-28": {
-            "primary": "U22"
-          },
-          "REFERENCE-29": {
-            "primary": "C106"
-          },
-          "REFERENCE-3": {
-            "primary": "J1"
-          },
-          "REFERENCE-30": {
-            "primary": "C105"
-          },
-          "REFERENCE-31": {
-            "primary": "Q27"
-          },
-          "REFERENCE-32": {
-            "primary": "R89"
-          },
-          "REFERENCE-33": {
-            "primary": "C110"
-          },
-          "REFERENCE-34": {
-            "primary": "C108"
-          },
-          "REFERENCE-35": {
-            "primary": "C114"
-          },
-          "REFERENCE-36": {
-            "primary": "C113"
-          },
-          "REFERENCE-37": {
-            "primary": "R62"
-          },
-          "REFERENCE-38": {
             "primary": "U21"
           },
-          "REFERENCE-39": {
-            "primary": "C118"
-          },
-          "REFERENCE-4": {
-            "primary": "C116"
-          },
-          "REFERENCE-40": {
-            "primary": "C124"
-          },
-          "REFERENCE-41": {
-            "primary": "C123"
-          },
-          "REFERENCE-42": {
-            "primary": "R68"
-          },
-          "REFERENCE-43": {
-            "primary": "C107"
-          },
-          "REFERENCE-44": {
-            "primary": "C94"
-          },
-          "REFERENCE-45": {
-            "primary": "C98"
-          },
-          "REFERENCE-46": {
-            "primary": "C96"
-          },
-          "REFERENCE-47": {
-            "primary": "R81"
-          },
-          "REFERENCE-48": {
-            "primary": "C115"
-          },
-          "REFERENCE-49": {
-            "primary": "L3"
-          },
-          "REFERENCE-5": {
-            "primary": "R58"
-          },
-          "REFERENCE-50": {
-            "primary": "Q28"
-          },
-          "REFERENCE-51": {
-            "primary": "U19"
-          },
-          "REFERENCE-52": {
-            "primary": "C125"
-          },
-          "REFERENCE-53": {
-            "primary": "R61"
-          },
-          "REFERENCE-54": {
+          "REFERENCE-11": {
             "primary": "R63"
           },
-          "REFERENCE-55": {
-            "primary": "X4"
+          "REFERENCE-12": {
+            "primary": "R73"
           },
-          "REFERENCE-56": {
-            "primary": "FL2"
+          "REFERENCE-13": {
+            "primary": "C122"
           },
-          "REFERENCE-6": {
-            "primary": "R66"
+          "REFERENCE-14": {
+            "primary": "C117"
           },
-          "REFERENCE-7": {
+          "REFERENCE-15": {
+            "primary": "R90"
+          },
+          "REFERENCE-16": {
+            "primary": "C123"
+          },
+          "REFERENCE-17": {
+            "primary": "C112"
+          },
+          "REFERENCE-18": {
+            "primary": "C107"
+          },
+          "REFERENCE-19": {
             "primary": "R71"
           },
-          "REFERENCE-8": {
+          "REFERENCE-2": {
+            "primary": "R89"
+          },
+          "REFERENCE-20": {
+            "primary": "C95"
+          },
+          "REFERENCE-21": {
+            "primary": "C136"
+          },
+          "REFERENCE-22": {
+            "primary": "U22"
+          },
+          "REFERENCE-23": {
+            "primary": "C96"
+          },
+          "REFERENCE-24": {
+            "primary": "C102"
+          },
+          "REFERENCE-25": {
+            "primary": "C115"
+          },
+          "REFERENCE-26": {
+            "primary": "R82"
+          },
+          "REFERENCE-27": {
+            "primary": "Q27"
+          },
+          "REFERENCE-28": {
+            "primary": "J1"
+          },
+          "REFERENCE-29": {
+            "primary": "C108"
+          },
+          "REFERENCE-3": {
+            "primary": "Q28"
+          },
+          "REFERENCE-30": {
+            "primary": "C110"
+          },
+          "REFERENCE-31": {
+            "primary": "C125"
+          },
+          "REFERENCE-32": {
+            "primary": "U20"
+          },
+          "REFERENCE-33": {
+            "primary": "R62"
+          },
+          "REFERENCE-34": {
+            "primary": "R60"
+          },
+          "REFERENCE-35": {
+            "primary": "C116"
+          },
+          "REFERENCE-36": {
+            "primary": "C118"
+          },
+          "REFERENCE-37": {
+            "primary": "FL2"
+          },
+          "REFERENCE-38": {
+            "primary": "C106"
+          },
+          "REFERENCE-39": {
+            "primary": "R68"
+          },
+          "REFERENCE-4": {
+            "primary": "R65"
+          },
+          "REFERENCE-40": {
+            "primary": "C135"
+          },
+          "REFERENCE-41": {
+            "primary": "C94"
+          },
+          "REFERENCE-42": {
+            "primary": "R59"
+          },
+          "REFERENCE-43": {
+            "primary": "C114"
+          },
+          "REFERENCE-44": {
+            "primary": "R81"
+          },
+          "REFERENCE-45": {
+            "primary": "C103"
+          },
+          "REFERENCE-46": {
+            "primary": "L3"
+          },
+          "REFERENCE-47": {
+            "primary": "R64"
+          },
+          "REFERENCE-48": {
+            "primary": "C124"
+          },
+          "REFERENCE-49": {
+            "primary": "U19"
+          },
+          "REFERENCE-5": {
+            "primary": "C111"
+          },
+          "REFERENCE-50": {
+            "primary": "R61"
+          },
+          "REFERENCE-51": {
+            "primary": "R72"
+          },
+          "REFERENCE-52": {
+            "primary": "C98"
+          },
+          "REFERENCE-53": {
+            "primary": "X4"
+          },
+          "REFERENCE-54": {
+            "primary": "R66"
+          },
+          "REFERENCE-55": {
+            "primary": "C105"
+          },
+          "REFERENCE-56": {
+            "primary": "R58"
+          },
+          "REFERENCE-6": {
             "primary": "C109"
           },
+          "REFERENCE-7": {
+            "primary": "R80"
+          },
+          "REFERENCE-8": {
+            "primary": "C113"
+          },
           "REFERENCE-9": {
-            "primary": "R59"
+            "primary": "C104"
           }
         },
         "conditions_operator": "ANY"
@@ -1489,7 +1490,7 @@
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.09,
         "tuning_profile": "",
-        "via_diameter": 0.35,
+        "via_diameter": 0.33,
         "via_drill": 0.15,
         "wire_width": 6
       },
@@ -1508,7 +1509,7 @@
         "schematic_color": "rgb(0, 160, 160)",
         "track_width": 0.1,
         "tuning_profile": "",
-        "via_diameter": 0.35,
+        "via_diameter": 0.33,
         "via_drill": 0.15,
         "wire_width": 6
       },
@@ -1527,8 +1528,8 @@
         "schematic_color": "rgb(130, 130, 130)",
         "track_width": 0.2,
         "tuning_profile": "",
-        "via_diameter": 0.4,
-        "via_drill": 0.2,
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
         "wire_width": 6
       },
       {
@@ -1546,7 +1547,7 @@
         "schematic_color": "rgb(120, 60, 220)",
         "track_width": 0.15,
         "tuning_profile": "",
-        "via_diameter": 0.35,
+        "via_diameter": 0.33,
         "via_drill": 0.15,
         "wire_width": 6
       },
@@ -1565,7 +1566,7 @@
         "schematic_color": "rgb(200, 0, 200)",
         "track_width": 0.1,
         "tuning_profile": "",
-        "via_diameter": 0.35,
+        "via_diameter": 0.33,
         "via_drill": 0.15,
         "wire_width": 6
       },
@@ -1584,7 +1585,7 @@
         "schematic_color": "rgb(255, 140, 0)",
         "track_width": 0.25,
         "tuning_profile": "",
-        "via_diameter": 0.35,
+        "via_diameter": 0.33,
         "via_drill": 0.15,
         "wire_width": 6
       },
@@ -1603,7 +1604,7 @@
         "schematic_color": "rgb(200, 160, 0)",
         "track_width": 0.105,
         "tuning_profile": "RF50",
-        "via_diameter": 0.35,
+        "via_diameter": 0.33,
         "via_drill": 0.15,
         "wire_width": 6
       },
@@ -1622,7 +1623,7 @@
         "schematic_color": "rgb(30, 110, 255)",
         "track_width": 0.12,
         "tuning_profile": "",
-        "via_diameter": 0.35,
+        "via_diameter": 0.33,
         "via_drill": 0.15,
         "wire_width": 6
       },
@@ -1641,8 +1642,8 @@
         "schematic_color": "rgb(220, 40, 40)",
         "track_width": 0.5,
         "tuning_profile": "",
-        "via_diameter": 0.4,
-        "via_drill": 0.2,
+        "via_diameter": 0.33,
+        "via_drill": 0.15,
         "wire_width": 6
       }
     ],
@@ -2063,7 +2064,7 @@
         "uuid": "2c3a7206-1e66-4d43-a02f-491225e20dd6"
       }
     ],
-    "used_designators": "#PWR112,#PWR164-165,#PWR188,#PWR232-241,C22,C24,C28,C30,C34,C36,C40,C43,C53,C55,C63-64,C71,R1-2",
+    "used_designators": "CN1,#PWR112,#PWR164-165,#PWR188,#PWR232-242,C22,C24,C28,C30,C34,C36,C40,C43,C53,C55,C63-64,C71,R1-2,R57,R67,R69-70",
     "variants": []
   },
   "sheets": [
@@ -2148,7 +2149,7 @@
             "delay": 0,
             "diff_pair_gap": 0,
             "signal_layer": "B.Cu",
-            "top_reference_layer": "In4.Cu",
+            "top_reference_layer": "In6.Cu",
             "width": 105000
           }
         ],

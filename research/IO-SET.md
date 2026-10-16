@@ -59,6 +59,8 @@ Tags: **V** = verified this session from a primary source or a measurement, eith
 
 ## 1. Final IO set
 
+Limits (2026-10-13 schematic review): the +5V pad (J21) and the camera feed (J24, J32) are rated 1 A with a pad range of 4.4 to 5.4 V, because D10 (MS2A40LDF, 0.42 to 0.50 V drop at 1.5 A) sits between +5V_BST and +5V. 1.5 A is available only on +5V_BST (J26). J2 is 1S only, maximum 4.35 V.
+
 Area = occupied incl. the 0.1 mm halo, FLOORPLAN metric; "existing" = already in the v2 placement. Areas are I unless marked.
 
 | # | Function | Connector / pads (Manufacturer + MPN) | Signals → MCU pin / rail | Firmware config | Side, area | Priority |

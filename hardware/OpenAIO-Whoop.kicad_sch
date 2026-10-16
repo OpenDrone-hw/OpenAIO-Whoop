@@ -4597,46 +4597,6 @@
 				(justify right)
 			)
 		)
-		(pin "MOTOR1" bidirectional
-			(at 198.12 96.52 0)
-			(uuid "13195d6e-7bf6-57ec-a02a-a672a268d80d")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "MOTOR2" bidirectional
-			(at 198.12 116.84 0)
-			(uuid "cd63088f-10dc-5eb0-9f12-c0f669dc84a9")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "MOTOR3" bidirectional
-			(at 198.12 137.16 0)
-			(uuid "2c96d2d3-fbc3-52f6-af52-6328be31c7be")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "MOTOR4" bidirectional
-			(at 198.12 157.48 0)
-			(uuid "01beea97-f2c3-5df3-a9f1-8f3f961861f7")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "UART0_TX" output
 			(at 198.12 180.34 0)
 			(uuid "ea7e2e63-feea-52cc-9523-fda054e45dc5")
@@ -4690,6 +4650,46 @@
 		(pin "USB_D_N" bidirectional
 			(at 198.12 193.04 0)
 			(uuid "bc28b579-fe8c-5825-8aef-85025037c7ec")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOTOR1_FC" input
+			(at 198.12 96.52 0)
+			(uuid "100a8ad6-f5bb-44a9-aef5-8f28a9d406dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOTOR2_FC" input
+			(at 198.12 116.84 0)
+			(uuid "ba6493b7-9dcd-4cf6-b772-5517ed8f49fd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOTOR3_FC" input
+			(at 198.12 137.16 0)
+			(uuid "51b0d45c-95ef-4fec-9ede-a70f9bb04db9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOTOR4_FC" input
+			(at 198.12 157.48 0)
+			(uuid "8deca8dd-1d0f-43b3-81b1-1b232b884d03")
 			(effects
 				(font
 					(size 1.27 1.27)

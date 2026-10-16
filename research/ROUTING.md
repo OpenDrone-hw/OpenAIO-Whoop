@@ -2,8 +2,8 @@
 
 The schematic is the electrical source. The PCB contains the matching components,
 net assignments, outline, stackup and global rules. It is a placement starting
-point: many parts are parked outside the outline, existing escape vias need to
-follow the final placement, and local rule areas must be created before routing.
+point: many parts are parked outside the outline, the board carries no tracks or vias,
+and local rule areas must be created before routing.
 The preserved board is not a routed or manufacturing-ready layout.
 
 ## Open the project
@@ -37,33 +37,79 @@ provided by KiCad 10. Do not move `.pretty`, models or child sheets independentl
 | Physical layer | KiCad name | Use |
 | --- | --- | --- |
 | L1 | F.Cu | Top parts; RF, video, gyro and sense traces; short local power loops; digital escapes |
-| L2 | In1.Cu | GND reference plane. No tracks. Only intentional antenna and RF-pad cutouts |
-| L3 | In2.Cu | Digital signals and regulated supplies. No analog or RF signals; short gate escapes are permitted |
-| L4 | In3.Cu | Battery distribution and permitted digital signals. No analog, RF, gate, gyro or VTX-control signals |
-| L5 | In4.Cu | GND reference pour with short ESC gate and BEMF/neutral escapes only. No phase, battery or DShot tracks |
-| L6 | B.Cu | Bottom parts; local RF, video and power loops; short digital connections |
+| L2 | In1.Cu | GND reference plane. No tracks. Board 2026-10-15 also carries VBUS, +5V_BST and CSA+ islands (open item) |
+| L3 | In2.Cu | Digital signals, regulated supplies, ESC gate and BEMF escapes. No analog or RF |
+| L4 | In3.Cu | +3.3V plane and permitted digital signals. No analog, RF, gate, gyro or VTX-control signals |
+| L5 | In4.Cu | +BATT plane and permitted digital signals. Same exclusions as L4 |
+| L6 | In5.Cu | +5V_BST / +5V split plane; digital signals, ESC gate and BEMF escapes. No analog or RF |
+| L7 | In6.Cu | GND reference plane. No tracks. Board 2026-10-15 also carries a VBUS island (open item) |
+| L8 | B.Cu | Bottom parts; local RF, video and power loops; short digital connections |
 
 ```mermaid
 flowchart TB
   L1["L1 F.Cu · components / RF / analog / local power"]
   L2["L2 In1.Cu · continuous GND"]
-  L3["L3 In2.Cu · digital / regulated power"]
-  L4["L4 In3.Cu · battery / permitted digital"]
-  L5["L5 In4.Cu · GND + local ESC gate / BEMF"]
-  L6["L6 B.Cu · components / RF / analog / local power"]
-  L1 --- L2 --- L3 --- L4 --- L5 --- L6
+  L3["L3 In2.Cu · digital / gate / BEMF"]
+  L4["L4 In3.Cu · +3.3V plane"]
+  L5["L5 In4.Cu · +BATT plane"]
+  L6["L6 In5.Cu · +5V_BST / +5V plane, digital / gate / BEMF"]
+  L7["L7 In6.Cu · continuous GND"]
+  L8["L8 B.Cu · components / RF / analog / local power"]
+  L1 --- L2 --- L3 --- L4 --- L5 --- L6 --- L7 --- L8
 ```
 
-GND zones alone belong on L2 and L5. Keep uninterrupted reference copper under
-each RF, USB and video route. If an RF chain is placed on L6, reserve the L5
-area below it against the otherwise permitted ESC gate/BEMF tracks. Do not run
-those tracks beneath a bottom-side gyro or oscillator either.
+GND zones alone belong on L2 and L7. Keep uninterrupted reference copper under
+each RF, USB and video route, directly beneath L1 (L2) and L8 (L7).
 
-The nominal 1.0 mm stackup is in `hardware/tools/stackup.json`. Outer dielectric
-spacing is 0.077 mm. The stored RF starting geometry is 0.105 mm trace / 0.15 mm
-coplanar gap, and USB is 0.12 mm trace / 0.12 mm pair gap. These are design
-calculations for the recorded stackup. Fabricator impedance adjustment must
-use the actual finished copper and laminate construction.
+L2 and L7 carry GND zones only (2026-10-15): the VBUS island moved to In3, the
++5V_BST island to In5 and CSA+ to F.Cu alone. GND, +BATT, +5V_BST, +5V, VBUS and
++3.3V_VTX have no tracks where a pour can carry them (`track_to_pour.py`); Kelvin,
+BEMF and sense lines stay tracks.
+
+Vias (2026-10-15): 2945 in total. GND: 101 buried L2-L7 (1.5 mm grid and an edge
+fence, `gnd_stitch.py`; a via that would split a power plane is left out), about
+2070 microvias from the outer pours and pads to L2 / L7. Every GND and plane-fed pad
+with room holds vias in pad (`pad_vias.py`); 0201 and fine-pitch pads are too small
+for a 0.25 land. Track widths per class: `track_widen.py`.
+
+Inner signal layers (2026-10-15, `inner_router.py`, vias unchanged): 483 -> 468 mm
+of routing; sensitive tracks within 0.5 mm of noisy ones 12.5 -> 4.1 mm; gate lines
+on In2 73 -> 42 mm and phase sense 33 -> 8 mm (moved to In5). The +5V plane on In5
+gives up 12 % of its copper to the In5 routes (still one piece; 10 better routes
+were refused because they split it).
+
+## Copper loss estimate
+
+`hardware/tools/loop_resistance.py` solves each high-current net as a resistor mesh
+(0.1 mm cells per layer from the real pours, vias as barrels: buried 0.15 mm plated
+20 um, laser vias copper filled), copper at 45 C (very good airflow). Grid model,
+about +-30 %. FET RDS(on) is not included.
+
+| Path | R (mOhm) | Full throttle 14.5 A (3 A per ESC + 2.5 A boost) | Hover 6.5 A (1 A per ESC) |
+| --- | --- | --- | --- |
+| J2 to shunt (CSA+, F.Cu only) | 0.17 | 36 mW | 7 mW |
+| Shunt R2 (part, for scale) | 0.50 | 105 mW | 21 mW |
+| +BATT shunt to FETs and boost (vias 11 mW) | 0.53 | 112 mW | 14 mW |
+| GND FETs and boost to J3 (vias 2 mW) | 0.25 | 53 mW | 11 mW |
+| 12 phase paths, FET to motor pad (2.45 A RMS each) | 0.23-1.14 | 40 mW | 4 mW |
+| Total copper (without shunt) | | 241 mW | 37 mW |
+
+80 % of the +BATT loss is in the L5 plane carrying current from the single feed
+corner (shunt) to four ESCs; more vias at the FETs did not change it (tested). The
+ESC2 and ESC3 phase C pours (1.14 mOhm) are the longest phase paths.
+
+The 1.0 mm stackup is in `hardware/tools/stackup.json` and applied to the board
+with `hardware/tools/apply_stackup.py`: 1 oz copper on all eight layers, 1080
+prepreg 0.077 mm between L1-L2, L2-L3, L6-L7 and L7-L8, 0.20 mm FR4 cores
+(0.127 mm dielectric) between L3-L4 and L5-L6, 2116 prepreg 0.125 mm between
+L4-L5, total 0.997 mm. The L2-L7 sub-lamination is 0.743 mm. The stored RF
+starting geometry is 0.105 mm trace / 0.15 mm coplanar gap, and USB is 0.12 mm
+trace / 0.12 mm pair gap. The routed board (2026-10-15) carries USB at 0.10 mm with
+0.20-0.43 mm pair gaps: USB full speed (12 Mbit/s) does not need the impedance, so
+this is not a defect, but the board does not follow the calculated geometry. These are design calculations for the recorded
+stackup. Fabricator impedance adjustment must use the actual finished copper
+and laminate construction. The stackup values are unconfirmed by the fabricator
+until it returns its engineering query.
 
 ## Place in this order
 
@@ -96,18 +142,34 @@ Use only these via spans:
 | Span | Type | Pad / drill |
 | --- | --- | --- |
 | F.Cu to In1.Cu | Laser microvia | 0.25 / 0.10 mm |
-| In1.Cu to In4.Cu | Buried mechanical | 0.35 / 0.15 mm; power preset 0.40 / 0.20 mm |
-| In4.Cu to B.Cu | Laser microvia | 0.25 / 0.10 mm |
+| In1.Cu to In6.Cu | Buried mechanical | 0.33 / 0.15 mm in every net class (D126) |
+| In6.Cu to B.Cu | Laser microvia | 0.25 / 0.10 mm |
 
-No through vias, F.Cu-to-In4.Cu microvias, or stacked laser/buried drills.
-Use filled and capped via-in-pad where required by the assembly land.
+No through vias, no mechanical blind vias, no microvia that skips a layer (for
+example F.Cu to In2.Cu), and no stacked microvia on a microvia. A microvia may sit centred on a
+same-net buried via (D124, priced as HDI II). Use filled and
+capped via-in-pad where required by the assembly land.
+
+KiCad setup for these spans:
+
+| Action | Key | Via used |
+| --- | --- | --- |
+| Microvia | Ctrl+V | net class microvia size 0.25 / 0.10 (every class) |
+| Blind/buried via | Alt+Shift+V | net class via size (0.33 / 0.15 in every class) |
+| Through via | V | disallowed by the DRU |
+
+Route > Set Layer Pair lists three presets stored in `board.layer_pairs` of the
+`.kicad_pro`: "Buried L2-L7" (In1.Cu to In6.Cu, first), "Micro L1-L2" and
+"Micro L7-L8". The same text is on `User.Comments` beside the outline. The DRU
+flags every wrong span after placement (`items_not_allowed`); the router does not
+prevent placing one. Check the via type and layers in its properties after
+placing it with Alt+Shift+V.
 
 For a plane-only L2 escape, a 0.25 mm laser land and 0.35 mm buried land with
 centers 0.25 mm apart overlap by 0.05 mm. Their drill edges remain 0.125 mm
-apart. The shared copper land joins them without an L2 track. This exact
-geometry was checked with KiCad connectivity and DRC. Keep the drills
-staggered; the laser has its own landing and does not drill into the buried
-hole. Beyond 0.30 mm centers the two circular lands no longer overlap.
+apart. The shared copper land joins them without an L2 track. This geometry was
+checked with KiCad connectivity and DRC on the earlier 1+4+1 stack. Staggered drills keep
+the order at HDI I; a centred stack (D124) is allowed and moves it to HDI II. Beyond 0.30 mm centers the two circular lands no longer overlap.
 
 Check adjacent pad clearance and soldermask separately. A valid overlapping
 via pair does not justify enlarging every fine-pitch pad. High-current paths
@@ -132,16 +194,15 @@ when their named area exists. Create and inspect these around the final parts:
 `hardware/tools/board_spec.json` retains legacy area geometry as a historical
 placement reference. Do not apply those coordinates to this parked board.
 Update the area specification to the accepted placement, then run the full
-board-setup check. `setup_board.py` contains old floorplan coordinates and must
-not be used to regenerate the board over a manual placement.
+board-setup check. `setup_board.py` contains old floorplan coordinates and the 6-layer setup, and must
+not be used to regenerate the board, project or rules.
 
 ## Routing sequence and checks
 
 Route local supply/bypass loops first, then RF, gyro/video/Kelvin signals and
 USB, then clocks/SPI, DShot and other digital signals. Finish battery/phase
-copper and ground stitching with thermal and return-path review. Move the
-existing escape vias with their device groups; the inherited PCB includes
-obsolete spans and overlaps that are not accepted routing primitives.
+copper and ground stitching with thermal and return-path review. Every via
+is placed new with the spans in "HDI escapes".
 
 After placement, use KiCad's schematic-to-PCB update, refill zones and run DRC
 with schematic parity enabled. Resolve out-of-outline pads, courtyard clashes,

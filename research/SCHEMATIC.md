@@ -46,7 +46,7 @@ stages swap the 12 footprints, D108).
 | 8 | IMU (`imu.kicad_sch`) | A5 | 5 | OpenFC-Lite-Mini imu; commons blocks LDO_IMU_TPS7A2033 / IMU_ICM42688P_SPI | `imu/build_imu.py` |
 | 9 | BLACKBOX (`blackbox.kicad_sch`) | A5 | 3 | OpenFC-Lite-Mini blackbox frame + SPI0 interface; PY25Q128HA NOR (D66) | `blackbox/build_blackbox.py` |
 | 10 | OSD (`osd.kicad_sch`) | A4 | 12 | OpenFC-Lite-Mini osd (SN74LVC1G3157 + TLV7031 + SDM02U30), levels scaled (P4-10) | `osd/build_osd.py` |
-| 11 | RX (`rx_esp32_sx1281.kicad_sch`) | A3 | 25 | OpenRX-Lite-UFL (SX1281 LDO mode, 52 MHz TCXO, Wi-Fi chip-antenna pi match, WS2812), ESP32-PICO-V3 DS Fig. 11 | `rx/build_rx.py` |
+| 11 | RX (`rx_esp32_sx1281.kicad_sch`) | A3 | 25 | OpenRX-Lite-UFL (SX1281 LDO mode, 52 MHz TCXO, Wi-Fi chip antenna AE2 wired directly to U16 pin 2 (no pi network; R88, C132, C133 are not in the netlist), WS2812), ESP32-PICO-V3 DS Fig. 11 | `rx/build_rx.py` |
 | 12 | VTX (`vtx.kicad_sch`) | A2 | 58 | OpenOSD-X v1.01 reference (video network, loop filter, PAOUT1 feed), Skyworks SE5004L EK1; no sibling sheet exists | `integrate/gens/gen_vtx.py` |
 | 13 | LED (`led.kicad_sch`) | A5 | 4 | OpenFC-Lite-Mini rp2350a status-LED block (sink drive) | `integrate/gens/build_led.py` |
 | 14 | PADS (`pads.kicad_sch`) | A3 | 27 | OpenFC-Lite-Mini pads (Conn_01x01 groups), OpenFC-Lite JST SH plug frame; camera plug, motor lands, ESD array new | `integrate/gens/build_pads.py` |

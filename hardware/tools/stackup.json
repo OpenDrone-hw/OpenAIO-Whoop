@@ -1,6 +1,6 @@
 {
-  "_comment": "OpenAIO-Whoop stackup: NextPCB standard HDI stackup 06101103-1080 (quote form /quote/recommendStackUp, 6L, 1.0 mm, inner 1 oz, HDI rank 1, read 2026-10-11), built as 1+4+1: L2-L5 sub-lamination = foil L2 / 1080 0.077 / core 0.6 (dielectric 0.536, 1 oz copper L3 and L4) / 1080 0.077 / foil L5, drilled for the buried vias L2-L5, then 1080 0.077 build-up and foil L1 / L6 for the laser vias. Outer 1 oz finished, L3/L4 1 oz, L2/L5 plated foil, Dk 4.2. Each inner signal or plane layer sits 0.077 from its GND plane (In1, In4); In2 and In3 are 0.536 apart. NextPCB lists 0.9265 mm on base foil; finished about 1.0 mm. Applied by setup_board.py (also readable by apply_stackup.py).",
-  "copper_layers": 6,
+  "_comment": "OpenAIO-Whoop stackup: 8-layer HDI 1+6+1, 1.0 mm (0.997 mm with mask), 1 oz finished copper on all eight layers, ENIG. Sequence: sub-lamination L2-L7 (foil / 1080 / core 0.20 / 2116 / core 0.20 / 1080 / foil), buried vias L2-L7, resin fill, then 1080 + foil each side and laser vias L1-L2, L8-L7. L2 and L7 are GND planes; L3/L6 sit 0.077 mm from them. Values from the 8L HDI conversion plan; NextPCB confirms the construction (EQ). Applied by apply_stackup.py. The earlier 6L 1+4+1 stack is in git history.",
+  "copper_layers": 8,
   "copper_finish": "ENIG",
   "layers": {
     "F.Mask": {
@@ -13,17 +13,17 @@
       "type": "prepreg",
       "thickness": 0.077,
       "material": "1080",
-      "epsilon_r": 4.2,
+      "epsilon_r": 4.0,
       "loss_tangent": 0.02
     },
     "In1.Cu": {
-      "thickness": 0.0175
+      "thickness": 0.035
     },
     "dielectric 2": {
       "type": "prepreg",
       "thickness": 0.077,
       "material": "1080",
-      "epsilon_r": 4.2,
+      "epsilon_r": 4.0,
       "loss_tangent": 0.02
     },
     "In2.Cu": {
@@ -31,9 +31,9 @@
     },
     "dielectric 3": {
       "type": "core",
-      "thickness": 0.536,
-      "material": "FR4",
-      "epsilon_r": 4.2,
+      "thickness": 0.127,
+      "material": "FR4 0.20 mm incl. 1/1 oz",
+      "epsilon_r": 4.3,
       "loss_tangent": 0.02
     },
     "In3.Cu": {
@@ -41,19 +41,39 @@
     },
     "dielectric 4": {
       "type": "prepreg",
-      "thickness": 0.077,
-      "material": "1080",
+      "thickness": 0.125,
+      "material": "2116",
       "epsilon_r": 4.2,
       "loss_tangent": 0.02
     },
     "In4.Cu": {
-      "thickness": 0.0175
+      "thickness": 0.035
     },
     "dielectric 5": {
+      "type": "core",
+      "thickness": 0.127,
+      "material": "FR4 0.20 mm incl. 1/1 oz",
+      "epsilon_r": 4.3,
+      "loss_tangent": 0.02
+    },
+    "In5.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 6": {
       "type": "prepreg",
       "thickness": 0.077,
       "material": "1080",
-      "epsilon_r": 4.2,
+      "epsilon_r": 4.0,
+      "loss_tangent": 0.02
+    },
+    "In6.Cu": {
+      "thickness": 0.035
+    },
+    "dielectric 7": {
+      "type": "prepreg",
+      "thickness": 0.077,
+      "material": "1080",
+      "epsilon_r": 4.0,
       "loss_tangent": 0.02
     },
     "B.Cu": {

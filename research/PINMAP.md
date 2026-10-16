@@ -49,7 +49,7 @@ The KiCad netlist and the checked-in firmware targets are the implementation sou
 | 40 | GPIO26_ADC0 | `ADC_CURR` |
 | 41 | GPIO27_ADC1 | `ADC_VBAT` |
 | 42 | GPIO28_ADC2 | - |
-| 43 | GPIO29_ADC3 | - |
+| 43 | GPIO29_ADC3 | `SBUS` (pad J34, 3.3 V logic only) |
 
 ## 3. RP2354A power and system pins
 
@@ -168,6 +168,16 @@ serves the IMU. The RP2354A boot flash is the separate 2 MB in-package device.
 
 The shared ESC sheet is instantiated four times. The following table shows
 ESC1 local nets; the same pins apply to U7, U8 and U9.
+
+Bluejay BB51 layout A senses phase X on the BEMF_X comparator input while it
+drives X_PWM / X_COM (P1.2 Bp, P1.4 Cp, P0.1 Bm, P0.2 Cm). The half-bridge on
+X_PWM must therefore sit on the phase node that the BEMF_X series resistor
+taps. `check_netlist.py` rule N7 checks this per ESC. Before the 2026-10-13 review
+B_PWM drove Q31 (PHASE_C) and C_PWM drove Q30 (PHASE_B) while R14 (PHASE_B) fed
+BEMF_B and R15 (PHASE_C) fed BEMF_C. The shared ESC sheet now labels R14's
+comparator net BEMF_C and R15's BEMF_B, so rule N7 passes for all four ESCs. The
+MCU pin table below does not change. Motor pads J4 pins 1/2/3 are
+PHASE_C/B/A.
 
 | Pin | Package function | Net |
 | --- | --- | --- |

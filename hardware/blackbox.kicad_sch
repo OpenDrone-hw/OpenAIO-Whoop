@@ -1787,10 +1787,6 @@
 		(color 0 0 0 0)
 		(uuid "a53f6f29-fc19-5d57-b1a7-d09e051960f1")
 	)
-	(no_connect
-		(at 77.47 78.74)
-		(uuid "99f38324-0262-544e-874d-7cbf7a09e67e")
-	)
 	(wire
 		(pts
 			(xy 53.34 66.04) (xy 63.5 66.04)
@@ -2736,6 +2732,83 @@
 			(project "OpenAIO-Whoop"
 				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3"
 					(reference "U13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 77.47 78.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "f62cc5d2-8d1a-4e9f-9c84-57d7611bc845")
+		(property "Reference" "#PWR0242"
+			(at 77.47 85.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 77.47 82.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 77.47 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 77.47 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 77.47 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9b0593c8-0ce0-4aba-aba7-2823305b9a3d")
+		)
+		(instances
+			(project "OpenAIO-Whoop"
+				(path "/2c3a7206-1e66-4d43-a02f-491225e20dd6/04f14c5a-8e46-5d66-be84-2bb8762684a3"
+					(reference "#PWR0242")
 					(unit 1)
 				)
 			)

@@ -21,6 +21,9 @@ Exports the netlist with kicad-cli (unless --netlist is given), reads every shee
                           its role needs (rails, phases, gates, RF, USB, analog), and every directive label the
                           contract lists is on its sheet; the class each net gets from the .kicad_pro patterns alone
                           (what the board sees: sync_pcb.py does not carry directive labels) equals its netlist class
+  N7 BEMF phase sense     in every ESC channel and for each phase X in A, B, C: the drain node of the half-bridge
+                          whose gate pin 2 (G1) is on X_PWM equals the node of the resistor feeding BEMF_X, so each
+                          comparator input senses the phase its MCU pin drives (Bluejay BB51 Layouts/A.inc)
 """
 import argparse
 import collections
@@ -298,6 +301,22 @@ for k, n in sorted(want_flags.items()):
 verdict("N6", "net classes: %s; %d directive labels (contract %d)"
         % (", ".join("%s %d" % kv for kv in sorted(by_cls.items())), sum(FLAGS.values()), sum(want_flags.values())),
         bad, "net classes")
+
+# ------------------------------------------------------------------------------------------------ N7
+# Bluejay BB51 senses phase X on BEMF_X while driving X_PWM / X_COM: the half-bridge on X_PWM must sit on the
+# phase node that the BEMF_X series resistor taps.
+bad, n7 = [], 0
+for esc in sorted({n.split("/")[1] for n in nets if re.match(r"/ESC\d+/", n)}):
+    for x in "ABC":
+        pwm = nets.get("/%s/%s_PWM" % (esc, x), [])
+        bemf = nets.get("/%s/BEMF_%s" % (esc, x), [])
+        drive = {pin_net.get((r, "7")) for r, p, f, t in pwm if p == "2" and comps[r]["value"] == "AGM210MAP"}
+        sense = {pin_net.get((r, "1")) for r, p, f, t in bemf if r.startswith("R")}
+        n7 += 1
+        if not drive or drive != sense or None in drive:
+            bad.append("%s %s: %s_PWM drives %s, BEMF_%s senses %s" % (
+                esc, x, x, "/".join(sorted(map(str, drive))) or "-", x, "/".join(sorted(map(str, sense))) or "-"))
+verdict("N7", "BEMF phase sense: %d phases, each BEMF_X resistor taps the half-bridge driven by X_PWM" % n7, bad)
 
 fails = results.count("FAIL")
 print("%d ok, %d FAIL" % (results.count("ok"), fails))

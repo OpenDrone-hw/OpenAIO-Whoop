@@ -1,5 +1,7 @@
 # OpenAIO-Whoop floorplan v3 (P2, 2026-10-10)
 
+Layer, stackup and via statements here describe the 6-layer board. Since D123 (2026-10-13) the board is 8-layer HDI 1+6+1; see `research/ROUTING.md`.
+
 The v3 board is `hardware/OpenAIO-Whoop.kicad_pcb`, with the block regions in `hardware/floorplan.json` and the renders in
 `images/floorplan-top.png` and `images/floorplan-bottom.png`. The review pack is in `images/review/` (diff against the v2
 checkpoint `p2v3/fp_checkpoints/08_pre_v3`). The v2 text of this file is in git history and in that checkpoint.
