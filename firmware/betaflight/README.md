@@ -40,10 +40,9 @@ make -j8 fwo CONFIG=OPENAIO_WHOOP \
   EXTRA_FLAGS='-DOPENAIO_GYRO_ALIGN=<alignment> -DOPENAIO_BOARD_YAW=<degrees>'
 ```
 
-Replace both placeholders with values derived from the final PCB placement
-and intended mount. The build intentionally rejects an omitted orientation.
-The parked IMU footprint does not establish the finished board's orientation.
-The compilation check used `CW0_DEG` and `0` solely as explicit build inputs;
+Replace both placeholders with values derived from the placement of U11 on the
+routed board and the intended mount. The build intentionally rejects an omitted
+orientation. The compilation check used `CW0_DEG` and `0` solely as explicit build inputs;
 those values are not an approved flight configuration.
 
 The MCU's 2MB flash size and 16KB font reservation are defined in `config.mk`

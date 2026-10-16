@@ -1,64 +1,117 @@
 # OpenAIO-Whoop
 
-All-in-one board for 1S whoops, 65 to 85 mm class: a Betaflight flight
-controller on an RP2354A, four Bluejay ESC channels (EFM8BB51 driving
-AGM210MAP half-bridges), an onboard ExpressLRS 2.4 GHz receiver
-(ESP32-PICO-V3 and SX1281) and an onboard analog VTX (RTC6705 and SE5004L)
-with a PIO framebuffer OSD. A 26.4 mm body on the 25.5 x 25.5 mm whoop
-pattern, the 1S sibling of [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO).
-It is not a 2S board: every rail is boosted or regulated from one cell.
+1S whoop-class all-in-one, 25.5 mm three-ear mounting pattern, 26.4 mm body: RP2354A flight controller running Betaflight, four EFM8BB51 ESC channels with twelve AGM210MAP half-bridges, an ExpressLRS 2.4 GHz receiver (ESP32-PICO-V3 and SX1281) and an analog VTX (RTC6705 and SE5004L) with a PIO framebuffer OSD. Every rail is derived from one cell; it is not a 2S board.
 
-## Design sources
+## Architecture
 
-- Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10. The root schematic and
-  its hierarchical sheets are authoritative for connections, values and BOM.
-- Read [research/DESIGN-SPEC.md](research/DESIGN-SPEC.md) for the fitted circuit,
-  [research/PINMAP.md](research/PINMAP.md) for pins, and
-  [research/ROUTING.md](research/ROUTING.md) for placement, layers and file paths.
-- Firmware bindings live in `firmware/betaflight/` and `firmware/expresslrs/`.
-  Do not copy obsolete configuration snippets from historical design proposals.
-- The board has parked parts and no tracks or vias: the 42 vias (38 microvias F.Cu-B.Cu, one F.Cu-In3.Cu, three 0.25 / 0.10 through vias) and 235 track segments of the 6-layer board were removed for the 8-layer conversion. Local rule areas and
-  placement are unfinished; do not describe it as DRC-clean or manufactured.
-- `bom_plan.json` and `sch_contract.json` are generated readbacks. Refresh them
-  with `export_bom_plan.py` and `export_interfaces.py`; never use legacy circuit
-  generators to overwrite the owner schematic from these exports.
+Sheets (root `OpenAIO-Whoop.kicad_sch`): `power`, four instances of `esc_channel` (ESC1 to ESC4), `rp2350a` (the RP2354A), `imu`, `blackbox`, `osd`, `rx_esp32_sx1281` (RX), `vtx`, `led`, `pads`.
+
+- **Power:** battery pad J2 feeds the 0.5 mohm shunt R2 (INA186A3, gain 100, 50 mV/A, Kelvin taps SHUNT_SENSE_P/N) and then `+BATT`. `+BATT` feeds the ESCs, the SE5004L and the TPS61022 boost. The boost output `+5V_BST` feeds the VHD pad and the HD VTX plug directly and `+5V` through D10. USB VBUS joins `+5V` through D9.
+- **ESC:** each EFM8BB51 (U6 to U9, supplied from `+BATT`) drives its three AGM210MAP half-bridges directly from `A/B/C_PWM` and `A/B/C_COM`; there is no gate driver. Phase sense uses resistors from the phase nodes to the MCU comparator inputs. The DShot line `MOTORn` runs from P0.5 through 1k to the RP2354A (GPIO4, 6, 18, 20 for motors 1 to 4). C2 debug lands are test points TP1 to TP8.
+- **FC:** RP2354A with 2 MB in-package flash, 12 MHz oscillator X1 on XIN (XOUT open), internal regulator with L2 to `+1.1V`. BMI270 on SPI1 with its own 1.8 V rail (U12). Blackbox flash U13 (Puya PY25Q128HA, 16 MB) on SPI0. Battery voltage is divided by R45/R46 (1:2) to ADC1, shunt output goes through R47 to ADC0.
+- **Receiver:** SX1281 (U18, LDO mode, 52 MHz TCXO X3) to FL1 to the wire antenna AE1. ESP32-PICO-V3 (U16) runs ExpressLRS and talks CRSF to the RP2354A on UART1 (GPIO8/9). Chip antenna AE2 for Wi-Fi mode feeds U16 pin 2 directly.
+- **VTX:** the same ESP32 programs the RTC6705 (U19) over a separate SPI through 1k series resistors, enables the PA reference regulator U22 with `PA_EN`, sets RF drive with a PWM through R71/Q27 and reads the PA detector (`PA_DET`). Chain: U19 to C110 to U20 (SE5004L) to FL2 to U.FL J1. HD_EN (RP2354A GPIO19) enables the analog VTX supply U21.
+- **OSD:** camera video (`VIDEO_IN`) passes through U14, which switches between video and the OSD level divider; U15 extracts sync to GPIO23. OSD writes use GPIO21, switch enable GPIO22.
+- **Boot:** one button SW1 serves both MCUs through D8: `FC_BOOT` (to `QSPI_SS` through R44) and `RX_BOOT` (ESP32 IO0).
+
+## Power
+
+```
+J2 (+) --> R2 0.5 mR shunt --> +BATT  (J3 = GND)
+  +BATT --> ESC1-4: U6-U9 VDD, Q29-Q40 half-bridges
+  +BATT --> U20 SE5004L VCC
+  +BATT --> U2 TPS61022 + L1 0.68 uH --> +5V_BST --> J26 VHD pad, J35 pin 1 (HD VTX)
+                                           +5V_BST --> D10 --> +5V
+  VBUS (J31) --> D9 --> +5V
+  +5V --> J21 pad, D4 WS2812
+      +5V --> FB1 --> +5V_CAM --> J24 pad, J32 pin 3
+      +5V --> U4 TLV75733 --> +3.3V (D11: +3.3V anode, +5V cathode)
+      +5V --> U21 LP5912-3.3 (EN = HD_EN) --> +3.3V_VTX --> U19 RTC6705
+                                                  +3.3V_VTX --> U22 TPS7A20285 (EN = PA_EN) --> PA_VREF --> U20 VREF
+  +3.3V --> U10 IOVDD, U11, U13, U14, U15, U16, U18, X1, X3, LEDs D5/D6
+      +3.3V --> U12 TPS7A2018 --> +1.8V_GYRO --> U11 VDD
+      +3.3V --> U10 VREG_VIN --> L2 3.3 uH --> +1.1V (DVDD)
+```
+
+## Key parts
+
+| Function | Ref | Part | LCSC | Note |
+|---|---|---|---|---|
+| MCU | U10 | RP2354A | C41378174 | 2 MB in-package flash |
+| MCU clock | X1 | 12 MHz oscillator | C669076 | on XIN |
+| IMU | U11 | BMI270 | C2836813 | SPI1 |
+| IMU LDO | U12 | TPS7A2018 | C36996449 | 1.8 V |
+| Blackbox | U13 | PY25Q128HA-DFH-IR | C53467986 | 16 MB, SPI0 |
+| Boost | U2 | TPS61022 | C915088 | L1 0.68 uH C5832369 |
+| 3.3 V LDO | U4 | TLV75733 | C2868428 | from +5V |
+| Shunt | R2 | 0.5 mohm 2 W | C346511 | 4-pad Kelvin |
+| Current amp | U1 | INA186A3 | C2058245 | gain 100 |
+| ESC MCU x4 | U6 to U9 | EFM8BB51F16I | C3232998 | Bluejay layout A |
+| Half-bridge x12 | Q29 to Q40 | AGM210MAP | C7431169 | three per ESC channel |
+| RX MCU | U16 | ESP32-PICO-V3 | C967022 | ExpressLRS and VTX control |
+| RX radio | U18 | SX1281 | C2151551 | X3 52 MHz TCXO C22434896 |
+| RX filter | FL1 | 2450FM07D0034T | C2651081 | to AE1 |
+| Wi-Fi antenna | AE2 | 2450AT07A0100001T | C17531353 | B.Cu |
+| Video synth | U19 | RTC6705 | C913074 | X4 8 MHz C400090 |
+| VTX PA | U20 | SE5004L | C210263 | on +BATT |
+| VTX filter | FL2 | RFBPF1608060K98Q1C | C2442150 | to J1 |
+| VTX LDOs | U21, U22 | LP5912-3.3, TPS7A20285 | C524780, C3748388 | analog rail, PA reference |
+| OSD switch / sync | U14, U15 | SN74LVC1G3157, TLV7031 | C2673087, C2876045 | |
+| Supply diodes | D9 to D11 | MS2A40LDF | C7380000 | |
+| Status LED | D4 | XL-1010RGBC-2812B | C5349953 | RX status |
+
+## Connectors and I/O
+
+| Connector | Ref | Part | Function |
+|---|---|---|---|
+| Battery | J2, J3 | solder pads D1.7 mm PTH | J2 +, J3 GND |
+| Motors M1 to M4 | J4, J7, J10, J13 | PicoBlade 1.25 mm 3-pin lands (header 53047-0310 optional) | pins 1/2/3 = phase C/B/A of ESC1 to ESC4 |
+| USB | J31 | BM04B-SRSS-TB (C160390) on B.Cu | 1 GND, 2 D-, 3 D+, 4 VBUS; D7 TPD2EUSB30 |
+| Camera plug | J32 | SM03B-SURS-TF (C265338) | 1 VIDEO_IN, 2 GND, 3 +5V_CAM |
+| HD VTX plug | J35 | SM04B-SRSS-TB (C160404) on B.Cu | 1 +5V_BST, 2 GND, 3 UART0_TX, 4 UART0_RX |
+| VTX antenna | J1 | U.FL (C88374) | 5.8 GHz out |
+| RX antenna | AE1 | plated D0.5 wire hole | 2.4 GHz wire |
+| Pads | J20 LED, J21 +5V, J22 BZ-, J23 CAM video, J24 +5V_CAM, J26 VHD (+5V_BST), J28 TX0, J29 RX0, J25/J27/J33 GND | 1.0 x 1.2 mm solder pads | J28 and J29 are UART0 TX and RX (GPIO16/17) |
+| Test points | TP1 to TP8 | EFM8 C2D/C2CK per ESC | TP12 SWCLK (CLK), TP13 SWDIO (DIO) |
+
+GPIO29 (`SBUS`) has no pad. Full RP2354A and ESP32 pin tables: [research/PINMAP.md](research/PINMAP.md).
 
 ## Layout rules
 
-- 8 layers, HDI 1+6+1, 1.0 mm (0.997 mm stackup sum), 1 oz copper on every
-  layer. L2 (In1) and L7 (In6) are solid GND planes with no tracks. L3 (In2) and
-  L6 (In5) are signal layers; ESC gate and BEMF escapes go on them. L4 (In3) is the
-  +BATT plane and L5 (In4) the regulated-rail plane. In2 and In5 carry no analog or
-  RF; In3 and In4 carry no analog, RF, gate, gyro or VTX control nets. The DRU
-  enforces the layer restrictions. Named local areas are absent until placement;
-  create them using research/ROUTING.md before routing.
-- HDI 1+6+1: laser microvias F.Cu-In1.Cu and In6.Cu-B.Cu only (0.25 / 0.10), buried
-  vias In1.Cu-In6.Cu stacked on or staggered from them (0.33 / 0.15 in every
-  net class, D126; stacking is priced as HDI II, D124), no through vias, no mechanical blind vias. Vias sit inside same-net
-  pads; a free-standing via takes board space and is avoided. The stackup is
-  `hardware/tools/stackup.json`, applied with `apply_stackup.py`. Decision D123
-  (2026-10-13) in research/DECISIONS.md.
-- `hardware/tools/setup_board.py`, `board_spec.json` and `freeroute.py` describe the
-  pre-2026-10-13 6-layer board: do not run `setup_board.py` to write the project or
-  rules; the 8-layer `.kicad_pro` and `.kicad_dru` are edited in KiCad Board Setup.
-- RF nets carry no vias and keep 50 ohm width on the outer layers. Inside the
-  `RF_VTX_STRIP` rule area (0.5 mm around the 5.8 GHz chain) only GND vias are
-  allowed, so In1 (and In6 on the bottom face) stays solid under the line; `RF_PAD_CUTOUT` cuts In1 out
-  under the U.FL signal pad.
-- AE1, the RX wire, leaves through a plated D0.5 hole. Inside the D2.0
-  `RF_RX_HOLE` area pours are kept out on all layers and the only copper is the
-  2.4 GHz feed on L1. AE2 has no all-layer keep-out but minimal copper around
-  it, with parts on the opposite side.
-- The 5 V boost hot loop closes on the component layer with a direct ground
-  return: no via in the loop, unbroken GND under it, a small switch node, away
-  from the gyro, the crystals and the antennas.
-- Each AGM210MAP keeps its 22 uF hot-loop cap directly across its supply pair.
-  The battery path from the pads through R2 to each ESC cell stays short and
-  symmetric; R2's sense taps stay Kelvin, on the outer layers.
-- The motor plugs, the twelve half-bridges, the USB plug at the rear hole, the
-  battery pads and the camera plug sit where the BetaFPV Matrix 1S 5IN1 II has
-  them, so motor leads, battery lead and camera cable reach as they do on that
-  board. Moving them breaks that fit.
+- **Stackup:** 8 layers, 0.997 mm, 35 um copper on all layers, 1080 prepreg 0.077 mm L1/L2, L2/L3, L6/L7, L7/L8, cores 0.127 mm L3/L4 and L5/L6, 2116 prepreg 0.125 mm L4/L5.
+- **Planes:** In1 and In6 GND only, no tracks. In3 `+3.3V`, In4 `+BATT`, In5 `+5V` and `+5V_BST`. In2 and In5 carry digital signals, ESC gate and phase-sense escapes. Parts and RF sit on F.Cu and B.Cu.
+- **Vias (HDI 1+6+1):** laser microvias F.Cu to In1 and In6 to B.Cu only (0.25 land, 0.10 drill), buried vias In1 to In6 (0.33 land, 0.15 drill), no through vias, no mechanical blind vias. A microvia may stack on a same-net buried via. Hole to hole 0.30 between different nets, 0.20 same net. `hdi_via_pass.py` rebuilds unbuildable vias after routing.
+- **Board setup:** clearance and track 0.09 mm, annular ring 0.075 mm, copper to edge 0.20 mm. Parts keep 0.30 mm from the edge except edge solder pads.
+- **RF:** class `RF` has no vias and 50 ohm width 0.100 to 0.110 mm with 0.15 mm gap on the outer layers, over unbroken GND on In1 or In6. Each chain stays on one face. Intent from the DRU (area rules, see the next item): only the `/RX/RF_RX_ANT` feed on F.Cu enters the D2.0 area around the AE1 hole, SPI0 and `FLASH_CS` stay 3 mm from it (blackbox harmonics fall in the ELRS band), and AE2 has a feed-only void on every layer.
+- **Rule areas:** the DRU rules for `RF_RX_FEED`, `RF_VTX_STRIP`, `RF_RX_HOLE`, `RF_RX_ROOT`, `WIFI_VOID_V1`, `WIFI_FAR_F`, `WIFI_GND_LINK`, `SHUNT_CORRIDOR`, `BOOST_GND_L5`, `MOUNT_*` and `PART_EDGE_BAND` match by area name. The board file holds no rule areas, so those rules do not fire.
+- **Current paths:** boost hot loop (U2, L1, its caps) on F.Cu with a direct ground return and no via in the loop. Each AGM210MAP keeps its 22 uF hot-loop caps directly across its supply pair. `+5V_BST` and `+5V` tracks at least 0.30 mm or pours. R2 sense taps stay Kelvin on the outer layers and off In2/In5.
+- **USB:** `USB_D_P/N` skew at most 5 mm per segment, pair gap 0.10 to 0.20 mm.
+- **Mechanical:** three D3.55 ear cut-outs on a 25.5 mm square pattern (5.2 mm grommet flange keep-out is an area rule, inactive). No tall connector within 1.0 mm of J31 (active).
+
+## Firmware
+
+- **Flight controller:** Betaflight target `OPENAIO_WHOOP` in `firmware/betaflight/`, built against Betaflight 2026.6.2 (pinned commit in its README). Not registered upstream. The build needs `OPENAIO_GYRO_ALIGN` and `OPENAIO_BOARD_YAW`. First flash over USB BOOTSEL: hold SW1 while connecting J31.
+- **Receiver:** ExpressLRS pin binding `firmware/expresslrs/board-layout.json` for the ESP32-PICO-V3. It is a binding, not an installable target: power calibration arrays are absent. ESP32 boot is IO0 on SW1; its UART0 connects only to RP2354A GPIO8/9.
+- **ESC:** Bluejay on the EFM8BB51, layout A, over C2 on TP1 to TP8. No ESC firmware is stored here.
+
+## Repo
+
+| | |
+|---|---|
+| Maintainer | OpenDrone-hw |
+| Status | See the `status-*` topic on the repo. Never written here. |
+| Designed in | KiCad 10 |
+| KiCad project | `hardware/OpenAIO-Whoop.kicad_pro` |
+| Root schematic | `hardware/OpenAIO-Whoop.kicad_sch` plus `power`, `esc_channel` (x4), `rp2350a`, `imu`, `blackbox`, `osd`, `rx_esp32_sx1281`, `vtx`, `led`, `pads` |
+| Board | `hardware/OpenAIO-Whoop.kicad_pcb`, 8 layers, HDI 1+6+1, 0.997 mm |
+| Local library | `hardware/lib.kicad_sym`, `hardware/lib.pretty/`, `hardware/lib.3dshapes/`, nickname `lib` |
+| Shared library | `hardware/KiCad-Library/`, submodule of [OpenDrone-hw/KiCad-Library](https://github.com/OpenDrone-hw/KiCad-Library), nickname `OpenDrone`; 3D models and exact component datasheets resolve through the project text variable `OPENDRONE_LIB` |
+| Design rules | `hardware/OpenAIO-Whoop.kicad_dru`, canonical block plus HDI via, layer-use, RF, antenna, USB and plated-hole rules |
+| Fab config | `hardware/fabrication-toolkit-options.json` |
+| Board setup | 8 layers, 0.09 mm clearance and track, microvia 0.25 on 0.10 drill, buried via 0.33 on 0.15 drill, annular 0.075 mm |
+| License | CERN-OHL-S-2.0 |
+
+A repository holds design files only. Sourcing (suppliers, prices, quotes, RFQs, contacts) is handled by Incutec and never lives in OpenDrone repositories.
 
 ## Parts and datasheets
 
@@ -66,12 +119,10 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   are authoritative for what this board fits. Export the netlist with the
   command below when a script-readable board index is needed; do not maintain
   a second hand-written BOM.
-- **Symbols and footprints:** every footprint is in `hardware/lib.pretty/`.
-  Symbols come from `hardware/lib.kicad_sym` or KiCad 10's stock `Device`,
-  `power`, `Connector` and `Mechanical` libraries.
 - **Proven shared parts:**
   `hardware/KiCad-Library/PARTS-USED.md` is the catalogue index. Its `Boards`
-  column identifies every repository using each LCSC part.
+  column identifies every repository using each LCSC part; filter that column
+  for `OpenAIO-Whoop` to get this repository's proven shared-part view.
 - **Exact datasheets:**
   `hardware/KiCad-Library/datasheet/manifest.json` maps shared symbols to the
   committed PDFs and their SHA-256 hashes. The PDFs live in
@@ -81,67 +132,35 @@ It is not a 2S board: every rail is boosted or regulated from one cell.
   `hardware/lib.pretty/`, and `hardware/lib.3dshapes/`, then verify supplier
   fields in the board schematic. Do not duplicate a shared part or datasheet.
 
-- After a routing session, with KiCad closed, run `hardware/tools/hdi_via_pass.py` with KiCad's bundled
-  Python: it replaces every unbuildable via (mechanical blind, multi-layer microvia, through via) with the
-  minimum stack at the same spot (microvia, microvia + buried, microvia + buried + microvia), nudges
-  up to 0.05 mm for clearance and lists bigger conflicts. Then run DRC.
-- Edit form: `hdi_via_pass.py <board> --collapse` turns each stack into one via (front/inner/back padstack
-  with the stack's lands and the buried drill), so a stack moves as one object. Move vias with Drag (D): the
-  router holds clearance to other nets. Move (M) never checks DRC, and the router never checks same-net hole
-  spacing. The `edit form:` rules in the .kicad_dru check an edit-form via as the stack it becomes; the next
-  normal via pass rebuilds the stacks. Stacks whose microvia sits off the buried via to clear outer copper
-  stay as stacks and are listed.
-- Board cleanup tools (fab form, KiCad closed, DRC after each): `track_widen.py` widens tracks to the per-class
-  targets in the script where clearance allows (never narrower; `--revert drc.json` undoes widened tracks DRC
-  flags); `gnd_stitch.py` adds buried L2-L7 and outer microvia GND stitching where every layer has room (rerun
-  adds only what is missing); then `via_declutter.py` on the DRC report removes any stitching via DRC flags.
-  `track_to_pour.py --net X` turns a high-current net's tracks into pours (one zone per outline, each track
-  removed only if connectivity holds); `pad_vias.py` fills GND and plane-fed pads (and `--pour-net` pours) with
-  vias; `loop_resistance.py` estimates copper resistance and loss of the high-current loops (read only).
-  `inner_router.py` reroutes In2.Cu / In5.Cu between the existing vias: shorter, sensitive nets on In2, noisy
-  (gate, phase sense, DShot, clocks) on In5, a reroute kept only if it scores better and splits no plane.
-
 ## Environment
 
 ```sh
-# clone with the pinned shared library (symbols, footprints, 3D models)
+# clone with the pinned shared library, or fetch it into an existing clone
 git clone --recurse-submodules https://github.com/OpenDrone-hw/OpenAIO-Whoop
-git submodule update --init   # existing clone, hardware/KiCad-Library empty
+git submodule update --init
 
 # schematic and board checks
 kicad-cli sch erc hardware/OpenAIO-Whoop.kicad_sch
 kicad-cli pcb drc --schematic-parity --refill-zones hardware/OpenAIO-Whoop.kicad_pcb
 
-# component/interface exports and schematic checks
-python3 hardware/tools/export_bom_plan.py
-python3 hardware/tools/export_interfaces.py
-python3 hardware/tools/check_netlist.py -v
-$KPY hardware/tools/check_rules.py hardware/OpenAIO-Whoop.kicad_pcb
-$KPY hardware/tools/check_rule_behavior.py hardware/OpenAIO-Whoop.kicad_pcb
-
 # netlist, for scripted analysis
 kicad-cli sch export netlist --format kicadsexpr -o /tmp/OpenAIO-Whoop.net hardware/OpenAIO-Whoop.kicad_sch
-
-# board setup report and lineup conventions
-$KPY hardware/tools/check_board_setup.py [--spec <spec.json>]
-$KPY hardware/tools/check_conventions.py --stage planned
 ```
-
-3D models of catalogue parts (every passive, the RP2354A, the SX1281 and
-more) resolve through `OPENDRONE_LIB` = `${KIPRJMOD}/KiCad-Library` only with
-the submodule initialised; without it the 3D view shows bare pads.
 
 On macOS `kicad-cli` is at
 `/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`, and `pcbnew` imports
-only under KiCad's bundled Python, `KPY`:
-`/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3`.
-On Linux, `bash hardware/tools/setup-agent-env.sh` installs KiCad 10 with
-`kicad-cli` on `PATH`; `KPY` is `/usr/bin/python3.12`, and
-`/opt/kicad-agent-venv/bin/python` is the same with kicad-skip added.
-Reusable scripts for renders, STEP export, and packaging art come from Incutec
-hardware tooling. The OpenDrone release standard is
+only under KiCad's bundled Python. Reusable scripts for renders, STEP export,
+and packaging art come from Incutec hardware tooling. The OpenDrone release
+standard is
 [RELEASES.md](https://github.com/OpenDrone-hw/.github/blob/main/RELEASES.md).
-Board-specific scripts live in `hardware/tools/`.
+Board-specific scripts live in `hardware/tools/`; run the Python ones with `KPY`, KiCad's bundled Python
+(`/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3`), and KiCad closed for any that write:
+
+- Read-only checks: `check_rules.py`, `check_rule_behavior.py`, `check_board_setup.py`, `check_spacing.py`, `check_conventions.py --stage planned`, `loop_resistance.py`, `check_netlist.py` (compares the schematic with `bom_plan.json`, `sch_contract.json` and `research/PINMAP.md`).
+- Board edits after routing: `hdi_via_pass.py` (via spans), `gnd_stitch.py`, `pad_vias.py`, `track_widen.py`, `track_to_pour.py`, `inner_router.py`, `via_declutter.py`. DRC after each.
+- Stackup: `stackup.json` applied with `apply_stackup.py`.
+- Readbacks: `export_bom_plan.py` and `export_interfaces.py` write `hardware/bom_plan.json` and `hardware/sch_contract.json`. They are exports, not a BOM source.
+- Generators that predate the owner's edits: `sch_build.py`, `sch_root.py`, `sch_integrate.py`, `setup_board.py`, `floorplan.py` (inputs `floorplan.json`, `board_spec.json`), `sync_pcb.py`, `pcb_build.py`. They write schematic, board or rule files. Do not run them to overwrite the current files.
 
 ## Rules
 
@@ -170,6 +189,12 @@ Identical in every OpenDrone board repo. Do not edit here; edit the template.
   may remain; a new type or increased count must be reviewed before merge.
   Commands are in Environment above.
 
+## Revisions
+
+| Rev | Date | Change |
+|---|---|---|
+| none | 2026-10-16 | No release tag. Current state: complete schematic, routed 8-layer HDI board. |
+
 ## By task
 
 Board-specific paths are in Environment above. `KPY` is KiCad's bundled
@@ -179,5 +204,5 @@ Python named there.
 - Add a part: place it from the `OpenDrone` library if `hardware/KiCad-Library/PARTS-USED.md` lists it; otherwise import it into `lib` with `$KPY <hardware-tooling>/hardware/kicad/import_part.py` (read `--help` first), KiCad closed.
 - Render the board for the README: `$KPY <hardware-tooling>/hardware/kicad/render_board.py hardware/OpenAIO-Whoop.kicad_pcb --outdir images`, KiCad closed, submodule initialised.
 - Analyse the netlist: export it with the netlist command in Environment, then read it with a script; never hand-write a second BOM.
-- Check lineup conventions: run `check_conventions.py` from Environment; the stage is `planned` until the repo topic says otherwise.
+- Check lineup conventions: `$KPY hardware/tools/check_conventions.py --stage planned`.
 - Update the shared library: `git submodule update --remote hardware/KiCad-Library`, run DRC, commit as its own reviewed change.

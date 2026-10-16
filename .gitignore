@@ -79,7 +79,3 @@ stencil_out/
 #   *.kicad_dru             design intent
 #   fabrication-toolkit-options.json
 #   *.kicad_sym  *.pretty/  *.3dshapes/   project-local libraries
-
-# --- repo-specific, below the canonical block ---------------------------------
-# .history_trim scratch directories
-**/.history_trim/
