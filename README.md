@@ -52,7 +52,7 @@ Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10 and keep the hardware folder
 - 25.5 x 25.5 mm mounting pattern, shared with OpenAIO.
 - 1S only. 2S and above is OpenAIO.
 - Motor plugs, USB, battery pads and camera plug follow the BetaFPV Matrix 1S 5IN1 II positions, so leads and cables reach as on that board.
-- FC section follows the [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; receiver follows [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL) (SX1281) on an ESP32-PICO-V3 that talks CRSF to the FC and also controls the VTX.
+- FC section follows the [OpenFC Lite 20x20](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) RP2354A design; receiver follows [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL) (SX1281) on an ESP32-PICO-V3 that talks CRSF to the FC and also controls the VTX.
 - Passives 0201 and up.
 - No battery protection on the board: no reverse-polarity protection, no TVS, no low-cell cutoff.
 
@@ -67,7 +67,7 @@ Open `hardware/OpenAIO-Whoop.kicad_pro` in KiCad 10 and keep the hardware folder
 
 ## Prior art
 
-- [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL): the FC and RX stages this board follows.
+- [OpenFC Lite 20x20](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [OpenRX-Lite-UFL](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL): the FC and RX stages this board follows.
 - [OpenAIO](https://github.com/OpenDrone-hw/OpenAIO): the 3S to 6S board on the same mounting pattern.
 - [OpenVTX](https://github.com/OpenDrone-hw/OpenVTX): the line's RTC6705 analog VTX.
 - BetaFPV Matrix 1S 5IN1 II: the class reference.
