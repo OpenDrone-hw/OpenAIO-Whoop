@@ -64,10 +64,7 @@ README_ALPHA = ["Specifications", "In the line", "Contributing", "License"]
 AGENTS_ORDER = ["Architecture", "Power", "Key parts", "Connectors and I/O", "Layout rules",
                 "Firmware", "Repo", "Parts and datasheets", "Environment", "Rules",
                 "Revisions", "By task"]
-RULE_LEADS = ["**Never text-edit**", "**Metadata yes, connections no.**",
-              "**Close KiCad before any write to a KiCad file.**", "**Reuse before you draw.**",
-              "**One person holds a board layout at a time.**",
-              "**Run ERC and DRC before every pull request.**"]
+BOARD_RULES_LINK = "https://github.com/OpenDrone-hw/hardware-template/blob/main/AGENTS.md#board-rules"
 
 results = []
 
@@ -708,8 +705,8 @@ def check_docs(prj, stage):
         extra = [h for h in found if h not in AGENTS_ORDER]
         if extra:
             report("warn", "D3", f"AGENTS.md sections not in the template: {extra}")
-        verdict("D3", "AGENTS.md Rules section carries the six template rules",
-                [r for r in RULE_LEADS if r not in text])
+        verdict("D3", "AGENTS.md Rules section links the template's Board rules",
+                [] if BOARD_RULES_LINK in text else [f"no link to {BOARD_RULES_LINK}"])
 
 
 def main():
