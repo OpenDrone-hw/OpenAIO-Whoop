@@ -3,12 +3,12 @@
 	(generator "pcbnew")
 	(generator_version "10.0")
 	(layer "F.Cu")
-	(descr "ALLPOWER AP1606 DFN-3L 1.0 x 0.6. Land per Nexperia SOT883 package information (20 May 2022) p2 outline DFN1006-3 (D 0.6 x E 1.0, e 0.35, e1 0.65) and p3 'Footprint information for reflow soldering' (lands 0.40 x 0.25 at 0.45 pitch, 0.40 x 0.70, 0.70 between columns, R0.05); p23/merge/od/dl/ap/SOT883.pdf. The AP1606 data sheet (${OPENDRONE_LIB}/datasheet/AP1606.pdf, also LCSC C2849580) has no package drawing; LCSC lists DFN-3L(0.6x1), i.e. the industry DFN1006-3 (SOT883, JEITA SC-101). Land = Nexperia's SOT883 reflow footprint drawn in the OpenDrone '-BR' frame (pins 1/2 right column, pin 1 lower right, pin 3 left), which keeps the pin numbering OpenDrone built with on OpenFC-Core/Lite/Lite-Mini (PARTS-USED.md). Inside the budget envelope DFN1006 1.1 x 0.7.. Corrected copy of OpenDrone:DFN-3L_L1.0-W0.6-P0.65-BR (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/DFN-3L_L1.0-W0.6-P0.65-BR_W.json")
+	(descr "ALLPOWER AP1606 DFN-3L 1.0 x 0.6. Land per Nexperia SOT883 package information (20 May 2022) p2 outline DFN1006-3 (D 0.6 x E 1.0, e 0.35, e1 0.65) and p3 'Footprint information for reflow soldering' (lands 0.40 x 0.25 at 0.45 pitch, 0.40 x 0.70, 0.70 between columns, R0.05); p23/merge/od/dl/ap/SOT883.pdf. The AP1606 data sheet (${OPENDRONE_LIB}/datasheet/AP1606.pdf, also LCSC C2849580) has no package drawing; LCSC lists DFN-3L(0.6x1), i.e. the industry DFN1006-3 (SOT883, JEITA SC-101). Land = Nexperia's SOT883 reflow footprint drawn in the OpenDrone '-BR' frame (pins 1/2 right column, pin 1 lower right, pin 3 left), which keeps the pin numbering OpenDrone built with on an internal reference design and on OpenFC-Lite/Lite-Mini (PARTS-USED.md). Inside the budget envelope DFN1006 1.1 x 0.7.. Corrected copy of OpenDrone:DFN-3L_L1.0-W0.6-P0.65-BR (same frame), F.Fab body, no component silk; spec hardware/tools/land_specs/DFN-3L_L1.0-W0.6-P0.65-BR_W.json")
 	(tags "ALLPOWER AP1606 DFN-3L 1.0 x 0.6")
 	(property "Reference" "REF**"
 		(at 0 0 0)
 		(layer "F.Fab")
-		(uuid "41b1e382-a227-4844-9dda-14616c78ab50")
+		(uuid "ff482423-9146-405c-9b1d-01dfa2459e3c")
 		(effects
 			(font
 				(size 0.24 0.24)
@@ -20,7 +20,7 @@
 		(at 0 0.54 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "a144e373-2e04-4933-9663-3c1359b53275")
+		(uuid "7fb930f6-bbbd-4686-8815-67a9bcce47ed")
 		(effects
 			(font
 				(size 0.24 0.24)
@@ -32,7 +32,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "25c2a504-e344-4f9e-837c-fb439cbcc88c")
+		(uuid "0a3c698a-5ba0-4c5d-9876-ce58ed6dd371")
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -43,7 +43,7 @@
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "a1807cdf-745f-494a-8beb-9000995c1475")
+		(uuid "913baade-bc39-4d6f-babb-90f74ee557c7")
 		(effects
 			(font
 				(size 1.27 1.27)
