@@ -1,7 +1,6 @@
 ---
 reviewer: Bastian Springer
 date: 2026-10
-notion: https://app.notion.com/p/36ffe06764e180ef9ca7c9732d994021
 ---
 
 # Schematic review, October 2026
